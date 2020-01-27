@@ -8,16 +8,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.geoserver.api.APIRequestInfo;
 import org.geoserver.api.AbstractCollectionDocument;
 import org.geoserver.api.CollectionExtents;
 import org.geoserver.api.Link;
+import org.geoserver.api.QueryablesDocument;
 import org.geoserver.catalog.FeatureTypeInfo;
 import org.geoserver.config.GeoServer;
 import org.geoserver.config.ServiceInfo;
@@ -36,8 +34,9 @@ public class CollectionDocument extends AbstractCollectionDocument {
 
     FeatureTypeInfo featureType;
     String mapPreviewURL;
+    List<String> crs;
 
-    public CollectionDocument(GeoServer geoServer, FeatureTypeInfo featureType) {
+    public CollectionDocument(GeoServer geoServer, FeatureTypeInfo featureType, List<String> crs) {
         super(featureType);
         // basic info
         String collectionId = featureType.prefixedName();
@@ -47,6 +46,7 @@ public class CollectionDocument extends AbstractCollectionDocument {
         ReferencedEnvelope bbox = featureType.getLatLonBoundingBox();
         setExtent(new CollectionExtents(bbox));
         this.featureType = featureType;
+        this.crs = crs;
 
         // links
         Collection<MediaType> formats =
@@ -67,6 +67,7 @@ public class CollectionDocument extends AbstractCollectionDocument {
                             collectionId + " items as " + format.toString(),
                             "items"));
         }
+        addSelfLinks("ogc/features/collections/" + id);
 
         // describedBy as GML schema
         String describedByHref =
@@ -93,7 +94,7 @@ public class CollectionDocument extends AbstractCollectionDocument {
                         + "/queryables",
                 QueryablesDocument.class,
                 "Queryable attributes as ",
-                null,
+                "queryables",
                 null,
                 "queryables");
 
@@ -131,5 +132,9 @@ public class CollectionDocument extends AbstractCollectionDocument {
     @JsonIgnore
     public String getMapPreviewURL() {
         return mapPreviewURL;
+    }
+
+    public List<String> getCrs() {
+        return crs;
     }
 }

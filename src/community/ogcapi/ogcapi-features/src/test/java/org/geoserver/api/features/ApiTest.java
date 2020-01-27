@@ -6,7 +6,7 @@ package org.geoserver.api.features;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
+import org.geoserver.api.OpenAPIMessageConverter;
 import org.geoserver.test.GeoServerBaseTestSupport;
 import org.geoserver.wfs.WFSInfo;
 import org.hamcrest.CoreMatchers;
@@ -44,7 +45,7 @@ public class ApiTest extends FeaturesTestSupport {
         MockHttpServletResponse response = getAsMockHttpServletResponse("ogc/features/api", 200);
         assertThat(
                 response.getContentType(),
-                CoreMatchers.startsWith("application/openapi+json;version=3.0"));
+                CoreMatchers.startsWith(OpenAPIMessageConverter.OPEN_API_MEDIA_TYPE_VALUE));
         String json = response.getContentAsString();
         GeoServerBaseTestSupport.LOGGER.log(Level.INFO, json);
 
@@ -81,7 +82,7 @@ public class ApiTest extends FeaturesTestSupport {
         assertThat(
                 html,
                 containsString(
-                        "url: \"http://localhost:8080/geoserver/ogc/features/api?f=application%2Fopenapi%2Bjson%3Bversion%3D3.0\""));
+                        "url: \"http://localhost:8080/geoserver/ogc/features/api?f=application%2Fvnd.oai.openapi%2Bjson%3Bversion%3D3.0"));
     }
 
     @Test
@@ -150,13 +151,16 @@ public class ApiTest extends FeaturesTestSupport {
                 parameters.stream().map(p -> p.get$ref()).collect(Collectors.toList());
         assertThat(
                 itemGetParamNames,
-                contains(
+                containsInAnyOrder(
                         "#/components/parameters/collectionId",
                         "#/components/parameters/limit",
                         "#/components/parameters/bbox",
                         "#/components/parameters/datetime",
                         "#/components/parameters/filter",
-                        "#/components/parameters/filter-lang"));
+                        "#/components/parameters/filter-lang",
+                        "#/components/parameters/crs",
+                        "#/components/parameters/bbox-crs",
+                        "#/components/parameters/otherParameters"));
 
         // ... feature
         PathItem item = paths.get("/collections/{collectionId}/items/{featureId}");

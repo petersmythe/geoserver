@@ -15,6 +15,7 @@ public class GeoServerOpenAPI extends OpenAPI {
 
     private String serviceBase;
 
+    @JsonIgnore
     public String getServiceBase() {
         return serviceBase;
     }
@@ -34,7 +35,7 @@ public class GeoServerOpenAPI extends OpenAPI {
         return ResponseUtils.buildURL(
                 baseURL,
                 serviceBase + (serviceBase.endsWith("/") ? "api" : "/api"),
-                Collections.singletonMap("f", OpenAPIMessageConverter.OPEN_API_VALUE),
+                Collections.singletonMap("f", OpenAPIMessageConverter.OPEN_API_MEDIA_TYPE_VALUE),
                 URLMangler.URLType.SERVICE);
     }
 }

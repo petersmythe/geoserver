@@ -30,6 +30,7 @@ officially part of the GeoServer releases. They are however built along with the
    solr/index
    geomesa/index
    gwc-distributed/index
+   flatgeobuf/index
    gdal/index
    gwc-s3/index
    gwc-azure-blob/index
@@ -55,3 +56,5 @@ officially part of the GeoServer releases. They are however built along with the
    geostyler/index
    csw-iso/index
    importer-jdbc/index
+   hana/index
+   json-ld/index

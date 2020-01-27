@@ -44,6 +44,8 @@ paths:
         The landing page provides links to the API definition, the conformance
         statements and to the feature collections in this dataset.
       operationId: getLandingPage
+      parameters:
+        - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/LandingPage'
@@ -58,6 +60,8 @@ paths:
         A list of all conformance classes specified in a standard that the
         server conforms to.
       operationId: getConformanceDeclaration
+      parameters:
+        - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/ConformanceDeclaration'
@@ -71,6 +75,8 @@ paths:
       description: |-
         A list of supported filters and functions.
       operationId: getFilterCapabilities
+      parameters:
+         - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/FilterCapabilities'
@@ -82,6 +88,8 @@ paths:
         - Capabilities
       summary: the feature collections in the dataset
       operationId: getCollections
+      parameters:
+        - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/Collections'
@@ -96,6 +104,7 @@ paths:
       operationId: describeCollection
       parameters:
         - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/Collection'
@@ -112,6 +121,7 @@ paths:
       operationId: getQueryables
       parameters:
         - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/Queryables'
@@ -140,6 +150,9 @@ paths:
         - $ref: '#/components/parameters/datetime'
         - $ref: '#/components/parameters/filter'
         - $ref: '#/components/parameters/filter-lang'
+        - $ref: '#/components/parameters/crs'
+        - $ref: '#/components/parameters/bbox-crs'
+        - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/Features'
@@ -163,6 +176,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/crs'
+        - $ref: '#/components/parameters/otherParameters'
       responses:
         '200':
           $ref: '#/components/responses/Feature'
@@ -282,6 +297,30 @@ components:
         enum:
           - cql-text
         default: cql-text
+    otherParameters:
+      style: form
+      in: query
+      name: otherParameters
+      description: Allows unrecognized parameters to be added in the query string without getting a 400 back (e.g., cache busters)
+      schema:
+        type: object
+        additionalProperties: true
+    crs:
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uri
+      style: form
+      explode: false
+    bbox-crs:
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uri
+      style: form
+      explode: false
   schemas:
     queryables:
       type: object
@@ -354,6 +393,7 @@ components:
           type: array
           items:
             type: string
+            format: uri;
           default:
             - http://www.opengis.net/def/crs/OGC/1.3/CRS84
           example:
@@ -373,6 +413,17 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/collection"
+        crs:
+          description: a list of CRS identifiers that are supported for more that one feature collection offered by the service
+          type: array
+          items:
+            type: string
+            format: uri
+          default:
+            - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+          example:
+            - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+            - http://www.opengis.net/def/crs/EPSG/0/4326
     confClasses:
       type: object
       required:

@@ -31,6 +31,7 @@ import org.geoserver.api.APIService;
 import org.geoserver.api.ConformanceDocument;
 import org.geoserver.api.HTMLResponseBody;
 import org.geoserver.api.OpenAPIMessageConverter;
+import org.geoserver.api.ResourceNotFoundException;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.SLDHandler;
 import org.geoserver.catalog.StyleHandler;
@@ -156,7 +157,7 @@ public class StylesService {
         path = "api",
         name = "getApi",
         produces = {
-            OpenAPIMessageConverter.OPEN_API_VALUE,
+            OpenAPIMessageConverter.OPEN_API_MEDIA_TYPE_VALUE,
             "application/x-yaml",
             MediaType.TEXT_XML_VALUE
         }
@@ -221,8 +222,7 @@ public class StylesService {
         StyleInfo style = geoServer.getCatalog().getStyleByName(styleId);
         if (style == null) {
             if (failIfNotFound) {
-                throw new APIException(
-                        "StyleNotFound", "Could not locate style " + styleId, HttpStatus.NOT_FOUND);
+                throw new ResourceNotFoundException("Could not locate style " + styleId);
             } else {
                 return null;
             }
