@@ -35,6 +35,7 @@
       <version>2.1</version>
       <configuration>
         <descriptors>
+          <descriptor>release/ext-arcsde.xml</descriptor>
           <!-- <descriptor>release/ext-groovy.xml</descriptor> -->
           <!-- <descriptor>release/ext-javascript.xml</descriptor> -->
           <!-- <descriptor>release/ext-spatialite.xml</descriptor> -->
@@ -103,6 +104,7 @@
           <descriptor>release/ext-csw-iso.xml</descriptor>
           <descriptor>release/ext-importer-jdbc.xml</descriptor>
           <descriptor>release/ext-json-ld.xml</descriptor>
+          <descriptor>release/ext-metadata.xml</descriptor>
         </descriptors>
       </configuration>
      </plugin>
@@ -138,6 +140,12 @@
 
   <!-- profiles for individual modules -->
   <profiles>
+    <profile>
+      <id>arcsde</id>
+      <modules>
+        <module>arcsde</module>
+      </modules>
+    </profile>
     <profile>
       <id>colormap</id>
       <modules> 
@@ -220,6 +228,7 @@
     <profile>
       <id>communityRelease</id>
       <modules>
+        <module>arcsde</module>
         <module>dds</module>
         <!-- <module>spatialite</module> -->
         <module>jdbcconfig</module>
