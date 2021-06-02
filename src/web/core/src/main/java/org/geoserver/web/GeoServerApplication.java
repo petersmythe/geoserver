@@ -102,14 +102,13 @@ public class GeoServerApplication extends WebApplication
     /**
      * Set default redirect mode. (must be called before init method, usually by Spring
      * PropertyOverriderConfigurer)
-     *
-     * @param defaultIsRedirect
      */
     public void setDefaultIsRedirect(boolean defaultIsRedirect) {
         this.defaultIsRedirect = defaultIsRedirect;
     }
 
     /** The {@link GeoServerHomePage}. */
+    @Override
     public Class<GeoServerHomePage> getHomePage() {
         return GeoServerHomePage.class;
     }
@@ -181,6 +180,7 @@ public class GeoServerApplication extends WebApplication
     }
 
     /** Initialization override which sets up a locator for i18n resources. */
+    @Override
     protected void init() {
         // enable GeoServer custom resource locators
         getResourceSettings().setUseMinifiedResources(false);
@@ -304,6 +304,7 @@ public class GeoServerApplication extends WebApplication
     /*
      * Overrides to return a custom converter locator which loads converters from the GeoToools converter subsystem.
      */
+    @Override
     protected IConverterLocator newConverterLocator() {
         // TODO: load converters from application context
         ConverterLocator locator = new ConverterLocator();
@@ -432,6 +433,7 @@ public class GeoServerApplication extends WebApplication
         return ((ServletWebRequest) req).getContainerRequest();
     }
 
+    @Override
     public void onApplicationEvent(ApplicationEvent event) {
         if (event instanceof AuthenticationSuccessEvent
                 || event instanceof InteractiveAuthenticationSuccessEvent) {

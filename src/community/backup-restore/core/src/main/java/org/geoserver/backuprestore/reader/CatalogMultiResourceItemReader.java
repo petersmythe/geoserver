@@ -75,6 +75,7 @@ public class CatalogMultiResourceItemReader<T> extends CatalogReader<T> {
         super(clazz, backupFacade);
     }
 
+    @Override
     protected void initialize(StepExecution stepExecution) {
         delegate.retrieveInterstepData(stepExecution);
     }
@@ -226,9 +227,8 @@ public class CatalogMultiResourceItemReader<T> extends CatalogReader<T> {
     /**
      * Set the boolean indicating whether or not state should be saved in the provided {@link
      * ExecutionContext} during the {@link ItemStream} call to update.
-     *
-     * @param saveState
      */
+    @Override
     public void setSaveState(boolean saveState) {
         this.saveState = saveState;
     }

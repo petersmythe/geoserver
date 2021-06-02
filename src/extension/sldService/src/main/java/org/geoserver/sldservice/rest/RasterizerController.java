@@ -125,7 +125,7 @@ public class RasterizerController extends BaseSLDServiceController {
                             .getHeaderValue());
         }
         if (layerName == null) {
-            return wrapList(new ArrayList(), ArrayList.class);
+            return wrapList(new ArrayList<>(), ArrayList.class);
         }
 
         int colormapType = DEFAULT_TYPE;
@@ -196,7 +196,7 @@ public class RasterizerController extends BaseSLDServiceController {
             }
         }
 
-        return wrapList(new ArrayList(), ArrayList.class);
+        return wrapList(new ArrayList<>(), ArrayList.class);
     }
 
     @ResponseStatus(
@@ -207,15 +207,7 @@ public class RasterizerController extends BaseSLDServiceController {
         private static final long serialVersionUID = 5453377766415209696L;
     }
 
-    /**
-     * @param defaultStyle
-     * @param rasterSymbolizer
-     * @param layerName
-     * @param midColor
-     * @param endColor
-     * @param startColor
-     * @throws Exception
-     */
+    /** */
     private Style remapStyle(
             StyleInfo defaultStyle,
             RasterSymbolizer rasterSymbolizer,
@@ -286,7 +278,7 @@ public class RasterizerController extends BaseSLDServiceController {
             }
             colorRamp.setNumClasses(classes);
 
-            List<Color> realColorRamp = new ArrayList<Color>();
+            List<Color> realColorRamp = new ArrayList<>();
             realColorRamp.add(Color.BLACK);
             realColorRamp.addAll(colorRamp.getRamp());
 

@@ -68,25 +68,17 @@ public interface AttributeTypeInfo extends Serializable {
     void setAttribute(AttributeDescriptor attribute);
 
     /** The java class that values of this attribute are bound to. */
-    Class getBinding();
+    Class<?> getBinding();
 
-    /**
-     * Sets the binding for this attribute
-     *
-     * @param type
-     */
-    void setBinding(Class type);
+    /** Sets the binding for this attribute */
+    void setBinding(Class<?> type);
 
     /**
      * Returns the length of this attribute. It's usually non null only for string and numeric types
      */
     Integer getLength();
 
-    /**
-     * Sets the attribute length
-     *
-     * @param length
-     */
+    /** Sets the attribute length */
     void setLength(Integer length);
 
     /**

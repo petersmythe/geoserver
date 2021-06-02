@@ -41,6 +41,7 @@ import org.geoserver.importer.Importer;
 import org.geoserver.importer.ValidationException;
 import org.geoserver.importer.rest.converters.ImportJSONReader;
 import org.geoserver.importer.rest.converters.ImportJSONWriter;
+import org.geoserver.importer.transform.ImportTransform;
 import org.geoserver.importer.transform.TransformChain;
 import org.geoserver.rest.PutIgnoringExtensionContentNegotiationStrategy;
 import org.geoserver.rest.RequestInfo;
@@ -115,6 +116,15 @@ public class ImportTaskController extends ImportBaseController {
                 }
             }
         } catch (JSONException jex) {
+            LOGGER.log(
+                    Level.SEVERE,
+                    "Error occurred while getting progress for import "
+                            + id
+                            + "and task"
+                            + taskId
+                            + ", message is: "
+                            + jex.getMessage(),
+                    jex);
             throw new RestException("Internal Error", HttpStatus.INTERNAL_SERVER_ERROR, jex);
         }
         return (writer, builder, converter) -> writer.write(progress.toString());
@@ -165,6 +175,13 @@ public class ImportTaskController extends ImportBaseController {
             try {
                 data = handleFormPost(request);
             } catch (IOException | ServletException e) {
+                LOGGER.log(
+                        Level.SEVERE,
+                        "Error occurred while creating task (POST) for import "
+                                + id
+                                + ", message is: "
+                                + e.getMessage(),
+                        e);
                 throw new RestException(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, e);
             }
         }
@@ -416,7 +433,7 @@ public class ImportTaskController extends ImportBaseController {
             updateLayer(orig, task.getLayer(), importer, converter);
         }
 
-        TransformChain chain = task.getTransform();
+        TransformChain<? extends ImportTransform> chain = task.getTransform();
         if (chain != null) {
             orig.setTransform(chain);
             change = true;
@@ -428,6 +445,10 @@ public class ImportTaskController extends ImportBaseController {
             try {
                 importer.changed(orig);
             } catch (IOException e) {
+                LOGGER.log(
+                        Level.SEVERE,
+                        "Error updating Importer Context, message is: " + e.getMessage(),
+                        e);
                 throw new RestException(
                         "Error updating Importer Context", HttpStatus.INTERNAL_SERVER_ERROR, e);
             }
@@ -443,6 +464,7 @@ public class ImportTaskController extends ImportBaseController {
         try {
             return Directory.createNew(importer.getUploadRoot());
         } catch (IOException ioe) {
+            LOGGER.log(Level.SEVERE, "File upload failed, message is: " + ioe.getMessage(), ioe);
             throw new RestException("File upload failed", HttpStatus.INTERNAL_SERVER_ERROR, ioe);
         }
     }
@@ -453,6 +475,7 @@ public class ImportTaskController extends ImportBaseController {
         try {
             directory.accept(taskId.toString(), request.getInputStream());
         } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Error unpacking file, message is: " + e.getMessage(), e);
             throw new RestException("Error unpacking file", HttpStatus.INTERNAL_SERVER_ERROR, e);
         }
 
@@ -499,10 +522,10 @@ public class ImportTaskController extends ImportBaseController {
         // why these are null in the first place is a different question
         LayerInfoImpl impl = (LayerInfoImpl) orig.getLayer();
         if (impl.getAuthorityURLs() == null) {
-            impl.setAuthorityURLs(new ArrayList(1));
+            impl.setAuthorityURLs(new ArrayList<>(1));
         }
         if (impl.getIdentifiers() == null) {
-            impl.setIdentifiers(new ArrayList(1));
+            impl.setIdentifiers(new ArrayList<>(1));
         }
         // @endhack
         cb.updateLayer(orig.getLayer(), l);
@@ -520,6 +543,8 @@ public class ImportTaskController extends ImportBaseController {
                 LOGGER.warning(msg + " in PUT request");
                 throw converter.badRequest(msg);
             } catch (FactoryException ex) {
+                LOGGER.log(
+                        Level.SEVERE, "Error with referencing, message is: " + ex.getMessage(), ex);
                 throw new RestException(
                         "Error with referencing", HttpStatus.INTERNAL_SERVER_ERROR, ex);
             }

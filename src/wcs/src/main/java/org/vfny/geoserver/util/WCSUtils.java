@@ -10,7 +10,6 @@ import java.awt.image.SampleModel;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -80,7 +79,6 @@ public class WCSUtils {
      * @param sourceCRS CoordinateReferenceSystem
      * @param targetCRS CoordinateReferenceSystem
      * @return GridCoverage2D
-     * @throws WcsException
      */
     public static GridCoverage2D resample(
             final GridCoverage2D coverage,
@@ -90,8 +88,7 @@ public class WCSUtils {
             final Interpolation interpolation)
             throws WcsException {
 
-        final ParameterValueGroup param =
-                (ParameterValueGroup) PROCESSOR.getOperation("Resample").getParameters();
+        final ParameterValueGroup param = PROCESSOR.getOperation("Resample").getParameters();
         param.parameter("Source").setValue(coverage);
         param.parameter("CoordinateReferenceSystem").setValue(targetCRS);
         param.parameter("GridGeometry").setValue(gridGeometry);
@@ -101,12 +98,7 @@ public class WCSUtils {
                 ((Resample) PROCESSOR.getOperation("Resample")).doOperation(param, hints);
     }
 
-    /**
-     * Crops the coverage to the specified bounds
-     *
-     * @param coverage
-     * @param bounds
-     */
+    /** Crops the coverage to the specified bounds */
     public static GridCoverage2D crop(final GridCoverage2D coverage, final Envelope bounds) {
 
         // checks
@@ -158,7 +150,7 @@ public class WCSUtils {
                 new GridGeometry2D(
                         targetRange, gg.getGridToCRS(), gg.getCoordinateReferenceSystem2D());
 
-        List<GridCoverage2D> sources = new ArrayList<GridCoverage2D>(2);
+        List<GridCoverage2D> sources = new ArrayList<>(2);
         sources.add(coverage);
 
         // perform the mosaic
@@ -180,7 +172,6 @@ public class WCSUtils {
      * @param coverage GridCoverage2D
      * @param interpolation Interpolation
      * @return GridCoverage2D
-     * @throws WcsException
      */
     public static GridCoverage2D interpolate(
             final GridCoverage2D coverage, final Interpolation interpolation) throws WcsException {
@@ -192,8 +183,7 @@ public class WCSUtils {
         // ///////////////////////////////////////////////////////////////////
         if (interpolation != null) {
             /* Operations.DEFAULT.interpolate(coverage, interpolation) */
-            final ParameterValueGroup param =
-                    (ParameterValueGroup) PROCESSOR.getOperation("Interpolate").getParameters();
+            final ParameterValueGroup param = PROCESSOR.getOperation("Interpolate").getParameters();
             param.parameter("Source").setValue(coverage);
             param.parameter("Type").setValue(interpolation);
 
@@ -218,7 +208,6 @@ public class WCSUtils {
      * @param params Set
      * @param coverage GridCoverage
      * @return Coverage
-     * @throws WcsException
      */
     public static Coverage bandSelect(final Map params, final GridCoverage coverage)
             throws WcsException {
@@ -229,16 +218,16 @@ public class WCSUtils {
         //
         // ///////////////////////////////////////////////////////////////////
         final int numDimensions = coverage.getNumSampleDimensions();
-        final Map dims = new HashMap();
-        final ArrayList selectedBands = new ArrayList();
+        final Map<String, Integer> dims = new HashMap<>();
+        final List<Integer> selectedBands = new ArrayList<>();
 
         for (int d = 0; d < numDimensions; d++) {
             dims.put("band" + (d + 1), Integer.valueOf(d));
         }
 
         if ((params != null) && !params.isEmpty()) {
-            for (Iterator p = params.keySet().iterator(); p.hasNext(); ) {
-                final String param = (String) p.next();
+            for (Object o : params.keySet()) {
+                final String param = (String) o;
 
                 if (param.equalsIgnoreCase("BAND")) {
                     try {
@@ -259,15 +248,15 @@ public class WCSUtils {
                         } else {
                             final String[] bands = values.split(",");
 
-                            for (int v = 0; v < bands.length; v++) {
-                                final String key = param.toLowerCase() + bands[v];
+                            for (String band : bands) {
+                                final String key = param.toLowerCase() + band;
 
                                 if (dims.containsKey(key)) {
                                     selectedBands.add(dims.get(key));
                                 }
                             }
 
-                            if (selectedBands.size() == 0) {
+                            if (selectedBands.isEmpty()) {
                                 throw new Exception("WRONG PARAM VALUES.");
                             }
                         }
@@ -284,7 +273,7 @@ public class WCSUtils {
         final int[] bands = new int[length];
 
         for (int b = 0; b < length; b++) {
-            bands[b] = ((Integer) selectedBands.get(b)).intValue();
+            bands[b] = selectedBands.get(b).intValue();
         }
 
         return bandSelect(coverage, bands);
@@ -296,8 +285,7 @@ public class WCSUtils {
         if ((bands != null) && (bands.length > 0)) {
             /* Operations.DEFAULT.selectSampleDimension(coverage, bands) */
             final ParameterValueGroup param =
-                    (ParameterValueGroup)
-                            PROCESSOR.getOperation("SelectSampleDimension").getParameters();
+                    PROCESSOR.getOperation("SelectSampleDimension").getParameters();
             param.parameter("Source").setValue(coverage);
             param.parameter("SampleDimensions").setValue(bands);
             // param.parameter("VisibleSampleDimension").setValue(bands);
@@ -314,10 +302,6 @@ public class WCSUtils {
     /**
      * Checks the coverage described by the specified geometry and sample model does not exceeds the
      * output WCS limits
-     *
-     * @param info
-     * @param gridRange2D
-     * @param sampleModel
      */
     public static void checkOutputLimits(
             WCSInfo info, GridEnvelope2D gridRange2D, SampleModel sampleModel) {
@@ -349,8 +333,6 @@ public class WCSUtils {
      * Mind, this method might cause the coverage to be fully read in memory (if that is the case,
      * the actual WCS processing chain would result in the same behavior so this is not causing any
      * extra memory usage, just makes it happen sooner)
-     *
-     * @param coverage
      */
     public static void checkInputLimits(WCSInfo info, GridCoverage2D coverage) {
         // do we have to check a limit at all?
@@ -378,9 +360,6 @@ public class WCSUtils {
     /**
      * Computes the size of a grid coverage in bytes given its grid envelope and the target sample
      * model
-     *
-     * @param envelope
-     * @param sm
      */
     static long getCoverageSize(GridEnvelope2D envelope, SampleModel sm) {
         // === compute the coverage memory usage and compare with limit
@@ -400,9 +379,6 @@ public class WCSUtils {
      * read without having to actually read the coverage (which might trigger the loading of the
      * full coverage in memory)
      *
-     * @param meta
-     * @param reader
-     * @param requestedEnvelope
      * @throws WcsException if the coverage size exceeds the configured limits
      */
     public static void checkInputLimits(
@@ -504,11 +480,7 @@ public class WCSUtils {
         }
     }
 
-    /**
-     * Guesses the size of the sample able to contain the range fully
-     *
-     * @param range
-     */
+    /** Guesses the size of the sample able to contain the range fully */
     static int guessSizeFromRange(NumberRange range) {
         double min = range.getMinimum();
         double max = range.getMaximum();
@@ -527,11 +499,7 @@ public class WCSUtils {
         }
     }
 
-    /**
-     * Utility function to format a byte amount into a human readable string
-     *
-     * @param bytes
-     */
+    /** Utility function to format a byte amount into a human readable string */
     static String formatBytes(long bytes) {
         if (bytes < 1024) {
             return bytes + "B";
@@ -542,11 +510,7 @@ public class WCSUtils {
         }
     }
 
-    /**
-     * Returns the reader hints based on the current WCS configuration
-     *
-     * @param wcs
-     */
+    /** Returns the reader hints based on the current WCS configuration */
     public static Hints getReaderHints(WCSInfo wcs) {
         Hints hints = new Hints();
         hints.add(new Hints(Hints.LENIENT_DATUM_SHIFT, Boolean.TRUE));
@@ -575,7 +539,7 @@ public class WCSUtils {
             filter = request.getKvp().get("CQL_FILTER");
             if (filter instanceof List) {
                 List list = (List) filter;
-                if (list.size() > 0) {
+                if (!list.isEmpty()) {
                     filter = list.get(0);
                 }
             }
@@ -594,10 +558,6 @@ public class WCSUtils {
     /**
      * Checks the coverage described by the specified source coverage and target band names does not
      * exceeds the output
-     *
-     * @param wcs
-     * @param gridRange2D
-     * @param indexes
      */
     public static void checkOutputLimits(WCSInfo wcs, GridCoverage2D gc, int[] indexes) {
         // do we have to check a limit at all?

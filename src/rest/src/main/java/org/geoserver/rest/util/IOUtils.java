@@ -56,10 +56,9 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
     /** Background to perform file deletions. */
     private static final FileCleaner FILE_CLEANER = new FileCleaner();
 
-    private static final Set<String> FILES_PATH =
-            Collections.synchronizedSet(new HashSet<String>());
+    private static final Set<String> FILES_PATH = Collections.synchronizedSet(new HashSet<>());
     private static final Map<String, Integer> FILE_ATTEMPTS_COUNTS =
-            Collections.synchronizedMap(new HashMap<String, Integer>());
+            Collections.synchronizedMap(new HashMap<>());
 
     /** 30 seconds is the default period beteen two checks. */
     private static long DEFAULT_PERIOD = 5L;
@@ -150,6 +149,7 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
          *   <li>if not successful increase the attempts count for the file and call the gc. If the
          *       maximum number was exceeded drop the file and warn the user
          */
+        @Override
         public void run() {
             while (true) {
                 try {
@@ -406,10 +406,8 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
         if (destinationFile.getAbsolutePath().equalsIgnoreCase(sourceFile.getAbsolutePath()))
             throw new IllegalArgumentException("Cannot copy a file on itself");
 
-        FileChannel source;
-        FileChannel destination;
-        source = new RandomAccessFile(sourceFile, "r").getChannel();
-        destination = new RandomAccessFile(destinationFile, "rw").getChannel();
+        FileChannel source = new RandomAccessFile(sourceFile, "r").getChannel();
+        FileChannel destination = new RandomAccessFile(destinationFile, "rw").getChannel();
         try {
             copyFileChannel(size, source, destination);
         } finally {
@@ -498,7 +496,7 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
             try {
                 channel = new FileInputStream(source).getChannel();
             } catch (Exception e) {
-                channel = null;
+                // continue
             }
         }
         return channel;
@@ -509,7 +507,6 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
      *
      * @param source the input <code>File</code> which need to be moved.
      * @param destDir the destination directory where to move the file.
-     * @throws IOException
      */
     public static void moveFileTo(File source, File destDir, boolean removeInputFile)
             throws IOException {
@@ -685,7 +682,6 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
      * @param archive the {@link ZipFile} to inflate.
      * @param outputDirectory the directory where to inflate the archive.
      * @param fileName name of the file if present.
-     * @param external
      * @throws IOException in case something bad happens.
      */
     public static void inflate(
@@ -700,7 +696,6 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
      * @param archive the {@link ZipFile} to inflate.
      * @param outputDirectory the directory where to inflate the archive.
      * @param fileName name of the file if present.
-     * @param external
      * @param files empty list of the extracted files (or null if there is no desire to collect the
      *     list)
      * @throws IOException in case something bad happens.
@@ -723,7 +718,6 @@ public class IOUtils extends org.apache.commons.io.IOUtils {
      * @param archive the {@link ZipFile} to inflate.
      * @param outputDirectory the directory where to inflate the archive.
      * @param fileName name of the file if present.
-     * @param external
      * @param saveFile boolean to specify to save or not the list of the extracted files
      * @param files empty list of the extracted files (or null if there is no desire to collect the
      *     list)

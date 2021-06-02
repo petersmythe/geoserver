@@ -5,10 +5,9 @@
  */
 package org.geoserver.wms.kvp;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.IndexColorModel;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -94,7 +93,7 @@ class PALFileLoader {
                 throw new IllegalArgumentException("The provided number of colors is invalid");
 
             // load various colors
-            final byte colorMap[][] = new byte[3][mapsize < 256 ? mapsize + 1 : mapsize];
+            final byte[][] colorMap = new byte[3][mapsize < 256 ? mapsize + 1 : mapsize];
             for (int i = 0; i < mapsize; i++) {
                 // get the line
                 temp = trimNextLine(reader);
@@ -136,13 +135,9 @@ class PALFileLoader {
             else
                 this.indexColorModel =
                         new IndexColorModel(8, mapsize, colorMap[0], colorMap[1], colorMap[2]);
-        } catch (FileNotFoundException e) {
-            LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
-
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
+
         } finally {
             if (reader != null)
                 try {

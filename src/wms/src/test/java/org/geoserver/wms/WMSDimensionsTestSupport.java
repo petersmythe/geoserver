@@ -15,7 +15,13 @@ import java.util.Map;
 import javax.xml.namespace.QName;
 import org.custommonkey.xmlunit.SimpleNamespaceContext;
 import org.custommonkey.xmlunit.XMLUnit;
-import org.geoserver.catalog.*;
+import org.geoserver.catalog.Catalog;
+import org.geoserver.catalog.CoverageInfo;
+import org.geoserver.catalog.DimensionDefaultValueSetting;
+import org.geoserver.catalog.DimensionInfo;
+import org.geoserver.catalog.DimensionPresentation;
+import org.geoserver.catalog.FeatureTypeInfo;
+import org.geoserver.catalog.ResourceInfo;
 import org.geoserver.catalog.impl.DimensionInfoImpl;
 import org.geoserver.config.GeoServerInfo;
 import org.geoserver.data.test.MockData;
@@ -73,7 +79,7 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
     @Override
     protected void setUpTestData(SystemTestData testData) throws Exception {
         super.setUpTestData(testData);
-        Map<String, String> namespaces = new HashMap<String, String>();
+        Map<String, String> namespaces = new HashMap<>();
         namespaces.put("xlink", "http://www.w3.org/1999/xlink");
         namespaces.put("wfs", "http://www.opengis.net/wfs");
         namespaces.put("wcs", "http://www.opengis.net/wcs/1.1.1");
@@ -100,8 +106,8 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
         getGeoServer().save(wms);
 
         // vector time-elevation
-        Map map = new HashMap();
-        map.put(MockData.KEY_STYLE, "TimeElevation");
+        Map<LayerProperty, Object> map = new HashMap<>();
+        map.put(LayerProperty.STYLE, "TimeElevation");
         Catalog catalog = getCatalog();
         testData.addStyle(
                 "TimeElevation", "TimeElevation.sld", WMSDimensionsTestSupport.class, catalog);
@@ -121,7 +127,7 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
                 catalog);
 
         // vector time-elevation, stacked (all polys covering the whole planet)
-        map.put(MockData.KEY_STYLE, "TimeElevationStacked");
+        map.put(LayerProperty.STYLE, "TimeElevationStacked");
         testData.addStyle(
                 "TimeElevationStacked",
                 "TimeElevationStacked.sld",
@@ -136,7 +142,7 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
 
         testData.addStyle(
                 "temperature", "temperature.sld", WMSDimensionsTestSupport.class, catalog);
-        Map propertyMap = new HashMap();
+        Map<LayerProperty, Object> propertyMap = new HashMap<>();
         propertyMap.put(LayerProperty.STYLE, "temperature");
         // a raster layer with times
         testData.addRasterLayer(
@@ -149,13 +155,7 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
                 TIMERANGES, "timeranges.zip", null, null, SystemTestData.class, catalog);
     }
 
-    /**
-     * Checks two dates are the same, within a given tolerance.
-     *
-     * @param d1
-     * @param d2
-     * @param tolerance
-     */
+    /** Checks two dates are the same, within a given tolerance. */
     protected static void assertDateEquals(java.util.Date d1, java.util.Date d2, long tolerance) {
         long difference = Math.abs(d1.getTime() - d2.getTime());
         assertTrue(difference <= tolerance);
@@ -195,11 +195,7 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
         getCatalog().save(info);
     }
 
-    /**
-     * Checks that the last HTTP response had the expected number of "Warning" headers
-     *
-     * @param expectedValue
-     */
+    /** Checks that the last HTTP response had the expected number of "Warning" headers */
     protected void assertWarningCount(int expectedValue) {
         MockHttpServletResponse response = getLastResponse();
         List<Object> values = response.getHeaderValues(HttpHeaders.WARNING);
@@ -211,9 +207,6 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
     /**
      * Asserts that the specified nearest value has been used and check the corresponding HTTP
      * warning
-     *
-     * @param layerId
-     * @param expectedValue
      */
     protected void assertNearestTimeWarning(String layerId, String expectedValue) {
         String expected =
@@ -237,9 +230,6 @@ public abstract class WMSDimensionsTestSupport extends WMSTestSupport {
     /**
      * Asserts that the specified nearest value has been used and check the corresponding HTTP
      * warning
-     *
-     * @param layerId
-     * @param expectedValue
      */
     protected void assertNoNearestWarning(String layerId, String dimension) {
         String expected = "99 No nearest value found on " + layerId + ": " + dimension;

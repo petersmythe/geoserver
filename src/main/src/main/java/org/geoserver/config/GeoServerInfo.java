@@ -18,6 +18,7 @@ import org.geoserver.platform.resource.LockProvider;
 public interface GeoServerInfo extends Info {
 
     /** Identifier. */
+    @Override
     String getId();
 
     /**
@@ -173,11 +174,7 @@ public interface GeoServerInfo extends Info {
      */
     public WebUIMode getWebUIMode();
 
-    /**
-     * Set the WebUIMode
-     *
-     * @param mode
-     */
+    /** Set the WebUIMode */
     public void setWebUIMode(WebUIMode mode);
 
     /** Determines if Per-workspace Stores Queries are activated. */

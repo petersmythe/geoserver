@@ -24,10 +24,12 @@ public class OSEOXStreamLoader extends XStreamServiceLoader<OSEOInfo> {
         super(resourceLoader, "oseo");
     }
 
+    @Override
     public Class<OSEOInfo> getServiceClass() {
         return OSEOInfo.class;
     }
 
+    @Override
     protected OSEOInfo createServiceFromScratch(GeoServer gs) {
         OSEOInfo oseo = new OSEOInfoImpl();
         oseo.setName("OSEO");
@@ -48,11 +50,7 @@ public class OSEOXStreamLoader extends XStreamServiceLoader<OSEOInfo> {
         initXStreamPersister(xp);
     }
 
-    /**
-     * Sets up aliases and allowed types for the xstream persister
-     *
-     * @param xs
-     */
+    /** Sets up aliases and allowed types for the xstream persister */
     public static void initXStreamPersister(XStreamPersister xp) {
         XStream xs = xp.getXStream();
         xs.alias("oseo", OSEOInfo.class, OSEOInfoImpl.class);

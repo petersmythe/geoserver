@@ -7,6 +7,7 @@ package org.geoserver.wcs2_0.util;
 
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -73,7 +74,7 @@ public class RequestUtils {
     public static String getVersionOws20(List<String> providedList, List<String> acceptedList) {
 
         // first figure out which versions are provided
-        TreeSet<Version> provided = new TreeSet<Version>();
+        TreeSet<Version> provided = new TreeSet<>();
         for (String v : providedList) {
             provided.add(new Version(v));
         }
@@ -82,7 +83,7 @@ public class RequestUtils {
         if (acceptedList == null || acceptedList.isEmpty()) return provided.last().toString();
 
         // next figure out what the client accepts (and check they are good version numbers)
-        List<Version> accepted = new ArrayList<Version>();
+        List<Version> accepted = new ArrayList<>();
         for (String v : acceptedList) {
             checkVersionNumber20(v, "AcceptVersions");
 
@@ -131,14 +132,6 @@ public class RequestUtils {
     /**
      * Reads the best matching grid out of a grid coverage applying sub-sampling and using overviews
      * as necessary
-     *
-     * @param mapContent
-     * @param reader
-     * @param params
-     * @param readGG
-     * @param interpolation
-     * @param hints
-     * @throws IOException
      */
     public static GridCoverage2D readBestCoverage(
             final GridCoverage2DReader reader,
@@ -234,7 +227,7 @@ public class RequestUtils {
                     || !foundOverviewPolicy) { // || !(foundBgColor && bgColor != null)) {
                 // add the correct read geometry to the supplied
                 // params since we did not find anything
-                List<GeneralParameterValue> paramList = new ArrayList<GeneralParameterValue>();
+                List<GeneralParameterValue> paramList = new ArrayList<>();
                 paramList.addAll(Arrays.asList(readParams));
                 if (!foundGG) {
                     paramList.add(readGGParam);
@@ -248,16 +241,11 @@ public class RequestUtils {
                     paramList.add(readOverview);
                 }
 
-                readParams =
-                        (GeneralParameterValue[])
-                                paramList.toArray(new GeneralParameterValue[paramList.size()]);
+                readParams = paramList.toArray(new GeneralParameterValue[paramList.size()]);
             }
-            coverage = (GridCoverage2D) reader.read(readParams);
+            coverage = reader.read(readParams);
         } else {
-            coverage =
-                    (GridCoverage2D)
-                            reader.read(
-                                    new GeneralParameterValue[] {readGGParam, readInterpolation});
+            coverage = reader.read(new GeneralParameterValue[] {readGGParam, readInterpolation});
         }
 
         return coverage;
@@ -305,7 +293,7 @@ public class RequestUtils {
         final Format coverageFormat = reader.getFormat();
 
         final ParameterValueGroup readParams = coverageFormat.getReadParameters();
-        final Map parameters = CoverageUtils.getParametersKVP(readParams);
+        final Map<String, Serializable> parameters = CoverageUtils.getParametersKVP(readParams);
         final int minX = originalRange.getLow(0);
         final int minY = originalRange.getLow(1);
         final int width = originalRange.getSpan(0);
@@ -334,8 +322,7 @@ public class RequestUtils {
                 new GridGeometry2D(testRange, testEnvelope));
 
         // try to read this coverage
-        return (GridCoverage2D)
-                reader.read(CoverageUtils.getParameters(readParams, parameters, true));
+        return reader.read(CoverageUtils.getParameters(readParams, parameters, true));
     }
 
     /**
@@ -350,16 +337,11 @@ public class RequestUtils {
         return readSampleGridCoverage(reader);
     }
 
-    /**
-     * Grabs the reader from the specified coverage
-     *
-     * @param ci
-     * @throws IOException
-     */
+    /** Grabs the reader from the specified coverage */
     public static GridCoverage2DReader getCoverageReader(CoverageInfo ci)
             throws IOException, Exception {
         // get a reader for this coverage
-        final CoverageStoreInfo store = (CoverageStoreInfo) ci.getStore();
+        final CoverageStoreInfo store = ci.getStore();
         final GridCoverageReader reader_ =
                 ci.getGridCoverageReader(new DefaultProgressListener(), GeoTools.getDefaultHints());
         if (reader_ == null) {
@@ -371,11 +353,7 @@ public class RequestUtils {
         return reader;
     }
 
-    /**
-     * Makes sure the version is present and supported
-     *
-     * @param version
-     */
+    /** Makes sure the version is present and supported */
     public static void checkVersion(String version) {
         if (version == null) {
             throw new WCS20Exception(
@@ -389,11 +367,7 @@ public class RequestUtils {
         }
     }
 
-    /**
-     * Makes sure the service is present and supported
-     *
-     * @param serviceName
-     */
+    /** Makes sure the service is present and supported */
     public static void checkService(String serviceName) {
         if (serviceName == null) {
             throw new WCS20Exception(

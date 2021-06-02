@@ -108,7 +108,8 @@
 	<bean id="geoJSONFeatureInfoResponse"
 		class="org.geoserver.wms.featureinfo.GeoJSONFeatureInfoResponse">
 		<constructor-arg ref="wms" />
-		<constructor-arg value="application/json" />
+        <constructor-arg ref="resourceLoader"/>
+        <constructor-arg value="application/json" />
 	</bean>
         
 	<!-- wms service + descriptor -->
@@ -232,11 +233,7 @@
     <bean id="AnimatedGIFDelayKvpParser" class="org.geoserver.ows.kvp.IntegerKvpParser">
 		<constructor-arg value="animatedGIFDelay"/>
  	</bean>
- 	
- 	<bean id="AnimatedGIFLoopContinuoslyKvpParser" class="org.geoserver.ows.kvp.BooleanKvpParser">
-		<constructor-arg value="animatedGIFLoopContinuosly"/>
- 	</bean>
- 	
+    
  	<bean id="widthKvpParser" class="org.geoserver.ows.kvp.IntegerKvpParser">
 		<constructor-arg value="width"/>
  	</bean>
@@ -637,6 +634,7 @@
     </bean>
 
     <bean id="PDFMapProducer" class="org.geoserver.wms.map.PDFMapOutputFormat">
+      <constructor-arg index="0" ref="wms" />
     </bean>
     <bean id="PDFMapResponse" class="org.geoserver.wms.map.PDFMapResponse">
       <constructor-arg ref="wms" />
@@ -688,8 +686,6 @@
     </constructor-arg>
   </bean>
  		
-	<bean id="animateFilter" class="org.geoserver.wms.animate.AnimatorFilter"/>
- 	
 	<bean id="animateURLMapping" 
 		class="org.geoserver.ows.OWSHandlerMapping">
 		<constructor-arg ref="catalog"/>

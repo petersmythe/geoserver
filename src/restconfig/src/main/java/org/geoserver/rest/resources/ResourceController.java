@@ -17,7 +17,13 @@ import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +36,11 @@ import org.geoserver.platform.resource.Resource;
 import org.geoserver.platform.resource.Resource.Type;
 import org.geoserver.platform.resource.ResourceStore;
 import org.geoserver.platform.resource.ResourceStoreFactory;
-import org.geoserver.rest.*;
+import org.geoserver.rest.ObjectToMapWrapper;
+import org.geoserver.rest.RequestInfo;
+import org.geoserver.rest.ResourceNotFoundException;
+import org.geoserver.rest.RestBaseController;
+import org.geoserver.rest.RestException;
 import org.geoserver.rest.converters.XStreamJSONMessageConverter;
 import org.geoserver.rest.converters.XStreamMessageConverter;
 import org.geoserver.rest.converters.XStreamXMLMessageConverter;
@@ -46,7 +56,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.accept.ContentNegotiationStrategy;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
 
 @RestController
@@ -108,8 +124,6 @@ public class ResourceController extends RestBaseController {
     /**
      * Extract expected media type from supplied resource
      *
-     * @param resource
-     * @param request
      * @return Content type requested
      */
     protected static MediaType getMediaType(Resource resource, HttpServletRequest request) {
@@ -137,7 +151,6 @@ public class ResourceController extends RestBaseController {
     /**
      * Access resource requested, note this may be UNDEFINED
      *
-     * @param request
      * @return Resource requested, may be UNDEFINED if not found.
      */
     protected Resource resource(HttpServletRequest request) {
@@ -158,7 +171,6 @@ public class ResourceController extends RestBaseController {
     /**
      * Look up operation query string value, defaults to {@link Operation#DEFAULT} if not provided.
      *
-     * @param operation
      * @return operation defined by query string, or {@link Operation#DEFAULT} if not provided
      */
     protected static Operation operation(String operation) {
@@ -253,14 +265,14 @@ public class ResourceController extends RestBaseController {
                 response.setContentType(mediaType.toString());
 
                 if (request.getMethod().equals("HEAD")) {
-                    result = new ResponseEntity("", responseHeaders, HttpStatus.OK);
+                    result = new ResponseEntity<>("", responseHeaders, HttpStatus.OK);
                 } else if (resource.getType() == Resource.Type.DIRECTORY) {
                     result =
                             wrapObject(
                                     new ResourceDirectoryInfo(resource, request),
                                     ResourceDirectoryInfo.class);
                 } else {
-                    result = new ResponseEntity(resource.in(), responseHeaders, HttpStatus.OK);
+                    result = new ResponseEntity<>(resource.in(), responseHeaders, HttpStatus.OK);
                 }
                 response.setHeader("Location", href(resource.path()));
                 response.setHeader("Last-Modified", FORMAT_HEADER.format(resource.lastmodified()));
@@ -375,14 +387,7 @@ public class ResourceController extends RestBaseController {
         }
     }
 
-    /**
-     * Verifies mime type and use {@link RESTUtils}
-     *
-     * @param directory
-     * @param filename
-     * @param request
-     * @return
-     */
+    /** Verifies mime type and use {@link RESTUtils} */
     protected Resource fileUpload(Resource directory, String filename, HttpServletRequest request) {
         if (LOGGER.isLoggable(Level.INFO)) {
             LOGGER.info(

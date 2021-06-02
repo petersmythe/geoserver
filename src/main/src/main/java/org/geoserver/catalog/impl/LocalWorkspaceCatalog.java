@@ -21,6 +21,7 @@ import org.geoserver.catalog.NamespaceInfo;
 import org.geoserver.catalog.StyleInfo;
 import org.geoserver.catalog.ValidationResult;
 import org.geoserver.catalog.WorkspaceInfo;
+import org.geoserver.catalog.event.CatalogListener;
 import org.geoserver.catalog.util.CloseableIterator;
 import org.geoserver.catalog.util.CloseableIteratorAdapter;
 import org.geoserver.config.GeoServer;
@@ -274,8 +275,6 @@ public class LocalWorkspaceCatalog extends AbstractCatalogDecorator implements C
     /**
      * Returns true if the {@link NameDequalifyingProxy} should be used, that is, if there is a
      * local workspace and the settings do not ask for workspace prefixes to be included
-     *
-     * @return
      */
     private boolean useNameDequalifyingProxy() {
         WorkspaceInfo workspaceInfo = LocalWorkspace.get();
@@ -289,8 +288,6 @@ public class LocalWorkspaceCatalog extends AbstractCatalogDecorator implements C
      * Returns true if {@link #useNameDequalifyingProxy()} returns true and the DEQUALIFY_ALL flag
      * has been raised in the Spring request context (used for example in the context of local
      * workspace services for the OGC API based services)
-     *
-     * @return
      */
     private boolean useNameDequalifyingProxyForAll() {
         if (!useNameDequalifyingProxy()) {
@@ -407,22 +404,27 @@ public class LocalWorkspaceCatalog extends AbstractCatalogDecorator implements C
         return wrap(super.getLayerGroupsByWorkspace(workspace));
     }
 
+    @Override
     public void add(LayerGroupInfo layerGroup) {
         super.add(unwrap(layerGroup));
     }
 
+    @Override
     public void save(LayerGroupInfo layerGroup) {
         super.save(unwrap(layerGroup));
     }
 
+    @Override
     public void remove(LayerGroupInfo layerGroup) {
         super.remove(unwrap(layerGroup));
     }
 
+    @Override
     public LayerGroupInfo detach(LayerGroupInfo layerGroup) {
         return super.detach(unwrap(layerGroup));
     }
 
+    @Override
     public ValidationResult validate(LayerGroupInfo layerGroup, boolean isNew) {
         return super.validate(unwrap(layerGroup), isNew);
     }
@@ -460,6 +462,7 @@ public class LocalWorkspaceCatalog extends AbstractCatalogDecorator implements C
             this.object = object;
         }
 
+        @Override
         public Object getProxyObject() {
             return object;
         }
@@ -485,7 +488,7 @@ public class LocalWorkspaceCatalog extends AbstractCatalogDecorator implements C
         }
 
         public static <T> List<T> createList(List<T> object, Class<T> clazz) {
-            return new ProxyList(object, clazz) {
+            return new ProxyList<T>(object, clazz) {
                 @Override
                 protected <T> T createProxy(T proxyObject, Class<T> proxyInterface) {
                     return create(proxyObject, proxyInterface);
@@ -516,7 +519,7 @@ public class LocalWorkspaceCatalog extends AbstractCatalogDecorator implements C
 
     @Override
     public <T extends CatalogInfo> CloseableIterator<T> list(Class<T> of, Filter filter) {
-        return list(of, filter, (Integer) null, (Integer) null, (SortBy) null);
+        return list(of, filter, null, null, null);
     }
 
     /**
@@ -543,7 +546,8 @@ public class LocalWorkspaceCatalog extends AbstractCatalogDecorator implements C
         return iterator;
     }
 
-    public void removeListeners(Class listenerClass) {
+    @Override
+    public void removeListeners(Class<? extends CatalogListener> listenerClass) {
         delegate.removeListeners(listenerClass);
     }
 

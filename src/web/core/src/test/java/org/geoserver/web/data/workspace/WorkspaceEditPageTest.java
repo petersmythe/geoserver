@@ -8,7 +8,13 @@ package org.geoserver.web.data.workspace;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -20,7 +26,10 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.ValidationErrorFeedback;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.util.tester.FormTester;
-import org.geoserver.catalog.*;
+import org.geoserver.catalog.Catalog;
+import org.geoserver.catalog.DataStoreInfo;
+import org.geoserver.catalog.NamespaceInfo;
+import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.catalog.impl.NamespaceInfoImpl;
 import org.geoserver.catalog.impl.WorkspaceInfoImpl;
 import org.geoserver.config.GeoServer;
@@ -84,10 +93,40 @@ public class WorkspaceEditPageTest extends GeoServerWicketTestSupport {
     }
 
     @Test
+    public void testValidURIApply() {
+        FormTester form = tester.newFormTester("form");
+        String newTestURI = "http://www.geoserver.org/abcde";
+        form.setValue("tabs:panel:uri", newTestURI);
+        form.submit("apply");
+
+        // did not switch
+        tester.assertRenderedPage(WorkspaceEditPage.class);
+        tester.assertNoErrorMessage();
+
+        // the change was applied
+        assertEquals(
+                newTestURI, getCatalog().getNamespaceByPrefix(citeWorkspace.getName()).getURI());
+    }
+
+    @Test
     public void testInvalidURI() {
         FormTester form = tester.newFormTester("form");
         form.setValue("tabs:panel:uri", "not a valid uri");
         form.submit("save");
+
+        tester.assertRenderedPage(WorkspaceEditPage.class);
+        List messages = tester.getMessages(FeedbackMessage.ERROR);
+        assertEquals(1, messages.size());
+        assertEquals(
+                "Invalid URI syntax: not a valid uri",
+                ((ValidationErrorFeedback) messages.get(0)).getMessage());
+    }
+
+    @Test
+    public void testInvalidURIApply() {
+        FormTester form = tester.newFormTester("form");
+        form.setValue("tabs:panel:uri", "not a valid uri");
+        form.submit("apply");
 
         tester.assertRenderedPage(WorkspaceEditPage.class);
         List messages = tester.getMessages(FeedbackMessage.ERROR);
@@ -128,7 +167,7 @@ public class WorkspaceEditPageTest extends GeoServerWicketTestSupport {
 
     @Test
     public void testDefaultCheckbox() {
-        assertFalse(getCatalog().getDefaultWorkspace().getName().equals(MockData.CITE_PREFIX));
+        assertNotEquals(getCatalog().getDefaultWorkspace().getName(), MockData.CITE_PREFIX);
 
         FormTester form = tester.newFormTester("form");
         form.setValue("tabs:panel:default", true);
@@ -170,7 +209,7 @@ public class WorkspaceEditPageTest extends GeoServerWicketTestSupport {
                 false);
         form.submit("save");
 
-        assertEquals(false, settings.isLocalWorkspaceIncludesPrefix());
+        assertFalse(settings.isLocalWorkspaceIncludesPrefix());
     }
 
     @Test
@@ -339,7 +378,7 @@ public class WorkspaceEditPageTest extends GeoServerWicketTestSupport {
             tester.clickLink("form:tabs:tabs-container:tabs:1:link");
             form.setValue("tabs:panel:listContainer:rules:0:admin", true);
             tester.clickLink("form:save");
-            assertTrue(ruleMan.getResourceRule(citeWorkspace.getName(), citeWorkspace).size() == 1);
+            assertEquals(1, ruleMan.getResourceRule(citeWorkspace.getName(), citeWorkspace).size());
             tester.assertNoErrorMessage();
 
         } finally {
@@ -371,8 +410,8 @@ public class WorkspaceEditPageTest extends GeoServerWicketTestSupport {
             Set<DataAccessRule> news = new HashSet<>();
             news.add(ruleLayer);
             news.add(ruleWS);
-            ruleMan.saveRules(new HashSet<DataAccessRule>(), news);
-            assertTrue(ruleMan.getResourceRule(citeWorkspace.getName(), citeWorkspace).size() == 1);
+            ruleMan.saveRules(new HashSet<>(), news);
+            assertEquals(1, ruleMan.getResourceRule(citeWorkspace.getName(), citeWorkspace).size());
             tester.clickLink("form:tabs:tabs-container:tabs:1:link");
             CheckBox checkboxFalse =
                     (CheckBox)

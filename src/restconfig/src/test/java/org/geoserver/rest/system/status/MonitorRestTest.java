@@ -6,13 +6,19 @@
 package org.geoserver.rest.system.status;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+import java.io.StringReader;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.geoserver.rest.RestBaseController;
 import org.geoserver.system.status.MetricInfo;
 import org.geoserver.system.status.MetricValue;
@@ -22,6 +28,7 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 public class MonitorRestTest extends GeoServerSystemTestSupport {
 
@@ -67,6 +74,36 @@ public class MonitorRestTest extends GeoServerSystemTestSupport {
         xs.addImplicitCollection(Metrics.class, "metrics");
         Metrics metrics = (Metrics) xs.fromXML(response.getContentAsString());
         assertTrue(metrics.getMetrics().size() >= MetricInfo.values().length);
+    }
+
+    @Test
+    public void testJsonValueFieldIsEncoded() throws Exception {
+        MockHttpServletResponse response =
+                getAsServletResponse(RestBaseController.ROOT_PATH + "/about/system-status.json");
+        assertEquals(200, response.getStatus());
+        assertEquals("application/json", response.getContentType());
+        JSONArray metrics =
+                ((JSONObject) json(response)).getJSONObject("metrics").getJSONArray("metric");
+        for (Object metric : metrics) {
+            assertNotNull(((JSONObject) metric).containsKey("value"));
+        }
+    }
+
+    @Test
+    public void testXmlValueFieldIsEncoded() throws Exception {
+        MockHttpServletResponse response =
+                getAsServletResponse(RestBaseController.ROOT_PATH + "/about/system-status.xml");
+        assertEquals(200, response.getStatus());
+        assertEquals("application/xml", response.getContentType());
+        Document xml =
+                DocumentBuilderFactory.newInstance()
+                        .newDocumentBuilder()
+                        .parse(new InputSource(new StringReader(response.getContentAsString())));
+        XPathExpression expression = XPathFactory.newInstance().newXPath().compile("//value");
+        NodeList nodes = (NodeList) expression.evaluate(xml, XPathConstants.NODESET);
+        for (int i = 0; i < nodes.getLength(); i++) {
+            assertNotNull(nodes.item(i).getFirstChild().getNodeValue());
+        }
     }
 
     @Test

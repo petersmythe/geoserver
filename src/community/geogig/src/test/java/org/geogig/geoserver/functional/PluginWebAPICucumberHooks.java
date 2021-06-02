@@ -30,8 +30,6 @@ public class PluginWebAPICucumberHooks {
      * cannot extend a Step Definition class, just inject the one that gets created during the test
      * run and grab the Context. It <i>should</i> be an instance of {@link
      * GeoServerFunctionalTestContext}.
-     *
-     * @param parent
      */
     @Inject
     public PluginWebAPICucumberHooks(WebAPICucumberHooks parent) {

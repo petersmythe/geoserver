@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.geotools.data.Query;
 import org.geotools.factory.CommonFactoryFinder;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.MultiPolygon;
 import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.expression.PropertyName;
@@ -34,6 +36,10 @@ public class VectorAccessLimits extends DataAccessLimits {
     /** Limits the features that can actually be written */
     transient Filter writeFilter;
 
+    Geometry clipVectorFilter;
+
+    Geometry intersectVectorFilter;
+
     /**
      * Builds a new vector access limits
      *
@@ -47,11 +53,22 @@ public class VectorAccessLimits extends DataAccessLimits {
             List<PropertyName> readAttributes,
             Filter readFilter,
             List<PropertyName> writeAttributes,
-            Filter writeFilter) {
+            Filter writeFilter,
+            MultiPolygon clipVectorFilter) {
         super(mode, readFilter);
         this.readAttributes = readAttributes;
         this.writeAttributes = writeAttributes;
         this.writeFilter = writeFilter;
+        this.clipVectorFilter = clipVectorFilter;
+    }
+
+    public VectorAccessLimits(
+            CatalogMode mode,
+            List<PropertyName> readAttributes,
+            Filter readFilter,
+            List<PropertyName> writeAttributes,
+            Filter writeFilter) {
+        this(mode, readAttributes, readFilter, writeAttributes, writeFilter, null);
     }
 
     /** The list of attributes the user is allowed to read */
@@ -92,17 +109,13 @@ public class VectorAccessLimits extends DataAccessLimits {
         }
     }
 
-    /**
-     * Turns a list of {@link PropertyName} into a list of {@link String}
-     *
-     * @param names
-     */
+    /** Turns a list of {@link PropertyName} into a list of {@link String} */
     List<String> flattenNames(List<PropertyName> names) {
         if (names == null) {
             return null;
         }
 
-        List<String> result = new ArrayList<String>(names.size());
+        List<String> result = new ArrayList<>(names.size());
         for (PropertyName name : names) {
             result.add(name.getPropertyName());
         }
@@ -160,7 +173,7 @@ public class VectorAccessLimits extends DataAccessLimits {
         if (size == -1) {
             return null;
         } else {
-            List<PropertyName> properties = new ArrayList<PropertyName>();
+            List<PropertyName> properties = new ArrayList<>();
             for (int i = 0; i < size; i++) {
                 String name = (String) ois.readObject();
                 properties.add(FF.property(name));
@@ -168,6 +181,22 @@ public class VectorAccessLimits extends DataAccessLimits {
             }
             return properties;
         }
+    }
+
+    public Geometry getClipVectorFilter() {
+        return clipVectorFilter;
+    }
+
+    public void setClipVectorFilter(Geometry clipVectorFilter) {
+        this.clipVectorFilter = clipVectorFilter;
+    }
+
+    public Geometry getIntersectVectorFilter() {
+        return intersectVectorFilter;
+    }
+
+    public void setIntersectVectorFilter(Geometry intersectVectorFilter) {
+        this.intersectVectorFilter = intersectVectorFilter;
     }
 
     @Override

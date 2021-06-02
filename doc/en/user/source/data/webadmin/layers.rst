@@ -99,10 +99,12 @@ These sections provide "data about the data," specifically textual information t
 The metadata information will appear in the capabilities documents which refer to the layer.
 
 * **Name**—Identifier used to reference the layer in WMS requests.  (Note that for a new layer for an already-published resource, the name must be changed to avoid conflict.)
+* **Enabled**—A layer that is not enabled won't be available to any kind of request, it will just show up in the configuration (and in REST config)
+* **Advertised**—A layer is advertised by default. A non-advertised layer will be available in all data access requests (for example, WMS GetMap, WMS GetFeature) but won't appear in any capabilities document or in the layer preview.
 * **Title**—Human-readable description to briefly identify the layer to clients (required)
 * **Abstract**—Describes the layer in detail
 * **Keywords**—List of short words associated with the layer to assist catalog searching
-* **Metadata Links**—Allows linking to external documents that describe the data layer. Currently only two standard format types are valid: TC211 and FGDC. TC211 refers to the metadata structure established by the `ISO Technical Committee for Geographic Information/Geomatics <http://www.isotc211.org/>`_ (ISO/TC 211) while FGDC refers to those set out by the `Federal Geographic Data Committee <http://www.fgdc.gov/>`_ (FGDC) of the United States.
+* **Metadata Links**—Allows linking to external documents that describe the data layer. The "type" input provides a few example types, like FGDC or ISO19115:2003, but allows any other type to be declared. The optional "About" entry can be used to point to the definition of the metadata standard, or any other side information about it. Finally, "URL" points to the actual metadata, while "Format" provides its mime type. 
 
   .. figure:: img/data_layers_meta.png
 
@@ -212,15 +214,14 @@ The Publishing tab configures HTTP and WMS/WFS/WCS settings.
 
    Edit Layer: Publishing tab
 
-* **Enabled**—A layer that is not enabled won't be available to any kind of request, it will just show up in the configuration (and in REST config)
-* **Advertised**—A layer is advertised by default. A non-advertised layer will be available in all data access requests (for example, WMS GetMap, WMS GetFeature) but won't appear in any capabilities document or in the layer preview.
-
 HTTP Settings
 ^^^^^^^^^^^^^
 
 Cache parameters that apply to the HTTP response from client requests.
 
 * **Response Cache Headers**— If selected, GeoServer will not request the same tile twice within the time specified in :guilabel:`Cache Time`. One hour measured in seconds (3600), is the default value for :guilabel:`Cache Time`.
+
+.. figure:: img/data_http_response_caching_settings.png
 
 Root Layer in Capabilities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -297,6 +298,7 @@ Sets the WFS specific publishing parameters.
 
 * **Per-Request Feature Limit**—Sets the maximum number of features for a layer a WFS GetFeature operation should generate (regardless of the actual number of query hits)
 * **Maximum number of decimals**—Sets the maximum number of decimals in GML output.
+* **Activate complex to simple features conversion** - If the target output format does not handle complex features natively, this option enables the conversion of complex features to simple features, using only SF-0 (simple) attributes.  This means that nested features and multiple-value attributes will be omitted from the final result, instead of throwing errors while generating the output. Output formats capable of handling complex features are not affected.
 
   .. note::
 
@@ -336,7 +338,7 @@ Limits features based on certain criteria, otherwise known as **regionation**.
 Edit Layer: Dimensions
 ----------------------
 
-GeoServer supports adding specific dimensions to WMS layers, as specified in WMS 1.1.1 and WMS 1.3.0 standards. There are two pre-defined dimensions in the WMS standards mentioned above, **TIME** and **ELEVATION**. Enabling dimensions for a layer allows users to specify those as extra parameters in GetMap requests, useful for creating maps or animations from underlying multi-dimensional data.
+GeoServer supports adding specific dimensions to WMS layers, as specified in WMS 1.1.1 and WMS 1.3.0 standards. There are two pre-defined dimensions in the WMS standards mentioned above, **TIME** and **ELEVATION**. Enabling dimensions for a layer allows users to specify those as extra parameters in GetMap requests, filtering the dataset to that particular set of times or elevations.
 
 These dimensions can be enabled and configured on the Dimensions tab.
 

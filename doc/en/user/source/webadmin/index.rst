@@ -91,7 +91,7 @@ The :ref:`Security <security_webadmin>` section configures the built-in :ref:`se
 
 * The :ref:`Authentication <security_webadmin_auth>` page manages authentication filters, filter chains, and providers.
 
-* The :ref:`Passwords <security_webadmin_passwd>` page manages the password policies for users and the master (root) account.
+* The :ref:`Passwords <security_webadmin_passwd>` page manages the password policies for users and the root account.
 
 * The :ref:`Users, Groups, Roles <security_webadmin_ugr>` page manages the users, groups, and roles, and how they are all associated with each other. Passwords for user accounts can be changed here.
 
@@ -107,7 +107,10 @@ The :ref:`demos` section contains links to example WMS, WCS, and WFS requests fo
 Tools
 -----
 
-The :guilabel:`Tools` section contains administrative tools. By default, the only tool is the :guilabel:`Catalog Bulk Load Tool`, which can bulk copy test data into the catalog.
+The :ref:`tools` section contains administrative tools.
+
+* The :ref:`Web Resource <tool_resource>` tool provides management of data directory icons, fonts, and configuration files.
+* The :ref:`Catalog Bulk Load Tool <tool_bulk>` can bulk copy configuration for testing
 
 Extensions
 ----------

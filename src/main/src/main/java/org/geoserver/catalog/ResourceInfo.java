@@ -360,11 +360,7 @@ public interface ResourceInfo extends CatalogInfo {
      */
     boolean isAdvertised();
 
-    /**
-     * Set to true if the resource should be advertised, false otherwise
-     *
-     * @param advertised
-     */
+    /** Set to true if the resource should be advertised, false otherwise */
     void setAdvertised(boolean advertised);
 
     /** Returns true if the resource will configure services access, false otherwise */
@@ -378,4 +374,16 @@ public interface ResourceInfo extends CatalogInfo {
 
     /** Set the list of disabled services names for this resource */
     void setDisabledServices(List<String> disabledServices);
+
+    /**
+     * Flag that determines if complex features will be converted to simple feature for compatible
+     * output formats.
+     */
+    boolean isSimpleConversionEnabled();
+
+    /**
+     * Sets the flag that determines if complex features will be converted to simple feature for
+     * compatible output formats.
+     */
+    void setSimpleConversionEnabled(boolean activateComplexToSimpleOutput);
 }

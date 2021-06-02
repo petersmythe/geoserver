@@ -81,8 +81,7 @@ public class TileLayerInfoUtilTest {
         LayerInfoImpl layer =
                 mockLayer("testLayer", new String[] {"style1", "style2"}, PublishedType.RASTER);
 
-        GeoServerTileLayerInfo actual;
-        actual = TileLayerInfoUtil.loadOrCreate(layer, defaults);
+        GeoServerTileLayerInfo actual = TileLayerInfoUtil.loadOrCreate(layer, defaults);
 
         TileLayerInfoUtil.checkAutomaticStyles(layer, info);
 
@@ -109,8 +108,7 @@ public class TileLayerInfoUtilTest {
         info.getMimeFormats().clear();
         info.getMimeFormats().addAll(defaults.getDefaultOtherCacheFormats());
 
-        GeoServerTileLayerInfo actual;
-        actual = TileLayerInfoUtil.loadOrCreate(lg, defaults);
+        GeoServerTileLayerInfo actual = TileLayerInfoUtil.loadOrCreate(lg, defaults);
 
         assertEquals(info, actual);
     }
@@ -171,16 +169,11 @@ public class TileLayerInfoUtilTest {
         assertEquals(filter, filter3);
     }
 
-    /**
-     * Find a parameter filter by key from a set of filters.
-     *
-     * @param paramName
-     * @param parameterFilters
-     */
+    /** Find a parameter filter by key from a set of filters. */
     private static ParameterFilter findParameterFilter(
             final String paramName, Set<ParameterFilter> parameterFilters) {
 
-        if (parameterFilters == null || parameterFilters.size() == 0) {
+        if (parameterFilters == null || parameterFilters.isEmpty()) {
             return null;
         }
 

@@ -52,6 +52,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
  */
 public abstract class AbstractURLPublisher extends AbstractController {
 
+    @Override
     protected ModelAndView handleRequestInternal(
             HttpServletRequest request, HttpServletResponse response) throws Exception {
         URL url = getUrl(request);
@@ -164,11 +165,6 @@ public abstract class AbstractURLPublisher extends AbstractController {
         return 1000 * (ifModifiedSince / 1000);
     }
 
-    /**
-     * Retrieves the resource URL from the specified request
-     *
-     * @param request
-     * @throws IOException
-     */
+    /** Retrieves the resource URL from the specified request */
     protected abstract URL getUrl(HttpServletRequest request) throws IOException;
 }

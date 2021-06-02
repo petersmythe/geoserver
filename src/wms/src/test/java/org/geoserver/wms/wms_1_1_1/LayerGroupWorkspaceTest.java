@@ -8,8 +8,8 @@ package org.geoserver.wms.wms_1_1_1;
 import static org.custommonkey.xmlunit.XMLAssert.assertXpathEvaluatesTo;
 import static org.custommonkey.xmlunit.XMLAssert.assertXpathExists;
 import static org.custommonkey.xmlunit.XMLAssert.assertXpathNotExists;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -545,7 +545,7 @@ public class LayerGroupWorkspaceTest extends WMSTestSupport {
         List<String> normal =
                 originalList.stream().map(x -> removeLayerPrefix(x)).collect(Collectors.toList());
         List<String> ordered = normal.stream().sorted().collect(Collectors.toList());
-        assertTrue(ordered.equals(normal));
+        assertEquals(ordered, normal);
     }
 
     /** Test Layer group order on a workspace virtual service */
@@ -562,15 +562,10 @@ public class LayerGroupWorkspaceTest extends WMSTestSupport {
         List<String> normal =
                 originalList.stream().map(x -> removeLayerPrefix(x)).collect(Collectors.toList());
         List<String> ordered = normal.stream().sorted().collect(Collectors.toList());
-        assertTrue(ordered.equals(normal));
+        assertEquals(ordered, normal);
     }
 
-    /**
-     * removes prefix from layer name
-     *
-     * @param prefixedName
-     * @return
-     */
+    /** removes prefix from layer name */
     private String removeLayerPrefix(String prefixedName) {
         if (prefixedName.indexOf(":") > -1) {
             return prefixedName.split(":")[1];
@@ -578,13 +573,7 @@ public class LayerGroupWorkspaceTest extends WMSTestSupport {
         return prefixedName;
     }
 
-    /**
-     * returns list of prefixed layer groups names from document
-     *
-     * @param doc
-     * @return
-     * @throws Exception
-     */
+    /** returns list of prefixed layer groups names from document */
     private List<String> layerGroupNameList(Document doc) throws Exception {
         List<Node> nlist =
                 xpathList("//WMT_MS_Capabilities/Capability/Layer/Layer[not(@opaque)]/Name", doc);

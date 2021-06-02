@@ -7,8 +7,6 @@ package org.geoserver.security.ldap;
 
 import java.util.function.Supplier;
 import javax.naming.directory.DirContext;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
 import org.springframework.ldap.NamingException;
 import org.springframework.ldap.core.ContextSource;
 import org.springframework.ldap.core.support.AbstractContextSource;
@@ -26,11 +24,7 @@ import org.springframework.security.ldap.authentication.SpringSecurityAuthentica
  */
 public class LDAPUtils {
 
-    /**
-     * Creates an LdapContext from a configuration object.
-     *
-     * @param ldapConfig
-     */
+    /** Creates an LdapContext from a configuration object. */
     public static LdapContextSource createLdapContext(LDAPBaseSecurityServiceConfig ldapConfig) {
         LdapContextSource ldapContext =
                 new DefaultSpringSecurityContextSource(ldapConfig.getServerURL());
@@ -43,25 +37,14 @@ public class LDAPUtils {
 
             DefaultTlsDirContextAuthenticationStrategy tls =
                     new DefaultTlsDirContextAuthenticationStrategy();
-            tls.setHostnameVerifier(
-                    new HostnameVerifier() {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session) {
-                            return true;
-                        }
-                    });
+            tls.setHostnameVerifier((hostname, session) -> true);
 
             ldapContext.setAuthenticationStrategy(tls);
         }
         return ldapContext;
     }
 
-    /**
-     * Returns an LDAP template bounded to the given context, if not null.
-     *
-     * @param ctx
-     * @param template
-     */
+    /** Returns an LDAP template bounded to the given context, if not null. */
     public static SpringSecurityLdapTemplate getLdapTemplateInContext(
             final DirContext ctx, final SpringSecurityLdapTemplate template) {
         SpringSecurityLdapTemplate authTemplate;

@@ -100,15 +100,12 @@ public class DefaultControlFlowConfigurator
         configFile = new PropertyFileWatcher(controlflow);
     }
 
-    /**
-     * Constructor used for testing purposes
-     *
-     * @param watcher
-     */
+    /** Constructor used for testing purposes */
     DefaultControlFlowConfigurator(PropertyFileWatcher watcher) {
         this.configFile = watcher;
     }
 
+    @Override
     public List<FlowController> buildFlowControllers() throws Exception {
         timeout = -1;
 
@@ -269,10 +266,12 @@ public class DefaultControlFlowConfigurator
         }
     }
 
+    @Override
     public boolean isStale() {
         return configFile.isStale();
     }
 
+    @Override
     public long getTimeout() {
         return timeout;
     }

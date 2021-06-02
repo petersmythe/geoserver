@@ -22,7 +22,7 @@ import org.xml.sax.ContentHandler;
  */
 public class XStreamPPIO extends XMLPPIO {
 
-    protected XStreamPPIO(Class type, QName element) {
+    protected XStreamPPIO(Class<?> type, QName element) {
         super(type, type, element);
     }
 
@@ -42,12 +42,11 @@ public class XStreamPPIO extends XMLPPIO {
     /**
      * Subclasses can override the XStream configuration here. By default XStream is setup to strip
      * package names, have tags starts with a capital letter, and flatten out collections
-     *
-     * @param xstream
      */
     protected SecureXStream buildXStream() {
         SecureXStream stream =
                 new SecureXStream() {
+                    @Override
                     protected MapperWrapper wrapMapper(MapperWrapper next) {
                         return new UppercaseTagMapper(new PackageStrippingMapper(next));
                     };
@@ -67,7 +66,8 @@ public class XStreamPPIO extends XMLPPIO {
             super(wrapped);
         }
 
-        public String serializedClass(Class type) {
+        @Override
+        public String serializedClass(@SuppressWarnings("rawtypes") Class type) {
             return type.getName().replaceFirst(".*\\.", "");
         }
     }
@@ -78,7 +78,9 @@ public class XStreamPPIO extends XMLPPIO {
             super(wrapped);
         }
 
-        public String serializedMember(Class type, String memberName) {
+        @Override
+        public String serializedMember(
+                @SuppressWarnings("rawtypes") Class type, String memberName) {
             char startChar = memberName.charAt(0);
             if (Character.isLowerCase(startChar)) {
                 if (memberName.length() > 1) {
@@ -91,7 +93,8 @@ public class XStreamPPIO extends XMLPPIO {
             }
         }
 
-        public String realMember(Class type, String serialized) {
+        @Override
+        public String realMember(@SuppressWarnings("rawtypes") Class type, String serialized) {
             String fieldName = super.realMember(type, serialized);
             try {
                 type.getDeclaredField(fieldName);

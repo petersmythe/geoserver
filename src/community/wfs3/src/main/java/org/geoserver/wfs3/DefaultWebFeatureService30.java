@@ -177,7 +177,7 @@ public class DefaultWebFeatureService30 implements WebFeatureService30, Applicat
      *
      * @return A list of MIME types
      */
-    public static List<String> getAvailableFormats(Class responseType) {
+    public static List<String> getAvailableFormats(Class<?> responseType) {
         Set<String> formatNames = new LinkedHashSet<>();
         Collection responses = GeoServerExtensions.extensions(Response.class);
         for (Iterator i = responses.iterator(); i.hasNext(); ) {
@@ -227,6 +227,7 @@ public class DefaultWebFeatureService30 implements WebFeatureService30, Applicat
         return new TilingSchemeDescriptionDocument(request.getGridSet());
     }
 
+    @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {
         extensions = GeoServerExtensions.extensions(WFS3Extension.class, context);
     }
@@ -398,11 +399,7 @@ public class DefaultWebFeatureService30 implements WebFeatureService30, Applicat
         return new Link(href, "style", styleFormat, null);
     }
 
-    /**
-     * Returns a list of styles that are not associated with any layer
-     *
-     * @return
-     */
+    /** Returns a list of styles that are not associated with any layer */
     private Set<StyleInfo> getLayerAssociatedStyles() {
         Set<StyleInfo> result = new HashSet<>();
         for (LayerInfo layer : getCatalog().getLayers()) {

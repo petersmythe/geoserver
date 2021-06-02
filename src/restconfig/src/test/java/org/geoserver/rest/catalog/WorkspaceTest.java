@@ -6,9 +6,14 @@
 package org.geoserver.rest.catalog;
 
 import static org.custommonkey.xmlunit.XMLAssert.assertXpathEvaluatesTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.StringWriter;
 import java.util.List;
@@ -166,6 +171,11 @@ public class WorkspaceTest extends CatalogRESTTestSupport {
         NamespaceInfo ns = getCatalog().getNamespaceByPrefix("foo");
         assertNotNull(ns);
 
+        MockHttpServletResponse conflictResponse =
+                postAsServletResponse(
+                        RestBaseController.ROOT_PATH + "/workspaces", xml, "text/xml");
+        assertEquals(409, conflictResponse.getStatus());
+
         removeWorkspace("foo");
     }
 
@@ -193,6 +203,11 @@ public class WorkspaceTest extends CatalogRESTTestSupport {
         WorkspaceInfo ws = getCatalog().getWorkspaceByName("foo");
         assertNotNull(ws);
         assertNotNull(ws.getDateCreated());
+
+        MockHttpServletResponse conflictResponse =
+                postAsServletResponse(
+                        RestBaseController.ROOT_PATH + "/workspaces", json, "text/json");
+        assertEquals(409, conflictResponse.getStatus());
     }
 
     @Test

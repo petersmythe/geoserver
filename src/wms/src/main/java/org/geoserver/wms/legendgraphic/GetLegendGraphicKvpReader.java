@@ -154,7 +154,7 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
 
         // list of layers to render in the legend (we can have more
         // than one if a layergroup is requested)
-        List<LegendRequest> layers = new ArrayList<LegendRequest>();
+        List<LegendRequest> layers = new ArrayList<>();
         if (layer != null) {
             try {
                 LayerInfo layerInfo = wms.getLayerByName(layer);
@@ -233,7 +233,6 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
      * @param layerInfo of Cascaded Layer, should WMSLayerInfo
      * @param request should be instance of GetLegendGraphicRequest
      * @return GetCascadedLegendGraphicRequest
-     * @throws IOException
      */
     private LegendRequest getCascadeLegendRequest(
             LayerInfo layerInfo, GetLegendGraphicRequest request) throws IOException {
@@ -279,10 +278,6 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
      * @param layerInfo The layer description
      * @param request The GetLegendGrapicRequest used for context
      * @return created LegendRequest
-     * @throws FactoryRegistryException
-     * @throws IOException
-     * @throws TransformException
-     * @throws SchemaException
      */
     private LegendRequest addLayer(LayerInfo layerInfo, GetLegendGraphicRequest request)
             throws FactoryRegistryException, IOException, TransformException, SchemaException {
@@ -334,7 +329,7 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
      * @param legendInfo LegendInfo used to document use external graphic
      * @return Copy of provided legend info resolved to local file references.
      */
-    private LegendInfo resolveLegendInfo(
+    public LegendInfo resolveLegendInfo(
             LegendInfo legendInfo, GetLegendGraphicRequest request, StyleInfo context) {
         if (legendInfo == null) {
             return null; // not available
@@ -372,15 +367,8 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
                 URL base = URLs.fileToUrl(styles);
                 url = new URL(base, onlineResource);
             }
-        } catch (MalformedURLException invalid) {
+        } catch (URISyntaxException | IOException invalid) {
             LOGGER.log(Level.FINER, "Unable to resolve " + onlineResource + " locally", invalid);
-            return null; // Do not try this online resource
-
-        } catch (IOException access) {
-            LOGGER.log(Level.FINER, "Unable to resolve " + onlineResource + " locally", access);
-            return null; // Do not try this online resource
-        } catch (URISyntaxException syntax) {
-            LOGGER.log(Level.FINER, "Unable to resolve " + onlineResource + " locally", syntax);
             return null; // Do not try this online resource
         }
         LegendInfoImpl resolved = new LegendInfoImpl();
@@ -398,10 +386,6 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
      *
      * @param layerInfo vector or raster layer
      * @return the FeatureType for the given layer
-     * @throws IOException
-     * @throws FactoryRegistryException
-     * @throws TransformException
-     * @throws SchemaException
      */
     private FeatureType getLayerFeatureType(LayerInfo layerInfo)
             throws IOException, FactoryRegistryException, TransformException, SchemaException {
@@ -413,13 +397,12 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
             CoverageInfo coverageInfo = mli.getCoverage();
             // it much safer to wrap a reader rather than a coverage in most cases, OOM can
             // occur otherwise
-            final GridCoverage2DReader reader;
-            reader =
+            final GridCoverage2DReader reader =
                     (GridCoverage2DReader)
                             coverageInfo.getGridCoverageReader(
                                     new NullProgressListener(), GeoTools.getDefaultHints());
-            final SimpleFeatureCollection feature;
-            feature = FeatureUtilities.wrapGridCoverageReader(reader, null);
+            final SimpleFeatureCollection feature =
+                    FeatureUtilities.wrapGridCoverageReader(reader, null);
             return feature.getSchema();
         }
         return null;
@@ -446,7 +429,6 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
      * @param req The request to set the properties to.
      * @param infoObj a {@link LayerInfo layer} or a {@link LayerGroupInfo layerGroup} for which the
      *     legend graphic is to be produced, from where to extract the style information.
-     * @throws IOException
      * @task TODO: validate EXCEPTIONS parameter
      */
     private void parseOptionalParameters(GetLegendGraphicRequest req, Object infoObj, Map rawKvp)
@@ -464,10 +446,6 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
      *
      * <p>As I don't completely understand which takes priority over which from the spec, I assume
      * the precedence order as follow: SLD, SLD_BODY, STYLE, in decrecent order of precedence.
-     *
-     * @param req
-     * @param ftype
-     * @throws IOException
      */
     private void parseStyleAndRule(GetLegendGraphicRequest req, Object infoObj, Map rawKvp)
             throws IOException {
@@ -485,7 +463,7 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
             LOGGER.fine(new StringBuffer("looking for styles ").append(listOfStyles).toString());
         }
 
-        List<Style> sldStyles = new ArrayList<Style>();
+        List<Style> sldStyles = new ArrayList<>();
 
         if (sldUrl != null) {
             if (LOGGER.isLoggable(Level.FINER)) {
@@ -499,7 +477,7 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
             }
             addStylesFrom(sldStyles, styleNames, parseSldBody(sldBody));
 
-        } else if (styleNames.size() > 0) {
+        } else if (!styleNames.isEmpty()) {
             if (LOGGER.isLoggable(Level.FINER)) {
                 LOGGER.finer("taking style from STYLE parameter");
             }
@@ -621,7 +599,7 @@ public class GetLegendGraphicKvpReader extends KvpRequestReader {
      * @param source list of styles from a given source
      */
     private void addStylesFrom(List<Style> sldStyles, List<String> styleNames, Style[] source) {
-        if (styleNames.size() == 0) {
+        if (styleNames.isEmpty()) {
             sldStyles.add(findStyle(null, source));
         } else {
             for (String styleName : styleNames) {

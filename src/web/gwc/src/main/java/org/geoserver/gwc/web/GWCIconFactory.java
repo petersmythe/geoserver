@@ -6,11 +6,13 @@
 package org.geoserver.gwc.web;
 
 import java.io.Serializable;
+import java.util.List;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.geoserver.catalog.LayerInfo;
 import org.geoserver.catalog.PublishedInfo;
 import org.geoserver.catalog.PublishedType;
 import org.geoserver.gwc.layer.GeoServerTileLayer;
+import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.web.CatalogIconFactory;
 import org.geoserver.web.GeoServerBasePage;
 import org.geowebcache.layer.TileLayer;
@@ -84,14 +86,22 @@ public class GWCIconFactory implements Serializable {
         if (layer instanceof WMSLayer) {
             return CachedLayerType.GWC;
         }
+
+        List<GWCTileLayerIconCustomizer> iconCustomizers =
+                GeoServerExtensions.extensions(GWCTileLayerIconCustomizer.class);
+        for (GWCTileLayerIconCustomizer iconCustomizer : iconCustomizers) {
+            CachedLayerType cachedLayerType = iconCustomizer.getCachedLayerType(layer);
+            // Stop scanning through the registered customizers as soon as the
+            // suggested type is not UNKNOWN
+            if (cachedLayerType != null && cachedLayerType != CachedLayerType.UNKNOWN) {
+                return cachedLayerType;
+            }
+        }
+
         return CachedLayerType.UNKNOWN;
     }
 
-    /**
-     * Returns the appropriate icon for the specified layer type.
-     *
-     * @param info
-     */
+    /** Returns the appropriate icon for the specified layer type. */
     public static PackageResourceReference getSpecificLayerIcon(final TileLayer layer) {
         if (layer instanceof GeoServerTileLayer) {
             GeoServerTileLayer gsTileLayer = (GeoServerTileLayer) layer;
@@ -104,6 +114,18 @@ public class GWCIconFactory implements Serializable {
         if (layer instanceof WMSLayer) {
             return GWC;
         }
+
+        List<GWCTileLayerIconCustomizer> iconCustomizers =
+                GeoServerExtensions.extensions(GWCTileLayerIconCustomizer.class);
+        for (GWCTileLayerIconCustomizer iconCustomizer : iconCustomizers) {
+            // Stop scanning through the registered customizers as soon as the
+            // suggested icon is not the UNKNOWN_ICON
+            PackageResourceReference ref = iconCustomizer.getLayerIcon(layer);
+            if (ref != null && ref != UNKNOWN_ICON) {
+                return ref;
+            }
+        }
+
         return UNKNOWN_ICON;
     }
 

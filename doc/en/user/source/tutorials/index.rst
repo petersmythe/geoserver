@@ -12,7 +12,6 @@ Tutorials
    palettedimage/palettedimage.rst
    staticfiles.rst
    wmsreflector.rst
-   animreflector.rst
    cql/cql_tutorial.rst
    imagemosaic_timeseries/imagemosaic_timeseries.rst
    imagemosaic_timeseries/imagemosaic_time-elevationseries.rst
@@ -23,3 +22,5 @@ Tutorials
    tomcat-jndi/tomcat-jndi.rst
    jboss/jboss_tutorial.rst
    metadata/index.rst
+   cloud-foundry/run_cf.rst
+   

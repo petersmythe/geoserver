@@ -11,7 +11,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.math.BigInteger;
 import java.util.Collections;
@@ -61,6 +60,7 @@ public class RFCGeoJSONFeaturesResponse extends GeoJSONGetFeatureResponse {
         return MIME;
     }
 
+    @Override
     public void write(Object value, OutputStream output, Operation operation) throws IOException {
         // was it a single feature request?
         String requestFeatureId = getWFS3FeatureId();
@@ -76,11 +76,7 @@ public class RFCGeoJSONFeaturesResponse extends GeoJSONGetFeatureResponse {
         }
     }
 
-    /**
-     * Returns the WFS3 featureId, or null if it's missing or the request is not a WFS3 one
-     *
-     * @return
-     */
+    /** Returns the WFS3 featureId, or null if it's missing or the request is not a WFS3 one */
     private String getWFS3FeatureId() {
         Request dr = Dispatcher.REQUEST.get();
         String featureId = null;
@@ -93,14 +89,7 @@ public class RFCGeoJSONFeaturesResponse extends GeoJSONGetFeatureResponse {
         return featureId;
     }
 
-    /**
-     * Writes a single feature using the facilities provided by the base class
-     *
-     * @param value
-     * @param output
-     * @param operation
-     * @throws UnsupportedEncodingException
-     */
+    /** Writes a single feature using the facilities provided by the base class */
     private void writeSingleFeature(
             FeatureCollectionResponse value, OutputStream output, Operation operation)
             throws IOException {
@@ -204,6 +193,7 @@ public class RFCGeoJSONFeaturesResponse extends GeoJSONGetFeatureResponse {
         }
     }
 
+    @Override
     protected void writeCollectionCounts(
             BigInteger featureCount, long numberReturned, GeoJSONBuilder jsonWriter) {
         // counts
@@ -223,6 +213,7 @@ public class RFCGeoJSONFeaturesResponse extends GeoJSONGetFeatureResponse {
     }
 
     /** capabilities output format string. */
+    @Override
     public String getCapabilitiesElementName() {
         return "GeoJSON-RFC";
     }

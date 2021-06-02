@@ -43,6 +43,8 @@ import org.opengis.filter.expression.Literal;
 import org.opengis.filter.expression.PropertyName;
 
 /** Support class to find the nearest match to a given dimension value */
+@SuppressWarnings("unchecked") // uses Range in a raw way, not sure it can be generified, must
+// work for Numbers and Dates at the same time
 public abstract class NearestMatchFinder {
 
     /**
@@ -55,17 +57,11 @@ public abstract class NearestMatchFinder {
      * Returns an implementation of {@link NearestMatchFinder} optimized for the given resource
      * type, or throws an {@link IllegalArgumentException} in case the resource type is not
      * supported
-     *
-     * @param info
-     * @param dimensionInfo
-     * @param dimensionName
-     * @return
-     * @throws IOException
      */
     public static NearestMatchFinder get(
             ResourceInfo info, DimensionInfo dimensionInfo, String dimensionName)
             throws IOException {
-        Class dataType = getDataTypeFromDimension(info, dimensionName);
+        Class<?> dataType = getDataTypeFromDimension(info, dimensionName);
         try {
             AcceptableRange acceptableRange =
                     AcceptableRange.getAcceptableRange(
@@ -123,7 +119,7 @@ public abstract class NearestMatchFinder {
                                                 + "in grid coverage reader"));
     }
 
-    private static Class getDataTypeFromDimension(ResourceInfo info, String dimensionName) {
+    private static Class<?> getDataTypeFromDimension(ResourceInfo info, String dimensionName) {
         if (dimensionName.equalsIgnoreCase(ResourceInfo.TIME)) {
             return Date.class;
         } else if (dimensionName.equalsIgnoreCase(ResourceInfo.ELEVATION)) {
@@ -147,13 +143,13 @@ public abstract class NearestMatchFinder {
     PropertyName attribute;
     PropertyName endAttribute;
     AcceptableRange acceptableRange;
-    Class dataType;
+    Class<?> dataType;
 
     public NearestMatchFinder(
             String startAttribute,
             String endAttribute,
             AcceptableRange acceptableRange,
-            Class dataType) {
+            Class<?> dataType) {
         this.attribute = FF.property(startAttribute);
         this.endAttribute = endAttribute == null ? null : FF.property(endAttribute);
         this.acceptableRange = acceptableRange;
@@ -170,9 +166,9 @@ public abstract class NearestMatchFinder {
      *     matches/overlaps the original value, then the original one is returned instead (this
      *     allows to tell apart no match vs exact match vs nearest match and eventually set the WMS
      *     HTTP warning head)
-     * @throws IOException
      */
     public Object getNearest(Object value) throws IOException {
+        if (value == null) return null;
         // simple point vs point comparison?
         if (endAttribute == null
                 && (!(value instanceof Range)
@@ -300,8 +296,6 @@ public abstract class NearestMatchFinder {
      * @param maxOutputTime a max time (in seconds) to produce the output. A ServiceException will
      *     be thrown if the matches search is exceeding the specified time. Set to -1 for no
      *     timeout.
-     * @return
-     * @throws IOException
      */
     public List<Object> getMatches(
             String layerName,
@@ -373,12 +367,7 @@ public abstract class NearestMatchFinder {
         }
     }
 
-    /**
-     * Returns a feature collection matching the
-     *
-     * @param filter
-     * @return
-     */
+    /** Returns a feature collection matching the */
     protected abstract FeatureCollection getMatches(Filter filter) throws IOException;
 
     /** Nearest matcher for vector data */
@@ -390,7 +379,7 @@ public abstract class NearestMatchFinder {
                 String attribute,
                 String endAttribute,
                 AcceptableRange acceptableRange,
-                Class dataType)
+                Class<?> dataType)
                 throws IOException {
             super(attribute, endAttribute, acceptableRange, dataType);
             this.featureSource = ftInfo.getFeatureSource(null, null);
@@ -413,7 +402,7 @@ public abstract class NearestMatchFinder {
                 String startAttribute,
                 String endAttribute,
                 AcceptableRange acceptableRange,
-                Class dataType) {
+                Class<?> dataType) {
             super(startAttribute, endAttribute, acceptableRange, dataType);
             this.reader = reader;
         }
@@ -437,7 +426,7 @@ public abstract class NearestMatchFinder {
                 GridCoverage2DReader reader,
                 AcceptableRange acceptableRange,
                 String dimensionName,
-                Class dataType) {
+                Class<?> dataType) {
             super(null, null, acceptableRange, dataType);
             this.reader = reader;
             this.dimensionName = dimensionName;
@@ -491,13 +480,7 @@ public abstract class NearestMatchFinder {
             }
         }
 
-        /**
-         * Compares two object, they can be either instants/ranges or a mix of them
-         *
-         * @param a
-         * @param b
-         * @return
-         */
+        /** Compares two object, they can be either instants/ranges or a mix of them */
         private int compare(Object a, Object b) {
             if (!(a instanceof Range)) {
                 if (!(b instanceof Range)) {

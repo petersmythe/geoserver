@@ -16,6 +16,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.measure.Unit;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.iterator.RectIter;
@@ -41,6 +43,7 @@ import org.geotools.util.DateRange;
 import org.geotools.util.GeoToolsUnitFormat;
 import org.geotools.util.NumberRange;
 import org.geotools.util.Utilities;
+import org.geotools.util.logging.Logging;
 import org.geotools.xml.transform.TransformerBase;
 import org.geotools.xml.transform.Translator;
 import org.opengis.coverage.SampleDimension;
@@ -56,7 +59,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.helpers.AttributesImpl;
 import org.xml.sax.helpers.NamespaceSupport;
-import tec.uom.se.format.SimpleUnitFormat;
+import tech.units.indriya.format.SimpleUnitFormat;
 
 /**
  * Internal Base {@link GMLTransformer} for DescribeCoverage and GMLCoverageEncoding
@@ -64,7 +67,7 @@ import tec.uom.se.format.SimpleUnitFormat;
  * @author Simone Giannecchini, GeoSolutions SAS
  */
 class GMLTransformer extends TransformerBase {
-
+    static final Logger LOGGER = Logging.getLogger(GMLTransformer.class);
     protected final EnvelopeAxesLabelsMapper envelopeDimensionsMapper;
 
     protected FileReference fileReference;
@@ -226,8 +229,7 @@ class GMLTransformer extends TransformerBase {
             try {
                 handleMetadata(null, null);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                LOGGER.log(Level.SEVERE, "", e);
             }
 
             end("gml:RectifiedGridCoverage");
@@ -243,9 +245,6 @@ class GMLTransformer extends TransformerBase {
          *
          * <p>In cases where the coordinates increases in the opposite order ho our walk the
          * offsetVectors of the RectifiedGrid will do the rest.
-         *
-         * @param gc2d
-         * @param axisSwap
          */
         public void handleCoverageFunction(GridEnvelope gridRange, boolean axisSwap) {
             start("gml:coverageFunction");
@@ -279,7 +278,6 @@ class GMLTransformer extends TransformerBase {
          *
          * @param context Can be either a {@link GridCoverage2DReader} or a {@link GridCoverage2D},
          *     depending on how the method is invoked
-         * @throws IOException
          */
         public void handleMetadata(Object context, WCSDimensionsHelper dimensionsHelper)
                 throws IOException {
@@ -314,9 +312,6 @@ class GMLTransformer extends TransformerBase {
         /**
          * Look for additional dimensions in the dimensionsHelper and put additional domains to the
          * metadata
-         *
-         * @param helper
-         * @throws IOException
          */
         private void handleAdditionalDimensionMetadata(final WCSDimensionsHelper helper)
                 throws IOException {
@@ -343,7 +338,6 @@ class GMLTransformer extends TransformerBase {
          * @param dimension the custom dimension related {@link DimensionInfo} instance
          * @param index the custom dimension index to ensure unique GML ids
          * @param helper the {@link WCSDimensionsHelper} instance to be used to parse domains
-         * @throws IOException
          */
         private void setAdditionalDimensionMetadata(
                 final String name,
@@ -410,7 +404,6 @@ class GMLTransformer extends TransformerBase {
          * @param name the name of the custom dimension
          * @param dimension the custom dimension {@link DimensionInfo} instance
          * @param helper the {@link WCSDimensionsHelper} instance used to parse default values
-         * @throws IOException
          */
         private String initStartMetadataTag(
                 final String dimensionTag,
@@ -436,12 +429,7 @@ class GMLTransformer extends TransformerBase {
                     + (defaultValue != null ? (" default=\"" + defaultValue + "\"") : "");
         }
 
-        /**
-         * Set the timeDomain metadata in case the dimensionsHelper instance has a timeDimension
-         *
-         * @param helper
-         * @throws IOException
-         */
+        /** Set the timeDomain metadata in case the dimensionsHelper instance has a timeDimension */
         private void handleTimeMetadata(WCSDimensionsHelper helper) throws IOException {
             Utilities.ensureNonNull("helper", helper);
             final DimensionInfo timeDimension = helper.getTimeDimension();
@@ -491,9 +479,6 @@ class GMLTransformer extends TransformerBase {
         /**
          * Set the elevationDomain metadata in case the dimensionsHelper instance has an
          * elevationDimension
-         *
-         * @param helper
-         * @throws IOException
          */
         private void handleElevationMetadata(WCSDimensionsHelper helper) throws IOException {
             // Null check has been performed in advance
@@ -538,13 +523,7 @@ class GMLTransformer extends TransformerBase {
             }
         }
 
-        /**
-         * Encode a DateRange item as a GML TimePeriod
-         *
-         * @param range
-         * @param helper
-         * @param id
-         */
+        /** Encode a DateRange item as a GML TimePeriod */
         private void encodeDateRange(
                 final DateRange range, final WCSDimensionsHelper helper, final String id) {
             encodeTimePeriod(
@@ -555,13 +534,7 @@ class GMLTransformer extends TransformerBase {
                     null);
         }
 
-        /**
-         * Encode a Date item as a GML TimeInstant
-         *
-         * @param item
-         * @param helper
-         * @param id
-         */
+        /** Encode a Date item as a GML TimeInstant */
         private void encodeDate(
                 final Date item, final WCSDimensionsHelper helper, final String id) {
             final AttributesImpl atts = new AttributesImpl();
@@ -571,15 +544,7 @@ class GMLTransformer extends TransformerBase {
             end("gml:TimeInstant");
         }
 
-        /**
-         * Encode a GML time period
-         *
-         * @param beginPosition
-         * @param endPosition
-         * @param timePeriodId
-         * @param intervalUnit
-         * @param intervalValue
-         */
+        /** Encode a GML time period */
         public void encodeTimePeriod(
                 String beginPosition,
                 String endPosition,
@@ -599,13 +564,7 @@ class GMLTransformer extends TransformerBase {
             end("gml:TimePeriod");
         }
 
-        /**
-         * Encode Interval
-         *
-         * @param beginPosition
-         * @param endPosition
-         * @param dimensionId
-         */
+        /** Encode Interval */
         public void encodeInterval(
                 String beginPosition,
                 String endPosition,
@@ -635,15 +594,6 @@ class GMLTransformer extends TransformerBase {
          *    </gml:Envelope>
          * </gml:boundedBy>
          * }</pre>
-         *
-         * @param ci
-         * @param gc2d
-         * @param ePSGCode
-         * @param axisSwap
-         * @param srsName
-         * @param axesNames
-         * @param axisLabels
-         * @throws IOException
          */
         public void handleBoundedBy(
                 final GeneralEnvelope envelope,
@@ -716,12 +666,7 @@ class GMLTransformer extends TransformerBase {
             end("gml:boundedBy");
         }
 
-        /**
-         * Returns a beautiful String representation for the provided {@link Unit}
-         *
-         * @param crs
-         * @param uom
-         */
+        /** Returns a beautiful String representation for the provided {@link Unit} */
         public String extractUoM(CoordinateReferenceSystem crs, Unit<?> uom) {
             // special handling for Degrees
             if (crs instanceof GeographicCRS) {
@@ -851,7 +796,7 @@ class GMLTransformer extends TransformerBase {
          *
          * @param gc2d the {@link GridCoverage2D} for which to encode the RangeType.
          */
-        public void handleRangeType(GridCoverage2D gc2d) {
+        private void handleRangeType(GridCoverage2D gc2d) {
             start("gml:rangeType");
             start("swe:DataRecord");
 
@@ -931,9 +876,7 @@ class GMLTransformer extends TransformerBase {
                 // do we have already a a NO_DATA value at hand?
                 NoDataContainer noDataProperty = CoverageUtilities.getNoDataProperty(gc2d);
                 if (noDataProperty != null) {
-                    String nodata =
-                            Double.valueOf(noDataProperty.getAsSingleValue())
-                                    .toString(); // TODO test me
+                    String nodata = String.valueOf(noDataProperty.getAsSingleValue());
                     final AttributesImpl nodataAttr = new AttributesImpl();
                     nodataAttr.addAttribute(
                             "",
@@ -985,11 +928,7 @@ class GMLTransformer extends TransformerBase {
             setRange(indicativeRange);
         }
 
-        /**
-         * Encode the interval range
-         *
-         * @param range
-         */
+        /** Encode the interval range */
         private boolean setRange(NumberRange<? extends Number> range) {
             if (range != null
                     && !Double.isInfinite(range.getMaximum())

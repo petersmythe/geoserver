@@ -47,6 +47,7 @@ public class MetaDataDescriptor extends AbstractRecordDescriptor {
 
     public static final String NAMESPACE_GFC = "http://www.isotc211.org/2005/gfc";
     public static final String NAMESPACE_GMX = "http://www.isotc211.org/2005/gmx";
+    public static final String NAMESPACE_GML = "http://www.opengis.net/gml/3.2";
 
     public static final String NAMESPACE_GCO = "http://www.isotc211.org/2005/gco";
     public static final String NAMESPACE_GMD = "http://www.isotc211.org/2005/gmd";
@@ -78,6 +79,7 @@ public class MetaDataDescriptor extends AbstractRecordDescriptor {
         NAMESPACES.declarePrefix("gmx", NAMESPACE_GMX);
         NAMESPACES.declarePrefix("xlink", NAMESPACE_XLINK);
         NAMESPACES.declarePrefix("gfc", NAMESPACE_GFC);
+        NAMESPACES.declarePrefix("gml", NAMESPACE_GML);
 
         FeatureTypeFactory typeFactory = new FeatureTypeFactoryImpl();
 
@@ -88,8 +90,7 @@ public class MetaDataDescriptor extends AbstractRecordDescriptor {
         try {
             index =
                     reader.parse(
-                            new URL(
-                                    "http://schemas.opengis.net/iso/19139/20070417/gmd/metadataEntity.xsd"));
+                            new URL("http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"));
             indexGMX =
                     reader.parse(
                             new URL("http://schemas.opengis.net/iso/19139/20070417/gmx/gmx.xsd"));
@@ -259,12 +260,7 @@ public class MetaDataDescriptor extends AbstractRecordDescriptor {
                 "gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString");
     }
 
-    /**
-     * Helper method to add Mapping in to Queryables
-     *
-     * @param key
-     * @param path
-     */
+    /** Helper method to add Mapping in to Queryables */
     protected static void addQueryableMapping(String key, String path) {
         QUERYABLE_MAPPING.put(key, ff.property(path, NAMESPACES));
     }
@@ -340,6 +336,7 @@ public class MetaDataDescriptor extends AbstractRecordDescriptor {
         return QUERYABLE_MAPPING.get(name.getLocalPart());
     }
 
+    @Override
     public void verifySpatialFilters(Filter filter) {
         filter.accept(new SpatialFilterChecker(getFeatureType()), null);
     }

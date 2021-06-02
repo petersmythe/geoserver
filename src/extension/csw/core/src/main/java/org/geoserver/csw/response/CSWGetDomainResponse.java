@@ -49,7 +49,8 @@ public class CSWGetDomainResponse extends Response {
     @Override
     public void write(Object value, OutputStream output, Operation operation)
             throws IOException, ServiceException {
-        try (CloseableIterator<String> result = (CloseableIterator<String>) value) {
+        try (@SuppressWarnings("unchecked")
+                CloseableIterator<String> result = (CloseableIterator<String>) value) {
             RequestBaseType request = (RequestBaseType) operation.getParameters()[0];
             CSWInfo csw = gs.getService(CSWInfo.class);
 
@@ -57,14 +58,7 @@ public class CSWGetDomainResponse extends Response {
         }
     }
 
-    /**
-     * Actually encodes the response into a set of records
-     *
-     * @param output
-     * @param result
-     * @param request
-     * @param csw
-     */
+    /** Actually encodes the response into a set of records */
     protected void transformResponse(
             OutputStream output,
             CloseableIterator<String> result,

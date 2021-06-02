@@ -4,10 +4,10 @@
  */
 package org.geoserver.opensearch.rest;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.both;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.Sets;
@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.io.IOUtils;
 import org.geoserver.opensearch.rest.CollectionsController.CollectionPart;
 import org.geoserver.rest.util.MediaTypeExtensions;
-import org.geotools.geojson.feature.FeatureJSON;
+import org.geotools.data.geojson.GeoJSONReader;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.junit.Test;
 import org.locationtech.jts.geom.Envelope;
@@ -37,7 +37,7 @@ public class CollectionsControllerTest extends OSEORestTestSupport {
     @Test
     public void testGetCollections() throws Exception {
         DocumentContext json = getAsJSONPath("/rest/oseo/collections", 200);
-        assertEquals(5, json.read("$.collections.*", List.class).size());
+        assertEquals(6, json.read("$.collections.*", List.class).size());
         // check the first (sorted alphabetically)
         assertEquals("ATMTEST", json.read("$.collections[0].name"));
         assertEquals(
@@ -50,7 +50,7 @@ public class CollectionsControllerTest extends OSEORestTestSupport {
 
     @Test
     public void testGetCollectionsPaging() throws Exception {
-        DocumentContext json = getAsJSONPath("/rest/oseo/collections?offset=3&limit=1", 200);
+        DocumentContext json = getAsJSONPath("/rest/oseo/collections?offset=4&limit=1", 200);
         assertEquals(1, json.read("$.collections.*", List.class).size());
         assertEquals("SENTINEL1", json.read("$.collections[0].name"));
         assertEquals(
@@ -118,7 +118,7 @@ public class CollectionsControllerTest extends OSEORestTestSupport {
     public void testCreateCollectionNotGeoJson() throws Exception {
         MockHttpServletResponse response =
                 postAsServletResponse(
-                        "rest/oseo/collections", "{foo: 45}", MediaType.APPLICATION_JSON_VALUE);
+                        "rest/oseo/collections", "{\"foo\": 45}", MediaType.APPLICATION_JSON_VALUE);
         assertEquals(400, response.getStatus());
     }
 
@@ -160,9 +160,7 @@ public class CollectionsControllerTest extends OSEORestTestSupport {
 
     @Test
     public void testCreateCollection() throws Exception {
-        MockHttpServletResponse response;
         createTest123Collection();
-
         assertTest123CollectionCreated();
     }
 
@@ -187,7 +185,30 @@ public class CollectionsControllerTest extends OSEORestTestSupport {
         DocumentContext json = getAsJSONPath("/rest/oseo/collections/TEST123", 200);
 
         assertEquals("PT-123", json.read("$.properties['eo:productType']"));
-        assertEquals("2017-01-01T00:00:00.000+0000", json.read("$.properties['timeStart']"));
+        assertEquals("2017-01-01T00:00:00.000Z", json.read("$.properties['timeStart']"));
+    }
+
+    @Test
+    public void testUpdateEnabled() throws Exception {
+        MockHttpServletResponse response;
+        createTest123Collection();
+
+        // grab the JSON to modify some bits
+        JSONObject feature = (JSONObject) getAsJSON("/rest/oseo/collections/DISABLED_COLLECTION");
+        JSONObject properties = feature.getJSONObject("properties");
+        properties.element("enabled", "true");
+
+        // send it back
+        response =
+                putAsServletResponse(
+                        "rest/oseo/collections/DISABLED_COLLECTION",
+                        feature.toString(),
+                        "application/json");
+        assertEquals(200, response.getStatus());
+
+        // check the changes
+        DocumentContext json = getAsJSONPath("/rest/oseo/collections/DISABLED_COLLECTION", 200);
+        assertEquals(Boolean.TRUE, json.read("$.properties['enabled']"));
     }
 
     @Test
@@ -474,9 +495,15 @@ public class CollectionsControllerTest extends OSEORestTestSupport {
         assertEquals("S2MS1C", json.read("$.properties['eo:productType']"));
         assertEquals("A", json.read("$.properties['eo:platformSerialIdentifier']"));
         assertEquals("MSI", json.read("$.properties['eo:instrument']"));
-        assertEquals("2012-04-23T18:25:43.511+0000", json.read("$.properties['timeStart']"));
+        assertEquals("2012-04-23T18:25:43.511Z", json.read("$.properties['timeStart']"));
+        // test the JSON field
+        assertEquals(
+                "https://geoserver.org/stac-examples/test123.xml",
+                json.read("$.properties['assets'].metadata_iso_19139.href"));
+        assertEquals(
+                "ISO 19139 metadata", json.read("$.properties['assets'].metadata_iso_19139.title"));
 
-        SimpleFeature sf = new FeatureJSON().readFeature(json.jsonString());
+        SimpleFeature sf = GeoJSONReader.parseFeature(json.jsonString());
         ReferencedEnvelope bounds = ReferencedEnvelope.reference(sf.getBounds());
         assertTrue(new Envelope(-180, 180, -90, 90).equals(bounds));
     }

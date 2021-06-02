@@ -56,7 +56,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.collections.map.MultiValueMap;
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.mapped.MappedXMLStreamWriter;
 import org.codehaus.jettison.util.FastStack;
@@ -256,9 +257,9 @@ public class XStreamPersister {
     boolean referenceByName = false;
 
     /** The type map used in {@link BreifMapConverter} to handle complex objects */
-    Map<String, Class<?>> forwardBreifMap = new HashMap<String, Class<?>>();
+    Map<String, Class<?>> forwardBreifMap = new HashMap<>();
 
-    Map<Class<?>, String> backwardBreifMap = new HashMap<Class<?>, String>();
+    Map<Class<?>, String> backwardBreifMap = new HashMap<>();
 
     private Level forceLevel = LOGGER.getLevel() == null ? Level.INFO : LOGGER.getLevel();
 
@@ -297,8 +298,6 @@ public class XStreamPersister {
     /**
      * Sets null handling in proxy objects. Defaults to unwrap. If set to false, proxy object are
      * not transformed to nulls.
-     *
-     * @param unwrapNulls
      */
     public void setUnwrapNulls(boolean unwrapNulls) {
         this.unwrapNulls = unwrapNulls;
@@ -308,7 +307,7 @@ public class XStreamPersister {
         // Default implementations
         initImplementationDefaults(xs);
 
-        // ignore unkonwn fields, this should help using data dirs that has new config elements
+        // ignore unknown fields, this should help using data dirs that has new config elements
         // with older versions of GeoServer
         xs.ignoreUnknownElements();
 
@@ -555,11 +554,8 @@ public class XStreamPersister {
      * Use this method to register complex types that cannot be simply represented as a string in a
      * {@link BreifMapConverter}. The {@code typeId} will be used as a type discriminator in the
      * brief map, as well as the element root for the complex object to be converted.
-     *
-     * @param typeId
-     * @param clazz
      */
-    public void registerBreifMapComplexType(String typeId, Class clazz) {
+    public void registerBreifMapComplexType(String typeId, Class<?> clazz) {
         forwardBreifMap.put(typeId, clazz);
         backwardBreifMap.put(clazz, typeId);
         xs.allowTypes(new Class[] {clazz});
@@ -640,7 +636,6 @@ public class XStreamPersister {
      *
      * @param obj The object to save.
      * @param out The stream to save the object to.
-     * @throws IOException
      */
     public void save(Object obj, OutputStream out) throws IOException {
         // unwrap dynamic proxies
@@ -665,7 +660,6 @@ public class XStreamPersister {
      *
      * @param in The input stream to read the object from.
      * @param clazz The class of the expected object.
-     * @throws IOException
      */
     public <T> T load(InputStream in, Class<T> clazz) throws IOException {
         T obj = clazz.cast(xs.fromXML(in));
@@ -683,19 +677,15 @@ public class XStreamPersister {
     /**
      * Builds a converter that will marshal/unmarshal the target class by reference, that is, by
      * storing the object id as opposed to fully serializing it
-     *
-     * @param clazz
      */
-    public ReferenceConverter buildReferenceConverter(Class clazz) {
+    public ReferenceConverter buildReferenceConverter(Class<?> clazz) {
         return new ReferenceConverter(clazz);
     }
 
     /**
      * Same as {@link #buildReferenceConverter(Class)}, but works against a collection of objects
-     *
-     * @param clazz
      */
-    public ReferenceCollectionConverter buildReferenceCollectionConverter(Class clazz) {
+    public ReferenceCollectionConverter buildReferenceCollectionConverter(Class<?> clazz) {
         return new ReferenceCollectionConverter(clazz);
     }
 
@@ -742,7 +732,7 @@ public class XStreamPersister {
         xs.addDefaultImplementation(ArrayListMultimap.class, Multimap.class);
     }
 
-    protected Class impl(Class interfce) {
+    protected Class<?> impl(Class<?> interfce) {
         // special case case classes, they don't get registered as default implementations
         // only concrete classes do
         if (interfce == ServiceInfo.class) {
@@ -755,7 +745,7 @@ public class XStreamPersister {
             return ResourceInfoImpl.class;
         }
 
-        Class clazz = getXStream().getMapper().defaultImplementationOf(interfce);
+        Class<?> clazz = getXStream().getMapper().defaultImplementationOf(interfce);
         if (clazz == null) {
             throw new RuntimeException("No default mapping for " + interfce);
         }
@@ -782,6 +772,8 @@ public class XStreamPersister {
                 this.wrapped = wrapped;
             }
 
+            @Override
+            @SuppressWarnings("rawtypes")
             public void visit(String name, Class type, Class definedIn, Object value) {
 
                 // skip empty collections + maps
@@ -814,7 +806,7 @@ public class XStreamPersister {
         }
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             // handle all types of maps
             return Map.class.isAssignableFrom(type);
         }
@@ -823,6 +815,7 @@ public class XStreamPersister {
         public void marshal(
                 Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
 
+            @SuppressWarnings("unchecked")
             Set<String> encryptionFields = (Set<String>) context.get(ENCRYPTED_FIELDS_KEY);
             if (encryptionFields == null) {
                 encryptionFields = Collections.emptySet();
@@ -830,8 +823,8 @@ public class XStreamPersister {
 
             GeoServerSecurityManager secMgr = encryptPasswordFields ? getSecurityManager() : null;
             Map map = (Map) source;
-            for (Iterator iterator = map.entrySet().iterator(); iterator.hasNext(); ) {
-                Map.Entry entry = (Map.Entry) iterator.next();
+            for (Object o : map.entrySet()) {
+                Map.Entry entry = (Map.Entry) o;
 
                 if (entry.getValue() == null) {
                     continue;
@@ -863,6 +856,7 @@ public class XStreamPersister {
         }
 
         @Override
+        @SuppressWarnings("unchecked")
         protected void populateMap(
                 HierarchicalStreamReader reader, UnmarshallingContext context, Map map) {
 
@@ -933,38 +927,36 @@ public class XStreamPersister {
             return reader.getValue();
         }
 
-        private Class getComplexTypeClass(String typeId) {
+        private Class<?> getComplexTypeClass(String typeId) {
             return forwardBreifMap.get(typeId);
         }
 
-        protected String getComplexTypeId(Class clazz) {
+        protected String getComplexTypeId(Class<?> clazz) {
             String typeId = backwardBreifMap.get(clazz);
             if (typeId == null) {
-                List<Class> matches = new ArrayList<Class>();
+                List<Class<?>> matches = new ArrayList<>();
                 collectSuperclasses(clazz, matches);
-                for (Iterator it = matches.iterator(); it.hasNext(); ) {
-                    Class sper = (Class) it.next();
+                for (Iterator<Class<?>> it = matches.iterator(); it.hasNext(); ) {
+                    Class<?> sper = (Class<?>) it.next();
                     if (backwardBreifMap.get(sper) == null) {
                         it.remove();
                     }
                 }
 
                 if (matches.size() > 1) {
-                    Comparator comparator =
-                            new Comparator<Class>() {
-                                public int compare(Class c1, Class c2) {
-                                    if (c2.isAssignableFrom(c1)) {
-                                        return -1;
-                                    } else {
-                                        return 1;
-                                    }
+                    Comparator<Class<?>> comparator =
+                            (c1, c2) -> {
+                                if (c2.isAssignableFrom(c1)) {
+                                    return -1;
+                                } else {
+                                    return 1;
                                 }
                             };
 
                     Collections.sort(matches, comparator);
                 }
 
-                if (matches.size() > 0) {
+                if (!matches.isEmpty()) {
                     typeId = backwardBreifMap.get(matches.get(0));
                 }
             }
@@ -972,7 +964,7 @@ public class XStreamPersister {
             return typeId;
         }
 
-        void collectSuperclasses(Class clazz, List<Class> matches) {
+        void collectSuperclasses(Class<?> clazz, List<Class<?>> matches) {
             matches.add(clazz);
             if (clazz.getSuperclass() == null && clazz.getInterfaces().length == 0) {
                 return;
@@ -981,7 +973,7 @@ public class XStreamPersister {
             if (clazz.getSuperclass() != null) {
                 collectSuperclasses(clazz.getSuperclass(), matches);
             }
-            for (Class iface : clazz.getInterfaces()) {
+            for (Class<?> iface : clazz.getInterfaces()) {
                 collectSuperclasses(iface, matches);
             }
         }
@@ -993,12 +985,12 @@ public class XStreamPersister {
             super(mapper);
         }
 
-        public SettingsTolerantMapConverter(Mapper mapper, Class type) {
+        public SettingsTolerantMapConverter(Mapper mapper, Class<?> type) {
             super(mapper, type);
         }
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return super.canConvert(type);
         }
 
@@ -1024,6 +1016,8 @@ public class XStreamPersister {
             writer.endNode();
         }
 
+        @Override
+        @SuppressWarnings("unchecked")
         protected void putCurrentEntryIntoMap(
                 HierarchicalStreamReader reader,
                 UnmarshallingContext context,
@@ -1057,7 +1051,7 @@ public class XStreamPersister {
     class MetadataMapConverter extends BreifMapConverter {
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return MetadataMap.class.equals(type) || super.canConvert(type);
         }
 
@@ -1073,6 +1067,7 @@ public class XStreamPersister {
         }
 
         @Override
+        @SuppressWarnings("unchecked")
         public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
             Map map = (Map) super.unmarshal(reader, context);
             if (!(map instanceof MetadataMap)) {
@@ -1089,10 +1084,13 @@ public class XStreamPersister {
             super(mapper);
         }
 
-        public boolean canConvert(Class clazz) {
+        @Override
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class clazz) {
             return Multimap.class.isAssignableFrom(clazz);
         }
 
+        @Override
+        @SuppressWarnings("unchecked")
         public void marshal(
                 Object value, HierarchicalStreamWriter writer, MarshallingContext context) {
             Multimap map = (Multimap) value;
@@ -1109,6 +1107,7 @@ public class XStreamPersister {
             }
         }
 
+        @Override
         public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
             ArrayListMultimap<Object, Object> map = ArrayListMultimap.create();
             while (reader.hasMoreChildren()) {
@@ -1135,16 +1134,18 @@ public class XStreamPersister {
     /** Converters which encodes an object by a reference, or its id. */
     // class ReferenceConverter extends AbstractSingleValueConverter {
     class ReferenceConverter implements Converter {
-        Class clazz;
+        Class<?> clazz;
 
-        public ReferenceConverter(Class clazz) {
+        public ReferenceConverter(Class<?> clazz) {
             this.clazz = clazz;
         }
 
-        public boolean canConvert(Class type) {
+        @Override
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return clazz.isAssignableFrom(type);
         }
 
+        @Override
         public void marshal(
                 Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
             // could be a proxy, unwrap it
@@ -1196,6 +1197,7 @@ public class XStreamPersister {
             }
         }
 
+        @Override
         public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
 
             String ref = null;
@@ -1241,15 +1243,15 @@ public class XStreamPersister {
     }
 
     class ReferenceCollectionConverter extends LaxCollectionConverter {
-        Class clazz;
-        Class[] subclasses;
+        Class<?> clazz;
+        Class<?>[] subclasses;
 
-        public ReferenceCollectionConverter(Class clazz) {
+        public ReferenceCollectionConverter(Class<?> clazz) {
             super(getXStream().getMapper());
             this.clazz = clazz;
         }
 
-        public ReferenceCollectionConverter(Class clazz, Class... subclasses) {
+        public ReferenceCollectionConverter(Class<?> clazz, Class<?>... subclasses) {
             super(getXStream().getMapper());
             this.clazz = clazz;
             this.subclasses = subclasses;
@@ -1268,8 +1270,8 @@ public class XStreamPersister {
             writer.startNode(elementName);
             if (item != null) {
                 if (subclasses != null) {
-                    Class theClass = null;
-                    for (Class clazz : subclasses) {
+                    Class<?> theClass = null;
+                    for (Class<?> clazz : subclasses) {
                         if (clazz.isInstance(item)) {
                             theClass = clazz;
                             break;
@@ -1314,7 +1316,7 @@ public class XStreamPersister {
         @Override
         protected Object readBareItem(
                 HierarchicalStreamReader reader, UnmarshallingContext context, Object current) {
-            Class theClass = clazz;
+            Class<?> theClass = clazz;
             if (subclasses != null) {
                 String attribute = reader.getAttribute("type");
                 if (attribute != null) {
@@ -1342,7 +1344,8 @@ public class XStreamPersister {
     /** Converter for coordinate reference system objects that converts by SRS code. */
     public static class SRSConverter extends AbstractSingleValueConverter {
 
-        public boolean canConvert(Class type) {
+        @Override
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return CoordinateReferenceSystem.class.isAssignableFrom(type);
         }
 
@@ -1385,7 +1388,7 @@ public class XStreamPersister {
     public static class CRSConverter extends AbstractSingleValueConverter {
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return CoordinateReferenceSystem.class.isAssignableFrom(type);
         }
 
@@ -1548,7 +1551,7 @@ public class XStreamPersister {
     class NumberRangeConverter extends AbstractReflectionConverter {
 
         @Override
-        public boolean canConvert(Class clazz) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class clazz) {
             return NumberRange.class.isAssignableFrom(clazz);
         }
 
@@ -1604,19 +1607,19 @@ public class XStreamPersister {
     // catalog object converters
     /** Base class for all custom reflection based converters. */
     protected class AbstractReflectionConverter extends ReflectionConverter {
-        Class clazz;
+        Class<?> clazz;
 
         public AbstractReflectionConverter() {
             this(Object.class);
         }
 
-        public AbstractReflectionConverter(Class clazz) {
+        public AbstractReflectionConverter(Class<?> clazz) {
             super(getXStream().getMapper(), getXStream().getReflectionProvider());
             this.clazz = clazz;
         }
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return clazz.isAssignableFrom(type);
         }
 
@@ -1634,7 +1637,7 @@ public class XStreamPersister {
     /** Converter for workspaces and namespaces. */
     public class SpaceInfoConverter extends AbstractReflectionConverter {
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return WorkspaceInfo.class.isAssignableFrom(type)
                     || NamespaceInfo.class.isAssignableFrom(type);
         }
@@ -1661,10 +1664,11 @@ public class XStreamPersister {
      * AbstractCatalogResource.configurePersister(XStreamPersister, DataFormat)}
      */
     protected class AbstractCatalogInfoConverter extends AbstractReflectionConverter {
-        public AbstractCatalogInfoConverter(Class clazz) {
+        public AbstractCatalogInfoConverter(Class<?> clazz) {
             super(clazz);
         }
 
+        @SuppressWarnings("unchecked")
         private <T> void unsafeCopy(Object source, Object target, Class<T> clazz) {
             OwsUtils.copy((T) source, (T) target, clazz);
         }
@@ -1678,7 +1682,7 @@ public class XStreamPersister {
             Object catalogObject = callback.getCatalogObject();
 
             if (catalogObject != null) {
-                Class i = callback.getObjectClass();
+                Class<?> i = callback.getObjectClass();
 
                 if (i != null) {
                     unsafeCopy(catalogObject, emptyObject, i);
@@ -1814,13 +1818,15 @@ public class XStreamPersister {
 
     /** Converter for multi hash maps containing coverage stores and data stores. */
     static class StoreMultiValueMapConverter implements Converter {
-        public boolean canConvert(Class type) {
-            return MultiValueMap.class.equals(type);
+        @Override
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
+            return MultiValuedMap.class.equals(type);
         }
 
+        @Override
         public void marshal(
                 Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
-            MultiValueMap map = (MultiValueMap) source;
+            MultiValuedMap map = (MultiValuedMap) source;
             for (Object v : map.values()) {
                 if (v instanceof DataStoreInfo) {
                     writer.startNode("dataStore");
@@ -1835,8 +1841,9 @@ public class XStreamPersister {
             }
         }
 
+        @Override
         public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
-            MultiValueMap map = new MultiValueMap();
+            MultiValuedMap<Class<?>, Object> map = new HashSetValuedHashMap<>();
 
             while (reader.hasMoreChildren()) {
                 reader.moveDown();
@@ -1865,10 +1872,12 @@ public class XStreamPersister {
             this.name = name;
         }
 
-        public boolean canConvert(Class type) {
+        @Override
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return Map.class.isAssignableFrom(type);
         }
 
+        @Override
         public void marshal(
                 Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
 
@@ -1889,8 +1898,9 @@ public class XStreamPersister {
             }
         }
 
+        @Override
         public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
-            Map map = new HashMap();
+            Map<String, CatalogInfo> map = new HashMap<>();
 
             while (reader.hasMoreChildren()) {
                 reader.moveDown();
@@ -1932,10 +1942,11 @@ public class XStreamPersister {
             this(ResourceInfo.class);
         }
 
-        public ResourceInfoConverter(Class clazz) {
+        public ResourceInfoConverter(Class<?> clazz) {
             super(clazz);
         }
 
+        @Override
         public Object doUnmarshal(
                 Object result, HierarchicalStreamReader reader, UnmarshallingContext context) {
             ResourceInfo obj = (ResourceInfo) super.doUnmarshal(result, reader, context);
@@ -1957,10 +1968,10 @@ public class XStreamPersister {
 
             // ensure null list does not result
             if (featureType.getAttributes() == null) {
-                featureType.setAttributes(new ArrayList());
+                featureType.setAttributes(new ArrayList<>());
             }
             if (featureType.getResponseSRS() == null) {
-                featureType.setResponseSRS(new ArrayList());
+                featureType.setResponseSRS(new ArrayList<>());
             }
             if (featureType.getMetadata() == null) {
                 featureType.setMetadata(new MetadataMap());
@@ -2045,7 +2056,7 @@ public class XStreamPersister {
                 String serialized = metadata.get("authorityURLs", String.class);
                 List<AuthorityURLInfo> authorities;
                 if (serialized == null) {
-                    authorities = new ArrayList<AuthorityURLInfo>(1);
+                    authorities = new ArrayList<>(1);
                 } else {
                     authorities = AuthorityURLInfoInfoListConverter.fromString(serialized);
                 }
@@ -2055,7 +2066,7 @@ public class XStreamPersister {
                 String serialized = metadata.get("identifiers", String.class);
                 List<LayerIdentifierInfo> identifiers;
                 if (serialized == null) {
-                    identifiers = new ArrayList<LayerIdentifierInfo>(1);
+                    identifiers = new ArrayList<>(1);
                 } else {
                     identifiers = LayerIdentifierInfoListConverter.fromString(serialized);
                 }
@@ -2120,7 +2131,7 @@ public class XStreamPersister {
                 String serialized = metadata.get("authorityURLs", String.class);
                 List<AuthorityURLInfo> authorities;
                 if (serialized == null) {
-                    authorities = new ArrayList<AuthorityURLInfo>(1);
+                    authorities = new ArrayList<>(1);
                 } else {
                     authorities = AuthorityURLInfoInfoListConverter.fromString(serialized);
                 }
@@ -2130,7 +2141,7 @@ public class XStreamPersister {
                 String serialized = metadata.get("identifiers", String.class);
                 List<LayerIdentifierInfo> identifiers;
                 if (serialized == null) {
-                    identifiers = new ArrayList<LayerIdentifierInfo>(1);
+                    identifiers = new ArrayList<>(1);
                 } else {
                     identifiers = LayerIdentifierInfoListConverter.fromString(serialized);
                 }
@@ -2169,6 +2180,7 @@ public class XStreamPersister {
 
     class VirtualTableConverter implements Converter {
 
+        @Override
         public void marshal(
                 Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
             VirtualTable vt = (VirtualTable) source;
@@ -2235,15 +2247,16 @@ public class XStreamPersister {
             }
         }
 
+        @Override
         @SuppressWarnings("rawtypes")
         public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
             String name = null;
             String sql = null;
-            List<String> primaryKeys = new ArrayList<String>();
-            List<VirtualTableParameter> params = new ArrayList<VirtualTableParameter>();
-            List<String> geomNames = new ArrayList<String>();
-            List<Class> types = new ArrayList<Class>();
-            List<Integer> srids = new ArrayList<Integer>();
+            List<String> primaryKeys = new ArrayList<>();
+            List<VirtualTableParameter> params = new ArrayList<>();
+            List<String> geomNames = new ArrayList<>();
+            List<Class<? extends Geometry>> types = new ArrayList<>();
+            List<Integer> srids = new ArrayList<>();
 
             Boolean escapeSql = false;
             while (reader.hasMoreChildren()) {
@@ -2252,7 +2265,7 @@ public class XStreamPersister {
                     primaryKeys.add(reader.getValue());
                 } else if (reader.getNodeName().equals("geometry")) {
                     String geomName = null;
-                    Class type = null;
+                    Class<? extends Geometry> type = null;
                     int srid = -1;
                     while (reader.hasMoreChildren()) {
                         reader.moveDown();
@@ -2318,7 +2331,8 @@ public class XStreamPersister {
             return vt;
         }
 
-        public boolean canConvert(Class type) {
+        @Override
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return VirtualTable.class.isAssignableFrom(type);
         }
     }
@@ -2330,7 +2344,7 @@ public class XStreamPersister {
                         "([^\\\\]+)(?:\\\\@language=([^\\\\]+)\\\\;)?(?:\\\\@vocabulary=([^\\\\]+)\\\\;)?");
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return Keyword.class.isAssignableFrom(type);
         }
 
@@ -2376,7 +2390,7 @@ public class XStreamPersister {
                 new MeasureConverterFactory().createConverter(Measure.class, String.class, null);
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return Measure.class.isAssignableFrom(type);
         }
 
@@ -2427,6 +2441,7 @@ public class XStreamPersister {
             super(SettingsInfo.class);
         }
 
+        @Override
         public Object doUnmarshal(
                 Object result, HierarchicalStreamReader reader, UnmarshallingContext context) {
             SettingsInfoImpl obj = (SettingsInfoImpl) super.doUnmarshal(result, reader, context);
@@ -2437,7 +2452,7 @@ public class XStreamPersister {
                 obj.setContact(new ContactInfoImpl());
             }
             if (obj.getClientProperties() == null) {
-                obj.setClientProperties(new HashMap<Object, Object>());
+                obj.setClientProperties(new HashMap<>());
             }
             return obj;
         }
@@ -2464,6 +2479,7 @@ public class XStreamPersister {
             super(clazz);
         }
 
+        @Override
         public Object doUnmarshal(
                 Object result, HierarchicalStreamReader reader, UnmarshallingContext context) {
             ServiceInfoImpl obj = (ServiceInfoImpl) super.doUnmarshal(result, reader, context);
@@ -2480,7 +2496,7 @@ public class XStreamPersister {
             Object serviceObject = callback.getServiceObject();
 
             if (serviceObject != null) {
-                Class i = callback.getObjectClass();
+                Class<? extends Object> i = callback.getObjectClass();
 
                 if (i != null) {
                     OwsUtils.copy(serviceObject, emptyObject, i);
@@ -2498,7 +2514,7 @@ public class XStreamPersister {
     class EncryptedFieldConverter extends AbstractSingleValueConverter {
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             return String.class.equals(type);
         }
 
@@ -2541,17 +2557,18 @@ public class XStreamPersister {
             super(WMSLayerInfoImpl.class);
         }
 
+        @Override
         public Object doUnmarshal(
                 Object result, HierarchicalStreamReader reader, UnmarshallingContext context) {
             WMSLayerInfoImpl obj = (WMSLayerInfoImpl) super.doUnmarshal(result, reader, context);
             // setting the minimal defaults and clean object with no NULL values
             if (obj.getPreferredFormat() == null) {
                 obj.setPreferredFormat(WMSLayerInfoImpl.DEFAULT_FORMAT);
-                obj.setSelectedRemoteFormats(new ArrayList<String>());
+                obj.setSelectedRemoteFormats(new ArrayList<>());
             }
             if (obj.getForcedRemoteStyle() == null) {
                 obj.setForcedRemoteStyle(WMSLayerInfoImpl.DEFAULT_ON_REMOTE.getName());
-                obj.setSelectedRemoteStyles(new ArrayList<String>());
+                obj.setSelectedRemoteStyles(new ArrayList<>());
             }
             return obj;
         }

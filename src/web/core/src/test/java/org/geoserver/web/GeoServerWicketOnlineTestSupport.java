@@ -28,12 +28,7 @@ public class GeoServerWicketOnlineTestSupport {
         }
     }
 
-    /**
-     * Logs out the session associated with the provided JSESSIONID
-     *
-     * @param jsessionid
-     * @throws IOException
-     */
+    /** Logs out the session associated with the provided JSESSIONID */
     public void logout(String jsessionid) throws IOException {
         post("j_spring_security_logout", "", "application/x-www-form-urlencoded", jsessionid)
                 .disconnect();
@@ -42,12 +37,10 @@ public class GeoServerWicketOnlineTestSupport {
     /**
      * Log in to geoserver with a username and password
      *
-     * @param username
-     * @param password
      * @return The JSESSIONID associated with the authenticated session.
      */
     public String login(String username, String password) throws IOException {
-        // GET the homepage, and aquire a fresh (unauthenticated) JSESSIONID
+        // GET the homepage, and acquire a fresh (unauthenticated) JSESSIONID
         HttpURLConnection huc = get("web/", null);
         String cookie = huc.getHeaderField("Set-Cookie");
         String jsessionid = parseJsessionid(cookie);
@@ -74,6 +67,11 @@ public class GeoServerWicketOnlineTestSupport {
             if (location.startsWith(GEOSERVER_BASE_URL)) {
                 location = location.substring(GEOSERVER_BASE_URL.length() + 1);
             }
+            /*
+             * if (GEOSERVER_BASE_URL.endsWith("geoserver") &&
+             * location.startsWith("/geoserver")){ location =
+             * location.substring("geoserver".length()+1); }
+             */
             huc.disconnect();
 
             huc = prepareGet(location, jsessionid, null);
@@ -94,9 +92,9 @@ public class GeoServerWicketOnlineTestSupport {
         String jsessionid = null;
 
         String[] parts = cookie.split(";");
-        for (int i = 0; i < parts.length; i++) {
-            if (parts[i].startsWith("JSESSIONID=")) {
-                jsessionid = parts[i];
+        for (String part : parts) {
+            if (part.startsWith("JSESSIONID=")) {
+                jsessionid = part;
             }
         }
         return jsessionid;
@@ -110,7 +108,6 @@ public class GeoServerWicketOnlineTestSupport {
      *     null, in which case the GET is performed without authentication
      * @return The open HttpUrlConnection resulting from the GET. Callers must read the response and
      *     {@link HttpURLConnection#disconnect()} from the connection.
-     * @throws IOException
      */
     protected HttpURLConnection get(String url, String jsessionid) throws IOException {
         return get(url, jsessionid, null);
@@ -125,7 +122,6 @@ public class GeoServerWicketOnlineTestSupport {
      * @param accept the content type(s) to accept. The accept header is ommited if this is null
      * @return The open HttpUrlConnection resulting from the GET. Callers must read the response and
      *     {@link HttpURLConnection#disconnect()} from the connection.
-     * @throws IOException
      */
     protected HttpURLConnection get(String url, String jsessionid, String accept)
             throws IOException {
@@ -141,7 +137,6 @@ public class GeoServerWicketOnlineTestSupport {
      * @param accept the content type(s) to accept. The accept header is ommited if this is null
      * @return The prepared HttpUrlConnection. Callers may add headers or other properties before
      *     calling {@link HttpURLConnection#connect()} and reading the response.
-     * @throws IOException
      */
     protected HttpURLConnection prepareGet(String url, String jsessionid, String accept)
             throws IOException {
@@ -164,7 +159,6 @@ public class GeoServerWicketOnlineTestSupport {
      *
      * @param huc An {@link HttpURLConnection} prepared for a get request
      * @return the opened connection
-     * @throws IOException
      */
     protected HttpURLConnection doGet(HttpURLConnection huc) throws IOException {
         huc.connect();
@@ -181,7 +175,6 @@ public class GeoServerWicketOnlineTestSupport {
      *     null, in which case the POST is performed without authentication
      * @return The open HttpUrlConnection resulting from the POST. Callers must read the response
      *     and {@link HttpURLConnection#disconnect()} from the connection.
-     * @throws IOException
      */
     protected HttpURLConnection post(String url, String body, String contentType, String jsessionid)
             throws IOException {
@@ -198,7 +191,6 @@ public class GeoServerWicketOnlineTestSupport {
      *     null, in which case the POST is performed without authentication
      * @return The prepared HttpUrlConnection. Callers may add headers or other properties before
      *     calling {@link HttpURLConnection#connect()}, sending the body, and reading the response.
-     * @throws IOException
      */
     protected HttpURLConnection preparePost(
             String url, int contentLength, String contentType, String jsessionid)
@@ -227,14 +219,13 @@ public class GeoServerWicketOnlineTestSupport {
      * @param huc An {@link HttpURLConnection} prepared for a post request
      * @param body The body to write to the connection
      * @return the opened connection
-     * @throws IOException
      */
     protected HttpURLConnection doPost(HttpURLConnection huc, String body) throws IOException {
         huc.connect();
 
-        PrintWriter out = new java.io.PrintWriter(huc.getOutputStream());
-        out.print(body);
-        out.close();
+        try (PrintWriter out = new java.io.PrintWriter(huc.getOutputStream())) {
+            out.print(body);
+        }
 
         return huc;
     }
@@ -247,7 +238,6 @@ public class GeoServerWicketOnlineTestSupport {
      *     null, in which case the DELETE is performed without authentication
      * @return The open HttpUrlConnection resulting from the DELETE. Callers must read the response
      *     and {@link HttpURLConnection#disconnect()} from the connection.
-     * @throws IOException
      */
     protected HttpURLConnection delete(String url, String jsessionid) throws IOException {
         // Can just use doGet here, as it merely opens the connection
@@ -262,7 +252,6 @@ public class GeoServerWicketOnlineTestSupport {
      *     null, in which case the DELETE is performed without authentication
      * @return The prepared HttpUrlConnection. Callers may add headers or other properties before
      *     calling {@link HttpURLConnection#connect()} and reading the response.
-     * @throws IOException
      */
     protected HttpURLConnection prepareDelete(String url, String jsessionid) throws IOException {
         URL u = new URL(GEOSERVER_BASE_URL + "/" + url);

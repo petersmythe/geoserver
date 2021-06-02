@@ -32,11 +32,11 @@ public class DimensionFilterBuilder {
 
     public void appendFilters(
             String startAttributeName, String endAttributeName, List<Object> ranges) {
-        if (ranges == null || ranges.size() == 0) {
+        if (ranges == null || ranges.isEmpty()) {
             return;
         }
 
-        final List<Filter> timeFilters = new ArrayList<Filter>();
+        final List<Filter> timeFilters = new ArrayList<>();
         final PropertyName attribute = ff.property(startAttributeName);
         final PropertyName endAttribute =
                 endAttributeName == null ? null : ff.property(endAttributeName);
@@ -62,10 +62,6 @@ public class DimensionFilterBuilder {
     /**
      * Build a filter for a single value based on an attribute and optional endAttribute. The value
      * is either a Range or object that can be used as a literal (Date,Number).
-     *
-     * @param value
-     * @param attribute
-     * @param endAttribute
      */
     Filter buildDimensionFilter(Object value, PropertyName attribute, PropertyName endAttribute) {
         Filter filter;

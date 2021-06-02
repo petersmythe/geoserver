@@ -20,6 +20,7 @@ import org.geoserver.geofence.services.RuleReaderService;
 import org.geoserver.geofence.services.dto.AccessInfo;
 import org.geoserver.geofence.services.dto.RuleFilter;
 import org.geotools.util.logging.Logging;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.UrlResource;
@@ -90,9 +91,7 @@ public class CacheReaderTest extends GeofenceBaseTest {
 
     @Test
     public void testSize() {
-        if (!IS_GEOFENCE_AVAILABLE) {
-            return;
-        }
+        Assume.assumeTrue(IS_GEOFENCE_AVAILABLE);
 
         // System.out.println(cachedRuleReader.getStats());
         assertEquals(0, cachedRuleReader.getStats().hitCount());
@@ -134,7 +133,7 @@ public class CacheReaderTest extends GeofenceBaseTest {
 
         // loading a different filter, a miss again
         ticker.setMillisec(2);
-        AccessInfo ai2 = cachedRuleReader.getAccessInfo(filter2);
+        cachedRuleReader.getAccessInfo(filter2);
 
         // System.out.println(cachedRuleReader.getStats());
         assertEquals(hitExp, cachedRuleReader.getStats().hitCount());
@@ -143,7 +142,7 @@ public class CacheReaderTest extends GeofenceBaseTest {
 
         // yet another different filter. we expect a miss, and an eviction
         ticker.setMillisec(3);
-        AccessInfo ai3 = cachedRuleReader.getAccessInfo(filter3);
+        cachedRuleReader.getAccessInfo(filter3);
 
         // System.out.println(cachedRuleReader.getStats());
         assertEquals(hitExp, cachedRuleReader.getStats().hitCount());
@@ -172,9 +171,7 @@ public class CacheReaderTest extends GeofenceBaseTest {
 
     @Test
     public void testExpire() throws InterruptedException {
-        if (!IS_GEOFENCE_AVAILABLE) {
-            return;
-        }
+        Assume.assumeTrue(IS_GEOFENCE_AVAILABLE);
 
         // System.out.println(cachedRuleReader.getStats());
         assertEquals(0, cachedRuleReader.getStats().hitCount());
@@ -216,7 +213,7 @@ public class CacheReaderTest extends GeofenceBaseTest {
         ticker.setMillisec(600);
         // LOGGER.log(Level.INFO, "We expect a reload() now....");
         // System.out.println("---> We expect a reload() now....");
-        AccessInfo ai1_3 = cachedRuleReader.getAccessInfo(filter1);
+        cachedRuleReader.getAccessInfo(filter1);
 
         // System.out.println(cachedRuleReader.getStats());
         assertEquals(++hitExp, cachedRuleReader.getStats().hitCount());

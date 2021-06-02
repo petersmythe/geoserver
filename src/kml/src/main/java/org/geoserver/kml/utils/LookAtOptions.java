@@ -81,14 +81,12 @@ public class LookAtOptions {
 
     @SuppressWarnings("unchecked")
     public LookAtOptions() {
-        this(Collections.EMPTY_MAP);
+        this(Collections.emptyMap());
     }
 
     /**
      * Creates a new KMLLookAt object by parsing the vendor specific parameters out of the provided
      * map, using the properties defined in the class javadoc above as Map keys.
-     *
-     * @param options
      */
     public LookAtOptions(final Map<String, Object> options) {
 

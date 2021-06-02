@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,11 +76,7 @@ public class ExecuteRequest {
         return Ows11Util.name(request.getIdentifier());
     }
 
-    /**
-     * Returns the process inputs according to the GeoTools API expectations
-     *
-     * @param request
-     */
+    /** Returns the process inputs according to the GeoTools API expectations */
     public LazyInputMap getProcessInputs(WPSExecutionManager manager) {
         if (inputs == null) {
             inputs = getInputsInternal(manager);
@@ -92,7 +87,7 @@ public class ExecuteRequest {
     LazyInputMap getInputsInternal(WPSExecutionManager manager) {
         // get the input descriptors
         final Map<String, Parameter<?>> parameters = pf.getParameterInfo(processName);
-        Map<String, InputProvider> providers = new LinkedHashMap<String, InputProvider>();
+        Map<String, InputProvider> providers = new LinkedHashMap<>();
 
         // see what output raw data we have that need the user chosen mime type to be
         // sent back to the process as an input
@@ -111,8 +106,8 @@ public class ExecuteRequest {
         }
 
         // turn them into a map of input providers
-        for (Iterator i = request.getDataInputs().getInput().iterator(); i.hasNext(); ) {
-            InputType input = (InputType) i.next();
+        for (Object o : request.getDataInputs().getInput()) {
+            InputType input = (InputType) o;
             String inputId = input.getIdentifier().getValue();
 
             // locate the parameter for this request
@@ -134,6 +129,7 @@ public class ExecuteRequest {
             }
 
             // get the validators
+            @SuppressWarnings("unchecked")
             Collection<Validator> validators =
                     (Collection<Validator>) p.metadata.get(ProcessLimitsFilter.VALIDATORS_KEY);
             // we handle multiplicity validation here, before the parsing even starts
@@ -166,7 +162,7 @@ public class ExecuteRequest {
 
     private Map<String, String> getRequestedRawDataMimeTypes(
             Collection<String> rawResults, Name name, ProcessFactory pf) {
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = new HashMap<>();
         ResponseFormType form = request.getResponseForm();
         OutputDefinitionType raw = form.getRawDataOutput();
         ResponseDocumentType document = form.getResponseDocument();
@@ -188,8 +184,8 @@ public class ExecuteRequest {
             result.put(output, mime);
         } else {
             // the response document form
-            for (Iterator it = document.getOutput().iterator(); it.hasNext(); ) {
-                OutputDefinitionType out = (OutputDefinitionType) it.next();
+            for (Object o : document.getOutput()) {
+                OutputDefinitionType out = (OutputDefinitionType) o;
                 String outputName = out.getIdentifier().getValue();
                 if (rawResults.contains(outputName)) {
                     // was the output mime specified?
@@ -235,12 +231,8 @@ public class ExecuteRequest {
         return null;
     }
 
-    /**
-     * Ensures the requested output are valid
-     *
-     * @param inputs
-     */
-    public void validateOutputs(Map inputs) {
+    /** Ensures the requested output are valid */
+    public void validateOutputs(Map<String, Object> inputs) {
         Map<String, Parameter<?>> resultInfo = pf.getResultInfo(getProcessName(), inputs);
 
         List<OutputDefinitionType> requestedOutputs = getRequestedOutputs();

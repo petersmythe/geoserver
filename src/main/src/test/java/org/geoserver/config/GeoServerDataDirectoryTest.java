@@ -4,7 +4,9 @@
  */
 package org.geoserver.config;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -133,8 +135,6 @@ public class GeoServerDataDirectoryTest {
     /**
      * Test loading a parsed style with an external graphic URL that contains both ?queryParams and
      * a URL #fragment, and assert that those URL components are preserved.
-     *
-     * @throws IOException
      */
     @Test
     public void testParsedStyleExternalWithParamsAndFragment() throws IOException {

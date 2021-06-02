@@ -6,7 +6,8 @@
 package org.geoserver.wps.gs;
 
 import com.google.common.base.Splitter;
-import java.awt.*;
+import java.awt.RenderingHints;
+import java.awt.Transparency;
 import java.awt.image.ColorModel;
 import java.awt.image.ComponentColorModel;
 import java.awt.image.IndexColorModel;
@@ -157,7 +158,7 @@ public class GeorectifyCoverage implements GeoServerProcess {
             throws IOException {
 
         GeoTiffReader reader = null;
-        List<File> removeFiles = new ArrayList<File>();
+        List<File> removeFiles = new ArrayList<>();
         String location = null;
         try {
             File tempFolder = config.getTempFolder();
@@ -212,7 +213,7 @@ public class GeorectifyCoverage implements GeoServerProcess {
             // STEP 2: Adding Ground Control Points
             //
             // //
-            final int gcpNum[] = new int[1];
+            final int[] gcpNum = new int[1];
             final List<String> gcp = parseGcps(gcps, gcpNum);
             File vrtFile =
                     addGroundControlPoints(
@@ -300,7 +301,7 @@ public class GeorectifyCoverage implements GeoServerProcess {
             reader = new GeoTiffReader(warpedFile);
             GridCoverage2D cov = addLocationProperty(reader.read(null), warpedFile);
 
-            Map<String, Object> result = new HashMap<String, Object>();
+            Map<String, Object> result = new HashMap<>();
             result.put("result", cov);
             result.put("path", warpedFile.getAbsolutePath());
             return result;
@@ -319,8 +320,9 @@ public class GeorectifyCoverage implements GeoServerProcess {
         }
     }
 
+    @SuppressWarnings("unchecked")
     GridCoverage2D addLocationProperty(GridCoverage2D coverage, File warpedFile) {
-        Map properties = new HashMap();
+        Map<String, Object> properties = new HashMap<>();
         properties.put(GridCoverage2DReader.FILE_SOURCE_PROPERTY, warpedFile.getAbsolutePath());
         properties.putAll(coverage.getProperties());
 
@@ -339,8 +341,6 @@ public class GeorectifyCoverage implements GeoServerProcess {
      * input data of the process involved in rendering. This method will be called only if the input
      * data is a feature collection.
      *
-     * @param targetQuery
-     * @param gridGeometry
      * @return The transformed query, or null if no inversion is possible/meaningful
      */
     public Query invertQuery(Query targetQuery, GridGeometry gridGeometry) {
@@ -352,8 +352,6 @@ public class GeorectifyCoverage implements GeoServerProcess {
      * the input data of the process involved in rendering. This method will be called only if the
      * input data is a grid coverage or a grid coverage reader
      *
-     * @param targetQuery
-     * @param gridGeometry
      * @return The transformed query, or null if no inversion is possible/meaningful
      */
     public GridGeometry invertGridGeometry(Query targetQuery, GridGeometry targetGridGeometry) {
@@ -366,7 +364,6 @@ public class GeorectifyCoverage implements GeoServerProcess {
      *
      * @param image the to be stored.
      * @return the {@link File} storing the image.
-     * @throws IOException
      */
     private File storeImage(final RenderedImage image, final File tempFolder) throws IOException {
         File file = File.createTempFile("readCoverage", ".tif", tempFolder);
@@ -380,7 +377,6 @@ public class GeorectifyCoverage implements GeoServerProcess {
      * @param width the final image's width
      * @param height the final image's height
      * @param targetCRS the target coordinate reference system
-     * @throws IOException
      */
     private File warpFile(
             final File originalFile,
@@ -438,7 +434,7 @@ public class GeorectifyCoverage implements GeoServerProcess {
             final List<String> warpingParameters) {
         return new ArrayList<String>() {
             {
-                if (targetEnvelope != null && targetEnvelope.size() > 0) {
+                if (targetEnvelope != null && !targetEnvelope.isEmpty()) {
                     add("-te");
                     addAll(targetEnvelope);
                 }
@@ -476,11 +472,7 @@ public class GeorectifyCoverage implements GeoServerProcess {
         }
     }
 
-    /**
-     * Parse the bounding box to be used by gdalwarp command
-     *
-     * @param boundingBox
-     */
+    /** Parse the bounding box to be used by gdalwarp command */
     @SuppressWarnings("serial")
     private static List<String> parseBBox(Envelope re) {
         if (re == null) {
@@ -513,7 +505,6 @@ public class GeorectifyCoverage implements GeoServerProcess {
      * @param originalFilePath the path of the file referring to the original image.
      * @param gcp the Ground Control Points option to be attached to the translating command.
      * @return a File containing the translated dataset.
-     * @throws IOException
      */
     private File addGroundControlPoints(
             final String originalFilePath, final List<String> gcp, final List<String> parameters)
@@ -646,16 +637,13 @@ public class GeorectifyCoverage implements GeoServerProcess {
         }
     }
 
-    /**
-     * @param gcps
-     * @param gcpNum
-     */
+    /** */
     private List<String> parseGcps(String gcps, int[] gcpNum) {
         Matcher gcpMatcher = GCP_PATTERN.matcher(gcps);
         // if(!gcpMatcher.matches()) {
         // throw new WPSException("Invalid GCP syntax:" + gcps);
         // }
-        List<String> gcpCommand = new ArrayList<String>();
+        List<String> gcpCommand = new ArrayList<>();
         int gcpPoints = 0;
         // Setting up gcp command arguments
         while (gcpMatcher.find()) {

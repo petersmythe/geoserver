@@ -28,19 +28,17 @@ class TimeDimensionHelper {
     static final Logger LOGGER = Logging.getLogger(TimeDimensionHelper.class);
 
     /** Duration in ms of well know time periods */
-    static final BigDecimal[] DURATIONS =
-            new BigDecimal[] {
-                new BigDecimal(31536000000L),
-                new BigDecimal(2628000000L),
-                new BigDecimal(86400000L),
-                new BigDecimal(3600000L),
-                new BigDecimal(60000),
-                new BigDecimal(1000L)
-            };
+    static final BigDecimal[] DURATIONS = {
+        new BigDecimal(31536000000L),
+        new BigDecimal(2628000000L),
+        new BigDecimal(86400000L),
+        new BigDecimal(3600000L),
+        new BigDecimal(60000),
+        new BigDecimal(1000L)
+    };
 
     /** Labels for teh above time periods */
-    static final String[] DURATION_UNITS =
-            new String[] {"year", "month", "day", "hour", "minute", "second"};
+    static final String[] DURATION_UNITS = {"year", "month", "day", "hour", "minute", "second"};
 
     DimensionInfo timeDimension;
 
@@ -89,31 +87,19 @@ class TimeDimensionHelper {
         return accessor.getTimeDomain();
     }
 
-    /**
-     * Returns the minimum time, formatted according to ISO8601
-     *
-     * @throws IOException
-     */
+    /** Returns the minimum time, formatted according to ISO8601 */
     public String getBeginPosition() throws IOException {
         Date minTime = accessor.getMinTime();
         return format(minTime);
     }
 
-    /**
-     * Returns the maximum time, formatted according to ISO8601
-     *
-     * @throws IOException
-     */
+    /** Returns the maximum time, formatted according to ISO8601 */
     public String getEndPosition() throws IOException {
         Date maxTime = accessor.getMaxTime();
         return format(maxTime);
     }
 
-    /**
-     * Formats a Date into ISO86011
-     *
-     * @param time
-     */
+    /** Formats a Date into ISO86011 */
     public String format(Date time) {
         if (time != null) {
             return formatter.format(time);

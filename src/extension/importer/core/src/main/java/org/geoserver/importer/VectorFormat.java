@@ -39,11 +39,8 @@ public abstract class VectorFormat extends DataFormat {
 
     /**
      * Builds a {@link SimpleFeatureType} from the attributes declared in a {@link FeatureTypeInfo}
-     *
-     * @param fti
      */
     protected SimpleFeatureType buildFeatureTypeFromInfo(FeatureTypeInfo fti) {
-        SimpleFeatureType ft;
         SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder();
         ftb.setName(fti.getName());
         List<AttributeTypeInfo> attributes = fti.getAttributes();
@@ -54,7 +51,7 @@ public abstract class VectorFormat extends DataFormat {
                 ftb.add(attr.getName(), attr.getBinding());
             }
         }
-        ft = ftb.buildFeatureType();
+        SimpleFeatureType ft = ftb.buildFeatureType();
         return ft;
     }
 }

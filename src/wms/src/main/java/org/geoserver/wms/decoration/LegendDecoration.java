@@ -5,6 +5,7 @@
  */
 package org.geoserver.wms.decoration;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,7 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.awt.image.IndexColorModel;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,16 +21,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import org.geoserver.catalog.Catalog;
+import org.geoserver.catalog.LayerInfo;
+import org.geoserver.catalog.LegendInfo;
 import org.geoserver.catalog.ResourceInfo;
+import org.geoserver.catalog.StyleInfo;
 import org.geoserver.ows.AbstractDispatcherCallback;
 import org.geoserver.ows.Dispatcher;
+import org.geoserver.ows.KvpParser;
 import org.geoserver.ows.Request;
 import org.geoserver.ows.util.CaseInsensitiveMap;
+import org.geoserver.ows.util.KvpUtils;
+import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.wms.GetLegendGraphicRequest;
 import org.geoserver.wms.WMS;
 import org.geoserver.wms.WMSMapContent;
 import org.geoserver.wms.legendgraphic.BufferedImageLegendGraphicBuilder;
+import org.geoserver.wms.legendgraphic.GetLegendGraphicKvpReader;
 import org.geoserver.wms.legendgraphic.LegendUtils;
 import org.geoserver.wms.map.ImageUtils;
 import org.geotools.map.Layer;
@@ -43,13 +52,16 @@ public class LegendDecoration extends AbstractDispatcherCallback implements MapD
 
     private final WMS wms;
     private Map<String, String> options;
-    private ThreadLocal<List<LayerLegend>> legends = new ThreadLocal<List<LayerLegend>>();
+    private ThreadLocal<List<LayerLegend>> legends = new ThreadLocal<>();
     private List<String> layers;
     private boolean useSldTitle;
 
+    private Map<String, String> legendOptionsMap;
+    private float opacityOption = 1.0f;
+
     public LegendDecoration(WMS wms) {
         this.wms = wms;
-        this.layers = new ArrayList<String>();
+        this.layers = new ArrayList<>();
     }
 
     @Override
@@ -57,8 +69,9 @@ public class LegendDecoration extends AbstractDispatcherCallback implements MapD
         this.legends.remove();
     }
 
+    @Override
     public void loadOptions(Map<String, String> options) {
-        this.options = new HashMap(options);
+        this.options = new HashMap<>(options);
         String layers = this.options.remove("layers");
         if (layers != null) {
             String[] splittedLayers = layers.split(",");
@@ -69,79 +82,30 @@ public class LegendDecoration extends AbstractDispatcherCallback implements MapD
         if ("true".equalsIgnoreCase(sldTitle) || "on".equalsIgnoreCase(sldTitle)) {
             useSldTitle = true;
         }
+
+        String legendOptions = this.options.remove("legend_options");
+        if (legendOptions != null && !legendOptions.isEmpty()) {
+            legendOptionsMap = new HashMap<>();
+            String[] splittedLegendOptions = legendOptions.split(";");
+            for (String lop : splittedLegendOptions) {
+                String[] kvp = lop.split(":");
+                legendOptionsMap.put(kvp[0], kvp[1]);
+            }
+        }
+
+        String opacity = this.options.remove("opacity");
+        if (opacity != null && !opacity.isEmpty()) {
+            opacityOption = Float.parseFloat(opacity);
+        }
     }
 
+    @Override
     public Dimension findOptimalSize(Graphics2D g2d, WMSMapContent mapContext) {
-        double scaleDenominator = mapContext.getScaleDenominator(true);
         double dpi = RendererUtilities.getDpi(mapContext.getRequest().getFormatOptions());
         double standardDpi = RendererUtilities.getDpi(Collections.emptyMap());
         double scaleFactor = dpi / standardDpi;
 
-        List<LayerLegend> layerLegends = new ArrayList<LayerLegend>();
-        for (Layer layer : mapContext.layers()) {
-            Rule[] applicableRules =
-                    LegendUtils.getApplicableRules(
-                            layer.getStyle().featureTypeStyles().toArray(new FeatureTypeStyle[0]),
-                            scaleDenominator);
-            if ((!layers.isEmpty() && !layers.contains(layer.getTitle()))
-                    || applicableRules.length == 0) {
-                continue;
-            }
-
-            BufferedImageLegendGraphicBuilder legendGraphicBuilder =
-                    new BufferedImageLegendGraphicBuilder();
-            GetLegendGraphicRequest request = new GetLegendGraphicRequest();
-            request.setLayer(layer.getFeatureSource().getSchema());
-            request.setTransparent(true);
-            request.setScale(scaleDenominator);
-            request.setStyle(layer.getStyle());
-            request.setWms(wms);
-            final Request dispatcherRequest = Dispatcher.REQUEST.get();
-            if (dispatcherRequest != null) {
-                request.setKvp(dispatcherRequest.getKvp());
-                request.setRawKvp(dispatcherRequest.getRawKvp());
-            }
-
-            Map legendOptions = new CaseInsensitiveMap(options);
-            legendOptions.putAll(mapContext.getRequest().getFormatOptions());
-            if (dispatcherRequest != null
-                    && dispatcherRequest.getKvp().get("legend_options") != null) {
-                legendOptions.putAll((Map) dispatcherRequest.getKvp().get("legend_options"));
-            }
-            request.setLegendOptions(legendOptions);
-
-            LayerLegend legend = new LayerLegend();
-            legend.request = request;
-
-            String title = findTitle(layer, wms.getGeoServer().getCatalog());
-            if (title != null) {
-                Font newFont = LegendUtils.getLabelFont(request);
-                newFont = newFont.deriveFont(Font.BOLD);
-                newFont = newFont.deriveFont((float) newFont.getSize() + 2);
-
-                Font oldFont = g2d.getFont();
-                g2d.setFont(newFont);
-                if (LegendUtils.isFontAntiAliasing(legend.request)) {
-                    g2d.setRenderingHint(
-                            RenderingHints.KEY_TEXT_ANTIALIASING,
-                            RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-                } else {
-                    g2d.setRenderingHint(
-                            RenderingHints.KEY_TEXT_ANTIALIASING,
-                            RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
-                }
-
-                BufferedImage titleImage = LegendUtils.renderLabel(title, g2d, request);
-                g2d.setFont(oldFont);
-
-                legend.title = titleImage;
-            }
-
-            BufferedImage legendImage = legendGraphicBuilder.buildLegendGraphic(request);
-            legend.legend = legendImage;
-
-            layerLegends.add(legend);
-        }
+        List<LayerLegend> layerLegends = getLayerLegend(g2d, mapContext, null);
 
         legends.set(layerLegends);
 
@@ -183,10 +147,16 @@ public class LegendDecoration extends AbstractDispatcherCallback implements MapD
         return new Dimension(width, height);
     }
 
+    @Override
     public void paint(Graphics2D g2d, Rectangle paintArea, WMSMapContent mapContext)
             throws Exception {
-        List<LayerLegend> legends = this.legends.get();
-
+        // check if LayerLegends have been computed in the above method; if not
+        // (cause a custom legend size and findOptimalSize has not been called)
+        // they are produced here
+        List<LayerLegend> legends =
+                this.legends.get() != null
+                        ? this.legends.get()
+                        : getLayerLegend(g2d, mapContext, paintArea);
         double dpi = RendererUtilities.getDpi(mapContext.getRequest().getFormatOptions());
         double standardDpi = RendererUtilities.getDpi(Collections.emptyMap());
         double scaleFactor = dpi / standardDpi;
@@ -198,8 +168,8 @@ public class LegendDecoration extends AbstractDispatcherCallback implements MapD
         while (imageIterator.hasNext()) {
             LayerLegend legend = imageIterator.next();
 
-            int height = legend.legend.getHeight();
-            int width = legend.legend.getWidth();
+            int height = (int) paintArea.getHeight();
+            int width = (int) paintArea.getWidth();
             if (legend.title != null) {
                 height += legend.title.getHeight();
                 if (width < legend.title.getWidth()) {
@@ -218,14 +188,13 @@ public class LegendDecoration extends AbstractDispatcherCallback implements MapD
 
             // output image
             BufferedImage finalLegend =
-                    ImageUtils.createImage(
-                            strokeWidth, strokeHeight, (IndexColorModel) null, false);
+                    ImageUtils.createImage(strokeWidth, strokeHeight, null, false);
             Graphics2D finalGraphics =
                     ImageUtils.prepareTransparency(
                             false,
                             LegendUtils.getBackgroundColor(legend.request),
                             finalLegend,
-                            new HashMap<RenderingHints.Key, Object>());
+                            new HashMap<>());
 
             // title
             int titleHeightOffset = 0;
@@ -288,9 +257,171 @@ public class LegendDecoration extends AbstractDispatcherCallback implements MapD
         }
     }
 
+    private void setLegendInfo(Layer layer, GetLegendGraphicRequest request, Rectangle size) {
+        // online resource handling
+        LayerInfo info = wms.getLayerByName(layer.getTitle());
+        StyleInfo defaultStyle = info.getDefaultStyle();
+
+        Predicate<StyleInfo> predicate =
+                s -> {
+                    try {
+                        return s.getName().equals(layer.getStyle().getName())
+                                && s.getStyle() != null;
+                    } catch (IOException e) {
+                        return false;
+                    }
+                };
+        StyleInfo sInfo =
+                info.getStyles()
+                        .stream()
+                        .filter(predicate)
+                        .findFirst()
+                        .orElseGet(() -> defaultStyle);
+
+        LegendInfo legend = sInfo.getLegend();
+        // if there is no online resource symbol size is computed in
+        // the buffered legend graphic builder
+        if (legend != null && legend.getOnlineResource() != null) {
+            // if present takes the size passed into the decorator
+            if (size != null) {
+                request.setWidth((int) size.getWidth());
+                request.setHeight((int) size.getHeight());
+            } else {
+                request.setWidth(legend.getWidth());
+                request.setHeight(legend.getHeight());
+            }
+        }
+
+        // using featureSource schema name because LegendRequest Name attribute
+        // has been set from it
+        GetLegendGraphicRequest.LegendRequest legendReq =
+                request.getLegend(layer.getFeatureSource().getSchema().getName());
+        legendReq.setLayerInfo(info);
+        GetLegendGraphicKvpReader reader = new GetLegendGraphicKvpReader(wms);
+        LegendInfo legendInfo = reader.resolveLegendInfo(sInfo.getLegend(), request, sInfo);
+        if (legendInfo != null) {
+            legendReq.setLegendInfo(legendInfo);
+        }
+    }
+
     private class LayerLegend {
         public BufferedImage title;
         public BufferedImage legend;
         public GetLegendGraphicRequest request;
+    }
+
+    public List<LayerLegend> getLayerLegends(Graphics2D g2d, WMSMapContent mapContext) {
+        return this.getLayerLegend(g2d, mapContext, null);
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private List<LayerLegend> getLayerLegend(
+            Graphics2D g2d, WMSMapContent mapContext, Rectangle size) {
+        List<LayerLegend> legendLayers = new ArrayList<>();
+        double scaleDenominator = mapContext.getScaleDenominator(true);
+        for (Layer layer : mapContext.layers()) {
+            Rule[] applicableRules =
+                    LegendUtils.getApplicableRules(
+                            layer.getStyle().featureTypeStyles().toArray(new FeatureTypeStyle[0]),
+                            scaleDenominator);
+            if ((!layers.isEmpty() && !layers.contains(layer.getTitle()))
+                    || applicableRules.length == 0) {
+                continue;
+            }
+
+            BufferedImageLegendGraphicBuilder legendGraphicBuilder =
+                    new BufferedImageLegendGraphicBuilder();
+            GetLegendGraphicRequest request = new GetLegendGraphicRequest();
+            request.setLayer(layer.getFeatureSource().getSchema());
+            request.setTransparent(true);
+            request.setScale(scaleDenominator);
+            request.setStyle(layer.getStyle());
+            request.setWms(wms);
+            final Request dispatcherRequest = Dispatcher.REQUEST.get();
+            if (dispatcherRequest != null) {
+                request.setKvp(dispatcherRequest.getKvp());
+                request.setRawKvp(KvpUtils.toStringKVP(dispatcherRequest.getRawKvp()));
+            }
+            setLegendInfo(layer, request, size);
+
+            Map<String, Object> legendOptions = getLegendOptions();
+            legendOptions.putAll(mapContext.getRequest().getFormatOptions());
+
+            // add legend_options defined by layout
+            if (legendOptionsMap != null) {
+                legendOptions.putAll(legendOptionsMap);
+            }
+            // set opacity defined by layout
+            float opacity = opacityOption;
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+
+            if (dispatcherRequest != null
+                    && dispatcherRequest.getKvp().get("legend_options") != null) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> requestOptions =
+                        (Map) dispatcherRequest.getKvp().get("legend_options");
+                legendOptions.putAll(requestOptions);
+            }
+            request.setLegendOptions(legendOptions);
+
+            LayerLegend legend = new LayerLegend();
+            legend.request = request;
+            String title = findTitle(layer, wms.getGeoServer().getCatalog());
+            if (title != null) {
+                Font newFont = LegendUtils.getLabelFont(request);
+                newFont = newFont.deriveFont(Font.BOLD);
+                newFont = newFont.deriveFont((float) newFont.getSize() + 2);
+
+                Font oldFont = g2d.getFont();
+                g2d.setFont(newFont);
+                if (LegendUtils.isFontAntiAliasing(legend.request)) {
+                    g2d.setRenderingHint(
+                            RenderingHints.KEY_TEXT_ANTIALIASING,
+                            RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                } else {
+                    g2d.setRenderingHint(
+                            RenderingHints.KEY_TEXT_ANTIALIASING,
+                            RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+                }
+                BufferedImage titleImage = LegendUtils.renderLabel(title, g2d, request);
+                g2d.setFont(oldFont);
+                legend.title = titleImage;
+            }
+
+            BufferedImage legendImage = legendGraphicBuilder.buildLegendGraphic(request);
+            legend.legend = legendImage;
+
+            legendLayers.add(legend);
+        }
+        return legendLayers;
+    }
+
+    private Map<String, Object> getLegendOptions() {
+        CaseInsensitiveMap<String, Object> result = new CaseInsensitiveMap<>(new HashMap<>());
+        List parsers = GeoServerExtensions.extensions(KvpParser.class);
+        for (Map.Entry<String, String> entry : options.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            Object parsed = null;
+
+            for (Object o : parsers) {
+                KvpParser parser = (KvpParser) o;
+                if (key.equalsIgnoreCase(parser.getKey())) {
+                    try {
+                        parsed = parser.parse(value);
+                        if (parsed != null) {
+                            break;
+                        }
+                    } catch (Exception e) {
+                        throw new IllegalArgumentException("Failed to parse key " + key, e);
+                    }
+                }
+            }
+            if (parsed == null) {
+                parsed = value;
+            }
+            result.put(key, parsed);
+        }
+        return result;
     }
 }

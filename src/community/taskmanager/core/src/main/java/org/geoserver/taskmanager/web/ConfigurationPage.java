@@ -4,6 +4,8 @@
  */
 package org.geoserver.taskmanager.web;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.text.StringEscapeUtils;
+import org.apache.http.entity.ContentType;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.RestartResponseException;
@@ -27,11 +30,14 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.request.resource.AbstractResource;
+import org.apache.wicket.request.resource.ContentDisposition;
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.IValidator;
 import org.geoserver.catalog.WorkspaceInfo;
@@ -45,6 +51,7 @@ import org.geoserver.taskmanager.schedule.ParameterType;
 import org.geoserver.taskmanager.util.InitConfigUtil;
 import org.geoserver.taskmanager.util.TaskManagerBeans;
 import org.geoserver.taskmanager.util.ValidationError;
+import org.geoserver.taskmanager.util.XStreamUtil;
 import org.geoserver.taskmanager.web.action.Action;
 import org.geoserver.taskmanager.web.model.AttributesModel;
 import org.geoserver.taskmanager.web.model.TasksModel;
@@ -59,6 +66,7 @@ import org.geoserver.taskmanager.web.panel.SimpleAjaxSubmitLink;
 import org.geoserver.taskmanager.web.panel.TaskParameterPanel;
 import org.geoserver.taskmanager.web.panel.TextAreaPanel;
 import org.geoserver.taskmanager.web.panel.TextFieldPanel;
+import org.geoserver.web.ComponentAuthorizer;
 import org.geoserver.web.GeoServerApplication;
 import org.geoserver.web.GeoServerBasePage;
 import org.geoserver.web.GeoServerSecuredPage;
@@ -140,6 +148,10 @@ public class ConfigurationPage extends GeoServerSecuredPage {
         this(new Model<Configuration>(configuration));
     }
 
+    public IModel<Configuration> getConfigurationModel() {
+        return configurationModel;
+    }
+
     @Override
     public void onInitialize() {
         super.onInitialize();
@@ -165,6 +177,8 @@ public class ConfigurationPage extends GeoServerSecuredPage {
         AjaxSubmitLink applyButton = saveOrApplyButton("apply", false);
         form.add(applyButton);
 
+        form.add(exportButton());
+
         form.add(
                 new TextField<String>(
                         "name", new PropertyModel<String>(configurationModel, "name")) {
@@ -179,12 +193,14 @@ public class ConfigurationPage extends GeoServerSecuredPage {
 
         SortedSet<String> workspaces = new TreeSet<String>();
         for (WorkspaceInfo wi : GeoServerApplication.get().getCatalog().getWorkspaces()) {
-            if (wi.getName().equals(configurationModel.getObject().getWorkspace())
-                    || TaskManagerBeans.get()
-                            .getSecUtil()
-                            .isAdminable(getSession().getAuthentication(), wi)) {
+            if (TaskManagerBeans.get()
+                    .getSecUtil()
+                    .isAdminable(getSession().getAuthentication(), wi)) {
                 workspaces.add(wi.getName());
             }
+        }
+        if (configurationModel.getObject().getWorkspace() != null) {
+            workspaces.add(configurationModel.getObject().getWorkspace());
         }
         boolean canBeNull =
                 GeoServerApplication.get().getCatalog().getDefaultWorkspace() != null
@@ -289,12 +305,14 @@ public class ConfigurationPage extends GeoServerSecuredPage {
         }
     }
 
+    @Override
     protected String getTitle() {
         return new ParamResourceModel(
                         configurationModel.getObject().isTemplate() ? "temp.title" : "title", this)
                 .getString();
     }
 
+    @Override
     protected String getDescription() {
         return new ParamResourceModel(
                         configurationModel.getObject().isTemplate()
@@ -415,7 +433,7 @@ public class ConfigurationPage extends GeoServerSecuredPage {
 
                             private static final long serialVersionUID = -5552087037163833563L;
 
-                            private IModel<Boolean> shouldCleanupModel = new Model<Boolean>();
+                            private IModel<Boolean> shouldCleanupModel = new Model<Boolean>(false);
 
                             @Override
                             protected Component getContents(String id) {
@@ -432,7 +450,8 @@ public class ConfigurationPage extends GeoServerSecuredPage {
                                         id,
                                         sb.toString(),
                                         new ParamResourceModel("cleanUp", getPage()).getString(),
-                                        shouldCleanupModel);
+                                        shouldCleanupModel,
+                                        !configurationModel.getObject().isTemplate());
                             }
 
                             @Override
@@ -526,6 +545,37 @@ public class ConfigurationPage extends GeoServerSecuredPage {
         };
     }
 
+    private ResourceLink<Object> exportButton() {
+        return new ResourceLink<Object>(
+                "export",
+                new AbstractResource() {
+                    private static final long serialVersionUID = 184195260939749675L;
+
+                    @Override
+                    protected ResourceResponse newResourceResponse(Attributes attributes) {
+                        ResourceResponse response = new ResourceResponse();
+                        response.setContentType(ContentType.APPLICATION_XML.getMimeType());
+                        response.setContentDisposition(ContentDisposition.ATTACHMENT);
+                        response.setFileName(configurationModel.getObject().getName() + ".xml");
+                        response.setWriteCallback(
+                                new WriteCallback() {
+
+                                    @Override
+                                    public void writeData(Attributes attributes)
+                                            throws IOException {
+                                        OutputStream outputStream =
+                                                attributes.getResponse().getOutputStream();
+                                        outputStream.write(
+                                                XStreamUtil.xs()
+                                                        .toXML(configurationModel.getObject())
+                                                        .getBytes());
+                                    }
+                                });
+                        return response;
+                    }
+                });
+    }
+
     protected GeoServerTablePanel<Task> tasksPanel() {
         return new GeoServerTablePanel<Task>("tasksPanel", tasksModel, true) {
 
@@ -544,7 +594,6 @@ public class ConfigurationPage extends GeoServerSecuredPage {
                 final GeoServerTablePanel<Task> thisPanel = this;
                 if (property.equals(TasksModel.NAME)) {
                     IModel<String> nameModel = (IModel<String>) property.getModel(itemModel);
-                    String oldName = nameModel.getObject();
                     return new SimpleAjaxSubmitLink(id, nameModel) {
 
                         private static final long serialVersionUID = 2023797271780630795L;
@@ -603,16 +652,21 @@ public class ConfigurationPage extends GeoServerSecuredPage {
                                         @Override
                                         protected boolean onSubmit(
                                                 AjaxRequestTarget target, Component contents) {
-                                            configurationModel
-                                                    .getObject()
-                                                    .getTasks()
-                                                    .remove(oldName);
-                                            configurationModel
-                                                    .getObject()
-                                                    .getTasks()
-                                                    .put(
-                                                            nameModel.getObject(),
-                                                            itemModel.getObject());
+                                            // rebuild map so that the key is changed by order
+                                            // remains the same
+                                            ArrayList<Task> tasks =
+                                                    new ArrayList<>(
+                                                            configurationModel
+                                                                    .getObject()
+                                                                    .getTasks()
+                                                                    .values());
+                                            configurationModel.getObject().getTasks().clear();
+                                            for (Task task : tasks) {
+                                                configurationModel
+                                                        .getObject()
+                                                        .getTasks()
+                                                        .put(task.getName(), task);
+                                            }
                                             target.add(thisPanel);
                                             return true;
                                         }
@@ -898,6 +952,8 @@ public class ConfigurationPage extends GeoServerSecuredPage {
                         oldBatches = new HashMap<>(configurationModel.getObject().getBatches());
                         form.success(new ParamResourceModel("success", getPage()).getString());
                         target.add(batchesPanel);
+                        attributesModel.refresh();
+                        target.add(attributesPanel);
                         ((MarkupContainer)
                                         batchesPanel.get("form:batchesPanel:listContainer:items"))
                                 .removeAll();
@@ -906,20 +962,22 @@ public class ConfigurationPage extends GeoServerSecuredPage {
                             setResponsePage(new InitConfigurationPage(configurationModel));
                         }
                     }
-                } catch (ConstraintViolationException e) {
-                    form.error(new ParamResourceModel("duplicate", getPage()).getString());
-                    addFeedbackPanels(target);
                 } catch (Exception e) {
-                    LOGGER.log(Level.WARNING, e.getMessage(), e);
-                    Throwable rootCause = ExceptionUtils.getRootCause(e);
-                    form.error(
-                            rootCause == null
-                                    ? e.getLocalizedMessage()
-                                    : rootCause.getLocalizedMessage());
+                    if (e.getCause() instanceof ConstraintViolationException) {
+                        form.error(new ParamResourceModel("duplicate", getPage()).getString());
+                    } else {
+                        LOGGER.log(Level.WARNING, e.getMessage(), e);
+                        Throwable rootCause = ExceptionUtils.getRootCause(e);
+                        form.error(
+                                rootCause == null
+                                        ? e.getLocalizedMessage()
+                                        : rootCause.getLocalizedMessage());
+                    }
                     addFeedbackPanels(target);
                 }
             }
 
+            @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 addFeedbackPanels(target);
             }
@@ -942,5 +1000,10 @@ public class ConfigurationPage extends GeoServerSecuredPage {
 
     public void addAttributesPanel(AjaxRequestTarget target) {
         target.add(attributesPanel);
+    }
+
+    @Override
+    protected ComponentAuthorizer getPageAuthorizer() {
+        return ComponentAuthorizer.WORKSPACE_ADMIN;
     }
 }

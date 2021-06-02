@@ -195,7 +195,7 @@ public class StoredQueryProvider {
 
             return parseStoredQuery(res);
         } catch (Exception e) {
-            throw new RuntimeException("Error accessign stoed query: " + name, e);
+            throw new RuntimeException("Error accessing stored query: " + name, e);
         }
     }
 
@@ -227,8 +227,7 @@ public class StoredQueryProvider {
             // TODO: back up the old file in case there is an error during encoding
             // }
 
-            BufferedOutputStream bout = new BufferedOutputStream(f.out());
-            try {
+            try (BufferedOutputStream bout = new BufferedOutputStream(f.out())) {
                 Encoder e = new Encoder(new WFSConfiguration());
                 e.setRootElementType(WFS.StoredQueryDescriptionType);
                 e.encode(
@@ -236,8 +235,6 @@ public class StoredQueryProvider {
                         WFS.StoredQueryDescription,
                         new BufferedOutputStream(bout));
                 bout.flush();
-            } finally {
-                bout.close();
             }
         } catch (IOException e) {
             throw new RuntimeException("i/o error listing stored queries", e);
@@ -259,13 +256,10 @@ public class StoredQueryProvider {
 
     StoredQuery parseStoredQuery(Resource file, Parser p) throws Exception {
         p.setRootElementType(WFS.StoredQueryDescriptionType);
-        InputStream fin = file.in();
-        try {
+        try (InputStream fin = file.in()) {
             StoredQueryDescriptionType q =
                     (StoredQueryDescriptionType) p.parse(new BufferedInputStream(fin));
             return createStoredQuery(q, false);
-        } finally {
-            fin.close();
         }
     }
 
@@ -300,7 +294,7 @@ public class StoredQueryProvider {
             try {
                 queries.add(parseStoredQuery(f, p));
             } catch (Exception e) {
-                LOGGER.log(Level.WARNING, "Error occured parsing stored query: " + f, e);
+                LOGGER.log(Level.WARNING, "Error occurred parsing stored query: " + f, e);
             }
         }
         return queries;

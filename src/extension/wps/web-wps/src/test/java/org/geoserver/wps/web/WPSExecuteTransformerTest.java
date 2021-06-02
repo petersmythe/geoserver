@@ -14,7 +14,6 @@ import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import javax.xml.transform.dom.DOMSource;
 import org.custommonkey.xmlunit.SimpleNamespaceContext;
@@ -42,7 +41,7 @@ public class WPSExecuteTransformerTest extends GeoServerWicketTestSupport {
     @Before
     public void setUpInternal() throws Exception {
         // init xmlunit
-        Map<String, String> namespaces = new HashMap<String, String>();
+        Map<String, String> namespaces = new HashMap<>();
         namespaces.put("wps", "http://www.opengis.net/wps/1.0.0");
         namespaces.put("ows", "http://www.opengis.net/ows/1.1");
         namespaces.put("gml", "http://www.opengis.net/gml");
@@ -312,22 +311,17 @@ public class WPSExecuteTransformerTest extends GeoServerWicketTestSupport {
         return executeBuffer;
     }
 
-    /**
-     * Validates a document against the
-     *
-     * @param dom
-     * @param configuration
-     */
+    /** Validates a document against the */
     protected void checkValidationErrors(Document dom) throws Exception {
         Parser p = new Parser(new WPSConfiguration());
         p.setValidating(true);
         p.parse(new DOMSource(dom));
 
         if (!p.getValidationErrors().isEmpty()) {
-            for (Iterator e = p.getValidationErrors().iterator(); e.hasNext(); ) {
-                SAXParseException ex = (SAXParseException) e.next();
-                // System.out.println(
-                //       ex.getLineNumber() + "," + ex.getColumnNumber() + " -" + ex.toString());
+            for (Exception exception : p.getValidationErrors()) {
+                SAXParseException ex = (SAXParseException) exception;
+                LOGGER.warning(
+                        ex.getLineNumber() + "," + ex.getColumnNumber() + " -" + ex.toString());
             }
             fail("Document did not validate.");
         }

@@ -73,6 +73,20 @@ public class CSVOutputFormatTest extends WFSTestSupport {
     }
 
     @Test
+    public void testHTMLStuff() throws Exception {
+        MockHttpServletResponse resp =
+                getAsServletResponse(
+                        "wfs?version=1.1.0&request=GetFeature&"
+                                + "typeName=sf:PrimitiveGeoFeature&"
+                                + "outputFormat=csv&format_options=filename:test",
+                        "");
+
+        assertEquals("text/csv", resp.getContentType());
+        assertEquals("UTF-8", resp.getCharacterEncoding());
+        assertEquals("attachment; filename=test.csv", resp.getHeader("Content-Disposition"));
+    }
+
+    @Test
     public void testEscapes() throws Exception {
         // build some fake data in memory, the property data store cannot handle newlines in its
         // data
@@ -163,16 +177,11 @@ public class CSVOutputFormatTest extends WFSTestSupport {
         assertEquals(f2.getAttribute("d"), Double.parseDouble(lines.get(2)[5]));
     }
 
-    /**
-     * Convenience to read the csv content and
-     *
-     * @param csvContent
-     * @throws IOException
-     */
+    /** Convenience to read the csv content and */
     private List<String[]> readLines(String csvContent) throws IOException {
         CSVReader reader = new CSVReader(new StringReader(csvContent));
 
-        List<String[]> result = new ArrayList<String[]>();
+        List<String[]> result = new ArrayList<>();
         String[] nextLine;
         while ((nextLine = reader.readNext()) != null) {
             result.add(nextLine);

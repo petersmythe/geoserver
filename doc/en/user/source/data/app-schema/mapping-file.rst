@@ -409,7 +409,7 @@ Database identifiers
 When referring to database table/view names or column names, use:
 
 * lowercase for PostGIS
-* UPPERCASE for Oracle Spatial and ArcSDE
+* UPPERCASE for Oracle Spatial
 
 
 .. _app-schema.denormalised-sources:
@@ -440,7 +440,7 @@ ID       STATION_ID  TAG          CODE
 ======== =========== ============ =====
 tg.1     st.1        temperature  X1Y
 tg.2     st.1        wind         X2Y
-tg.2     st.2        pressure     X3Y
+tg.3     st.2        pressure     X3Y
 ======== =========== ============ =====
 
 A station can have multiple tags, establishing a one to many relationship between stations and tags, the GML representation of the first station should look like this::

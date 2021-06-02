@@ -285,12 +285,7 @@ public abstract class BackupRestoreItem<T> {
     /** */
     protected abstract void initialize(StepExecution stepExecution);
 
-    /**
-     * @param result
-     * @param e
-     * @return
-     * @throws Exception
-     */
+    /** */
     public boolean logValidationExceptions(ValidationResult result, Exception e) throws Exception {
         CatalogException validationException = new CatalogException(e);
         if (!isBestEffort()) {
@@ -322,58 +317,43 @@ public abstract class BackupRestoreItem<T> {
         return false;
     }
 
-    /**
-     * @param resource
-     * @param ws
-     * @return
-     */
-    protected boolean filteredResource(T resource, WorkspaceInfo ws, boolean strict, Class clazz) {
+    /** */
+    protected boolean filteredResource(
+            T resource, WorkspaceInfo ws, boolean strict, Class<?> clazz) {
         // Filtering Resources
-        if (filterIsValid()) {
-            if (resource == null || (clazz != null && clazz == WorkspaceInfo.class)) {
-                if ((strict && ws == null)
-                        || (ws != null
-                                && getFilters()[0] != null
-                                && !getFilters()[0].evaluate(ws))) {
-                    LOGGER.info("Skipped filtered workspace: " + ws);
-                    return true;
-                }
-            }
-
-            if (resource != null && clazz != null && clazz == StoreInfo.class) {
-                if (getFilters()[1] != null && !getFilters()[1].evaluate(resource)) {
-                    LOGGER.info("Skipped filtered resource: " + resource);
-                    return true;
-                }
-            }
-
-            if (resource != null && clazz != null && clazz == LayerInfo.class) {
-                if (getFilters()[2] != null && !getFilters()[2].evaluate(resource)) {
-                    LOGGER.info("Skipped filtered resource: " + resource);
-                    return true;
-                }
-            }
-
-            if (resource != null && clazz != null && clazz == ResourceInfo.class) {
-                if (((ResourceInfo) resource).getStore() == null
-                        ||
-                        // (getFilters()[1] != null && !getFilters()[1].evaluate(((ResourceInfo)
-                        // resource).getStore())) ||
-                        (getFilters()[2] != null && !getFilters()[2].evaluate(resource))) {
-                    LOGGER.info("Skipped filtered resource: " + resource);
-                    return true;
-                }
+        if (!filterIsValid()) {
+            return false;
+        }
+        if (resource == null || clazz == WorkspaceInfo.class) {
+            if ((strict && ws == null)
+                    || (ws != null && getFilters()[0] != null && !getFilters()[0].evaluate(ws))) {
+                LOGGER.info("Skipped filtered workspace: " + ws);
+                return true;
             }
         }
-
-        return false;
+        boolean skip = false;
+        if (resource != null) {
+            if (clazz == StoreInfo.class) {
+                skip = getFilters()[1] != null && !getFilters()[1].evaluate(resource);
+            } else if (clazz == LayerInfo.class) {
+                skip = getFilters()[2] != null && !getFilters()[2].evaluate(resource);
+            } else if (clazz == ResourceInfo.class) {
+                skip =
+                        ((ResourceInfo) resource).getStore() == null
+                                ||
+                                // (getFilters()[1] != null &&
+                                // !getFilters()[1].evaluate(((ResourceInfo)
+                                // resource).getStore())) ||
+                                (getFilters()[2] != null && !getFilters()[2].evaluate(resource));
+            }
+        }
+        if (skip) {
+            LOGGER.info("Skipped filtered resource: " + resource);
+        }
+        return skip;
     }
 
-    /**
-     * @param resource
-     * @param ws
-     * @return
-     */
+    /** */
     protected boolean filteredResource(WorkspaceInfo ws, boolean strict) {
         return filteredResource(null, ws, strict, WorkspaceInfo.class);
     }
@@ -480,7 +460,7 @@ public abstract class BackupRestoreItem<T> {
             }
 
             @Override
-            public boolean canConvert(Class type) {
+            public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
                 if (BackupRestoreItem.class.equals(type)) {
                     return true;
                 } else {
@@ -490,10 +470,7 @@ public abstract class BackupRestoreItem<T> {
         };
     }
 
-    /**
-     * @param item
-     * @return
-     */
+    /** */
     private Object unwrap(Object item) {
         if (item instanceof Proxy) {
             item = ProxyUtils.unwrap(item, Proxy.getInvocationHandler(item).getClass());
@@ -501,10 +478,7 @@ public abstract class BackupRestoreItem<T> {
         return item;
     }
 
-    /**
-     * @param info
-     * @return
-     */
+    /** */
     private ResourceInfo unwrapSecured(ResourceInfo info) {
         if (info instanceof SecuredFeatureTypeInfo)
             return ((SecuredFeatureTypeInfo) info).unwrap(ResourceInfo.class);
@@ -517,10 +491,7 @@ public abstract class BackupRestoreItem<T> {
         return info;
     }
 
-    /**
-     * @param info
-     * @return
-     */
+    /** */
     private StoreInfo unwrapSecured(StoreInfo info) {
         if (info instanceof SecuredDataStoreInfo)
             return ((SecuredDataStoreInfo) info).unwrap(StoreInfo.class);
@@ -555,32 +526,34 @@ public abstract class BackupRestoreItem<T> {
         // DataStores
         for (StoreInfo store : srcCatalog.getFacade().getStores(DataStoreInfo.class)) {
             DataStoreInfo targetDataStore = catalog.getDataStoreByName(store.getName());
-            if (targetDataStore == null) {
+            if (store != null && targetDataStore == null) {
                 WorkspaceInfo targetWorkspace =
-                        catalog.getWorkspaceByName(store.getWorkspace().getName());
-                if (targetWorkspace != null) {
-                    targetDataStore =
-                            (DataStoreInfo)
-                                    clone(
-                                            (DataStoreInfo) unwrap(unwrapSecured(store)),
-                                            targetWorkspace,
-                                            DataStoreInfo.class);
-                    if (targetDataStore != null) {
-                        catalog.add(targetDataStore);
-                        catalog.save(catalog.getDataStore(targetDataStore.getId()));
-                    }
+                        store.getWorkspace() != null
+                                ? catalog.getWorkspaceByName(store.getWorkspace().getName())
+                                : null;
+                targetDataStore =
+                        (DataStoreInfo)
+                                clone(
+                                        (DataStoreInfo) unwrap(unwrapSecured(store)),
+                                        targetWorkspace,
+                                        DataStoreInfo.class);
+                if (targetDataStore != null) {
+                    catalog.add(targetDataStore);
+                    catalog.save(catalog.getDataStore(targetDataStore.getId()));
                 }
             }
         }
         for (ResourceInfo resource : srcCatalog.getFacade().getResources(FeatureTypeInfo.class)) {
             FeatureTypeInfo targetResource =
                     catalog.getResourceByName(resource.getName(), FeatureTypeInfo.class);
-            if (targetResource == null) {
+            if (resource != null && targetResource == null) {
                 DataStoreInfo targetDataStore =
                         catalog.getDataStoreByName(resource.getStore().getName());
                 NamespaceInfo targetNamespace =
-                        catalog.getNamespaceByPrefix(resource.getNamespace().getPrefix());
-                if (targetDataStore != null && targetNamespace != null) {
+                        resource.getNamespace() != null
+                                ? catalog.getNamespaceByPrefix(resource.getNamespace().getPrefix())
+                                : null;
+                if (targetDataStore != null) {
                     targetResource =
                             clone(
                                     (FeatureTypeInfo) unwrap(unwrapSecured(resource)),
@@ -596,31 +569,33 @@ public abstract class BackupRestoreItem<T> {
         // CoverageStores
         for (StoreInfo store : srcCatalog.getFacade().getStores(CoverageStoreInfo.class)) {
             CoverageStoreInfo targetCoverageStore = catalog.getCoverageStoreByName(store.getName());
-            if (targetCoverageStore == null) {
+            if (store != null && targetCoverageStore == null) {
                 WorkspaceInfo targetWorkspace =
-                        catalog.getWorkspaceByName(store.getWorkspace().getName());
-                if (targetWorkspace != null) {
-                    targetCoverageStore =
-                            (CoverageStoreInfo)
-                                    clone(
-                                            (CoverageStoreInfo) unwrap(unwrapSecured(store)),
-                                            targetWorkspace,
-                                            CoverageStoreInfo.class);
-                    if (targetCoverageStore != null) {
-                        catalog.add(targetCoverageStore);
-                        catalog.save(catalog.getCoverageStore(targetCoverageStore.getId()));
-                    }
+                        store.getWorkspace() != null
+                                ? catalog.getWorkspaceByName(store.getWorkspace().getName())
+                                : null;
+                targetCoverageStore =
+                        (CoverageStoreInfo)
+                                clone(
+                                        (CoverageStoreInfo) unwrap(unwrapSecured(store)),
+                                        targetWorkspace,
+                                        CoverageStoreInfo.class);
+                if (targetCoverageStore != null) {
+                    catalog.add(targetCoverageStore);
+                    catalog.save(catalog.getCoverageStore(targetCoverageStore.getId()));
                 }
             }
         }
         for (ResourceInfo resource : srcCatalog.getFacade().getResources(CoverageInfo.class)) {
             CoverageInfo targetResource =
                     catalog.getResourceByName(resource.getName(), CoverageInfo.class);
-            if (targetResource == null) {
+            if (resource != null && targetResource == null) {
                 CoverageStoreInfo targetCoverageStore =
                         catalog.getCoverageStoreByName(resource.getStore().getName());
                 NamespaceInfo targetNamespace =
-                        catalog.getNamespaceByPrefix(resource.getNamespace().getPrefix());
+                        resource.getNamespace() != null
+                                ? catalog.getNamespaceByPrefix(resource.getNamespace().getPrefix())
+                                : null;
                 if (targetCoverageStore != null) {
                     targetResource =
                             clone(
@@ -636,14 +611,14 @@ public abstract class BackupRestoreItem<T> {
         // Styles
         for (StyleInfo s : srcCatalog.getFacade().getStyles()) {
             StyleInfo targetStyle = catalog.getStyleByName(s.getName());
-            if (targetStyle == null) {
+            if (s != null && targetStyle == null) {
                 WorkspaceInfo targetWorkspace =
-                        catalog.getWorkspaceByName(s.getWorkspace().getName());
-                if (targetWorkspace != null) {
-                    targetStyle = clone((StyleInfo) unwrap(s), targetWorkspace);
-                    catalog.add(targetStyle);
-                    catalog.save(catalog.getStyle(targetStyle.getId()));
-                }
+                        s.getWorkspace() != null
+                                ? catalog.getWorkspaceByName(s.getWorkspace().getName())
+                                : null;
+                targetStyle = clone((StyleInfo) unwrap(s), targetWorkspace);
+                catalog.add(targetStyle);
+                catalog.save(catalog.getStyle(targetStyle.getId()));
             }
         }
 
@@ -730,7 +705,7 @@ public abstract class BackupRestoreItem<T> {
         return target;
     }
 
-    protected StoreInfo clone(StoreInfo source, WorkspaceInfo workspace, Class type) {
+    protected StoreInfo clone(StoreInfo source, WorkspaceInfo workspace, Class<?> type) {
         StoreInfo target = null;
         if (type == DataStoreInfo.class) {
             target = catalog.getFactory().createDataStore();
@@ -993,7 +968,7 @@ public abstract class BackupRestoreItem<T> {
         }
 
         @Override
-        public boolean canConvert(Class type) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class type) {
             if (BackupRestoreItem.class.equals(type)) {
                 return true;
             } else {

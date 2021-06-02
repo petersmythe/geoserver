@@ -64,7 +64,7 @@ public class XStreamPersisterFactory implements ApplicationContextAware {
     private List<XStreamPersisterInitializer> getInitializers() {
         if (initializers == null) {
             initializers =
-                    new ArrayList<XStreamPersisterInitializer>(
+                    new ArrayList<>(
                             GeoServerExtensions.extensions(XStreamPersisterInitializer.class));
         }
 
@@ -74,7 +74,7 @@ public class XStreamPersisterFactory implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         initializers =
-                new ArrayList<XStreamPersisterInitializer>(
+                new ArrayList<>(
                         GeoServerExtensions.extensions(
                                 XStreamPersisterInitializer.class, applicationContext));
     }
@@ -83,8 +83,6 @@ public class XStreamPersisterFactory implements ApplicationContextAware {
      * Programmatically adds a {@link XStreamPersisterInitializer} to the factory (initializers are
      * also automatically looked up from the Spring context, use this method only if you cannot
      * Declare your initializer as a spring bean)
-     *
-     * @param initializer
      */
     public void addInitializer(XStreamPersisterInitializer initializer) {
         getInitializers().add(initializer);

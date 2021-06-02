@@ -5,7 +5,9 @@
 package org.geoserver.rest;
 
 import freemarker.core.ParseException;
-import freemarker.template.*;
+import freemarker.template.Configuration;
+import freemarker.template.ObjectWrapper;
+import freemarker.template.Template;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -73,7 +75,6 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      * Constructs the freemarker {@link Configuration}
      *
      * @param clazz Class of the object being wrapped
-     * @return
      */
     protected <T> Configuration createConfiguration(Class<T> clazz) {
         Configuration cfg = TemplateUtils.getSafeConfiguration();
@@ -89,7 +90,6 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      * Constructs the freemarker {@link ObjectWrapper}
      *
      * @param clazz Class of the object being wrapped
-     * @return
      */
     protected <T> ObjectWrapper createObjectWrapper(Class<T> clazz) {
         return new ObjectToMapWrapper<>(clazz);
@@ -102,7 +102,7 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      * @param clazz Class of the object
      * @return Freemarker template
      */
-    protected Template getTemplate(Object o, Class clazz) {
+    protected Template getTemplate(Object o, Class<?> clazz) {
         Template template = null;
         Configuration configuration = createConfiguration(clazz);
 
@@ -197,7 +197,6 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      *
      * @param list The collection to wrap
      * @param clazz The advertised class to use for the collection contents
-     * @return
      */
     protected <T> RestWrapper<T> wrapList(Collection<T> list, Class<T> clazz) {
         return new RestListWrapper<>(list, clazz, this, getTemplate(list, clazz));
@@ -208,7 +207,6 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      *
      * @param object The object to wrap
      * @param clazz The advertised class to use for the collection contents
-     * @return
      */
     protected <T> RestWrapper<T> wrapObject(T object, Class<T> clazz) {
         return new RestWrapperAdapter<>(object, clazz, this, getTemplate(object, clazz));
@@ -221,7 +219,6 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      * @param clazz The advertised class to use for the collection contents
      * @param errorMessage The error message to return if the object is null.
      * @param quietOnNotFound The value of the quietOnNotFound parameter
-     * @return
      */
     // TODO: Remove this once all references have been removed (should just use
     // ResourceNotFoundExceptions)
@@ -291,8 +288,6 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      * {@link #beforeBodyRead(HttpInputMessage, MethodParameter, Type, Class)}
      *
      * <p>Subclasses should override this to implement custom functionality
-     *
-     * @param persister
      */
     public void configurePersister(XStreamPersister persister, XStreamMessageConverter converter) {}
 
@@ -303,16 +298,12 @@ public abstract class RestBaseController implements RequestBodyAdvice {
      * #wrapList(Collection, Class)}
      *
      * <p>Subclasses should override this to implement custom functionality
-     *
-     * @param converter
      */
     public void configureFreemarker(FreemarkerHTMLMessageConverter converter, Template template) {}
 
     /**
      * Returns the result of RequestContextHolder#getRequestAttributes() making sure the result is
      * not null, throwing an {@link NullPointerException} with an explanation otherwise
-     *
-     * @return
      */
     @NonNull
     @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
@@ -325,15 +316,12 @@ public abstract class RestBaseController implements RequestBodyAdvice {
         return requestAttributes;
     }
 
-    /**
-     * Returns a map with the URI template variables.
-     *
-     * @return
-     */
+    /** Returns a map with the URI template variables. */
     protected Map<String, String> getURITemplateVariables() {
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
         if (attributes == null) return Collections.emptyMap();
 
+        @SuppressWarnings("unchecked")
         Map<String, String> result =
                 (Map<String, String>)
                         attributes.getAttribute(

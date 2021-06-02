@@ -8,8 +8,8 @@ package org.geoserver.catalog;
 import java.awt.image.ColorModel;
 import java.awt.image.SampleModel;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -20,7 +20,6 @@ import javax.media.jai.ImageLayout;
 import javax.media.jai.PlanarImage;
 import org.geoserver.catalog.impl.FeatureTypeInfoImpl;
 import org.geoserver.catalog.impl.ModificationProxy;
-import org.geoserver.catalog.impl.ResourceInfoImpl;
 import org.geoserver.catalog.impl.StoreInfoImpl;
 import org.geoserver.catalog.impl.StyleInfoImpl;
 import org.geoserver.catalog.impl.WMSStoreInfoImpl;
@@ -44,6 +43,7 @@ import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.image.util.ImageUtilities;
 import org.geotools.ows.wms.CRSEnvelope;
 import org.geotools.ows.wms.Layer;
+import org.geotools.ows.wmts.model.WMTSLayer;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.util.GeoToolsUnitFormat;
@@ -64,7 +64,6 @@ import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.feature.type.Name;
 import org.opengis.feature.type.PropertyDescriptor;
 import org.opengis.geometry.Envelope;
-import org.opengis.metadata.Identifier;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -456,7 +455,6 @@ public class CatalogBuilder {
      *   <li>updates, if possible, the geographic bounds accordingly by re-projecting the native
      *       bounds into WGS84
      *
-     * @param ftinfo
      * @throws IOException if computing the native bounds fails or if a transformation error occurs
      *     during the geographic bounds computation
      */
@@ -502,7 +500,7 @@ public class CatalogBuilder {
         if (rinfo != null && (ftinfo.getKeywords() == null || ftinfo.getKeywords().isEmpty())) {
             if (rinfo.getKeywords() != null) {
                 if (ftinfo.getKeywords() == null) {
-                    ((FeatureTypeInfoImpl) ftinfo).setKeywords(new ArrayList());
+                    ((FeatureTypeInfoImpl) ftinfo).setKeywords(new ArrayList<>());
                 }
                 for (String kw : rinfo.getKeywords()) {
                     if (kw == null || "".equals(kw.trim())) {
@@ -519,9 +517,7 @@ public class CatalogBuilder {
      * Computes the geographic bounds of a {@link ResourceInfo} by reprojecting the available native
      * bounds
      *
-     * @param rinfo
      * @return the geographic bounds, or null if the native bounds are not available
-     * @throws IOException
      */
     public ReferencedEnvelope getLatLonBounds(
             ReferencedEnvelope nativeBounds, CoordinateReferenceSystem declaredCRS)
@@ -548,9 +544,7 @@ public class CatalogBuilder {
      * Computes the native bounds of a {@link ResourceInfo} taking into account the nature of the
      * data and the reprojection policy in act
      *
-     * @param rinfo
      * @return the native bounds, or null if the could not be computed
-     * @throws IOException
      */
     public ReferencedEnvelope getNativeBounds(ResourceInfo rinfo) throws IOException {
         return getNativeBounds(rinfo, null);
@@ -667,10 +661,8 @@ public class CatalogBuilder {
      * Looks up and sets the SRS based on the feature type info native {@link
      * CoordinateReferenceSystem}
      *
-     * @param ftinfo
      * @param extensive if true an extenstive lookup will be performed (more accurate, but might
      *     take various seconds)
-     * @throws IOException
      */
     public void lookupSRS(FeatureTypeInfo ftinfo, boolean extensive) throws IOException {
         lookupSRS(ftinfo, null, extensive);
@@ -680,11 +672,9 @@ public class CatalogBuilder {
      * Looks up and sets the SRS based on the feature type info native {@link
      * CoordinateReferenceSystem}, obtained from an optional feature source.
      *
-     * @param ftinfo
      * @param data A feature source (possibily null)
      * @param extensive if true an extenstive lookup will be performed (more accurate, but might
      *     take various seconds)
-     * @throws IOException
      */
     public void lookupSRS(FeatureTypeInfo ftinfo, FeatureSource data, boolean extensive)
             throws IOException {
@@ -979,23 +969,18 @@ public class CatalogBuilder {
         return buildCoverageInternal(reader, nativeCoverageName, null, specifiedName);
     }
 
-    /**
-     * Builds a coverage from a geotools grid coverage reader.
-     *
-     * @param customParameters
-     */
-    public CoverageInfo buildCoverage(GridCoverage2DReader reader, Map customParameters)
+    /** Builds a coverage from a geotools grid coverage reader. */
+    public CoverageInfo buildCoverage(
+            GridCoverage2DReader reader, Map<String, Serializable> customParameters)
             throws Exception {
         return buildCoverage(reader, null, customParameters);
     }
 
-    /**
-     * Builds a coverage from a geotools grid coverage reader.
-     *
-     * @param customParameters
-     */
+    /** Builds a coverage from a geotools grid coverage reader. */
     public CoverageInfo buildCoverage(
-            GridCoverage2DReader reader, String coverageName, Map customParameters)
+            GridCoverage2DReader reader,
+            String coverageName,
+            Map<String, Serializable> customParameters)
             throws Exception {
         return buildCoverageInternal(reader, coverageName, customParameters, null);
     }
@@ -1003,7 +988,7 @@ public class CatalogBuilder {
     private CoverageInfo buildCoverageInternal(
             GridCoverage2DReader reader,
             String nativeCoverageName,
-            Map customParameters,
+            Map<String, Serializable> customParameters,
             String specifiedName)
             throws Exception {
         if (store == null || !(store instanceof CoverageStoreInfo)) {
@@ -1113,16 +1098,14 @@ public class CatalogBuilder {
         if (nativeCRS != null
                 && (nativeCRS.getIdentifiers() != null)
                 && !nativeCRS.getIdentifiers().isEmpty()) {
-            cinfo.getRequestSRS()
-                    .add(((Identifier) nativeCRS.getIdentifiers().toArray()[0]).toString());
-            cinfo.getResponseSRS()
-                    .add(((Identifier) nativeCRS.getIdentifiers().toArray()[0]).toString());
+            cinfo.getRequestSRS().add(nativeCRS.getIdentifiers().toArray()[0].toString());
+            cinfo.getResponseSRS().add(nativeCRS.getIdentifiers().toArray()[0].toString());
         }
 
         // supported formats
         final List formats = CoverageStoreUtils.listDataFormats();
-        for (Iterator i = formats.iterator(); i.hasNext(); ) {
-            final Format fTmp = (Format) i.next();
+        for (Object o : formats) {
+            final Format fTmp = (Format) o;
             final String fName = fTmp.getName();
 
             if (fName.equalsIgnoreCase("WorldImage")) {
@@ -1154,12 +1137,12 @@ public class CatalogBuilder {
     }
 
     private GridSampleDimension[] getCoverageSampleDimensions(
-            GridCoverage2DReader reader, Map customParameters)
+            GridCoverage2DReader reader, Map<String, Serializable> customParameters)
             throws TransformException, IOException, Exception {
         GridEnvelope originalRange = reader.getOriginalGridRange();
         Format format = reader.getFormat();
         final ParameterValueGroup readParams = format.getReadParameters();
-        final Map parameters = CoverageUtils.getParametersKVP(readParams);
+        final Map<String, Serializable> parameters = CoverageUtils.getParametersKVP(readParams);
         final int minX = originalRange.getLow(0);
         final int minY = originalRange.getLow(1);
         final int width = originalRange.getSpan(0);
@@ -1249,12 +1232,11 @@ public class CatalogBuilder {
 
     List<CoverageDimensionInfo> getCoverageDimensions(GridSampleDimension[] sampleDimensions) {
 
-        final int length = sampleDimensions.length;
-        List<CoverageDimensionInfo> dims = new ArrayList<CoverageDimensionInfo>();
+        List<CoverageDimensionInfo> dims = new ArrayList<>();
 
-        for (int i = 0; i < length; i++) {
+        for (GridSampleDimension sampleDimension : sampleDimensions) {
             CoverageDimensionInfo dim = catalog.getFactory().createCoverageDimension();
-            GridSampleDimension sd = sampleDimensions[i];
+            GridSampleDimension sd = sampleDimension;
             String name = sd.getDescription().toString(Locale.getDefault());
             dim.setName(name);
 
@@ -1455,21 +1437,29 @@ public class CatalogBuilder {
         }
         wli.setNamespace(namespace);
 
-        Layer layer = wli.getWMTSLayer(null);
+        WMTSLayer layer = wli.getWMTSLayer(null);
         // TODO: handle axis order here ?
         // try to get the native SRS -> we use the bounding boxes, GeoServer will publish all of the
         // supported SRS in the root, if we use getSRS() we'll get them all
-        for (String srs : layer.getBoundingBoxes().keySet()) {
-            try {
-                CoordinateReferenceSystem crs = CRS.decode(srs);
-                wli.setSRS(srs);
-                wli.setNativeCRS(crs);
-            } catch (Exception e) {
-                LOGGER.log(
-                        Level.INFO,
-                        "Skipping "
-                                + srs
-                                + " definition, it was not recognized by the referencing subsystem");
+        CoordinateReferenceSystem preferred = layer.getPreferredCRS();
+        if (preferred != null) {
+            wli.setSRS(CRS.toSRS(preferred));
+            wli.setNativeCRS(preferred);
+        } else {
+
+            for (String srs : layer.getSrs()) {
+                try {
+                    CoordinateReferenceSystem crs = CRS.decode(srs);
+                    wli.setSRS(srs);
+                    wli.setNativeCRS(crs);
+                    break;
+                } catch (Exception e) {
+                    LOGGER.log(
+                            Level.INFO,
+                            "Skipping "
+                                    + srs
+                                    + " definition, it was not recognized by the referencing subsystem");
+                }
             }
         }
 
@@ -1599,9 +1589,6 @@ public class CatalogBuilder {
     /**
      * Returns the default style for the specified resource, or null if the layer is vector and
      * geometryless
-     *
-     * @param resource
-     * @throws IOException
      */
     public StyleInfo getDefaultStyle(ResourceInfo resource) throws IOException {
         // raster wise, only one style
@@ -1621,7 +1608,7 @@ public class CatalogBuilder {
             return null;
         }
 
-        Class gtype = gd.getType().getBinding();
+        Class<?> gtype = gd.getType().getBinding();
         if (Point.class.isAssignableFrom(gtype) || MultiPoint.class.isAssignableFrom(gtype)) {
             styleName = StyleInfo.DEFAULT_POINT;
         } else if (LineString.class.isAssignableFrom(gtype)
@@ -1672,7 +1659,6 @@ public class CatalogBuilder {
      * Calculate the bounds of a layer group from the CRS defined bounds. Relies on the {@link
      * LayerGroupHelper}
      *
-     * @param layerGroup
      * @param crs the CRS who's bounds should be used
      * @see LayerGroupHelper#calculateBoundsFromCRS(CoordinateReferenceSystem)
      */
@@ -1743,7 +1729,7 @@ public class CatalogBuilder {
     /** Reattaches a serialized {@link ResourceInfo} to the catalog */
     public void attach(ResourceInfo resourceInfo) {
         resourceInfo = ModificationProxy.unwrap(resourceInfo);
-        ((ResourceInfoImpl) resourceInfo).setCatalog(catalog);
+        resourceInfo.setCatalog(catalog);
     }
 
     /** Reattaches a serialized {@link LayerInfo} to the catalog */
@@ -1805,7 +1791,7 @@ public class CatalogBuilder {
      * @param info The optional feature type info from which all the attributes belong to
      */
     public List<AttributeTypeInfo> getAttributes(FeatureType ft, FeatureTypeInfo info) {
-        List<AttributeTypeInfo> attributes = new ArrayList<AttributeTypeInfo>();
+        List<AttributeTypeInfo> attributes = new ArrayList<>();
         for (PropertyDescriptor pd : ft.getDescriptors()) {
             AttributeTypeInfo att = catalog.getFactory().createAttribute();
             att.setFeatureType(info);
@@ -1833,7 +1819,6 @@ public class CatalogBuilder {
      *   <li>keep native: use the native SRS bounding box
      *       <ul>
      *
-     * @param resource
      * @return the new referenced envelope or null if there is no bounding box associated with the
      *     CRS
      */

@@ -12,8 +12,8 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.createMockBuilder;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.expectLastCall;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItems;
-import static org.junit.Assert.assertThat;
 
 import com.google.common.collect.Sets;
 import com.hazelcast.core.Cluster;
@@ -237,29 +237,17 @@ public abstract class HzSynchronizerTest {
         return catalog;
     }
 
-    /**
-     * Replay all the mocks on this test class, plus those specified
-     *
-     * @param mocks
-     */
+    /** Replay all the mocks on this test class, plus those specified */
     protected void replay(Object... mocks) {
         EasyMock.replay(myMocks().toArray());
         EasyMock.replay(mocks);
     }
-    /**
-     * Reset all the mocks on this test class, plus those specified
-     *
-     * @param mocks
-     */
+    /** Reset all the mocks on this test class, plus those specified */
     protected void reset(Object... mocks) {
         EasyMock.reset(myMocks().toArray());
         EasyMock.reset(mocks);
     }
-    /**
-     * Verify all the mocks on this test class, plus those specified
-     *
-     * @param mocks
-     */
+    /** Verify all the mocks on this test class, plus those specified */
     protected void verify(Object... mocks) {
         EasyMock.verify(myMocks().toArray());
         EasyMock.verify(mocks);

@@ -71,67 +71,87 @@ Release in JIRA
 If you are cutting the first RC of a series, create the stable branch
 ---------------------------------------------------------------------
 
-When creating the first release candidate of a series, there are some extra steps to create the new stable branch and update the version on master.
+When creating the first release candidate of a series, there are some extra steps to create the new stable branch and update the version on the main development branch.
 
-* Checkout the master branch and make sure it is up to date and that there are no changes in your local workspace::
+* Checkout the the main development branch and make sure it is up to date and that there are no changes in your local workspace::
 
-    git checkout master
+    git checkout main
     git pull
     git status
 
-* Create the new stable branch and push it to GitHub; for example, if master is ``2.11-SNAPSHOT`` and the remote for the official GeoServer is called ``geoserver``::
+* Create the new stable branch and push it to GitHub; for example, if the main development branch is ``2.11-SNAPSHOT`` and the remote for the official GeoServer is called ``geoserver``::
 
     git checkout -b 2.11.x
     git push geoserver 2.11.x
 
 * Enable `GitHub branch protection <https://github.com/geoserver/geoserver/settings/branches>`_ for the new stable branch: tick "Protect this branch" (only) and press "Save changes".
 
-* Checkout the master branch and update the version in all pom.xml files; for example, if changing master from ``2.11-SNAPSHOT`` to ``2.12-SNAPSHOT``::
+* Checkout the the main development branch branch::
 
-    git checkout master
-    find . -name pom.xml -exec sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' {} \;
+    git checkout main
+    
+* Update the version in all pom.xml files; for example, if changing the main development branch from ``2.17-SNAPSHOT`` to ``2.18-SNAPSHOT``.
+  
+  Edit :file:`build/rename.xml` to update GeoServer, GeoTools and GeoWebCache version numbers::
+  
+     <property name="current" value="2.17"/>
+     <property name="release" value="2.18"/>
+     ..
+     <replacefilter token="23-SNAPSHOT" value="24-SNAPSHOT"/>
+     <replacefilter token="1.17-SNAPSHOT" value="1.18-SNAPSHOT"/>
 
-  .. note:: ``sed`` behaves differently on Linux vs. Mac OS X. If running on OS X, the ``-i`` should be followed by ``'' -e`` for each of these ``sed`` commands.
+     
+  And then run::
+    
+    ant -f build/rename.xml 
+    
+  .. note:: use of sed
+     
+     To update these files using sed::
+  
+      find . -name pom.xml -exec sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' {} \;
 
-* Update release artifact paths and labels, for example, if changing master from ``2.11-SNAPSHOT`` to ``2.12-SNAPSHOT``::
+     .. note:: ``sed`` behaves differently on Linux vs. Mac OS X. If running on OS X, the ``-i`` should be followed by ``'' -e`` for each of these ``sed`` commands.
 
-    sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' src/release/bin.xml
-    sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' src/release/installer/win/GeoServerEXE.nsi
-    sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' src/release/installer/win/wrapper.conf
+     Update release artifact paths and labels, for example, if changing the main development branch from ``2.11-SNAPSHOT`` to ``2.12-SNAPSHOT``::
 
-  .. note:: These can be written as a single ``sed`` command with multiple files.
+       sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' src/release/bin.xml
+       sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' src/release/installer/win/GeoServerEXE.nsi
+       sed -i 's/2.11-SNAPSHOT/2.12-SNAPSHOT/g' src/release/installer/win/wrapper.conf
 
-* Update GeoTools dependency; for example if changing from ``17-SNAPSHOT`` to ``18-SNAPSHOT``::
+     .. note:: These can be written as a single ``sed`` command with multiple files.
 
-    sed -i 's/17-SNAPSHOT/18-SNAPSHOT/g' src/pom.xml
+     Update GeoTools dependency; for example if changing from ``17-SNAPSHOT`` to ``18-SNAPSHOT``::
 
-* Update GeoWebCache dependency; for example if changing from ``1.11-SNAPSHOT`` to ``1.12-SNAPSHOT``::
+       sed -i 's/17-SNAPSHOT/18-SNAPSHOT/g' src/pom.xml
 
-    sed -i 's/1.11-SNAPSHOT/1.12-SNAPSHOT/g' src/pom.xml
+     Update GeoWebCache dependency; for example if changing from ``1.11-SNAPSHOT`` to ``1.12-SNAPSHOT``::
 
-* Manually update hardcoded versions in configuration files:
+       sed -i 's/1.11-SNAPSHOT/1.12-SNAPSHOT/g' src/pom.xml
 
-    * ``doc/en/developer/source/conf.py``
-    * ``doc/en/docguide/source/conf.py``
-    * ``doc/en/user/source/conf.py``
+     Manually update hardcoded versions in configuration files:
 
-* Commit the changes and push to the master branch on GitHub::
+     * ``doc/en/developer/source/conf.py``
+     * ``doc/en/docguide/source/conf.py``
+     * ``doc/en/user/source/conf.py``
+
+* Commit the changes and push to the the main development branch branch on GitHub::
 
       git commit -am "Updated version to 2.12-SNAPSHOT, updated GeoTools dependency to 18-SNAPSHOT, updated GeoWebCache dependency to 1.12-SNAPSHOT, and related changes"
-      git push geoserver master
+      git push geoserver main
       
-* Create the new RC version in `JIRA <https://osgeo-org.atlassian.net/projects/GEOS>`_ for issues on master; for example, if master is now ``2.12-SNAPSHOT``, create a Jira version ``2.12-RC1`` for the first release of the ``2.12.x`` series
+* Create the new RC version in `JIRA <https://osgeo-org.atlassian.net/projects/GEOS>`_ for issues on the main development branch; for example, if the main development branch is now ``2.12-SNAPSHOT``, create a Jira version ``2.12-RC1`` for the first release of the ``2.12.x`` series
 
 * Update the main, nightly, geogig-plugin and live-docs jobs on build.geoserver.org:
   
   * disable the maintenance jobs, and remove them from the geoserver view
   * create new jobs, copying from the existing stable jobs, and edit the branch.
-  * modify the last line of the live-docs builds, changing ``stable`` to ``maintain`` for the previous stable branch. The new job you created should publish to ``stable``, and master will continue to publish to ``latest``.
+  * modify the last line of the live-docs builds, changing ``stable`` to ``maintain`` for the previous stable branch. The new job you created should publish to ``stable``, and the main development branch will continue to publish to ``latest``.
 
 * Update the cite tests on build.geoserver.org:
 
   * disable the maintenance jobs, and remove them from the geoserver view
-  * create new jobs, copying from the existing master jobs, editing the branch in the build command.
+  * create new jobs, copying from the existing main development branch jobs, editing the branch in the build command.
 
 * Announce on the developer mailing list that the new stable branch has been created.
 
@@ -148,7 +168,7 @@ Run the `geoserver-release <https://build.geoserver.org/view/geoserver/job/geose
 
 **BRANCH**
 
-  The branch to release from, "2.2.x", "2.1.x", etc... This must be a stable branch. Releases are not performed from master.
+  The branch to release from, "2.2.x", "2.1.x", etc... This must be a stable branch. Releases are not performed from the main development branch.
 
 **REV**
 
@@ -160,7 +180,7 @@ Run the `geoserver-release <https://build.geoserver.org/view/geoserver/job/geose
 
 **GT_VERSION**
 
-  The GeoTools version to include in the release. This may be specified as a version number such as "8.0" or "2.7.5". Alternatively the version may be specified as a Git branch/revision pair in the form ``<branch>@<revision>``. For example "master@36ba65jg53.....". Finally this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT). Again, this version must be a version number corresponding to an official GeoTools release.
+  The GeoTools version to include in the release. This may be specified as a version number such as "8.0" or "2.7.5". Alternatively the version may be specified as a Git branch/revision pair in the form ``<branch>@<revision>``. For example "main@36ba65jg53.....". Finally this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT). Again, this version must be a version number corresponding to an official GeoTools release.
 
 **GWC_VERSION**
 

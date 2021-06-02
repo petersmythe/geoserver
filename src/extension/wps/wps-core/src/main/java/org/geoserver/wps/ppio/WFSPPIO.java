@@ -127,13 +127,11 @@ public class WFSPPIO extends XMLPPIO {
      * geometry property (location). We sanitize the collection in this method by removing them. It
      * is not the best approach, but works in most cases, whilst not doing it would break the code
      * in most cases. Would be better to find a more general approach...
-     *
-     * @param fc
      */
     private SimpleFeatureCollection eliminateFeatureBounds(SimpleFeatureCollection fc) {
         final SimpleFeatureType original = fc.getSchema();
 
-        List<String> names = new ArrayList<String>();
+        List<String> names = new ArrayList<>();
         boolean alternateGeometry = false;
         for (AttributeDescriptor ad : original.getAttributeDescriptors()) {
             final String name = ad.getLocalName();
@@ -159,11 +157,7 @@ public class WFSPPIO extends XMLPPIO {
         return fc;
     }
 
-    /**
-     * Gets the collection CRS, either from metadata or by scanning the collection contents
-     *
-     * @param fc
-     */
+    /** Gets the collection CRS, either from metadata or by scanning the collection contents */
     CoordinateReferenceSystem getCollectionCRS(SimpleFeatureCollection fc) throws Exception {
         // this is unlikely to work for remote or embedded collections, but it's also easy to check
         if (fc.getSchema().getCoordinateReferenceSystem() != null) {
@@ -203,6 +197,7 @@ public class WFSPPIO extends XMLPPIO {
     }
 
     @Override
+    @SuppressWarnings("unchecked") // EMF model without generics
     public void encode(Object object, ContentHandler handler) throws Exception {
         FeatureCollection features = (FeatureCollection) object;
         SimpleFeatureType featureType = (SimpleFeatureType) features.getSchema();

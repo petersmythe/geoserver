@@ -406,12 +406,7 @@ public interface Catalog extends CatalogInfo {
     /** The default datastore for the specified workspace */
     DataStoreInfo getDefaultDataStore(WorkspaceInfo workspace);
 
-    /**
-     * Sets the default data store in the specified workspace
-     *
-     * @param workspace
-     * @param defaultStore
-     */
+    /** Sets the default data store in the specified workspace */
     void setDefaultDataStore(WorkspaceInfo workspace, DataStoreInfo defaultStore);
 
     /**
@@ -1394,7 +1389,10 @@ public interface Catalog extends CatalogInfo {
      * catalog subsystem.
      */
     void fireModified(
-            CatalogInfo object, List<String> propertyNames, List oldValues, List newValues);
+            CatalogInfo object,
+            List<String> propertyNames,
+            List<Object> oldValues,
+            List<Object> newValues);
 
     /**
      * Fires the event for an object that was modified in the catalog.
@@ -1403,7 +1401,10 @@ public interface Catalog extends CatalogInfo {
      * catalog subsystem.
      */
     void firePostModified(
-            CatalogInfo object, List<String> propertyNames, List oldValues, List newValues);
+            CatalogInfo object,
+            List<String> propertyNames,
+            List<Object> oldValues,
+            List<Object> newValues);
 
     /**
      * Fires the event for an object being removed from the catalog.
@@ -1568,7 +1569,7 @@ public interface Catalog extends CatalogInfo {
             @Nullable SortBy sortBy);
 
     /** Removes all the listeners which are instances of the specified class */
-    public void removeListeners(Class listenerClass);
+    public void removeListeners(Class<? extends CatalogListener> listenerClass);
 
     /**
      * Return the catalog capabilities supported by this catalog. Normally this will correspond to

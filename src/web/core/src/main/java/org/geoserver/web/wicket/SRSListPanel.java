@@ -69,7 +69,7 @@ public abstract class SRSListPanel extends Panel {
                     protected Component getComponentForProperty(
                             String id, IModel<SRS> itemModel, Property<SRS> property) {
 
-                        SRS srs = (SRS) itemModel.getObject();
+                        SRS srs = itemModel.getObject();
 
                         if (SRSProvider.CODE.equals(property)) {
 
@@ -93,8 +93,6 @@ public abstract class SRSListPanel extends Panel {
     /**
      * Hides the top pager so that the panel shows nicely in a small space (such as in a popup
      * window)
-     *
-     * @param compact
      */
     public void setCompactMode(boolean compact) {
         table.getTopPager().setVisible(!compact);
@@ -123,11 +121,6 @@ public abstract class SRSListPanel extends Panel {
         };
     }
 
-    /**
-     * Suclasses must override and perform whatever they see fit when a SRS code link is clicked
-     *
-     * @param target
-     * @param modelObject
-     */
+    /** Suclasses must override and perform whatever they see fit when a SRS code link is clicked */
     protected abstract void onCodeClicked(AjaxRequestTarget target, String epsgCode);
 }

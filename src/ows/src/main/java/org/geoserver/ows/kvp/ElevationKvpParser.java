@@ -29,17 +29,14 @@ public class ElevationKvpParser extends KvpParser {
         super(key, List.class);
     }
 
+    @Override
     @SuppressWarnings({"unchecked", "rawtypes"})
     public Object parse(String value) throws ParseException {
         ElevationParser parser = getElevationParser();
         return parser.parse(value);
     }
 
-    /**
-     * Allows subclasses to customize the {@link ElevationParser} used in {@link #parse(String)}
-     *
-     * @return
-     */
+    /** Allows subclasses to customize the {@link ElevationParser} used in {@link #parse(String)} */
     protected ElevationParser getElevationParser() {
         return parser;
     }

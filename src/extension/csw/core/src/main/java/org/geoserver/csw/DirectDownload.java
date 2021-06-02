@@ -85,10 +85,7 @@ public class DirectDownload {
                         }
                     }
                 }
-            } catch (NoSuchAlgorithmException e) {
-                throw new ServiceException(
-                        "Exception occurred while looking for raw files for :" + fileId, e);
-            } catch (IOException e) {
+            } catch (NoSuchAlgorithmException | IOException e) {
                 throw new ServiceException(
                         "Exception occurred while looking for raw files for :" + fileId, e);
             }
@@ -133,13 +130,9 @@ public class DirectDownload {
         this.geoserver = csw.getGeoServer();
     }
 
-    /**
-     * Prepare the list of files to be downloaded from the current request.
-     *
-     * @param request
-     */
+    /** Prepare the list of files to be downloaded from the current request. */
     public List<File> run(DirectDownloadType request) {
-        List<File> result = new ArrayList<File>();
+        List<File> result = new ArrayList<>();
         String resourceId = request.getResourceId();
         String fileId = request.getFile();
 
@@ -191,15 +184,12 @@ public class DirectDownload {
     /**
      * Get extra files for the specified reader and add them to the result list. Extra files are
      * usually auxiliary files like, as an instance, indexer, properties, config files for a mosaic.
-     *
-     * @param reader
-     * @param result
      */
     private void getExtraFiles(GridCoverage2DReader reader, List<File> result) {
         ServiceInfo info = reader.getInfo();
         if (info instanceof FileServiceInfo) {
             FileServiceInfo fileInfo = (FileServiceInfo) info;
-            FileGroupProvider provider = (FileGroupProvider) fileInfo;
+            FileGroupProvider provider = fileInfo;
             FilesCollector collector = new FilesCollector(provider);
             collector.collectFull(result);
         } else {
@@ -212,11 +202,6 @@ public class DirectDownload {
     /**
      * Get the data files from the specified {@link GridCoverage2DReader}, related to the provided
      * coverageName, matching the specified fileId and add them to the result list.
-     *
-     * @param reader
-     * @param coverageName
-     * @param fileId
-     * @param result
      */
     private void getFileResources(
             GridCoverage2DReader reader, String coverageName, String fileId, List<File> result) {
@@ -225,7 +210,7 @@ public class DirectDownload {
             FileResourceInfo fileResourceInfo = (FileResourceInfo) resourceInfo;
 
             // Get the resource files
-            FileGroupProvider fileGroupProvider = (FileGroupProvider) fileResourceInfo;
+            FileGroupProvider fileGroupProvider = fileResourceInfo;
             FilesCollector collector = new FilesCollector(fileGroupProvider);
 
             // Only structuredReaders can support multiple coverages
@@ -246,8 +231,6 @@ public class DirectDownload {
     /**
      * Check the current download is not exceeding the maxDownloadSize limit (if activated). Throws
      * a {@link CSWException} in case the limit is exceeded
-     *
-     * @param info
      */
     private void checkSizeLimit(List<File> fileList, CoverageInfo info) {
         DirectDownloadSettings settings =

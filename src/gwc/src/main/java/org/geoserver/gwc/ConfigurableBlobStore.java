@@ -94,8 +94,8 @@ public class ConfigurableBlobStore implements BlobStore {
         // 2 containing a mapping key-cacheProvider description
         // 3 containing a mapping key-cacheConfiguration
         // where key is the cacheProvider classname
-        HashMap<String, CacheProvider> cacheProviders = new HashMap<String, CacheProvider>();
-        HashMap<String, String> cacheProvidersNames = new HashMap<String, String>();
+        HashMap<String, CacheProvider> cacheProviders = new HashMap<>();
+        HashMap<String, String> cacheProvidersNames = new HashMap<>();
         List<CacheProvider> extensions = GeoServerExtensions.extensions(CacheProvider.class);
         for (CacheProvider provider : extensions) {
             if (provider.isAvailable()) {
@@ -106,7 +106,7 @@ public class ConfigurableBlobStore implements BlobStore {
 
         this.cacheProviders = Collections.unmodifiableMap(cacheProviders);
         this.cacheProvidersNames = Collections.unmodifiableMap(cacheProvidersNames);
-        this.internalCacheConfigs = new HashMap<String, CacheConfiguration>();
+        this.internalCacheConfigs = new HashMap<>();
     }
 
     @Override
@@ -488,8 +488,6 @@ public class ConfigurableBlobStore implements BlobStore {
     /**
      * This method changes the {@link ConfigurableBlobStore} configuration. It can be used for
      * changing cache configuration or the blobstore used.
-     *
-     * @param gwcConfig
      */
     public synchronized void setChanged(GWCConfig gwcConfig, boolean initialization) {
         // Change the blobstore configuration
@@ -610,14 +608,10 @@ public class ConfigurableBlobStore implements BlobStore {
         return delegate;
     }
 
-    /**
-     * Setter for the Tests
-     *
-     * @param cache
-     */
+    /** Setter for the Tests */
     void setCache(CacheProvider cache) {
         // Setting cache provider
-        Map<String, CacheProvider> provs = new HashMap<String, CacheProvider>(cacheProviders);
+        Map<String, CacheProvider> provs = new HashMap<>(cacheProviders);
         provs.put(cache.getClass().toString(), cache);
         cacheProviders = provs;
         this.cache = cache;
