@@ -1,4 +1,4 @@
-/* (c) 2014 - 2015 Open Source Geospatial Foundation - all rights reserved
+/* (c) 2014 - 2025 Open Source Geospatial Foundation - all rights reserved
  * (c) 2001 - 2013 OpenPlans
  * This code is licensed under the GPL 2.0 license, available at the root
  * application directory.
@@ -9,8 +9,10 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.*;
 
 import com.google.common.collect.ImmutableSet;
 import com.thoughtworks.xstream.XStream;
@@ -27,6 +29,7 @@ import org.apache.commons.io.FileUtils;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.custommonkey.xmlunit.XpathEngine;
 import org.custommonkey.xmlunit.exceptions.XpathException;
+import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.impl.ModificationProxy;
 import org.geoserver.config.util.SecureXStream;
 import org.geoserver.platform.GeoServerResourceLoader;
@@ -63,6 +66,48 @@ public class DefaultTileLayerCatalogTest {
 
         catalog = new DefaultTileLayerCatalog(resourceLoader, xStream);
         catalog.initialize();
+    }
+
+    @Test
+    public void testInitializationSkipsMissingPublishedInfoWhenCatalogProvided() throws Exception {
+        Supplier<XStream> xStream =
+                () -> XMLConfiguration.getConfiguredXStreamWithContext(new SecureXStream(), null, Context.PERSIST);
+        // Create a mock Catalog that reports no published info for id1
+        Catalog mockCatalog = mock(Catalog.class);
+        when(mockCatalog.getLayer("id1")).thenReturn(null);
+        when(mockCatalog.getLayerGroup("id1")).thenReturn(null);
+
+        DefaultTileLayerCatalog catalogWithMock = new DefaultTileLayerCatalog(mockCatalog, resourceLoader, xStream);
+
+        // write a tile layer file referencing id1
+        File file = new File(baseDirectory, "gwc-layers/id1.xml");
+        writeFileLayerInfoImpl(file, "name1");
+
+        // initialize with the mock catalog; this should skip the file
+        catalogWithMock.initialize();
+
+        assertNull(catalogWithMock.getLayerById("id1"));
+    }
+
+    @Test
+    public void testInitializationLoadsWhenPublishedInfoExists() throws Exception {
+        Supplier<XStream> xStream =
+                () -> XMLConfiguration.getConfiguredXStreamWithContext(new SecureXStream(), null, Context.PERSIST);
+        // Create a mock Catalog that reports a Layer for id1
+        Catalog mockCatalog = mock(Catalog.class);
+        org.geoserver.catalog.LayerInfo layerInfo = mock(org.geoserver.catalog.LayerInfo.class);
+        when(mockCatalog.getLayer("id1")).thenReturn(layerInfo);
+
+        DefaultTileLayerCatalog catalogWithMock = new DefaultTileLayerCatalog(mockCatalog, resourceLoader, xStream);
+
+        // write a tile layer file referencing id1
+        File file = new File(baseDirectory, "gwc-layers/id1.xml");
+        writeFileLayerInfoImpl(file, "name1");
+
+        // initialize with the mock catalog; this should load the file
+        catalogWithMock.initialize();
+
+        assertNotNull(catalogWithMock.getLayerById("id1"));
     }
 
     @Test
@@ -230,6 +275,32 @@ public class DefaultTileLayerCatalogTest {
 
         assertNull(catalog.getLayerById("id1"));
         assertNull(catalog.getLayerByName("newname"));
+    }
+
+    @Test
+    public void testCreateEventSkippedOnMissingPublishedInfo() throws IOException, InterruptedException {
+        ((FileSystemWatcher) resourceLoader.getResourceNotificationDispatcher()).schedule(50, MILLISECONDS);
+
+        AtomicBoolean hasBeenCreated = new AtomicBoolean(false);
+
+        DefaultTileLayerCatalog catalogWithMock = new DefaultTileLayerCatalog(
+                mock(Catalog.class),
+                resourceLoader,
+                () -> XMLConfiguration.getConfiguredXStreamWithContext(new SecureXStream(), null, Context.PERSIST));
+        catalogWithMock.addListener((layerId, type) -> {
+            if (type == TileLayerCatalogListener.Type.CREATE) {
+                hasBeenCreated.set(true);
+            }
+        });
+
+        File file = new File(baseDirectory, "gwc-layers/id1.xml");
+        writeFileLayerInfoImpl(file, "originalname");
+
+        // let the file watcher run for a while
+        Thread.sleep(200);
+
+        // since the catalog doesn't provide the referenced published info, the config loader should skip it
+        assertFalse(hasBeenCreated.get());
     }
 
     private void writeFileLayerInfoImpl(File file, String name) throws IOException {

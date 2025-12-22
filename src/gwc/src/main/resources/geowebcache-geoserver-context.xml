@@ -62,6 +62,7 @@
   </bean>
   
   <bean id="GeoSeverTileLayerCatalog" class="org.geoserver.gwc.layer.DefaultTileLayerCatalog">
+    <constructor-arg ref="catalog" />
     <constructor-arg ref="resourceLoader" />
     <constructor-arg ref="gwcXmlConfig" />
   </bean>

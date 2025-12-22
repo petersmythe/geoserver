@@ -35,6 +35,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.config.AsynchResourceIterator;
 import org.geoserver.config.util.SecureXStream;
@@ -97,6 +98,7 @@ public class DefaultTileLayerCatalog implements TileLayerCatalog {
     private final XStream serializer;
 
     private final GeoServerResourceLoader resourceLoader;
+    private final Catalog catalog;
 
     private final String baseDirectory;
 
@@ -107,13 +109,30 @@ public class DefaultTileLayerCatalog implements TileLayerCatalog {
     public DefaultTileLayerCatalog(GeoServerResourceLoader resourceLoader, XMLConfiguration xmlPersisterFactory)
             throws IOException {
         this(
+                null,
+                resourceLoader,
+                () -> xmlPersisterFactory.getConfiguredXStreamWithContext(new SecureXStream(), Context.PERSIST));
+    }
+
+    public DefaultTileLayerCatalog(
+            final Catalog catalog, GeoServerResourceLoader resourceLoader, XMLConfiguration xmlPersisterFactory)
+            throws IOException {
+        this(
+                catalog,
                 resourceLoader,
                 () -> xmlPersisterFactory.getConfiguredXStreamWithContext(new SecureXStream(), Context.PERSIST));
     }
 
     DefaultTileLayerCatalog(GeoServerResourceLoader resourceLoader, Supplier<XStream> xstreamProvider)
             throws IOException {
+        this(null, resourceLoader, xstreamProvider);
+    }
 
+    DefaultTileLayerCatalog(
+            final Catalog catalog, GeoServerResourceLoader resourceLoader, Supplier<XStream> xstreamProvider)
+            throws IOException {
+
+        this.catalog = catalog;
         this.resourceLoader = resourceLoader;
         this.baseDirectory = LAYERINFO_DIRECTORY;
 
@@ -181,6 +200,22 @@ public class DefaultTileLayerCatalog implements TileLayerCatalog {
             LOGGER.log(Level.SEVERE, "Error depersisting tile layer information from file " + resource.name(), e);
             return;
         }
+        // If we have a Catalog, ensure the referenced PublishedInfo exists. If not, skip this file.
+        if (this.catalog != null) {
+            final String id = layerInfo.getId();
+            if (id != null && this.catalog.getLayer(id) == null && this.catalog.getLayerGroup(id) == null) {
+                // helpful message for the administrator to resolve the mismatch (usually by
+                // deleting the stale file under <GEOSERVER_DATA_DIR>/gwc-layers/).
+                String msg = "Could not locate a layer or layer group with id "
+                        + id
+                        + " within GeoServer configuration; the GWC configuration seems to be out of sync.\n"
+                        + "You can find the stale tile-layer file by grepping your GeoServer data dir: "
+                        + "grep -R '" + id + "' <GEOSERVER_DATA_DIR>/gwc-layers -n ;\n"
+                        + "Once found, you can remove it with: rm <GEOSERVER_DATA_DIR>/gwc-layers/<file.xml>";
+                LOGGER.warning(msg);
+                return;
+            }
+        }
         final String layerId = layerInfo.getId();
         final GeoServerTileLayerInfo currentInfo = this.layersById.get(layerId);
 
@@ -245,6 +280,20 @@ public class DefaultTileLayerCatalog implements TileLayerCatalog {
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error depersisting tile layer information from file " + res.name(), e);
             return null;
+        }
+        // When a Catalog instance is available, ensure the referenced PublishedInfo exists, otherwise skip the file
+        if (this.catalog != null) {
+            final String id = info.getId();
+            if (id != null && this.catalog.getLayer(id) == null && this.catalog.getLayerGroup(id) == null) {
+                String msg = "Could not locate a layer or layer group with id "
+                        + id
+                        + " within GeoServer configuration; the GWC configuration seems to be out of sync.\n"
+                        + "You can find the stale tile-layer file by grepping your GeoServer data dir: "
+                        + "grep -R '" + id + "' <GEOSERVER_DATA_DIR>/gwc-layers -n ;\n"
+                        + "Once found, you can remove it with: rm <GEOSERVER_DATA_DIR>/gwc-layers/<file.xml>";
+                LOGGER.warning(msg);
+                return null;
+            }
         }
         saveInternal(info);
         if (LOGGER.isLoggable(Level.FINER)) {
