@@ -1,4 +1,4 @@
-/* (c) 2014 - 2025 Open Source Geospatial Foundation - all rights reserved
+/* (c) 2014 - 2015 Open Source Geospatial Foundation - all rights reserved
  * (c) 2001 - 2013 OpenPlans
  * This code is licensed under the GPL 2.0 license, available at the root
  * application directory.
@@ -301,6 +301,35 @@ public class DefaultTileLayerCatalogTest {
 
         // since the catalog doesn't provide the referenced published info, the config loader should skip it
         assertFalse(hasBeenCreated.get());
+    }
+
+    @Test
+    public void testWmtsGetCapabilitiesSkipsStaleGwCLayerFileUnit() throws Exception {
+        // Narrow unit-level test that duplicates the original integration intent without booting GeoServer
+        final String missingId = "stale-missing-id";
+
+        Supplier<XStream> xStream =
+                () -> XMLConfiguration.getConfiguredXStreamWithContext(new SecureXStream(), null, Context.PERSIST);
+
+        // Create a mock Catalog that reports no published info for missingId
+        Catalog mockCatalog = mock(Catalog.class);
+        when(mockCatalog.getLayer(missingId)).thenReturn(null);
+        when(mockCatalog.getLayerGroup(missingId)).thenReturn(null);
+
+        DefaultTileLayerCatalog catalogWithMock = new DefaultTileLayerCatalog(mockCatalog, resourceLoader, xStream);
+
+        // write a stale tile-layer file referencing missingId
+        File file = new File(baseDirectory, "gwc-layers/" + missingId + ".xml");
+        FileUtils.writeStringToFile(
+                file,
+                "<org.geoserver.gwc.layer.GeoServerTileLayerInfoImpl><id>" + missingId
+                        + "</id><name>missing</name></org.geoserver.gwc.layer.GeoServerTileLayerInfoImpl>",
+                java.nio.charset.StandardCharsets.UTF_8);
+
+        // initialize with the mock catalog; this should skip the file
+        catalogWithMock.initialize();
+
+        assertNull(catalogWithMock.getLayerById(missingId));
     }
 
     private void writeFileLayerInfoImpl(File file, String name) throws IOException {
