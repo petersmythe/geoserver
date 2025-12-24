@@ -125,4 +125,82 @@ public class GeoServerNodeDataTest {
             FileUtils.deleteDirectory(parent.toFile());
         }
     }
+
+    @Test
+    public void testGitBranchEmptyHeadFile() throws Exception {
+        Path tmp = Files.createTempDirectory("githead");
+        try {
+            Path head = tmp.resolve(".git").resolve("HEAD");
+            Files.createDirectories(head.getParent());
+            Files.writeString(head, "");
+
+            GeoServerNodeData.setOverrideGitHeadPath(head);
+            GeoServerNodeData data = GeoServerNodeData.createFromString("id:$git_branch");
+            assertEquals("$git_branch", data.getId());
+        } finally {
+            FileUtils.deleteDirectory(tmp.toFile());
+        }
+    }
+
+    @Test
+    public void testGitBranchDetachedHead() throws Exception {
+        Path tmp = Files.createTempDirectory("githead");
+        try {
+            Path head = tmp.resolve(".git").resolve("HEAD");
+            Files.createDirectories(head.getParent());
+            Files.writeString(head, "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0\n");
+
+            GeoServerNodeData.setOverrideGitHeadPath(head);
+            GeoServerNodeData data = GeoServerNodeData.createFromString("id:$git_branch");
+            assertEquals("a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0", data.getId());
+        } finally {
+            FileUtils.deleteDirectory(tmp.toFile());
+        }
+    }
+
+    @Test
+    public void testGitBranchRefWithoutHeadsPrefix() throws Exception {
+        Path tmp = Files.createTempDirectory("githead");
+        try {
+            Path head = tmp.resolve(".git").resolve("HEAD");
+            Files.createDirectories(head.getParent());
+            Files.writeString(head, "ref: refs/remotes/origin/main\n");
+
+            GeoServerNodeData.setOverrideGitHeadPath(head);
+            GeoServerNodeData data = GeoServerNodeData.createFromString("id:$git_branch");
+            assertEquals("refs/remotes/origin/main", data.getId());
+        } finally {
+            FileUtils.deleteDirectory(tmp.toFile());
+        }
+    }
+
+    @Test
+    public void testGitBranchNonExistentGitDir() throws Exception {
+        Path tmp = Files.createTempDirectory("nogit");
+        try {
+            Path head = tmp.resolve(".git").resolve("HEAD");
+
+            GeoServerNodeData.setOverrideGitHeadPath(head);
+            GeoServerNodeData data = GeoServerNodeData.createFromString("id:$git_branch");
+            assertEquals("$git_branch", data.getId());
+        } finally {
+            FileUtils.deleteDirectory(tmp.toFile());
+        }
+    }
+
+    @Test
+    public void testGitBranchMissingNewline() throws Exception {
+        Path tmp = Files.createTempDirectory("githead");
+        try {
+            Path head = tmp.resolve(".git").resolve("HEAD");
+            Files.createDirectories(head.getParent());
+            Files.writeString(head, "ref: refs/heads/no-newline");
+
+            GeoServerNodeData.setOverrideGitHeadPath(head);
+            GeoServerNodeData data = GeoServerNodeData.createFromString("id:$git_branch");
+            assertEquals("no-newline", data.getId());
+        } finally {
+            FileUtils.deleteDirectory(tmp.toFile());
+        }
+    }
 }
