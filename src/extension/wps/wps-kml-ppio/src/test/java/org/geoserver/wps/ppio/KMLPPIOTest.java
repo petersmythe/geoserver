@@ -22,9 +22,10 @@ import org.geoserver.config.GeoServer;
 import org.geoserver.config.GeoServerInfo;
 import org.geoserver.config.SettingsInfo;
 import org.geoserver.data.test.MockData;
+import org.geoserver.data.test.SystemTestData;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.test.DevModeEntityResolver;
-import org.geoserver.test.GeoServerTestSupport;
+import org.geoserver.test.GeoServerSystemTestSupport;
 import org.geoserver.util.EntityResolverProvider;
 import org.geotools.api.feature.simple.SimpleFeature;
 import org.geotools.data.DataUtilities;
@@ -35,9 +36,9 @@ import org.locationtech.jts.io.WKTReader;
 import org.w3c.dom.Document;
 
 /** Test Cases for KML 2.2 Encoder. */
-public class KMLPPIOTest extends GeoServerTestSupport {
+public class KMLPPIOTest extends GeoServerSystemTestSupport {
 
-    private XpathEngine xpath;
+    private static XpathEngine xpath;
 
     private KMLPPIO ppio;
 
@@ -47,9 +48,7 @@ public class KMLPPIOTest extends GeoServerTestSupport {
     }
 
     @Override
-    protected void oneTimeSetUp() throws Exception {
-        super.oneTimeSetUp();
-
+    protected void onSetUp(SystemTestData testData) throws Exception {
         // init xmlunit
         Map<String, String> namespaces = new HashMap<>();
         namespaces.put("", "http://www.topografix.com/GPX/1/1");
@@ -58,8 +57,8 @@ public class KMLPPIOTest extends GeoServerTestSupport {
         xpath = XMLUnit.newXpathEngine();
     }
 
-    @Override
-    protected void setUpInternal() {
+    @Before
+    public void setUpInternal() {
         GeoServer gs = getGeoServer();
         GeoServerInfo global = gs.getGlobal();
         SettingsInfo settings = global.getSettings();

@@ -19,6 +19,7 @@ import org.geoserver.catalog.CatalogFactory;
 import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.config.GeoServerLoader;
 import org.geoserver.data.test.MockData;
+import org.geoserver.data.test.SystemTestData;
 import org.geoserver.ows.Dispatcher;
 import org.geoserver.platform.ServiceException;
 import org.geoserver.test.DevModeEntityResolver;
@@ -30,6 +31,8 @@ import org.geoserver.wms.WMSInfo;
 import org.geoserver.wms.WMSInfoImpl;
 import org.geotools.api.filter.PropertyIsEqualTo;
 import org.geotools.api.style.Style;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.Test;
 
 public class GetMapXmlReaderTest extends KvpRequestReaderTestSupport {
@@ -37,8 +40,8 @@ public class GetMapXmlReaderTest extends KvpRequestReaderTestSupport {
     Dispatcher dispatcher;
 
     @Override
-    protected void oneTimeSetUp() throws Exception {
-        super.oneTimeSetUp();
+    protected void onSetUp(SystemTestData testData) throws Exception {
+        super.onSetUp(testData);
 
         CatalogFactory cf = getCatalog().getFactory();
         CatalogBuilder cb = new CatalogBuilder(getCatalog());
@@ -50,17 +53,14 @@ public class GetMapXmlReaderTest extends KvpRequestReaderTestSupport {
         getCatalog().add(gi);
     }
 
-    @Override
-    protected void oneTimeTearDown() throws Exception {
-        super.oneTimeTearDown();
+    @AfterClass
+    public static void oneTimeTearDown() throws Exception {
         // reset the legacy flag so that other tests are not getting affected by it
         GeoServerLoader.setLegacy(false);
     }
 
-    @Override
-    protected void setUpInternal() throws Exception {
-        super.setUpInternal();
-
+    @Before
+    public void initialize() throws Exception {
         dispatcher = (Dispatcher) applicationContext.getBean("dispatcher");
         WMS wms = new WMS(getGeoServer());
         reader = new GetMapXmlReader(wms);
