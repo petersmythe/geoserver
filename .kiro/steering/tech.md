@@ -140,3 +140,30 @@ mvn jetty:run
 - Follow OWASP guidelines for web services
 - Validate all user inputs
 - Use parameterized queries to prevent SQL injection
+
+## CI/CD Requirements
+
+### Pre-Commit Checks
+Before submitting code, ensure it passes:
+- `mvn spotless:check` - Code formatting (enforced in CI)
+- `mvn -Dqa clean install` - Quality checks (Checkstyle, PMD, Error Prone)
+- `mvn sortpom:verify` - POM file formatting
+
+### Automated Testing
+- Code is tested against Java 17, 21, and 25
+- OGC compliance tested via CITE test suites
+- Tests run on Linux, Windows, and macOS
+- Community modules built separately without tests
+
+### CITE Compliance Testing
+- Validates OGC standard compliance using TeamEngine
+- Test suites: WMS 1.1/1.3, WFS 1.0/1.1/2.0, WCS 1.1, WMTS 1.0, OGC API Features/Tiles, GeoTIFF 1.1, GPKG 1.2
+- Runs in Docker containers for isolated testing
+- Changes to OGC service implementations must pass relevant CITE tests
+- WFS 2.0 lock tests may require retries due to timing sensitivity
+
+### Key CI Behaviors
+- Parallel builds use `-T1C` (1 thread per CPU core)
+- SNAPSHOT dependencies are removed after builds
+- Concurrent PR commits cancel previous workflow runs
+- Maven repository is cached between runs
