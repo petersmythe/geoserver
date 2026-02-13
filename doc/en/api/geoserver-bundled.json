@@ -2837,7 +2837,7 @@
         "parameters": []
       }
     },
-    "/gsr/services/{folder:.*}": {
+    "/gsr/services/{folder}": {
       "get": {
         "operationId": "get_gsr_CatalogServiceController_catalogGet_gsr",
         "summary": "GET /gsr/services/{folder:.*",
@@ -2955,7 +2955,18 @@
             }
           }
         },
-        "parameters": []
+        "parameters": [
+          {
+            "name": "folder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": ".*"
+            },
+            "description": "The folder path parameter"
+          }
+        ]
       }
     },
     "/gsr/services/{workspaceName}/FeatureServer": {
@@ -13039,7 +13050,7 @@
         ]
       }
     },
-    "/rest/imports/{importId}/data/files/{fileName:.+}": {
+    "/rest/imports/{importId}/data/files/{fileName}": {
       "delete": {
         "operationId": "delete_importer_ImportDataController_deleteDirectory",
         "summary": "DELETE /rest/imports/{importId}/data/files/{fileName:.+",
@@ -13154,6 +13165,16 @@
               "type": "string"
             },
             "description": "The importId parameter"
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": ".+"
+            },
+            "description": "The fileName parameter"
           }
         ]
       }
@@ -39788,161 +39809,6 @@
         ]
       }
     },
-    "/rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId:.+}": {
-      "delete": {
-        "operationId": "delete_rest_StructuredCoverageController_granuleDelete",
-        "summary": "DELETE /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId:.+",
-        "description": "Endpoint from rest module",
-        "tags": [
-          "REST"
-        ],
-        "responses": {
-          "200": {
-            "description": "Resource deleted successfully"
-          },
-          "400": {
-            "description": "Bad request - invalid parameters or request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Insufficient permissions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Resource not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "trace": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "workspaceName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The workspaceName parameter"
-          },
-          {
-            "name": "storeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The storeName parameter"
-          },
-          {
-            "name": "coverageName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The coverageName parameter"
-          },
-          {
-            "name": "purge",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The purge parameter"
-          },
-          {
-            "name": "updateBBox",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The updateBBox parameter"
-          }
-        ]
-      }
-    },
     "/rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId}": {
       "get": {
         "operationId": "get_rest_StructuredCoverageController_granuleGet",
@@ -66517,6 +66383,12 @@
         "type": "http",
         "scheme": "digest",
         "description": "HTTP Digest Authentication"
+      },
+      "authkey": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "authkey",
+        "description": "Authentication via authkey query parameter (requires authkey extension)"
       }
     }
   },
@@ -66526,6 +66398,9 @@
     },
     {
       "digestAuth": []
+    },
+    {
+      "authkey": []
     }
   ]
 }
