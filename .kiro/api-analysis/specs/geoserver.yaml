@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Unified API
+  version: 3.0.x
+  description: "Complete OpenAPI 3.0 specification for GeoServer REST API and OGC\
+    \ services.\n\nThis unified specification provides comprehensive documentation\
+    \ for:\n- REST Configuration API for managing workspaces, layers, styles, and\
+    \ services\n- OGC Web Services including WMS, WFS, WCS, WMTS, CSW, and WPS\n\n\
+    GeoServer is an open source server for sharing geospatial data. It publishes data\
+    \ from \nmajor spatial data sources using open standards.\n"
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+    email: geoserver-user@discourse.osgeo.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+  termsOfService: https://geoserver.org/
+externalDocs:
+  description: GeoServer Documentation
+  url: https://docs.geoserver.org/
+x-modular-structure:
+  description: 'This is a modular OpenAPI specification. The complete API is split
+    across multiple files
+
+    for maintainability. Use task 14.4 to generate bundled single-file versions, or
+    use
+
+    a bundler tool like swagger-cli, openapi-merge, or redocly.
+
+    '
+  modules:
+    rest:
+    - file: ./rest/rest-core.yaml
+      description: Core REST API endpoints (workspaces, layers, styles, stores)
+    - file: ./rest/rest-gwc.yaml
+      description: GeoWebCache REST API endpoints (tile layers, gridsets)
+    - file: ./rest/rest-security.yaml
+      description: Security REST API endpoints (users, roles, authentication)
+    - file: ./rest/rest-extensions.yaml
+      description: Extension module REST API endpoints
+    - file: ./rest/rest-community.yaml
+      description: Community module REST API endpoints
+    ogc:
+    - file: ./ogc/wms.yaml
+      description: Web Map Service (WMS) operations
+    - file: ./ogc/wfs.yaml
+      description: Web Feature Service (WFS) operations
+    - file: ./ogc/wcs.yaml
+      description: Web Coverage Service (WCS) operations
+    - file: ./ogc/wmts.yaml
+      description: Web Map Tile Service (WMTS) operations
+    - file: ./ogc/csw.yaml
+      description: Catalog Service for the Web (CSW) operations
+    - file: ./ogc/wps.yaml
+      description: Web Processing Service (WPS) operations
+    common:
+    - file: ./common/schemas.yaml
+      description: Reusable schema definitions
+    - file: ./common/parameters.yaml
+      description: Reusable parameter definitions
+    - file: ./common/responses.yaml
+      description: Reusable response definitions
+servers:
+- url: http://localhost:8080/geoserver
+  description: Local development server
+- url: https://example.com/geoserver
+  description: Production server (replace with your GeoServer URL)
+tags:
+- name: Core
+  description: Core REST API endpoints for server management and configuration
+- name: GeoWebCache
+  description: REST API endpoints for GeoWebCache tile caching
+- name: Security
+  description: REST API endpoints for security and authentication management
+- name: Extensions
+  description: REST API endpoints from extension modules
+- name: Community
+  description: REST API endpoints from community modules
+- name: WMS
+  description: Web Map Service - OGC standard for rendering maps
+  externalDocs:
+    description: OGC WMS Specification
+    url: https://www.ogc.org/standards/wms
+- name: WFS
+  description: Web Feature Service - OGC standard for vector data access
+  externalDocs:
+    description: OGC WFS Specification
+    url: https://www.ogc.org/standards/wfs
+- name: WCS
+  description: Web Coverage Service - OGC standard for raster data access
+  externalDocs:
+    description: OGC WCS Specification
+    url: https://www.ogc.org/standards/wcs
+- name: WMTS
+  description: Web Map Tile Service - OGC standard for tiled map serving
+  externalDocs:
+    description: OGC WMTS Specification
+    url: https://www.ogc.org/standards/wmts
+- name: CSW
+  description: Catalog Service for the Web - OGC standard for metadata catalogs
+  externalDocs:
+    description: OGC CSW Specification
+    url: https://www.ogc.org/standards/cat
+- name: WPS
+  description: Web Processing Service - OGC standard for geospatial processing
+  externalDocs:
+    description: OGC WPS Specification
+    url: https://www.ogc.org/standards/wps
+paths:
+  /.placeholder:
+    get:
+      summary: Placeholder endpoint
+      description: 'This is a modular specification. To view all endpoints:
+
+        1. Use task 14.4 to generate bundled versions (geoserver-bundled.yaml/json)
+
+        2. Or use a tool like swagger-cli to bundle: `swagger-cli bundle geoserver.yaml
+        -o bundled.yaml`
+
+
+        Modular files included:
+
+        - REST Core: ./rest/rest-core.yaml
+
+        - REST GeoWebCache: ./rest/rest-gwc.yaml
+
+        - REST Security: ./rest/rest-security.yaml
+
+        - REST Extensions: ./rest/rest-extensions.yaml
+
+        - REST Community: ./rest/rest-community.yaml
+
+        - OGC WMS: ./ogc/wms.yaml
+
+        - OGC WFS: ./ogc/wfs.yaml
+
+        - OGC WCS: ./ogc/wcs.yaml
+
+        - OGC WMTS: ./ogc/wmts.yaml
+
+        - OGC CSW: ./ogc/csw.yaml
+
+        - OGC WPS: ./ogc/wps.yaml
+
+        '
+      tags:
+      - Core
+      responses:
+        '200':
+          description: This endpoint is a placeholder for the modular specification
+components:
+  schemas:
+    Error:
+      $ref: ./common/schemas.yaml#/Error
+    Link:
+      $ref: ./common/schemas.yaml#/Link
+  parameters: {}
+  responses: {}
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication
+    digestAuth:
+      type: http
+      scheme: digest
+      description: HTTP Digest Authentication
+security:
+- basicAuth: []
+- digestAuth: []

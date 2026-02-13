@@ -1,0 +1,365 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Web Map Tile Service API
+  description: 'OGC Web Map Tile Service for tiled map access
+
+
+    Supported versions: 1.0.0'
+  version: 1.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+- url: http://localhost:8080/geoserver
+  description: Local GeoServer instance
+- url: https://example.com/geoserver
+  description: Production GeoServer instance
+tags:
+- name: WMTS
+  description: Web Map Tile Service
+  externalDocs:
+    description: OGC WMTS Specification
+    url: https://www.ogc.org/standards/wmts
+paths:
+  /wmts:
+    description: WMTS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
+  /wmts/getcapabilities/1-0-0:
+    get:
+      operationId: WMTS_1_0_0_GetCapabilities
+      summary: GetCapabilities - WMTS 1.0.0
+      description: Returns service metadata and available tile matrix sets
+      tags:
+      - WMTS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WMTS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: ACCEPTFORMATS
+        in: query
+        description: Accepted output formats
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WMTS_1_0_0_GetCapabilities_wmts
+      summary: GetCapabilities - WMTS 1.0.0
+      description: Returns service metadata and available tile matrix sets
+      tags:
+      - WMTS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WMTS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: ACCEPTFORMATS
+        in: query
+        description: Accepted output formats
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wmts/gettile/1-0-0:
+    get:
+      operationId: WMTS_1_0_0_GetTile
+      summary: GetTile - WMTS 1.0.0
+      description: Returns a tile from a tile matrix set
+      tags:
+      - WMTS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WMTS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetTile
+      - name: LAYER
+        in: query
+        description: Layer identifier
+        required: true
+        schema:
+          type: string
+      - name: STYLE
+        in: query
+        description: Style identifier
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format (e.g., image/png)
+        required: true
+        schema:
+          type: string
+      - name: TILEMATRIXSET
+        in: query
+        description: Tile matrix set identifier
+        required: true
+        schema:
+          type: string
+      - name: TILEMATRIX
+        in: query
+        description: Tile matrix identifier (zoom level)
+        required: true
+        schema:
+          type: string
+      - name: TILEROW
+        in: query
+        description: Row index in tile matrix
+        required: true
+        schema:
+          type: integer
+      - name: TILECOL
+        in: query
+        description: Column index in tile matrix
+        required: true
+        schema:
+          type: integer
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wmts/getfeatureinfo/1-0-0:
+    get:
+      operationId: WMTS_1_0_0_GetFeatureInfo
+      summary: GetFeatureInfo - WMTS 1.0.0
+      description: Returns information about features at a tile location
+      tags:
+      - WMTS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WMTS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetFeatureInfo
+      - name: LAYER
+        in: query
+        description: Layer identifier
+        required: true
+        schema:
+          type: string
+      - name: STYLE
+        in: query
+        description: Style identifier
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Tile format
+        required: true
+        schema:
+          type: string
+      - name: TILEMATRIXSET
+        in: query
+        description: Tile matrix set identifier
+        required: true
+        schema:
+          type: string
+      - name: TILEMATRIX
+        in: query
+        description: Tile matrix identifier
+        required: true
+        schema:
+          type: string
+      - name: TILEROW
+        in: query
+        description: Row index
+        required: true
+        schema:
+          type: integer
+      - name: TILECOL
+        in: query
+        description: Column index
+        required: true
+        schema:
+          type: integer
+      - name: I
+        in: query
+        description: Column pixel coordinate
+        required: true
+        schema:
+          type: integer
+      - name: J
+        in: query
+        description: Row pixel coordinate
+        required: true
+        schema:
+          type: integer
+      - name: INFOFORMAT
+        in: query
+        description: Output format for feature info
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+components:
+  schemas:
+    OGCException:
+      type: object
+      description: OGC Service Exception
+      properties:
+        ServiceException:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Exception code
+            locator:
+              type: string
+              description: Parameter that caused the exception
+            text:
+              type: string
+              description: Exception message
+  parameters: {}

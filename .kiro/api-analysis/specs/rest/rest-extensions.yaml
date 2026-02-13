@@ -1,0 +1,2370 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Extensions API
+  version: 1.0.0
+  description: REST API endpoints for extensions module
+paths:
+  /:
+    delete:
+      operationId: delete_metadata_MetaDataRestService_clearAll
+      summary: DELETE /
+      description: Endpoint from metadata module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: iAmSure
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The iAmSure parameter
+      - name: templatesToo
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The templatesToo parameter
+  /rest/geofence/adminrules:
+    post:
+      operationId: post_geofence_AdminRulesRestController_insert
+      summary: POST /rest/geofence/adminrules
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id001
+                type: object
+            application/xml:
+              schema: *id001
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbAdminRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbAdminRule configuration object
+  /rest/geofence/adminrules/id/{id}:
+    delete:
+      operationId: delete_geofence_AdminRulesRestController_delete
+      summary: DELETE /rest/geofence/adminrules/id/{id}
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    post:
+      operationId: post_geofence_AdminRulesRestController_update
+      summary: POST /rest/geofence/adminrules/id/{id}
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbAdminRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbAdminRule configuration object
+  /rest/geofence/batch/rest/geofence/batch:
+    get:
+      operationId: get_geofence_BatchRestController_unknown
+      summary: GET /rest/geofence/batch/rest/geofence/batch
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/info:
+    get:
+      operationId: get_geofence_GeoFenceController_getInfo
+      summary: GET /rest/geofence/info
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id002
+                type: string
+            application/xml:
+              schema: *id002
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/ruleCache:
+    put:
+      operationId: put_geofence_CacheController_invalidateCache
+      summary: PUT /rest/geofence/ruleCache
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id003
+                type: string
+            application/xml:
+              schema: *id003
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/ruleCache/info:
+    get:
+      operationId: get_geofence_CacheController_getCacheInfo
+      summary: GET /rest/geofence/ruleCache/info
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id004
+                type: string
+            application/xml:
+              schema: *id004
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/ruleCache/invalidate:
+    get:
+      operationId: get_geofence_CacheController_invalidateCache
+      summary: GET /rest/geofence/ruleCache/invalidate
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id005
+                type: string
+            application/xml:
+              schema: *id005
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/rules/id/{id}:
+    delete:
+      operationId: delete_geofence_RulesRestController_delete
+      summary: DELETE /rest/geofence/rules/id/{id}
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    post:
+      operationId: post_geofence_RulesRestController_update
+      summary: POST /rest/geofence/rules/id/{id}
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbRule configuration object
+    put:
+      operationId: put_geofence_RulesRestController_clearAndUpdate
+      summary: PUT /rest/geofence/rules/id/{id}
+      description: Endpoint from geofence module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbRule configuration object
+  /rest/imports:
+    get:
+      operationId: get_importer_ImportController_getImports
+      summary: GET /rest/imports
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id006
+                type: object
+            application/xml:
+              schema: *id006
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+  /rest/imports/{id:
+    delete:
+      operationId: delete_importer_ImportController_deleteImports
+      summary: DELETE /rest/imports/{id
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_importer_ImportController_postImports
+      summary: POST /rest/imports/{id
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id007
+                type: object
+            application/xml:
+              schema: *id007
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: async
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The async parameter
+      - name: exec
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The exec parameter
+  /rest/imports/{id}:
+    get:
+      operationId: get_importer_ImportController_getImports_rest
+      summary: GET /rest/imports/{id}
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id008
+                type: object
+            application/xml:
+              schema: *id008
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: async
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The async parameter
+      - name: exec
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The exec parameter
+    put:
+      operationId: put_importer_ImportController_putImport
+      summary: PUT /rest/imports/{id}
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id009
+                type: object
+            application/xml:
+              schema: *id009
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: async
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The async parameter
+      - name: exec
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The exec parameter
+  /rest/imports/{id}/tasks:
+    get:
+      operationId: get_importer_ImportTaskController_tasksGet
+      summary: GET /rest/imports/{id}/tasks
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id010
+                type: object
+            application/xml:
+              schema: *id010
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+    post:
+      operationId: post_importer_ImportTaskController_taskPost
+      summary: POST /rest/imports/{id}/tasks
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id011
+                type: object
+            application/xml:
+              schema: *id011
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+  /rest/imports/{id}/tasks/{taskId}:
+    delete:
+      operationId: delete_importer_ImportTaskController_taskDelete
+      summary: DELETE /rest/imports/{id}/tasks/{taskId}
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+    get:
+      operationId: get_importer_ImportTaskController_taskGet
+      summary: GET /rest/imports/{id}/tasks/{taskId}
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id012
+                type: object
+            application/xml:
+              schema: *id012
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+    put:
+      operationId: put_importer_ImportTaskController_taskPut
+      summary: PUT /rest/imports/{id}/tasks/{taskId}
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id013
+                type: object
+            application/xml:
+              schema: *id013
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+  /rest/imports/{id}/tasks/{taskId}/layer:
+    get:
+      operationId: get_importer_ImportTaskController_layersGet
+      summary: GET /rest/imports/{id}/tasks/{taskId}/layer
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id014
+                type: object
+            application/xml:
+              schema: *id014
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+    put:
+      operationId: put_importer_ImportTaskController_layerPut
+      summary: PUT /rest/imports/{id}/tasks/{taskId}/layer
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id015
+                type: object
+            application/xml:
+              schema: *id015
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ImportLayer configuration object
+          application/xml:
+            schema:
+              type: object
+              description: ImportLayer configuration object
+  /rest/imports/{id}/tasks/{taskId}/progress:
+    get:
+      operationId: get_importer_ImportTaskController_progressGet
+      summary: GET /rest/imports/{id}/tasks/{taskId}/progress
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id016
+                type: object
+            application/xml:
+              schema: *id016
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+  /rest/imports/{id}/tasks/{taskId}/target:
+    get:
+      operationId: get_importer_ImportTaskController_targetGet
+      summary: GET /rest/imports/{id}/tasks/{taskId}/target
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id017
+                type: object
+            application/xml:
+              schema: *id017
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+    put:
+      operationId: put_importer_ImportTaskController_targetPut
+      summary: PUT /rest/imports/{id}/tasks/{taskId}/target
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The taskId parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: StoreInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: StoreInfo configuration object
+  /rest/imports/{importId}/data:
+    get:
+      operationId: get_importer_ImportDataController_getData
+      summary: GET /rest/imports/{importId}/data
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id018
+                type: object
+            application/xml:
+              schema: *id018
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The importId parameter
+  /rest/imports/{importId}/data/files:
+    get:
+      operationId: get_importer_ImportDataController_getDirectory
+      summary: GET /rest/imports/{importId}/data/files
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id019
+                type: object
+            application/xml:
+              schema: *id019
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The importId parameter
+  /rest/imports/{importId}/data/files/{fileName:.+:
+    delete:
+      operationId: delete_importer_ImportDataController_deleteDirectory
+      summary: DELETE /rest/imports/{importId}/data/files/{fileName:.+
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The importId parameter
+  /rest/imports/{importId}/tasks/{taskId:
+    delete:
+      operationId: delete_importer_ImportTransformController_deleteTransform
+      summary: DELETE /rest/imports/{importId}/tasks/{taskId
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The importId parameter
+    get:
+      operationId: get_importer_ImportTransformController_getTransform
+      summary: GET /rest/imports/{importId}/tasks/{taskId
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id020
+                type: object
+            application/xml:
+              schema: *id020
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The importId parameter
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+    post:
+      operationId: post_importer_ImportTransformController_postTransform
+      summary: POST /rest/imports/{importId}/tasks/{taskId
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The importId parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ImportTransform configuration object
+          application/xml:
+            schema:
+              type: object
+              description: ImportTransform configuration object
+    put:
+      operationId: put_importer_ImportTransformController_putTransform
+      summary: PUT /rest/imports/{importId}/tasks/{taskId
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id021
+                type: object
+            application/xml:
+              schema: *id021
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The importId parameter
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The expand parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ImportTransform configuration object
+          application/xml:
+            schema:
+              type: object
+              description: ImportTransform configuration object
+  /rest/layers:
+    post:
+      operationId: post_rat_PAMController_create
+      summary: POST /rest/layers
+      description: Endpoint from rat module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: styleName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The styleName parameter
+  /rest/layers/reload:
+    post:
+      operationId: post_rat_PAMController_reload
+      summary: POST /rest/layers/reload
+      description: Endpoint from rat module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/monitor/requests/ows/{request}:
+    get:
+      operationId: get_monitor_OwsRequestResource_handleObjectGetRestWrapper
+      summary: GET /rest/monitor/requests/ows/{request}
+      description: Endpoint from monitor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id022
+                type: object
+            application/xml:
+              schema: *id022
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The from parameter
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The to parameter
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The filter parameter
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The order parameter
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The offset parameter
+      - name: count
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The count parameter
+      - name: live
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The live parameter
+      - name: fields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The fields parameter
+  /rest/monitor/requests/{request:
+    delete:
+      operationId: delete_monitor_MonitorRequestController_handleObjectDelete
+      summary: DELETE /rest/monitor/requests/{request
+      description: Endpoint from monitor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    get:
+      operationId: get_monitor_MonitorRequestController_handleObjectGetRestWrapper
+      summary: GET /rest/monitor/requests/{request
+      description: Endpoint from monitor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id023
+                type: object
+            application/xml:
+              schema: *id023
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The from parameter
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The to parameter
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The filter parameter
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The order parameter
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The offset parameter
+      - name: count
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The count parameter
+      - name: live
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The live parameter
+      - name: fields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The fields parameter
+  /rest/params-extractor/echoes:
+    get:
+      operationId: get_params_extractor_EchoesController_getEchoParameters
+      summary: GET /rest/params-extractor/echoes
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id024
+                type: object
+            application/xml:
+              schema: *id024
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_params_extractor_EchoesController_postEchoParameter
+      summary: POST /rest/params-extractor/echoes
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id025
+                type: object
+            application/xml:
+              schema: *id025
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: EchoParameter configuration object
+          application/xml:
+            schema:
+              type: object
+              description: EchoParameter configuration object
+  /rest/params-extractor/echoes/{id}:
+    delete:
+      operationId: delete_params_extractor_EchoesController_deleteEchoParameter
+      summary: DELETE /rest/params-extractor/echoes/{id}
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    get:
+      operationId: get_params_extractor_EchoesController_getEchoParameter
+      summary: GET /rest/params-extractor/echoes/{id}
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id026
+                type: object
+            application/xml:
+              schema: *id026
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    put:
+      operationId: put_params_extractor_EchoesController_putEchoParameter
+      summary: PUT /rest/params-extractor/echoes/{id}
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: EchoParameter configuration object
+          application/xml:
+            schema:
+              type: object
+              description: EchoParameter configuration object
+  /rest/params-extractor/rules:
+    get:
+      operationId: get_params_extractor_RulesController_getRules
+      summary: GET /rest/params-extractor/rules
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id027
+                type: object
+            application/xml:
+              schema: *id027
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_params_extractor_RulesController_postRule
+      summary: POST /rest/params-extractor/rules
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id028
+                type: object
+            application/xml:
+              schema: *id028
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Rule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: Rule configuration object
+  /rest/params-extractor/rules/{id}:
+    delete:
+      operationId: delete_params_extractor_RulesController_deleteRule
+      summary: DELETE /rest/params-extractor/rules/{id}
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    get:
+      operationId: get_params_extractor_RulesController_getRule
+      summary: GET /rest/params-extractor/rules/{id}
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id029
+                type: object
+            application/xml:
+              schema: *id029
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    put:
+      operationId: put_params_extractor_RulesController_putEchoParameter
+      summary: PUT /rest/params-extractor/rules/{id}
+      description: Endpoint from params-extractor module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Rule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: Rule configuration object
+  /rest/services/wps/download:
+    get:
+      operationId: get_wps_download_WPSDownloadController_getConfiguration
+      summary: GET /rest/services/wps/download
+      description: Endpoint from wps-download module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id030
+                type: object
+            application/xml:
+              schema: *id030
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    put:
+      operationId: put_wps_download_WPSDownloadController_setConfiguration
+      summary: PUT /rest/services/wps/download
+      description: Endpoint from wps-download module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: DownloadServiceConfiguration configuration object
+          application/xml:
+            schema:
+              type: object
+              description: DownloadServiceConfiguration configuration object
+  /rest/sldservice/capabilities:
+    get:
+      operationId: get_sldService_CapabilitiesController_classificationCapabilities
+      summary: GET /rest/sldservice/capabilities
+      description: Endpoint from sldService module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id031
+                type: object
+            application/xml:
+              schema: *id031
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/sldservice/rest/sldservice:
+    get:
+      operationId: get_sldService_ClassifierController_unknown
+      summary: GET /rest/sldservice/rest/sldservice
+      description: Endpoint from sldService module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/sldservice/{layerName}/attributes:
+    get:
+      operationId: get_sldService_ListAttributesController_attributes
+      summary: GET /rest/sldservice/{layerName}/attributes
+      description: Endpoint from sldService module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id032
+                type: object
+            application/xml:
+              schema: *id032
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerName parameter
+      - name: cache
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The cache parameter
+  /rest/sldservice/{layerName}/classify:
+    get:
+      operationId: get_sldService_ClassifierController_classify
+      summary: GET /rest/sldservice/{layerName}/classify
+      description: Endpoint from sldService module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id033
+                type: object
+            application/xml:
+              schema: *id033
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerName parameter
+      - name: attribute
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The attribute parameter
+      - name: method
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The method parameter
+      - name: intervals
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The intervals parameter
+      - name: intervalsForUnique
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The intervalsForUnique parameter
+      - name: open
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The open parameter
+      - name: ramp
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The ramp parameter
+      - name: startColor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The startColor parameter
+      - name: endColor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The endColor parameter
+      - name: midColor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The midColor parameter
+      - name: colors
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The colors parameter
+      - name: reverse
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The reverse parameter
+      - name: strokeColor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The strokeColor parameter
+      - name: strokeWeight
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The strokeWeight parameter
+      - name: pointSize
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The pointSize parameter
+      - name: normalize
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The normalize parameter
+      - name: viewparams
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The viewparams parameter
+      - name: customClasses
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The customClasses parameter
+      - name: fullSLD
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The fullSLD parameter
+      - name: cache
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The cache parameter
+      - name: continuous
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The continuous parameter
+      - name: bbox
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The bbox parameter
+      - name: stddevs
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The stddevs parameter
+      - name: env
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The env parameter
+      - name: percentages
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The percentages parameter
+      - name: percentagesScale
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The percentagesScale parameter
+  /rest/sldservice/{layerName}/rasterize:
+    get:
+      operationId: get_sldService_RasterizerController_rasterize
+      summary: GET /rest/sldservice/{layerName}/rasterize
+      description: Endpoint from sldService module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id034
+                type: object
+            application/xml:
+              schema: *id034
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerName parameter
+      - name: min
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The min parameter
+      - name: max
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The max parameter
+      - name: classes
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The classes parameter
+      - name: digits
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The digits parameter
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The type parameter
+      - name: startColor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The startColor parameter
+      - name: endColor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The endColor parameter
+      - name: midColor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The midColor parameter
+      - name: ramp
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The ramp parameter
+      - name: cache
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The cache parameter
+  /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/cleanSchemas:
+    post:
+      operationId: post_mongodb_MongoStoreRestController_clearAllSchemas
+      summary: POST /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/cleanSchemas
+      description: Endpoint from mongodb module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: appschemaStoreName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The appschemaStoreName parameter
+  /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/datastores/{storeId}/cleanSchemas:
+    post:
+      operationId: post_mongodb_MongoStoreRestController_clearSchema
+      summary: POST /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/datastores/{storeId}/cleanSchemas
+      description: Endpoint from mongodb module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: appschemaStoreName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The appschemaStoreName parameter
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The storeId parameter
+  /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/datastores/{storeId}/rebuildMongoSchemas:
+    post:
+      operationId: post_mongodb_MongoStoreRestController_rebuildSchema
+      summary: POST /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/datastores/{storeId}/rebuildMongoSchemas
+      description: Endpoint from mongodb module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: appschemaStoreName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The appschemaStoreName parameter
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The storeId parameter
+      - name: ids
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The ids parameter
+      - name: max
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The max parameter
+      - name: schema
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The schema parameter
+  /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/rebuildMongoSchemas:
+    post:
+      operationId: post_mongodb_MongoStoreRestController_rebuildAllSchemas
+      summary: POST /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/rebuildMongoSchemas
+      description: Endpoint from mongodb module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: appschemaStoreName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The appschemaStoreName parameter
+      - name: ids
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The ids parameter
+      - name: max
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The max parameter

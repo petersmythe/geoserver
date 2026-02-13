@@ -1,0 +1,863 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Catalog Service for the Web API
+  description: 'OGC Catalog Service for metadata discovery
+
+
+    Supported versions: 2.0.2'
+  version: 2.0.2
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+- url: http://localhost:8080/geoserver
+  description: Local GeoServer instance
+- url: https://example.com/geoserver
+  description: Production GeoServer instance
+tags:
+- name: CSW
+  description: Catalog Service for the Web
+  externalDocs:
+    description: OGC CSW Specification
+    url: https://www.ogc.org/standards/csw
+paths:
+  /csw:
+    description: CSW service endpoint. Operations are distinguished by the REQUEST
+      parameter.
+  /csw/getcapabilities/2-0-2:
+    get:
+      operationId: CSW_2_0_2_GetCapabilities
+      summary: GetCapabilities - CSW 2.0.2
+      description: Returns service metadata
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: ACCEPTFORMATS
+        in: query
+        description: Accepted output formats
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: CSW_2_0_2_GetCapabilities_csw
+      summary: GetCapabilities - CSW 2.0.2
+      description: Returns service metadata
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: ACCEPTFORMATS
+        in: query
+        description: Accepted output formats
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /csw/describerecord/2-0-2:
+    get:
+      operationId: CSW_2_0_2_DescribeRecord
+      summary: DescribeRecord - CSW 2.0.2
+      description: Returns schema information for record types
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeRecord
+      - name: TYPENAME
+        in: query
+        description: Record type names
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format
+        required: false
+        schema:
+          type: string
+          default: application/xml
+      - name: SCHEMALANGUAGE
+        in: query
+        description: Schema language
+        required: false
+        schema:
+          type: string
+          default: http://www.w3.org/XML/Schema
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: CSW_2_0_2_DescribeRecord_csw
+      summary: DescribeRecord - CSW 2.0.2
+      description: Returns schema information for record types
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeRecord
+      - name: TYPENAME
+        in: query
+        description: Record type names
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format
+        required: false
+        schema:
+          type: string
+          default: application/xml
+      - name: SCHEMALANGUAGE
+        in: query
+        description: Schema language
+        required: false
+        schema:
+          type: string
+          default: http://www.w3.org/XML/Schema
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /csw/getrecords/2-0-2:
+    get:
+      operationId: CSW_2_0_2_GetRecords
+      summary: GetRecords - CSW 2.0.2
+      description: Searches and returns catalog records
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetRecords
+      - name: NAMESPACE
+        in: query
+        description: Namespace declarations
+        required: false
+        schema:
+          type: string
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: hits
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format
+        required: false
+        schema:
+          type: string
+          default: application/xml
+      - name: OUTPUTSCHEMA
+        in: query
+        description: Output schema
+        required: false
+        schema:
+          type: string
+      - name: STARTPOSITION
+        in: query
+        description: Start position
+        required: false
+        schema:
+          type: integer
+          default: '1'
+      - name: MAXRECORDS
+        in: query
+        description: Maximum records
+        required: false
+        schema:
+          type: integer
+          default: '10'
+      - name: TYPENAMES
+        in: query
+        description: Record type names
+        required: true
+        schema:
+          type: string
+      - name: ELEMENTSETNAME
+        in: query
+        description: Element set (brief, summary, full)
+        required: false
+        schema:
+          type: string
+          default: summary
+      - name: CONSTRAINTLANGUAGE
+        in: query
+        description: Constraint language (FILTER or CQL_TEXT)
+        required: false
+        schema:
+          type: string
+      - name: CONSTRAINT
+        in: query
+        description: Query constraint
+        required: false
+        schema:
+          type: string
+      - name: SORTBY
+        in: query
+        description: Sort order
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: CSW_2_0_2_GetRecords_csw
+      summary: GetRecords - CSW 2.0.2
+      description: Searches and returns catalog records
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetRecords
+      - name: NAMESPACE
+        in: query
+        description: Namespace declarations
+        required: false
+        schema:
+          type: string
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: hits
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format
+        required: false
+        schema:
+          type: string
+          default: application/xml
+      - name: OUTPUTSCHEMA
+        in: query
+        description: Output schema
+        required: false
+        schema:
+          type: string
+      - name: STARTPOSITION
+        in: query
+        description: Start position
+        required: false
+        schema:
+          type: integer
+          default: '1'
+      - name: MAXRECORDS
+        in: query
+        description: Maximum records
+        required: false
+        schema:
+          type: integer
+          default: '10'
+      - name: TYPENAMES
+        in: query
+        description: Record type names
+        required: true
+        schema:
+          type: string
+      - name: ELEMENTSETNAME
+        in: query
+        description: Element set (brief, summary, full)
+        required: false
+        schema:
+          type: string
+          default: summary
+      - name: CONSTRAINTLANGUAGE
+        in: query
+        description: Constraint language (FILTER or CQL_TEXT)
+        required: false
+        schema:
+          type: string
+      - name: CONSTRAINT
+        in: query
+        description: Query constraint
+        required: false
+        schema:
+          type: string
+      - name: SORTBY
+        in: query
+        description: Sort order
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /csw/getrecordbyid/2-0-2:
+    get:
+      operationId: CSW_2_0_2_GetRecordById
+      summary: GetRecordById - CSW 2.0.2
+      description: Returns a specific catalog record by ID
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetRecordById
+      - name: ID
+        in: query
+        description: Record identifier(s)
+        required: true
+        schema:
+          type: string
+      - name: ELEMENTSETNAME
+        in: query
+        description: Element set
+        required: false
+        schema:
+          type: string
+          default: summary
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format
+        required: false
+        schema:
+          type: string
+          default: application/xml
+      - name: OUTPUTSCHEMA
+        in: query
+        description: Output schema
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: CSW_2_0_2_GetRecordById_csw
+      summary: GetRecordById - CSW 2.0.2
+      description: Returns a specific catalog record by ID
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetRecordById
+      - name: ID
+        in: query
+        description: Record identifier(s)
+        required: true
+        schema:
+          type: string
+      - name: ELEMENTSETNAME
+        in: query
+        description: Element set
+        required: false
+        schema:
+          type: string
+          default: summary
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format
+        required: false
+        schema:
+          type: string
+          default: application/xml
+      - name: OUTPUTSCHEMA
+        in: query
+        description: Output schema
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /csw/getdomain/2-0-2:
+    get:
+      operationId: CSW_2_0_2_GetDomain
+      summary: GetDomain - CSW 2.0.2
+      description: Returns domain values for a property
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetDomain
+      - name: PROPERTYNAME
+        in: query
+        description: Property name
+        required: false
+        schema:
+          type: string
+      - name: PARAMETERNAME
+        in: query
+        description: Parameter name
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: CSW_2_0_2_GetDomain_csw
+      summary: GetDomain - CSW 2.0.2
+      description: Returns domain values for a property
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetDomain
+      - name: PROPERTYNAME
+        in: query
+        description: Property name
+        required: false
+        schema:
+          type: string
+      - name: PARAMETERNAME
+        in: query
+        description: Parameter name
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /csw/transaction/2-0-2:
+    post:
+      operationId: CSW_2_0_2_Transaction
+      summary: Transaction - CSW 2.0.2
+      description: 'Inserts, updates, or deletes catalog records
+
+
+        **Note**: Transaction operations (Insert, Update, Delete) specified in POST
+        body'
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: Transaction
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /csw/harvest/2-0-2:
+    post:
+      operationId: CSW_2_0_2_Harvest
+      summary: Harvest - CSW 2.0.2
+      description: Harvests metadata from external sources
+      tags:
+      - CSW
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (CSW)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.2
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: Harvest
+      - name: SOURCE
+        in: query
+        description: Source URL
+        required: true
+        schema:
+          type: string
+      - name: RESOURCETYPE
+        in: query
+        description: Resource type
+        required: true
+        schema:
+          type: string
+      - name: RESOURCEFORMAT
+        in: query
+        description: Resource format
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+components:
+  schemas:
+    OGCException:
+      type: object
+      description: OGC Service Exception
+      properties:
+        ServiceException:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Exception code
+            locator:
+              type: string
+              description: Parameter that caused the exception
+            text:
+              type: string
+              description: Exception message
+  parameters: {}

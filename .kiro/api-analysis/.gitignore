@@ -1,0 +1,7 @@
+# Ignore all intermediate analysis files
+*.json
+*.csv
+
+# Keep directory structure
+!.gitignore
+!README.md
