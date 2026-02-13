@@ -67,16 +67,16 @@ servers:
 - url: https://example.com/geoserver
   description: Production server (replace with your GeoServer URL)
 tags:
-- name: Core
+- name: REST
   description: Core REST API endpoints for server management and configuration
-- name: GeoWebCache
-  description: REST API endpoints for GeoWebCache tile caching
-- name: Security
-  description: REST API endpoints for security and authentication management
-- name: Extensions
+- name: REST Extensions
   description: REST API endpoints from extension modules
-- name: Community
+- name: REST Community
   description: REST API endpoints from community modules
+- name: REST GWC
+  description: REST API endpoints for GeoWebCache tile caching
+- name: REST Security
+  description: REST API endpoints for security and authentication management
 - name: WMS
   description: Web Map Service - OGC standard for rendering maps
   externalDocs:
@@ -145,7 +145,7 @@ paths:
 
         '
       tags:
-      - Core
+      - REST
       responses:
         '200':
           description: This endpoint is a placeholder for the modular specification
