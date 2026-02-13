@@ -2,7 +2,12 @@ openapi: 3.0.0
 info:
   title: GeoServer Unified API
   version: 3.0.x
-  description: "Complete OpenAPI 3.0 specification for GeoServer REST API and OGC services.\n\nThis unified specification provides comprehensive documentation for:\n- REST Configuration API for managing workspaces, layers, styles, and services\n- OGC Web Services including WMS, WFS, WCS, WMTS, CSW, and WPS\n\nGeoServer is an open source server for sharing geospatial data. It publishes data from \nmajor spatial data sources using open standards.\n"
+  description: "Complete OpenAPI 3.0 specification for GeoServer REST API and OGC\
+    \ services.\n\nThis unified specification provides comprehensive documentation\
+    \ for:\n- REST Configuration API for managing workspaces, layers, styles, and\
+    \ services\n- OGC Web Services including WMS, WFS, WCS, WMTS, CSW, and WPS\n\n\
+    GeoServer is an open source server for sharing geospatial data. It publishes data\
+    \ from \nmajor spatial data sources using open standards.\n"
   contact:
     name: GeoServer Project
     url: https://geoserver.org
@@ -51,63 +56,75 @@ tags:
     description: OGC WMS Specification
     url: https://www.ogc.org/standards/wms
 - name: WFS 2.0.0
-  description: Web Feature Service - OGC standard for vector data access (version 2.0.0)
+  description: Web Feature Service - OGC standard for vector data access (version
+    2.0.0)
   externalDocs:
     description: OGC WFS Specification
     url: https://www.ogc.org/standards/wfs
 - name: WFS 1.1.0
-  description: Web Feature Service - OGC standard for vector data access (version 1.1.0)
+  description: Web Feature Service - OGC standard for vector data access (version
+    1.1.0)
   externalDocs:
     description: OGC WFS Specification
     url: https://www.ogc.org/standards/wfs
 - name: WFS 1.0.0
-  description: Web Feature Service - OGC standard for vector data access (version 1.0.0)
+  description: Web Feature Service - OGC standard for vector data access (version
+    1.0.0)
   externalDocs:
     description: OGC WFS Specification
     url: https://www.ogc.org/standards/wfs
 - name: WCS 2.0.1
-  description: Web Coverage Service - OGC standard for raster data access (version 2.0.1)
+  description: Web Coverage Service - OGC standard for raster data access (version
+    2.0.1)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 2.0.0
-  description: Web Coverage Service - OGC standard for raster data access (version 2.0.0)
+  description: Web Coverage Service - OGC standard for raster data access (version
+    2.0.0)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 1.1.1
-  description: Web Coverage Service - OGC standard for raster data access (version 1.1.1)
+  description: Web Coverage Service - OGC standard for raster data access (version
+    1.1.1)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 1.1.0
-  description: Web Coverage Service - OGC standard for raster data access (version 1.1.0)
+  description: Web Coverage Service - OGC standard for raster data access (version
+    1.1.0)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 1.0.0
-  description: Web Coverage Service - OGC standard for raster data access (version 1.0.0)
+  description: Web Coverage Service - OGC standard for raster data access (version
+    1.0.0)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WMTS 1.0.0
-  description: Web Map Tile Service - OGC standard for tiled map serving (version 1.0.0)
+  description: Web Map Tile Service - OGC standard for tiled map serving (version
+    1.0.0)
   externalDocs:
     description: OGC WMTS Specification
     url: https://www.ogc.org/standards/wmts
 - name: CSW 2.0.2
-  description: Catalog Service for the Web - OGC standard for metadata catalogs (version 2.0.2)
+  description: Catalog Service for the Web - OGC standard for metadata catalogs (version
+    2.0.2)
   externalDocs:
     description: OGC CSW Specification
     url: https://www.ogc.org/standards/cat
 - name: WPS 1.0.0
-  description: Web Processing Service - OGC standard for geospatial processing (version 1.0.0)
+  description: Web Processing Service - OGC standard for geospatial processing (version
+    1.0.0)
   externalDocs:
     description: OGC WPS Specification
     url: https://www.ogc.org/standards/wps
 paths:
   /csw:
-    description: CSW service endpoint. Operations are distinguished by the REQUEST parameter.
+    description: CSW service endpoint. Operations are distinguished by the REQUEST
+      parameter.
   /csw/describerecord/2-0-2:
     get:
       operationId: CSW_2_0_2_DescribeRecord
@@ -1038,7 +1055,8 @@ paths:
       description: 'Inserts, updates, or deletes catalog records
 
 
-        **Note**: Transaction operations (Insert, Update, Delete) specified in POST body'
+        **Note**: Transaction operations (Insert, Update, Delete) specified in POST
+        body'
       tags:
       - CSW 2.0.2
       parameters:
@@ -1840,7 +1858,7 @@ paths:
                   trace:
                     type: string
       parameters: []
-  /gsr/services/{folder:.*}:
+  /gsr/services/{folder}:
     get:
       operationId: get_gsr_CatalogServiceController_catalogGet_gsr
       summary: GET /gsr/services/{folder:.*
@@ -1914,7 +1932,14 @@ paths:
                     type: string
                   trace:
                     type: string
-      parameters: []
+      parameters:
+      - name: folder
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: .*
+        description: The folder path parameter
   /gsr/services/{workspaceName}/FeatureServer:
     get:
       operationId: get_gsr_FeatureServiceController_featureServiceGet
@@ -8216,7 +8241,7 @@ paths:
         schema:
           type: string
         description: The importId parameter
-  /rest/imports/{importId}/data/files/{fileName:.+}:
+  /rest/imports/{importId}/data/files/{fileName}:
     delete:
       operationId: delete_importer_ImportDataController_deleteDirectory
       summary: DELETE /rest/imports/{importId}/data/files/{fileName:.+
@@ -8290,6 +8315,13 @@ paths:
         schema:
           type: string
         description: The importId parameter
+      - name: fileName
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: .+
+        description: The fileName parameter
   /rest/imports/{importId}/tasks/{taskId}:
     delete:
       operationId: delete_importer_ImportTransformController_deleteTransform
@@ -24933,104 +24965,6 @@ paths:
         schema:
           type: string
         description: The limit parameter
-  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId:.+}:
-    delete:
-      operationId: delete_rest_StructuredCoverageController_granuleDelete
-      summary: DELETE /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId:.+
-      description: Endpoint from rest module
-      tags:
-      - REST
-      responses:
-        '200':
-          description: Resource deleted successfully
-        '400':
-          description: Bad request - invalid parameters or request body
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                  message:
-                    type: string
-        '401':
-          description: Authentication required
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                  message:
-                    type: string
-        '403':
-          description: Insufficient permissions
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                  message:
-                    type: string
-        '404':
-          description: Resource not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                  message:
-                    type: string
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                  message:
-                    type: string
-                  trace:
-                    type: string
-      parameters:
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
-      - name: storeName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The storeName parameter
-      - name: coverageName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The coverageName parameter
-      - name: purge
-        in: query
-        required: false
-        schema:
-          type: string
-        description: The purge parameter
-      - name: updateBBox
-        in: query
-        required: false
-        schema:
-          type: string
-        description: The updateBBox parameter
   /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId}:
     get:
       operationId: get_rest_StructuredCoverageController_granuleGet
@@ -29250,7 +29184,8 @@ paths:
                     type: string
       parameters: []
   /wcs:
-    description: WCS service endpoint. Operations are distinguished by the REQUEST parameter.
+    description: WCS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
   /wcs/describecoverage/1-0-0:
     get:
       operationId: WCS_1_0_0_DescribeCoverage
@@ -31691,7 +31626,8 @@ paths:
                         type: string
                         description: Exception message
   /wfs:
-    description: WFS service endpoint. Operations are distinguished by the REQUEST parameter.
+    description: WFS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
   /wfs/createstoredquery/2-0-0:
     post:
       operationId: WFS_2_0_0_CreateStoredQuery
@@ -35587,7 +35523,8 @@ paths:
       description: 'Inserts, updates, or deletes features
 
 
-        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified in POST body'
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
+        in POST body'
       tags:
       - WFS 1.0.0
       parameters:
@@ -35666,7 +35603,8 @@ paths:
       description: 'Inserts, updates, or deletes features
 
 
-        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified in POST body'
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
+        in POST body'
       tags:
       - WFS 1.1.0
       parameters:
@@ -35745,7 +35683,8 @@ paths:
       description: 'Inserts, updates, or deletes features
 
 
-        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified in POST body'
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
+        in POST body'
       tags:
       - WFS 2.0.0
       parameters:
@@ -35818,7 +35757,8 @@ paths:
                         type: string
                         description: Exception message
   /wms:
-    description: WMS service endpoint. Operations are distinguished by the REQUEST parameter.
+    description: WMS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
   /wms/describelayer/1-0-0:
     get:
       operationId: WMS_1_0_0_DescribeLayer
@@ -37892,7 +37832,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38045,7 +37987,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38199,7 +38143,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38352,7 +38298,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38506,7 +38454,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38659,7 +38609,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38813,7 +38765,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38966,7 +38920,9 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize,
+          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
+          minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -39018,7 +38974,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.0.0
       parameters:
@@ -39311,7 +39269,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.0.0
       parameters:
@@ -39605,7 +39565,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.0
       parameters:
@@ -39898,7 +39860,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.0
       parameters:
@@ -40192,7 +40156,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.1
       parameters:
@@ -40485,7 +40451,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.1
       parameters:
@@ -40779,7 +40747,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.3.0
       parameters:
@@ -41072,7 +41042,9 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
+        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
+        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.3.0
       parameters:
@@ -41772,7 +41744,8 @@ paths:
                         type: string
                         description: Exception message
   /wmts:
-    description: WMTS service endpoint. Operations are distinguished by the REQUEST parameter.
+    description: WMTS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
   /wmts/getcapabilities/1-0-0:
     get:
       operationId: WMTS_1_0_0_GetCapabilities
@@ -42147,7 +42120,8 @@ paths:
                         type: string
                         description: Exception message
   /wps:
-    description: WPS service endpoint. Operations are distinguished by the REQUEST parameter.
+    description: WPS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
   /wps/describeprocess/1-0-0:
     get:
       operationId: WPS_1_0_0_DescribeProcess
@@ -42809,6 +42783,12 @@ components:
       type: http
       scheme: digest
       description: HTTP Digest Authentication
+    authkey:
+      type: apiKey
+      in: query
+      name: authkey
+      description: Authentication via authkey query parameter (requires authkey extension)
 security:
 - basicAuth: []
 - digestAuth: []
+- authkey: []
