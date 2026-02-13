@@ -1,0 +1,2067 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Web Coverage Service API
+  description: 'OGC Web Coverage Service for raster data access
+
+
+    Supported versions: 1.0.0, 1.1.0, 1.1.1, 2.0.0, 2.0.1'
+  version: 2.0.1
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+- url: http://localhost:8080/geoserver
+  description: Local GeoServer instance
+- url: https://example.com/geoserver
+  description: Production GeoServer instance
+tags:
+- name: WCS
+  description: Web Coverage Service
+  externalDocs:
+    description: OGC WCS Specification
+    url: https://www.ogc.org/standards/wcs
+paths:
+  /wcs:
+    description: WCS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
+  /wcs/getcapabilities/1-0-0:
+    get:
+      operationId: WCS_1_0_0_GetCapabilities
+      summary: GetCapabilities - WCS 1.0.0
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_0_0_GetCapabilities_wcs
+      summary: GetCapabilities - WCS 1.0.0
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcapabilities/1-1-0:
+    get:
+      operationId: WCS_1_1_0_GetCapabilities
+      summary: GetCapabilities - WCS 1.1.0
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_1_0_GetCapabilities_wcs
+      summary: GetCapabilities - WCS 1.1.0
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcapabilities/1-1-1:
+    get:
+      operationId: WCS_1_1_1_GetCapabilities
+      summary: GetCapabilities - WCS 1.1.1
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_1_1_GetCapabilities_wcs
+      summary: GetCapabilities - WCS 1.1.1
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcapabilities/2-0-0:
+    get:
+      operationId: WCS_2_0_0_GetCapabilities
+      summary: GetCapabilities - WCS 2.0.0
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_2_0_0_GetCapabilities_wcs
+      summary: GetCapabilities - WCS 2.0.0
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcapabilities/2-0-1:
+    get:
+      operationId: WCS_2_0_1_GetCapabilities
+      summary: GetCapabilities - WCS 2.0.1
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_2_0_1_GetCapabilities_wcs
+      summary: GetCapabilities - WCS 2.0.1
+      description: Returns service metadata and available coverages
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Sections to include
+        required: false
+        schema:
+          type: string
+      - name: UPDATESEQUENCE
+        in: query
+        description: Cache validation
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/describecoverage/1-0-0:
+    get:
+      operationId: WCS_1_0_0_DescribeCoverage
+      summary: DescribeCoverage - WCS 1.0.0
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: COVERAGE
+        in: query
+        description: Coverage name (WCS 1.0)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_0_0_DescribeCoverage_wcs
+      summary: DescribeCoverage - WCS 1.0.0
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: COVERAGE
+        in: query
+        description: Coverage name (WCS 1.0)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/describecoverage/1-1-0:
+    get:
+      operationId: WCS_1_1_0_DescribeCoverage
+      summary: DescribeCoverage - WCS 1.1.0
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: IDENTIFIERS
+        in: query
+        description: Coverage identifiers (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_1_0_DescribeCoverage_wcs
+      summary: DescribeCoverage - WCS 1.1.0
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: IDENTIFIERS
+        in: query
+        description: Coverage identifiers (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/describecoverage/1-1-1:
+    get:
+      operationId: WCS_1_1_1_DescribeCoverage
+      summary: DescribeCoverage - WCS 1.1.1
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: IDENTIFIERS
+        in: query
+        description: Coverage identifiers (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_1_1_DescribeCoverage_wcs
+      summary: DescribeCoverage - WCS 1.1.1
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: IDENTIFIERS
+        in: query
+        description: Coverage identifiers (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/describecoverage/2-0-0:
+    get:
+      operationId: WCS_2_0_0_DescribeCoverage
+      summary: DescribeCoverage - WCS 2.0.0
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_2_0_0_DescribeCoverage_wcs
+      summary: DescribeCoverage - WCS 2.0.0
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/describecoverage/2-0-1:
+    get:
+      operationId: WCS_2_0_1_DescribeCoverage
+      summary: DescribeCoverage - WCS 2.0.1
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_2_0_1_DescribeCoverage_wcs
+      summary: DescribeCoverage - WCS 2.0.1
+      description: Returns detailed coverage metadata
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcoverage/1-0-0:
+    get:
+      operationId: WCS_1_0_0_GetCoverage
+      summary: GetCoverage - WCS 1.0.0
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: COVERAGE
+        in: query
+        description: Coverage name (WCS 1.0)
+        required: true
+        schema:
+          type: string
+      - name: CRS
+        in: query
+        description: Coordinate reference system (WCS 1.0)
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_0_0_GetCoverage_wcs
+      summary: GetCoverage - WCS 1.0.0
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: COVERAGE
+        in: query
+        description: Coverage name (WCS 1.0)
+        required: true
+        schema:
+          type: string
+      - name: CRS
+        in: query
+        description: Coordinate reference system (WCS 1.0)
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcoverage/1-1-0:
+    get:
+      operationId: WCS_1_1_0_GetCoverage
+      summary: GetCoverage - WCS 1.1.0
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: IDENTIFIER
+        in: query
+        description: Coverage identifier (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: BOUNDINGBOX
+        in: query
+        description: Bounding box (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_1_0_GetCoverage_wcs
+      summary: GetCoverage - WCS 1.1.0
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: IDENTIFIER
+        in: query
+        description: Coverage identifier (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: BOUNDINGBOX
+        in: query
+        description: Bounding box (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcoverage/1-1-1:
+    get:
+      operationId: WCS_1_1_1_GetCoverage
+      summary: GetCoverage - WCS 1.1.1
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: IDENTIFIER
+        in: query
+        description: Coverage identifier (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: BOUNDINGBOX
+        in: query
+        description: Bounding box (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_1_1_1_GetCoverage_wcs
+      summary: GetCoverage - WCS 1.1.1
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: IDENTIFIER
+        in: query
+        description: Coverage identifier (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: BOUNDINGBOX
+        in: query
+        description: Bounding box (WCS 1.1)
+        required: true
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcoverage/2-0-0:
+    get:
+      operationId: WCS_2_0_0_GetCoverage
+      summary: GetCoverage - WCS 2.0.0
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      - name: SUBSET
+        in: query
+        description: Dimension subset (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_2_0_0_GetCoverage_wcs
+      summary: GetCoverage - WCS 2.0.0
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      - name: SUBSET
+        in: query
+        description: Dimension subset (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wcs/getcoverage/2-0-1:
+    get:
+      operationId: WCS_2_0_1_GetCoverage
+      summary: GetCoverage - WCS 2.0.1
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      - name: SUBSET
+        in: query
+        description: Dimension subset (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WCS_2_0_1_GetCoverage_wcs
+      summary: GetCoverage - WCS 2.0.1
+      description: Returns coverage data
+      tags:
+      - WCS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WCS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCoverage
+      - name: COVERAGEID
+        in: query
+        description: Coverage ID (WCS 2.0)
+        required: true
+        schema:
+          type: string
+      - name: SUBSET
+        in: query
+        description: Dimension subset (WCS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT
+        in: query
+        description: Output format
+        required: true
+        schema:
+          type: string
+      - name: WIDTH
+        in: query
+        description: Output width in pixels
+        required: false
+        schema:
+          type: integer
+      - name: HEIGHT
+        in: query
+        description: Output height in pixels
+        required: false
+        schema:
+          type: integer
+      - name: RESX
+        in: query
+        description: X resolution
+        required: false
+        schema:
+          type: number
+      - name: RESY
+        in: query
+        description: Y resolution
+        required: false
+        schema:
+          type: number
+      - name: INTERPOLATION
+        in: query
+        description: Interpolation method
+        required: false
+        schema:
+          type: string
+      - name: TIME
+        in: query
+        description: Time dimension value
+        required: false
+        schema:
+          type: string
+      - name: ELEVATION
+        in: query
+        description: Elevation dimension value
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+components:
+  schemas:
+    OGCException:
+      type: object
+      description: OGC Service Exception
+      properties:
+        ServiceException:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Exception code
+            locator:
+              type: string
+              description: Parameter that caused the exception
+            text:
+              type: string
+              description: Exception message
+  parameters: {}

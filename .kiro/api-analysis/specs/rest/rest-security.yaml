@@ -1,0 +1,2334 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Security API
+  version: 1.0.0
+  description: REST API endpoints for security module
+paths:
+  /:
+    get:
+      operationId: get_rest_Rest_unknown
+      summary: GET /
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    post:
+      operationId: post_rest_Rest_create
+      summary: POST /
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id001
+                type: object
+            application/xml:
+              schema: *id001
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: position
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The position parameter
+  /.{ext:xml|json:
+    get:
+      operationId: get_rest_Rest_list
+      summary: GET /.{ext:xml|json
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id002
+                type: object
+            application/xml:
+              schema: *id002
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /order:
+    delete:
+      operationId: delete_rest_Rest_orderDeleteNotAllowed
+      summary: DELETE /order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    get:
+      operationId: get_rest_Rest_orderGetNotAllowed
+      summary: GET /order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    post:
+      operationId: post_rest_Rest_orderPostNotAllowed
+      summary: POST /order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    put:
+      operationId: put_rest_Rest_reorder
+      summary: PUT /order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/acl/catalog:
+    get:
+      operationId: get_rest_CatalogModeController_mapGet
+      summary: GET /rest/security/acl/catalog
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id003
+                type: object
+            application/xml:
+              schema: *id003
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    put:
+      operationId: put_rest_CatalogModeController_mapPut
+      summary: PUT /rest/security/acl/catalog
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Map configuration object
+          application/xml:
+            schema:
+              type: object
+              description: Map configuration object
+  /rest/security/acl/catalog/rest/security/acl/catalog:
+    get:
+      operationId: get_rest_CatalogSecurityController_checkUserIsAdmin
+      summary: GET /rest/security/acl/catalog/rest/security/acl/catalog
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/acl/layers/rest/security/acl/layers:
+    get:
+      operationId: get_rest_DataAccessController_addRuleToMap
+      summary: GET /rest/security/acl/layers/rest/security/acl/layers
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/authfilters:
+    get:
+      operationId: get_rest_AuthenticationFilterController_list
+      summary: GET /rest/security/authfilters
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id004
+                type: object
+            application/xml:
+              schema: *id004
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_AuthenticationFilterController_post
+      summary: POST /rest/security/authfilters
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id005
+                type: object
+            application/xml:
+              schema: *id005
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SecurityFilterConfig configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SecurityFilterConfig configuration object
+  /rest/security/authfilters/{filterName}:
+    delete:
+      operationId: delete_rest_AuthenticationFilterController_delete
+      summary: DELETE /rest/security/authfilters/{filterName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: filterName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The filterName parameter
+    get:
+      operationId: get_rest_AuthenticationFilterController_view
+      summary: GET /rest/security/authfilters/{filterName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id006
+                type: object
+            application/xml:
+              schema: *id006
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: filterName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The filterName parameter
+    put:
+      operationId: put_rest_AuthenticationFilterController_put
+      summary: PUT /rest/security/authfilters/{filterName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: filterName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The filterName parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SecurityFilterConfig configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SecurityFilterConfig configuration object
+  /rest/security/authproviders/{providerName}:
+    delete:
+      operationId: delete_rest_Rest_delete
+      summary: DELETE /rest/security/authproviders/{providerName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: providerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The providerName parameter
+    get:
+      operationId: get_rest_Rest_one
+      summary: GET /rest/security/authproviders/{providerName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id007
+                type: object
+            application/xml:
+              schema: *id007
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: providerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The providerName parameter
+      - name: position
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The position parameter
+    put:
+      operationId: put_rest_Rest_update
+      summary: PUT /rest/security/authproviders/{providerName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id008
+                type: object
+            application/xml:
+              schema: *id008
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: providerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The providerName parameter
+      - name: position
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The position parameter
+  /rest/security/filterchain:
+    get:
+      operationId: get_rest_AuthenticationFilterChainRestController_list
+      summary: GET /rest/security/filterchain
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id009
+                type: object
+            application/xml:
+              schema: *id009
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    post:
+      operationId: post_rest_AuthenticationFilterChainRestController_create
+      summary: POST /rest/security/filterchain
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id010
+                type: object
+            application/xml:
+              schema: *id010
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: position
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The position parameter
+    put:
+      operationId: put_rest_AuthenticationFilterChainRestController_replaceAll
+      summary: PUT /rest/security/filterchain
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id011
+                type: object
+            application/xml:
+              schema: *id011
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/filterchain/CHAIN_PATH:
+    put:
+      operationId: put_rest_AuthenticationFilterChainRestController_update
+      summary: PUT /rest/security/filterchain/CHAIN_PATH
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id012
+                type: object
+            application/xml:
+              schema: *id012
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: position
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The position parameter
+  /rest/security/filterchain/order:
+    delete:
+      operationId: delete_rest_AuthenticationFilterChainRestController_orderDeleteNotAllowed
+      summary: DELETE /rest/security/filterchain/order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    get:
+      operationId: get_rest_AuthenticationFilterChainRestController_orderGetNotAllowed
+      summary: GET /rest/security/filterchain/order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_AuthenticationFilterChainRestController_orderPostNotAllowed
+      summary: POST /rest/security/filterchain/order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    put:
+      operationId: put_rest_AuthenticationFilterChainRestController_reorder
+      summary: PUT /rest/security/filterchain/order
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/filterchain/rest/security/filterchain:
+    get:
+      operationId: get_rest_AuthenticationFilterChainRestController_unknown
+      summary: GET /rest/security/filterchain/rest/security/filterchain
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/filterchain/{chainName}:
+    delete:
+      operationId: delete_rest_AuthenticationFilterChainRestController_deleteOne
+      summary: DELETE /rest/security/filterchain/{chainName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: chainName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The chainName parameter
+    get:
+      operationId: get_rest_AuthenticationFilterChainRestController_getOneXml
+      summary: GET /rest/security/filterchain/{chainName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id013
+                type: object
+            application/xml:
+              schema: *id013
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: chainName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The chainName parameter
+  /rest/security/masterpw:
+    get:
+      operationId: get_rest_MasterPasswordController_masterPasswordGet
+      summary: GET /rest/security/masterpw
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id014
+                type: object
+            application/xml:
+              schema: *id014
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    put:
+      operationId: put_rest_MasterPasswordController_masterPasswordPut
+      summary: PUT /rest/security/masterpw
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/roles:
+    get:
+      operationId: get_rest_RolesRestController_get
+      summary: GET /rest/security/roles
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id015
+                type: object
+            application/xml:
+              schema: *id015
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/roles/group/{group}:
+    get:
+      operationId: get_rest_RolesRestController_getGroup
+      summary: GET /rest/security/roles/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id016
+                type: object
+            application/xml:
+              schema: *id016
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/roles/rest/security/roles:
+    get:
+      operationId: get_rest_RolesRestController_unknown
+      summary: GET /rest/security/roles/rest/security/roles
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/roles/role/{role}:
+    delete:
+      operationId: delete_rest_RolesRestController_delete
+      summary: DELETE /rest/security/roles/role/{role}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_RolesRestController_insert
+      summary: POST /rest/security/roles/role/{role}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/roles/role/{role}/group/{group}:
+    delete:
+      operationId: delete_rest_RolesRestController_disassociateGroup
+      summary: DELETE /rest/security/roles/role/{role}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_RolesRestController_associateGroup
+      summary: POST /rest/security/roles/role/{role}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/roles/role/{role}/user/{user}:
+    delete:
+      operationId: delete_rest_RolesRestController_disassociateUser
+      summary: DELETE /rest/security/roles/role/{role}/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_RolesRestController_associateUser
+      summary: POST /rest/security/roles/role/{role}/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/roles/service/{serviceName}:
+    get:
+      operationId: get_rest_RolesRestController_get_rest
+      summary: GET /rest/security/roles/service/{serviceName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id017
+                type: object
+            application/xml:
+              schema: *id017
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/roles/service/{serviceName}/group/{group}:
+    get:
+      operationId: get_rest_RolesRestController_getGroup_rest
+      summary: GET /rest/security/roles/service/{serviceName}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id018
+                type: object
+            application/xml:
+              schema: *id018
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/roles/service/{serviceName}/role/{role}:
+    delete:
+      operationId: delete_rest_RolesRestController_delete_rest
+      summary: DELETE /rest/security/roles/service/{serviceName}/role/{role}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    post:
+      operationId: post_rest_RolesRestController_insert_rest
+      summary: POST /rest/security/roles/service/{serviceName}/role/{role}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/roles/service/{serviceName}/role/{role}/group/{group}:
+    post:
+      operationId: post_rest_RolesRestController_associateGroup_rest
+      summary: POST /rest/security/roles/service/{serviceName}/role/{role}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/roles/service/{serviceName}/role/{role}/group/{user}:
+    delete:
+      operationId: delete_rest_RolesRestController_disassociateGroup_rest
+      summary: DELETE /rest/security/roles/service/{serviceName}/role/{role}/group/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/roles/service/{serviceName}/role/{role}/user/{user}:
+    delete:
+      operationId: delete_rest_RolesRestController_disassociateUser_rest
+      summary: DELETE /rest/security/roles/service/{serviceName}/role/{role}/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    post:
+      operationId: post_rest_RolesRestController_associateUser_rest
+      summary: POST /rest/security/roles/service/{serviceName}/role/{role}/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/roles/service/{serviceName}/user/{user}:
+    get:
+      operationId: get_rest_RolesRestController_getUser
+      summary: GET /rest/security/roles/service/{serviceName}/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id019
+                type: object
+            application/xml:
+              schema: *id019
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/roles/user/{user}:
+    get:
+      operationId: get_rest_RolesRestController_getUser_rest
+      summary: GET /rest/security/roles/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id020
+                type: object
+            application/xml:
+              schema: *id020
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/self/password:
+    get:
+      operationId: get_rest_UserPasswordController_passwordGet
+      summary: GET /rest/security/self/password
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    put:
+      operationId: put_rest_UserPasswordController_passwordPut
+      summary: PUT /rest/security/self/password
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/self/password/rest/security/self/password:
+    get:
+      operationId: get_rest_UserPasswordController_passwordGet_rest
+      summary: GET /rest/security/self/password/rest/security/self/password
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/usergroup/group/{group}:
+    delete:
+      operationId: delete_rest_UsersRestController_deleteGroup
+      summary: DELETE /rest/security/usergroup/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_UsersRestController_insertGroup
+      summary: POST /rest/security/usergroup/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/usergroup/group/{group}/users:
+    get:
+      operationId: get_rest_UsersRestController_getUsersFromGroup
+      summary: GET /rest/security/usergroup/group/{group}/users
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id021
+                type: object
+            application/xml:
+              schema: *id021
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/usergroup/groups:
+    get:
+      operationId: get_rest_UsersRestController_getGroups
+      summary: GET /rest/security/usergroup/groups
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id022
+                type: object
+            application/xml:
+              schema: *id022
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/usergroup/rest/security/usergroup:
+    get:
+      operationId: get_rest_UsersRestController_unknown
+      summary: GET /rest/security/usergroup/rest/security/usergroup
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/security/usergroup/service/{serviceName}/group/{group}:
+    delete:
+      operationId: delete_rest_UsersRestController_deleteGroup_rest
+      summary: DELETE /rest/security/usergroup/service/{serviceName}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    post:
+      operationId: post_rest_UsersRestController_insertGroup_rest
+      summary: POST /rest/security/usergroup/service/{serviceName}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/usergroup/service/{serviceName}/group/{group}/users:
+    get:
+      operationId: get_rest_UsersRestController_getUsersFromGroup_rest
+      summary: GET /rest/security/usergroup/service/{serviceName}/group/{group}/users
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id023
+                type: object
+            application/xml:
+              schema: *id023
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/usergroup/service/{serviceName}/groups:
+    get:
+      operationId: get_rest_UsersRestController_getGroups_rest
+      summary: GET /rest/security/usergroup/service/{serviceName}/groups
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id024
+                type: object
+            application/xml:
+              schema: *id024
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/usergroup/service/{serviceName}/user/{user}:
+    delete:
+      operationId: delete_rest_UsersRestController_deleteUser
+      summary: DELETE /rest/security/usergroup/service/{serviceName}/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    post:
+      operationId: post_rest_UsersRestController_updateUser
+      summary: POST /rest/security/usergroup/service/{serviceName}/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+  /rest/security/usergroup/service/{serviceName}/user/{user}/group/{group}:
+    delete:
+      operationId: delete_rest_UsersRestController_disassociateUserFromGroup
+      summary: DELETE /rest/security/usergroup/service/{serviceName}/user/{user}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    post:
+      operationId: post_rest_UsersRestController_associateUserToGroup
+      summary: POST /rest/security/usergroup/service/{serviceName}/user/{user}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/usergroup/service/{serviceName}/user/{user}/groups:
+    get:
+      operationId: get_rest_UsersRestController_getGroupsFromUser
+      summary: GET /rest/security/usergroup/service/{serviceName}/user/{user}/groups
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id025
+                type: object
+            application/xml:
+              schema: *id025
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+  /rest/security/usergroup/service/{serviceName}/users:
+    get:
+      operationId: get_rest_UsersRestController_getUsers
+      summary: GET /rest/security/usergroup/service/{serviceName}/users
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id026
+                type: object
+            application/xml:
+              schema: *id026
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    post:
+      operationId: post_rest_UsersRestController_insertUser
+      summary: POST /rest/security/usergroup/service/{serviceName}/users
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+  /rest/security/usergroup/user/{user}:
+    delete:
+      operationId: delete_rest_UsersRestController_deleteUser_rest
+      summary: DELETE /rest/security/usergroup/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_UsersRestController_updateUser_rest
+      summary: POST /rest/security/usergroup/user/{user}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+  /rest/security/usergroup/user/{user}/group/{group}:
+    delete:
+      operationId: delete_rest_UsersRestController_disassociateUserFromGroup_rest
+      summary: DELETE /rest/security/usergroup/user/{user}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_UsersRestController_associateUserToGroup_rest
+      summary: POST /rest/security/usergroup/user/{user}/group/{group}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/usergroup/user/{user}/groups:
+    get:
+      operationId: get_rest_UsersRestController_getGroupsFromUser_rest
+      summary: GET /rest/security/usergroup/user/{user}/groups
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id027
+                type: object
+            application/xml:
+              schema: *id027
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/security/usergroup/users:
+    get:
+      operationId: get_rest_UsersRestController_getUsers_rest
+      summary: GET /rest/security/usergroup/users
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id028
+                type: object
+            application/xml:
+              schema: *id028
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_UsersRestController_insertUser_rest
+      summary: POST /rest/security/usergroup/users
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+          application/xml:
+            schema:
+              type: object
+              description: JaxbUser configuration object
+  /rest/security/usergroupservices:
+    get:
+      operationId: get_rest_UserGroupServiceController_list
+      summary: GET /rest/security/usergroupservices
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id029
+                type: object
+            application/xml:
+              schema: *id029
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_UserGroupServiceController_post
+      summary: POST /rest/security/usergroupservices
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id030
+                type: object
+            application/xml:
+              schema: *id030
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SecurityUserGroupServiceConfig configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SecurityUserGroupServiceConfig configuration object
+  /rest/security/usergroupservices/{serviceName}:
+    delete:
+      operationId: delete_rest_UserGroupServiceController_delete
+      summary: DELETE /rest/security/usergroupservices/{serviceName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    get:
+      operationId: get_rest_UserGroupServiceController_view
+      summary: GET /rest/security/usergroupservices/{serviceName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id031
+                type: object
+            application/xml:
+              schema: *id031
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+    put:
+      operationId: put_rest_UserGroupServiceController_put
+      summary: PUT /rest/security/usergroupservices/{serviceName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The serviceName parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SecurityUserGroupServiceConfig configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SecurityUserGroupServiceConfig configuration object
+  /rest/urlchecks:
+    get:
+      operationId: get_rest_UrlCheckController_urlChecksGet
+      summary: GET /rest/urlchecks
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id032
+                type: object
+            application/xml:
+              schema: *id032
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_rest_UrlCheckController_urlCheckPost
+      summary: POST /rest/urlchecks
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id033
+                type: object
+            application/xml:
+              schema: *id033
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: AbstractURLCheck configuration object
+          application/xml:
+            schema:
+              type: object
+              description: AbstractURLCheck configuration object
+  /rest/urlchecks/{urlCheckName}:
+    delete:
+      operationId: delete_rest_UrlCheckController_urlCheckDelete
+      summary: DELETE /rest/urlchecks/{urlCheckName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: urlCheckName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The urlCheckName parameter
+    put:
+      operationId: put_rest_UrlCheckController_urlCheckPut
+      summary: PUT /rest/urlchecks/{urlCheckName}
+      description: Endpoint from rest module
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: urlCheckName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The urlCheckName parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: AbstractURLCheck configuration object
+          application/xml:
+            schema:
+              type: object
+              description: AbstractURLCheck configuration object

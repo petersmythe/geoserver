@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Gwc API
+  version: 1.0.0
+  description: REST API endpoints for gwc module
+paths:
+  /gwc:
+    get:
+      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest
+      summary: GET /gwc
+      description: Endpoint from rest module
+      tags:
+      - Gwc
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gwc/demo/**:
+    get:
+      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_gwc
+      summary: GET /gwc/demo/**
+      description: Endpoint from rest module
+      tags:
+      - Gwc
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gwc/gwc:
+    get:
+      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_1
+      summary: GET /gwc/gwc
+      description: Endpoint from rest module
+      tags:
+      - Gwc
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gwc/home:
+    get:
+      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_home
+      summary: GET /gwc/home
+      description: Endpoint from rest module
+      tags:
+      - Gwc
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gwc/proxy/**:
+    get:
+      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_proxy
+      summary: GET /gwc/proxy/**
+      description: Endpoint from rest module
+      tags:
+      - Gwc
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError

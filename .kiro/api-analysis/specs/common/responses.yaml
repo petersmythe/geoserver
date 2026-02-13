@@ -1,0 +1,57 @@
+BadRequest:
+  description: Bad request - invalid parameters or request body
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+          message:
+            type: string
+Unauthorized:
+  description: Authentication required
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+          message:
+            type: string
+Forbidden:
+  description: Insufficient permissions
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+          message:
+            type: string
+NotFound:
+  description: Resource not found
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+          message:
+            type: string
+InternalServerError:
+  description: Internal server error
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+          message:
+            type: string
+          trace:
+            type: string

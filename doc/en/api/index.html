@@ -24,10 +24,73 @@
       margin:0;
       background: #fafafa;
     }
+    
+    .spec-selector {
+      background: #fff;
+      border-bottom: 1px solid #d9d9d9;
+      padding: 15px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .spec-selector h3 {
+      margin: 0 0 10px 0;
+      font-family: 'Titillium Web', sans-serif;
+      font-size: 18px;
+      color: #3b4151;
+    }
+    
+    .spec-selector label {
+      margin-right: 20px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: #3b4151;
+      cursor: pointer;
+    }
+    
+    .spec-selector input[type="radio"] {
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    
+    .spec-info {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f7f7f7;
+      border-radius: 4px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      color: #666;
+    }
   </style>
 </head>
 
 <body>
+<div class="spec-selector">
+  <h3>GeoServer API Specification</h3>
+  <div>
+    <label>
+      <input type="radio" name="spec" value="geoserver-bundled.yaml" checked>
+      Bundled YAML (single file, all $ref resolved)
+    </label>
+    <label>
+      <input type="radio" name="spec" value="geoserver-bundled.json">
+      Bundled JSON (single file, all $ref resolved)
+    </label>
+    <label>
+      <input type="radio" name="spec" value="../../../.kiro/api-analysis/specs/geoserver.yaml">
+      Modular YAML (with $ref to separate files)
+    </label>
+    <label>
+      <input type="radio" name="spec" value="../../../.kiro/api-analysis/specs/geoserver.json">
+      Modular JSON (with $ref to separate files)
+    </label>
+  </div>
+  <div class="spec-info">
+    <strong>Current:</strong> <span id="current-spec">geoserver-bundled.yaml</span><br>
+    <strong>Bundled specs</strong> are self-contained (recommended for distribution). 
+    <strong>Modular specs</strong> use $ref to separate files (better for development/editing).
+  </div>
+</div>
 <div id="swagger-ui"></div>
 
 <script src="./swagger-ui-bundle.js"> </script>
@@ -35,10 +98,27 @@
 <script>
 window.onload = function() {
   var url = window.location.href.split('#')[1];
+  
+  // If no URL fragment provided, default to bundled YAML spec
+  if (!url) {
+    url = 'geoserver-bundled.yaml';
+  }
+  
+  console.log('Loading spec:', url);
+  document.getElementById('current-spec').textContent = url;
+  
+  // Update radio button selection based on URL
+  document.querySelectorAll('input[name="spec"]').forEach(function(radio) {
+    if (radio.value === url) {
+      radio.checked = true;
+    }
+  });
+  
   // Build a system
   const ui = SwaggerUIBundle({
     url: url,
     dom_id: '#swagger-ui',
+    deepLinking: true,
     presets: [
       SwaggerUIBundle.presets.apis,
       SwaggerUIStandalonePreset
@@ -46,15 +126,24 @@ window.onload = function() {
     plugins: [
       SwaggerUIBundle.plugins.DownloadUrl
     ],
-    layout: "StandaloneLayout"
+    layout: "StandaloneLayout",
+    docExpansion: "list", // Can be 'list', 'full', or 'none'
+    defaultModelsExpandDepth: 1,
+    defaultModelExpandDepth: 1
   });
 
-
-
   window.ui = ui;
-  window.ui.expandAll();
+  
+  // Add event listeners to radio buttons
+  document.querySelectorAll('input[name="spec"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      if (this.checked) {
+        window.location.hash = this.value;
+        window.location.reload();
+      }
+    });
+  });
 }
-console.log(window.location.href.split('#')[1]);
 </script>
 </body>
 

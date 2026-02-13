@@ -1,0 +1,3943 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Community API
+  version: 1.0.0
+  description: REST API endpoints for community module
+paths:
+  /gsr/relationships/{workspaceName}:
+    delete:
+      operationId: delete_gsr_RelationshipController_deleteRelationshipClass
+      summary: DELETE /gsr/relationships/{workspaceName}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+    post:
+      operationId: post_gsr_RelationshipController_createRelationshipClass
+      summary: POST /gsr/relationships/{workspaceName}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id001
+                type: object
+            application/xml:
+              schema: *id001
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: RelationshipClass configuration object
+          application/xml:
+            schema:
+              type: object
+              description: RelationshipClass configuration object
+    put:
+      operationId: put_gsr_RelationshipController_updateRelationshipClass
+      summary: PUT /gsr/relationships/{workspaceName}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id002
+                type: object
+            application/xml:
+              schema: *id002
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: RelationshipClass configuration object
+          application/xml:
+            schema:
+              type: object
+              description: RelationshipClass configuration object
+  /gsr/relationships/{workspaceName}/delete/{relationshipId}:
+    get:
+      operationId: get_gsr_RelationshipController_deleteRelationshipClass
+      summary: GET /gsr/relationships/{workspaceName}/delete/{relationshipId}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id003
+                type: boolean
+            application/xml:
+              schema: *id003
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: relationshipId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The relationshipId parameter
+  /gsr/relationships/{workspaceName}/destinationTable/{destinationTable}:
+    get:
+      operationId: get_gsr_RelationshipController_getRelationshipClassByWorkspaceAndDestination
+      summary: GET /gsr/relationships/{workspaceName}/destinationTable/{destinationTable}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id004
+                type: array
+                items:
+                  type: object
+            application/xml:
+              schema: *id004
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: destinationTable
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The destinationTable parameter
+  /gsr/relationships/{workspaceName}/gsr/relationships/{workspaceName}:
+    get:
+      operationId: get_gsr_RelationshipController_unknown
+      summary: GET /gsr/relationships/{workspaceName}/gsr/relationships/{workspaceName}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gsr/relationships/{workspaceName}/originTable/{originTable}:
+    get:
+      operationId: get_gsr_RelationshipController_getRelationshipClassByWorkspaceAndOrigin
+      summary: GET /gsr/relationships/{workspaceName}/originTable/{originTable}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id005
+                type: array
+                items:
+                  type: object
+            application/xml:
+              schema: *id005
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: originTable
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The originTable parameter
+  /gsr/relationships/{workspaceName}/{relationshipId}:
+    get:
+      operationId: get_gsr_RelationshipController_getRelationshipClassByWorkspaceAndId
+      summary: GET /gsr/relationships/{workspaceName}/{relationshipId}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id006
+                type: object
+            application/xml:
+              schema: *id006
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: relationshipId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The relationshipId parameter
+  /gsr/services:
+    get:
+      operationId: get_gsr_CatalogServiceController_catalogGet
+      summary: GET /gsr/services
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id007
+                type: object
+            application/xml:
+              schema: *id007
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gsr/services/{folder:.*:
+    get:
+      operationId: get_gsr_CatalogServiceController_catalogGet_gsr
+      summary: GET /gsr/services/{folder:.*
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id008
+                type: object
+            application/xml:
+              schema: *id008
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /gsr/services/{workspaceName}/FeatureServer:
+    get:
+      operationId: get_gsr_FeatureServiceController_featureServiceGet
+      summary: GET /gsr/services/{workspaceName}/FeatureServer
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id009
+                type: object
+            application/xml:
+              schema: *id009
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+  /gsr/services/{workspaceName}/FeatureServer/applyEdits:
+    post:
+      operationId: post_gsr_FeatureLayerController_applyEditsByService
+      summary: POST /gsr/services/{workspaceName}/FeatureServer/applyEdits
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id010
+                type: array
+                items:
+                  type: object
+            application/xml:
+              schema: *id010
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: rollbackOnFailure
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The rollbackOnFailure parameter
+      - name: returnEditMoment
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnEditMoment parameter
+      - name: honorSequenceOfEdits
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The honorSequenceOfEdits parameter
+  /gsr/services/{workspaceName}/FeatureServer/gsr/services/{workspaceName}/FeatureServer:
+    get:
+      operationId: get_gsr_FeatureLayerController_unknown
+      summary: GET /gsr/services/{workspaceName}/FeatureServer/gsr/services/{workspaceName}/FeatureServer
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gsr/services/{workspaceName}/FeatureServer/layers:
+    get:
+      operationId: get_gsr_FeatureLayerListController_getLayers
+      summary: GET /gsr/services/{workspaceName}/FeatureServer/layers
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id011
+                type: object
+            application/xml:
+              schema: *id011
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+  /gsr/services/{workspaceName}/FeatureServer/query:
+    get:
+      operationId: get_gsr_FeatureServiceController_query
+      summary: GET /gsr/services/{workspaceName}/FeatureServer/query
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id012
+                type: object
+            application/xml:
+              schema: *id012
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: geometryType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometryType parameter
+      - name: geometry
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometry parameter
+      - name: inSR
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The inSR parameter
+      - name: outSR
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The outSR parameter
+      - name: spatialRel
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The spatialRel parameter
+      - name: objectIds
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The objectIds parameter
+      - name: relationPattern
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The relationPattern parameter
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The time parameter
+      - name: text
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The text parameter
+      - name: maxAllowableOffsets
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The maxAllowableOffsets parameter
+      - name: where
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The where parameter
+      - name: returnGeometry
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnGeometry parameter
+      - name: outFields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The outFields parameter
+      - name: returnIdsOnly
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnIdsOnly parameter
+  /gsr/services/{workspaceName}/FeatureServer/{layerId}:
+    get:
+      operationId: get_gsr_FeatureLayerController_featureGet
+      summary: GET /gsr/services/{workspaceName}/FeatureServer/{layerId}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id013
+                type: object
+            application/xml:
+              schema: *id013
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+  /gsr/services/{workspaceName}/FeatureServer/{layerId}/addFeatures:
+    post:
+      operationId: post_gsr_FeatureLayerController_addFeaturesPost
+      summary: POST /gsr/services/{workspaceName}/FeatureServer/{layerId}/addFeatures
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id014
+                type: object
+            application/xml:
+              schema: *id014
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+      - name: rollbackOnFailure
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The rollbackOnFailure parameter
+      - name: returnEditMoment
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnEditMoment parameter
+  /gsr/services/{workspaceName}/FeatureServer/{layerId}/applyEdits:
+    post:
+      operationId: post_gsr_FeatureLayerController_applyEditsByLayer
+      summary: POST /gsr/services/{workspaceName}/FeatureServer/{layerId}/applyEdits
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id015
+                type: object
+            application/xml:
+              schema: *id015
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+      - name: adds
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The adds parameter
+      - name: updates
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The updates parameter
+      - name: deletes
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The deletes parameter
+      - name: rollbackOnFailure
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The rollbackOnFailure parameter
+      - name: returnEditMoment
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnEditMoment parameter
+  /gsr/services/{workspaceName}/FeatureServer/{layerId}/deleteFeatures:
+    post:
+      operationId: post_gsr_FeatureLayerController_featureDelete
+      summary: POST /gsr/services/{workspaceName}/FeatureServer/{layerId}/deleteFeatures
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id016
+                type: object
+            application/xml:
+              schema: *id016
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+      - name: objectIds
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The objectIds parameter
+      - name: geometryType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometryType parameter
+      - name: where
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The where parameter
+      - name: geometry
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometry parameter
+      - name: inSR
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The inSR parameter
+      - name: spatialRel
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The spatialRel parameter
+      - name: rollbackOnFailure
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The rollbackOnFailure parameter
+      - name: returnEditMoment
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnEditMoment parameter
+  /gsr/services/{workspaceName}/FeatureServer/{layerId}/updateFeatures:
+    post:
+      operationId: post_gsr_FeatureLayerController_updateFeaturesPost
+      summary: POST /gsr/services/{workspaceName}/FeatureServer/{layerId}/updateFeatures
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id017
+                type: object
+            application/xml:
+              schema: *id017
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+      - name: rollbackOnFailure
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The rollbackOnFailure parameter
+      - name: returnEditMoment
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnEditMoment parameter
+  /gsr/services/{workspaceName}/FeatureServer/{layerId}/{featureId}:
+    get:
+      operationId: get_gsr_FeatureController_getFeature
+      summary: GET /gsr/services/{workspaceName}/FeatureServer/{layerId}/{featureId}
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id018
+                type: object
+            application/xml:
+              schema: *id018
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+      - name: featureId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featureId parameter
+  /gsr/services/{workspaceName}/MapServer:
+    get:
+      operationId: get_gsr_MapServiceController_mapServiceGet
+      summary: GET /gsr/services/{workspaceName}/MapServer
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id019
+                type: object
+            application/xml:
+              schema: *id019
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+  /gsr/services/{workspaceName}/MapServer/export:
+    get:
+      operationId: get_gsr_ExportMapController_exportMap
+      summary: GET /gsr/services/{workspaceName}/MapServer/export
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id020
+                type: object
+            application/xml:
+              schema: *id020
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+  /gsr/services/{workspaceName}/MapServer/find:
+    get:
+      operationId: get_gsr_MapServiceController_search
+      summary: GET /gsr/services/{workspaceName}/MapServer/find
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id021
+                type: object
+            application/xml:
+              schema: *id021
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: contains
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The contains parameter
+      - name: searchField
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The searchField parameter
+      - name: returnGeometries
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnGeometries parameter
+  /gsr/services/{workspaceName}/MapServer/generateKml:
+    get:
+      operationId: get_gsr_GenerateKMLController_generateKml
+      summary: GET /gsr/services/{workspaceName}/MapServer/generateKml
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layers
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The layers parameter
+  /gsr/services/{workspaceName}/MapServer/generateKml/gsr/services/{workspaceName}/MapServer/generateKml:
+    get:
+      operationId: get_gsr_GenerateKMLController_generateKml_gsr
+      summary: GET /gsr/services/{workspaceName}/MapServer/generateKml/gsr/services/{workspaceName}/MapServer/generateKml
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layers
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The layers parameter
+  /gsr/services/{workspaceName}/MapServer/gsr/services/{workspaceName}/MapServer:
+    get:
+      operationId: get_gsr_MapServiceController_unknown
+      summary: GET /gsr/services/{workspaceName}/MapServer/gsr/services/{workspaceName}/MapServer
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /gsr/services/{workspaceName}/MapServer/identify:
+    get:
+      operationId: get_gsr_MapServiceController_identify
+      summary: GET /gsr/services/{workspaceName}/MapServer/identify
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id022
+                type: object
+            application/xml:
+              schema: *id022
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: geometryType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometryType parameter
+      - name: geometry
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometry parameter
+      - name: sr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The sr parameter
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The time parameter
+  /gsr/services/{workspaceName}/MapServer/layers:
+    get:
+      operationId: get_gsr_LayerListController_getLayers
+      summary: GET /gsr/services/{workspaceName}/MapServer/layers
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id023
+                type: object
+            application/xml:
+              schema: *id023
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+  /gsr/services/{workspaceName}/MapServer/legend:
+    get:
+      operationId: get_gsr_LegendController_getLegend
+      summary: GET /gsr/services/{workspaceName}/MapServer/legend
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id024
+                type: object
+            application/xml:
+              schema: *id024
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+  /gsr/services/{workspaceName}/MapServer/{layerId:
+    get:
+      operationId: get_gsr_MapServiceController_getLayer
+      summary: GET /gsr/services/{workspaceName}/MapServer/{layerId
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id025
+                type: object
+            application/xml:
+              schema: *id025
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: geometryType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometryType parameter
+      - name: geometry
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometry parameter
+      - name: sr
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The sr parameter
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The time parameter
+  /gsr/services/{workspaceName}/MapServer/{layerId}/export:
+    get:
+      operationId: get_gsr_ExportMapController_exportMapOfLayer
+      summary: GET /gsr/services/{workspaceName}/MapServer/{layerId}/export
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+  /gsr/services/{workspaceName}/MapServer/{layerId}/query:
+    get:
+      operationId: get_gsr_QueryController_query
+      summary: GET /gsr/services/{workspaceName}/MapServer/{layerId}/query
+      description: Endpoint from gsr module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id026
+                type: object
+            application/xml:
+              schema: *id026
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: layerId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layerId parameter
+      - name: geometryType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometryType parameter
+      - name: geometry
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The geometry parameter
+      - name: inSR
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The inSR parameter
+      - name: outSR
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The outSR parameter
+      - name: spatialRel
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The spatialRel parameter
+      - name: objectIds
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The objectIds parameter
+      - name: relationPattern
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The relationPattern parameter
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The time parameter
+      - name: text
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The text parameter
+      - name: maxAllowableOffsets
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The maxAllowableOffsets parameter
+      - name: where
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The where parameter
+      - name: returnGeometry
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnGeometry parameter
+      - name: outFields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The outFields parameter
+      - name: returnIdsOnly
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The returnIdsOnly parameter
+      - name: quantizationParameters
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The quantizationParameters parameter
+  /rest/br/backup/{backupId}:
+    delete:
+      operationId: delete_backup_restore_BackupController_backupDelete
+      summary: DELETE /rest/br/backup/{backupId}
+      description: Endpoint from backup-restore module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: backupId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The backupId parameter
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The format parameter
+    get:
+      operationId: get_backup_restore_BackupController_backupGet
+      summary: GET /rest/br/backup/{backupId}
+      description: Endpoint from backup-restore module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id027
+                type: object
+            application/xml:
+              schema: *id027
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: backupId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The backupId parameter
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The format parameter
+  /rest/br/backup{.+}:
+    get:
+      operationId: get_backup_restore_BackupController_backupGet_rest
+      summary: GET /rest/br/backup{.+}
+      description: Endpoint from backup-restore module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id028
+                type: object
+            application/xml:
+              schema: *id028
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The format parameter
+  /rest/br/restore/{restoreId}:
+    delete:
+      operationId: delete_backup_restore_RestoreController_restoreDelete
+      summary: DELETE /rest/br/restore/{restoreId}
+      description: Endpoint from backup-restore module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: restoreId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The restoreId parameter
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The format parameter
+    get:
+      operationId: get_backup_restore_RestoreController_restoreGet
+      summary: GET /rest/br/restore/{restoreId}
+      description: Endpoint from backup-restore module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id029
+                type: object
+            application/xml:
+              schema: *id029
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: restoreId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The restoreId parameter
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The format parameter
+  /rest/br/restore{.+}:
+    get:
+      operationId: get_backup_restore_RestoreController_restoreGet_rest
+      summary: GET /rest/br/restore{.+}
+      description: Endpoint from backup-restore module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id030
+                type: object
+            application/xml:
+              schema: *id030
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The format parameter
+  /rest/cluster:
+    get:
+      operationId: get_jms_cluster_ClusterController_getClusterConfiguration
+      summary: GET /rest/cluster
+      description: Endpoint from jms-cluster module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id031
+                type: object
+            application/xml:
+              schema: *id031
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    post:
+      operationId: post_jms_cluster_ClusterController_postClusterConfiguration
+      summary: POST /rest/cluster
+      description: Endpoint from jms-cluster module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id032
+                type: object
+            application/xml:
+              schema: *id032
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Properties configuration object
+          application/xml:
+            schema:
+              type: object
+              description: Properties configuration object
+  /rest/featurestemplates:
+    post:
+      operationId: post_features_templating_TemplateRestController_templateZipPost
+      summary: POST /rest/featurestemplates
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id033
+                type: object
+            application/xml:
+              schema: *id033
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: templateName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The templateName parameter
+  /rest/featurestemplates/{templateName:
+    delete:
+      operationId: delete_features_templating_TemplateRestController_deleteTemplate
+      summary: DELETE /rest/featurestemplates/{templateName
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    put:
+      operationId: put_features_templating_TemplateRestController_templateZipPut
+      summary: PUT /rest/featurestemplates/{templateName
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id034
+                type: object
+            application/xml:
+              schema: *id034
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/oseo/collections:
+    get:
+      operationId: get_oseo_CollectionsController_getCollections
+      summary: GET /rest/oseo/collections
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id035
+                type: object
+            application/xml:
+              schema: *id035
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The offset parameter
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The limit parameter
+    post:
+      operationId: post_oseo_CollectionsController_postCollectionJson
+      summary: POST /rest/oseo/collections
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id036
+                type: object
+            application/xml:
+              schema: *id036
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/oseo/collections/rest/oseo/collections:
+    get:
+      operationId: get_oseo_CollectionsController_unknown
+      summary: GET /rest/oseo/collections/rest/oseo/collections
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/oseo/collections/{collection}:
+    delete:
+      operationId: delete_oseo_CollectionsController_deleteCollection
+      summary: DELETE /rest/oseo/collections/{collection}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+    get:
+      operationId: get_oseo_CollectionsController_getCollection
+      summary: GET /rest/oseo/collections/{collection}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id037
+                type: object
+            application/xml:
+              schema: *id037
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+    put:
+      operationId: put_oseo_CollectionsController_putCollectionJson
+      summary: PUT /rest/oseo/collections/{collection}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+  /rest/oseo/collections/{collection}/layer:
+    delete:
+      operationId: delete_oseo_CollectionsController_deleteDefaultCollectionLayer
+      summary: DELETE /rest/oseo/collections/{collection}/layer
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+    get:
+      operationId: get_oseo_CollectionsController_getDefaultCollectionLayer
+      summary: GET /rest/oseo/collections/{collection}/layer
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id038
+                type: object
+            application/xml:
+              schema: *id038
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+    put:
+      operationId: put_oseo_CollectionsController_putDefaultCollectionLayer
+      summary: PUT /rest/oseo/collections/{collection}/layer
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id039
+                type: object
+            application/xml:
+              schema: *id039
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: CollectionLayer configuration object
+          application/xml:
+            schema:
+              type: object
+              description: CollectionLayer configuration object
+  /rest/oseo/collections/{collection}/layers:
+    get:
+      operationId: get_oseo_CollectionsController_getCollectionLayers
+      summary: GET /rest/oseo/collections/{collection}/layers
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id040
+                type: object
+            application/xml:
+              schema: *id040
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The offset parameter
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The limit parameter
+    post:
+      operationId: post_oseo_CollectionsController_postCollectionLayer
+      summary: POST /rest/oseo/collections/{collection}/layers
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id041
+                type: object
+            application/xml:
+              schema: *id041
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: CollectionLayer configuration object
+          application/xml:
+            schema:
+              type: object
+              description: CollectionLayer configuration object
+  /rest/oseo/collections/{collection}/layers/{layer}:
+    delete:
+      operationId: delete_oseo_CollectionsController_deleteCollectionLayer
+      summary: DELETE /rest/oseo/collections/{collection}/layers/{layer}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: layer
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layer parameter
+    get:
+      operationId: get_oseo_CollectionsController_getCollectionLayer
+      summary: GET /rest/oseo/collections/{collection}/layers/{layer}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id042
+                type: object
+            application/xml:
+              schema: *id042
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: layer
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layer parameter
+    put:
+      operationId: put_oseo_CollectionsController_putCollectionLayer
+      summary: PUT /rest/oseo/collections/{collection}/layers/{layer}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id043
+                type: object
+            application/xml:
+              schema: *id043
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: layer
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The layer parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: CollectionLayer configuration object
+          application/xml:
+            schema:
+              type: object
+              description: CollectionLayer configuration object
+  /rest/oseo/collections/{collection}/ogcLinks:
+    delete:
+      operationId: delete_oseo_CollectionsController_deleteCollectionLinks
+      summary: DELETE /rest/oseo/collections/{collection}/ogcLinks
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+    get:
+      operationId: get_oseo_CollectionsController_getCollectionOgcLinks
+      summary: GET /rest/oseo/collections/{collection}/ogcLinks
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id044
+                type: object
+            application/xml:
+              schema: *id044
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+    put:
+      operationId: put_oseo_CollectionsController_putCollectionOgcLinks
+      summary: PUT /rest/oseo/collections/{collection}/ogcLinks
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: OgcLinks configuration object
+          application/xml:
+            schema:
+              type: object
+              description: OgcLinks configuration object
+  /rest/oseo/collections/{collection}/products:
+    get:
+      operationId: get_oseo_ProductsController_getProducts
+      summary: GET /rest/oseo/collections/{collection}/products
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id045
+                type: object
+            application/xml:
+              schema: *id045
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The offset parameter
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The limit parameter
+    post:
+      operationId: post_oseo_ProductsController_postProductJson
+      summary: POST /rest/oseo/collections/{collection}/products
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id046
+                type: object
+            application/xml:
+              schema: *id046
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+  /rest/oseo/collections/{collection}/products/{product}:
+    delete:
+      operationId: delete_oseo_ProductsController_deleteProduct
+      summary: DELETE /rest/oseo/collections/{collection}/products/{product}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    get:
+      operationId: get_oseo_ProductsController_getProduct
+      summary: GET /rest/oseo/collections/{collection}/products/{product}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id047
+                type: object
+            application/xml:
+              schema: *id047
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    put:
+      operationId: put_oseo_ProductsController_putProductJson
+      summary: PUT /rest/oseo/collections/{collection}/products/{product}
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id048
+                type: object
+            application/xml:
+              schema: *id048
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+  /rest/oseo/collections/{collection}/products/{product}/description:
+    delete:
+      operationId: delete_oseo_ProductsController_deleteProductDescription
+      summary: DELETE /rest/oseo/collections/{collection}/products/{product}/description
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    get:
+      operationId: get_oseo_ProductsController_getProductDescription
+      summary: GET /rest/oseo/collections/{collection}/products/{product}/description
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    put:
+      operationId: put_oseo_ProductsController_putProductDescription
+      summary: PUT /rest/oseo/collections/{collection}/products/{product}/description
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+  /rest/oseo/collections/{collection}/products/{product}/granules:
+    delete:
+      operationId: delete_oseo_ProductsController_putProductGranules
+      summary: DELETE /rest/oseo/collections/{collection}/products/{product}/granules
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    get:
+      operationId: get_oseo_ProductsController_getProductGranules
+      summary: GET /rest/oseo/collections/{collection}/products/{product}/granules
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id049
+                type: object
+            application/xml:
+              schema: *id049
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    put:
+      operationId: put_oseo_ProductsController_putProductGranules
+      summary: PUT /rest/oseo/collections/{collection}/products/{product}/granules
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SimpleFeatureCollection configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SimpleFeatureCollection configuration object
+  /rest/oseo/collections/{collection}/products/{product}/ogcLinks:
+    delete:
+      operationId: delete_oseo_ProductsController_deleteProductLinks
+      summary: DELETE /rest/oseo/collections/{collection}/products/{product}/ogcLinks
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    get:
+      operationId: get_oseo_ProductsController_getProductOgcLinks
+      summary: GET /rest/oseo/collections/{collection}/products/{product}/ogcLinks
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id050
+                type: object
+            application/xml:
+              schema: *id050
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    put:
+      operationId: put_oseo_ProductsController_putProductLinks
+      summary: PUT /rest/oseo/collections/{collection}/products/{product}/ogcLinks
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: OgcLinks configuration object
+          application/xml:
+            schema:
+              type: object
+              description: OgcLinks configuration object
+  /rest/oseo/collections/{collection}/products/{product}/thumbnail:
+    delete:
+      operationId: delete_oseo_ProductsController_deleteProductThumbnail
+      summary: DELETE /rest/oseo/collections/{collection}/products/{product}/thumbnail
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    get:
+      operationId: get_oseo_ProductsController_getProductThumbnail
+      summary: GET /rest/oseo/collections/{collection}/products/{product}/thumbnail
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+    put:
+      operationId: put_oseo_ProductsController_putProductThumbnail
+      summary: PUT /rest/oseo/collections/{collection}/products/{product}/thumbnail
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The collection parameter
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product parameter
+  /rest/proxy-base-ext/rules:
+    get:
+      operationId: get_proxy_base_ext_ProxyBaseExtensionRulesController_getRules
+      summary: GET /rest/proxy-base-ext/rules
+      description: Endpoint from proxy-base-ext module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id051
+                type: object
+            application/xml:
+              schema: *id051
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    post:
+      operationId: post_proxy_base_ext_ProxyBaseExtensionRulesController_postRule
+      summary: POST /rest/proxy-base-ext/rules
+      description: Endpoint from proxy-base-ext module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id052
+                type: object
+            application/xml:
+              schema: *id052
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ProxyBaseExtensionRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: ProxyBaseExtensionRule configuration object
+  /rest/proxy-base-ext/rules/{id}:
+    delete:
+      operationId: delete_proxy_base_ext_ProxyBaseExtensionRulesController_deleteRule
+      summary: DELETE /rest/proxy-base-ext/rules/{id}
+      description: Endpoint from proxy-base-ext module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    get:
+      operationId: get_proxy_base_ext_ProxyBaseExtensionRulesController_getRule
+      summary: GET /rest/proxy-base-ext/rules/{id}
+      description: Endpoint from proxy-base-ext module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id053
+                type: object
+            application/xml:
+              schema: *id053
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+    put:
+      operationId: put_proxy_base_ext_ProxyBaseExtensionRulesController_putRule
+      summary: PUT /rest/proxy-base-ext/rules/{id}
+      description: Endpoint from proxy-base-ext module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The id parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ProxyBaseExtensionRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: ProxyBaseExtensionRule configuration object
+  /rest/schemaoverrides:
+    post:
+      operationId: post_features_templating_SchemaRestController_schemaZipPost
+      summary: POST /rest/schemaoverrides
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id054
+                type: object
+            application/xml:
+              schema: *id054
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: schemaName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The schemaName parameter
+  /rest/schemaoverrides/{schemaName:
+    delete:
+      operationId: delete_features_templating_SchemaRestController_deleteSchema
+      summary: DELETE /rest/schemaoverrides/{schemaName
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+    put:
+      operationId: put_features_templating_SchemaRestController_schemaZipPut
+      summary: PUT /rest/schemaoverrides/{schemaName
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id055
+                type: object
+            application/xml:
+              schema: *id055
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+  /rest/services/oseo/settings:
+    put:
+      operationId: put_oseo_OseoSettingsController_serviceSettingsPut
+      summary: PUT /rest/services/oseo/settings
+      description: Endpoint from oseo module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: OSEOInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: OSEOInfo configuration object
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/mosaic/{method}.{format}:
+    post:
+      operationId: post_vector_mosaic_VectorMosaicStoreController_uploadGranule
+      summary: POST /rest/workspaces/{workspaceName}/datastores/{storeName}/mosaic/{method}.{format}
+      description: Endpoint from vector-mosaic module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspaceName parameter
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The storeName parameter
+      - name: method
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The method parameter
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The format parameter
+      - name: spi
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The spi parameter
+      - name: params
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The params parameter
+  /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules:
+    get:
+      operationId: get_features_templating_SchemaRuleRestController_findAll
+      summary: GET /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id056
+                type: object
+            application/xml:
+              schema: *id056
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+    post:
+      operationId: post_features_templating_SchemaRuleRestController_postRule
+      summary: POST /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id057
+                type: object
+            application/xml:
+              schema: *id057
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SchemaRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SchemaRule configuration object
+  /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules/{identifier}:
+    delete:
+      operationId: delete_features_templating_SchemaRuleRestController_deleteRule
+      summary: DELETE /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+    get:
+      operationId: get_features_templating_SchemaRuleRestController_findById
+      summary: GET /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id058
+                type: object
+            application/xml:
+              schema: *id058
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+    patch:
+      operationId: patch_features_templating_SchemaRuleRestController_patchRule
+      summary: PATCH /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id059
+                type: object
+            application/xml:
+              schema: *id059
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+    put:
+      operationId: put_features_templating_SchemaRuleRestController_putRule
+      summary: PUT /rest/workspaces/{workspace}/featuretypes/{featuretype}/schemarules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id060
+                type: object
+            application/xml:
+              schema: *id060
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SchemaRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SchemaRule configuration object
+  /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules:
+    get:
+      operationId: get_features_templating_TemplateRuleRestController_findAll
+      summary: GET /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id061
+                type: object
+            application/xml:
+              schema: *id061
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+    post:
+      operationId: post_features_templating_TemplateRuleRestController_postRule
+      summary: POST /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id062
+                type: object
+            application/xml:
+              schema: *id062
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: TemplateRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: TemplateRule configuration object
+  /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules/{identifier}:
+    delete:
+      operationId: delete_features_templating_TemplateRuleRestController_deleteRule
+      summary: DELETE /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+    get:
+      operationId: get_features_templating_TemplateRuleRestController_findById
+      summary: GET /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id063
+                type: object
+            application/xml:
+              schema: *id063
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+    patch:
+      operationId: patch_features_templating_TemplateRuleRestController_patchRule
+      summary: PATCH /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id064
+                type: object
+            application/xml:
+              schema: *id064
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+    put:
+      operationId: put_features_templating_TemplateRuleRestController_putRule
+      summary: PUT /rest/workspaces/{workspace}/featuretypes/{featuretype}/templaterules/{identifier}
+      description: Endpoint from features-templating module
+      tags:
+      - Community
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id065
+                type: object
+            application/xml:
+              schema: *id065
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The workspace parameter
+      - name: featuretype
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The featuretype parameter
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: TemplateRule configuration object
+          application/xml:
+            schema:
+              type: object
+              description: TemplateRule configuration object
+  /{template}:
+    post:
+      operationId: post_taskmanager_ImportTool_doImportWithTemplate
+      summary: POST /{template}
+      description: Endpoint from taskmanager module
+      tags:
+      - Community
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id066
+                type: boolean
+            application/xml:
+              schema: *id066
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: template
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The template parameter
+      - name: validate
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The validate parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: String configuration object
+          application/xml:
+            schema:
+              type: object
+              description: String configuration object

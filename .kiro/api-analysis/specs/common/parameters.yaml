@@ -1,0 +1,28 @@
+workspaceName:
+  name: workspaceName
+  in: path
+  required: true
+  schema:
+    type: string
+  description: The name of the workspace
+storeName:
+  name: storeName
+  in: path
+  required: true
+  schema:
+    type: string
+  description: The name of the data store
+layerName:
+  name: layerName
+  in: path
+  required: true
+  schema:
+    type: string
+  description: The name of the layer
+styleName:
+  name: styleName
+  in: path
+  required: true
+  schema:
+    type: string
+  description: The name of the style

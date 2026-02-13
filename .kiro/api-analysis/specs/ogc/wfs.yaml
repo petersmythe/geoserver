@@ -1,0 +1,3408 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Web Feature Service API
+  description: 'OGC Web Feature Service for vector data access and editing
+
+
+    Supported versions: 1.0.0, 1.1.0, 2.0.0'
+  version: 2.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+- url: http://localhost:8080/geoserver
+  description: Local GeoServer instance
+- url: https://example.com/geoserver
+  description: Production GeoServer instance
+tags:
+- name: WFS
+  description: Web Feature Service
+  externalDocs:
+    description: OGC WFS Specification
+    url: https://www.ogc.org/standards/wfs
+paths:
+  /wfs:
+    description: WFS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
+  /wfs/getcapabilities/1-0-0:
+    get:
+      operationId: WFS_1_0_0_GetCapabilities
+      summary: GetCapabilities - WFS 1.0.0
+      description: Returns service metadata and available feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version (use ACCEPTVERSIONS in 2.0)
+        required: false
+        schema:
+          type: string
+          enum: &id001
+          - 1.0.0
+          - 1.1.0
+          - 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTFORMATS
+        in: query
+        description: Comma-separated list of accepted output formats
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: UPDATESEQUENCE
+        in: query
+        description: Sequence number for cache validation
+        required: false
+        schema:
+          type: string
+      - name: NAMESPACE
+        in: query
+        description: Filter feature types by namespace (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_0_0_GetCapabilities_wfs
+      summary: GetCapabilities - WFS 1.0.0
+      description: Returns service metadata and available feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version (use ACCEPTVERSIONS in 2.0)
+        required: false
+        schema:
+          type: string
+          enum: *id001
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTFORMATS
+        in: query
+        description: Comma-separated list of accepted output formats
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: UPDATESEQUENCE
+        in: query
+        description: Sequence number for cache validation
+        required: false
+        schema:
+          type: string
+      - name: NAMESPACE
+        in: query
+        description: Filter feature types by namespace (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getcapabilities/1-1-0:
+    get:
+      operationId: WFS_1_1_0_GetCapabilities
+      summary: GetCapabilities - WFS 1.1.0
+      description: Returns service metadata and available feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version (use ACCEPTVERSIONS in 2.0)
+        required: false
+        schema:
+          type: string
+          enum: *id001
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTFORMATS
+        in: query
+        description: Comma-separated list of accepted output formats
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: UPDATESEQUENCE
+        in: query
+        description: Sequence number for cache validation
+        required: false
+        schema:
+          type: string
+      - name: NAMESPACE
+        in: query
+        description: Filter feature types by namespace (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_1_0_GetCapabilities_wfs
+      summary: GetCapabilities - WFS 1.1.0
+      description: Returns service metadata and available feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version (use ACCEPTVERSIONS in 2.0)
+        required: false
+        schema:
+          type: string
+          enum: *id001
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTFORMATS
+        in: query
+        description: Comma-separated list of accepted output formats
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: UPDATESEQUENCE
+        in: query
+        description: Sequence number for cache validation
+        required: false
+        schema:
+          type: string
+      - name: NAMESPACE
+        in: query
+        description: Filter feature types by namespace (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getcapabilities/2-0-0:
+    get:
+      operationId: WFS_2_0_0_GetCapabilities
+      summary: GetCapabilities - WFS 2.0.0
+      description: Returns service metadata and available feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version (use ACCEPTVERSIONS in 2.0)
+        required: false
+        schema:
+          type: string
+          enum: *id001
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Comma-separated list of accepted versions (WFS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: ACCEPTFORMATS
+        in: query
+        description: Comma-separated list of accepted output formats
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: UPDATESEQUENCE
+        in: query
+        description: Sequence number for cache validation
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Comma-separated list of sections to include (WFS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: NAMESPACE
+        in: query
+        description: Filter feature types by namespace (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_GetCapabilities_wfs
+      summary: GetCapabilities - WFS 2.0.0
+      description: Returns service metadata and available feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version (use ACCEPTVERSIONS in 2.0)
+        required: false
+        schema:
+          type: string
+          enum: *id001
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Comma-separated list of accepted versions (WFS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: ACCEPTFORMATS
+        in: query
+        description: Comma-separated list of accepted output formats
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: UPDATESEQUENCE
+        in: query
+        description: Sequence number for cache validation
+        required: false
+        schema:
+          type: string
+      - name: SECTIONS
+        in: query
+        description: Comma-separated list of sections to include (WFS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: NAMESPACE
+        in: query
+        description: Filter feature types by namespace (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/describefeaturetype/1-0-0:
+    get:
+      operationId: WFS_1_0_0_DescribeFeatureType
+      summary: DescribeFeatureType - WFS 1.0.0
+      description: Returns XML schema for requested feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: &id002
+          - 1.0.0
+          - 1.1.0
+          - 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeFeatureType
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_0_0_DescribeFeatureType_wfs
+      summary: DescribeFeatureType - WFS 1.0.0
+      description: Returns XML schema for requested feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id002
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeFeatureType
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/describefeaturetype/1-1-0:
+    get:
+      operationId: WFS_1_1_0_DescribeFeatureType
+      summary: DescribeFeatureType - WFS 1.1.0
+      description: Returns XML schema for requested feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id002
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeFeatureType
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_1_0_DescribeFeatureType_wfs
+      summary: DescribeFeatureType - WFS 1.1.0
+      description: Returns XML schema for requested feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id002
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeFeatureType
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/describefeaturetype/2-0-0:
+    get:
+      operationId: WFS_2_0_0_DescribeFeatureType
+      summary: DescribeFeatureType - WFS 2.0.0
+      description: Returns XML schema for requested feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id002
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeFeatureType
+      - name: TYPENAMES
+        in: query
+        description: Comma-separated list of feature type names (WFS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_DescribeFeatureType_wfs
+      summary: DescribeFeatureType - WFS 2.0.0
+      description: Returns XML schema for requested feature types
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id002
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeFeatureType
+      - name: TYPENAMES
+        in: query
+        description: Comma-separated list of feature type names (WFS 2.0)
+        required: false
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getfeature/1-0-0:
+    get:
+      operationId: WFS_1_0_0_GetFeature
+      summary: GetFeature - WFS 1.0.0
+      description: 'Returns feature instances matching the query
+
+
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREVERSION, VIEWPARAMS, FORMAT_OPTIONS'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: &id003
+          - 1.0.0
+          - 1.1.0
+          - 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetFeature
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: results
+          enum: &id004
+          - results
+          - hits
+      - name: PROPERTYNAME
+        in: query
+        description: Comma-separated list of properties to return
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter (minx,miny,maxx,maxy[,crs])
+        required: false
+        schema:
+          type: string
+      - name: MAXFEATURES
+        in: query
+        description: Maximum features to return (WFS 1.x)
+        required: false
+        schema:
+          type: integer
+      - name: SORTBY
+        in: query
+        description: Sort order (property[+A|-D])
+        required: false
+        schema:
+          type: string
+      - name: SRSNAME
+        in: query
+        description: Coordinate reference system for output
+        required: false
+        schema:
+          type: string
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: CQL_FILTER
+        in: query
+        description: CQL filter expression (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FEATUREVERSION
+        in: query
+        description: Feature version for versioned layers (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: VIEWPARAMS
+        in: query
+        description: SQL view parameters (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT_OPTIONS
+        in: query
+        description: Format-specific options (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_0_0_GetFeature_wfs
+      summary: GetFeature - WFS 1.0.0
+      description: 'Returns feature instances matching the query
+
+
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREVERSION, VIEWPARAMS, FORMAT_OPTIONS'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id003
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetFeature
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: results
+          enum: *id004
+      - name: PROPERTYNAME
+        in: query
+        description: Comma-separated list of properties to return
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter (minx,miny,maxx,maxy[,crs])
+        required: false
+        schema:
+          type: string
+      - name: MAXFEATURES
+        in: query
+        description: Maximum features to return (WFS 1.x)
+        required: false
+        schema:
+          type: integer
+      - name: SORTBY
+        in: query
+        description: Sort order (property[+A|-D])
+        required: false
+        schema:
+          type: string
+      - name: SRSNAME
+        in: query
+        description: Coordinate reference system for output
+        required: false
+        schema:
+          type: string
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: CQL_FILTER
+        in: query
+        description: CQL filter expression (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FEATUREVERSION
+        in: query
+        description: Feature version for versioned layers (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: VIEWPARAMS
+        in: query
+        description: SQL view parameters (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT_OPTIONS
+        in: query
+        description: Format-specific options (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getfeature/1-1-0:
+    get:
+      operationId: WFS_1_1_0_GetFeature
+      summary: GetFeature - WFS 1.1.0
+      description: 'Returns feature instances matching the query
+
+
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREVERSION, VIEWPARAMS, FORMAT_OPTIONS'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id003
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetFeature
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: results
+          enum: *id004
+      - name: PROPERTYNAME
+        in: query
+        description: Comma-separated list of properties to return
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter (minx,miny,maxx,maxy[,crs])
+        required: false
+        schema:
+          type: string
+      - name: MAXFEATURES
+        in: query
+        description: Maximum features to return (WFS 1.x)
+        required: false
+        schema:
+          type: integer
+      - name: SORTBY
+        in: query
+        description: Sort order (property[+A|-D])
+        required: false
+        schema:
+          type: string
+      - name: SRSNAME
+        in: query
+        description: Coordinate reference system for output
+        required: false
+        schema:
+          type: string
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: CQL_FILTER
+        in: query
+        description: CQL filter expression (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FEATUREVERSION
+        in: query
+        description: Feature version for versioned layers (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: VIEWPARAMS
+        in: query
+        description: SQL view parameters (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT_OPTIONS
+        in: query
+        description: Format-specific options (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_1_0_GetFeature_wfs
+      summary: GetFeature - WFS 1.1.0
+      description: 'Returns feature instances matching the query
+
+
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREVERSION, VIEWPARAMS, FORMAT_OPTIONS'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id003
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetFeature
+      - name: TYPENAME
+        in: query
+        description: Comma-separated list of feature type names (WFS 1.x)
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: results
+          enum: *id004
+      - name: PROPERTYNAME
+        in: query
+        description: Comma-separated list of properties to return
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter (minx,miny,maxx,maxy[,crs])
+        required: false
+        schema:
+          type: string
+      - name: MAXFEATURES
+        in: query
+        description: Maximum features to return (WFS 1.x)
+        required: false
+        schema:
+          type: integer
+      - name: SORTBY
+        in: query
+        description: Sort order (property[+A|-D])
+        required: false
+        schema:
+          type: string
+      - name: SRSNAME
+        in: query
+        description: Coordinate reference system for output
+        required: false
+        schema:
+          type: string
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: CQL_FILTER
+        in: query
+        description: CQL filter expression (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FEATUREVERSION
+        in: query
+        description: Feature version for versioned layers (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: VIEWPARAMS
+        in: query
+        description: SQL view parameters (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT_OPTIONS
+        in: query
+        description: Format-specific options (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getfeature/2-0-0:
+    get:
+      operationId: WFS_2_0_0_GetFeature
+      summary: GetFeature - WFS 2.0.0
+      description: 'Returns feature instances matching the query
+
+
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREVERSION, VIEWPARAMS, FORMAT_OPTIONS'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id003
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetFeature
+      - name: TYPENAMES
+        in: query
+        description: Comma-separated list of feature type names (WFS 2.0)
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: results
+          enum: *id004
+      - name: PROPERTYNAME
+        in: query
+        description: Comma-separated list of properties to return
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter (minx,miny,maxx,maxy[,crs])
+        required: false
+        schema:
+          type: string
+      - name: COUNT
+        in: query
+        description: Maximum features to return (WFS 2.0)
+        required: false
+        schema:
+          type: integer
+      - name: STARTINDEX
+        in: query
+        description: Start index for paging (WFS 2.0)
+        required: false
+        schema:
+          type: integer
+      - name: SORTBY
+        in: query
+        description: Sort order (property[+A|-D])
+        required: false
+        schema:
+          type: string
+      - name: SRSNAME
+        in: query
+        description: Coordinate reference system for output
+        required: false
+        schema:
+          type: string
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: CQL_FILTER
+        in: query
+        description: CQL filter expression (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FEATUREVERSION
+        in: query
+        description: Feature version for versioned layers (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: VIEWPARAMS
+        in: query
+        description: SQL view parameters (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT_OPTIONS
+        in: query
+        description: Format-specific options (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_GetFeature_wfs
+      summary: GetFeature - WFS 2.0.0
+      description: 'Returns feature instances matching the query
+
+
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREVERSION, VIEWPARAMS, FORMAT_OPTIONS'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id003
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetFeature
+      - name: TYPENAMES
+        in: query
+        description: Comma-separated list of feature type names (WFS 2.0)
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+          default: text/xml; subtype=gml/3.1.1
+      - name: RESULTTYPE
+        in: query
+        description: Results or hits
+        required: false
+        schema:
+          type: string
+          default: results
+          enum: *id004
+      - name: PROPERTYNAME
+        in: query
+        description: Comma-separated list of properties to return
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter (minx,miny,maxx,maxy[,crs])
+        required: false
+        schema:
+          type: string
+      - name: COUNT
+        in: query
+        description: Maximum features to return (WFS 2.0)
+        required: false
+        schema:
+          type: integer
+      - name: STARTINDEX
+        in: query
+        description: Start index for paging (WFS 2.0)
+        required: false
+        schema:
+          type: integer
+      - name: SORTBY
+        in: query
+        description: Sort order (property[+A|-D])
+        required: false
+        schema:
+          type: string
+      - name: SRSNAME
+        in: query
+        description: Coordinate reference system for output
+        required: false
+        schema:
+          type: string
+      - name: EXCEPTIONS
+        in: query
+        description: Exception format
+        required: false
+        schema:
+          type: string
+          default: text/xml
+      - name: CQL_FILTER
+        in: query
+        description: CQL filter expression (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FEATUREVERSION
+        in: query
+        description: Feature version for versioned layers (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: VIEWPARAMS
+        in: query
+        description: SQL view parameters (vendor extension)
+        required: false
+        schema:
+          type: string
+      - name: FORMAT_OPTIONS
+        in: query
+        description: Format-specific options (vendor extension)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getfeaturewithlock/1-1-0:
+    get:
+      operationId: WFS_1_1_0_GetFeatureWithLock
+      summary: GetFeatureWithLock - WFS 1.1.0
+      description: 'Returns features and locks them for editing
+
+
+        **Note**: Includes all GetFeature parameters plus lock-specific parameters'
+      tags:
+      - WFS
+      parameters:
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: &id005
+          - ALL
+          - SOME
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_1_0_GetFeatureWithLock_wfs
+      summary: GetFeatureWithLock - WFS 1.1.0
+      description: 'Returns features and locks them for editing
+
+
+        **Note**: Includes all GetFeature parameters plus lock-specific parameters'
+      tags:
+      - WFS
+      parameters:
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id005
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getfeaturewithlock/2-0-0:
+    get:
+      operationId: WFS_2_0_0_GetFeatureWithLock
+      summary: GetFeatureWithLock - WFS 2.0.0
+      description: 'Returns features and locks them for editing
+
+
+        **Note**: Includes all GetFeature parameters plus lock-specific parameters'
+      tags:
+      - WFS
+      parameters:
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id005
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_GetFeatureWithLock_wfs
+      summary: GetFeatureWithLock - WFS 2.0.0
+      description: 'Returns features and locks them for editing
+
+
+        **Note**: Includes all GetFeature parameters plus lock-specific parameters'
+      tags:
+      - WFS
+      parameters:
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id005
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/lockfeature/1-0-0:
+    get:
+      operationId: WFS_1_0_0_LockFeature
+      summary: LockFeature - WFS 1.0.0
+      description: Locks features for exclusive editing access
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: &id006
+          - 1.0.0
+          - 1.1.0
+          - 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: LockFeature
+      - name: TYPENAME
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: &id007
+          - ALL
+          - SOME
+      - name: FILTER
+        in: query
+        description: OGC Filter XML to select features
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_0_0_LockFeature_wfs
+      summary: LockFeature - WFS 1.0.0
+      description: Locks features for exclusive editing access
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id006
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: LockFeature
+      - name: TYPENAME
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id007
+      - name: FILTER
+        in: query
+        description: OGC Filter XML to select features
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/lockfeature/1-1-0:
+    get:
+      operationId: WFS_1_1_0_LockFeature
+      summary: LockFeature - WFS 1.1.0
+      description: Locks features for exclusive editing access
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id006
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: LockFeature
+      - name: TYPENAME
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id007
+      - name: FILTER
+        in: query
+        description: OGC Filter XML to select features
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_1_0_LockFeature_wfs
+      summary: LockFeature - WFS 1.1.0
+      description: Locks features for exclusive editing access
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id006
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: LockFeature
+      - name: TYPENAME
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id007
+      - name: FILTER
+        in: query
+        description: OGC Filter XML to select features
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/lockfeature/2-0-0:
+    get:
+      operationId: WFS_2_0_0_LockFeature
+      summary: LockFeature - WFS 2.0.0
+      description: Locks features for exclusive editing access
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id006
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: LockFeature
+      - name: TYPENAME
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id007
+      - name: FILTER
+        in: query
+        description: OGC Filter XML to select features
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_LockFeature_wfs
+      summary: LockFeature - WFS 2.0.0
+      description: Locks features for exclusive editing access
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id006
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: LockFeature
+      - name: TYPENAME
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: EXPIRY
+        in: query
+        description: Lock expiry time in minutes
+        required: false
+        schema:
+          type: integer
+      - name: LOCKACTION
+        in: query
+        description: Action on lock failure (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id007
+      - name: FILTER
+        in: query
+        description: OGC Filter XML to select features
+        required: false
+        schema:
+          type: string
+      - name: BBOX
+        in: query
+        description: Bounding box filter
+        required: false
+        schema:
+          type: string
+      - name: FEATUREID
+        in: query
+        description: Comma-separated list of feature IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/transaction/1-0-0:
+    post:
+      operationId: WFS_1_0_0_Transaction
+      summary: Transaction - WFS 1.0.0
+      description: 'Inserts, updates, or deletes features
+
+
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
+        in POST body'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: &id008
+          - 1.0.0
+          - 1.1.0
+          - 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: Transaction
+      - name: LOCKID
+        in: query
+        description: Lock ID from previous LockFeature operation
+        required: false
+        schema:
+          type: string
+      - name: RELEASEACTION
+        in: query
+        description: Action on locks after transaction (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: &id009
+          - ALL
+          - SOME
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/transaction/1-1-0:
+    post:
+      operationId: WFS_1_1_0_Transaction
+      summary: Transaction - WFS 1.1.0
+      description: 'Inserts, updates, or deletes features
+
+
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
+        in POST body'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id008
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: Transaction
+      - name: LOCKID
+        in: query
+        description: Lock ID from previous LockFeature operation
+        required: false
+        schema:
+          type: string
+      - name: RELEASEACTION
+        in: query
+        description: Action on locks after transaction (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id009
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/transaction/2-0-0:
+    post:
+      operationId: WFS_2_0_0_Transaction
+      summary: Transaction - WFS 2.0.0
+      description: 'Inserts, updates, or deletes features
+
+
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
+        in POST body'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          enum: *id008
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: Transaction
+      - name: LOCKID
+        in: query
+        description: Lock ID from previous LockFeature operation
+        required: false
+        schema:
+          type: string
+      - name: RELEASEACTION
+        in: query
+        description: Action on locks after transaction (ALL or SOME)
+        required: false
+        schema:
+          type: string
+          default: ALL
+          enum: *id009
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getgmlobject/1-1-0:
+    get:
+      operationId: WFS_1_1_0_GetGmlObject
+      summary: GetGmlObject - WFS 1.1.0
+      description: Returns a GML object by ID
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.1.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetGmlObject
+      - name: GMLOBJECTID
+        in: query
+        description: GML object identifier
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_1_0_GetGmlObject_wfs
+      summary: GetGmlObject - WFS 1.1.0
+      description: Returns a GML object by ID
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.1.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetGmlObject
+      - name: GMLOBJECTID
+        in: query
+        description: GML object identifier
+        required: true
+        schema:
+          type: string
+      - name: OUTPUTFORMAT
+        in: query
+        description: Output format MIME type
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/getpropertyvalue/2-0-0:
+    get:
+      operationId: WFS_2_0_0_GetPropertyValue
+      summary: GetPropertyValue - WFS 2.0.0
+      description: Returns values of a specific property
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetPropertyValue
+      - name: TYPENAMES
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: VALUEREFERENCE
+        in: query
+        description: XPath expression for property
+        required: true
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: COUNT
+        in: query
+        description: Maximum values to return
+        required: false
+        schema:
+          type: integer
+      - name: STARTINDEX
+        in: query
+        description: Start index for paging
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_GetPropertyValue_wfs
+      summary: GetPropertyValue - WFS 2.0.0
+      description: Returns values of a specific property
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetPropertyValue
+      - name: TYPENAMES
+        in: query
+        description: Feature type name
+        required: true
+        schema:
+          type: string
+      - name: VALUEREFERENCE
+        in: query
+        description: XPath expression for property
+        required: true
+        schema:
+          type: string
+      - name: FILTER
+        in: query
+        description: OGC Filter XML
+        required: false
+        schema:
+          type: string
+      - name: COUNT
+        in: query
+        description: Maximum values to return
+        required: false
+        schema:
+          type: integer
+      - name: STARTINDEX
+        in: query
+        description: Start index for paging
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/liststoredqueries/2-0-0:
+    get:
+      operationId: WFS_2_0_0_ListStoredQueries
+      summary: ListStoredQueries - WFS 2.0.0
+      description: Returns list of available stored queries
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ListStoredQueries
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_ListStoredQueries_wfs
+      summary: ListStoredQueries - WFS 2.0.0
+      description: Returns list of available stored queries
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ListStoredQueries
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/describestoredqueries/2-0-0:
+    get:
+      operationId: WFS_2_0_0_DescribeStoredQueries
+      summary: DescribeStoredQueries - WFS 2.0.0
+      description: Returns metadata for stored queries
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeStoredQueries
+      - name: STOREDQUERY_ID
+        in: query
+        description: Comma-separated list of stored query IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_DescribeStoredQueries_wfs
+      summary: DescribeStoredQueries - WFS 2.0.0
+      description: Returns metadata for stored queries
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeStoredQueries
+      - name: STOREDQUERY_ID
+        in: query
+        description: Comma-separated list of stored query IDs
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/createstoredquery/2-0-0:
+    post:
+      operationId: WFS_2_0_0_CreateStoredQuery
+      summary: CreateStoredQuery - WFS 2.0.0
+      description: 'Creates a new stored query
+
+
+        **Note**: Query definition is specified in POST body'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: CreateStoredQuery
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/dropstoredquery/2-0-0:
+    get:
+      operationId: WFS_2_0_0_DropStoredQuery
+      summary: DropStoredQuery - WFS 2.0.0
+      description: Deletes a stored query
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DropStoredQuery
+      - name: ID
+        in: query
+        description: Stored query ID to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_DropStoredQuery_wfs
+      summary: DropStoredQuery - WFS 2.0.0
+      description: Deletes a stored query
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 2.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DropStoredQuery
+      - name: ID
+        in: query
+        description: Stored query ID to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/releaselock/1-0-0:
+    get:
+      operationId: WFS_1_0_0_ReleaseLock
+      summary: ReleaseLock - WFS 1.0.0
+      description: 'Releases a previously acquired lock
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: Not part of official WFS specification'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ReleaseLock
+      - name: LOCKID
+        in: query
+        description: Lock ID to release
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_0_0_ReleaseLock_wfs
+      summary: ReleaseLock - WFS 1.0.0
+      description: 'Releases a previously acquired lock
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: Not part of official WFS specification'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ReleaseLock
+      - name: LOCKID
+        in: query
+        description: Lock ID to release
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/releaselock/1-1-0:
+    get:
+      operationId: WFS_1_1_0_ReleaseLock
+      summary: ReleaseLock - WFS 1.1.0
+      description: 'Releases a previously acquired lock
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: Not part of official WFS specification'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ReleaseLock
+      - name: LOCKID
+        in: query
+        description: Lock ID to release
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_1_1_0_ReleaseLock_wfs
+      summary: ReleaseLock - WFS 1.1.0
+      description: 'Releases a previously acquired lock
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: Not part of official WFS specification'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ReleaseLock
+      - name: LOCKID
+        in: query
+        description: Lock ID to release
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wfs/releaselock/2-0-0:
+    get:
+      operationId: WFS_2_0_0_ReleaseLock
+      summary: ReleaseLock - WFS 2.0.0
+      description: 'Releases a previously acquired lock
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: Not part of official WFS specification'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ReleaseLock
+      - name: LOCKID
+        in: query
+        description: Lock ID to release
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WFS_2_0_0_ReleaseLock_wfs
+      summary: ReleaseLock - WFS 2.0.0
+      description: 'Releases a previously acquired lock
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: Not part of official WFS specification'
+      tags:
+      - WFS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WFS)
+        required: true
+        schema:
+          type: string
+          default: WFS
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: ReleaseLock
+      - name: LOCKID
+        in: query
+        description: Lock ID to release
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+components:
+  schemas:
+    OGCException:
+      type: object
+      description: OGC Service Exception
+      properties:
+        ServiceException:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Exception code
+            locator:
+              type: string
+              description: Parameter that caused the exception
+            text:
+              type: string
+              description: Exception message
+  parameters: {}

@@ -1,0 +1,497 @@
+openapi: 3.0.0
+info:
+  title: GeoServer Web Processing Service API
+  description: 'OGC Web Processing Service for geospatial processing
+
+
+    Supported versions: 1.0.0'
+  version: 1.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+- url: http://localhost:8080/geoserver
+  description: Local GeoServer instance
+- url: https://example.com/geoserver
+  description: Production GeoServer instance
+tags:
+- name: WPS
+  description: Web Processing Service
+  externalDocs:
+    description: OGC WPS Specification
+    url: https://www.ogc.org/standards/wps
+paths:
+  /wps:
+    description: WPS service endpoint. Operations are distinguished by the REQUEST
+      parameter.
+  /wps/getcapabilities/1-0-0:
+    get:
+      operationId: WPS_1_0_0_GetCapabilities
+      summary: GetCapabilities - WPS 1.0.0
+      description: Returns service metadata and available processes
+      tags:
+      - WPS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WPS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions
+        required: false
+        schema:
+          type: string
+      - name: LANGUAGE
+        in: query
+        description: Preferred language
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WPS_1_0_0_GetCapabilities_wps
+      summary: GetCapabilities - WPS 1.0.0
+      description: Returns service metadata and available processes
+      tags:
+      - WPS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WPS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: false
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: GetCapabilities
+      - name: ACCEPTVERSIONS
+        in: query
+        description: Accepted versions
+        required: false
+        schema:
+          type: string
+      - name: LANGUAGE
+        in: query
+        description: Preferred language
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wps/describeprocess/1-0-0:
+    get:
+      operationId: WPS_1_0_0_DescribeProcess
+      summary: DescribeProcess - WPS 1.0.0
+      description: Returns detailed process descriptions
+      tags:
+      - WPS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WPS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeProcess
+      - name: IDENTIFIER
+        in: query
+        description: Comma-separated process identifiers
+        required: true
+        schema:
+          type: string
+      - name: LANGUAGE
+        in: query
+        description: Preferred language
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WPS_1_0_0_DescribeProcess_wps
+      summary: DescribeProcess - WPS 1.0.0
+      description: Returns detailed process descriptions
+      tags:
+      - WPS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WPS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: DescribeProcess
+      - name: IDENTIFIER
+        in: query
+        description: Comma-separated process identifiers
+        required: true
+        schema:
+          type: string
+      - name: LANGUAGE
+        in: query
+        description: Preferred language
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wps/execute/1-0-0:
+    get:
+      operationId: WPS_1_0_0_Execute
+      summary: Execute - WPS 1.0.0
+      description: 'Executes a process with specified inputs
+
+
+        **Note**: Complex inputs and outputs typically specified in POST body'
+      tags:
+      - WPS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WPS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: Execute
+      - name: IDENTIFIER
+        in: query
+        description: Process identifier
+        required: true
+        schema:
+          type: string
+      - name: DATAINPUTS
+        in: query
+        description: Process input data (KVP format)
+        required: false
+        schema:
+          type: string
+      - name: RESPONSEFORM
+        in: query
+        description: Response format
+        required: false
+        schema:
+          type: string
+      - name: STOREEXECUTERESPONSE
+        in: query
+        description: Store response document
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+      - name: LINEAGE
+        in: query
+        description: Include lineage in response
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+      - name: STATUS
+        in: query
+        description: Include status updates
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+    post:
+      operationId: WPS_1_0_0_Execute_wps
+      summary: Execute - WPS 1.0.0
+      description: 'Executes a process with specified inputs
+
+
+        **Note**: Complex inputs and outputs typically specified in POST body'
+      tags:
+      - WPS
+      parameters:
+      - name: SERVICE
+        in: query
+        description: Service name (WPS)
+        required: true
+        schema:
+          type: string
+      - name: VERSION
+        in: query
+        description: Service version
+        required: true
+        schema:
+          type: string
+          default: 1.0.0
+      - name: REQUEST
+        in: query
+        description: Operation name
+        required: true
+        schema:
+          type: string
+          default: Execute
+      - name: IDENTIFIER
+        in: query
+        description: Process identifier
+        required: true
+        schema:
+          type: string
+      - name: DATAINPUTS
+        in: query
+        description: Process input data (KVP format)
+        required: false
+        schema:
+          type: string
+      - name: RESPONSEFORM
+        in: query
+        description: Response format
+        required: false
+        schema:
+          type: string
+      - name: STOREEXECUTERESPONSE
+        in: query
+        description: Store response document
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+      - name: LINEAGE
+        in: query
+        description: Include lineage in response
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+      - name: STATUS
+        in: query
+        description: Include status updates
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wps/getexecutionstatus/1-0-0:
+    get:
+      operationId: WPS_1_0_0_GetExecutionStatus
+      summary: GetExecutionStatus - WPS 1.0.0
+      description: 'Returns status of asynchronous execution
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: GeoServer extension for checking async execution status'
+      tags:
+      - WPS
+      parameters:
+      - name: EXECUTIONID
+        in: query
+        description: Execution identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+  /wps/dismiss/1-0-0:
+    get:
+      operationId: WPS_1_0_0_Dismiss
+      summary: Dismiss - WPS 1.0.0
+      description: 'Dismisses a stored execution result
+
+
+        **GeoServer Extension**: This operation is a vendor-specific extension.
+
+
+        **Note**: GeoServer extension for cleaning up stored results'
+      tags:
+      - WPS
+      parameters:
+      - name: EXECUTIONID
+        in: query
+        description: Execution identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: binary
+        default:
+          description: Error response
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OGCException'
+components:
+  schemas:
+    OGCException:
+      type: object
+      description: OGC Service Exception
+      properties:
+        ServiceException:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Exception code
+            locator:
+              type: string
+              description: Parameter that caused the exception
+            text:
+              type: string
+              description: Exception message
+  parameters: {}
