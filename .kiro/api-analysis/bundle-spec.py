@@ -350,6 +350,9 @@ def apply_validation_fixes(spec: Dict[str, Any]) -> Dict[str, Any]:
     2. Path parameter mismatches - Remove parameters not in path template
     3. Malformed paths - Fix missing closing braces
     4. Nested brace issues - Fix paths like /{workspaceName/{featureTypeName}}
+    5. Missing path parameters - Add missing path parameters to operations
+    6. Duplicate parameter names - Remove duplicate parameters
+    7. Unused definitions - Remove unused schemas/components
     """
     import re
     
@@ -359,7 +362,10 @@ def apply_validation_fixes(spec: Dict[str, Any]) -> Dict[str, Any]:
         'duplicate_operation_ids': 0,
         'path_param_mismatches': 0,
         'malformed_paths': 0,
-        'nested_braces': 0
+        'nested_braces': 0,
+        'missing_path_params': 0,
+        'duplicate_params': 0,
+        'unused_definitions': 0
     }
     
     used_operation_ids = set()
@@ -395,7 +401,7 @@ def apply_validation_fixes(spec: Dict[str, Any]) -> Dict[str, Any]:
     for old_path, new_path in paths_to_fix.items():
         spec['paths'][new_path] = spec['paths'].pop(old_path)
     
-    # Second pass: fix duplicate operationIds and path parameters
+    # Second pass: fix duplicate operationIds, path parameters, and duplicate params
     for path_name, path_item in spec.get('paths', {}).items():
         # Extract valid path parameters from template
         valid_path_params = set(re.findall(r'\{([^}]+)\}', path_name))
@@ -435,32 +441,94 @@ def apply_validation_fixes(spec: Dict[str, Any]) -> Dict[str, Any]:
                 else:
                     used_operation_ids.add(original_id)
             
-            # Fix path parameter mismatches
-            if 'parameters' in operation:
-                original_params = operation['parameters']
-                fixed_params = []
-                
-                for param in original_params:
-                    if not isinstance(param, dict):
-                        fixed_params.append(param)
-                        continue
-                    
-                    # If it's a path parameter, check if it's in the path template
-                    if param.get('in') == 'path':
-                        param_name = param.get('name')
-                        if param_name not in valid_path_params:
-                            # Remove this parameter
-                            fixed_count['path_param_mismatches'] += 1
-                            continue
-                    
+            # Fix path parameters and duplicates
+            if 'parameters' not in operation:
+                operation['parameters'] = []
+            
+            original_params = operation['parameters']
+            fixed_params = []
+            seen_param_names = set()
+            path_params_found = set()
+            
+            for param in original_params:
+                if not isinstance(param, dict):
                     fixed_params.append(param)
+                    continue
                 
-                operation['parameters'] = fixed_params
+                param_name = param.get('name')
+                param_in = param.get('in')
+                
+                # Check for duplicate parameter names
+                if param_name in seen_param_names:
+                    fixed_count['duplicate_params'] += 1
+                    continue  # Skip duplicate
+                
+                # If it's a path parameter, check if it's in the path template
+                if param_in == 'path':
+                    if param_name not in valid_path_params:
+                        # Remove this parameter
+                        fixed_count['path_param_mismatches'] += 1
+                        continue
+                    path_params_found.add(param_name)
+                
+                seen_param_names.add(param_name)
+                fixed_params.append(param)
+            
+            # Add missing path parameters
+            missing_path_params = valid_path_params - path_params_found
+            for param_name in missing_path_params:
+                fixed_params.append({
+                    'name': param_name,
+                    'in': 'path',
+                    'required': True,
+                    'schema': {
+                        'type': 'string'
+                    },
+                    'description': f'Path parameter: {param_name}'
+                })
+                fixed_count['missing_path_params'] += 1
+            
+            operation['parameters'] = fixed_params
+    
+    # Third pass: Remove unused definitions
+    # Collect all $ref references
+    refs_used = set()
+    
+    def find_refs(obj, refs):
+        if isinstance(obj, dict):
+            if '$ref' in obj:
+                refs.add(obj['$ref'])
+            for value in obj.values():
+                find_refs(value, refs)
+        elif isinstance(obj, list):
+            for item in obj:
+                find_refs(item, refs)
+    
+    find_refs(spec, refs_used)
+    
+    # Remove unused components
+    components = spec.get('components', {})
+    for comp_type in ['schemas', 'parameters', 'responses', 'examples', 'requestBodies', 'headers']:
+        if comp_type not in components:
+            continue
+        
+        to_remove = []
+        for name in components[comp_type].keys():
+            ref = f"#/components/{comp_type}/{name}"
+            if ref not in refs_used:
+                to_remove.append(name)
+        
+        for name in to_remove:
+            del components[comp_type][name]
+            fixed_count['unused_definitions'] += 1
     
     print(f"  ✓ Fixed {fixed_count['nested_braces']} nested brace issues")
     print(f"  ✓ Fixed {fixed_count['malformed_paths']} malformed paths")
     print(f"  ✓ Fixed {fixed_count['duplicate_operation_ids']} duplicate operationIds")
-    print(f"  ✓ Fixed {fixed_count['path_param_mismatches']} path parameter mismatches")
+    print(f"  ✓ Fixed {fixed_count['path_param_mismatches']} invalid path parameters")
+    print(f"  ✓ Added {fixed_count['missing_path_params']} missing path parameters")
+    print(f"  ✓ Removed {fixed_count['duplicate_params']} duplicate parameters")
+    print(f"  ✓ Removed {fixed_count['unused_definitions']} unused definitions")
     
     return spec
 

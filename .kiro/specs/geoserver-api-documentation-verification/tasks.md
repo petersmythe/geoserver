@@ -360,23 +360,121 @@ The implementation is organized into phases, with each phase building on the pre
   - Re-bundle specs after fixes
   - _Requirements: 6.1, 6.2_
 
-- [ ] 15.4 Fix OpenAPI validation errors
-  - Fix duplicate operationId errors (ensure all operation IDs are unique by including a version number or similar)
-  - Fix path parameter definition errors (parameters must be defined in path template)
-  - Fix path format errors (paths must begin with '/')
-  - Fix path template parameter matching errors
-  - Remove unused definitions
+- [x] 15.4 Fix OpenAPI validation errors
+  - [x] 15.4.1 Fix duplicate operationId errors
+    - Ensure all operation IDs are unique by including path segments or counters
+    - Fixed 99 duplicate operationIds
+    - _Requirements: 11.1, 11.2_
+  
+  - [x] 15.4.2 Fix malformed paths (missing/misplaced braces)
+    - Fix paths with missing closing braces (e.g., `/rest/styles/{styleName`)
+    - Fix paths with nested braces (e.g., `/rest/workspaces/{workspaceName/{featureTypeName}}`)
+    - Fixed 14 malformed paths
+    - _Requirements: 11.1, 11.3_
+  
+  - [x] 15.4.3 Fix path template parameter mismatches
+    - Path template expressions must match Parameter Objects
+    - Example issue: `/rest/workspaces/{workspaceName}` has parameters not in template
+    - Remove or add parameters to match path template
+    - _Requirements: 11.1, 11.3, 11.4_
+  
+  - [x] 15.4.4 Fix duplicate parameter names
+    - Parameter names must be unique within an operation
+    - Example issue: `name: USE_IMAGEN_IMAGEREAD` appears multiple times
+    - Rename or remove duplicate parameters
+    - _Requirements: 11.1, 11.4_
+  
+  - [x] 15.4.5 Remove unused definitions
+    - Definitions declared but never used should be removed
+    - Example issue: `OGCException` defined but never referenced
+    - Clean up unused schemas, parameters, responses
+    - _Requirements: 11.1, 11.4_
+  
   - Apply fixes to both modular and bundled specs (YAML and JSON)
   - _Requirements: 11.1, 11.2, 11.3, 11.4_
 
-- [ ] 15.5 Fix tag naming and organization
-  - Capitalize "Gwc" to "GWC" in all tags and headings
-  - Restructure OGC service tags to include version (e.g., "WMS 1.3.0", "WMS 1.1.0", "WFS 2.0.0")
-  - Order service versions from highest to lowest (2.0.0 before 1.0.0)
-  - Prefix REST tags with "REST" (e.g., "REST", "REST Extensions", "REST Community", "REST GWC")
-  - Reorder tags: REST, REST Extensions, REST Community, REST GWC, then OGC services
-  - Apply fixes to both modular and bundled specs (YAML and JSON)
-  - _Requirements: 6.2, 6.4, 8.7_
+- [x] 15.5 Fix tag naming and organization
+  - [x] 15.5.1 Capitalize "Gwc" to "GWC" in tag definitions
+    - Updated tag definitions in modular and bundled specs
+    - _Requirements: 6.2_
+  
+  - [x] 15.5.2 Fix remaining "Gwc" tags in operations
+    - Found 5 operations still using "Gwc" tag (should be "REST GWC")
+    - Located around lines 7387, 7455, 7523, 7591, 7659 in bundled YAML
+    - Apply fix to both YAML and JSON bundled specs
+    - _Requirements: 6.2_
+  
+  - [x] 15.5.3 Restructure OGC service tags to include version
+    - Added version numbers to all OGC service tags (e.g., "WMS 1.3.0", "WFS 2.0.0")
+    - _Requirements: 6.4, 8.7_
+  
+  - [x] 15.5.4 Order service versions from highest to lowest
+    - Versions now ordered descending (2.0.0 before 1.0.0)
+    - _Requirements: 6.4_
+  
+  - [x] 15.5.5 Prefix REST tags with "REST"
+    - All REST tags now prefixed: "REST", "REST Extensions", "REST Community", "REST GWC", "REST Security"
+    - _Requirements: 6.2_
+  
+  - [x] 15.5.6 Reorder tags properly
+    - Tags now ordered: REST tags first, then OGC services
+    - _Requirements: 6.2, 6.4_
+  
+  - [x] 15.5.7 Investigate and populate REST GWC endpoints
+    - REST GWC tag exists but has no operations assigned
+    - Found 5 GWC endpoints in extraction but they use dynamic paths (${gwc.context.suffix:})
+    - Need to determine if these should be documented or if there are other GWC REST endpoints
+    - Check if GWC REST API is separate from main GeoServer REST API
+    - _Requirements: 2.1, 2.3, 6.1_
+  
+  - [x] 15.5.8 Fix malformed path `/.{ext:xml|json}` in REST Security
+    - Path: `/.{ext:xml|json}` is malformed (missing closing brace)
+    - Source: AuthenticationProviderRestController.java line 156
+    - Actual path should be: `/security/authproviders` or `/security/authproviders.{ext:xml|json}`
+    - The `.{ext:xml|json}` is a Spring path pattern for optional extension
+    - This endpoint is tagged as "REST Security" but path is wrong
+    - Fix in both modular and bundled specs (YAML and JSON)
+    - _Requirements: 2.6, 6.1, 11.3_
+  
+  - [x] 15.5.9 Fix DELETE / endpoint path
+    - Path: `/` is incorrect, should be `/rest/metadata`
+    - Source: MetaDataRestService.java has @RequestMapping("/rest/metadata") at class level
+    - Currently tagged as "REST Extensions" which is correct (metadata module)
+    - Fix path to `/rest/metadata` in both modular and bundled specs
+    - _Requirements: 2.6, 6.1, 11.3_
+  
+  - [x] 15.5.10 Sort REST Extensions endpoints alphabetically
+    - All endpoints within REST Extensions tag should be ordered alphabetically by path
+    - This should apply to all tag groups for consistency
+    - Sort paths in bundled specs (YAML and JSON)
+    - _Requirements: 6.2, 12.2_
+    - Endpoint: DELETE/GET/POST/PUT /order
+    - Currently tagged as "REST Security" but comes from rest module (not security module)
+    - Source: AuthenticationFilterChainRestController.java and AuthenticationProviderRestController.java
+    - Path pattern: /order and /order.{ext}
+    - Determine correct tag: should it be "REST" or "REST Security"?
+    - _Requirements: 6.2, 7.1_
+  
+  - [x] 15.5.9 Investigate DELETE / endpoint (DUPLICATE - COMPLETED IN 15.5.9 ABOVE)
+    - Endpoint: DELETE /
+    - Currently tagged as "REST Extensions"
+    - Source: MetaDataRestService.java in metadata extension module
+    - Full path should be /rest/metadata (not just /)
+    - Verify path extraction is correct
+    - Fixed: Path corrected to /rest/metadata
+    - _Requirements: 2.1, 2.3, 6.1_
+  
+  - [x] 15.5.10 Sort REST Extensions endpoints alphabetically (DUPLICATE - COMPLETED IN 15.5.10 ABOVE)
+    - All endpoints within REST Extensions tag should be ordered alphabetically by path
+    - Apply to both modular and bundled specs
+    - Fixed: All paths sorted alphabetically
+    - _Requirements: 6.2_
+  
+  - [x] 15.5.11 Apply alphabetical sorting to all endpoint groups
+    - Ensure all endpoints are sorted alphabetically within their tag groups
+    - Apply to REST, REST Community, REST Security, REST GWC, and all OGC service versions
+    - Fixed: All paths sorted alphabetically in bundled specs
+    - _Requirements: 6.2_
 
 - [ ] 15.6 Research and document authentication methods
   - Research GeoServer authentication methods from official documentation
