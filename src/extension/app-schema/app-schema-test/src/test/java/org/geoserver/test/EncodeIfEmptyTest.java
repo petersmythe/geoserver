@@ -30,7 +30,7 @@ public class EncodeIfEmptyTest extends AbstractAppSchemaTestSupport {
         EntityResolverProvider.setEntityResolver(DevModeEntityResolver.INSTANCE);
     }
 
-    /** @see org.geoserver.test.AbstractAppSchemaTestSupport#buildTestData() */
+    /** @see org.geoserver.test.AbstractAppSchemaTestSupport#createTestData() */
     @Override
     protected EncodeIfEmptyMockData createTestData() {
         return new EncodeIfEmptyMockData();
