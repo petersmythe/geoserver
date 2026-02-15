@@ -7096,7 +7096,18 @@
           "404": {
             "description": "Blobstore not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "blobstore",
+            "in": "path",
+            "required": true,
+            "description": "Name of the blobstore",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -7129,7 +7140,18 @@
           "200": {
             "description": "Blobstore created or updated successfully"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "blobstore",
+            "in": "path",
+            "required": true,
+            "description": "Name of the blobstore",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -7150,7 +7172,18 @@
           "404": {
             "description": "Blobstore not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "blobstore",
+            "in": "path",
+            "required": true,
+            "description": "Name of the blobstore",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/gwc/rest/diskquota": {
@@ -7251,7 +7284,18 @@
           "404": {
             "description": "Layer not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -7284,7 +7328,18 @@
           "200": {
             "description": "Layer disk quota updated successfully"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -7305,7 +7360,18 @@
           "404": {
             "description": "Layer not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/gwc/rest/global": {
@@ -7418,7 +7484,18 @@
           "404": {
             "description": "Gridset not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "gridset",
+            "in": "path",
+            "required": true,
+            "description": "Name of the gridset",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -7446,7 +7523,18 @@
           "200": {
             "description": "Gridset created or updated successfully"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "gridset",
+            "in": "path",
+            "required": true,
+            "description": "Name of the gridset",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -7467,7 +7555,18 @@
           "404": {
             "description": "Gridset not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "gridset",
+            "in": "path",
+            "required": true,
+            "description": "Name of the gridset",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/gwc/rest/layers": {
@@ -7545,7 +7644,18 @@
           "404": {
             "description": "Layer not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer (use workspace:layer format for GeoServer layers)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -7605,7 +7715,18 @@
           "400": {
             "description": "Invalid request (name mismatch or invalid configuration)"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer (use workspace:layer format for GeoServer layers)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -7626,7 +7747,18 @@
           "404": {
             "description": "Layer not found"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer (use workspace:layer format for GeoServer layers)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/gwc/rest/masstruncate": {
@@ -7786,7 +7918,18 @@
           "200": {
             "description": "Tasks terminated successfully"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/gwc/rest/seed/{layer}.{format}": {
@@ -7845,7 +7988,31 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "description": "Response format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -7936,7 +8103,31 @@
           "200": {
             "description": "Seed/truncate task submitted successfully"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "required": true,
+            "description": "Name of the tile layer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "description": "Response format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ]
       }
     },
     "/gwc/rest/statistics": {

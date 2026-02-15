@@ -4493,7 +4493,8 @@ paths:
                 type: object
   /gwc/rest/blobstores/{blobstore}:
     parameters:
-    - name: blobstore
+    - &id001
+      name: blobstore
       in: path
       required: true
       description: Name of the blobstore
@@ -4517,6 +4518,8 @@ paths:
                 type: object
         '404':
           description: Blobstore not found
+      parameters:
+      - *id001
     put:
       tags:
       - REST GWC
@@ -4537,6 +4540,8 @@ paths:
       responses:
         '200':
           description: Blobstore created or updated successfully
+      parameters:
+      - *id001
     delete:
       tags:
       - REST GWC
@@ -4550,6 +4555,8 @@ paths:
           description: Blobstore deleted successfully
         '404':
           description: Blobstore not found
+      parameters:
+      - *id001
   /gwc/rest/diskquota:
     get:
       tags:
@@ -4589,7 +4596,8 @@ paths:
           description: Disk quota configuration updated successfully
   /gwc/rest/diskquota/{layer}:
     parameters:
-    - name: layer
+    - &id002
+      name: layer
       in: path
       required: true
       description: Name of the tile layer
@@ -4613,6 +4621,8 @@ paths:
                 type: object
         '404':
           description: Layer not found
+      parameters:
+      - *id002
     put:
       tags:
       - REST GWC
@@ -4633,6 +4643,8 @@ paths:
       responses:
         '200':
           description: Layer disk quota updated successfully
+      parameters:
+      - *id002
     delete:
       tags:
       - REST GWC
@@ -4646,6 +4658,8 @@ paths:
           description: Layer disk quota removed successfully
         '404':
           description: Layer not found
+      parameters:
+      - *id002
   /gwc/rest/global:
     get:
       tags:
@@ -4696,7 +4710,8 @@ paths:
                 type: object
   /gwc/rest/gridsets/{gridset}.xml:
     parameters:
-    - name: gridset
+    - &id003
+      name: gridset
       in: path
       required: true
       description: Name of the gridset
@@ -4717,6 +4732,8 @@ paths:
                 type: object
         '404':
           description: Gridset not found
+      parameters:
+      - *id003
     put:
       tags:
       - REST GWC
@@ -4734,6 +4751,8 @@ paths:
       responses:
         '200':
           description: Gridset created or updated successfully
+      parameters:
+      - *id003
     delete:
       tags:
       - REST GWC
@@ -4747,6 +4766,8 @@ paths:
           description: Gridset deleted successfully
         '404':
           description: Gridset not found
+      parameters:
+      - *id003
   /gwc/rest/layers:
     get:
       tags:
@@ -4776,7 +4797,8 @@ paths:
                           format: uri
   /gwc/rest/layers/{layer}.xml:
     parameters:
-    - name: layer
+    - &id004
+      name: layer
       in: path
       required: true
       description: Name of the tile layer (use workspace:layer format for GeoServer layers)
@@ -4797,6 +4819,8 @@ paths:
                 type: object
         '404':
           description: Layer not found
+      parameters:
+      - *id004
     put:
       tags:
       - REST GWC
@@ -4839,6 +4863,8 @@ paths:
           description: Layer created or updated successfully
         '400':
           description: Invalid request (name mismatch or invalid configuration)
+      parameters:
+      - *id004
     delete:
       tags:
       - REST GWC
@@ -4852,6 +4878,8 @@ paths:
           description: Layer deleted successfully
         '404':
           description: Layer not found
+      parameters:
+      - *id004
   /gwc/rest/masstruncate:
     post:
       tags:
@@ -4921,7 +4949,8 @@ paths:
                         type: integer
   /gwc/rest/seed/{layer}:
     parameters:
-    - name: layer
+    - &id005
+      name: layer
       in: path
       required: true
       description: Name of the tile layer
@@ -4952,15 +4981,19 @@ paths:
       responses:
         '200':
           description: Tasks terminated successfully
+      parameters:
+      - *id005
   /gwc/rest/seed/{layer}.{format}:
     parameters:
-    - name: layer
+    - &id006
+      name: layer
       in: path
       required: true
       description: Name of the tile layer
       schema:
         type: string
-    - name: format
+    - &id007
+      name: format
       in: path
       required: true
       description: Response format
@@ -4991,6 +5024,9 @@ paths:
                       description: '[tiles processed, total tiles, remaining seconds, task ID, status]'
                       items:
                         type: integer
+      parameters:
+      - *id006
+      - *id007
     post:
       tags:
       - REST GWC
@@ -5060,6 +5096,9 @@ paths:
       responses:
         '200':
           description: Seed/truncate task submitted successfully
+      parameters:
+      - *id006
+      - *id007
   /gwc/rest/statistics:
     get:
       tags:

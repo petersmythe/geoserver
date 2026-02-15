@@ -4,9 +4,14 @@
 import yaml
 import re
 from collections import defaultdict
+import os
 
-# Load spec
-with open('doc/en/api/geoserver-bundled.yaml', 'r') as f:
+# Load spec - handle both running from root and from .kiro/api-analysis
+spec_path = '../../doc/en/api/geoserver-bundled.yaml'
+if not os.path.exists(spec_path):
+    spec_path = 'doc/en/api/geoserver-bundled.yaml'
+
+with open(spec_path, 'r') as f:
     spec = yaml.safe_load(f)
 
 print("=" * 70)
