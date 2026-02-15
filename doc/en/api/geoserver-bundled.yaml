@@ -2,12 +2,10 @@ openapi: 3.0.0
 info:
   title: GeoServer Unified API
   version: 3.0.x
-  description: "Complete OpenAPI 3.0 specification for GeoServer REST API and OGC\
-    \ services.\n\nThis unified specification provides comprehensive documentation\
-    \ for:\n- REST Configuration API for managing workspaces, layers, styles, and\
-    \ services\n- OGC Web Services including WMS, WFS, WCS, WMTS, CSW, and WPS\n\n\
-    GeoServer is an open source server for sharing geospatial data. It publishes data\
-    \ from \nmajor spatial data sources using open standards.\n"
+  description: "Complete OpenAPI 3.0 specification for GeoServer REST API and OGC services.\n\nThis unified specification\
+    \ provides comprehensive documentation for:\n- REST Configuration API for managing workspaces, layers, styles, and services\n\
+    - OGC Web Services including WMS, WFS, WCS, WMTS, CSW, and WPS\n\nGeoServer is an open source server for sharing geospatial\
+    \ data. It publishes data from \nmajor spatial data sources using open standards.\n"
   contact:
     name: GeoServer Project
     url: https://geoserver.org
@@ -56,75 +54,63 @@ tags:
     description: OGC WMS Specification
     url: https://www.ogc.org/standards/wms
 - name: WFS 2.0.0
-  description: Web Feature Service - OGC standard for vector data access (version
-    2.0.0)
+  description: Web Feature Service - OGC standard for vector data access (version 2.0.0)
   externalDocs:
     description: OGC WFS Specification
     url: https://www.ogc.org/standards/wfs
 - name: WFS 1.1.0
-  description: Web Feature Service - OGC standard for vector data access (version
-    1.1.0)
+  description: Web Feature Service - OGC standard for vector data access (version 1.1.0)
   externalDocs:
     description: OGC WFS Specification
     url: https://www.ogc.org/standards/wfs
 - name: WFS 1.0.0
-  description: Web Feature Service - OGC standard for vector data access (version
-    1.0.0)
+  description: Web Feature Service - OGC standard for vector data access (version 1.0.0)
   externalDocs:
     description: OGC WFS Specification
     url: https://www.ogc.org/standards/wfs
 - name: WCS 2.0.1
-  description: Web Coverage Service - OGC standard for raster data access (version
-    2.0.1)
+  description: Web Coverage Service - OGC standard for raster data access (version 2.0.1)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 2.0.0
-  description: Web Coverage Service - OGC standard for raster data access (version
-    2.0.0)
+  description: Web Coverage Service - OGC standard for raster data access (version 2.0.0)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 1.1.1
-  description: Web Coverage Service - OGC standard for raster data access (version
-    1.1.1)
+  description: Web Coverage Service - OGC standard for raster data access (version 1.1.1)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 1.1.0
-  description: Web Coverage Service - OGC standard for raster data access (version
-    1.1.0)
+  description: Web Coverage Service - OGC standard for raster data access (version 1.1.0)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WCS 1.0.0
-  description: Web Coverage Service - OGC standard for raster data access (version
-    1.0.0)
+  description: Web Coverage Service - OGC standard for raster data access (version 1.0.0)
   externalDocs:
     description: OGC WCS Specification
     url: https://www.ogc.org/standards/wcs
 - name: WMTS 1.0.0
-  description: Web Map Tile Service - OGC standard for tiled map serving (version
-    1.0.0)
+  description: Web Map Tile Service - OGC standard for tiled map serving (version 1.0.0)
   externalDocs:
     description: OGC WMTS Specification
     url: https://www.ogc.org/standards/wmts
 - name: CSW 2.0.2
-  description: Catalog Service for the Web - OGC standard for metadata catalogs (version
-    2.0.2)
+  description: Catalog Service for the Web - OGC standard for metadata catalogs (version 2.0.2)
   externalDocs:
     description: OGC CSW Specification
     url: https://www.ogc.org/standards/cat
 - name: WPS 1.0.0
-  description: Web Processing Service - OGC standard for geospatial processing (version
-    1.0.0)
+  description: Web Processing Service - OGC standard for geospatial processing (version 1.0.0)
   externalDocs:
     description: OGC WPS Specification
     url: https://www.ogc.org/standards/wps
 paths:
   /csw:
-    description: CSW service endpoint. Operations are distinguished by the REQUEST
-      parameter.
+    description: CSW service endpoint. Operations are distinguished by the REQUEST parameter.
   /csw/describerecord/2-0-2:
     get:
       operationId: CSW_2_0_2_DescribeRecord
@@ -1055,8 +1041,7 @@ paths:
       description: 'Inserts, updates, or deletes catalog records
 
 
-        **Note**: Transaction operations (Insert, Update, Delete) specified in POST
-        body'
+        **Note**: Transaction operations (Insert, Update, Delete) specified in POST body'
       tags:
       - CSW 2.0.2
       parameters:
@@ -4489,6 +4474,606 @@ paths:
                   trace:
                     type: string
       parameters: []
+  /gwc/rest/blobstores:
+    get:
+      tags:
+      - REST GWC
+      summary: List all blobstores
+      description: Returns a list of all configured blobstores
+      operationId: getGwcBlobstores
+      responses:
+        '200':
+          description: List of blobstores
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+  /gwc/rest/blobstores/{blobstore}:
+    parameters:
+    - name: blobstore
+      in: path
+      required: true
+      description: Name of the blobstore
+      schema:
+        type: string
+    get:
+      tags:
+      - REST GWC
+      summary: Get blobstore configuration
+      description: Returns the configuration for a specific blobstore
+      operationId: getGwcBlobstore
+      responses:
+        '200':
+          description: Blobstore configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Blobstore not found
+    put:
+      tags:
+      - REST GWC
+      summary: Create or update blobstore
+      description: Creates a new blobstore or updates an existing blobstore configuration
+      operationId: putGwcBlobstore
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Blobstore created or updated successfully
+    delete:
+      tags:
+      - REST GWC
+      summary: Delete blobstore
+      description: Removes a blobstore from GeoWebCache configuration
+      operationId: deleteGwcBlobstore
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: Blobstore deleted successfully
+        '404':
+          description: Blobstore not found
+  /gwc/rest/diskquota:
+    get:
+      tags:
+      - REST GWC
+      summary: Get global disk quota configuration
+      description: Returns the global disk quota settings
+      operationId: getGwcDiskQuota
+      responses:
+        '200':
+          description: Disk quota configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+    put:
+      tags:
+      - REST GWC
+      summary: Update global disk quota configuration
+      description: Updates the global disk quota settings
+      operationId: putGwcDiskQuota
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Disk quota configuration updated successfully
+  /gwc/rest/diskquota/{layer}:
+    parameters:
+    - name: layer
+      in: path
+      required: true
+      description: Name of the tile layer
+      schema:
+        type: string
+    get:
+      tags:
+      - REST GWC
+      summary: Get layer disk quota
+      description: Returns the disk quota settings for a specific layer
+      operationId: getGwcLayerDiskQuota
+      responses:
+        '200':
+          description: Layer disk quota configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Layer not found
+    put:
+      tags:
+      - REST GWC
+      summary: Set layer disk quota
+      description: Sets or updates the disk quota for a specific layer
+      operationId: putGwcLayerDiskQuota
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Layer disk quota updated successfully
+    delete:
+      tags:
+      - REST GWC
+      summary: Remove layer disk quota
+      description: Removes the disk quota configuration for a specific layer
+      operationId: deleteGwcLayerDiskQuota
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: Layer disk quota removed successfully
+        '404':
+          description: Layer not found
+  /gwc/rest/global:
+    get:
+      tags:
+      - REST GWC
+      summary: Get global configuration
+      description: Returns the global GeoWebCache configuration
+      operationId: getGwcGlobalConfig
+      responses:
+        '200':
+          description: Global configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+    put:
+      tags:
+      - REST GWC
+      summary: Update global configuration
+      description: Updates the global GeoWebCache configuration
+      operationId: putGwcGlobalConfig
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Global configuration updated successfully
+  /gwc/rest/gridsets:
+    get:
+      tags:
+      - REST GWC
+      summary: List all gridsets
+      description: Returns a list of all configured gridsets
+      operationId: getGwcGridsets
+      responses:
+        '200':
+          description: List of gridsets
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+  /gwc/rest/gridsets/{gridset}.xml:
+    parameters:
+    - name: gridset
+      in: path
+      required: true
+      description: Name of the gridset
+      schema:
+        type: string
+    get:
+      tags:
+      - REST GWC
+      summary: Get gridset configuration
+      description: Returns the configuration for a specific gridset
+      operationId: getGwcGridset
+      responses:
+        '200':
+          description: Gridset configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+        '404':
+          description: Gridset not found
+    put:
+      tags:
+      - REST GWC
+      summary: Create or update gridset
+      description: Creates a new gridset or updates an existing gridset configuration
+      operationId: putGwcGridset
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Gridset created or updated successfully
+    delete:
+      tags:
+      - REST GWC
+      summary: Delete gridset
+      description: Removes a gridset from GeoWebCache configuration
+      operationId: deleteGwcGridset
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: Gridset deleted successfully
+        '404':
+          description: Gridset not found
+  /gwc/rest/layers:
+    get:
+      tags:
+      - REST GWC
+      summary: List all cached layers
+      description: Returns a list of all available tile layers configured in GeoWebCache
+      operationId: getGwcLayers
+      responses:
+        '200':
+          description: List of layers
+          content:
+            application/xml:
+              schema:
+                type: object
+                xml:
+                  name: layers
+                properties:
+                  layer:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+  /gwc/rest/layers/{layer}.xml:
+    parameters:
+    - name: layer
+      in: path
+      required: true
+      description: Name of the tile layer (use workspace:layer format for GeoServer layers)
+      schema:
+        type: string
+    get:
+      tags:
+      - REST GWC
+      summary: Get layer configuration
+      description: Returns the XML configuration for a specific tile layer
+      operationId: getGwcLayer
+      responses:
+        '200':
+          description: Layer configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+        '404':
+          description: Layer not found
+    put:
+      tags:
+      - REST GWC
+      summary: Create or update layer configuration
+      description: 'Creates a new tile layer or updates an existing layer configuration.
+
+        The layer name in the URL must match the name in the XML body.
+
+        '
+      operationId: putGwcLayer
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: wmsLayer
+              properties:
+                name:
+                  type: string
+                mimeFormats:
+                  type: array
+                  items:
+                    type: string
+                gridSubsets:
+                  type: array
+                  items:
+                    type: object
+                wmsUrl:
+                  type: array
+                  items:
+                    type: string
+                wmsLayers:
+                  type: string
+      responses:
+        '200':
+          description: Layer created or updated successfully
+        '400':
+          description: Invalid request (name mismatch or invalid configuration)
+    delete:
+      tags:
+      - REST GWC
+      summary: Delete layer
+      description: Removes a tile layer from GeoWebCache configuration
+      operationId: deleteGwcLayer
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: Layer deleted successfully
+        '404':
+          description: Layer not found
+  /gwc/rest/masstruncate:
+    post:
+      tags:
+      - REST GWC
+      summary: Mass truncate tiles
+      description: Truncates tiles across multiple layers based on specified criteria
+      operationId: postGwcMassTruncate
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Mass truncation initiated successfully
+  /gwc/rest/seed:
+    post:
+      tags:
+      - REST GWC
+      summary: Terminate all seeding tasks
+      description: Terminates running and/or pending seeding tasks for all layers
+      operationId: killAllGwcSeedTasks
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                kill_all:
+                  type: string
+                  enum:
+                  - all
+                  - running
+                  - pending
+      responses:
+        '200':
+          description: All tasks terminated successfully
+  /gwc/rest/seed.json:
+    get:
+      tags:
+      - REST GWC
+      summary: Get global seeding status
+      description: Returns the status of all running and pending seeding/truncation tasks across all layers
+      operationId: getGwcGlobalSeedStatus
+      responses:
+        '200':
+          description: Global seeding status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  long-array-array:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: integer
+  /gwc/rest/seed/{layer}:
+    parameters:
+    - name: layer
+      in: path
+      required: true
+      description: Name of the tile layer
+      schema:
+        type: string
+    post:
+      tags:
+      - REST GWC
+      summary: Terminate seeding tasks for layer
+      description: Terminates running and/or pending seeding tasks for a specific layer
+      operationId: killGwcSeedTasks
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                kill_all:
+                  type: string
+                  enum:
+                  - all
+                  - running
+                  - pending
+                  description: Which tasks to terminate
+      responses:
+        '200':
+          description: Tasks terminated successfully
+  /gwc/rest/seed/{layer}.{format}:
+    parameters:
+    - name: layer
+      in: path
+      required: true
+      description: Name of the tile layer
+      schema:
+        type: string
+    - name: format
+      in: path
+      required: true
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - xml
+        - json
+    get:
+      tags:
+      - REST GWC
+      summary: Get seeding status for layer
+      description: Returns the status of running and pending seeding/truncation tasks for a specific layer
+      operationId: getGwcSeedStatus
+      responses:
+        '200':
+          description: Seeding status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  long-array-array:
+                    type: array
+                    description: Array of task status arrays
+                    items:
+                      type: array
+                      description: '[tiles processed, total tiles, remaining seconds, task ID, status]'
+                      items:
+                        type: integer
+    post:
+      tags:
+      - REST GWC
+      summary: Seed or truncate tiles
+      description: 'Issues a seed, reseed, or truncate task for the specified layer.
+
+
+        **Task types**:
+
+        - seed: Add tiles to cache
+
+        - reseed: Replace existing tiles
+
+        - truncate: Remove tiles from cache
+
+        '
+      operationId: postGwcSeed
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: seedRequest
+              properties:
+                name:
+                  type: string
+                bounds:
+                  type: object
+                  properties:
+                    coords:
+                      type: object
+                      properties:
+                        double:
+                          type: array
+                          items:
+                            type: number
+                gridSetId:
+                  type: string
+                zoomStart:
+                  type: integer
+                zoomStop:
+                  type: integer
+                format:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                  - seed
+                  - reseed
+                  - truncate
+                threadCount:
+                  type: integer
+                parameters:
+                  type: object
+                  additionalProperties:
+                    type: string
+          application/json:
+            schema:
+              type: object
+              properties:
+                seedRequest:
+                  type: object
+      responses:
+        '200':
+          description: Seed/truncate task submitted successfully
+  /gwc/rest/statistics:
+    get:
+      tags:
+      - REST GWC
+      summary: Get cache statistics
+      description: Returns in-memory cache statistics
+      operationId: getGwcStatistics
+      responses:
+        '200':
+          description: Cache statistics
+          content:
+            application/json:
+              schema:
+                type: object
   /order:
     delete:
       operationId: delete_rest_Rest_orderDeleteNotAllowed
@@ -29184,8 +29769,7 @@ paths:
                     type: string
       parameters: []
   /wcs:
-    description: WCS service endpoint. Operations are distinguished by the REQUEST
-      parameter.
+    description: WCS service endpoint. Operations are distinguished by the REQUEST parameter.
   /wcs/describecoverage/1-0-0:
     get:
       operationId: WCS_1_0_0_DescribeCoverage
@@ -31626,8 +32210,7 @@ paths:
                         type: string
                         description: Exception message
   /wfs:
-    description: WFS service endpoint. Operations are distinguished by the REQUEST
-      parameter.
+    description: WFS service endpoint. Operations are distinguished by the REQUEST parameter.
   /wfs/createstoredquery/2-0-0:
     post:
       operationId: WFS_2_0_0_CreateStoredQuery
@@ -35523,8 +36106,7 @@ paths:
       description: 'Inserts, updates, or deletes features
 
 
-        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
-        in POST body'
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified in POST body'
       tags:
       - WFS 1.0.0
       parameters:
@@ -35603,8 +36185,7 @@ paths:
       description: 'Inserts, updates, or deletes features
 
 
-        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
-        in POST body'
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified in POST body'
       tags:
       - WFS 1.1.0
       parameters:
@@ -35683,8 +36264,7 @@ paths:
       description: 'Inserts, updates, or deletes features
 
 
-        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified
-        in POST body'
+        **Note**: Transaction elements (Insert, Update, Delete, Native) are specified in POST body'
       tags:
       - WFS 2.0.0
       parameters:
@@ -35757,8 +36337,7 @@ paths:
                         type: string
                         description: Exception message
   /wms:
-    description: WMS service endpoint. Operations are distinguished by the REQUEST
-      parameter.
+    description: WMS service endpoint. Operations are distinguished by the REQUEST parameter.
   /wms/describelayer/1-0-0:
     get:
       operationId: WMS_1_0_0_DescribeLayer
@@ -37832,9 +38411,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -37987,9 +38565,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38143,9 +38720,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38298,9 +38874,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38454,9 +39029,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38609,9 +39183,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38765,9 +39338,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38920,9 +39492,8 @@ paths:
           default: 'false'
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize,
-          fontStyle, fontColor, bgColor, fontAntiAliasing, forceLabels, forceTitles,
-          minSymbolSize, countMatched, hideEmptyRules)
+        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor, bgColor, fontAntiAliasing,
+          forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
         required: false
         schema:
           type: string
@@ -38974,9 +39545,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.0.0
       parameters:
@@ -39269,9 +39839,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.0.0
       parameters:
@@ -39565,9 +40134,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.0
       parameters:
@@ -39860,9 +40428,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.0
       parameters:
@@ -40156,9 +40723,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.1
       parameters:
@@ -40451,9 +41017,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.1.1
       parameters:
@@ -40747,9 +41312,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.3.0
       parameters:
@@ -41042,9 +41606,8 @@ paths:
       description: 'Returns a map image for specified layers and area
 
 
-        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN,
-        BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES, STARTINDEX, ANGLE, SORTBY, SCALEMETHOD,
-        CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
+        **Vendor Extension Parameters**: CQL_FILTER, FEATUREID, TILED, TILESORIGIN, BUFFER, PALETTE, FEATUREVERSION, MAXFEATURES,
+        STARTINDEX, ANGLE, SORTBY, SCALEMETHOD, CLIP, FORMAT_OPTIONS, ENV, VIEWPARAMS, INTERPOLATIONS, REMOTE_OWS_TYPE, REMOTE_OWS_URL'
       tags:
       - WMS 1.3.0
       parameters:
@@ -41744,8 +42307,7 @@ paths:
                         type: string
                         description: Exception message
   /wmts:
-    description: WMTS service endpoint. Operations are distinguished by the REQUEST
-      parameter.
+    description: WMTS service endpoint. Operations are distinguished by the REQUEST parameter.
   /wmts/getcapabilities/1-0-0:
     get:
       operationId: WMTS_1_0_0_GetCapabilities
@@ -42120,8 +42682,7 @@ paths:
                         type: string
                         description: Exception message
   /wps:
-    description: WPS service endpoint. Operations are distinguished by the REQUEST
-      parameter.
+    description: WPS service endpoint. Operations are distinguished by the REQUEST parameter.
   /wps/describeprocess/1-0-0:
     get:
       operationId: WPS_1_0_0_DescribeProcess
@@ -42778,30 +43339,24 @@ components:
     basicAuth:
       type: http
       scheme: basic
-      description: 'HTTP Basic Authentication is the default authentication method
-        for GeoServer. Credentials are sent in the Authorization header as base64-encoded
-        username:password. **Security Note**: Basic auth sends credentials in plain
-        text (base64 is encoding, not encryption). Always use HTTPS in production
-        to protect credentials.'
+      description: 'HTTP Basic Authentication is the default authentication method for GeoServer. Credentials are sent in
+        the Authorization header as base64-encoded username:password. **Security Note**: Basic auth sends credentials in plain
+        text (base64 is encoding, not encryption). Always use HTTPS in production to protect credentials.'
     digestAuth:
       type: http
       scheme: digest
-      description: 'HTTP Digest Authentication provides a more secure alternative
-        to Basic auth by applying a cryptographic hash function to passwords before
-        sending them over the network. Must be explicitly configured in GeoServer''s
-        authentication filter chain. **Note**: Swagger UI does not support Digest
-        authentication for interactive testing - use Basic or Bearer authentication
-        for evaluation purposes. See: https://docs.geoserver.org/stable/en/user/security/tutorials/digest/'
+      description: 'HTTP Digest Authentication provides a more secure alternative to Basic auth by applying a cryptographic
+        hash function to passwords before sending them over the network. Must be explicitly configured in GeoServer''s authentication
+        filter chain. **Note**: Swagger UI does not support Digest authentication for interactive testing - use Basic or Bearer
+        authentication for evaluation purposes. See: https://docs.geoserver.org/stable/en/user/security/tutorials/digest/'
     apiKeyAuth:
       type: apiKey
       in: query
       name: authkey
-      description: 'API Key authentication using the authkey extension module. Designed
-        for OGC clients that cannot handle other security protocols. The authentication
-        key is a UUID appended to the URL as a query parameter. **Security Note**:
-        This approach is vulnerable to token sniffing and must always be used with
-        HTTPS. Requires the authkey extension to be installed and configured. See:
-        https://docs.geoserver.org/stable/en/user/extensions/authkey/'
+      description: 'API Key authentication using the authkey extension module. Designed for OGC clients that cannot handle
+        other security protocols. The authentication key is a UUID appended to the URL as a query parameter. **Security Note**:
+        This approach is vulnerable to token sniffing and must always be used with HTTPS. Requires the authkey extension to
+        be installed and configured. See: https://docs.geoserver.org/stable/en/user/extensions/authkey/'
     oauth2:
       type: oauth2
       flows:
@@ -42812,18 +43367,16 @@ components:
             openid: OpenID Connect scope
             profile: Access user profile information
             email: Access user email address
-      description: 'OAuth2 authentication support (community module). GeoServer can
-        authenticate against OAuth2 providers including Google, GitHub, and OpenID
-        Connect. The authorization URLs and scopes shown are examples for Google OAuth2.
-        Actual configuration depends on your OAuth2 provider. **Note**: This is a
-        community module and must be installed separately. See: https://docs.geoserver.org/stable/en/user/community/oauth2/'
+      description: 'OAuth2 authentication support (community module). GeoServer can authenticate against OAuth2 providers
+        including Google, GitHub, and OpenID Connect. The authorization URLs and scopes shown are examples for Google OAuth2.
+        Actual configuration depends on your OAuth2 provider. **Note**: This is a community module and must be installed separately.
+        See: https://docs.geoserver.org/stable/en/user/community/oauth2/'
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: Bearer token authentication using JWT (JSON Web Tokens). Used with
-        OAuth2/OpenID Connect authentication. The token is obtained from an OAuth2
-        provider and included in the Authorization header. Requires OAuth2 community
+      description: Bearer token authentication using JWT (JSON Web Tokens). Used with OAuth2/OpenID Connect authentication.
+        The token is obtained from an OAuth2 provider and included in the Authorization header. Requires OAuth2 community
         module to be installed and configured.
 security:
 - basicAuth: []

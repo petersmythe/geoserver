@@ -488,7 +488,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Apply to both modular and bundled specs (YAML and JSON)
   - _Requirements: 7.6_
 
-- [ ] 15.7 Investigate and populate GeoWebCache endpoints
+- [x] 15.7 Investigate and populate GeoWebCache endpoints
   - Review if GeoWebCache REST endpoints are missing or incomplete
   - Check `src/gwc-rest/` source code for endpoint definitions
   - Add missing GWC endpoints if found
