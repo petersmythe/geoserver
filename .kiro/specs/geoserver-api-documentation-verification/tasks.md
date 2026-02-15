@@ -503,7 +503,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Ask user if questions arise
 
 - [ ] 17. Generate final summary and recommendations
-  - [ ] 17.1 Create executive summary
+  - [x] 17.1 Create executive summary
     - Summarize REST API coverage (percentage, gaps)
     - Summarize OGC service coverage (operations documented)
     - Highlight critical gaps requiring attention
@@ -742,3 +742,125 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: `.kiro/api-analysis/reports/executive-summary-final.md`
     - _Requirements: All_
 
+
+## Phase 2: Fix Functional Documentation Gaps
+
+These tasks address the 39 endpoints with functional discrepancies (missing request bodies, critical parameters, etc.) identified in the functional discrepancies analysis.
+
+- [ ] 26. Fix critical functional gaps (HIGH PRIORITY)
+  - [ ] 26.1 Document request body schemas for PUT operations
+    - Extract Java classes used in PUT request bodies:
+      - LayerInfo, StoreInfo, NamespaceInfo (catalog operations)
+      - UserInfo, GroupInfo, RoleInfo (security operations)
+      - ImportContext, TaskInfo, TransformInfo (importer operations)
+      - DataStoreInfo, CoverageStoreInfo, WMSStoreInfo, WMTSStoreInfo
+    - Generate JSON schemas from Java classes
+    - Add schemas to OpenAPI spec components/schemas section
+    - Reference schemas in PUT operation request bodies
+    - Add example request bodies for common use cases
+    - Affected endpoints: ~31 PUT operations
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 6.5, 6.6, 7.1, 7.5_
+  
+  - [ ] 26.2 Document critical query parameters
+    - Add `purge` parameter to DELETE datastore operations
+      - Description: "If true, delete underlying data files; if false, delete only configuration"
+      - Type: boolean
+      - Default: false
+      - **Critical:** Prevents accidental data loss
+    - Add `async` and `exec` parameters to importer operations
+      - `async`: Run import asynchronously (boolean, default: false)
+      - `exec`: Execute import immediately after creation (boolean, default: false)
+    - Add `recalculate` and `calculate` parameters to feature type operations
+      - Controls whether bounding boxes are recalculated from data
+      - Type: boolean
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 7.3, 7.4_
+  
+  - [ ] 26.3 Document convenience query parameters
+    - Add `expand` parameter to 6 importer endpoints
+      - Description: "Controls level of detail in response (e.g., expand=tasks)"
+      - Type: string
+      - Optional
+    - Add `offset` and `limit` parameters to OSEO collection endpoints
+      - Pagination for large datasets
+      - Type: integer
+    - Add `styleName` parameter to POST /rest/layers
+      - Specifies default style when creating layer
+      - Type: string
+    - Add `from` and `to` parameters to manifest/version endpoints
+      - Filters by version range
+      - Type: string
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 7.3, 7.4_
+  
+  - [ ] 26.4 Fix GET /rest/logging anti-pattern
+    - Investigate if request body is actually used in implementation
+    - Review LoggingController.java to understand intent
+    - If body is not used: Remove @RequestBody annotation from GET method
+    - If body is used: Consider changing to POST or PUT method
+    - Update OpenAPI documentation to match corrected implementation
+    - Document decision and rationale
+    - Output: Code fix (if needed) and updated specification
+    - _Requirements: 7.1_
+  
+  - [ ] 26.5 Remove incorrect query parameters from documentation
+    - Fix GET /rest/about/status endpoint
+      - Remove documented parameters: manifest, key, value
+      - These don't exist in implementation
+    - Review other endpoints with "documented but not implemented" parameters
+    - Remove or mark as deprecated in documentation
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 3.3_
+
+- [ ] 27. Fix cosmetic path variable naming (LOW PRIORITY)
+  - [ ] 27.1 Update path variable names to match implementation
+    - Update ~90 endpoints where path variable names differ
+    - Change documentation to match Java @PathVariable names
+    - Examples:
+      - `importId` → `id`
+      - `workspace` → `workspaceName`
+      - `role` → `roleName`
+      - `user` → `userName`
+    - Use find-and-replace for efficiency
+    - Validate specifications after changes
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 6.1, 6.5_
+  
+  - [ ] 27.2 Validate cosmetic fixes
+    - Run OpenAPI validation on updated specs
+    - Verify all path parameters match path templates
+    - Test in Swagger UI to ensure no regressions
+    - Output: Validation report
+    - _Requirements: 11.1, 11.2, 11.3_
+
+- [ ] 28. Regenerate specifications with all fixes
+  - [ ] 28.1 Re-bundle modular specifications
+    - Resolve all $ref references
+    - Apply all fixes from tasks 26-27
+    - Generate bundled YAML and JSON versions
+    - Output: `doc/en/api/geoserver-bundled.yaml` and `.json`
+    - _Requirements: 6.7, 12.1, 12.2_
+  
+  - [ ] 28.2 Validate final specifications
+    - Validate against OpenAPI 3.0 schema
+    - Verify zero validation errors
+    - Test in Swagger UI
+    - Output: Final validation report
+    - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5_
+  
+  - [ ] 28.3 Update coverage metrics
+    - Recalculate coverage with functional fixes applied
+    - Expected results:
+      - Fully correct: ~127 endpoints (36%)
+      - Cosmetic fixes applied: ~90 endpoints (25.5%)
+      - Total functionally complete: ~166 endpoints (47%)
+    - Generate updated coverage report
+    - Output: `.kiro/api-analysis/reports/rest-coverage-report-final.md`
+    - _Requirements: 3.1, 3.2, 3.3, 3.4_
+
+- [ ] 29. Final checkpoint - Review all fixes
+  - Review functional gap fixes (task 26)
+  - Review cosmetic naming fixes (task 27)
+  - Verify specifications are production-ready
+  - Ask user if questions arise
