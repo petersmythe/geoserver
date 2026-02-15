@@ -496,7 +496,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Apply fixes to both modular and bundled specs (YAML and JSON)
   - _Requirements: 2.1, 2.3, 6.1_
 
-- [ ] 16. Checkpoint - Review validation results
+- [x] 16. Checkpoint - Review validation results
   - Review `.kiro/api-analysis/reports/validation-report.md`
   - Verify all validation errors from 15.3-15.7 are fixed
   - Re-run validation to confirm fixes
@@ -518,6 +518,22 @@ The implementation is organized into phases, with each phase building on the pre
     - Organize by priority and effort
     - Output: `.kiro/api-analysis/reports/action-plan.md`
     - _Requirements: All_
+  
+  - [ ] 17.3 Generate and add request/response schemas
+    - Extract Java classes used in REST API request/response bodies
+    - Generate JSON Schema definitions for common data models:
+      - Workspace, DataStore, FeatureType, Layer, Style, LayerGroup
+      - Coverage, CoverageStore, WMSStore, WMTSStore
+      - User, Role, SecurityRule, AuthenticationFilter
+      - Import, Task, Transform (importer extension)
+      - GeoWebCache: TileLayer, GridSet, BlobStore, DiskQuota
+    - Convert Java classes to OpenAPI 3.0 schema format
+    - Add schemas to components/schemas section
+    - Reference schemas in request bodies and responses using $ref
+    - Include schema examples and descriptions
+    - Validate schemas are properly referenced
+    - Output: Updated modular and bundled specifications with complete schemas
+    - _Requirements: 6.5, 6.6, 7.1, 7.5, 8.2_
 
 - [ ] 18. Final checkpoint - Review complete analysis
   - Review all reports in `.kiro/api-analysis/reports/`
