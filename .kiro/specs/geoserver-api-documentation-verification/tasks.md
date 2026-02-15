@@ -519,7 +519,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Output: `.kiro/api-analysis/reports/action-plan.md`
     - _Requirements: All_
   
-  - [ ] 17.3 Generate and add request/response schemas
+  - [x] 17.3 Generate and add request/response schemas
     - Extract Java classes used in REST API request/response bodies
     - Generate JSON Schema definitions for common data models:
       - Workspace, DataStore, FeatureType, Layer, Style, LayerGroup

@@ -1,0 +1,17 @@
+Error:
+  type: object
+  properties:
+    error:
+      type: string
+    message:
+      type: string
+Link:
+  type: object
+  properties:
+    href:
+      type: string
+      format: uri
+    rel:
+      type: string
+    type:
+      type: string
