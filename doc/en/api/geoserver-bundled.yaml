@@ -42778,17 +42778,59 @@ components:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic Authentication
+      description: 'HTTP Basic Authentication is the default authentication method
+        for GeoServer. Credentials are sent in the Authorization header as base64-encoded
+        username:password. **Security Note**: Basic auth sends credentials in plain
+        text (base64 is encoding, not encryption). Always use HTTPS in production
+        to protect credentials.'
     digestAuth:
       type: http
       scheme: digest
-      description: HTTP Digest Authentication
-    authkey:
+      description: 'HTTP Digest Authentication provides a more secure alternative
+        to Basic auth by applying a cryptographic hash function to passwords before
+        sending them over the network. Must be explicitly configured in GeoServer''s
+        authentication filter chain. **Note**: Swagger UI does not support Digest
+        authentication for interactive testing - use Basic or Bearer authentication
+        for evaluation purposes. See: https://docs.geoserver.org/stable/en/user/security/tutorials/digest/'
+    apiKeyAuth:
       type: apiKey
       in: query
       name: authkey
-      description: Authentication via authkey query parameter (requires authkey extension)
+      description: 'API Key authentication using the authkey extension module. Designed
+        for OGC clients that cannot handle other security protocols. The authentication
+        key is a UUID appended to the URL as a query parameter. **Security Note**:
+        This approach is vulnerable to token sniffing and must always be used with
+        HTTPS. Requires the authkey extension to be installed and configured. See:
+        https://docs.geoserver.org/stable/en/user/extensions/authkey/'
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://accounts.google.com/o/oauth2/token
+          scopes:
+            openid: OpenID Connect scope
+            profile: Access user profile information
+            email: Access user email address
+      description: 'OAuth2 authentication support (community module). GeoServer can
+        authenticate against OAuth2 providers including Google, GitHub, and OpenID
+        Connect. The authorization URLs and scopes shown are examples for Google OAuth2.
+        Actual configuration depends on your OAuth2 provider. **Note**: This is a
+        community module and must be installed separately. See: https://docs.geoserver.org/stable/en/user/community/oauth2/'
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication using JWT (JSON Web Tokens). Used with
+        OAuth2/OpenID Connect authentication. The token is obtained from an OAuth2
+        provider and included in the Authorization header. Requires OAuth2 community
+        module to be installed and configured.
 security:
 - basicAuth: []
 - digestAuth: []
-- authkey: []
+- apiKeyAuth: []
+- oauth2:
+  - openid
+  - profile
+  - email
+- bearerAuth: []
