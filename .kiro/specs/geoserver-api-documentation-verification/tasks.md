@@ -476,7 +476,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Fixed: All paths sorted alphabetically in bundled specs
     - _Requirements: 6.2_
 
-- [ ] 15.6 Research and document authentication methods
+- [x] 15.6 Research and document authentication methods
   - Research GeoServer authentication methods from official documentation
   - Document HTTP Basic Authentication
   - Document Digest Authentication
@@ -661,15 +661,64 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: `.kiro/api-analysis/reports/reconciliation-matrix-final.csv`
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7_
 
-- [ ] 24. Final validation and summary
-  - [ ] 24.1 Validate final unified specification
+- [ ] 24. Add OGC API endpoints documentation
+  - [ ] 24.1 Extract OGC API - Features endpoints
+    - Scan `src/community/ogcapi/` and `src/extension/ogcapi/` directories
+    - Identify OGC API - Features 1.0 endpoints (collections, items, conformance)
+    - Extract endpoint paths, parameters, and response schemas
+    - Output: `.kiro/api-analysis/ogc/ogcapi-features-operations.json`
+    - _Requirements: 6.1, 6.2, 6.3_
+  
+  - [ ] 24.2 Extract OGC API - Tiles endpoints
+    - Identify OGC API - Tiles endpoints (tilesets, tiles)
+    - Extract endpoint paths, parameters, and response schemas
+    - Output: `.kiro/api-analysis/ogc/ogcapi-tiles-operations.json`
+    - _Requirements: 6.1, 6.2, 6.3_
+  
+  - [ ] 24.3 Extract other OGC API endpoints
+    - Identify OGC API - Coverages, Processes, Styles, Maps endpoints if present
+    - Extract endpoint paths, parameters, and response schemas
+    - Output: `.kiro/api-analysis/ogc/ogcapi-other-operations.json`
+    - _Requirements: 6.1, 6.2, 6.3_
+  
+  - [ ] 24.4 Generate OGC API OpenAPI specifications
+    - Create modular OpenAPI 3.0 specifications for each OGC API service:
+      - `ogc/ogcapi-features.yaml` - OGC API - Features endpoints
+      - `ogc/ogcapi-tiles.yaml` - OGC API - Tiles endpoints
+      - `ogc/ogcapi-other.yaml` - Other OGC API endpoints
+    - Add OGC API tags (sibling to WMS, WFS, WCS, etc.):
+      - "OGC API - Features 1.0"
+      - "OGC API - Tiles 1.0"
+      - Additional tags as needed
+    - Include complete parameter and response definitions
+    - Document conformance classes supported
+    - Output: Modular files in `.kiro/api-analysis/specs/ogc/`
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
+  
+  - [ ] 24.5 Update unified specification with OGC API endpoints
+    - Add OGC API tags to main specification
+    - Reference OGC API modular specs in unified entry point
+    - Re-bundle specifications to include OGC API endpoints
+    - Validate bundled specs include all OGC API operations
+    - Output: Updated `doc/en/api/geoserver-bundled.yaml` and `.json`
+    - _Requirements: 6.1, 6.2, 6.7, 12.1, 12.2_
+  
+  - [ ] 24.6 Document OGC API coverage
+    - Count OGC API endpoints by service type
+    - Compare against OGC API specifications
+    - Generate coverage report
+    - Output: `.kiro/api-analysis/reports/ogcapi-coverage-report.md`
+    - _Requirements: 3.1, 3.4, 5.2_
+
+- [ ] 25. Final validation and summary
+  - [ ] 25.1 Validate final unified specification
     - Validate against OpenAPI 3.0 schema
     - Verify all $ref references resolve
     - Test loading in Swagger UI
     - Output: `.kiro/api-analysis/reports/validation-report-final.md`
     - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 6.9_
   
-  - [ ] 24.2 Generate final executive summary
+  - [ ] 25.2 Generate final executive summary
     - Summarize final coverage metrics
     - Document all improvements made
     - List any remaining gaps
