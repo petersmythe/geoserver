@@ -67491,7 +67491,1318 @@
     }
   },
   "components": {
-    "schemas": {},
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "format": "uri"
+          },
+          "rel": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "Workspace": {
+        "type": "object",
+        "description": "A container for grouping store objects",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the workspace"
+          },
+          "isolated": {
+            "type": "boolean",
+            "description": "Whether the workspace is isolated",
+            "default": false
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "example": {
+          "name": "myworkspace",
+          "isolated": false
+        }
+      },
+      "DataStore": {
+        "type": "object",
+        "description": "A vector or feature based data store",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the data store"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the data store"
+          },
+          "type": {
+            "type": "string",
+            "description": "The store type (e.g., 'Shapefile', 'PostGIS', 'GeoPackage')",
+            "example": "PostGIS"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the store is enabled",
+            "default": true
+          },
+          "workspace": {
+            "$ref": "#/components/schemas/Workspace"
+          },
+          "connectionParameters": {
+            "type": "object",
+            "description": "Connection parameters specific to the store type",
+            "additionalProperties": true,
+            "example": {
+              "host": "localhost",
+              "port": 5432,
+              "database": "geoserver",
+              "user": "postgres"
+            }
+          },
+          "disableOnConnFailure": {
+            "type": "boolean",
+            "description": "Auto-disable store on connection failure",
+            "default": false
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "workspace"
+        ]
+      },
+      "FeatureType": {
+        "type": "object",
+        "description": "A vector-based or feature based resource",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the feature type"
+          },
+          "nativeName": {
+            "type": "string",
+            "description": "The native name of the feature type in the data store"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable title"
+          },
+          "abstract": {
+            "type": "string",
+            "description": "Description of the feature type"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Keywords associated with the feature type"
+          },
+          "srs": {
+            "type": "string",
+            "description": "Spatial reference system (e.g., 'EPSG:4326')",
+            "example": "EPSG:4326"
+          },
+          "nativeBoundingBox": {
+            "$ref": "#/components/schemas/BoundingBox"
+          },
+          "latLonBoundingBox": {
+            "$ref": "#/components/schemas/BoundingBox"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the feature type is enabled",
+            "default": true
+          },
+          "maxFeatures": {
+            "type": "integer",
+            "description": "Maximum number of features to return in queries",
+            "example": 1000
+          },
+          "numDecimals": {
+            "type": "integer",
+            "description": "Number of decimal places for floating point numbers",
+            "example": 8
+          },
+          "store": {
+            "$ref": "#/components/schemas/DataStore"
+          }
+        },
+        "required": [
+          "name",
+          "nativeName"
+        ]
+      },
+      "Layer": {
+        "type": "object",
+        "description": "A map layer",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the layer"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "VECTOR",
+              "RASTER",
+              "REMOTE",
+              "WMS",
+              "GROUP"
+            ],
+            "description": "The type of the layer"
+          },
+          "defaultStyle": {
+            "$ref": "#/components/schemas/Style"
+          },
+          "styles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Style"
+            },
+            "description": "Alternative styles for the layer"
+          },
+          "resource": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FeatureType"
+              },
+              {
+                "$ref": "#/components/schemas/Coverage"
+              }
+            ],
+            "description": "The resource (feature type or coverage) referenced by this layer"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the layer is enabled",
+            "default": true
+          },
+          "queryable": {
+            "type": "boolean",
+            "description": "Whether the layer is queryable (GetFeatureInfo)",
+            "default": true
+          },
+          "opaque": {
+            "type": "boolean",
+            "description": "Whether the layer is opaque or transparent",
+            "default": false
+          },
+          "attribution": {
+            "$ref": "#/components/schemas/Attribution"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "resource"
+        ]
+      },
+      "Style": {
+        "type": "object",
+        "description": "A style for a geospatial resource",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the style"
+          },
+          "workspace": {
+            "$ref": "#/components/schemas/Workspace"
+          },
+          "format": {
+            "type": "string",
+            "description": "The styling format (e.g., 'sld', 'css', 'ysld', 'mbstyle')",
+            "example": "sld"
+          },
+          "formatVersion": {
+            "type": "string",
+            "description": "The version of the styling format",
+            "example": "1.0.0"
+          },
+          "filename": {
+            "type": "string",
+            "description": "The name of the file the style originates from",
+            "example": "roads.sld"
+          },
+          "legend": {
+            "$ref": "#/components/schemas/Legend"
+          }
+        },
+        "required": [
+          "name",
+          "format"
+        ]
+      },
+      "LayerGroup": {
+        "type": "object",
+        "description": "A group of layers that can be referenced as a single layer",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the layer group"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "SINGLE",
+              "OPAQUE_CONTAINER",
+              "NAMED",
+              "CONTAINER",
+              "EO"
+            ],
+            "description": "The mode of the layer group",
+            "default": "SINGLE"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable title"
+          },
+          "abstract": {
+            "type": "string",
+            "description": "Description of the layer group"
+          },
+          "workspace": {
+            "$ref": "#/components/schemas/Workspace"
+          },
+          "layers": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Layer"
+                },
+                {
+                  "$ref": "#/components/schemas/LayerGroup"
+                }
+              ]
+            },
+            "description": "The layers and layer groups in this group"
+          },
+          "styles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Style"
+            },
+            "description": "Styles for the layers (1-1 correspondence with layers)"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/BoundingBox"
+          },
+          "queryDisabled": {
+            "type": "boolean",
+            "description": "Whether GetFeatureInfo is disabled for this group",
+            "default": false
+          }
+        },
+        "required": [
+          "name",
+          "layers"
+        ]
+      },
+      "Coverage": {
+        "type": "object",
+        "description": "A raster-based resource",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the coverage"
+          },
+          "nativeName": {
+            "type": "string",
+            "description": "The native name of the coverage in the coverage store"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable title"
+          },
+          "abstract": {
+            "type": "string",
+            "description": "Description of the coverage"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Keywords associated with the coverage"
+          },
+          "srs": {
+            "type": "string",
+            "description": "Spatial reference system",
+            "example": "EPSG:4326"
+          },
+          "nativeBoundingBox": {
+            "$ref": "#/components/schemas/BoundingBox"
+          },
+          "latLonBoundingBox": {
+            "$ref": "#/components/schemas/BoundingBox"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the coverage is enabled",
+            "default": true
+          },
+          "store": {
+            "$ref": "#/components/schemas/CoverageStore"
+          },
+          "nativeFormat": {
+            "type": "string",
+            "description": "The native format of the coverage",
+            "example": "GeoTIFF"
+          },
+          "grid": {
+            "$ref": "#/components/schemas/GridGeometry"
+          },
+          "supportedFormats": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Supported output formats",
+            "example": [
+              "GeoTIFF",
+              "PNG",
+              "JPEG"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "nativeName"
+        ]
+      },
+      "CoverageStore": {
+        "type": "object",
+        "description": "A raster or coverage based data store",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the coverage store"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the coverage store"
+          },
+          "type": {
+            "type": "string",
+            "description": "The store type (e.g., 'GeoTIFF', 'WorldImage', 'ImageMosaic')",
+            "example": "GeoTIFF"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the store is enabled",
+            "default": true
+          },
+          "workspace": {
+            "$ref": "#/components/schemas/Workspace"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL or file path to the coverage data",
+            "example": "file:///data/raster/elevation.tif"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "workspace",
+          "url"
+        ]
+      },
+      "WMSStore": {
+        "type": "object",
+        "description": "A cascading WMS store",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the WMS store"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the WMS store"
+          },
+          "type": {
+            "type": "string",
+            "description": "The store type",
+            "default": "WMS"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the store is enabled",
+            "default": true
+          },
+          "workspace": {
+            "$ref": "#/components/schemas/Workspace"
+          },
+          "capabilitiesURL": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the WMS GetCapabilities document",
+            "example": "http://example.com/wms?SERVICE=WMS&REQUEST=GetCapabilities"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username for authentication (if required)"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "Password for authentication (if required)"
+          },
+          "maxConnections": {
+            "type": "integer",
+            "description": "Maximum number of simultaneous connections",
+            "default": 6
+          },
+          "readTimeout": {
+            "type": "integer",
+            "description": "Read timeout in seconds",
+            "default": 60
+          },
+          "connectTimeout": {
+            "type": "integer",
+            "description": "Connection timeout in seconds",
+            "default": 30
+          }
+        },
+        "required": [
+          "name",
+          "workspace",
+          "capabilitiesURL"
+        ]
+      },
+      "WMTSStore": {
+        "type": "object",
+        "description": "A cascading WMTS store",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the WMTS store"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the WMTS store"
+          },
+          "type": {
+            "type": "string",
+            "description": "The store type",
+            "default": "WMTS"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the store is enabled",
+            "default": true
+          },
+          "workspace": {
+            "$ref": "#/components/schemas/Workspace"
+          },
+          "capabilitiesURL": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the WMTS GetCapabilities document",
+            "example": "http://example.com/wmts?SERVICE=WMTS&REQUEST=GetCapabilities"
+          }
+        },
+        "required": [
+          "name",
+          "workspace",
+          "capabilitiesURL"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "description": "A GeoServer user account",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The unique username"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "The user password (write-only)",
+            "writeOnly": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the user account is enabled",
+            "default": true
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Additional user properties"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "Role": {
+        "type": "object",
+        "description": "A security role",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique role name"
+          },
+          "parentRole": {
+            "type": "string",
+            "description": "The parent role (for role hierarchy)"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "SecurityRule": {
+        "type": "object",
+        "description": "A security access rule",
+        "properties": {
+          "resource": {
+            "type": "string",
+            "description": "The resource pattern (e.g., '*.*.r', 'workspace.layer.w')",
+            "example": "*.*.r"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Roles that have access to this resource",
+            "example": [
+              "ROLE_ADMINISTRATOR",
+              "ROLE_USER"
+            ]
+          }
+        },
+        "required": [
+          "resource",
+          "roles"
+        ]
+      },
+      "AuthenticationFilter": {
+        "type": "object",
+        "description": "An authentication filter configuration",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique filter name"
+          },
+          "className": {
+            "type": "string",
+            "description": "The Java class implementing the filter"
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Filter-specific configuration parameters"
+          }
+        },
+        "required": [
+          "name",
+          "className"
+        ]
+      },
+      "ImportContext": {
+        "type": "object",
+        "description": "An import context for bulk data import",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The unique import ID",
+            "readOnly": true
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "READY",
+              "RUNNING",
+              "COMPLETE",
+              "INCOMPLETE",
+              "ERROR"
+            ],
+            "description": "The current state of the import"
+          },
+          "archive": {
+            "type": "boolean",
+            "description": "Whether the import is from an archive file"
+          },
+          "targetWorkspace": {
+            "$ref": "#/components/schemas/Workspace"
+          },
+          "targetStore": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DataStore"
+              },
+              {
+                "$ref": "#/components/schemas/CoverageStore"
+              }
+            ],
+            "description": "The target store for imported data"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportTask"
+            },
+            "description": "The import tasks in this context"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the import was created",
+            "readOnly": true
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the import was last updated",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "targetWorkspace"
+        ]
+      },
+      "ImportTask": {
+        "type": "object",
+        "description": "An individual import task within an import context",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The task ID (unique within the import context)",
+            "readOnly": true
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "READY",
+              "RUNNING",
+              "COMPLETE",
+              "NO_CRS",
+              "NO_BOUNDS",
+              "NO_FORMAT",
+              "BAD_FORMAT",
+              "ERROR"
+            ],
+            "description": "The current state of the task"
+          },
+          "updateMode": {
+            "type": "string",
+            "enum": [
+              "CREATE",
+              "REPLACE",
+              "APPEND",
+              "UPDATE"
+            ],
+            "description": "How to handle existing data",
+            "default": "CREATE"
+          },
+          "source": {
+            "$ref": "#/components/schemas/ImportSource"
+          },
+          "target": {
+            "$ref": "#/components/schemas/ImportTarget"
+          },
+          "transform": {
+            "$ref": "#/components/schemas/ImportTransform"
+          },
+          "layer": {
+            "$ref": "#/components/schemas/Layer"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message if task failed",
+            "readOnly": true
+          }
+        }
+      },
+      "ImportSource": {
+        "type": "object",
+        "description": "The source data for an import task",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The source type (e.g., 'file', 'directory', 'mosaic', 'database')"
+          },
+          "format": {
+            "type": "string",
+            "description": "The data format (e.g., 'Shapefile', 'GeoTIFF', 'CSV')"
+          },
+          "location": {
+            "type": "string",
+            "description": "The location of the source data"
+          },
+          "charset": {
+            "type": "string",
+            "description": "Character encoding for text-based formats",
+            "example": "UTF-8"
+          }
+        }
+      },
+      "ImportTarget": {
+        "type": "object",
+        "description": "The target for imported data",
+        "properties": {
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to the target resource"
+          },
+          "dataStore": {
+            "$ref": "#/components/schemas/DataStore"
+          },
+          "coverageStore": {
+            "$ref": "#/components/schemas/CoverageStore"
+          }
+        }
+      },
+      "ImportTransform": {
+        "type": "object",
+        "description": "A transformation to apply during import",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The transform type (e.g., 'ReprojectTransform', 'DateFormatTransform', 'AttributeRemapTransform')"
+          },
+          "field": {
+            "type": "string",
+            "description": "The field to transform (if applicable)"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source value or pattern"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target value or pattern"
+          }
+        }
+      },
+      "TileLayer": {
+        "type": "object",
+        "description": "A GeoWebCache tile layer configuration",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the tile layer"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the tile layer is enabled",
+            "default": true
+          },
+          "mimeFormats": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Supported MIME types for tiles",
+            "example": [
+              "image/png",
+              "image/jpeg"
+            ]
+          },
+          "gridSubsets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GridSubset"
+            },
+            "description": "Grid subsets (tile matrix sets) for this layer"
+          },
+          "metaWidthHeight": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Meta-tile dimensions [width, height]",
+            "example": [
+              4,
+              4
+            ]
+          },
+          "expireCache": {
+            "type": "integer",
+            "description": "Cache expiration time in seconds",
+            "example": 3600
+          },
+          "expireClients": {
+            "type": "integer",
+            "description": "Client cache expiration time in seconds",
+            "example": 7200
+          },
+          "parameterFilters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParameterFilter"
+            },
+            "description": "Parameter filters for this layer"
+          },
+          "blobStoreId": {
+            "type": "string",
+            "description": "ID of the blob store to use for this layer"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "GridSet": {
+        "type": "object",
+        "description": "A grid set (tile matrix set) definition",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The unique name of the grid set"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the grid set"
+          },
+          "srs": {
+            "$ref": "#/components/schemas/SRS"
+          },
+          "extent": {
+            "$ref": "#/components/schemas/BoundingBox"
+          },
+          "alignTopLeft": {
+            "type": "boolean",
+            "description": "Whether to align tiles from top-left",
+            "default": false
+          },
+          "resolutions": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "description": "Resolutions for each zoom level",
+            "example": [
+              0.703125,
+              0.3515625,
+              0.17578125
+            ]
+          },
+          "metersPerUnit": {
+            "type": "number",
+            "format": "double",
+            "description": "Meters per unit of the SRS",
+            "example": 111319.49079327358
+          },
+          "pixelSize": {
+            "type": "number",
+            "format": "double",
+            "description": "Pixel size in meters",
+            "default": 0.00028
+          },
+          "tileWidth": {
+            "type": "integer",
+            "description": "Width of tiles in pixels",
+            "default": 256
+          },
+          "tileHeight": {
+            "type": "integer",
+            "description": "Height of tiles in pixels",
+            "default": 256
+          }
+        },
+        "required": [
+          "name",
+          "srs",
+          "extent"
+        ]
+      },
+      "GridSubset": {
+        "type": "object",
+        "description": "A subset of a grid set for a specific layer",
+        "properties": {
+          "gridSetName": {
+            "type": "string",
+            "description": "Name of the grid set"
+          },
+          "extent": {
+            "$ref": "#/components/schemas/BoundingBox"
+          },
+          "zoomStart": {
+            "type": "integer",
+            "description": "Starting zoom level",
+            "example": 0
+          },
+          "zoomStop": {
+            "type": "integer",
+            "description": "Ending zoom level",
+            "example": 18
+          }
+        },
+        "required": [
+          "gridSetName"
+        ]
+      },
+      "BlobStore": {
+        "type": "object",
+        "description": "A blob store configuration for tile storage",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the blob store"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the blob store"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the blob store is enabled",
+            "default": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "File",
+              "S3",
+              "Azure",
+              "GCS"
+            ],
+            "description": "The type of blob store"
+          },
+          "baseDirectory": {
+            "type": "string",
+            "description": "Base directory for file-based blob stores"
+          },
+          "bucket": {
+            "type": "string",
+            "description": "Bucket name for cloud blob stores"
+          },
+          "prefix": {
+            "type": "string",
+            "description": "Prefix for blob keys"
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ]
+      },
+      "DiskQuota": {
+        "type": "object",
+        "description": "Disk quota configuration for a tile layer",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether disk quota is enabled",
+            "default": false
+          },
+          "diskBlockSize": {
+            "type": "integer",
+            "description": "Disk block size in bytes",
+            "default": 4096
+          },
+          "maxConcurrentCleanUps": {
+            "type": "integer",
+            "description": "Maximum concurrent cleanup operations",
+            "default": 2
+          },
+          "cacheCleanUpFrequency": {
+            "type": "integer",
+            "description": "Frequency of cache cleanup in seconds",
+            "default": 10
+          },
+          "cacheCleanUpUnits": {
+            "type": "string",
+            "enum": [
+              "SECONDS",
+              "MINUTES",
+              "HOURS",
+              "DAYS"
+            ],
+            "description": "Units for cleanup frequency",
+            "default": "SECONDS"
+          },
+          "quotaStore": {
+            "type": "string",
+            "enum": [
+              "H2",
+              "JDBC",
+              "BDB"
+            ],
+            "description": "Type of quota store",
+            "default": "H2"
+          }
+        }
+      },
+      "ParameterFilter": {
+        "type": "object",
+        "description": "A parameter filter for tile layer requests",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The parameter key"
+          },
+          "defaultValue": {
+            "type": "string",
+            "description": "Default value for the parameter"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Allowed values for the parameter"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "BoundingBox": {
+        "type": "object",
+        "description": "A geographic bounding box",
+        "properties": {
+          "minx": {
+            "type": "number",
+            "format": "double",
+            "description": "Minimum X coordinate"
+          },
+          "miny": {
+            "type": "number",
+            "format": "double",
+            "description": "Minimum Y coordinate"
+          },
+          "maxx": {
+            "type": "number",
+            "format": "double",
+            "description": "Maximum X coordinate"
+          },
+          "maxy": {
+            "type": "number",
+            "format": "double",
+            "description": "Maximum Y coordinate"
+          },
+          "crs": {
+            "type": "string",
+            "description": "Coordinate reference system",
+            "example": "EPSG:4326"
+          }
+        },
+        "required": [
+          "minx",
+          "miny",
+          "maxx",
+          "maxy"
+        ],
+        "example": {
+          "minx": -180.0,
+          "miny": -90.0,
+          "maxx": 180.0,
+          "maxy": 90.0,
+          "crs": "EPSG:4326"
+        }
+      },
+      "SRS": {
+        "type": "object",
+        "description": "Spatial reference system definition",
+        "properties": {
+          "number": {
+            "type": "integer",
+            "description": "EPSG code",
+            "example": 4326
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the SRS",
+            "example": "WGS 84"
+          }
+        },
+        "required": [
+          "number"
+        ]
+      },
+      "GridGeometry": {
+        "type": "object",
+        "description": "Grid geometry for raster data",
+        "properties": {
+          "range": {
+            "type": "object",
+            "properties": {
+              "low": {
+                "type": "string",
+                "description": "Low corner of the grid",
+                "example": "0 0"
+              },
+              "high": {
+                "type": "string",
+                "description": "High corner of the grid",
+                "example": "1024 768"
+              }
+            }
+          },
+          "transform": {
+            "type": "object",
+            "properties": {
+              "scaleX": {
+                "type": "number",
+                "format": "double"
+              },
+              "scaleY": {
+                "type": "number",
+                "format": "double"
+              },
+              "shearX": {
+                "type": "number",
+                "format": "double"
+              },
+              "shearY": {
+                "type": "number",
+                "format": "double"
+              },
+              "translateX": {
+                "type": "number",
+                "format": "double"
+              },
+              "translateY": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          "crs": {
+            "type": "string",
+            "description": "Coordinate reference system",
+            "example": "EPSG:4326"
+          }
+        }
+      },
+      "Legend": {
+        "type": "object",
+        "description": "Legend information for a style or layer",
+        "properties": {
+          "width": {
+            "type": "integer",
+            "description": "Width of the legend graphic in pixels",
+            "example": 20
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height of the legend graphic in pixels",
+            "example": 20
+          },
+          "format": {
+            "type": "string",
+            "description": "MIME type of the legend graphic",
+            "example": "image/png"
+          },
+          "onlineResource": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to an external legend graphic"
+          }
+        }
+      },
+      "Attribution": {
+        "type": "object",
+        "description": "Attribution information for a layer",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Attribution title"
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to attribution information"
+          },
+          "logoURL": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to attribution logo"
+          },
+          "logoWidth": {
+            "type": "integer",
+            "description": "Width of the logo in pixels"
+          },
+          "logoHeight": {
+            "type": "integer",
+            "description": "Height of the logo in pixels"
+          },
+          "logoType": {
+            "type": "string",
+            "description": "MIME type of the logo",
+            "example": "image/png"
+          }
+        }
+      },
+      "MetadataLink": {
+        "type": "object",
+        "description": "A link to external metadata",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of metadata",
+            "example": "ISO19115:2003"
+          },
+          "metadataType": {
+            "type": "string",
+            "description": "Metadata standard",
+            "example": "TC211"
+          },
+          "content": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the metadata document"
+          }
+        },
+        "required": [
+          "type",
+          "metadataType",
+          "content"
+        ]
+      },
+      "Keyword": {
+        "type": "object",
+        "description": "A keyword with optional vocabulary",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The keyword value"
+          },
+          "language": {
+            "type": "string",
+            "description": "Language code (ISO 639)",
+            "example": "en"
+          },
+          "vocabulary": {
+            "type": "string",
+            "description": "Controlled vocabulary name"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+    },
     "parameters": {},
     "responses": {},
     "securitySchemes": {
