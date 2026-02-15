@@ -1,106 +1,617 @@
 openapi: 3.0.0
 info:
-  title: GeoServer Gwc API
-  version: 1.0.0
-  description: REST API endpoints for gwc module
+  title: GeoWebCache REST API
+  description: |
+    REST API for managing GeoWebCache tile caching functionality integrated with GeoServer.
+    
+    **Note**: These endpoints are provided by the GeoWebCache library and integrated into GeoServer.
+    All modification operations (POST, PUT, DELETE) require HTTP Basic Authentication.
+  version: 1.28.0
+  contact:
+    name: GeoWebCache Project
+    url: https://geowebcache.osgeo.org/
+
 paths:
-  /gwc:
+  /gwc/rest/layers:
     get:
-      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest
-      summary: GET /gwc
-      description: Endpoint from rest module
       tags:
-      - Gwc
+        - REST GWC
+      summary: List all cached layers
+      description: Returns a list of all available tile layers configured in GeoWebCache
+      operationId: getGwcLayers
       responses:
         '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-  /gwc/demo/**:
+          description: List of layers
+          content:
+            application/xml:
+              schema:
+                type: object
+                xml:
+                  name: layers
+                properties:
+                  layer:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        link:
+                          type: string
+                          format: uri
+
+  /gwc/rest/layers/{layer}.xml:
+    parameters:
+      - name: layer
+        in: path
+        required: true
+        description: Name of the tile layer (use workspace:layer format for GeoServer layers)
+        schema:
+          type: string
     get:
-      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_gwc
-      summary: GET /gwc/demo/**
-      description: Endpoint from rest module
       tags:
-      - Gwc
+        - REST GWC
+      summary: Get layer configuration
+      description: Returns the XML configuration for a specific tile layer
+      operationId: getGwcLayer
       responses:
         '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
+          description: Layer configuration
+          content:
+            application/xml:
+              schema:
+                type: object
         '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-  /gwc/gwc:
-    get:
-      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_1
-      summary: GET /gwc/gwc
-      description: Endpoint from rest module
+          description: Layer not found
+    put:
       tags:
-      - Gwc
+        - REST GWC
+      summary: Create or update layer configuration
+      description: |
+        Creates a new tile layer or updates an existing layer configuration.
+        The layer name in the URL must match the name in the XML body.
+      operationId: putGwcLayer
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: wmsLayer
+              properties:
+                name:
+                  type: string
+                mimeFormats:
+                  type: array
+                  items:
+                    type: string
+                gridSubsets:
+                  type: array
+                  items:
+                    type: object
+                wmsUrl:
+                  type: array
+                  items:
+                    type: string
+                wmsLayers:
+                  type: string
       responses:
         '200':
-          description: Successful operation
+          description: Layer created or updated successfully
         '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-  /gwc/home:
-    get:
-      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_home
-      summary: GET /gwc/home
-      description: Endpoint from rest module
+          description: Invalid request (name mismatch or invalid configuration)
+    delete:
       tags:
-      - Gwc
+        - REST GWC
+      summary: Delete layer
+      description: Removes a tile layer from GeoWebCache configuration
+      operationId: deleteGwcLayer
+      security:
+        - basicAuth: []
       responses:
         '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
+          description: Layer deleted successfully
         '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-  /gwc/proxy/**:
+          description: Layer not found
+
+  /gwc/rest/seed/{layer}.{format}:
+    parameters:
+      - name: layer
+        in: path
+        required: true
+        description: Name of the tile layer
+        schema:
+          type: string
+      - name: format
+        in: path
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum: [xml, json]
     get:
-      operationId: get_rest_GeoServerGWCDispatcherController_handleRestApiRequest_proxy
-      summary: GET /gwc/proxy/**
-      description: Endpoint from rest module
       tags:
-      - Gwc
+        - REST GWC
+      summary: Get seeding status for layer
+      description: Returns the status of running and pending seeding/truncation tasks for a specific layer
+      operationId: getGwcSeedStatus
       responses:
         '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
+          description: Seeding status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  long-array-array:
+                    type: array
+                    description: Array of task status arrays
+                    items:
+                      type: array
+                      description: '[tiles processed, total tiles, remaining seconds, task ID, status]'
+                      items:
+                        type: integer
+    post:
+      tags:
+        - REST GWC
+      summary: Seed or truncate tiles
+      description: |
+        Issues a seed, reseed, or truncate task for the specified layer.
+        
+        **Task types**:
+        - seed: Add tiles to cache
+        - reseed: Replace existing tiles
+        - truncate: Remove tiles from cache
+      operationId: postGwcSeed
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: seedRequest
+              properties:
+                name:
+                  type: string
+                bounds:
+                  type: object
+                  properties:
+                    coords:
+                      type: object
+                      properties:
+                        double:
+                          type: array
+                          items:
+                            type: number
+                gridSetId:
+                  type: string
+                zoomStart:
+                  type: integer
+                zoomStop:
+                  type: integer
+                format:
+                  type: string
+                type:
+                  type: string
+                  enum: [seed, reseed, truncate]
+                threadCount:
+                  type: integer
+                parameters:
+                  type: object
+                  additionalProperties:
+                    type: string
+          application/json:
+            schema:
+              type: object
+              properties:
+                seedRequest:
+                  type: object
+      responses:
+        '200':
+          description: Seed/truncate task submitted successfully
+
+  /gwc/rest/seed/{layer}:
+    parameters:
+      - name: layer
+        in: path
+        required: true
+        description: Name of the tile layer
+        schema:
+          type: string
+    post:
+      tags:
+        - REST GWC
+      summary: Terminate seeding tasks for layer
+      description: Terminates running and/or pending seeding tasks for a specific layer
+      operationId: killGwcSeedTasks
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                kill_all:
+                  type: string
+                  enum: [all, running, pending]
+                  description: Which tasks to terminate
+      responses:
+        '200':
+          description: Tasks terminated successfully
+
+  /gwc/rest/seed.json:
+    get:
+      tags:
+        - REST GWC
+      summary: Get global seeding status
+      description: Returns the status of all running and pending seeding/truncation tasks across all layers
+      operationId: getGwcGlobalSeedStatus
+      responses:
+        '200':
+          description: Global seeding status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  long-array-array:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: integer
+
+  /gwc/rest/seed:
+    post:
+      tags:
+        - REST GWC
+      summary: Terminate all seeding tasks
+      description: Terminates running and/or pending seeding tasks for all layers
+      operationId: killAllGwcSeedTasks
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                kill_all:
+                  type: string
+                  enum: [all, running, pending]
+      responses:
+        '200':
+          description: All tasks terminated successfully
+
+  /gwc/rest/gridsets:
+    get:
+      tags:
+        - REST GWC
+      summary: List all gridsets
+      description: Returns a list of all configured gridsets
+      operationId: getGwcGridsets
+      responses:
+        '200':
+          description: List of gridsets
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+
+  /gwc/rest/gridsets/{gridset}.xml:
+    parameters:
+      - name: gridset
+        in: path
+        required: true
+        description: Name of the gridset
+        schema:
+          type: string
+    get:
+      tags:
+        - REST GWC
+      summary: Get gridset configuration
+      description: Returns the configuration for a specific gridset
+      operationId: getGwcGridset
+      responses:
+        '200':
+          description: Gridset configuration
+          content:
+            application/xml:
+              schema:
+                type: object
         '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
+          description: Gridset not found
+    put:
+      tags:
+        - REST GWC
+      summary: Create or update gridset
+      description: Creates a new gridset or updates an existing gridset configuration
+      operationId: putGwcGridset
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Gridset created or updated successfully
+    delete:
+      tags:
+        - REST GWC
+      summary: Delete gridset
+      description: Removes a gridset from GeoWebCache configuration
+      operationId: deleteGwcGridset
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Gridset deleted successfully
+        '404':
+          description: Gridset not found
+
+  /gwc/rest/blobstores:
+    get:
+      tags:
+        - REST GWC
+      summary: List all blobstores
+      description: Returns a list of all configured blobstores
+      operationId: getGwcBlobstores
+      responses:
+        '200':
+          description: List of blobstores
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+
+  /gwc/rest/blobstores/{blobstore}:
+    parameters:
+      - name: blobstore
+        in: path
+        required: true
+        description: Name of the blobstore
+        schema:
+          type: string
+    get:
+      tags:
+        - REST GWC
+      summary: Get blobstore configuration
+      description: Returns the configuration for a specific blobstore
+      operationId: getGwcBlobstore
+      responses:
+        '200':
+          description: Blobstore configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Blobstore not found
+    put:
+      tags:
+        - REST GWC
+      summary: Create or update blobstore
+      description: Creates a new blobstore or updates an existing blobstore configuration
+      operationId: putGwcBlobstore
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Blobstore created or updated successfully
+    delete:
+      tags:
+        - REST GWC
+      summary: Delete blobstore
+      description: Removes a blobstore from GeoWebCache configuration
+      operationId: deleteGwcBlobstore
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Blobstore deleted successfully
+        '404':
+          description: Blobstore not found
+
+  /gwc/rest/diskquota:
+    get:
+      tags:
+        - REST GWC
+      summary: Get global disk quota configuration
+      description: Returns the global disk quota settings
+      operationId: getGwcDiskQuota
+      responses:
+        '200':
+          description: Disk quota configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+    put:
+      tags:
+        - REST GWC
+      summary: Update global disk quota configuration
+      description: Updates the global disk quota settings
+      operationId: putGwcDiskQuota
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Disk quota configuration updated successfully
+
+  /gwc/rest/diskquota/{layer}:
+    parameters:
+      - name: layer
+        in: path
+        required: true
+        description: Name of the tile layer
+        schema:
+          type: string
+    get:
+      tags:
+        - REST GWC
+      summary: Get layer disk quota
+      description: Returns the disk quota settings for a specific layer
+      operationId: getGwcLayerDiskQuota
+      responses:
+        '200':
+          description: Layer disk quota configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Layer not found
+    put:
+      tags:
+        - REST GWC
+      summary: Set layer disk quota
+      description: Sets or updates the disk quota for a specific layer
+      operationId: putGwcLayerDiskQuota
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Layer disk quota updated successfully
+    delete:
+      tags:
+        - REST GWC
+      summary: Remove layer disk quota
+      description: Removes the disk quota configuration for a specific layer
+      operationId: deleteGwcLayerDiskQuota
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Layer disk quota removed successfully
+        '404':
+          description: Layer not found
+
+  /gwc/rest/global:
+    get:
+      tags:
+        - REST GWC
+      summary: Get global configuration
+      description: Returns the global GeoWebCache configuration
+      operationId: getGwcGlobalConfig
+      responses:
+        '200':
+          description: Global configuration
+          content:
+            application/xml:
+              schema:
+                type: object
+    put:
+      tags:
+        - REST GWC
+      summary: Update global configuration
+      description: Updates the global GeoWebCache configuration
+      operationId: putGwcGlobalConfig
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Global configuration updated successfully
+
+  /gwc/rest/statistics:
+    get:
+      tags:
+        - REST GWC
+      summary: Get cache statistics
+      description: Returns in-memory cache statistics
+      operationId: getGwcStatistics
+      responses:
+        '200':
+          description: Cache statistics
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /gwc/rest/masstruncate:
+    post:
+      tags:
+        - REST GWC
+      summary: Mass truncate tiles
+      description: Truncates tiles across multiple layers based on specified criteria
+      operationId: postGwcMassTruncate
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Mass truncation initiated successfully
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using GeoServer credentials
