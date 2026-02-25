@@ -57,3 +57,11 @@ test_conversion
 mkdocs_output/
 .hypothesis*
 venv/
+
+REST-API-Comparison-Plan.md
+REST-API-OAS-Endpoints.csv
+REST-API-OAS-Summary.md
+.kiro/api-analysis/specs/api - Shortcut.lnk
+doc/en/api/all-operationId
+doc/en/api/specs - Shortcut.lnk
+~/.kiro/steering/environment.md
