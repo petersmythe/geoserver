@@ -366,7 +366,7 @@
   
     
   
-  Macro Syntax Error
+  Automatic Quality Assurance checks
 
       </a>
     </li>
@@ -920,7 +920,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Automatic Quality Assurance checks
   
 
     
@@ -3210,7 +3210,7 @@
 <li>
 <p>A license called <strong><code>&lt;module&gt;-LICENSE.md</code></strong> which contains the license notice for the extension (linking to full <code>licenses/</code> documents included below).</p>
 <p>Follow the <a href="../../../../src/release/extensions/h2/h2-LICENSE.md">h2-LICENSE.md</a> example:</p>
-<p>~~~markdown
+<p>```markdown
 <!-- Include path goes outside docs directory: ../../../../src/release/extensions/h2/h2-LICENSE.md --></p>
 </li>
 </ol>
@@ -3219,17 +3219,17 @@
 </li>
 </ol>
 <!-- TODO: Copy file to docs directory or use alternative approach -->
-<div class="highlight"><pre><span></span><code>        ~~~
+<div class="highlight"><pre><span></span><code>        ```
 
     2.  A readme called **`&lt;module&gt;-README.md`** which contains instructions on how to install the extension.
 
         Follow the [h2-README.md](../../../../src/release/extensions/h2/h2-README.md) example:
 
-        ~~~markdown
+        ```markdown
         &lt;!-- Include path goes outside docs directory: ../../../../src/release/extensions/h2/h2-README.md --&gt;
 </code></pre></div>
 <!-- TODO: Copy file to docs directory or use alternative approach -->
-<div class="highlight"><pre><span></span><code>        ~~~
+<div class="highlight"><pre><span></span><code>        ```
 
         !!! warning
 
@@ -3243,11 +3243,11 @@
 
     Follow the example of [ext-h2-xml](../../../../src/release/ext-h2.xml):
 
-    ~~~xml
+    ```xml
     &lt;!-- Include path goes outside docs directory: ../../../../src/release/ext-h2.xml --&gt;
 </code></pre></div>
 <!-- TODO: Copy file to docs directory or use alternative approach -->
-<div class="highlight"><pre><span></span><code>    ~~~
+<div class="highlight"><pre><span></span><code>    ```
 
     - Add additional `include` elements in the root folder (outputDirectory empty) for the jar dependencies of the module
     - Add additional `include` elements in the licenses folder (outputDirectory `licenses`) for licenses required

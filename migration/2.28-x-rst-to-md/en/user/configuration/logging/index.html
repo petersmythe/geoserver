@@ -28423,22 +28423,22 @@
 <li>
 <p>When setting <code>geoserverlogfile</code> appender as <code>RollingFile</code> appender, care is taken to preserve your <code>&lt;filePattern&gt;</code> extensions, which must align with the roll over strategies configured.</p>
 <p>As an example <code>-%i</code> is used with DefaultRolloverStrategy to produce a maximum of <code>3</code> backup files.</p>
-<p>~~~xml
+<p>```xml
 <!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml --></p>
 </li>
 </ul>
 <!-- TODO: Copy file to docs directory or use alternative approach -->
-<div class="highlight"><pre><span></span><code>~~~
+<div class="highlight"><pre><span></span><code>```
 </code></pre></div>
 <ul>
 <li>
 <p>a <code>Console</code> appender writing to the standard output should be called <code>stdout</code> and again GeoServer will enable/disable it according to the configuration set in the <a href="../globalsettings/#config_globalsettings_log_stdout">global settings</a></p>
-<p>~~~xml
+<p>```xml
 <!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml --></p>
 </li>
 </ul>
 <!-- TODO: Copy file to docs directory or use alternative approach -->
-<div class="highlight"><pre><span></span><code>~~~
+<div class="highlight"><pre><span></span><code>```
 </code></pre></div>
 <ul>
 <li>Loggers are used to collect messages from geoserver components, and individual libraries used.</li>
