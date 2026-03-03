@@ -2912,15 +2912,44 @@
 <p>If you create a jar with these three files and add it to the GeoServer classpath, you should see the new link in the left-hand menu.</p>
 <h2 id="adding-to-a-page">Adding to a Page<a class="headerlink" href="#adding-to-a-page" title="Permanent link">&para;</a></h2>
 <p>At this point you've added a page to the UI, but it's not very interesting. In Wicket, pages provide their content with an HTML file stored with the same name as the Java code except for the extension. There are a few details about these files that differ from standard HTML; for one thing, they must be valid XML for Wicket's parser to work. In addition, Wicket uses a few "special" elements to specify where the Java code should hook into the HTML. The following are used quite extensively in the GeoServer administrative console.</p>
-<p>|----|----|
-| <strong>Wicket Element</strong> | <strong>Purpose</strong> |
-| <code>&lt;foo wicket:id="bar"&gt;&lt;/foo&gt;</code> | A wicket:id attribute tells Wicket the name to be used for an element when attaching Wicket Components |
-| <code>&lt;wicket:child/&gt;</code> | Requires no contents, but specifies that classes extending this page can insert content at this position. |
-| <code>&lt;wicket:extend&gt;&lt;/wicket:extend&gt;</code> | Specifies that the enclosed content will be inserted into a parent page at the point indicated by <wicket:child/> |
-| <code>&lt;wicket:panel&gt;&lt;/wicket:panel&gt;</code> | Similar to <code>wicket:extend</code>, but used in creating custom components rather than extending pages. |
-| <code>&lt;wicket:head&gt;&lt;/wicket:head&gt;</code> | Indicates a section (like a CSS or JavaScript include) that should be added to the header of pages that include this markup (can be used for pages or panels). |
-| <code>&lt;wicket:link&gt;&lt;/wicket:link&gt;</code> | Encloses sections in which Wicket will rewrite links to pages, CSS files, and other resources that it manages. (This lets you refer to resources using paths relative to the Java source and not the rendered HTML.) |
-| <code>&lt;wicket:message key="i18nKey"&gt; Default Text &lt;/wicket:message&gt;</code> | Tells Wicket to look up a string in the internationalization database and replace the provided text if one is found. |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Wicket Element</strong></th>
+<th><strong>Purpose</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;foo wicket:id="bar"&gt;&lt;/foo&gt;</code></td>
+<td>A wicket:id attribute tells Wicket the name to be used for an element when attaching Wicket Components</td>
+</tr>
+<tr>
+<td><code>&lt;wicket:child/&gt;</code></td>
+<td>Requires no contents, but specifies that classes extending this page can insert content at this position.</td>
+</tr>
+<tr>
+<td><code>&lt;wicket:extend&gt;&lt;/wicket:extend&gt;</code></td>
+<td>Specifies that the enclosed content will be inserted into a parent page at the point indicated by <wicket:child/></td>
+</tr>
+<tr>
+<td><code>&lt;wicket:panel&gt;&lt;/wicket:panel&gt;</code></td>
+<td>Similar to <code>wicket:extend</code>, but used in creating custom components rather than extending pages.</td>
+</tr>
+<tr>
+<td><code>&lt;wicket:head&gt;&lt;/wicket:head&gt;</code></td>
+<td>Indicates a section (like a CSS or JavaScript include) that should be added to the header of pages that include this markup (can be used for pages or panels).</td>
+</tr>
+<tr>
+<td><code>&lt;wicket:link&gt;&lt;/wicket:link&gt;</code></td>
+<td>Encloses sections in which Wicket will rewrite links to pages, CSS files, and other resources that it manages. (This lets you refer to resources using paths relative to the Java source and not the rendered HTML.)</td>
+</tr>
+<tr>
+<td><code>&lt;wicket:message key="i18nKey"&gt; Default Text &lt;/wicket:message&gt;</code></td>
+<td>Tells Wicket to look up a string in the internationalization database and replace the provided text if one is found.</td>
+</tr>
+</tbody>
+</table>
 <p>Wicket provides quite a few components, of which several can be seen in the <a href="https://examples7x.wicket.apache.org/compref/">Wicket Component Reference</a>. In general, Wicket components require a Model object which handles the getting, setting, and conversion to/from String of the value associated with a component. For the purposes of this example, we will focus on one of the simplest, the Label, which simply replaces the contents of the element it is bound to with a value provided at runtime. Continuing the example from above, we can pass a String to the Label's constructor and it is transparently converted to a Model:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">org.geoserver.web.example</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
@@ -3069,12 +3098,37 @@ Bootstrap uses mostly `em` and `rem` as sizing units, and the `3` suffix (like `
 Some other sizing used to set the width of an element and its pixel equivalent:
 </code></pre></div>
 </blockquote>
-<p>|-----------|----------------|------------------------------------|
-| <strong>Class</strong> | <strong>Size in em</strong> | <strong>Size in pixels</strong> (approximately) |
-| <code>*-5-em</code>  | 5em            | 100px                              |
-| <code>*-20-em</code> | 20em           | 325px                              |
-| <code>*-25-em</code> | 25em           | 400px                              |
-| <code>*-30-em</code> | 30em           | 600px                              |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Class</strong></th>
+<th><strong>Size in em</strong></th>
+<th><strong>Size in pixels</strong> (approximately)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*-5-em</code></td>
+<td>5em</td>
+<td>100px</td>
+</tr>
+<tr>
+<td><code>*-20-em</code></td>
+<td>20em</td>
+<td>325px</td>
+</tr>
+<tr>
+<td><code>*-25-em</code></td>
+<td>25em</td>
+<td>400px</td>
+</tr>
+<tr>
+<td><code>*-30-em</code></td>
+<td>30em</td>
+<td>600px</td>
+</tr>
+</tbody>
+</table>
 <!-- mkdocs-translate: removed 8 spaces indentation -->
 
 <blockquote>

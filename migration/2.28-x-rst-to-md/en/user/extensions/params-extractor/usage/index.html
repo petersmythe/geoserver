@@ -28415,11 +28415,28 @@
 <h2 id="basic-rules">Basic Rules<a class="headerlink" href="#basic-rules" title="Permanent link">&para;</a></h2>
 <p>Basic rules allow us to handle simple uses cases where we only want to extract a parameter from the URL.</p>
 <p>A basic rule is defined by three mandatory attributes:</p>
-<p>|----|----|
-| <strong>Attribute</strong> | <strong>Description</strong> |
-| <code>Position</code> | The position of the URL base path element to be selected |
-| <code>Parameter</code> | The name of the parameter produced by this rule |
-| <code>Transform</code> | Expression that defines the value of the parameter, use {PARAMETER} as a placeholder for the selected path element |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Position</code></td>
+<td>The position of the URL base path element to be selected</td>
+</tr>
+<tr>
+<td><code>Parameter</code></td>
+<td>The name of the parameter produced by this rule</td>
+</tr>
+<tr>
+<td><code>Transform</code></td>
+<td>Expression that defines the value of the parameter, use {PARAMETER} as a placeholder for the selected path element</td>
+</tr>
+</tbody>
+</table>
 <p>For commodity is also possible when defining this type of rules to configure that an existing parameter in the URL should be echoed to a get capabilities result.</p>
 <p>Example of a basic rule:</p>
 <p><img alt="" src="../images/basic_rule.png" />
@@ -28433,15 +28450,52 @@
 <h2 id="advanced-rules">Advanced Rules<a class="headerlink" href="#advanced-rules" title="Permanent link">&para;</a></h2>
 <p>Advanced rules allow us to handle more complex uses cases where more flexibility is required.</p>
 <p>An advanced rule is defined by three mandatory attributes and four optional ones:</p>
-<p>|----|----|----|
-| <strong>Attribute</strong> | <strong>Description</strong> | <strong>Mandatory</strong> |
-| <code>Match</code> | Regex match expression with groups, for example \^(?:/[\^/]<em>){3}(/([\^/]+)).</em>\$ selects the URL base path third element | Yes |
-| <code>Activation</code> | If defined this rule will only be applied to URLs that match this regex expression | No |
-| <code>Parameter</code> | The name of the parameter produced by this rule | Yes |
-| <code>Transform</code> | Expression that defines the value of the parameter, use \$1 ... \$n as placeholders for groups defined in the match expression | Yes |
-| <code>Remove</code> | The match expression group to be removed from URL, by default 1 | No |
-| <code>Combine</code> | Defines how to combine parameter existing value (\$1 existing value, \$2 new value), by default the value is overridden | No |
-| <code>Repeat</code> | If defined, Combine is applied not only once, but for every layer included in the LAYERS parameter, this allows filling parameters that require a value for each layer (e.g. STYLES or CQL_FILTER) | No |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Attribute</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Mandatory</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Match</code></td>
+<td>Regex match expression with groups, for example \^(?:/[\^/]<em>){3}(/([\^/]+)).</em>\$ selects the URL base path third element</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>Activation</code></td>
+<td>If defined this rule will only be applied to URLs that match this regex expression</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>Parameter</code></td>
+<td>The name of the parameter produced by this rule</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>Transform</code></td>
+<td>Expression that defines the value of the parameter, use \$1 ... \$n as placeholders for groups defined in the match expression</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>Remove</code></td>
+<td>The match expression group to be removed from URL, by default 1</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>Combine</code></td>
+<td>Defines how to combine parameter existing value (\$1 existing value, \$2 new value), by default the value is overridden</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>Repeat</code></td>
+<td>If defined, Combine is applied not only once, but for every layer included in the LAYERS parameter, this allows filling parameters that require a value for each layer (e.g. STYLES or CQL_FILTER)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
 <p>For commodity is also possible when defining this type of rules to configure that an existing parameter in the URL should be echoed to a get capabilities result.</p>
 <p>Example of an advanced rule:</p>
 <p><img alt="" src="../images/advanced_rule.png" />

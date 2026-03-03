@@ -28501,24 +28501,114 @@
 </code></pre></div>
 <p>The ENVIRONMENT_OWNER column in CGI_TermValue view corresponds to the ID column in GeologicEvent view.</p>
 <p><strong>Geologic Event property file:</strong></p>
-<p>|----|----|----|----|----|
-| <strong>id</strong> | <strong>GEOLOGIC_UNIT_ID:String</strong> | <strong>ghminage:String</strong> | <strong>ghmaxage:String</strong> | <strong>ghage_cdspace:String</strong> |
-| ge.26931120 | gu.25699 | Oligocene | Paleocene | <urn:cgi:classifierScheme:ICS:StratChart:2008> |
-| ge.26930473 | gu.25678 | Holocene | Pleistocene | <urn:cgi:classifierScheme:ICS:StratChart:2008> |
-| ge.26930960 | gu.25678 | Pliocene | Miocene | <urn:cgi:classifierScheme:ICS:StratChart:2008> |
-| ge.26932959 | gu.25678 | LowerOrdovician | LowerOrdovician | <urn:cgi:classifierScheme:ICS:StratChart:2008> |</p>
+<table>
+<thead>
+<tr>
+<th><strong>id</strong></th>
+<th><strong>GEOLOGIC_UNIT_ID:String</strong></th>
+<th><strong>ghminage:String</strong></th>
+<th><strong>ghmaxage:String</strong></th>
+<th><strong>ghage_cdspace:String</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ge.26931120</td>
+<td>gu.25699</td>
+<td>Oligocene</td>
+<td>Paleocene</td>
+<td><urn:cgi:classifierScheme:ICS:StratChart:2008></td>
+</tr>
+<tr>
+<td>ge.26930473</td>
+<td>gu.25678</td>
+<td>Holocene</td>
+<td>Pleistocene</td>
+<td><urn:cgi:classifierScheme:ICS:StratChart:2008></td>
+</tr>
+<tr>
+<td>ge.26930960</td>
+<td>gu.25678</td>
+<td>Pliocene</td>
+<td>Miocene</td>
+<td><urn:cgi:classifierScheme:ICS:StratChart:2008></td>
+</tr>
+<tr>
+<td>ge.26932959</td>
+<td>gu.25678</td>
+<td>LowerOrdovician</td>
+<td>LowerOrdovician</td>
+<td><urn:cgi:classifierScheme:ICS:StratChart:2008></td>
+</tr>
+</tbody>
+</table>
 <p><strong>CGI Term Value property file:</strong></p>
-<p>|----|----|----|----|
-| <strong>id</strong> | <strong>VALUE:String</strong> | <strong>PROCESS_OWNER:String</strong> | <strong>ENVIRONMENT_OWNER:String</strong> |
-| 3 | fluvial | NULL | ge.26931120 |
-| 4 | swamp/marsh/bog | NULL | ge.26930473 |
-| 5 | marine | NULL | ge.26930960 |
-| 6 | submarine fan | NULL | ge.26932959 |
-| 7 | hemipelagic | NULL | ge.26932959 |
-| 8 | detrital deposition still water | ge.26930473 | NULL |
-| 9 | water [process] | ge.26932959 | NULL |
-| 10 | channelled stream flow | ge.26931120 | NULL |
-| 11 | turbidity current | ge.26932959 | NULL |</p>
+<table>
+<thead>
+<tr>
+<th><strong>id</strong></th>
+<th><strong>VALUE:String</strong></th>
+<th><strong>PROCESS_OWNER:String</strong></th>
+<th><strong>ENVIRONMENT_OWNER:String</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>fluvial</td>
+<td>NULL</td>
+<td>ge.26931120</td>
+</tr>
+<tr>
+<td>4</td>
+<td>swamp/marsh/bog</td>
+<td>NULL</td>
+<td>ge.26930473</td>
+</tr>
+<tr>
+<td>5</td>
+<td>marine</td>
+<td>NULL</td>
+<td>ge.26930960</td>
+</tr>
+<tr>
+<td>6</td>
+<td>submarine fan</td>
+<td>NULL</td>
+<td>ge.26932959</td>
+</tr>
+<tr>
+<td>7</td>
+<td>hemipelagic</td>
+<td>NULL</td>
+<td>ge.26932959</td>
+</tr>
+<tr>
+<td>8</td>
+<td>detrital deposition still water</td>
+<td>ge.26930473</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>9</td>
+<td>water [process]</td>
+<td>ge.26932959</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>10</td>
+<td>channelled stream flow</td>
+<td>ge.26931120</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>11</td>
+<td>turbidity current</td>
+<td>ge.26932959</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
 <p>The system field <em>FEATURE_LINK</em> doesn't get encoded in the output:</p>
 <div class="highlight"><pre><span></span><code>&lt;gsml:GeologicEvent&gt;                      
   &lt;gml:name codeSpace=&quot;urn:cgi:classifierScheme:GSV:GeologicalUnitId&quot;&gt;gu.25699&lt;/gml:name&gt;
@@ -28654,11 +28744,36 @@
 |          | :                        |                        |                                                            |
 +----------+--------------------------+------------------------+------------------------------------------------------------+</p>
 <p><strong>Composition Part property file:</strong></p>
-<p>|----|----|----|----|
-| <strong>id</strong> | <strong>COMPONENT_ROLE:String</strong> | <strong>PROPORTION:String</strong> | <strong>GEOLOGIC_UNIT_ID:String</strong> |
-| cp.167775491936278812 | interbedded component | significant | gu.25699 |
-| cp.167775491936278856 | interbedded component | minor | gu.25678 |
-| cp.167775491936278844 | sole component | major | gu.25678 |</p>
+<table>
+<thead>
+<tr>
+<th><strong>id</strong></th>
+<th><strong>COMPONENT_ROLE:String</strong></th>
+<th><strong>PROPORTION:String</strong></th>
+<th><strong>GEOLOGIC_UNIT_ID:String</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cp.167775491936278812</td>
+<td>interbedded component</td>
+<td>significant</td>
+<td>gu.25699</td>
+</tr>
+<tr>
+<td>cp.167775491936278856</td>
+<td>interbedded component</td>
+<td>minor</td>
+<td>gu.25678</td>
+</tr>
+<tr>
+<td>cp.167775491936278844</td>
+<td>sole component</td>
+<td>major</td>
+<td>gu.25678</td>
+</tr>
+</tbody>
+</table>
 <p>Run the getFeature request to test this configuration. Check that the nested features returned in Step 2 are appropriately lined inside the containing features. If they are not there, or exceptions are thrown, scroll down and read the "Trouble Shooting" section.</p>
 <h2 id="multiple-mappings-of-the-same-type">Multiple mappings of the same type<a class="headerlink" href="#multiple-mappings-of-the-same-type" title="Permanent link">&para;</a></h2>
 <p>At times, you may find the need to have different FeatureTypeMapping instances for the same type. You may have two different attributes of the same type that need to be nested. For example, in gsml:GeologicUnit, you have gsml:exposureColor and gsml:outcropCharacter that are both of gsml:CGI_TermValue type.</p>

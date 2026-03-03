@@ -28248,19 +28248,60 @@
 <div class="highlight"><pre><span></span><code>maximum number of features = 10^(kmscore/15)
 </code></pre></div>
 <p>The following table shows the values of this threshold for various values of the <code>kmscore</code> parameter:</p>
-<p>|-------------|-------------------------------|
-| <strong>kmscore</strong> | <strong>Maximum # of features</strong>    |
-| 0           | Force overlay/raster output   |
-| 10          | 4                             |
-| 20          | 21                            |
-| 30          | 100                           |
-| 40          | Approx. 450                   |
-| 50          | (<em>default</em>) Approx. 2150      |
-| 60          | Approx. 10,000                |
-| 70          | Approx. 45,000                |
-| 80          | Approx. 200,000               |
-| 90          | Approx. 1,000,000             |
-| 100         | Force placemark/vector output |</p>
+<table>
+<thead>
+<tr>
+<th><strong>kmscore</strong></th>
+<th><strong>Maximum # of features</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Force overlay/raster output</td>
+</tr>
+<tr>
+<td>10</td>
+<td>4</td>
+</tr>
+<tr>
+<td>20</td>
+<td>21</td>
+</tr>
+<tr>
+<td>30</td>
+<td>100</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Approx. 450</td>
+</tr>
+<tr>
+<td>50</td>
+<td>(<em>default</em>) Approx. 2150</td>
+</tr>
+<tr>
+<td>60</td>
+<td>Approx. 10,000</td>
+</tr>
+<tr>
+<td>70</td>
+<td>Approx. 45,000</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Approx. 200,000</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Approx. 1,000,000</td>
+</tr>
+<tr>
+<td>100</td>
+<td>Force placemark/vector output</td>
+</tr>
+</tbody>
+</table>
 <p>The syntax for specifying <code>kmscore</code> is:</p>
 <div class="highlight"><pre><span></span><code>kmscore=&lt;value&gt;
 </code></pre></div>

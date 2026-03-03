@@ -28286,13 +28286,36 @@
 <h2 id="configuring-a-properties-data-store">Configuring a Properties data store<a class="headerlink" href="#configuring-a-properties-data-store" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../images/propertiesconfigure.png" />
 <em>Configuring a Properties data store</em></p>
-<p>|----|----|
-| <strong>Option</strong> | <strong>Description</strong> |
-| <code>Workspace</code> | Sets the namespace prefix of the feature types (layers) and their properties |
-| <code>Data Source Name</code> | Unique identifier to distinguish this data store |
-| <code>Description</code> | Optional text giving a verbose description of the data store |
-| <code>Enabled</code> | Features will be delivered only if this option is checked |
-| <code>directory</code> | Filesystem path to a directory containing one or more property files, for example <code>/usr/local/geoserver/data/ex</code> |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Option</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Workspace</code></td>
+<td>Sets the namespace prefix of the feature types (layers) and their properties</td>
+</tr>
+<tr>
+<td><code>Data Source Name</code></td>
+<td>Unique identifier to distinguish this data store</td>
+</tr>
+<tr>
+<td><code>Description</code></td>
+<td>Optional text giving a verbose description of the data store</td>
+</tr>
+<tr>
+<td><code>Enabled</code></td>
+<td>Features will be delivered only if this option is checked</td>
+</tr>
+<tr>
+<td><code>directory</code></td>
+<td>Filesystem path to a directory containing one or more property files, for example <code>/usr/local/geoserver/data/ex</code></td>
+</tr>
+</tbody>
+</table>
 <p>Every property file <code>TYPENAME.properties</code> in the designated directory is served as a feature type <code>TYPENAME</code> (the name of the file without the <code>.properties</code>), in the namespace of the data store.</p>
 <p>Before a feature type (layer) can be used, you must edit it to ensure that its bounding box and other metadata is configured.</p>
 <h2 id="property-file-format">Property file format<a class="headerlink" href="#property-file-format" title="Permanent link">&para;</a></h2>
