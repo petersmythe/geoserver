@@ -8067,7 +8067,7 @@
   <span class="md-ellipsis">
     
   
-    CSS Quickstart
+    Macro Rendering Error
   
 
     
@@ -8324,7 +8324,7 @@
   <span class="md-ellipsis">
     
   
-    YSLD Quickstart
+    Macro Rendering Error
   
 
     
@@ -8581,7 +8581,7 @@
   <span class="md-ellipsis">
     
   
-    MBStyle Quickstart
+    Macro Rendering Error
   
 
     
@@ -29042,7 +29042,18 @@
 <h3 id="configure-the-mosaic_dir">Configure the MOSAIC_DIR:<a class="headerlink" href="#configure-the-mosaic_dir" title="Permanent link">&para;</a></h3>
 <p>This part showsn an entire MOSAIC_DIR configuration.</p>
 <h4 id="datastoreproperties_1">datastore.properties:<a class="headerlink" href="#datastoreproperties_1" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/datastore.properties&quot; %}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>host=localhost
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>port=5432
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>database=db
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>schema=public
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>user=dbuser
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>passwd=dbpasswd
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Loose\ bbox=true
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Estimated\ extends=false
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>validate\ connections=true
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Connection\ timeout=10
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>preparedStatements=true
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -29050,15 +29061,31 @@
 </div>
 <h4 id="granules-naming-convention">Granules Naming Convention<a class="headerlink" href="#granules-naming-convention" title="Permanent link">&para;</a></h4>
 <p>Here an example of the granules naming that satisfies the rule shown before:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/tiffiles.out&quot; %}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ls hydroalp/snow/*.tif
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>snow/snow_20091001.tif
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>snow/snow_20091101.tif
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>snow/snow_20091201.tif
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>snow/snow_20100101.tif
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>snow/snow_20100201.tif
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>snow/snow_20100301.tif
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>snow/snow_20100401.tif
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>snow/snow_20100501.tif
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>snow/snow_20100601.tif
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>snow/snow_20100701.tif
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>snow/snow_20100801.tif
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>snow/snow_20100901.tif
 </code></pre></div>
 <h4 id="timeregexproperties_1">timeregex.properties:<a class="headerlink" href="#timeregexproperties_1" title="Permanent link">&para;</a></h4>
 <p>In the timeregex property file you specify the pattern describing the date(time) part of the file names. In this example it consists simply of 8 digits as specified below.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/timeregex.properties&quot; %}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>regex=[0-9]{8}
 </code></pre></div>
 <h4 id="indexerproperties_1">indexer.properties:<a class="headerlink" href="#indexerproperties_1" title="Permanent link">&para;</a></h4>
 <p>Here the user can specify the information that GeoServer uses to create the index table in the database. In this example, the time values are stored in the column ingestion.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/indexer.properties&quot; %}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>TimeAttribute=ingestion
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ElevationAttribute=elevation
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Schema=*the_geom:Polygon,location:String,ingestion:java.util.Date,elevation:Integer
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>PropertyCollectors=TimestampFileNameExtractorSPI[timeregex](ingestion)
 </code></pre></div>
 <h2 id="create-and-publish-an-imagemosaic-store">Create and Publish an ImageMosaic store:<a class="headerlink" href="#create-and-publish-an-imagemosaic-store" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-create-new-imagemosaic-data-store">Step 1: Create new ImageMosaic data store<a class="headerlink" href="#step-1-create-new-imagemosaic-data-store" title="Permanent link">&para;</a></h3>
@@ -29106,7 +29133,19 @@
 <p><img alt="" src="../img/step_2_2.png" /></p>
 <p>After this steps the new layer is available in GeoServer. GeoServer will create a property file in the source directory. GeoServer will either create a shapefile for the mosaic indexes, or will create a table on the database (named the same as the layer name) for the index.</p>
 <h4 id="generated-property-file">Generated property file:<a class="headerlink" href="#generated-property-file" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/snow.properties&quot; %}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>#-Automagically created from GeoTools-
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>#Sat Oct 13 10:47:08 CEST 2012
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Levels=100.0,100.0
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Heterogeneous=false
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>ElevationAttribute=elevation
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>TimeAttribute=ingestion
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>AbsolutePath=false
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Name=snow
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>Caching=false
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>ExpandToRGB=false
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>LocationAttribute=location
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>SuggestedSPI=it.geosolutions.imageioimpl.plugins.tiff.TIFFImageReaderSpi
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>LevelsNum=1
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
