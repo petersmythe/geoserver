@@ -25,7 +25,7 @@
     
     
       
-        <title>Overview - GeoServer Developer Manual</title>
+        <title>Macro Syntax Error - GeoServer Developer Manual</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview" class="md-skip">
+        <a href="#macro-syntax-error" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Macro Syntax Error
             
           </span>
         </div>
@@ -364,7 +364,7 @@
   
     
   
-  Automatic Quality Assurance checks
+  Macro Syntax Error
 
       </a>
     </li>
@@ -429,7 +429,7 @@
   
     
   
-  CITE Test Guide
+  Macro Syntax Error
 
       </a>
     </li>
@@ -745,7 +745,7 @@
   <span class="md-ellipsis">
     
   
-    Maven Quickstart
+    Macro Syntax Error
   
 
     
@@ -773,7 +773,7 @@
   <span class="md-ellipsis">
     
   
-    IntelliJ QuickStart
+    Macro Syntax Error
   
 
     
@@ -801,7 +801,7 @@
   <span class="md-ellipsis">
     
   
-    Maven Eclipse Plugin Quickstart
+    Macro Syntax Error
   
 
     
@@ -829,7 +829,7 @@
   <span class="md-ellipsis">
     
   
-    Eclipse M2 Quickstart
+    Macro Syntax Error
   
 
     
@@ -918,7 +918,7 @@
   <span class="md-ellipsis">
     
   
-    Automatic Quality Assurance checks
+    Macro Syntax Error
   
 
     
@@ -1311,7 +1311,7 @@
   <span class="md-ellipsis">
     
   
-    Implementing a simple OWS service
+    Macro Rendering Error
   
 
     
@@ -1655,24 +1655,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1680,7 +1662,7 @@
   <span class="md-ellipsis">
     
   
-    Overview
+    Macro Syntax Error
   
 
     
@@ -1689,36 +1671,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plug-ins" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plug-ins
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -2288,7 +2240,7 @@
   <span class="md-ellipsis">
     
   
-    CITE Test Guide
+    Macro Syntax Error
   
 
     
@@ -2457,7 +2409,7 @@
   <span class="md-ellipsis">
     
   
-    Project Steering Committee
+    Macro Syntax Error
   
 
     
@@ -2485,7 +2437,7 @@
   <span class="md-ellipsis">
     
   
-    GeoServer Improvement Proposals
+    Macro Syntax Error
   
 
     
@@ -2597,7 +2549,7 @@
   <span class="md-ellipsis">
     
   
-    Community Modules
+    Macro Rendering Error
   
 
     
@@ -2721,25 +2673,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plug-ins" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plug-ins
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2763,20 +2696,11 @@
   
 
 
-<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
-<p>GeoServer uses a web application framework known as <a href="http://wicket.apache.org//">Wicket</a> for its user interface. Wicket differs from most Java web frameworks in that it is component based rather than JSP template based. This makes Wicket a more natural web framework for many Java programmers who are more familiar with Swing programming than web programming.</p>
-<h2 id="plug-ins">Plug-ins<a class="headerlink" href="#plug-ins" title="Permanent link">&para;</a></h2>
-<p>Because of its component based nature Wicket components can be loaded from the classpath. Which means that web applications can be built in a modular fashion, rather than in a monolithic fashion.</p>
-<p>GeoServer takes this concept one step further to provide a pluggable user interface, in which Wicket components can be plugged in via Spring and the regular GeoServer plug-in mechanism.</p>
-<p>Each component that is plugged in is described by a <strong>component descriptor</strong>. A component descriptor is an instance of the <code>org.geoserver.web.ComponentInfo</code> class:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{% 
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  include &quot;./ComponentInfo.java&quot;
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>%}
-</code></pre></div>
-</blockquote>
-<p>A <code>ComponentInfo</code> instance contains meta information about the component being plugged in such as its title and description, as well as the class which implements the component.</p>
-<p>Each subclass of <code>ComponentInfo</code> represents a specific <a href="../../extension-points/">extension point</a>. For instance the class <code>org.geoserver.web.MenuPageInfo</code> represents the extension point for "main" pages, ie pages that are linked to from the main menu of the application.</p>
+<h1 id="macro-syntax-error"><em>Macro Syntax Error</em><a class="headerlink" href="#macro-syntax-error" title="Permanent link">&para;</a></h1>
+<p><em>File</em>: <code>programming-guide/web-ui/overview.md</code></p>
+<p><em>Line 15 in Markdown file:</em> <strong>tag name expected</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">&gt; </span><span class="ge">  include &quot;./ComponentInfo.java&quot;</span>
+</code></pre></div></p>
 
 
 
