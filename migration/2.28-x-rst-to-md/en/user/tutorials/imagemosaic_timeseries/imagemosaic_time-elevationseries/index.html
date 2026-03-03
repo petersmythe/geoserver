@@ -8067,7 +8067,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    CSS Quickstart
   
 
     
@@ -8324,7 +8324,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    YSLD Quickstart
   
 
     
@@ -8581,7 +8581,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    MBStyle Quickstart
   
 
     
@@ -27848,7 +27848,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Using the ImageMosaic plugin for raster time-series data
   
 
     
@@ -28443,8 +28443,7 @@
 <h3 id="indexerproperties">indexer.properties:<a class="headerlink" href="#indexerproperties" title="Permanent link">&para;</a></h3>
 <p>Here the user can specify the information that needs GeoServer for creating the table in the database.</p>
 <p>In this case the time values are stored in the column ingestion as shown in the previous tutorial but now is mandatory specify the elevation column too.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;!-- Malformed include statement: tutorials/imagemosaic_timeseries/src/indexerWithElevation.properties --&gt;
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>&lt;!-- TODO: Fix or remove --&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/indexerWithElevation.properties&quot; %}
 </code></pre></div>
 <h3 id="elevationregexproperties">elevationregex.properties:<a class="headerlink" href="#elevationregexproperties" title="Permanent link">&para;</a></h3>
 <p>Remember that every tif file must follow this naming convention:</p>
@@ -28455,16 +28454,14 @@
 <div class="highlight"><pre><span></span><code>gfs50kmTemperature20130310T180000000Z_0600.000_.tiff
 </code></pre></div>
 <p>The GeoServer ImageMosaic plugin scans the filename and search for the first occurrence that match with the pattern specified. Here the content of <strong>elevationregex.properties</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;!-- Malformed include statement: tutorials/imagemosaic_timeseries/src/elevationregex.properties --&gt;
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&lt;!-- TODO: Fix or remove --&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/elevationregex.properties&quot; %}
 </code></pre></div>
 <h3 id="timeregexproperties">timeregex.properties:<a class="headerlink" href="#timeregexproperties" title="Permanent link">&para;</a></h3>
 <p>As you can see the time in this dataset is specified as ISO8601 format:</p>
 <div class="highlight"><pre><span></span><code>20130310T180000000Z
 </code></pre></div>
 <p>Instead of the form <strong>yyyymmdd</strong> as in the previous tutorial. So the regex to specify in timeregex.properties is:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&lt;!-- Malformed include statement: tutorials/imagemosaic_timeseries/src/timeregexForElevation.properties --&gt;
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>&lt;!-- TODO: Fix or remove --&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{% include &quot;tutorials/imagemosaic_timeseries/src/timeregexForElevation.properties&quot; %}
 </code></pre></div>
 <h2 id="coverage-based-on-filestore">Coverage based on filestore<a class="headerlink" href="#coverage-based-on-filestore" title="Permanent link">&para;</a></h2>
 <p>Once the mosaic configuration is ready the store mosaic could be loaded on GeoServer.</p>
