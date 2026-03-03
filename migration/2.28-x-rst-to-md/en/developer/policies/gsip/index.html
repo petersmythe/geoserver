@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Syntax Error - GeoServer Developer Manual</title>
+        <title>GeoServer Improvement Proposals - GeoServer Developer Manual</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-syntax-error" class="md-skip">
+        <a href="#geoserver-improvement-proposals" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Syntax Error
+              GeoServer Improvement Proposals
             
           </span>
         </div>
@@ -745,7 +745,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Maven Quickstart
   
 
     
@@ -773,7 +773,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    IntelliJ QuickStart
   
 
     
@@ -801,7 +801,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Maven Eclipse Plugin Quickstart
   
 
     
@@ -829,7 +829,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Eclipse M2 Quickstart
   
 
     
@@ -1302,7 +1302,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Implementing a simple OWS service
   
 
     
@@ -2384,7 +2384,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Project Steering Committee
   
 
     
@@ -2414,6 +2414,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GeoServer Improvement Proposals
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2421,7 +2439,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    GeoServer Improvement Proposals
   
 
     
@@ -2430,6 +2448,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-a-gsip-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a GSIP works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-a-gsip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing a GSIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2658,6 +2717,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-a-gsip-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a GSIP works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-a-gsip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing a GSIP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2681,11 +2770,160 @@
   
 
 
-<h1 id="macro-syntax-error"><em>Macro Syntax Error</em><a class="headerlink" href="#macro-syntax-error" title="Permanent link">&para;</a></h1>
-<p><em>File</em>: <code>policies/gsip.md</code></p>
-<p><em>Line 60 in Markdown file:</em> <strong>expected token 'end of statement block', got 'string'</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>   include-markdown &quot;./gsip_voting.txt&quot;
-</code></pre></div></p>
+<h1 id="geoserver-improvement-proposals">GeoServer Improvement Proposals<a class="headerlink" href="#geoserver-improvement-proposals" title="Permanent link">&para;</a></h1>
+<p>GeoServer Improvements Proposals (GSIP) are the formal mechanism used to manage major changes to GeoServer in a responsible fashion. Examples of changes which are managed by the GSIP process include:</p>
+<ul>
+<li>major features</li>
+<li>code re-architecture</li>
+<li>community process improvements</li>
+<li>upgrading key dependencies</li>
+<li>intellectual property</li>
+</ul>
+<h2 id="how-a-gsip-works">How a GSIP works<a class="headerlink" href="#how-a-gsip-works" title="Permanent link">&para;</a></h2>
+<p>The typical life cycle of a GSIP is as follows:</p>
+<ol>
+<li>Developer has an intent to perform a major change.</li>
+<li>Developer communicates with the community about the change.</li>
+<li>Developer goes off and implements the change.</li>
+<li>Developer writes a GSIP and presents it to the community for feedback.</li>
+<li>The PSC votes on the GSIP.</li>
+<li>Developer commits changes upon receiving a positive vote.</li>
+</ol>
+<h2 id="writing-a-gsip">Writing a GSIP<a class="headerlink" href="#writing-a-gsip" title="Permanent link">&para;</a></h2>
+<p>GSIPs are written up on the <code class="interpreted-text" role="wiki">Proposals</code> wiki page.</p>
+<p>If you have write access login and follow the steps below. If you do not have write access GitHub will automatically create a fork for you as you edit individual pages.</p>
+<p>To make a GSIP:</p>
+<ol>
+<li>
+<p>Navigate to the wiki <a href="https://github.com/geoserver/geoserver/wiki/Proposals">proposals page</a>.</p>
+</li>
+<li>
+<p>Edit the page with a new link under <em>Proposals Under Discussion</em>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[GSIP 200 - Title](GSIP-200)
+</code></pre></div>
+<ul>
+<li>The number should be the next "available" GSIP number on the proposal page.</li>
+<li>The title should be short and descriptive.</li>
+</ul>
+</li>
+<li>
+<p>Save your change to the <em>Proposal</em> page.</p>
+</li>
+<li>
+<p>Click on your new link to create the page, fill in the page contents by copy and pasting the following proposal page template.</p>
+<p>GSIP <a href="../gsip_template.txt">template</a>:</p>
+<p>~~~text</p>
+<h1 id="gsip-1234-title">GSIP 1234 - Title<a class="headerlink" href="#gsip-1234-title" title="Permanent link">&para;</a></h1>
+</li>
+</ol>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<h3 id="proposed-by">Proposed By<a class="headerlink" href="#proposed-by" title="Permanent link">&para;</a></h3>
+<p>John Doe</p>
+<h3 id="assigned-to-release">Assigned to Release<a class="headerlink" href="#assigned-to-release" title="Permanent link">&para;</a></h3>
+<p>This proposal is for GeoServer 2.15-beta.</p>
+<h3 id="state">State<a class="headerlink" href="#state" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Under Discussion</li>
+<li>[ ] In Progress</li>
+<li>[ ] Completed</li>
+<li>[ ] Rejected</li>
+<li>[ ] Deferred</li>
+</ul>
+<h3 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h3>
+<h2 id="proposal">Proposal<a class="headerlink" href="#proposal" title="Permanent link">&para;</a></h2>
+<h3 id="backwards-compatibility">Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permanent link">&para;</a></h3>
+<h2 id="feedback">Feedback<a class="headerlink" href="#feedback" title="Permanent link">&para;</a></h2>
+<h2 id="voting">Voting<a class="headerlink" href="#voting" title="Permanent link">&para;</a></h2>
+<p>Project Steering Committee:</p>
+<ul>
+<li>Alessio Fabiani:</li>
+<li>Andrea Aime:</li>
+<li>Ian Turton:</li>
+<li>Jody Garnett:</li>
+<li>Jukka Rahkonen:</li>
+<li>Kevin Smith:</li>
+<li>Simone Giannecchini:</li>
+<li>Torben Barsballe:</li>
+<li>Nuno Oliveira:</li>
+<li>Peter Smythe: </li>
+</ul>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="http://osgeo-org.1560.x6.nabble.com/GSIP-1234-discussion-tt5135281.html">Email Discussion</a></li>
+<li><a href="https://github.com/geoserver/geoserver/pull/123">Pull Request 123</a></li>
+<li>
+<p><a href="http://osgeo-org.1560.x6.nabble.com/GeoTools-GeoServer-Meeting-2019-03-02-tt5142734.html">GeoTools / GeoServer Meeting 2019-03-01 </a>
+    ~~~</p>
+</li>
+<li>
+<p>Fill in the information in the page template, and click <code>Save</code> when complete.</p>
+</li>
+</ul>
+<h2 id="voting-on-a-gsip">Voting on a GSIP<a class="headerlink" href="#voting-on-a-gsip" title="Permanent link">&para;</a></h2>
+<p>One of the duties of the <a href="../psc/">GeoServer Project Steering Committee</a> is to vote on GSIPs. The voting process works as follows:</p>
+<p>.. note:: Voting on GeoServer Improvement Proposal (GSIP)</p>
+<p>#. Proposals may be made by any interested party (PSC, Non-PSC, committer,user,etc...).</p>
+<div class="highlight"><pre><span></span><code>  All community members are encouraged to review proposals, and provide their support and feedback.
+</code></pre></div>
+<p>#. Each PSC member may vote one of the following in support of the proposal:</p>
+<div class="highlight"><pre><span></span><code>  * +1 : For
+  * +0: Mildly for, but mostly indifferent
+  * -0: Mildly against, but mostly indifferent
+  * -1 : Against, accompanied with a detailed reason of being against
+</code></pre></div>
+<p>#. Voting remains open for ten days or until all PSC members have cast their vote.</p>
+<div class="highlight"><pre><span></span><code>  * At the end of ten days time any remaining votes are assumed to be +0.
+
+  * Any active PSC member can during ten days request an extension of voting for
+    an additional ten days; the voting period can only be extended once.
+
+  * Any PSC member who votes &quot;-1&quot; against a proposal must provide a
+    reasonable explanation as to why.
+
+  * Any PSC member who votes &quot;-1&quot; against a proposal has a limited time to
+    provide constructive feedback as to how their -1 vote can be addressed.
+
+    The GSIP author must incorporate any reasonable feedback into the proposal.
+
+    The PSC member who voted &quot;-1&quot; must consider whether their feedback has been
+    addressed and whether they wish to change their vote.
+</code></pre></div>
+<p>#. Voting results:</p>
+<div class="highlight"><pre><span></span><code>  * A vote of &quot;+1&quot; means support for a proposal
+  * The neutral votes &quot;+0&quot;, &quot;0&quot;, and &quot;-0&quot; all count the same as &quot;0&quot; but permit PSC members
+    to indicate a slight tendency for, neutral, or against a proposal respectively
+  * A vote of &quot;-1&quot; means opposition to the proposal
+
+  A unanimous response is:
+
+  * Successful: No -1 votes against it, or
+  * Unsuccessful: No +1 votes for it.
+</code></pre></div>
+<p>#. A GSIP is accepted if it receives:</p>
+<div class="highlight"><pre><span></span><code>  * at least 30% &quot;+1&quot; votes, and
+  * no &quot;-1&quot; votes (or all feedback from any &quot;-1&quot; votes has been addressed and any &quot;-1&quot; voters have changed their votes)
+</code></pre></div>
+<p>#. In the event of an <em>successful non unanimous</em> vote, the following steps are taken:</p>
+<div class="highlight"><pre><span></span><code>  * Each member who votes -1 *may* supply an alternative with which the original author can use to rework the proposal in order to satisfy that PSC member.
+  * If at least one -1 voting PSC member supplies some alternative criteria, the original author must rework the proposal and resubmit, and the voting process starts again from scratch.
+  * If no -1 voters are able to supply alternative criteria, the proposal is accepted.
+</code></pre></div>
+<p>#. In the event of an <em>unsuccessful</em> vote, the author may choose to rework and submit.</p>
+<div class="highlight"><pre><span></span><code>  A proposal may not be resubmitted after being rejected three times.
+</code></pre></div>
+<h2 id="gsip-faq">GSIP FAQ<a class="headerlink" href="#gsip-faq" title="Permanent link">&para;</a></h2>
+<h3 id="q-when-do-i-need-to-make-a-gsip">Q. When do I need to make a GSIP?<a class="headerlink" href="#q-when-do-i-need-to-make-a-gsip" title="Permanent link">&para;</a></h3>
+<p>A: Generally you will make a GSIP when you want something major done in GeoServer and need feedback from others. GSIPs are needed for things that will have an impact on other community members, and thus should be talked about.</p>
+<p>GSIPs are not intended to be a way to get feedback on experimental work. There are alternate mechanisms for this such as creating an R&amp;D page on the wiki, svn branches and spikes, etc... Often once the idea is formalized through experimentation it can be turned in to an official GSIP.</p>
+<h3 id="q-who-can-comment-on-a-gsip">Q. Who can comment on a GSIP?<a class="headerlink" href="#q-who-can-comment-on-a-gsip" title="Permanent link">&para;</a></h3>
+<p>A: Anyone and everyone can comment on a GSIP including regular users, and it is encouraged. Comments can take place on GeoServer Devel mailing list, the GeoServer User forum, or as comments on the wiki page for the GSIP itself.</p>
+<p>Feedback from the user community is definitely desired so that the developers do not just making decisions in a vacuum. If you speak up your voice will be heard.</p>
+<h3 id="q-who-can-vote-on-a-gsip">Q. Who can vote on a GSIP?<a class="headerlink" href="#q-who-can-vote-on-a-gsip" title="Permanent link">&para;</a></h3>
+<p>A: Only PSC members can officially vote on a GSIP. But more often than not this vote is based on general feedback from the user community.</p>
+<h3 id="q-what-happens-if-i-propose-a-gsip-but-i-dont-have-the-time-to-implement-it">Q: What happens if I propose a GSIP but I don't have the time to implement it?<a class="headerlink" href="#q-what-happens-if-i-propose-a-gsip-but-i-dont-have-the-time-to-implement-it" title="Permanent link">&para;</a></h3>
+<p>A: If a proposal is made but is not completed then it will be taken from a release schedule and live as a deferred proposal. A deferred proposal can be picked up by the original developer or another developer, or it can live in limbo until it officially gets rejected.</p>
+<h3 id="q-if-i-am-a-psc-member-and-i-make-a-gsip-do-i-still-vote-on-it">Q: If I am a PSC member and I make a GSIP, do I still vote on it?<a class="headerlink" href="#q-if-i-am-a-psc-member-and-i-make-a-gsip-do-i-still-vote-on-it" title="Permanent link">&para;</a></h3>
+<p>A: Yes.</p>
 
 
 

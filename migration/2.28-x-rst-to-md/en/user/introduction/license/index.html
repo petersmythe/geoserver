@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Syntax Error - GeoServer User Manual</title>
+        <title>Macro Rendering Error - GeoServer User Manual</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-syntax-error" class="md-skip">
+        <a href="#macro-rendering-error" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Syntax Error
+              Macro Rendering Error
             
           </span>
         </div>
@@ -875,7 +875,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Macro Rendering Error
   
 
     
@@ -1364,7 +1364,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Publishing a style
   
 
     
@@ -6787,7 +6787,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Symbolizers
   
 
     
@@ -6815,7 +6815,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Line symbolizer
   
 
     
@@ -6843,7 +6843,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Polygon symbolizer
   
 
     
@@ -6871,7 +6871,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Point symbolizer
   
 
     
@@ -6899,7 +6899,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Raster symbolizer
   
 
     
@@ -6927,7 +6927,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Text symbolizer
   
 
     
@@ -7236,7 +7236,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Polygons
   
 
     
@@ -9099,7 +9099,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    WMS vendor parameters
   
 
     
@@ -10215,7 +10215,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    WFS vendor parameters
   
 
     
@@ -10729,7 +10729,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    WCS Vendor Parameters
   
 
     
@@ -16945,7 +16945,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Control flow module
   
 
     
@@ -17445,7 +17445,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Importer REST API examples
   
 
     
@@ -21122,7 +21122,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    ImageMosaic example with Modis COG datasets
   
 
     
@@ -21690,7 +21690,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    GDAL based WCS Output Format
   
 
     
@@ -22329,7 +22329,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Feature Layer Examples
   
 
     
@@ -22357,7 +22357,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Dynamic Map Layer Examples
   
 
     
@@ -22385,7 +22385,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Feature Table Example
   
 
     
@@ -27853,7 +27853,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Using the ImageMosaic plugin for raster time-series data
   
 
     
@@ -27881,7 +27881,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Using the ImageMosaic plugin for raster with time and elevation data
   
 
     
@@ -28141,11 +28141,25 @@
   
 
 
-<h1 id="macro-syntax-error"><em>Macro Syntax Error</em><a class="headerlink" href="#macro-syntax-error" title="Permanent link">&para;</a></h1>
+<h1 id="macro-rendering-error"><em>Macro Rendering Error</em><a class="headerlink" href="#macro-rendering-error" title="Permanent link">&para;</a></h1>
 <p><em>File</em>: <code>introduction/license.md</code></p>
-<p><em>Line 8 in Markdown file:</em> <strong>expected token 'end of statement block', got 'string'</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>   include-markdown &quot;../../../../LICENSE.md&quot;
-</code></pre></div></p>
+<p><em>TemplateNotFound</em>: ../../../../LICENSE.md</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/mkdocs_macros/plugin.py&quot;, line 703, in render
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 1295, in render
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    self.environment.handle_exception()
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    raise rewrite_traceback_stack(source=source)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  File &quot;&lt;template&gt;&quot;, line 7, in top-level template code
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 197, in get_source
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    pieces = split_template_path(template)
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 36, in split_template_path
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    raise TemplateNotFound(template)
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>jinja2.exceptions.TemplateNotFound: ../../../../LICENSE.md
+</code></pre></div>
 
 
 
