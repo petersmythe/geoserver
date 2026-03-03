@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Syntax Error - GeoServer User Manual</title>
+        <title>ECQL Reference - GeoServer User Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-syntax-error" class="md-skip">
+        <a href="#ecql-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Syntax Error
+              ECQL Reference
             
           </span>
         </div>
@@ -1121,7 +1121,7 @@
   <span class="md-ellipsis">
     
   
-    Upgrading existing versions
+    Macro Syntax Error
   
 
     
@@ -1796,7 +1796,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Workspaces
   
 
     
@@ -2385,7 +2385,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Using the ImageMosaic extension
   
 
     
@@ -8067,7 +8067,7 @@
   <span class="md-ellipsis">
     
   
-    CSS Quickstart
+    Macro Rendering Error
   
 
     
@@ -8324,7 +8324,7 @@
   <span class="md-ellipsis">
     
   
-    YSLD Quickstart
+    Macro Rendering Error
   
 
     
@@ -8581,7 +8581,7 @@
   <span class="md-ellipsis">
     
   
-    MBStyle Quickstart
+    Macro Rendering Error
   
 
     
@@ -11657,6 +11657,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECQL Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -11664,7 +11682,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    ECQL Reference
   
 
     
@@ -11673,6 +11691,136 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_cond" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_pred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predicate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Predicate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecql_temp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temporal Predicate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecql_spat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial Predicate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_expr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_attr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_literal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Literal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecql_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Period
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -21272,7 +21420,7 @@
   <span class="md-ellipsis">
     
   
-    Elasticsearch data store
+    Macro Syntax Error
   
 
     
@@ -28120,6 +28268,125 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_cond" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_pred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predicate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Predicate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecql_temp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temporal Predicate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecql_spat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial Predicate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_expr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_attr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecql_literal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Literal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecql_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Period
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -28143,11 +28410,308 @@
   
 
 
-<h1 id="macro-syntax-error"><em>Macro Syntax Error</em><a class="headerlink" href="#macro-syntax-error" title="Permanent link">&para;</a></h1>
-<p><em>File</em>: <code>filter/ecql_reference.md</code></p>
-<p><em>Line 89 in Markdown file:</em> <strong>Missing end of comment tag</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gu">## Attribute {#ecql_attr}</span>
-</code></pre></div></p>
+<h1 id="ecql-reference">ECQL Reference<a class="headerlink" href="#ecql-reference" title="Permanent link">&para;</a></h1>
+<p>This section provides a reference for the syntax of the ECQL language. The full language grammar is documented in the GeoTools <a href="https://github.com/geotools/geotools/blob/main/modules/library/cql/ECQL.md">ECQL BNF definition</a></p>
+<h2 id="syntax-notes">Syntax Notes<a class="headerlink" href="#syntax-notes" title="Permanent link">&para;</a></h2>
+<p>The sections below describe the major language constructs. Each construct lists all syntax options for it. Each option is defined as a sequence of other constructs, or recursively in terms of itself.</p>
+<ul>
+<li>Symbols which are part of the ECQL language are shown in <code>code font</code>. All other symbols are part of the grammar description.</li>
+<li>ECQL keywords are not case-sensitive.</li>
+<li>A vertical bar symbol '<strong>|</strong>' indicates that a choice of keyword can be made.</li>
+<li>Brackets '<strong>[</strong> ... <strong>]</strong>' delimit syntax that is optional.</li>
+<li>Braces '<strong>{</strong> ... <strong>}</strong>' delimit syntax that may be present zero or more times.</li>
+</ul>
+<h2 id="ecql_cond">Condition<a class="headerlink" href="#ecql_cond" title="Permanent link">&para;</a></h2>
+<p>A filter condition is a single predicate, or a logical combination of other conditions.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><a href="./#ecql_pred">Predicate</a></td>
+<td>Single predicate expression</td>
+</tr>
+<tr>
+<td><a href="./#ecql_cond">Condition</a> <code>AND</code></td>
+<td><code>OR</code> <a href="./#ecql_cond">Condition</a></td>
+</tr>
+<tr>
+<td><code>NOT</code> <a href="./#ecql_cond">Condition</a></td>
+<td>Negation of a condition</td>
+</tr>
+<tr>
+<td><code>(</code></td>
+<td><code>[</code> <a href="./#ecql_cond">Condition</a> <code>]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ecql_pred">Predicate<a class="headerlink" href="#ecql_pred" title="Permanent link">&para;</a></h2>
+<p>Predicates are boolean-valued expressions which specify relationships between values.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <code>=</code></td>
+<td><code>&lt;&gt;</code></td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>BETWEEN</code> <a href="./#ecql_expr">Expression</a> <code>AND</code> <a href="./#ecql_expr">Expression</a></td>
+<td>Tests whether a value lies in or outside a range (inclusive)</td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>LIKE</code></td>
+<td><code>ILIKE</code> <em>like-pattern</em></td>
+</tr>
+<tr>
+<td><a href="./#ecql_attr">Attribute</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>IN (</code> <a href="./#ecql_expr">Expression</a> <strong>{</strong> <code>,</code><a href="./#ecql_expr">Expression</a> <strong>}</strong> <code>)</code></td>
+<td>Tests whether an attribute value is (not) in a set of values.</td>
+</tr>
+<tr>
+<td><strong>[</strong> <code>NOT</code> <strong>]</strong> <code>IN (</code> <a href="./#ecql_literal">Literal</a> <strong>{</strong> <code>,</code><a href="./#ecql_literal">Literal</a> <strong>}</strong> <code>)</code></td>
+<td>Tests whether a feature ID value is (not) in a given set. ID values are integers or string literals</td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <code>IS</code> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>NULL</code></td>
+<td>Tests whether a value is (non-)null</td>
+</tr>
+<tr>
+<td><a href="./#ecql_attr">Attribute</a> <code>EXISTS</code> **</td>
+<td>** <code>DOES-NOT-EXIST</code></td>
+</tr>
+<tr>
+<td><code>INCLUDE</code></td>
+<td><code>EXCLUDE</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ecql_temp">Temporal Predicate<a class="headerlink" href="#ecql_temp" title="Permanent link">&para;</a></h3>
+<p>Temporal predicates specify the relationship of a time-valued expression to a time or time period.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><code>ecql_expr</code> <code>BEFORE</code> <a href="ecql_reference.rst#ecql_literal">Time</a>_</td>
+<td>Tests whether a time value is before a point in time</td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <code>BEFORE OR DURING</code> <a href="./#ecql_period">Time Period</a></td>
+<td>Tests whether a time value is before or during a time period</td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <code>DURING</code> <a href="./#ecql_period">Time Period</a></td>
+<td>Tests whether a time value is during a time period</td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <code>DURING OR AFTER</code> <a href="./#ecql_period">Time Period</a></td>
+<td>Tests whether a time value is during or after a time period</td>
+</tr>
+<tr>
+<td><code>ecql_expr</code> <code>AFTER</code> <a href="ecql_reference.rst#ecql_literal">Time</a>_</td>
+<td>Tests whether a time value is after a point in time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ecql_spat">Spatial Predicate<a class="headerlink" href="#ecql_spat" title="Permanent link">&para;</a></h3>
+<p>Spatial predicates specify the relationship between geometric values. Topological spatial predicates (<code>INTERSECTS</code>, <code>DISJOINT</code>, <code>CONTAINS</code>, <code>WITHIN</code>, <code>TOUCHES</code> <code>CROSSES</code>, <code>OVERLAPS</code> and <code>RELATE</code>) are defined in terms of the DE-9IM model described in the OGC <a href="http://www.opengeospatial.org/standards/sfs">Simple Features for SQL</a> specification.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><code>INTERSECTS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether two geometries intersect. The converse of <code>DISJOINT</code></td>
+</tr>
+<tr>
+<td><code>DISJOINT(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether two geometries are disjoint. The converse of <code>INTERSECTS</code></td>
+</tr>
+<tr>
+<td><code>CONTAINS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether the first geometry topologically contains the second. The converse of <code>WITHIN</code></td>
+</tr>
+<tr>
+<td><code>WITHIN(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether the first geometry is topologically within the second. The converse of <code>CONTAINS</code></td>
+</tr>
+<tr>
+<td><code>TOUCHES(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether two geometries touch. Geometries touch if they have at least one point in common, but their interiors do not intersect.</td>
+</tr>
+<tr>
+<td><code>CROSSES(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether two geometries cross. Geometries cross if they have some but not all interior points in common</td>
+</tr>
+<tr>
+<td><code>OVERLAPS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether two geometries overlap. Geometries overlap if they have the same dimension, have at least one point each not shared by the other, and the intersection of the interiors of the two geometries has the same dimension as the geometries themselves</td>
+</tr>
+<tr>
+<td><code>EQUALS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td>Tests whether two geometries are topologically equal</td>
+</tr>
+<tr>
+<td><code>RELATE(</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <em>pattern</em> <code>)</code></td>
+<td>Tests whether geometries have the spatial relationship specified by a DE-9IM matrix <em>pattern</em>. A DE-9IM pattern is a string of length 9 specified using the characters <code>*TF012</code>. Example: <code>'1*T***T**'</code></td>
+</tr>
+<tr>
+<td><code>DWITHIN(</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <em>distance</em> <code>,</code> <em>units</em> <code>)</code></td>
+<td>Tests whether the distance between two geometries is no more than the specified distance. <em>distance</em> is an unsigned numeric value for the distance tolerance. <em>units</em> is one of <code>feet</code>, <code>meters</code>, <code>statute miles</code>, <code>nautical miles</code>, <code>kilometers</code></td>
+</tr>
+<tr>
+<td><code>BEYOND(</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <em>distance</em> <code>,</code> <em>units</em> <code>)</code></td>
+<td>Similar to <code>DWITHIN</code>, but tests whether the distance between two geometries is greater than the given distance.</td>
+</tr>
+<tr>
+<td><code>BBOX (</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_literal">Number</a> <code>,</code> <a href="./#ecql_literal">Number</a> <code>,</code> <a href="./#ecql_literal">Number</a> <code>,</code> <a href="./#ecql_literal">Number</a> [ <code>,</code> <em>CRS</em> ] <code>)</code></td>
+<td>Tests whether a geometry intersects a bounding box specified by its minimum and maximum X and Y values. The optional <em>CRS</em> is a string containing an SRS code (For example, <code>'EPSG:1234'</code>. The default is to use the CRS of the queried layer)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ecql_expr">Expression<a class="headerlink" href="#ecql_expr" title="Permanent link">&para;</a></h2>
+<p>An expression specifies a attribute, literal, or computed value. The type of the value is determined by the nature of the expression. The standard <a href="http://en.wikipedia.org/wiki/Order_of_operations#Mnemonics">PEMDAS</a> order of evaluation is used.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><a href="./#ecql_attr">Attribute</a></td>
+<td>Name of a feature attribute</td>
+</tr>
+<tr>
+<td><a href="./#ecql_literal">Literal</a></td>
+<td>Literal value</td>
+</tr>
+<tr>
+<td><a href="./#ecql_expr">Expression</a> <code>+</code></td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td><em>function</em> <code>(</code> [ <a href="./#ecql_expr">Expression</a> { <code>,</code> <a href="./#ecql_expr">Expression</a> } ] <code>)</code></td>
+<td>Value computed by evaluation of a <a href="../function_reference/">filter function</a> with zero or more arguments.</td>
+</tr>
+<tr>
+<td><code>(</code> | <code>[</code> <a href="ecql_reference.rst#ecql_expr">Expression</a> <code>]</code> | <code>)</code></td>
+<td>Bracketing with <code>(</code> or ```` controls evaluation order</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ecql_attr">Attribute<a class="headerlink" href="#ecql_attr" title="Permanent link">&para;</a></h2>
+<p>An attribute name denotes the value of a feature attribute.</p>
+<ul>
+<li>Simple attribute names are sequences of letters and numbers, e.g. [States123``</li>
+<li>Attribute names quoted with double-quotes may be any sequence of characters, e.g. <code>\"States!@#\"</code></li>
+<li><a href="https://gis.stackexchange.com/a/475826/68995">Note</a>: <code>id</code> is one of a few <a href="https://github.com/geotools/geotools/blob/2058be01323c3dea23d6df4d84b623be7f0b4102/modules/library/cql/src/main/jjtree/ECQLGrammar.jjt#L180">reserved keywords</a> in ECQL and thus an attribute (or database column) named <code>id</code> must be quoted, e.g. <code>\"id\"</code></li>
+</ul>
+<h2 id="ecql_literal">Literal<a class="headerlink" href="#ecql_literal" title="Permanent link">&para;</a></h2>
+<p>Literals specify constant values of various types.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><em>Number</em></td>
+<td>Integer or floating-point number. Scientific notation is supported.</td>
+</tr>
+<tr>
+<td><em>Boolean</em></td>
+<td><code>TRUE</code> or <code>FALSE</code></td>
+</tr>
+<tr>
+<td><em>String</em></td>
+<td>String literal delimited by single quotes. To include a single quote in the string use two single-quotes: <code>''</code></td>
+</tr>
+<tr>
+<td><em>Geometry</em></td>
+<td>Geometry in WKT or EWKT format. WKT is defined in the OGC <a href="http://www.opengeospatial.org/standards/sfs">Simple Features for SQL</a> specification. All standard geometry types are supported: <code>POINT</code>, <code>LINESTRING</code>, <code>POLYGON</code>, <code>MULTIPOINT</code>, <code>MULTILINESTRING</code>, <code>MULTIPOLYGON</code>, <code>GEOMETRYCOLLECTION</code>. EWKT allows specifying a geometry spatial reference system by prefixing it with a numerical code, in the form <code>SRID=number;WKT</code>, for example, <code>SRID=4326;POINT (1 2)</code>. A custom type of Envelope is also supported with syntax <code>ENVELOPE (</code> <em>x1</em> <em>x2</em> <em>y1</em> <em>y2</em> <code>)</code>.</td>
+</tr>
+<tr>
+<td><em>Time</em></td>
+<td>A UTC date/time value in the format <code>yyyy-mm-hhThh:mm:ss</code>. The seconds value may have a decimal fraction. The time zone may be specified as <code>Z</code> or <code>+/-hh:mm</code>. Example: <code>2006-11-30T00:30:00Z</code></td>
+</tr>
+<tr>
+<td><em>Duration</em></td>
+<td>A time duration specified as <code>P</code> <strong>[</strong> y <code>Y</code> m <code>M</code> d <code>D</code> <strong>]</strong> <code>T</code> <strong>[</strong> h <code>H</code> m <code>M</code> s <code>S</code> <strong>]</strong>. The duration can be specified to any desired precision by including only the required year, month, day, hour, minute and second components. Examples: <code>P1Y2M</code>, <code>P4Y2M20D</code>, <code>P4Y2M1DT20H3M36S</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ecql_period">Time Period<a class="headerlink" href="#ecql_period" title="Permanent link">&para;</a></h3>
+<p>Specifies a period of time, in several different formats.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td><a href="ecql_reference.rst#ecql_literal">Time</a> <code>/</code> <a href="ecql_reference.rst#ecql_literal">Time</a></td>
+<td>Period specified by a start and end time</td>
+</tr>
+<tr>
+<td><a href="ecql_reference.rst#ecql_literal">Duration</a> <code>/</code> <a href="ecql_reference.rst#ecql_literal">Time</a></td>
+<td>Period specified by a duration before a given time</td>
+</tr>
+<tr>
+<td><a href="ecql_reference.rst#ecql_literal">Time</a> <code>/</code> <a href="ecql_reference.rst#ecql_literal">Duration</a></td>
+<td>Period specified by a duration after a given time</td>
+</tr>
+</tbody>
+</table>
 
 
 
