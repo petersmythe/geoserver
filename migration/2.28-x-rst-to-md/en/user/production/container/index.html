@@ -8637,7 +8637,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Polygons
   
 
     
@@ -28430,25 +28430,39 @@ uintx MaxHeapSize       := 4294967296    {product}
 <ol>
 <li>
 <p>Uncomment the following <code>&lt;filter&gt;</code> in <strong><code>webapps/geoserver/WEB-INF/web.xml</code></strong>:</p>
-<p>~~~
-<!-- Include path goes outside docs directory: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml --></p>
-</li>
-</ol>
-<!-- TODO: Copy file to docs directory or use alternative approach -->
-<div class="highlight"><pre><span></span><code>~~~
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;filter&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">   </span><span class="nt">&lt;filter-name&gt;</span>cross-origin<span class="nt">&lt;/filter-name&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">   </span><span class="nt">&lt;filter-class&gt;</span>org.eclipse.jetty.servlets.CrossOriginFilter<span class="nt">&lt;/filter-class&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">   </span><span class="nt">&lt;init-param&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">     </span><span class="nt">&lt;param-name&gt;</span>chainPreflight<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">     </span><span class="nt">&lt;param-value&gt;</span>false<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">   </span><span class="nt">&lt;/init-param&gt;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">   </span><span class="nt">&lt;init-param&gt;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">     </span><span class="nt">&lt;param-name&gt;</span>allowedOrigins<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">     </span><span class="nt">&lt;param-value&gt;</span>*<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">   </span><span class="nt">&lt;/init-param&gt;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">   </span><span class="nt">&lt;init-param&gt;</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">     </span><span class="nt">&lt;param-name&gt;</span>allowedMethods<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">     </span><span class="nt">&lt;param-value&gt;</span>GET,POST,PUT,DELETE,HEAD,OPTIONS<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">   </span><span class="nt">&lt;/init-param&gt;</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">   </span><span class="nt">&lt;init-param&gt;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">     </span><span class="nt">&lt;param-name&gt;</span>allowedHeaders<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">     </span><span class="nt">&lt;param-value&gt;</span>*<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">   </span><span class="nt">&lt;/init-param&gt;</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w"> </span><span class="nt">&lt;/filter&gt;</span>
 </code></pre></div>
-<ol>
+</li>
 <li>
 <p>Uncomment the following <code>&lt;filter-mapping&gt;</code>:</p>
-<p>~~~
-<!-- Include path goes outside docs directory: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml --></p>
-</li>
-</ol>
-<!-- TODO: Copy file to docs directory or use alternative approach -->
-<div class="highlight"><pre><span></span><code>~~~
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;filter-mapping&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">&lt;filter-name&gt;</span>cross-origin<span class="nt">&lt;/filter-name&gt;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">&lt;/filter-mapping&gt;</span>
 </code></pre></div>
-<ol>
-<li>Restart</li>
+</li>
+<li>
+<p>Restart</p>
+</li>
 </ol>
 
 
