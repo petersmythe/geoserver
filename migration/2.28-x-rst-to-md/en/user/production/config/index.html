@@ -29043,36 +29043,12 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">&lt;/context-param&gt;</span>
 </code></pre></div>
 <p>The possible strategies are:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Strategy</strong></td>
-<td><strong>Description</strong></td>
-</tr>
-<tr>
-<td><code>SPEED</code></td>
-<td>Serves output right away. This is the fastest strategy, but proper OGC errors are usually omitted.</td>
-</tr>
-<tr>
-<td><code>BUFFER</code></td>
-<td>Stores the whole result in memory, and then serves it after the output is complete. This ensures proper OGC error reporting, but delays the response quite a bit and can exhaust memory if the response is large.</td>
-</tr>
-<tr>
-<td><code>FILE</code></td>
-<td>Similar to <code>BUFFER</code>, but stores the whole result in a file instead of in memory. Slower than <code>BUFFER</code>, but ensures there won't be memory issues.</td>
-</tr>
-<tr>
-<td><code>PARTIAL-BUFFER2</code></td>
-<td>A balance between <code>BUFFER</code> and <code>SPEED</code>, this strategy tries to buffer in memory a few KB of response, then serves the full output.</td>
-</tr>
-</tbody>
-</table>
+<p>|----|----|
+| <strong>Strategy</strong> | <strong>Description</strong> |
+| <code>SPEED</code> | Serves output right away. This is the fastest strategy, but proper OGC errors are usually omitted. |
+| <code>BUFFER</code> | Stores the whole result in memory, and then serves it after the output is complete. This ensures proper OGC error reporting, but delays the response quite a bit and can exhaust memory if the response is large. |
+| <code>FILE</code> | Similar to <code>BUFFER</code>, but stores the whole result in a file instead of in memory. Slower than <code>BUFFER</code>, but ensures there won't be memory issues. |
+| <code>PARTIAL-BUFFER2</code> | A balance between <code>BUFFER</code> and <code>SPEED</code>, this strategy tries to buffer in memory a few KB of response, then serves the full output. |</p>
 <h2 id="security-and-service-hardening">Security and Service Hardening<a class="headerlink" href="#security-and-service-hardening" title="Permanent link">&para;</a></h2>
 <p>The following settings allow administrators to take greater control of the application allowing functionality to be disabled.</p>
 <h3 id="disable-the-auto-complete-on-web-administration-interface-login">Disable the Auto-complete on web administration interface login<a class="headerlink" href="#disable-the-auto-complete-on-web-administration-interface-login" title="Permanent link">&para;</a></h3>

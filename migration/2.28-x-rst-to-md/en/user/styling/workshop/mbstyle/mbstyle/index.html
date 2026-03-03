@@ -28554,71 +28554,23 @@
 <li>Array, a collection of values.</li>
 <li>Value, the value in a key-value pair, or an entry in an array. Values can be objects, arrays, strings, numbers, <code>true</code>, <code>false</code>, or <code>null</code>.</li>
 </ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Object</td>
-<td>A collection of key-value pairs, enclosed by curly braces and delimited by commas. Keys are surrounded by quotes and seperarted from values by a colon.</td>
-</tr>
-<tr>
-<td>Array</td>
-<td>A collection values, enclosed by square brackets and delimited by commas.</td>
-</tr>
-<tr>
-<td>String</td>
-<td>Text value. Must be surrounded by quotes.</td>
-</tr>
-<tr>
-<td>Number</td>
-<td>Numerical value. Must not be surrounded by quotes.</td>
-</tr>
-<tr>
-<td>Boolean</td>
-<td><code>true</code> or <code>false</code>.</td>
-</tr>
-<tr>
-<td>Null</td>
-<td><code>null</code>. Represents an undefined or unset value.</td>
-</tr>
-</tbody>
-</table>
+<p>|----|----|
+| Object | A collection of key-value pairs, enclosed by curly braces and delimited by commas. Keys are surrounded by quotes and seperarted from values by a colon. |
+| Array | A collection values, enclosed by square brackets and delimited by commas. |
+| String | Text value. Must be surrounded by quotes. |
+| Number | Numerical value. Must not be surrounded by quotes. |
+| Boolean | <code>true</code> or <code>false</code>. |
+| Null | <code>null</code>. Represents an undefined or unset value. |</p>
 <h3 id="mbstyle-specification">MBStyle Specification<a class="headerlink" href="#mbstyle-specification" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Mapbox Style specification</a> defines a number of additional rules that MBStyles must follow.</p>
 <h4 id="root-level-properties">Root-level Properties<a class="headerlink" href="#root-level-properties" title="Permanent link">&para;</a></h4>
 <p>Root level properties of a Mapbox style specify the map's layers, tile sources and other resources, and default values for the initial camera position when not specified elsewhere.</p>
 <p>The following root-level properties are required for all MBStyles. Additional root-level properties which are supported but not required can be found in the spec.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>version</code></td>
-<td>The version of the Mapbox Style specification to use. Must be set to <code>8</code>.</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>The name of the style.</td>
-</tr>
-<tr>
-<td><code>sources</code></td>
-<td>An object defining the source data. Not used by GeoServer.</td>
-</tr>
-<tr>
-<td><code>layers</code></td>
-<td>An array of layer style objects</td>
-</tr>
-</tbody>
-</table>
+<p>|----|----|
+| <code>version</code> | The version of the Mapbox Style specification to use. Must be set to <code>8</code>. |
+| <code>name</code> | The name of the style. |
+| <code>sources</code> | An object defining the source data. Not used by GeoServer. |
+| <code>layers</code> | An array of layer style objects |</p>
 <p>For example: :</p>
 <div class="highlight"><pre><span></span><code>{
     &quot;version&quot;: 8,
@@ -28714,28 +28666,10 @@
 <li>Navigate to the <strong>Styles</strong> page.</li>
 <li>Each time we edit a style, the contents of the associated SLD file are replaced. Rather than disrupt any of our existing styles we will create a new style. Click <strong>Add a new style</strong> and choose the following:</li>
 </ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Name:</td>
-<td><code>airports0</code></td>
-</tr>
-<tr>
-<td>Workspace:</td>
-<td>(leave empty)</td>
-</tr>
-<tr>
-<td>Format:</td>
-<td><code>MBStyle</code></td>
-</tr>
-</tbody>
-</table>
+<p>|------------|-------------------------|
+| Name:      | <code>airports0</code> |
+| Workspace: | (leave empty)           |
+| Format:    | <code>MBStyle</code>   |</p>
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 <ol>

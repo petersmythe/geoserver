@@ -28485,100 +28485,31 @@
 <p>See also the <a href="../../reference/pointsymbolizer/">PointSymbolizer</a> reference for further details, as well as the examples in the <a href="../../cookbook/points/">Points</a> Cookbook section.</p>
 <h3 id="standard-symbols">Standard symbols<a class="headerlink" href="#standard-symbols" title="Permanent link">&para;</a></h3>
 <p>The SLD specification mandates the support of the following symbols:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-</tr>
-<tr>
-<td><code>square</code></td>
-<td>A square</td>
-</tr>
-<tr>
-<td><code>circle</code></td>
-<td>A circle</td>
-</tr>
-<tr>
-<td><code>triangle</code></td>
-<td>A triangle pointing up</td>
-</tr>
-<tr>
-<td><code>star</code></td>
-<td>five-pointed star</td>
-</tr>
-<tr>
-<td><code>cross</code></td>
-<td>A square cross with space around (not suitable for hatch fills)</td>
-</tr>
-<tr>
-<td><code>x</code></td>
-<td>A square X with space around (not suitable for hatch fills)</td>
-</tr>
-</tbody>
-</table>
+<p>|----|----|
+| <strong>Name</strong> | <strong>Description</strong> |
+| <code>square</code> | A square |
+| <code>circle</code> | A circle |
+| <code>triangle</code> | A triangle pointing up |
+| <code>star</code> | five-pointed star |
+| <code>cross</code> | A square cross with space around (not suitable for hatch fills) |
+| <code>x</code> | A square X with space around (not suitable for hatch fills) |</p>
 <h3 id="shape-symbols">Shape symbols<a class="headerlink" href="#shape-symbols" title="Permanent link">&para;</a></h3>
 <p>The shape symbols set adds extra symbols that are not part of the basic set.</p>
 <ol>
 <li>To enable ensure that the WMS Settings ****Mark Factory Precedence<code>has</code>ShapeMarkFactory`` selected.</li>
 <li>The shape symbols are prefixed by <code>shape://</code></li>
 </ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-</tr>
-<tr>
-<td><code>shape://vertline</code></td>
-<td>A vertical line (suitable for hatch fills or to make railroad symbols)</td>
-</tr>
-<tr>
-<td><code>shape://horline</code></td>
-<td>A horizontal line (suitable for hatch fills)</td>
-</tr>
-<tr>
-<td><code>shape://slash</code></td>
-<td>A diagonal line leaning forwards like the "slash" keyboard symbol (suitable for diagonal hatches)</td>
-</tr>
-<tr>
-<td><code>shape://backslash</code></td>
-<td>Same as <code>shape://slash</code>, but oriented in the opposite direction</td>
-</tr>
-<tr>
-<td><code>shape://dot</code></td>
-<td>A very small circle with space around</td>
-</tr>
-<tr>
-<td><code>shape://plus</code></td>
-<td>A + symbol, without space around (suitable for cross-hatch fills)</td>
-</tr>
-<tr>
-<td><code>shape://times</code></td>
-<td>A "X" symbol, without space around (suitable for cross-hatch fills)</td>
-</tr>
-<tr>
-<td><code>shape://oarrow</code></td>
-<td>An open arrow symbol (triangle without one side, suitable for placing arrows at the end of lines)</td>
-</tr>
-<tr>
-<td><code>shape://carrow</code></td>
-<td>A closed arrow symbol (closed triangle, suitable for placing arrows at the end of lines)</td>
-</tr>
-</tbody>
-</table>
+<p>|----|----|
+| <strong>Name</strong> | <strong>Description</strong> |
+| <code>shape://vertline</code> | A vertical line (suitable for hatch fills or to make railroad symbols) |
+| <code>shape://horline</code> | A horizontal line (suitable for hatch fills) |
+| <code>shape://slash</code> | A diagonal line leaning forwards like the "slash" keyboard symbol (suitable for diagonal hatches) |
+| <code>shape://backslash</code> | Same as <code>shape://slash</code>, but oriented in the opposite direction |
+| <code>shape://dot</code> | A very small circle with space around |
+| <code>shape://plus</code> | A + symbol, without space around (suitable for cross-hatch fills) |
+| <code>shape://times</code> | A "X" symbol, without space around (suitable for cross-hatch fills) |
+| <code>shape://oarrow</code> | An open arrow symbol (triangle without one side, suitable for placing arrows at the end of lines) |
+| <code>shape://carrow</code> | A closed arrow symbol (closed triangle, suitable for placing arrows at the end of lines) |</p>
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 <h3 id="weather-symbols">Weather Symbols<a class="headerlink" href="#weather-symbols" title="Permanent link">&para;</a></h3>
@@ -28587,60 +28518,19 @@
 <li>To enable ensure that the WMS Settings ****Mark Factory Precedence<code>has</code>MeteoMarkFactory`` selected.</li>
 <li>These symbols are:</li>
 </ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-<td><strong>Produces</strong></td>
-</tr>
-<tr>
-<td><code>extshape://triangle</code></td>
-<td>cold front</td>
-<td><img alt="triangle" src="../images/triangle.png" /></td>
-</tr>
-<tr>
-<td><code>extshape://emicircle</code></td>
-<td>warm front</td>
-<td><img alt="emicircle" src="../images/emicircle.png" /></td>
-</tr>
-<tr>
-<td><code>extshape://triangleemicircle</code></td>
-<td>stationary front</td>
-<td><img alt="triangleemicircle" src="../images/triangleemicircle.png" /></td>
-</tr>
-</tbody>
-</table>
+<p>|----|----|----|
+| <strong>Name</strong> | <strong>Description</strong> | <strong>Produces</strong> |
+| <code>extshape://triangle</code> | cold front | <img alt="triangle" src="../images/triangle.png" /> |
+| <code>extshape://emicircle</code> | warm front | <img alt="emicircle" src="../images/emicircle.png" /> |
+| <code>extshape://triangleemicircle</code> | stationary front | <img alt="triangleemicircle" src="../images/triangleemicircle.png" /> |</p>
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 <ol>
 <li>You can use <code>extshape://</code> for a few additional built-in shapes:</li>
 </ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>extshape://narrow</code></td>
-<td>North Arrow</td>
-</tr>
-<tr>
-<td><code>extshape://sarrow</code></td>
-<td>South Arrow</td>
-</tr>
-</tbody>
-</table>
+<p>|---------------------|-------------|
+| <code>extshape://narrow</code> | North Arrow |
+| <code>extshape://sarrow</code> | South Arrow |</p>
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 <p>More complex symbols like Wind Barbs can be created with the <code>windbarbs://</code> prefix.</p>
@@ -28648,28 +28538,10 @@
 <li>To enable ensure that the WMS Settings ****Mark Factory Precedence<code>has</code>WindBarbsmFactory`` selected.</li>
 <li>There are some examples:</li>
 </ol>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-</tr>
-<tr>
-<td><code>windbarbs://default(15)[kts]</code></td>
-<td><em>15</em> wind intensity with <em>[kts]</em> unit of measure</td>
-</tr>
-<tr>
-<td><code>windbarbs://default(9)[m/s]?hemisphere=s</code></td>
-<td><em>9</em> wind intensity with <em>[m/s]</em> unit of measure, in the south hemisphere</td>
-</tr>
-</tbody>
-</table>
+<p>|----|----|
+| <strong>Name</strong> | <strong>Description</strong> |
+| <code>windbarbs://default(15)[kts]</code> | <em>15</em> wind intensity with <em>[kts]</em> unit of measure |
+| <code>windbarbs://default(9)[m/s]?hemisphere=s</code> | <em>9</em> wind intensity with <em>[m/s]</em> unit of measure, in the south hemisphere |</p>
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 <h3 id="custom-wkt-shapes">Custom WKT Shapes<a class="headerlink" href="#custom-wkt-shapes" title="Permanent link">&para;</a></h3>

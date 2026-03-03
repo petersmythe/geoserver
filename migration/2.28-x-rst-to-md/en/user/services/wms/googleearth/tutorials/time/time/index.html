@@ -28396,32 +28396,11 @@
 <em>Setup</em></p>
 <h2 id="creating-the-template">Creating the Template<a class="headerlink" href="#creating-the-template" title="Permanent link">&para;</a></h2>
 <p>Next we will create a template which allows us to specify the temporal aspects of the dataset. The schema of our dataset looks like:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>INET_P100n</td>
-<td>Number of internet users per 100 people</td>
-</tr>
-<tr>
-<td>NAME</td>
-<td>Name of country</td>
-</tr>
-<tr>
-<td>RPT_YEAR</td>
-<td>Year</td>
-</tr>
-<tr>
-<td>Geometry</td>
-<td>Polygon representing the country</td>
-</tr>
-</tbody>
-</table>
+<p>|------------|-----------------------------------------|
+| INET_P100n | Number of internet users per 100 people |
+| NAME       | Name of country                         |
+| RPT_YEAR   | Year                                    |
+| Geometry   | Polygon representing the country        |</p>
 <p>The temporal attribute is <code>RPT_YEAR</code> and is the one that matters to us. Ok, time to create the template.</p>
 <ol>
 <li>In your text editor of choice, create a new text file called <code>time.ftl</code>.</li>
@@ -28463,75 +28442,21 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>${DATETIME_ATTRIBUTE_NAME.value?date(&quot;M?d%y&quot;)}
 </code></pre></div>
 <p>So when must you specify the date format in this manner? The following table illustrates the <strong>date</strong> formats that GeoServer can understand. Note that the '-' character can be one of any of the following characters: '/' (forward slash), ' ' (space), '.' (period), ',' (comma)</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Date Format</strong></td>
-<td><strong>Example</strong></td>
-</tr>
-<tr>
-<td>yyyy-MM-dd</td>
-<td>2007-06-20</td>
-</tr>
-<tr>
-<td>yyyy-MMM-dd</td>
-<td>2007-Jun-20</td>
-</tr>
-<tr>
-<td>MM-dd-yyyy</td>
-<td>06-20-2007</td>
-</tr>
-<tr>
-<td>MMM-dd-yyyy</td>
-<td>Jun-20-2007</td>
-</tr>
-<tr>
-<td>dd-MM-yyyy</td>
-<td>20-06-2007</td>
-</tr>
-<tr>
-<td>dd-MMM-yyyy</td>
-<td>20-Jun-2007</td>
-</tr>
-</tbody>
-</table>
+<p>|-----------------|-------------|
+| <strong>Date Format</strong> | <strong>Example</strong> |
+| yyyy-MM-dd      | 2007-06-20  |
+| yyyy-MMM-dd     | 2007-Jun-20 |
+| MM-dd-yyyy      | 06-20-2007  |
+| MMM-dd-yyyy     | Jun-20-2007 |
+| dd-MM-yyyy      | 20-06-2007  |
+| dd-MMM-yyyy     | 20-Jun-2007 |</p>
 <p>The set of <strong>date time</strong> formats which GeoServer can be understand is formed by appending the timestamp formats <code>hh:mm</code> and <code>hh:mm:ss</code> to the entries in the above table:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>DateTime Format</strong></td>
-<td><strong>Example</strong></td>
-</tr>
-<tr>
-<td>yyyy-MM-dd hh:mm</td>
-<td>2007-06-20 12:30</td>
-</tr>
-<tr>
-<td>yyyy-MMM-dd hh:mm</td>
-<td>2007-Jun-20 12:30</td>
-</tr>
-<tr>
-<td>yyyy-MM-dd hh:mm:ss</td>
-<td>2007-06-20 12:30:00</td>
-</tr>
-<tr>
-<td>yyyy-MMM-dd hh:mm:ss</td>
-<td>2007-Jun-20 12:30:00</td>
-</tr>
-</tbody>
-</table>
+<p>|----------------------|----------------------|
+| <strong>DateTime Format</strong>  | <strong>Example</strong>          |
+| yyyy-MM-dd hh:mm     | 2007-06-20 12:30     |
+| yyyy-MMM-dd hh:mm    | 2007-Jun-20 12:30    |
+| yyyy-MM-dd hh:mm:ss  | 2007-06-20 12:30:00  |
+| yyyy-MMM-dd hh:mm:ss | 2007-Jun-20 12:30:00 |</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>Setting the Timezone</strong></p>
