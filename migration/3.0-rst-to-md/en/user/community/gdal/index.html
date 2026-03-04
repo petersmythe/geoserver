@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Syntax Error - GeoServer User Manual</title>
+        <title>GDAL based WCS Output Format - GeoServer User Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-syntax-error" class="md-skip">
+        <a href="#gdal-based-wcs-output-format" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Syntax Error
+              GDAL based WCS Output Format
             
           </span>
         </div>
@@ -977,7 +977,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Linux
   
 
     
@@ -1005,7 +1005,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Win binary
   
 
     
@@ -1033,7 +1033,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Win installer
   
 
     
@@ -1061,7 +1061,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    War
   
 
     
@@ -6742,7 +6742,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Symbolizers
   
 
     
@@ -6770,7 +6770,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Line symbolizer
   
 
     
@@ -6798,7 +6798,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Polygon symbolizer
   
 
     
@@ -6826,7 +6826,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Point symbolizer
   
 
     
@@ -6854,7 +6854,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Raster symbolizer
   
 
     
@@ -6882,7 +6882,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Text symbolizer
   
 
     
@@ -9052,7 +9052,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    WMS vendor parameters
   
 
     
@@ -9423,7 +9423,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    WFS vendor parameters
   
 
     
@@ -9967,7 +9967,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    WCS Vendor Parameters
   
 
     
@@ -22130,6 +22130,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDAL based WCS Output Format
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -22137,7 +22155,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    GDAL based WCS Output Format
   
 
     
@@ -22146,6 +22164,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-the-box-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of the box behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gdal_translate-conversion-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gdal_translate conversion abilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customisation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -27846,6 +27916,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-the-box-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of the box behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gdal_translate-conversion-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gdal_translate conversion abilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customisation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -27869,11 +27980,112 @@
   
 
 
-<h1 id="macro-syntax-error"><em>Macro Syntax Error</em><a class="headerlink" href="#macro-syntax-error" title="Permanent link">&para;</a></h1>
-<p><em>File</em>: <code>community/gdal/index.md</code></p>
-<p><em>Line 33 in Markdown file:</em> <strong>expected token 'end of statement block', got 'string'</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{% include-markdown &quot;./usage_example.txt&quot; %}
-</code></pre></div></p>
+<h1 id="gdal-based-wcs-output-format">GDAL based WCS Output Format<a class="headerlink" href="#gdal-based-wcs-output-format" title="Permanent link">&para;</a></h1>
+<p>The gdal_translate based output format leverages the availability of the gdal_translate command to allow the generation of more output formats than GeoServer can natively produce. The basic idea is to dump to the file system a file that gdal_translate can translate, invoke it, zip and return the output of the translation.</p>
+<p>This extension is thus the equivalent of the <a href="../../extensions/ogr/">OGR extension</a> for raster data.</p>
+<h2 id="out-of-the-box-behaviour">Out of the box behaviour<a class="headerlink" href="#out-of-the-box-behaviour" title="Permanent link">&para;</a></h2>
+<p>Out of the box the plugin assumes the following:</p>
+<ul>
+<li>gdal_translate is available in the path</li>
+<li>the GDAL_DATA variable is pointing to the GDAL data directory (which stores the spatial reference information for GDAL)</li>
+</ul>
+<p>In the default configuration the following formats are supported:</p>
+<ul>
+<li>JPEG-2000 part 1 (ISO/IEC 15444-1)</li>
+<li>Geospatial PDF</li>
+<li>Arc/Info ASCII Grid</li>
+<li>ASCII Gridded XYZ</li>
+</ul>
+<p>The list might be shorter if gdal_translate has not been built with support for the above formats (for example, the default JPEG-2000 format relies on the <a href="http://www.gdal.org/frmt_jpeg2000.md">JasPer-based GDAL driver</a>).</p>
+<p>Once installed in GeoServer, a bunch of new supported formats will be listed in the <code>ServiceMetadata</code> section of the WCS 2.0 GetCapabilities document, e.g. <code>image/jp2</code> and <code>application/pdf</code>.</p>
+<h2 id="gdal_translate-conversion-abilities">gdal_translate conversion abilities<a class="headerlink" href="#gdal_translate-conversion-abilities" title="Permanent link">&para;</a></h2>
+<p>The gdal_translate utility is usually able to convert more formats than the default setup of this output format allows for, but the exact list depends on how the utility was built from sources. To get a full list of the formats available by your ogr2ogr build just run:</p>
+<div class="highlight"><pre><span></span><code>gdal_translate --long-usage
+</code></pre></div>
+<p>and you'll get the full set of options usable by the program, along with the supported formats.</p>
+<p>{% include-markdown "./usage_example.txt" %}</p>
+<p>The full list of formats that gdal_translate is able to support is available on the <a href="http://www.gdal.org/formats_list.md">GDAL site</a>. Mind that this output format can handle only outputs that are file based and that do support creation. So, for example, you won't be able to use the PostGIS Raster output (since it's database based) or the Arc/Info Binary Grid (creation not supported).</p>
+<h2 id="customisation">Customisation<a class="headerlink" href="#customisation" title="Permanent link">&para;</a></h2>
+<p>If gdal_translate is not available in the default path, the GDAL_DATA environment variable is not set, or if the output formats needs tweaking, a <code>gdal_translate.xml</code> configuration file can be created to customize the output format. The file should be put inside a <code>gdal</code> folder in the root of the GeoServer data directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GeoServer will automatically detect any change to the file and reload the configuration, without a need to restart.</p>
+</div>
+<p>The default configuration is equivalent to the following xml file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;ToolConfiguration&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&lt;executable&gt;</span>gdal_translate<span class="nt">&lt;/executable&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&lt;environment&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&lt;variable</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;GDAL_DATA&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;/usr/local/share/gdal&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&lt;/environment&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&lt;formats&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">&lt;Format&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">&lt;toolFormat&gt;</span>JPEG2000<span class="nt">&lt;/toolFormat&gt;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">&lt;geoserverFormat&gt;</span>GDAL-JPEG2000<span class="nt">&lt;/geoserverFormat&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="nt">&lt;fileExtension&gt;</span>.jp2<span class="nt">&lt;/fileExtension&gt;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">&lt;singleFile&gt;</span>true<span class="nt">&lt;/singleFile&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">&lt;mimeType&gt;</span>image/jp2<span class="nt">&lt;/mimeType&gt;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">      </span><span class="nt">&lt;type&gt;</span>binary<span class="nt">&lt;/type&gt;</span><span class="w"> </span><span class="cm">&lt;!-- not really needed, it&#39;s the default --&gt;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w"> </span><span class="nt">&lt;option&gt;</span>-co<span class="nt">&lt;/option&gt;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w"> </span><span class="nt">&lt;option&gt;</span>FORMAT=JP2<span class="nt">&lt;/option&gt;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">&lt;/Format&gt;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">&lt;Format&gt;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span><span class="nt">&lt;toolFormat&gt;</span>PDF<span class="nt">&lt;/toolFormat&gt;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">      </span><span class="nt">&lt;geoserverFormat&gt;</span>GDAL-PDF<span class="nt">&lt;/geoserverFormat&gt;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">      </span><span class="nt">&lt;fileExtension&gt;</span>.pdf<span class="nt">&lt;/fileExtension&gt;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">      </span><span class="nt">&lt;singleFile&gt;</span>true<span class="nt">&lt;/singleFile&gt;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">      </span><span class="nt">&lt;mimeType&gt;</span>application/pdf<span class="nt">&lt;/mimeType&gt;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="nt">&lt;formatAdapters&gt;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="nt">&lt;GrayAlphaToRGBA/&gt;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="nt">&lt;PalettedToRGB/&gt;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">      </span><span class="nt">&lt;/formatAdapters&gt;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">&lt;/Format&gt;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">&lt;Format&gt;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="nt">&lt;toolFormat&gt;</span>AAIGrid<span class="nt">&lt;/toolFormat&gt;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">&lt;geoserverFormat&gt;</span>GDAL-ArcInfoGrid<span class="nt">&lt;/geoserverFormat&gt;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">&lt;fileExtension&gt;</span>.asc<span class="nt">&lt;/fileExtension&gt;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">&lt;singleFile&gt;</span>false<span class="nt">&lt;/singleFile&gt;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="nt">&lt;/Format&gt;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="nt">&lt;Format&gt;</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">      </span><span class="nt">&lt;toolFormat&gt;</span>XYZ<span class="nt">&lt;/toolFormat&gt;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">      </span><span class="nt">&lt;geoserverFormat&gt;</span>GDAL-XYZ<span class="nt">&lt;/geoserverFormat&gt;</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">      </span><span class="nt">&lt;fileExtension&gt;</span>.txt<span class="nt">&lt;/fileExtension&gt;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">      </span><span class="nt">&lt;singleFile&gt;</span>true<span class="nt">&lt;/singleFile&gt;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">      </span><span class="nt">&lt;mimeType&gt;</span>text/plain<span class="nt">&lt;/mimeType&gt;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">      </span><span class="nt">&lt;type&gt;</span>text<span class="nt">&lt;/type&gt;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="nt">&lt;/Format&gt;</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">  </span><span class="nt">&lt;/formats&gt;</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="nt">&lt;/ToolConfiguration&gt;</span>
+</code></pre></div>
+<p>The file showcases all possible usage of the configuration elements:</p>
+<ul>
+<li>
+<p><code>executable</code> can be just gdal_translate if the command is in the path, otherwise it should be the full path to the executable. For example, on a Linux box with a custom build GDAL library might be:</p>
+<p><executable>/usr/local/bin/gdal_translate</executable></p>
+</li>
+<li>
+<p><code>environment</code> contains a list of <code>variable</code> elements, which can be used to define environment variables that should be set prior to invoking gdal_translate. For example, to setup a GDAL_DATA environment variable pointing to the GDAL data directory, the configuration might be:</p>
+<p><environment>
+   <variable name="GDAL_DATA" value="/usr/local/share/gdal" />
+  </environment></p>
+</li>
+<li>
+<p><code>Format</code> defines a single format, which is defined by the following tags:</p>
+</li>
+<li>
+<p><code>toolFormat</code>: the name of the format to be passed to gdal_translate with the -of option (case insensitive).</p>
+</li>
+<li><code>geoserverFormat</code>: is the name of the output format as advertised by GeoServer</li>
+<li><code>fileExtension</code>: is the extension of the file generated after the translation, if any (can be omitted)</li>
+<li><code>option</code>: can be used to add one or more options to the gdal_translate command line. As you can see by the JPEG2000 example, each item must be contained in its own <code>option</code> tag. You can get a full list of options by running <code>gdal_translate --help</code> or by visiting the <a href="http://www.gdal.org">GDAL website</a>). Also, consider that each format supports specific creation options, listed in the description page for each format (for example, here is the <a href="http://www.gdal.org/frmt_jpeg2000.md">JPEG2000 one</a>).</li>
+<li><code>singleFile</code>: if true the output of the conversion is supposed to be a single file that can be streamed directly back without the need to wrap it into a zip file</li>
+<li><code>mimeType</code>: the mime type of the file returned when using <code>singleFile</code>. If not specified <code>application/octet-stream</code> will be used as a default.</li>
+<li><code>formatAdapters</code>: transformations on the coverage that might need to be applied in order to successfully encode the output. The transformations are applied only if their input conditions are met.</li>
+</ul>
+<p>The available format adapters are:</p>
+<ul>
+<li><code>GrayAlphaToRGBA</code>: expands a gray image with alpha channel to RGBA (mandatory for geospatial PDF for example)</li>
+<li><code>PallettedToRGB</code>: expands a paletted image RGB(A) (mandatory for geospatial PDF for example)</li>
+</ul>
 
 
 
