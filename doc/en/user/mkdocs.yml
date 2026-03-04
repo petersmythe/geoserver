@@ -1,15 +1,11 @@
 site_name: GeoServer User Manual
-site_url: https://docs.geoserver.org/3.0.x/en/user/
+site_url: https://docs.geoserver.org/3.0/en/user/
 repo_url: https://github.com/geoserver/geoserver
 repo_name: geoserver/geoserver
 edit_uri: edit/main/doc/en/user/docs/
 
 docs_dir: docs
 site_dir: target/html
-
-# Exclude include files from the build (they are included by other pages)
-exclude_docs: |
-  styling/ysld/reference/symbolizers/include/
 
 theme:
   name: material
@@ -34,47 +30,29 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    # - navigation.tabs  # Disabled: Causes horizontal overflow on mobile/tablet
-    # - navigation.tabs.sticky  # Disabled: Not needed without navigation.tabs
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
     - navigation.top
     - navigation.tracking
     - navigation.indexes
-    - navigation.path  # Enable breadcrumb navigation
     - search.suggest
     - search.highlight
     - content.code.copy
     - content.action.edit
 
 extra:
-  doc_type: "user"
-  # doc_switcher is loaded from shared config by macros plugin (see version.py)
   version_selector:
-    # GitHub Pages versions (new versions)
     - version: latest
       title: Latest (3.0)
       aliases: []
-      archive: false
     - version: "3.0"
       title: "3.0"
       aliases: []
-      archive: false
     - version: "2.28.x"
       title: "2.28.x"
       aliases: []
-      archive: false
-    # Archive versions (OSGeo server)
-    - version: "2.27.x"
-      title: "2.27.x (archive)"
-      url: "https://docs-archive.geoserver.org/2.27.x/en/user/"
-      archive: true
-    - version: "2.26.x"
-      title: "2.26.x (archive)"
-      url: "https://docs-archive.geoserver.org/2.26.x/en/user/"
-      archive: true
-    - version: "2.25.x"
-      title: "2.25.x (archive)"
-      url: "https://docs-archive.geoserver.org/2.25.x/en/user/"
-      archive: true
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/geoserver/geoserver
@@ -811,11 +789,7 @@ nav:
     - community/jms-cluster/activemq/activemqBroker.md
     - community/jms-cluster/activemq/JDBC.md
     - community/jms-cluster/activemq/SharedFolder.md
-  - Jwt Headers:
-    - community/jwt-headers/index.md
-    - community/jwt-headers/overview.md
-    - community/jwt-headers/installing.md
-    - community/jwt-headers/configuration.md
+  - community/jwt-headers/index.md
   - community/libdeflate/index.md
   - Mbtiles:
     - community/mbtiles/index.md
