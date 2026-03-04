@@ -9904,7 +9904,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Templates
   
 
     
@@ -10690,7 +10690,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    GeoServer processes
   
 
     
@@ -11513,7 +11513,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Advanced log configuration
   
 
     
@@ -12472,7 +12472,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Container Considerations
   
 
     
@@ -21178,7 +21178,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Installation
   
 
     
@@ -28127,15 +28127,11 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-</tr>
 <tr>
 <td><code>square</code></td>
 <td>A square</td>
@@ -28171,15 +28167,11 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-</tr>
 <tr>
 <td><code>shape://vertline</code></td>
 <td>A vertical line (suitable for hatch fills or to make railroad symbols)</td>
@@ -28229,17 +28221,12 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Produces</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-<td><strong>Produces</strong></td>
-</tr>
 <tr>
 <td><code>extshape://triangle</code></td>
 <td>cold front</td>
@@ -28265,15 +28252,11 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th><code>extshape://narrow</code></th>
+<th>North Arrow</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>extshape://narrow</code></td>
-<td>North Arrow</td>
-</tr>
 <tr>
 <td><code>extshape://sarrow</code></td>
 <td>South Arrow</td>
@@ -28290,15 +28273,11 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Description</strong></td>
-</tr>
 <tr>
 <td><code>windbarbs://default(15)[kts]</code></td>
 <td><em>15</em> wind intensity with <em>[kts]</em> unit of measure</td>
@@ -28312,7 +28291,7 @@
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 <h3 id="custom-wkt-shapes">Custom WKT Shapes<a class="headerlink" href="#custom-wkt-shapes" title="Permanent link">&para;</a></h3>
-<p>Custom shapes can be defined using your own Geometry, to enable use WMS Settings ****Mark Factory Precedence<code>to select</code>WKTMarkFactory<code>.  Geometry is defined using the same well-known-text format used for CQL_FILTER.  .. code-block::  xml     &lt;LineSymbolizer&gt;      &lt;Stroke&gt;        &lt;GraphicStroke&gt;          &lt;Graphic&gt;            &lt;Mark&gt;              &lt;WellKnownName&gt;wkt://MULTILINESTRING((-0.25 -0.25, -0.125 -0.25), (0.125 -0.25, 0.25 -0.25), (-0.25 0.25, -0.125 0.25), (0.125 0.25, 0.25 0.25))&lt;/WellKnownName&gt;              &lt;Fill&gt;                &lt;CssParameter name="fill"&gt;#0000ff&lt;/CssParameter&gt;              &lt;/Fill&gt;              &lt;Stroke&gt;                &lt;CssParameter name="stroke"&gt;#0000ff&lt;/CssParameter&gt;                &lt;CssParameter name="stroke-width"&gt;1&lt;/CssParameter&gt;              &lt;/Stroke&gt;            &lt;/Mark&gt;            &lt;Size&gt;6&lt;/Size&gt;          &lt;/Graphic&gt;        &lt;/GraphicStroke&gt;      &lt;/Stroke&gt;    &lt;/LineSymbolizer&gt;  Which produces double dashed line:    .. image:: images/double-dashed-line.png  You can also make use of curves when defining WKT:  .. code-block::  xml     &lt;LineSymbolizer&gt;      &lt;Stroke&gt;        &lt;GraphicStroke&gt;          &lt;Graphic&gt;            &lt;Mark&gt;              &lt;WellKnownName&gt;wkt://COMPOUNDCURVE((0 0, 0.25 0), CIRCULARSTRING(0.25 0, 0.5 0.5, 0.75 0), (0.75 0, 1 0))&lt;/WellKnownName&gt;              &lt;Fill&gt;                &lt;CssParameter name="fill"&gt;#0000ff&lt;/CssParameter&gt;              &lt;/Fill&gt;              &lt;Stroke&gt;                &lt;CssParameter name="stroke"&gt;#0000ff&lt;/CssParameter&gt;                &lt;CssParameter name="stroke-width"&gt;1&lt;/CssParameter&gt;              &lt;/Stroke&gt;            &lt;/Mark&gt;            &lt;Size&gt;10&lt;/Size&gt;          &lt;/Graphic&gt;        &lt;/GraphicStroke&gt;      &lt;/Stroke&gt;    &lt;/LineSymbolizer&gt;  Producing an "emi circle" line:  .. image:: images/emicircle-line.png  Bulk TTF marks ~~~~~~~~~~~~~~  It is possible to create a mark using glyphs from any decorative or symbolic True Type Font, such as Wingdings, WebDings, or the many symbol fonts available on the internet. To enable use WMS Settings ****Mark Factory Precedence</code> to select <code>TTFMarkFactory</code>.</p>
+<p>Custom shapes can be defined using your own Geometry, to enable use WMS Settings ****Mark Factory Precedence<code>to select</code>WKTMarkFactory<code>.  Geometry is defined using the same well-known-text format used for CQL_FILTER.  .. code-block::  xml     &lt;LineSymbolizer&gt;      &lt;Stroke&gt;        &lt;GraphicStroke&gt;          &lt;Graphic&gt;            &lt;Mark&gt;              &lt;WellKnownName&gt;wkt://MULTILINESTRING((-0.25 -0.25, -0.125 -0.25), (0.125 -0.25, 0.25 -0.25), (-0.25 0.25, -0.125 0.25), (0.125 0.25, 0.25 0.25))&lt;/WellKnownName&gt;              &lt;Fill&gt;                &lt;CssParameter name="fill"&gt;#0000ff&lt;/CssParameter&gt;              &lt;/Fill&gt;              &lt;Stroke&gt;                &lt;CssParameter name="stroke"&gt;#0000ff&lt;/CssParameter&gt;                &lt;CssParameter name="stroke-width"&gt;1&lt;/CssParameter&gt;              &lt;/Stroke&gt;            &lt;/Mark&gt;            &lt;Size&gt;6&lt;/Size&gt;          &lt;/Graphic&gt;        &lt;/GraphicStroke&gt;      &lt;/Stroke&gt;    &lt;/LineSymbolizer&gt;  Which produces double dashed line:    .. image:: images/double-dashed-line.png  You can also make use of curves when defining WKT:  .. code-block::  xml     &lt;LineSymbolizer&gt;      &lt;Stroke&gt;        &lt;GraphicStroke&gt;          &lt;Graphic&gt;            &lt;Mark&gt;              &lt;WellKnownName&gt;wkt://COMPOUNDCURVE((0 0, 0.25 0), CIRCULARSTRING(0.25 0, 0.5 0.5, 0.75 0), (0.75 0, 1 0))&lt;/WellKnownName&gt;              &lt;Fill&gt;                &lt;CssParameter name="fill"&gt;#0000ff&lt;/CssParameter&gt;              &lt;/Fill&gt;              &lt;Stroke&gt;                &lt;CssParameter name="stroke"&gt;#0000ff&lt;/CssParameter&gt;                &lt;CssParameter name="stroke-width"&gt;1&lt;/CssParameter&gt;              &lt;/Stroke&gt;            &lt;/Mark&gt;            &lt;Size&gt;10&lt;/Size&gt;          &lt;/Graphic&gt;        &lt;/GraphicStroke&gt;      &lt;/Stroke&gt;    &lt;/LineSymbolizer&gt;  Producing an "emi circle" line:  .. image:: images/emicircle-line.png  Bulk TTF marks ````````````~~  It is possible to create a mark using glyphs from any decorative or symbolic True Type Font, such as Wingdings, WebDings, or the many symbol fonts available on the internet. To enable use WMS Settings ****Mark Factory Precedence</code> to select <code>TTFMarkFactory</code>.</p>
 <p>The syntax for specifying this is:</p>
 <div class="highlight"><pre><span></span><code>ttf://&lt;fontname&gt;#&lt;hexcode&gt;
 </code></pre></div>

@@ -9876,7 +9876,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Templates
   
 
     
@@ -10662,7 +10662,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    GeoServer processes
   
 
     
@@ -11485,7 +11485,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Advanced log configuration
   
 
     
@@ -12444,7 +12444,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Container Considerations
   
 
     
@@ -21150,7 +21150,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Installation
   
 
     
@@ -28054,7 +28054,7 @@
 
 <h1 id="feature-styles">Feature Styles<a class="headerlink" href="#feature-styles" title="Permanent link">&para;</a></h1>
 <p>In YSLD, a Feature Style is a block of styling <a href="../rules/">Rules</a>. The Feature Style is applied to a single feature type and drawn in an off-screen buffer.</p>
-<p><img alt="" src="img/feature-style.*" />
+<p><img alt="" src="../img/feature-style.svg" />
 <em>The feature style element</em></p>
 <p><strong>The purpose of a Feature Style is to specify drawing order.</strong> The buffer for the first Feature Style will be drawn first, while buffer for the second Feature Style will be processed after that, etc. When drawing is complete the buffers will composed into the final drawn map.</p>
 <p>A Feature Style is a <strong>top-level element</strong> in a YSLD style.</p>
@@ -28069,7 +28069,7 @@
 <li>Rule 2c</li>
 </ul>
 <p>In this case, the rules contained inside Feature Style 1 will be processed and their <a href="../symbolizers/">symbolizers</a> drawn first. After Rule 1a and 1b are processed, the renderer will move on to Feature Style 2, where Rule 2a, 2b, and 2c will then be processed and their symbolizers drawn.</p>
-<p><img alt="" src="img/feature-style-order.*" />
+<p><img alt="" src="../img/feature-style-order.svg" />
 <em>Feature style order</em></p>
 <h2 id="drawing-order">Drawing order<a class="headerlink" href="#drawing-order" title="Permanent link">&para;</a></h2>
 <p>The order of feature styles is significant, and also the order of rules inside feature styles is significant.</p>
@@ -28082,7 +28082,7 @@
 <li>Rule 1a is applied to the second feature, followed by rule 1b</li>
 <li>Rule 1a is applied to the third feature, followed by rule 1b</li>
 </ol>
-<p><img alt="" src="img/draw-order-buffer1.*" />
+<p><img alt="" src="../img/draw-order-buffer1.svg" />
 <em>Feature style 1 buffer</em></p>
 <p>Feature style 2 will draw an off-screen buffer:</p>
 <ol>
@@ -28090,7 +28090,7 @@
 <li>Rule 2a is applied to the second feature, followed by rule 2b and then rule 2c</li>
 <li>Rule 2a is applied to the third feature, followed by rule 2b and then rule 2c</li>
 </ol>
-<p><img alt="" src="img/draw-order-buffer2.*" />
+<p><img alt="" src="../img/draw-order-buffer2.svg" />
 <em>Feature style 2 buffer</em></p>
 <p>This final map is produced by composition:</p>
 <ol>
@@ -28098,7 +28098,7 @@
 <li>The buffer for feature style 2 is drawn</li>
 <li>Any labeling is drawn on top</li>
 </ol>
-<p><img alt="" src="img/draw-order-map.*" />
+<p><img alt="" src="../img/draw-order-map.svg" />
 <em>Composition of both feature styles</em></p>
 <p><strong>If you need a rule to apply on top of other rules, use a second feature style.</strong> A useful case for this is for lines representing bridges or overpasses. In order to ensure that the bridge lines always display on "top" of other lines (which in a display that includes, they would need to be applied using a second feature style.)</p>
 <h2 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h2>
@@ -28223,7 +28223,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-source.*" /></td>
+<td><img alt="image" src="../img/composite-source.svg" /></td>
 </tr>
 <tr>
 <td><code>destination</code></td>
@@ -28235,7 +28235,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-destination.*" /></td>
+<td><img alt="image" src="../img/composite-destination.svg" /></td>
 </tr>
 <tr>
 <td><code>source-over</code></td>
@@ -28247,7 +28247,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-source-over.*" /></td>
+<td><img alt="image" src="../img/composite-source-over.svg" /></td>
 </tr>
 <tr>
 <td><code>destination-over</code></td>
@@ -28259,7 +28259,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-destination-over.*" /></td>
+<td><img alt="image" src="../img/composite-destination-over.svg" /></td>
 </tr>
 <tr>
 <td><code>source-in</code></td>
@@ -28271,7 +28271,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-source-in.*" /></td>
+<td><img alt="image" src="../img/composite-source-in.svg" /></td>
 </tr>
 <tr>
 <td><code>destination-in</code></td>
@@ -28283,7 +28283,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-destination-in.*" /></td>
+<td><img alt="image" src="../img/composite-destination-in.svg" /></td>
 </tr>
 <tr>
 <td><code>source-out</code></td>
@@ -28295,7 +28295,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-source-out.*" /></td>
+<td><img alt="image" src="../img/composite-source-out.svg" /></td>
 </tr>
 <tr>
 <td><code>destination-out</code></td>
@@ -28307,7 +28307,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-destination-out.*" /></td>
+<td><img alt="image" src="../img/composite-destination-out.svg" /></td>
 </tr>
 <tr>
 <td><code>source-atop</code></td>
@@ -28319,7 +28319,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-source-atop.*" /></td>
+<td><img alt="image" src="../img/composite-source-atop.svg" /></td>
 </tr>
 <tr>
 <td><code>destination-atop</code></td>
@@ -28331,7 +28331,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-destination-atop.*" /></td>
+<td><img alt="image" src="../img/composite-destination-atop.svg" /></td>
 </tr>
 <tr>
 <td><code>xor</code></td>
@@ -28343,7 +28343,7 @@
 </tr>
 <tr>
 <td></td>
-<td><img alt="image" src="img/composite-xor.*" /></td>
+<td><img alt="image" src="../img/composite-xor.svg" /></td>
 </tr>
 </tbody>
 </table>
@@ -28549,13 +28549,13 @@
 <a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="nt">stroke-width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
 </code></pre></div>
 <p>To draw the inner lines always on top of the outer lines we need to control the <strong>z-order</strong>. The <code>outer_rule</code> is encased in its own feature style and drawn into a distinct "Outer line" buffer. Next the <code>inner_rule</code> is encased in its own feature style and drawn into a distinct "Inner line" buffer.</p>
-<p><img alt="" src="img/line-casing-buffers.*" />
+<p><img alt="" src="../img/line-casing-buffers.svg" />
 <em>Feature style buffers</em></p>
 <p>During composition these two off-screen buffers are combined into the final map.</p>
-<p><img alt="" src="img/line-casing-map.*" />
+<p><img alt="" src="../img/line-casing-map.svg" />
 <em>Final map composition</em></p>
 <p>When drawn, the outer line has a width of 8 pixels and the inner line has a width of 6 pixels, so the line "border" is 1 pixel (on each side).</p>
-<p><img alt="" src="img/fs_roadcasing.*" />
+<p><img alt="" src="img/fs_roadcasing.svg" />
 <em>Example showing road casing</em></p>
 <h3 id="first-match">First match<a class="headerlink" href="#first-match" title="Permanent link">&para;</a></h3>
 <p>Given a style that has many rules with distinct outcomes, it may be advantageous to employ <code>x-ruleEvaluation: first</code> so as to improve rendering efficiency and simplify those rules.</p>

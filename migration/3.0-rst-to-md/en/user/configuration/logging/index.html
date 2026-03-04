@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Rendering Error - GeoServer User Manual</title>
+        <title>Advanced log configuration - GeoServer User Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#advanced-log-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Rendering Error
+              Advanced log configuration
             
           </span>
         </div>
@@ -9706,7 +9706,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Templates
   
 
     
@@ -10492,7 +10492,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    GeoServer processes
   
 
     
@@ -11320,6 +11320,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced log configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -11327,7 +11345,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Advanced log configuration
   
 
     
@@ -11336,6 +11354,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logging_builtin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in logging profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom logging profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom logging profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-of-console-only-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example of console only logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging_location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overriding the log location setup in the GeoServer configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcing-geoserver-to-relinquish-log4j-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forcing GeoServer to relinquish Log4J control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcing-geoserver-to-use-an-alternate-logging-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forcing GeoServer to use an alternate logging redirection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Forcing GeoServer to use an alternate logging redirection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#force-java-logging-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force java logging example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -12293,7 +12419,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Container Considerations
   
 
     
@@ -20999,7 +21125,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Installation
   
 
     
@@ -27765,6 +27891,103 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logging_builtin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in logging profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom logging profiles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom logging profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-of-console-only-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example of console only logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging_location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overriding the log location setup in the GeoServer configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcing-geoserver-to-relinquish-log4j-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forcing GeoServer to relinquish Log4J control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcing-geoserver-to-use-an-alternate-logging-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forcing GeoServer to use an alternate logging redirection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Forcing GeoServer to use an alternate logging redirection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#force-java-logging-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force java logging example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -27788,24 +28011,259 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em><a class="headerlink" href="#macro-rendering-error" title="Permanent link">&para;</a></h1>
-<p><em>File</em>: <code>configuration/logging.md</code></p>
-<p><em>TemplateNotFound</em>: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/mkdocs_macros/plugin.py&quot;, line 703, in render
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 1295, in render
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    self.environment.handle_exception()
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    raise rewrite_traceback_stack(source=source)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  File &quot;&lt;template&gt;&quot;, line 48, in top-level template code
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 197, in get_source
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    pieces = split_template_path(template)
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 36, in split_template_path
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    raise TemplateNotFound(template)
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>jinja2.exceptions.TemplateNotFound: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml
+<h1 id="advanced-log-configuration">Advanced log configuration<a class="headerlink" href="#advanced-log-configuration" title="Permanent link">&para;</a></h1>
+<p>GeoServer uses the Log4J framework for logging, which is configured by selecting a logging profile (in the <a href="../globalsettings/#config_globalsettings_log_location">global settings</a>).</p>
+<p>The GeoServer logging profiles assign logging levels to specific server operations:</p>
+<ul>
+<li>GeoServer loggers record server function and the activity of individual services.</li>
+<li>GeoWebCache loggers record the activity of the tile protocol library used by GeoServer.</li>
+<li>GeoTools loggers record the activity of the data access and rendering library used by GeoServer.</li>
+<li>The appender <code>stdout</code> is setup as a Console appender sending information to standard output, based on <strong>Log to Stdout</strong> <a href="../globalsettings/#config_globalsettings_log_stdout">global settings</a>.</li>
+<li>The appender <code>geoserverlogfile</code> is setup as a FileAppender or RollingFile appender sending information to the <strong>Log location</strong> <a href="../globalsettings/#config_globalsettings_log_location">global settings</a>.</li>
+<li>Logging levels range from:</li>
+<li>Failure (<code>FATAL</code>, <code>ERROR</code>, <code>WARN</code>) levels</li>
+<li>Operational (<code>INFO</code>, <code>CONFIG</code>) levels</li>
+<li>Verbose (<code>DEBUG</code>, <code>TRACE</code>, <code>FINEST</code>) levels</li>
+</ul>
+<p>In addition to the built-in profiles you may setup a custom logging profile, or override the logging configuration completely (even to use another logging library altogether).</p>
+<h2 id="logging_builtin">Built-in logging profiles<a class="headerlink" href="#logging_builtin" title="Permanent link">&para;</a></h2>
+<p>GeoServer includes several built-in logging profiles:</p>
+<ul>
+<li><a href="../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml">DEFAULT_LOGGING</a></li>
+<li><a href="../../../../src/main/src/main/resources/GEOSERVER_DEVELOPER_LOGGING.xml">GEOSERVER_DEVELOPER_LOGGING</a></li>
+<li><a href="../../../../src/main/src/main/resources/GEOTOOLS_DEVELOPER_LOGGING.xml">GEOTOOLS_DEVELOPER_LOGGING</a></li>
+<li><a href="../../../../src/main/src/main/resources/PRODUCTION_LOGGING.xml">PRODUCTION_LOGGING</a></li>
+<li><a href="../../../../src/main/src/main/resources/QUIET_LOGGING.xml">QUIET_LOGGING</a></li>
+<li><a href="../../../../src/main/src/main/resources/VERBOSE_LOGGING.xml">VERBOSE_LOGGING</a></li>
+</ul>
+<p>The built-in logging profiles are installed into your data directory the first time the application is run. If you have customized (see the next section) these files and wish to restore the original contents:</p>
+<ul>
+<li>Use the startup parameter <code>-DUPDATE_BUILT_IN_LOGGING_PROFILES=true</code>, the built-in logging profiles will be checked and updated if required; or</li>
+<li>Delete the file and restart GeoServer, the missing file will be restored; or</li>
+<li>Copy the contents from the download links above</li>
+</ul>
+<p>For a description of these logging profiles see <a href="../globalsettings/#config_globalsettings_log_profile">Logging Profile</a>. Additional built-in logging profiles are supplied by installed extensions (example <a href="../../../../src/extension/importer/core/src/main/resources/IMPORTER_LOGGING.xml">IMPORTER_LOGGING</a> profile is built into the importer extension).</p>
+<h2 id="logging_custom">Custom logging profiles<a class="headerlink" href="#logging_custom" title="Permanent link">&para;</a></h2>
+<p>Anyone can write a new logging profile by adding a Log4J configuration file to the list of files already available in the <code>$GEOSERVER_DATA_DIR/logs</code> folder.</p>
+<p>Profiles in this folder that match <strong><code>*_LOGGING.*</code></strong> will be listed on the global settings page as available for use. The name of the file, excluding the extension, will be presented as the profile name.</p>
+<p>Here is an example, taken from the <a href="../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml">DEFAULT_LOGGING.xml</a> configuration, which enables additional GeoServer log messages to be included in the logs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">&lt;!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml --&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cm">&lt;!-- TODO: Copy file to docs directory or use alternative approach --&gt;</span>
+</code></pre></div>
+<p>Any custom configuration can be setup to enable specific packages to emit logs at the desired logging level.</p>
+<p>There are however a few rules to follow:</p>
+<ul>
+<li>Custom levels are available for <code>CONFIG</code> and <code>FINEST</code> levels.</li>
+<li>Appenders are used to output logging information, with GeoServer providing external configuration for appenders named <code>geoserverlogfile</code> and <code>stdout</code>.</li>
+<li>
+<p>Always include a <code>geoserverlogfile</code> <code>FileAppender</code> or <code>RollingFile</code> appender that GeoServer will configure to work against the location configured in the <a href="../globalsettings/#config_globalsettings_log_location">global settings</a>.</p>
+<p>Care is taken to preserve your file extension when updating <code>&lt;filename&gt;</code> location, so if you wish to log to <strong><code>access_logs.txt</code></strong> you may do so, and the <strong><code>txt</code></strong> extension will be preserved.</p>
+</li>
+<li>
+<p>When setting <code>geoserverlogfile</code> appender as <code>RollingFile</code> appender, care is taken to preserve your <code>&lt;filePattern&gt;</code> extensions, which must align with the roll over strategies configured.</p>
+<p>As an example <code>-%i</code> is used with DefaultRolloverStrategy to produce a maximum of <code>3</code> backup files.</p>
+<p>```xml
+<!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml --></p>
+</li>
+</ul>
+<!-- TODO: Copy file to docs directory or use alternative approach -->
+<div class="highlight"><pre><span></span><code>```
+</code></pre></div>
+<ul>
+<li>
+<p>a <code>Console</code> appender writing to the standard output should be called <code>stdout</code> and again GeoServer will enable/disable it according to the configuration set in the <a href="../globalsettings/#config_globalsettings_log_stdout">global settings</a></p>
+<p>```xml
+<!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml --></p>
+</li>
+</ul>
+<!-- TODO: Copy file to docs directory or use alternative approach -->
+<div class="highlight"><pre><span></span><code>```
+</code></pre></div>
+<ul>
+<li>Loggers are used to collect messages from geoserver components, and individual libraries used.</li>
+<li>
+<p>GeoServer Logger names match up with the package names in the project javadocs overview (available for download).</p>
+<p>As an example package <code>org.geoserver.wms</code> is listed, allowing level of WMS service logging to be controlled:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;Logger</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.geoserver.wms&quot;</span><span class="w"> </span><span class="na">level=</span><span class="s">&quot;debug&quot;</span><span class="w"> </span><span class="na">additivity=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;stdout&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;geoserverlogfile&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">&lt;/Logger&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>GeoTools Logger names match up with the package names in the <a href="https://docs.geotools.org/latest/javadocs/overview-summary.html">project javadocs overview</a>.</p>
+<p>As an example package <code>org.geotools.data.shapefile</code> is listed, allowing level of shapefile logging to be controlled:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;Logger</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.geotools.data.shapefile&quot;</span><span class="w"> </span><span class="na">level=</span><span class="s">&quot;debug&quot;</span><span class="w"> </span><span class="na">additivity=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;stdout&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;geoserverlogfile&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">&lt;/Logger&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Assign a level to each logger indicating the level of detail you wish to record:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OFF</td>
+<td>Turn off all logging</td>
+</tr>
+<tr>
+<td>FATAL</td>
+<td>A serious problem has occurred, application may be crashing or in need of restart</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>Problem has occurred, application unable to perform requested operation</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>Potential problem, application will try and continue</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>Normal function indicating what application is doing.</td>
+</tr>
+<tr>
+<td>CONFIG</td>
+<td>Normal application function during application startup and configuration</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>Internal messages intended for debugging</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>Metod by method tracing of execution</td>
+</tr>
+<tr>
+<td>FINEST</td>
+<td>Really detailed troubleshooting of an algorithm</td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>Turn on all logging</td>
+</tr>
+</tbody>
+</table>
+<p>The more verbose logging levels potentially include a stack-trace showing where the message occurred.</p>
+</li>
+<li>
+<p>Use <code>additivity="false"</code> to prevent a message collected from one logger from being passed to the next.</p>
+<p>If you end up with double log messages chances check for this common misconfiguration.</p>
+</li>
+<li>
+<p>The <code>Root</code> logger is last in the list and should collect everything.</p>
+</li>
+</ul>
+<h3 id="example-of-console-only-logging">Example of console only logging<a class="headerlink" href="#example-of-console-only-logging" title="Permanent link">&para;</a></h3>
+<p>Copy built-in logging profile and customize:</p>
+<ol>
+<li>
+<p>Copy an example such as <a href="../../../../src/main/src/main/resources/QUIET_LOGGING.xml">QUIET_LOGGING.xml</a> to <strong><code>CONSOLE_LOGGING.xml</code></strong>:</p>
+</li>
+<li>
+<p>Update the initial part of <strong><code>CONSOLE_LOGGING.xml</code></strong> with the new name:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">&lt;Configuration</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;CONSOLE_LOGGING&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;fatal&quot;</span><span class="w"> </span><span class="na">dest=</span><span class="s">&quot;out&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Double check the Console appender configuration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&lt;Appenders&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&lt;Console</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;stdout&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;SYSTEM_OUT&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="nt">&lt;PatternLayout</span><span class="w"> </span><span class="na">pattern=</span><span class="s">&quot;%date{dd mmm HH:mm:ss} %-6level [%logger{2}] - %msg%n%&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&lt;/Console&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nt">&lt;/Appenders&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Add appenders for geoserver (and any others you wish to track):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;Logger</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.geoserver&quot;</span><span class="w"> </span><span class="na">level=</span><span class="s">&quot;ERROR&quot;</span><span class="w"> </span><span class="na">additivity=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;stdout&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">&lt;/Logger&gt;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nt">&lt;Logger</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.vfny.geoserver&quot;</span><span class="w"> </span><span class="na">level=</span><span class="s">&quot;ERROR&quot;</span><span class="w"> </span><span class="na">additivity=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;stdout&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nt">&lt;/Logger&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Double check the root logger:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">&lt;Root</span><span class="w"> </span><span class="na">level=</span><span class="s">&quot;FATAL&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;stdout&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">&lt;/Root&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>This result provides minimal feedback to the console, only reporting when GeoServer encounters an error.</p>
+</li>
+</ol>
+<h2 id="logging_location">Overriding the log location setup in the GeoServer configuration<a class="headerlink" href="#logging_location" title="Permanent link">&para;</a></h2>
+<p>When setting up a cluster of GeoServer machines it is common to share a single data directory among all the cluster nodes.</p>
+<p>There is however a gotcha, all nodes would end up writing the logs in the same file, which would cause various kinds of troubles depending on the operating system file locking rules (a single server might be able to write, or all together in an uncontrolled manner resulting in an unreadable log file).</p>
+<p>A common choice could be to use the machine name as a distinction, setting values such as <code>logs/geoserver_node1.log</code>, <code>logs/geoserver_node2.log</code> and so on: in this case all the log files would still be contained in the data directory and properly rotated, but each server would have its own separate log file to write on.</p>
+<p>In this case it is convenient to set a separate log location for each GeoServer node:</p>
+<ul>
+<li>
+<p>The <code>GEOSERVER_LOG_LOCATION</code> parameter can be set as system property, environment variables, or servlet context parameters:</p>
+<p>GEOSERVER_LOG_LOCATION=<the location of the file></p>
+</li>
+</ul>
+<p>This setting overrides global setting, and is applied to <code>geoserverlogfile</code> appender as a template for filename and filePattern.</p>
+<ul>
+<li>This same effect may be obtained using Log4J <a href="https://logging.apache.org/log4j/2.x/manual/configuration.html#PropertySubstitution">property substitution</a>, where a wide range of <a href="https://logging.apache.org/log4j/2.x/manual/lookups.html">property lookups</a> are available.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;RollingFile</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;geoserverlogfile&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">&lt;filename&gt;</span>logs/geoserver-${hostName}.log<span class="nt">&lt;/filename&gt;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">&lt;filePattern&gt;</span>logs/geoserver-${hostName}-%d{yyyy-MM-dd-HH}-%i.zip<span class="nt">&lt;/filePattern&gt;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">&lt;PatternLayout</span><span class="w"> </span><span class="na">pattern=</span><span class="s">&quot;%date{dd mmm HH:mm:ss} %-6level [%logger{2}] - %msg%n&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nt">&lt;Policies&gt;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">      </span><span class="nt">&lt;OnStartupTriggeringPolicy</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">      </span><span class="nt">&lt;SizeBasedTriggeringPolicy</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;20 MB&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">      </span><span class="nt">&lt;TimeBasedTriggeringPolicy</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="nt">&lt;/Policies&gt;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="nt">&lt;DefaultRolloverStrategy</span><span class="w"> </span><span class="na">max=</span><span class="s">&quot;9&quot;</span><span class="w"> </span><span class="na">fileIndex=</span><span class="s">&quot;min&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nt">&lt;/RollingFile&gt;</span>
+</code></pre></div>
+<p>Where <code>${hostName}</code> is the current system host name or ip address.</p>
+<h2 id="forcing-geoserver-to-relinquish-log4j-control">Forcing GeoServer to relinquish Log4J control<a class="headerlink" href="#forcing-geoserver-to-relinquish-log4j-control" title="Permanent link">&para;</a></h2>
+<p>GeoServer internally overrides the Log4J configuration by using the current logging configuration as a template and applying the log location and standard output settings configured by the administrator.</p>
+<p>If you wish GeoServer not to override the normal Log4J behavior you can set the following parameter among the JVM system variables, environment variables, or servlet context parameters:</p>
+<div class="highlight"><pre><span></span><code>RELINQUISH_LOG4J_CONTROL=true
+</code></pre></div>
+<p>This can be combined with <code>log4j2.configurationFile</code> system property to <a href="https://logging.apache.org/log4j/2.x/manual/configuration.html#AutomaticConfiguration">configure Log4J externally</a> :</p>
+<div class="highlight"><pre><span></span><code>-DRELINQUISH_LOG4J_CONTROL=true -Dlog4j2.configurationFile=logging_configuration.xml
+</code></pre></div>
+<h2 id="forcing-geoserver-to-use-an-alternate-logging-redirection">Forcing GeoServer to use an alternate logging redirection<a class="headerlink" href="#forcing-geoserver-to-use-an-alternate-logging-redirection" title="Permanent link">&para;</a></h2>
+<p>GeoServer uses the GeoTools logging framework, which in turn is based on Java Logging, but allowing to redirect all messages to an alternate framework of the user's choice.</p>
+<p>By default GeoServer setups a Log4J redirection, but it is possible to configure GeoServer to use plain Java Logging, or Commons Logging instead (support for other loggers is also possible by using some extra programming).</p>
+<p>If you wish to force GeoServer to use a different logging mechanism set the following parameters among the JVM system variables, environment variables, or servlet context parameters:</p>
+<div class="highlight"><pre><span></span><code>GT2_LOGGING_REDIRECTION=[CommonsLogging,JavaLogging,Log4J,Log4J2,LogBack]
+RELINQUISH_LOG4J_CONTROL=true
+</code></pre></div>
+<p>As noted in the example you'll also have to demand that GeoServer does not exert control over the Log4J configuration.</p>
+<h3 id="force-java-logging-example">Force java logging example<a class="headerlink" href="#force-java-logging-example" title="Permanent link">&para;</a></h3>
+<p>As an example to configure java logging:</p>
+<div class="highlight"><pre><span></span><code>-DRELINQUISH_LOG4J_CONTROL=true -DGT2_LOGGING_REDIRECTION=JavaLogging -Djava.util.logging.config.file=logging.properties
+</code></pre></div>
+<p>With java util logging configuration provided by <strong><code>logging.properties</code></strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="na">handlers</span><span class="o">=</span><span class="s">java.util.logging.ConsoleHandler</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="na">java.util.logging.ConsoleHandler.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ALL</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="na">java.util.logging.ConsoleHandler.formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">org.geotools.util.logging.MonolineFormatter</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="na">org.geotools.util.logging.MonolineFormatter.source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">class:short</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="na">.level</span><span class="o">=</span><span class="w"> </span><span class="s">ALL</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="na">org.geoserver.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CONFIG</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="na">org.vfny.geoserver.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">WARN</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="na">org.geotools.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">WARN</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="na">org.geotools.factory.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">WARN</span>
 </code></pre></div>
 
 

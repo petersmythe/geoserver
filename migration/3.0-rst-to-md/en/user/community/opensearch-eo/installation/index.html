@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Rendering Error - GeoServer User Manual</title>
+        <title>Installation - GeoServer User Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#render_macros-true" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Rendering Error
+              Installation
             
           </span>
         </div>
@@ -9706,7 +9706,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Templates
   
 
     
@@ -10492,7 +10492,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    GeoServer processes
   
 
     
@@ -11315,7 +11315,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Advanced log configuration
   
 
     
@@ -12274,7 +12274,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Container Considerations
   
 
     
@@ -20985,8 +20985,24 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -20995,7 +21011,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Installation
   
 
     
@@ -21004,6 +21020,73 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#render_macros-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        render_macros: true
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-opensearch-for-eo-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing the OpenSearch for EO module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing the OpenSearch for EO module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-postgis-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up the PostGIS database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-and-installing-the-opensearch-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading and installing the OpenSearch extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -27843,8 +27926,64 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#render_macros-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        render_macros: true
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-opensearch-for-eo-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing the OpenSearch for EO module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing the OpenSearch for EO module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-postgis-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up the PostGIS database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-and-installing-the-opensearch-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading and installing the OpenSearch extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -27869,25 +28008,46 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em><a class="headerlink" href="#macro-rendering-error" title="Permanent link">&para;</a></h1>
-<p><em>File</em>: <code>community/opensearch-eo/installation.md</code></p>
-<p><em>TemplateNotFound</em>: ../../../../src/community/oseo/oseo-core/src/test/resources/postgis.sql</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/mkdocs_macros/plugin.py&quot;, line 703, in render
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 1295, in render
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    self.environment.handle_exception()
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    raise rewrite_traceback_stack(source=source)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  File &quot;&lt;template&gt;&quot;, line 21, in top-level template code
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 197, in get_source
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    pieces = split_template_path(template)
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 36, in split_template_path
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    raise TemplateNotFound(template)
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>jinja2.exceptions.TemplateNotFound: ../../../../src/community/oseo/oseo-core/src/test/resources/postgis.sql
+<hr />
+<h2 id="render_macros-true">render_macros: true<a class="headerlink" href="#render_macros-true" title="Permanent link">&para;</a></h2>
+<h1 id="installing-the-opensearch-for-eo-module">Installing the OpenSearch for EO module<a class="headerlink" href="#installing-the-opensearch-for-eo-module" title="Permanent link">&para;</a></h1>
+<p>The installation of the module requires several steps:</p>
+<ul>
+<li>Setting up a PostGIS database with the required schema</li>
+<li>Install the OpenSearch for EO plugin and configure it</li>
+<li>Fill the database with information about collection and metadata</li>
+</ul>
+<h2 id="setting-up-the-postgis-database">Setting up the PostGIS database<a class="headerlink" href="#setting-up-the-postgis-database" title="Permanent link">&para;</a></h2>
+<p>Create a PostgreSQL database and run the following SQL script:</p>
+<div class="highlight"><pre><span></span><code>https://raw.githubusercontent.com/geoserver/geoserver/main/src/community/oseo/oseo-core/src/test/resources/postgis.sql
 </code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;!</span><span class="c1">-- Include path goes outside docs directory: ../../../../src/community/oseo/oseo-core/src/test/resources/postgis.sql --&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">&lt;!</span><span class="c1">-- TODO: Copy file to docs directory or use alternative approach --&gt;</span>
+</code></pre></div>
+<h2 id="downloading-and-installing-the-opensearch-extension">Downloading and installing the OpenSearch extension<a class="headerlink" href="#downloading-and-installing-the-opensearch-extension" title="Permanent link">&para;</a></h2>
+<p>This module is a community module pending graduation, and is available alongside the official release for production testing.</p>
+<ol>
+<li>
+<p>Login, and navigate to <strong>About &amp; Status &gt; About GeoServer</strong> and check <strong>Build Information</strong> to determine the exact version of GeoServer you are running.</p>
+</li>
+<li>
+<p>Visit the <a href="https://geoserver.org/download">website download</a> page, change the <strong>Archive</strong> tab, and locate your release.</p>
+<p>From the list of <strong>Pending</strong> community plugins download <strong>OpenSearch (EO)</strong>.</p>
+<ul>
+<li>3.0.0 example: <a href="https://sourceforge.net/projects/geoserver/files/GeoServer/opensearch-eo-plugin">opensearch-eo-plugin</a></li>
+<li>3.0 example: <a href="https://build.geoserver.org/geoserver/main/ext-latest/geoserver-3.0-SNAPSHOT-opensearch-eo-plugin-plugin.zip">opensearch-eo-plugin</a></li>
+</ul>
+<p>The website lists community modules for active nightly builds providing feedback to developers, you may also <a href="https://build.geoserver.org/geoserver/">browse</a> for earlier versions.</p>
+</li>
+<li>
+<p>Download the plugin zip file, and unzip its contents in the GeoServer unpacked WAR lib directory, e.g., <strong><code>geoserver/WEB-INF/lib</code></strong></p>
+</li>
+<li>
+<p>Restart GeoServer</p>
+<p><img alt="" src="../images/admin.png" />
+<em>The GeoServer home page after the OpenSearch for EO module installation.</em></p>
+</li>
+</ol>
 
 
 

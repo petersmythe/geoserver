@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Rendering Error - GeoServer User Manual</title>
+        <title>Container Considerations - GeoServer User Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#container-considerations" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Rendering Error
+              Container Considerations
             
           </span>
         </div>
@@ -9706,7 +9706,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Templates
   
 
     
@@ -10492,7 +10492,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    GeoServer processes
   
 
     
@@ -11315,7 +11315,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Advanced log configuration
   
 
     
@@ -12279,6 +12279,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Container Considerations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -12286,7 +12304,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Container Considerations
   
 
     
@@ -12295,6 +12313,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimize-your-jvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimize your JVM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production_container.marlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use newer Marlin rasterizer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production_container.enable_cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable CORS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable CORS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-geoserver-web-administration-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the GeoServer Web Administration Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-configuration-tomcat-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Configuration (Tomcat only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -20993,7 +21091,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Installation
   
 
     
@@ -27759,6 +27857,75 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimize-your-jvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimize your JVM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production_container.marlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use newer Marlin rasterizer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production_container.enable_cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable CORS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable CORS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-geoserver-web-administration-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the GeoServer Web Administration Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-configuration-tomcat-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Configuration (Tomcat only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -27782,25 +27949,128 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em><a class="headerlink" href="#macro-rendering-error" title="Permanent link">&para;</a></h1>
-<p><em>File</em>: <code>production/container.md</code></p>
-<p><em>TemplateNotFound</em>: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/mkdocs_macros/plugin.py&quot;, line 703, in render
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 1295, in render
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    self.environment.handle_exception()
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    raise rewrite_traceback_stack(source=source)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  File &quot;&lt;template&gt;&quot;, line 95, in top-level template code
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 197, in get_source
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    pieces = split_template_path(template)
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 36, in split_template_path
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    raise TemplateNotFound(template)
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>jinja2.exceptions.TemplateNotFound: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml
+<h1 id="container-considerations">Container Considerations<a class="headerlink" href="#container-considerations" title="Permanent link">&para;</a></h1>
+<p>Java web containers such as <a href="http://tomcat.apache.org">Tomcat</a> or <a href="https://www.eclipse.org/jetty/">Jetty</a> ship with configurations that allow for fast startup, but don't always deliver the best performance.</p>
+<h2 id="optimize-your-jvm">Optimize your JVM<a class="headerlink" href="#optimize-your-jvm" title="Permanent link">&para;</a></h2>
+<p>Set the following performance settings in the Java virtual machine (JVM) for your container. These settings are not specific to any container.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Option</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-Xms128m</code></td>
+<td>By starting with a larger heap GeoServer will not need to pause and ask the operating system for more memory during heavy load. The setting <code>-Xms128m</code> will tell the virtual machine to acquire grab a 128m heap memory on initial startup.</td>
+</tr>
+<tr>
+<td><code>-Xmx756M</code></td>
+<td>Defines an upper limit on how much heap memory Java will request from the operating system (use more if you have excess memory). By default, the JVM will use 1/4 of available system memory. The setting <code>-Xms756m</code> allocates 756MB of memory to GeoServer.</td>
+</tr>
+<tr>
+<td><code>-XX:SoftRefLRUPolicyMSPerMB=36000</code></td>
+<td>Increases the lifetime of "soft references" in GeoServer. GeoServer uses soft references to cache datastore, spatial reference systems, and other data structures. By increasing this value to <code>36000</code> (which is 36 seconds) these values will stay in memory longer increasing the effectiveness of the cache.</td>
+</tr>
+<tr>
+<td><code>-XX:+UseParallelGC</code></td>
+<td>This garbage collector <strong>pauses the application while using several threads to recover memory</strong>. Recommended if your GeoServer will be under light load and can tolerate pauses to clean up memory.</td>
+</tr>
+<tr>
+<td><code>-XX:+UseParNewGC</code></td>
+<td>Enables use of the concurrent mark sweep (CMS) garbage collector <strong>uses multiple threads to recover memory while the application is running</strong>. Recommended for GeoServer under continuous use, with heap sizes of less than 6GB.</td>
+</tr>
+<tr>
+<td><code>–XX:+UseG1GC</code></td>
+<td>The default garbage collector since Java 9. Enables use of the <a href="http://www.oracle.com/technetwork/java/javase/tech/g1-intro-jsp-135488.html">Garbage First Garbage Collector (G1)</a> using <strong>background threads to scan memory while the application is running</strong> prior to cleanup. Recommended for GeoServer under continuous load and heap sizes of 6GB or more. Additionally you may experiment with <code>-XX:+UseStringDeduplicationJVM</code> to ask G1 to better manage common text strings in memory.</td>
+</tr>
+</tbody>
+</table>
+<p>For more information about JVM configuration, see the article <a href="http://www.petefreitag.com/articles/gctuning/">Performance tuning garbage collection in Java</a> and <a href="http://blog.takipi.com/garbage-collectors-serial-vs-parallel-vs-cms-vs-the-g1-and-whats-new-in-java-8/">The 4 Java Garbage Collectors</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can only use one garbage collector at a time. Please refrain from combining garbage collectors at runtime.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you're serving just vector data, you'll be streaming, so having more memory won't increase performance. If you're serving coverages, however, image processing will use a tile cache and benefit from more memory. As an administrator you can configure the portion of memory available as a tile cache (see the Server Config page in the <a href="../../webadmin/">Web administration interface</a> section) - for example to use <code>0.75</code> to allocate <code>75%</code> of the heap as a tile cache.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can try out memory settings on the command line to check settings/defaults prior to use.</p>
+<p>To check settings use <code>java -Xms128m -Xmx756m -XX:+PrintFlagsFinal -version | grep HeapSize</code>:</p>
+<div class="highlight"><pre><span></span><code>uintx InitialHeapSize   := 134217728     {product}
+uintx MaxHeapSize       := 792723456     {product}
 </code></pre></div>
+<p>Which when converted from bytes matches <code>128</code> MB initial heap size, and <code>756</code> MB max heap size.</p>
+<p>Check defaults for your hardware using <code>java -XX:+PrintFlagsFinal -version | grep HeapSize</code>:</p>
+<div class="highlight"><pre><span></span><code>uintx InitialHeapSize   := 268435456     {product}
+uintx MaxHeapSize       := 4294967296    {product}
+</code></pre></div>
+<p>The above results (from a 16 GB laptop) amount to initial heap size of 256m, and a max heap size of around 4 GB (or around 1/4 of system memory).</p>
+</div>
+<h2 id="production_container.marlin">Use newer Marlin rasterizer<a class="headerlink" href="#production_container.marlin" title="Permanent link">&para;</a></h2>
+<p>To use a newer version of Marlin than that provided by your JVM, add the following to the JVM startup options:</p>
+<div class="highlight"><pre><span></span><code>-Xbootclasspath/a:$MARLIN_JAR
+-Dsun.java2d.renderer=org.marlin.pisces.MarlinRenderingEngine
+</code></pre></div>
+<p>where <code>$MARLIN_JAR</code> is the location of the <code>marlin*.jar</code> file located in the geoserver/WEB-INF/lib directory or downloaded from the <a href="https://github.com/bourgesl/marlin-renderer/">Marlin project</a>.</p>
+<p>The server status page shows which renderer is being used.</p>
+<h2 id="production_container.enable_cors">Enable CORS<a class="headerlink" href="#production_container.enable_cors" title="Permanent link">&para;</a></h2>
+<p><a href="https://enable-cors.org/">Enable Cross-Origin Resource Sharing (CORS)</a> allows JavaScript applications (such as OpenLayers or Leaflet) running on different domains to make requests to your GeoServer.</p>
+<p>GeoServer provides a built-in configuration interface to enable CORS. This is the preferred method for both the standalone (embedded Jetty) and WAR (Tomcat) distributions, as it eliminates the need to manually edit configuration files.</p>
+<h3 id="using-the-geoserver-web-administration-interface">Using the GeoServer Web Administration Interface<a class="headerlink" href="#using-the-geoserver-web-administration-interface" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../images/cors.png" /></p>
+<ol>
+<li>Log in to the GeoServer Web Admin interface as an administrator.</li>
+<li>Navigate to <strong>Settings --&gt; Global</strong>.</li>
+<li>Locate the <strong>CORS Settings</strong> section.</li>
+</ol>
+<p><img alt="" src="../images/cors_settings.png" /></p>
+<ol>
+<li>Check the <strong>Enabled</strong> box.</li>
+<li>Configure the following options as needed:<ul>
+<li><strong>Allowed Origin Patterns</strong>: A comma-separated list of origins (e.g., <code>http://example.com, https://myapp.org</code>). Wildcards (<code>*</code>) can be used to allow all origins.</li>
+<li><strong>Allowed Methods</strong>: Select the HTTP methods permitted (usually GET, POST, OPTIONS).</li>
+<li><strong>Allowed Headers</strong>: Specify which headers can be used during the actual request.</li>
+<li><strong>Max Age</strong>: How long the results of a preflight request can be cached by the browser (in seconds).</li>
+<li><strong>Supports Credentials</strong>: Whether the request can include user credentials (cookies, HTTP authentication).</li>
+</ul>
+</li>
+<li>Click <strong>Save</strong> at the bottom of the page.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>GeoServer must be restarted for these changes to take effect.</p>
+</div>
+<h3 id="manual-configuration-tomcat-only">Manual Configuration (Tomcat only)<a class="headerlink" href="#manual-configuration-tomcat-only" title="Permanent link">&para;</a></h3>
+<p>While the UI method above is recommended, administrators using Tomcat may still configure CORS manually via <strong><code>web.xml</code></strong> if desired. Please note that enabling the manual configuration is not compatible with the built-in configuration. Running them simultaneously will result in multiple allow origin values and will cause browser CORS failures. For detailed options, see the <a href="https://tomcat.apache.org/tomcat-9.0-doc/config/filter.html#CORS_Filter">Tomcat CORS Filter documentation</a>.</p>
+<ol>
+<li>
+<p>Uncomment the following <code>&lt;filter&gt;</code> in <strong><code>webapps/geoserver/WEB-INF/web.xml</code></strong>:</p>
+<p>```
+<!-- Include path goes outside docs directory: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml --></p>
+</li>
+</ol>
+<!-- TODO: Copy file to docs directory or use alternative approach -->
+<div class="highlight"><pre><span></span><code>```
+
+Note that in some cases you may have to replace the asterisk (*) param-value for cors.allowed.methods with an explicit list: Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization
+</code></pre></div>
+<ol>
+<li>
+<p>Uncomment the following <code>&lt;filter-mapping&gt;</code>:</p>
+<p>```
+<!-- Include path goes outside docs directory: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml --></p>
+</li>
+</ol>
+<!-- TODO: Copy file to docs directory or use alternative approach -->
+<div class="highlight"><pre><span></span><code>```
+</code></pre></div>
+<ol>
+<li>Restart</li>
+</ol>
 
 
 
