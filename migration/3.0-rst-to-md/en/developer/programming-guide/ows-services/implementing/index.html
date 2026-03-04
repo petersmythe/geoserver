@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Rendering Error - GeoServer Developer Manual</title>
+        <title>Implementing a simple OWS service - GeoServer Developer Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#implementing-a-simple-ows-service" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Rendering Error
+              Implementing a simple OWS service
             
           </span>
         </div>
@@ -1311,6 +1311,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing a simple OWS service
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1318,7 +1336,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Rendering Error
+    Implementing a simple OWS service
   
 
     
@@ -1327,6 +1345,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-plug-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the Plug-in
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trying-it-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trying it Out
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundling-with-web-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundling with Web Module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running from Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2671,6 +2763,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-plug-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating the Plug-in
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trying-it-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trying it Out
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundling-with-web-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundling with Web Module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running from Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2694,25 +2849,241 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em><a class="headerlink" href="#macro-rendering-error" title="Permanent link">&para;</a></h1>
-<p><em>File</em>: <code>programming-guide/ows-services/implementing.md</code></p>
-<p><em>TemplateNotFound</em>: './hello/pom.xml' not found in search path: 'docs'</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/mkdocs_macros/plugin.py&quot;, line 703, in render
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 1295, in render
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    self.environment.handle_exception()
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    raise rewrite_traceback_stack(source=source)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  File &quot;&lt;template&gt;&quot;, line 13, in top-level template code
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/opt/hostedtoolcache/Python/3.14.3/x64/lib/python3.14/site-packages/jinja2/loaders.py&quot;, line 209, in get_source
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    raise TemplateNotFound(
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ...&lt;2 lines&gt;...
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    )
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>jinja2.exceptions.TemplateNotFound: &#39;./hello/pom.xml&#39; not found in search path: &#39;docs&#39;
+<h1 id="implementing-a-simple-ows-service">Implementing a simple OWS service<a class="headerlink" href="#implementing-a-simple-ows-service" title="Permanent link">&para;</a></h1>
+<p>This section explains How to Create a Simple GeoServer OWS service for GeoServer using the following scenario. The service should supply a capabilities document which advertises a single operation called "sayHello". The result of a sayHello operation is the simple string "Hello World".</p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>The first step in creating our plug-in is setting up a maven project for it. The project will be called "hello".</p>
+<ol>
+<li>Create a new directory called <strong><code>hello</code></strong> anywhere on your file system.</li>
+<li>Add a maven pom called <strong><code>pom.xml</code></strong> to the <strong><code>hello</code></strong> directory:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{%<span class="w"> </span>include<span class="w"> </span>&quot;./hello/pom.xml&quot;<span class="w"> </span>%}
 </code></pre></div>
+<ol>
+<li>Create a java source directory, <strong><code>src/main/java</code></strong> under the <strong><code>hello</code></strong> directory:<div class="highlight"><pre><span></span><code>hello/
+  + pom.xml
+  + src/
+    + main/
+      + java/
+</code></pre></div>
+</li>
+</ol>
+<h2 id="creating-the-plug-in">Creating the Plug-in<a class="headerlink" href="#creating-the-plug-in" title="Permanent link">&para;</a></h2>
+<p>A plug-in is a collection of extensions realized as spring beans. In this example the extension point of interest is a HelloWorld POJO (Plain Old Java Object).</p>
+<ol>
+<li>Create a class called <strong>HelloWorld</strong>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="o">%</span><span class="w"> </span><span class="n">include</span><span class="w"> </span><span class="s">&quot;./hello/src/main/java/HelloWorld.java&quot;</span><span class="w"> </span><span class="o">%</span><span class="p">}</span>
+</code></pre></div>
+<p>The service is relatively simple. It provides a method sayHello(..) which takes a HttpServletRequest, and a HttpServletResponse. The parameter list for this function is automatically discovered by the org.geoserver.ows.Dispatcher.</p>
+<ol>
+<li>Create an <strong><code>applicationContext.xml</code></strong> declaring the above class as a bean.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{%<span class="w"> </span>include<span class="w"> </span>&quot;./hello/src/main/java/applicationContext.xml&quot;<span class="w"> </span>%}
+</code></pre></div>
+<p>At this point the hello project should look like the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hello/
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>+<span class="w"> </span>pom.xml
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>+<span class="w"> </span>src/
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>+<span class="w"> </span>main/
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span>+<span class="w"> </span>java/
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span>+<span class="w"> </span>HelloWorld.java
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span>+<span class="w"> </span>applicationContext.xml
+</code></pre></div>
+<h2 id="trying-it-out">Trying it Out<a class="headerlink" href="#trying-it-out" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Install the <strong><code>hello</code></strong> module:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>hello<span class="o">]</span>%<span class="w"> </span>mvn<span class="w"> </span>install
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Scanning<span class="w"> </span><span class="k">for</span><span class="w"> </span>projects...
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w">                                                                         </span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>------------------------------------------------------------------------
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span>Hello<span class="w"> </span>World<span class="w"> </span>Service<span class="w"> </span>Module<span class="w"> </span><span class="m">1</span>.0
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>------------------------------------------------------------------------
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-clean-plugin:2.5:clean<span class="w"> </span><span class="o">(</span>default-clean<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Deleting<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>cobertura-maven-plugin:2.6:clean<span class="w"> </span><span class="o">(</span>default<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>git-commit-id-plugin:2.0.4:revision<span class="w"> </span><span class="o">(</span>default<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>GitCommitIdMojo<span class="o">]</span><span class="w"> </span>.git<span class="w"> </span>directory<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>found,<span class="w"> </span>skipping<span class="w"> </span>execution
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-resources-plugin:2.6:resources<span class="w"> </span><span class="o">(</span>default-resources<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span><span class="s1">&#39;UTF-8&#39;</span><span class="w"> </span>encoding<span class="w"> </span>to<span class="w"> </span>copy<span class="w"> </span>filtered<span class="w"> </span>resources.
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Copying<span class="w"> </span><span class="m">1</span><span class="w"> </span>resource
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>skip<span class="w"> </span>non<span class="w"> </span>existing<span class="w"> </span>resourceDirectory<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/src/main/resources
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-compiler-plugin:2.3.2:compile<span class="w"> </span><span class="o">(</span>default-compile<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Compiling<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target/classes
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-resources-plugin:2.6:testResources<span class="w"> </span><span class="o">(</span>default-testResources<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span><span class="s1">&#39;UTF-8&#39;</span><span class="w"> </span>encoding<span class="w"> </span>to<span class="w"> </span>copy<span class="w"> </span>filtered<span class="w"> </span>resources.
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>skip<span class="w"> </span>non<span class="w"> </span>existing<span class="w"> </span>resourceDirectory<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/src/test/java
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>skip<span class="w"> </span>non<span class="w"> </span>existing<span class="w"> </span>resourceDirectory<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/src/test/resources
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-compiler-plugin:2.3.2:testCompile<span class="w"> </span><span class="o">(</span>default-testCompile<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>No<span class="w"> </span>sources<span class="w"> </span>to<span class="w"> </span>compile
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-surefire-plugin:2.12.3:test<span class="w"> </span><span class="o">(</span>default-test<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>No<span class="w"> </span>tests<span class="w"> </span>to<span class="w"> </span>run.
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-jar-plugin:2.4:jar<span class="w"> </span><span class="o">(</span>default-jar<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span>jar:<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target/hello-1.0.jar
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-jar-plugin:2.4:test-jar<span class="w"> </span><span class="o">(</span>default<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="o">[</span>WARNING<span class="o">]</span><span class="w"> </span>JAR<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>empty<span class="w"> </span>-<span class="w"> </span>no<span class="w"> </span>content<span class="w"> </span>was<span class="w"> </span>marked<span class="w"> </span><span class="k">for</span><span class="w"> </span>inclusion!
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span>jar:<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target/hello-1.0-tests.jar
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>&gt;&gt;&gt;<span class="w"> </span>maven-source-plugin:2.2.1:jar<span class="w"> </span><span class="o">(</span>attach-sources<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>generate-sources<span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>&gt;&gt;&gt;
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>git-commit-id-plugin:2.0.4:revision<span class="w"> </span><span class="o">(</span>default<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>GitCommitIdMojo<span class="o">]</span><span class="w"> </span>.git<span class="w"> </span>directory<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>found,<span class="w"> </span>skipping<span class="w"> </span>execution
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span>maven-source-plugin:2.2.1:jar<span class="w"> </span><span class="o">(</span>attach-sources<span class="o">)</span><span class="w"> </span>&lt;<span class="w"> </span>generate-sources<span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span><span class="o">&lt;&lt;&lt;</span>
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-source-plugin:2.2.1:jar<span class="w"> </span><span class="o">(</span>attach-sources<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span>jar:<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target/hello-1.0-sources.jar
+<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>&gt;&gt;&gt;<span class="w"> </span>maven-source-plugin:2.2.1:test-jar<span class="w"> </span><span class="o">(</span>attach-sources<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>generate-sources<span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>&gt;&gt;&gt;
+<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>git-commit-id-plugin:2.0.4:revision<span class="w"> </span><span class="o">(</span>default<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>GitCommitIdMojo<span class="o">]</span><span class="w"> </span>.git<span class="w"> </span>directory<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>found,<span class="w"> </span>skipping<span class="w"> </span>execution
+<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span>maven-source-plugin:2.2.1:test-jar<span class="w"> </span><span class="o">(</span>attach-sources<span class="o">)</span><span class="w"> </span>&lt;<span class="w"> </span>generate-sources<span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span><span class="o">&lt;&lt;&lt;</span>
+<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-source-plugin:2.2.1:test-jar<span class="w"> </span><span class="o">(</span>attach-sources<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>No<span class="w"> </span>sources<span class="w"> </span><span class="k">in</span><span class="w"> </span>project.<span class="w"> </span>Archive<span class="w"> </span>not<span class="w"> </span>created.
+<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>---<span class="w"> </span>maven-install-plugin:2.4:install<span class="w"> </span><span class="o">(</span>default-install<span class="o">)</span><span class="w"> </span>@<span class="w"> </span>hello<span class="w"> </span>---
+<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Installing<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target/hello-1.0.jar<span class="w"> </span>to<span class="w"> </span>/home/bradh/.m2/repository/org/geoserver/hello/1.0/hello-1.0.jar
+<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Installing<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/pom.xml<span class="w"> </span>to<span class="w"> </span>/home/bradh/.m2/repository/org/geoserver/hello/1.0/hello-1.0.pom
+<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Installing<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target/hello-1.0-tests.jar<span class="w"> </span>to<span class="w"> </span>/home/bradh/.m2/repository/org/geoserver/hello/1.0/hello-1.0-tests.jar
+<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Installing<span class="w"> </span>/home/bradh/devel/geoserver/doc/en/developer/source/programming-guide/ows-services/hello/target/hello-1.0-sources.jar<span class="w"> </span>to<span class="w"> </span>/home/bradh/.m2/repository/org/geoserver/hello/1.0/hello-1.0-sources.jar
+<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>------------------------------------------------------------------------
+<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>BUILD<span class="w"> </span>SUCCESS
+<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>------------------------------------------------------------------------
+<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Total<span class="w"> </span>time:<span class="w"> </span><span class="m">2</span>.473<span class="w"> </span>s
+<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Finished<span class="w"> </span>at:<span class="w"> </span><span class="m">2015</span>-10-20T10:14:16+11:00
+<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Final<span class="w"> </span>Memory:<span class="w"> </span>23M/589M
+<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>------------------------------------------------------------------------
+</code></pre></div>
+<ol>
+<li>
+<p>Next we need to make sure <strong><code>hello-1.0.jar</code></strong> is included when we run GeoServer:</p>
+<ul>
+<li>If you are running a GeoServer in Tomcat, copy <strong><code>target/hello-1.0.jar</code></strong> into <strong><code>webapps/geoserver/WEB-INF/lib</code></strong> (just like we manually install extensions or community modules).</li>
+</ul>
+<p>Restart GeoServer to pick up the change.</p>
+<ul>
+<li>If running with <strong><em>Eclipse</em></strong> using maven eclipse plugin, the easiest approach is edit the <strong><code>web-app/pom.xml</code></strong> with the following dependency:</li>
+</ul>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">   </span><span class="nt">&lt;groupId&gt;</span>org.geoserver<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">   </span><span class="nt">&lt;artifactId&gt;</span>hello<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">   </span><span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>After editing <strong><code>webapps/pom.xml</code></strong> we need run <code>mvn eclipse:eclipse</code>, and then from <strong><em>Eclipse</em></strong> right click on web-app project and <strong>Refresh</strong> for the IDE to notice the change.</p>
+</blockquote>
+<ul>
+<li>If and IDE like IntellJ, Eclipse M2 Maven plugin or NetBeans refresh the project so it picks up the changes to <strong><code>pom.xml</code></strong></li>
+</ul>
+</li>
+<li>
+<p>Restart GeoServer and visit:</p>
+<div class="highlight"><pre><span></span><code>http://&lt;host&gt;/geoserver/ows?request=sayHello&amp;service=hello&amp;version=1.0.0
+</code></pre></div>
+<p>request</p>
+<p>:   the method we defined in our service</p>
+<p>service</p>
+<p>:   the name we passed to the Service descriptor in the applicationContext.xml</p>
+<p>version</p>
+<p>:   the version we passed to the Service descriptor in the applicationContext.xml</p>
+</li>
+</ol>
+<p><img alt="" src="../firefox_helloworld.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A common pitfall is to bundle an extension without the <strong><code>applicationContext.xml</code></strong> file. If you receive the error message "No service: ( hello )" this is potentially the case. To ensure the file is present inspect the contents of the hello jar present in the <strong><code>target</code></strong> directory of the hello module.</p>
+</div>
+<h2 id="bundling-with-web-module">Bundling with Web Module<a class="headerlink" href="#bundling-with-web-module" title="Permanent link">&para;</a></h2>
+<p>An alternative to plugging into an existing installation is to build a complete GeoServer war that includes the custom hello plugin. To achieve this a new dependency is declared from the core <strong>web/app</strong> module on the new plugin project. This requires building GeoServer from sources.</p>
+<ol>
+<li>
+<p>Build GeoServer from sources as described <a href="../../../maven-guide/">here</a>.</p>
+</li>
+<li>
+<p>Install the <strong><code>hello</code></strong> module as above.</p>
+</li>
+<li>
+<p>Edit <strong><code>web/app/pom.xml</code></strong> and add the following dependency:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.geoserver<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>hello<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Install the <strong><code>web/app</code></strong> module</p>
+</li>
+</ol>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>web/app<span class="o">]</span><span class="w"> </span>mvn<span class="w"> </span>install
+</code></pre></div>
+</blockquote>
+<p>A GeoServer war including the hello extension should now be present in the <strong><code>target</code></strong> directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To verify the plugin was bundled properly unpack <strong><code>geoserver.war</code></strong> and inspect the contents of the <strong><code>WEB-INF/lib</code></strong> directory and ensure the hello jar is present.</p>
+</div>
+<h2 id="running-from-source">Running from Source<a class="headerlink" href="#running-from-source" title="Permanent link">&para;</a></h2>
+<p>During development the most convenient way to work with the extension is to run it directly from sources.</p>
+<ol>
+<li>
+<p>Setup GeoServer in eclipse as described <a href="../../../eclipse-guide/">here</a>.</p>
+</li>
+<li>
+<p>Move the hello module into the GeoServer source tree under the <code>community</code> root module.</p>
+</li>
+<li>
+<p>Edit the <strong><code>community/pom.xml</code></strong> and add a new profile:</p>
+<div class="highlight"><pre><span></span><code>&lt;profile&gt;
+  &lt;id&gt;hello&lt;/id&gt;
+  &lt;modules&gt;
+    &lt;module&gt;hello&lt;/module&gt;
+  &lt;/modules&gt;
+&lt;/profile&gt;
+</code></pre></div>
+</li>
+<li>
+<p>If not already done, edit <strong><code>web/app/pom.xml</code></strong> and add the following dependency:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.geoserver<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>hello<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>From the root of the GeoServer source tree run the following maven command:</p>
+</li>
+</ol>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>src<span class="o">]</span><span class="w"> </span>mvn<span class="w"> </span>-P<span class="w"> </span>hello<span class="w"> </span>eclipse:eclipse
+</code></pre></div>
+</blockquote>
+<ol>
+<li>In eclipse import the new hello module and refresh all modules.</li>
+<li>In the <code>web-app</code> module run the <code>Start.java</code> main class to start GeoServer.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure that the <code>web-app</code> module in eclipse depends on the newly imported <code>hello</code> module. This can be done by inspecting the <code>web-app</code> module properties and ensuring the <code>hello</code> module is a project dependency.</p>
+</div>
 
 
 
