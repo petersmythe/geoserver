@@ -23684,9 +23684,40 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../community/jwt-headers/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_17_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../community/jwt-headers/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -23700,7 +23731,115 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_17_29" id="__nav_17_29_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_17_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JWT Headers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/jwt-headers/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT Header Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/jwt-headers/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../community/jwt-headers/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JWT Headers configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -28165,7 +28304,7 @@
 <em>Rules management UI</em></p>
 <p>Note that the first rule (the advanced one) is not active.</p>
 <h2 id="rest-api">REST API<a class="headerlink" href="#rest-api" title="Permanent link">&para;</a></h2>
-<p>The rules and echo parameters can also be managed by means of a REST API found at <code>geoserver/rest/params-extractor</code>. Documentation for it is available in <a href="api/params-extractor.yaml">Swagger format</a></p>
+<p>The rules and echo parameters can also be managed by means of a REST API found at <code>geoserver/rest/params-extractor</code>. Documentation for it is available in <a href="api/params-extractor.md">Swagger format</a></p>
 <h2 id="intercepting-the-security-filters-chain">Intercepting the security filters chain<a class="headerlink" href="#intercepting-the-security-filters-chain" title="Permanent link">&para;</a></h2>
 <p>By default, the params-extractor module does not interact with the security authentication filters. This is because the params-extractor filter is called later in the GeoServer filters chain.</p>
 <p>If you want params-extractor to work before the security filter chain, you have to configure it as a standard servlet filter in the GeoServer WEB-INF/web.xml file.</p>
