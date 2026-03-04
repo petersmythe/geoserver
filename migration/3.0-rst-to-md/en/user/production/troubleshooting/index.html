@@ -28304,7 +28304,7 @@ Content-Security-Policy: The page’s settings blocked a style (style-src-elem) 
 <p>The JDK contains three useful command line tools that can be used to gather information about GeoServer instances that are leaking memory or not performing as requested: <code>jps</code>, <code>jstack</code> and <code>jmap</code>.</p>
 <p>All tools work against a live Java Virtual Machine, the one running GeoServer in particular. In order for them to work properly you'll have to run them with a user that has enough privileges to connect to the JVM process, in particular super user or the same user that's running the JVM usually have the required right.</p>
 <h3 id="jps">jps<a class="headerlink" href="#jps" title="Permanent link">&para;</a></h3>
-<p><a href="http://java.sun.com/javase/6/docs/technotes/tools/share/jps.html">jps</a> is a tool listing all the Java processing running. It can be used to retrieve the <code>pid</code> (process id) of the virtual machine that is running GeoServer. For example:</p>
+<p><a href="http://java.sun.com/javase/6/docs/technotes/tools/share/jps.md">jps</a> is a tool listing all the Java processing running. It can be used to retrieve the <code>pid</code> (process id) of the virtual machine that is running GeoServer. For example:</p>
 <div class="highlight"><pre><span></span><code>&gt; jps -mlv
 
 16235 org.apache.catalina.startup.Bootstrap start -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=/home/aaime/devel/webcontainers/apache-tomcat-6.0.18/conf/logging.properties -Djava.endorsed.dirs=/home/aaime/devel/webcontainers/apache-tomcat-6.0.18/endorsed -Dcatalina.base=/home/aaime/devel/webcontainers/apache-tomcat-6.0.18 -Dcatalina.home=/home/aaime/devel/webcontainers/apache-tomcat-6.0.18 -Djava.io.tmpdir=/home/aaime/devel/webcontainers/apache-tomcat-6.0.18/temp
@@ -28313,7 +28313,7 @@ Content-Security-Policy: The page’s settings blocked a style (style-src-elem) 
 </code></pre></div>
 <p>The output shows the <code>pid</code>, the main class name if available, and the parameters passed to the JVM at startup. In this example <code>16235</code> is Tomcat hosting GeoServer, <code>11521</code> is an Eclipse instance, and <code>16287</code> is <code>jps</code> itself. In the common case you'll have only few JVM and the one running GeoServer can be identified by the parameters passed to it.</p>
 <h3 id="jstack">jstack<a class="headerlink" href="#jstack" title="Permanent link">&para;</a></h3>
-<p><a href="http://java.sun.com/javase/6/docs/technotes/tools/share/jstack.html">jstack</a> is a tool for extracting the current stack trace for each thread running in the virtual machine. It can be used to identify scalability issues and to gather what the program is actually doing.</p>
+<p><a href="http://java.sun.com/javase/6/docs/technotes/tools/share/jstack.md">jstack</a> is a tool for extracting the current stack trace for each thread running in the virtual machine. It can be used to identify scalability issues and to gather what the program is actually doing.</p>
 <p>It usually requires detailed understanding of the inner workings of GeoServer to properly interpret the jstack output.</p>
 <p>An example of usage:</p>
 <div class="highlight"><pre><span></span><code>&gt; jstack -F -l 16235 &gt; /tmp/tomcat-stack.txt
@@ -28361,7 +28361,7 @@ Locked ownable synchronizers:
 ...
 </code></pre></div>
 <h3 id="jmap">jmap<a class="headerlink" href="#jmap" title="Permanent link">&para;</a></h3>
-<p><a href="http://java.sun.com/javase/6/docs/technotes/tools/share/jmap.html">jmap</a> is a tool to gather information about the Java virtual machine. It can be used in a few interesting ways.</p>
+<p><a href="http://java.sun.com/javase/6/docs/technotes/tools/share/jmap.md">jmap</a> is a tool to gather information about the Java virtual machine. It can be used in a few interesting ways.</p>
 <p>By running it without arguments (other than the process id of the JVM) it will print out a <strong>dump of the native libraries used by the JVM</strong>. This can come in handy when one wants to double check GeoServer is actually using a certain version of a native library (e.g., GDAL):</p>
 <div class="highlight"><pre><span></span><code>&gt; jmap 17251
 

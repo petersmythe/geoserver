@@ -27908,7 +27908,7 @@
 <h1 id="authentication-with-cas">Authentication with CAS<a class="headerlink" href="#authentication-with-cas" title="Permanent link">&para;</a></h1>
 <p>This tutorial introduces GeoServer CAS support and walks through the process of setting up authentication against a CAS server. It is recommended that the <a href="../../auth/chain/">Authentication chain</a> section be read before proceeding. Reference information on cas setup is also available <a href="../../../extensions/cas/">CAS integration</a>.</p>
 <h2 id="cas-server-certificates">CAS server certificates<a class="headerlink" href="#cas-server-certificates" title="Permanent link">&para;</a></h2>
-<p>A running <a href="https://apereo.github.io/cas/5.3.x/index.html">CAS server</a> is needed.</p>
+<p>A running <a href="https://apereo.github.io/cas/5.3.x/index.md">CAS server</a> is needed.</p>
 <p>The first step is to import the server certificates into the GeoServer JVM.</p>
 <p>If you need to export the <code>CRT</code> from the CAS server, you must execute the following command on the server JVM:</p>
 <div class="highlight"><pre><span></span><code>keytool -export -alias &lt;server_name&gt; -keystore &lt;cas_jvm_keystore_path&gt; -file server.crt

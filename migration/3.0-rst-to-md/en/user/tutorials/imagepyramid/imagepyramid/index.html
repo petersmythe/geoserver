@@ -27881,12 +27881,12 @@
 <p>This tutorial shows how to build an image pyramid with open source utilities and how to load it into GeoServer. The tutorial assumes you're running at least GeoServer 2.0.2.</p>
 <h2 id="building-a-pyramid">Building a pyramid<a class="headerlink" href="#building-a-pyramid" title="Permanent link">&para;</a></h2>
 <p>For this tutorial we have prepared a sample BlueMarble TNG subset in GeoTIFF form. The image is tiled and JPEG compressed, without overviews. Not exactly what you'd want to use for high performance data serving, but good for redistribution and as a starting point to build a pyramid.</p>
-<p>In order to build the pyramid we'll use the <a href="http://www.gdal.org/gdal_retile.html">gdal_retile.py</a> utility, part of the GDAL command line utilities and available for various operating systems (if you're using Microsoft Windows look for <a href="http://fwtools.maptools.org/">FWTools</a>).</p>
+<p>In order to build the pyramid we'll use the <a href="http://www.gdal.org/gdal_retile.md">gdal_retile.py</a> utility, part of the GDAL command line utilities and available for various operating systems (if you're using Microsoft Windows look for <a href="http://fwtools.maptools.org/">FWTools</a>).</p>
 <p>The following commands will build a pyramid on disk:</p>
 <div class="highlight"><pre><span></span><code>mkdir bmpyramid
 gdal_retile.py -v -r bilinear -levels 4 -ps 2048 2048 -co &quot;TILED=YES&quot; -co &quot;COMPRESS=JPEG&quot; -targetDir bmpyramid bmreduced.tiff
 </code></pre></div>
-<p>The <a href="http://www.gdal.org/gdal_retile.html">gdal_retile.py</a> user guide provides a detailed explanation for all the possible parameters, here is a description of the ones used in the command line above:</p>
+<p>The <a href="http://www.gdal.org/gdal_retile.md">gdal_retile.py</a> user guide provides a detailed explanation for all the possible parameters, here is a description of the ones used in the command line above:</p>
 <blockquote>
 <ul>
 <li><code>-v</code>: verbose output, allows the user to see each file creation scroll by, thus knowing progress is being made (a big pyramid construction can take hours)</li>

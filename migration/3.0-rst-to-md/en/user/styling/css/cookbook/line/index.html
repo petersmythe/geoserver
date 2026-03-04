@@ -29050,7 +29050,7 @@
 <p>The "stroke-linecap" property is the only one having a single value, this is because the value is the same for both the gray and blue line.</p>
 <p>The result is a 3 pixel blue line with a 1 pixel gray border, since the 5 pixel gray line will display 1 pixel on each side of the 3 pixel blue line.</p>
 <h2 id="dashed-line">Dashed line<a class="headerlink" href="#dashed-line" title="Permanent link">&para;</a></h2>
-<p>This example alters the <a href="./#css_cookbook_lines_simpleline">Simple line</a> to create a dashed line consisting of 5 pixels of drawn line alternating with 2 pixels of blank space.</p>
+<p>This example alters the <a href="#css_cookbook_lines_simpleline">Simple line</a> to create a dashed line consisting of 5 pixels of drawn line alternating with 2 pixels of blank space.</p>
 <p><img alt="" src="../../../sld/cookbook/images/line_dashedline.png" />
 <em>Dashed line</em></p>
 <h3 id="code_2">Code<a class="headerlink" href="#code_2" title="Permanent link">&para;</a></h3>
@@ -29170,8 +29170,8 @@
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="details_8">Details<a class="headerlink" href="#details_8" title="Permanent link">&para;</a></h3>
-<p>As the <a href="./#css_cookbook_lines_defaultlabel">Line with default label</a> example showed, the default label behavior isn't optimal.</p>
-<p>This example is similar to the <a href="./#css_cookbook_lines_defaultlabel">Line with default label</a> example with the exception of <strong>line 5</strong> where the "label-follow-line" option is specified, which forces the labels to strickly follow the line.</p>
+<p>As the <a href="#css_cookbook_lines_defaultlabel">Line with default label</a> example showed, the default label behavior isn't optimal.</p>
+<p>This example is similar to the <a href="#css_cookbook_lines_defaultlabel">Line with default label</a> example with the exception of <strong>line 5</strong> where the "label-follow-line" option is specified, which forces the labels to strickly follow the line.</p>
 <p>Not all labels are visible partly because of conflict resolution, and partly because the renderer cannot find a line segment long and "straight" enough to paint the label (labels are not painted over sharp turns by default).</p>
 <h2 id="css_cookbook_lines_optimizedlabel">Optimized label placement<a class="headerlink" href="#css_cookbook_lines_optimizedlabel" title="Permanent link">&para;</a></h2>
 <p>This example optimizes label placement for lines such that the maximum number of labels are displayed.</p>
@@ -29189,9 +29189,9 @@
 <a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="details_9">Details<a class="headerlink" href="#details_9" title="Permanent link">&para;</a></h3>
-<p>This example is similar to the previous example, <a href="./#css_cookbook_lines_labelfollowingline">Label following line</a>. The only differences are contained in <strong>lines 6-8</strong>. <strong>Line 6</strong> sets the maximum angle that the label will follow. This sets the label to never bend more than 90 degrees to prevent the label from becoming illegible due to a pronounced curve or angle. <strong>Line 7</strong> sets the maximum displacement of the label to be 400 pixels. In order to resolve conflicts with overlapping labels, GeoServer will attempt to move the labels such that they are no longer overlapping. This value sets how far the label can be moved relative to its original placement. Finally, <strong>line 8</strong> sets the labels to be repeated every 150 pixels. A feature will typically receive only one label, but this can cause confusion for long lines. Setting the label to repeat ensures that the line is always labeled locally.</p>
+<p>This example is similar to the previous example, <a href="#css_cookbook_lines_labelfollowingline">Label following line</a>. The only differences are contained in <strong>lines 6-8</strong>. <strong>Line 6</strong> sets the maximum angle that the label will follow. This sets the label to never bend more than 90 degrees to prevent the label from becoming illegible due to a pronounced curve or angle. <strong>Line 7</strong> sets the maximum displacement of the label to be 400 pixels. In order to resolve conflicts with overlapping labels, GeoServer will attempt to move the labels such that they are no longer overlapping. This value sets how far the label can be moved relative to its original placement. Finally, <strong>line 8</strong> sets the labels to be repeated every 150 pixels. A feature will typically receive only one label, but this can cause confusion for long lines. Setting the label to repeat ensures that the line is always labeled locally.</p>
 <h2 id="css_cookbook_lines_optimizedstyledlabel">Optimized and styled label<a class="headerlink" href="#css_cookbook_lines_optimizedstyledlabel" title="Permanent link">&para;</a></h2>
-<p>This example improves the style of the labels from the <a href="./#css_cookbook_lines_optimizedlabel">Optimized label placement</a> example.</p>
+<p>This example improves the style of the labels from the <a href="#css_cookbook_lines_optimizedlabel">Optimized label placement</a> example.</p>
 <p><img alt="" src="../../../sld/cookbook/images/line_optimizedstyledlabel_with_halo.png" />
 <em>Optimized and styled label</em></p>
 <h3 id="code_10">Code<a class="headerlink" href="#code_10" title="Permanent link">&para;</a></h3>
@@ -29211,7 +29211,7 @@
 <a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="details_10">Details<a class="headerlink" href="#details_10" title="Permanent link">&para;</a></h3>
-<p>This example is similar to the <a href="./#css_cookbook_lines_optimizedlabel">Optimized label placement</a>. The only differences are:</p>
+<p>This example is similar to the <a href="#css_cookbook_lines_optimizedlabel">Optimized label placement</a>. The only differences are:</p>
 <blockquote>
 <ul>
 <li>The font family and weight have been specified</li>
@@ -29244,7 +29244,7 @@
 <h3 id="details_11">Details<a class="headerlink" href="#details_11" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Refer to the <a href="./#css_cookbook_lines_attributes">Example lines layer</a> to see the attributes for the layer. This example has eschewed labels in order to simplify the style, but you can refer to the example <a href="./#css_cookbook_lines_optimizedstyledlabel">Optimized and styled label</a> to see which attributes correspond to which points.</p>
+<p>Refer to the <a href="#css_cookbook_lines_attributes">Example lines layer</a> to see the attributes for the layer. This example has eschewed labels in order to simplify the style, but you can refer to the example <a href="#css_cookbook_lines_optimizedstyledlabel">Optimized and styled label</a> to see which attributes correspond to which points.</p>
 </div>
 <p>There are three types of road classes in our fictional country, ranging from back roads to high-speed freeways: "highway", "secondary", and "local-road". In order to make sure the roads are rendered in the proper order of importance, a "z-index" attribute has been placed in each rule.</p>
 <p>The three rules are designed as follows:</p>
@@ -29282,7 +29282,7 @@
 <p><strong>Lines 7-11</strong> match the "secondary" roads, painting them dark blue, 3 pixels wide. Given the "z-index" is 1, they are rendered after the local roads, but below the highways.</p>
 <p><strong>Lines 13-17</strong> match the "highway" roads, painting them red 6 pixels wide. These roads are pained last, thus, on top of all others.</p>
 <h2 id="zoom-based-line">Zoom-based line<a class="headerlink" href="#zoom-based-line" title="Permanent link">&para;</a></h2>
-<p>This example alters the <a href="./#css_cookbook_lines_simpleline">Simple line</a> style at different zoom levels.</p>
+<p>This example alters the <a href="#css_cookbook_lines_simpleline">Simple line</a> style at different zoom levels.</p>
 <p><img alt="" src="../../../sld/cookbook/images/line_zoombasedlinelarge.png" />
 <em>Zoom-based line: Zoomed in</em></p>
 <p><img alt="" src="../../../sld/cookbook/images/line_zoombasedlinemedium.png" />

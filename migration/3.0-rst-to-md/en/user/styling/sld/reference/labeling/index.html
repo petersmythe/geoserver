@@ -28730,7 +28730,7 @@ New York    |   8,107,916
 </tr>
 </tbody>
 </table>
-<p>If desired the labeller can be forced to label every element in a group by specifying the <a href="./#labeling_all_group">labelAllGroup</a> option.</p>
+<p>If desired the labeller can be forced to label every element in a group by specifying the <a href="#labeling_all_group">labelAllGroup</a> option.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Be careful that the labels truly indicate features that should be grouped together. For example, grouping on city name alone might end up creating a group containing both <em>Paris</em> (France) and <em>Paris</em> (Texas).</p>
@@ -28741,7 +28741,7 @@ New York    |   8,107,916
 <p>When the <code>group</code> option is used, geometries with the same label are grouped together and the label position is determined from the entire group. This produces a much less cluttered map:</p>
 <p><img alt="" src="../img/group_yes.png" /></p>
 <h3 id="labeling_all_group">labelAllGroup<a class="headerlink" href="#labeling_all_group" title="Permanent link">&para;</a></h3>
-<p>The <code>labelAllGroup</code> option can be used in conjunction with the <code>group</code> option (see <a href="./#labeling_group">Grouping Features (group)</a>). It causes <em>all</em> of the disjoint paths in a line group to be labeled, not just the longest one.</p>
+<p>The <code>labelAllGroup</code> option can be used in conjunction with the <code>group</code> option (see <a href="#labeling_group">Grouping Features (group)</a>). It causes <em>all</em> of the disjoint paths in a line group to be labeled, not just the longest one.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">&lt;VendorOption</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;labelAllGroup&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/VendorOption&gt;</span>
 </code></pre></div>
 <h3 id="labeling_space_around">Overlapping and Separating Labels (spaceAround)<a class="headerlink" href="#labeling_space_around" title="Permanent link">&para;</a></h3>
@@ -28777,7 +28777,7 @@ New York    |   8,107,916
 <h3 id="labeling_max_displacement">maxDisplacement<a class="headerlink" href="#labeling_max_displacement" title="Permanent link">&para;</a></h3>
 <p>The <code>maxDisplacement</code> option controls the displacement of the label along a line, around a point and inside a polygon.</p>
 <p>For lines, normally GeoServer labels a line at its center point only. If this label conflicts with another one it may not be displayed at all. When this option is enabled the labeller will attempt to avoid conflic by using an alternate location within <strong>maxDisplacement</strong> pixels along the line from the pre-computed label point.</p>
-<p>If used in conjunction with <a href="./#labeling_repeat">repeat</a>, the value for <code>maxDisplacement</code> should always be <strong>lower</strong> than the value for <code>repeat</code>.</p>
+<p>If used in conjunction with <a href="#labeling_repeat">repeat</a>, the value for <code>maxDisplacement</code> should always be <strong>lower</strong> than the value for <code>repeat</code>.</p>
 <p>For points this causes the renderer to start circling around the point in search of a empty stop to place the label, step by step increasing the size of the circle until the max displacement is reached. The same happens for polygons, around the polygon labelling point (normally the centroid).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">&lt;VendorOption</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;maxDisplacement&quot;</span><span class="nt">&gt;</span>10<span class="nt">&lt;/VendorOption&gt;</span><span class="w"> </span>
 </code></pre></div>
@@ -28786,7 +28786,7 @@ New York    |   8,107,916
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">&lt;VendorOption</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;repeat&quot;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/VendorOption&gt;</span>
 </code></pre></div>
 <h3 id="labeling_max_angle_delta">maxAngleDelta<a class="headerlink" href="#labeling_max_angle_delta" title="Permanent link">&para;</a></h3>
-<p>When used in conjunction with <a href="./#labeling_follow_line">followLine</a>, the <code>maxAngleDelta</code> option sets the maximum angle, in degrees, between two subsequent characters in a curved label. Large angles create either visually disconnected words or overlapping characters. It is advised not to use angles larger than 30.</p>
+<p>When used in conjunction with <a href="#labeling_follow_line">followLine</a>, the <code>maxAngleDelta</code> option sets the maximum angle, in degrees, between two subsequent characters in a curved label. Large angles create either visually disconnected words or overlapping characters. It is advised not to use angles larger than 30.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">&lt;VendorOption</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;maxAngleDelta&quot;</span><span class="nt">&gt;</span>15<span class="nt">&lt;/VendorOption&gt;</span>
 </code></pre></div>
 <h3 id="labeling_autowrap">autoWrap<a class="headerlink" href="#labeling_autowrap" title="Permanent link">&para;</a></h3>

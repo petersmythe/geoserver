@@ -28071,20 +28071,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="./#ecql_pred">Predicate</a></td>
+<td><a href="#ecql_pred">Predicate</a></td>
 <td>Single predicate expression</td>
 </tr>
 <tr>
-<td><a href="./#ecql_cond">Condition</a> <code>AND</code></td>
-<td><code>OR</code> <a href="./#ecql_cond">Condition</a></td>
+<td><a href="#ecql_cond">Condition</a> <code>AND</code></td>
+<td><code>OR</code> <a href="#ecql_cond">Condition</a></td>
 </tr>
 <tr>
-<td><code>NOT</code> <a href="./#ecql_cond">Condition</a></td>
+<td><code>NOT</code> <a href="#ecql_cond">Condition</a></td>
 <td>Negation of a condition</td>
 </tr>
 <tr>
 <td><code>(</code></td>
-<td><code>[</code> <a href="./#ecql_cond">Condition</a> <code>]</code></td>
+<td><code>[</code> <a href="#ecql_cond">Condition</a> <code>]</code></td>
 </tr>
 </tbody>
 </table>
@@ -28099,31 +28099,31 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <code>=</code></td>
+<td><a href="#ecql_expr">Expression</a> <code>=</code></td>
 <td><code>&lt;&gt;</code></td>
 </tr>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>BETWEEN</code> <a href="./#ecql_expr">Expression</a> <code>AND</code> <a href="./#ecql_expr">Expression</a></td>
+<td><a href="#ecql_expr">Expression</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>BETWEEN</code> <a href="#ecql_expr">Expression</a> <code>AND</code> <a href="#ecql_expr">Expression</a></td>
 <td>Tests whether a value lies in or outside a range (inclusive)</td>
 </tr>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>LIKE</code></td>
+<td><a href="#ecql_expr">Expression</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>LIKE</code></td>
 <td><code>ILIKE</code> <em>like-pattern</em></td>
 </tr>
 <tr>
-<td><a href="./#ecql_attr">Attribute</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>IN (</code> <a href="./#ecql_expr">Expression</a> <strong>{</strong> <code>,</code><a href="./#ecql_expr">Expression</a> <strong>}</strong> <code>)</code></td>
+<td><a href="#ecql_attr">Attribute</a> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>IN (</code> <a href="#ecql_expr">Expression</a> <strong>{</strong> <code>,</code><a href="#ecql_expr">Expression</a> <strong>}</strong> <code>)</code></td>
 <td>Tests whether an attribute value is (not) in a set of values.</td>
 </tr>
 <tr>
-<td><strong>[</strong> <code>NOT</code> <strong>]</strong> <code>IN (</code> <a href="./#ecql_literal">Literal</a> <strong>{</strong> <code>,</code><a href="./#ecql_literal">Literal</a> <strong>}</strong> <code>)</code></td>
+<td><strong>[</strong> <code>NOT</code> <strong>]</strong> <code>IN (</code> <a href="#ecql_literal">Literal</a> <strong>{</strong> <code>,</code><a href="#ecql_literal">Literal</a> <strong>}</strong> <code>)</code></td>
 <td>Tests whether a feature ID value is (not) in a given set. ID values are integers or string literals</td>
 </tr>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <code>IS</code> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>NULL</code></td>
+<td><a href="#ecql_expr">Expression</a> <code>IS</code> <strong>[</strong> <code>NOT</code> <strong>]</strong> <code>NULL</code></td>
 <td>Tests whether a value is (non-)null</td>
 </tr>
 <tr>
-<td><a href="./#ecql_attr">Attribute</a> <code>EXISTS</code> **</td>
+<td><a href="#ecql_attr">Attribute</a> <code>EXISTS</code> **</td>
 <td>** <code>DOES-NOT-EXIST</code></td>
 </tr>
 <tr>
@@ -28143,23 +28143,23 @@
 </thead>
 <tbody>
 <tr>
-<td><code>ecql_expr</code> <code>BEFORE</code> <a href="./#ecql_literal">Time</a>_</td>
+<td><code>ecql_expr</code> <code>BEFORE</code> <a href="#ecql_literal">Time</a>_</td>
 <td>Tests whether a time value is before a point in time</td>
 </tr>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <code>BEFORE OR DURING</code> <a href="./#ecql_period">Time Period</a></td>
+<td><a href="#ecql_expr">Expression</a> <code>BEFORE OR DURING</code> <a href="#ecql_period">Time Period</a></td>
 <td>Tests whether a time value is before or during a time period</td>
 </tr>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <code>DURING</code> <a href="./#ecql_period">Time Period</a></td>
+<td><a href="#ecql_expr">Expression</a> <code>DURING</code> <a href="#ecql_period">Time Period</a></td>
 <td>Tests whether a time value is during a time period</td>
 </tr>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <code>DURING OR AFTER</code> <a href="./#ecql_period">Time Period</a></td>
+<td><a href="#ecql_expr">Expression</a> <code>DURING OR AFTER</code> <a href="#ecql_period">Time Period</a></td>
 <td>Tests whether a time value is during or after a time period</td>
 </tr>
 <tr>
-<td><code>ecql_expr</code> <code>AFTER</code> <a href="./#ecql_literal">Time</a>_</td>
+<td><code>ecql_expr</code> <code>AFTER</code> <a href="#ecql_literal">Time</a>_</td>
 <td>Tests whether a time value is after a point in time</td>
 </tr>
 </tbody>
@@ -28175,51 +28175,51 @@
 </thead>
 <tbody>
 <tr>
-<td><code>INTERSECTS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>INTERSECTS(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether two geometries intersect. The converse of <code>DISJOINT</code></td>
 </tr>
 <tr>
-<td><code>DISJOINT(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>DISJOINT(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether two geometries are disjoint. The converse of <code>INTERSECTS</code></td>
 </tr>
 <tr>
-<td><code>CONTAINS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>CONTAINS(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether the first geometry topologically contains the second. The converse of <code>WITHIN</code></td>
 </tr>
 <tr>
-<td><code>WITHIN(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>WITHIN(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether the first geometry is topologically within the second. The converse of <code>CONTAINS</code></td>
 </tr>
 <tr>
-<td><code>TOUCHES(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>TOUCHES(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether two geometries touch. Geometries touch if they have at least one point in common, but their interiors do not intersect.</td>
 </tr>
 <tr>
-<td><code>CROSSES(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>CROSSES(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether two geometries cross. Geometries cross if they have some but not all interior points in common</td>
 </tr>
 <tr>
-<td><code>OVERLAPS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>OVERLAPS(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether two geometries overlap. Geometries overlap if they have the same dimension, have at least one point each not shared by the other, and the intersection of the interiors of the two geometries has the same dimension as the geometries themselves</td>
 </tr>
 <tr>
-<td><code>EQUALS(</code><a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>)</code></td>
+<td><code>EQUALS(</code><a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>)</code></td>
 <td>Tests whether two geometries are topologically equal</td>
 </tr>
 <tr>
-<td><code>RELATE(</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <em>pattern</em> <code>)</code></td>
+<td><code>RELATE(</code> <a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>,</code> <em>pattern</em> <code>)</code></td>
 <td>Tests whether geometries have the spatial relationship specified by a DE-9IM matrix <em>pattern</em>. A DE-9IM pattern is a string of length 9 specified using the characters <code>*TF012</code>. Example: <code>'1*T***T**'</code></td>
 </tr>
 <tr>
-<td><code>DWITHIN(</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <em>distance</em> <code>,</code> <em>units</em> <code>)</code></td>
+<td><code>DWITHIN(</code> <a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>,</code> <em>distance</em> <code>,</code> <em>units</em> <code>)</code></td>
 <td>Tests whether the distance between two geometries is no more than the specified distance. <em>distance</em> is an unsigned numeric value for the distance tolerance. <em>units</em> is one of <code>feet</code>, <code>meters</code>, <code>statute miles</code>, <code>nautical miles</code>, <code>kilometers</code></td>
 </tr>
 <tr>
-<td><code>BEYOND(</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <em>distance</em> <code>,</code> <em>units</em> <code>)</code></td>
+<td><code>BEYOND(</code> <a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_expr">Expression</a> <code>,</code> <em>distance</em> <code>,</code> <em>units</em> <code>)</code></td>
 <td>Similar to <code>DWITHIN</code>, but tests whether the distance between two geometries is greater than the given distance.</td>
 </tr>
 <tr>
-<td><code>BBOX (</code> <a href="./#ecql_expr">Expression</a> <code>,</code> <a href="./#ecql_literal">Number</a> <code>,</code> <a href="./#ecql_literal">Number</a> <code>,</code> <a href="./#ecql_literal">Number</a> <code>,</code> <a href="./#ecql_literal">Number</a> [ <code>,</code> <em>CRS</em> ] <code>)</code></td>
+<td><code>BBOX (</code> <a href="#ecql_expr">Expression</a> <code>,</code> <a href="#ecql_literal">Number</a> <code>,</code> <a href="#ecql_literal">Number</a> <code>,</code> <a href="#ecql_literal">Number</a> <code>,</code> <a href="#ecql_literal">Number</a> [ <code>,</code> <em>CRS</em> ] <code>)</code></td>
 <td>Tests whether a geometry intersects a bounding box specified by its minimum and maximum X and Y values. The optional <em>CRS</em> is a string containing an SRS code (For example, <code>'EPSG:1234'</code>. The default is to use the CRS of the queried layer)</td>
 </tr>
 </tbody>
@@ -28235,23 +28235,23 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="./#ecql_attr">Attribute</a></td>
+<td><a href="#ecql_attr">Attribute</a></td>
 <td>Name of a feature attribute</td>
 </tr>
 <tr>
-<td><a href="./#ecql_literal">Literal</a></td>
+<td><a href="#ecql_literal">Literal</a></td>
 <td>Literal value</td>
 </tr>
 <tr>
-<td><a href="./#ecql_expr">Expression</a> <code>+</code></td>
+<td><a href="#ecql_expr">Expression</a> <code>+</code></td>
 <td><code>-</code></td>
 </tr>
 <tr>
-<td><em>function</em> <code>(</code> [ <a href="./#ecql_expr">Expression</a> { <code>,</code> <a href="./#ecql_expr">Expression</a> } ] <code>)</code></td>
+<td><em>function</em> <code>(</code> [ <a href="#ecql_expr">Expression</a> { <code>,</code> <a href="#ecql_expr">Expression</a> } ] <code>)</code></td>
 <td>Value computed by evaluation of a <a href="../function_reference/">filter function</a> with zero or more arguments.</td>
 </tr>
 <tr>
-<td><code>(</code> | <code>[</code> <a href="./#ecql_expr">Expression</a> <code>]</code> | <code>)</code></td>
+<td><code>(</code> | <code>[</code> <a href="#ecql_expr">Expression</a> <code>]</code> | <code>)</code></td>
 <td>Bracketing with <code>(</code> or ```` controls evaluation order</td>
 </tr>
 </tbody>
@@ -28310,15 +28310,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="./#ecql_literal">Time</a> <code>/</code> <a href="./#ecql_literal">Time</a></td>
+<td><a href="#ecql_literal">Time</a> <code>/</code> <a href="#ecql_literal">Time</a></td>
 <td>Period specified by a start and end time</td>
 </tr>
 <tr>
-<td><a href="./#ecql_literal">Duration</a> <code>/</code> <a href="./#ecql_literal">Time</a></td>
+<td><a href="#ecql_literal">Duration</a> <code>/</code> <a href="#ecql_literal">Time</a></td>
 <td>Period specified by a duration before a given time</td>
 </tr>
 <tr>
-<td><a href="./#ecql_literal">Time</a> <code>/</code> <a href="./#ecql_literal">Duration</a></td>
+<td><a href="#ecql_literal">Time</a> <code>/</code> <a href="#ecql_literal">Duration</a></td>
 <td>Period specified by a duration after a given time</td>
 </tr>
 </tbody>

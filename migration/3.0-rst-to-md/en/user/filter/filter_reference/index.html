@@ -28331,7 +28331,7 @@
 <p>This is a reference for the <strong>Filter Encoding</strong> language implemented in GeoServer. The Filter Encoding language uses an XML-based syntax. It is defined by the <a href="http://www.opengeospatial.org/standards/filter">OGC Filter Encoding standard</a>.</p>
 <p>Filters are used to select features or other objects from the context in which they are evaluated. They are similar in functionality to the SQL "WHERE" clause. A filter is specified using a <strong>condition</strong>.</p>
 <h2 id="filter_condition">Condition<a class="headerlink" href="#filter_condition" title="Permanent link">&para;</a></h2>
-<p>A condition is a single <a href="./#filter_predicate">Predicate</a> element, or a combination of conditions by <a href="./#filter_logical">Logical operators</a>.</p>
+<p>A condition is a single <a href="#filter_predicate">Predicate</a> element, or a combination of conditions by <a href="#filter_logical">Logical operators</a>.</p>
 <h2 id="filter_predicate">Predicate<a class="headerlink" href="#filter_predicate" title="Permanent link">&para;</a></h2>
 <p>Predicates are boolean-valued expressions which compute relationships between values. A predicate is specified by using a <strong>comparison operator</strong> or a <strong>spatial operator</strong>. The operators are used to compare properties of the features being filtered to other feature properties or to literal data.</p>
 <h3 id="comparison-operators">Comparison operators<a class="headerlink" href="#comparison-operators" title="Permanent link">&para;</a></h3>
@@ -28359,12 +28359,12 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="./#filter_expression">Expression</a></td>
+<td><a href="#filter_expression">Expression</a></td>
 <td>Yes</td>
 <td>The first value to compare. Often a <code>&lt;PropertyName&gt;</code>.</td>
 </tr>
 <tr>
-<td><a href="./#filter_expression">Expression</a></td>
+<td><a href="#filter_expression">Expression</a></td>
 <td>Yes</td>
 <td>The second value to compare</td>
 </tr>
@@ -28432,19 +28432,19 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="./#filter_expression">Expression</a></td>
+<td><a href="#filter_expression">Expression</a></td>
 <td>Yes</td>
 <td>The value to test</td>
 </tr>
 <tr>
 <td><code>&lt;LowerBoundary&gt;</code></td>
 <td>Yes</td>
-<td>Contains an <a href="./#filter_expression">Expression</a> giving the lower bound of the range</td>
+<td>Contains an <a href="#filter_expression">Expression</a> giving the lower bound of the range</td>
 </tr>
 <tr>
 <td><code>&lt;UpperBoundary&gt;</code></td>
 <td>Yes</td>
-<td>Contains an <a href="./#filter_expression">Expression</a> giving the upper bound of the range</td>
+<td>Contains an <a href="#filter_expression">Expression</a> giving the upper bound of the range</td>
 </tr>
 </tbody>
 </table>
@@ -28585,7 +28585,7 @@
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nt">&lt;/BBOX&gt;</span>
 </code></pre></div>
 <h2 id="filter_logical">Logical operators<a class="headerlink" href="#filter_logical" title="Permanent link">&para;</a></h2>
-<p>Logical operators are used to specify logical combinations of <a href="./#filter_condition">Condition</a> elements (which may be either <a href="./#filter_predicate">Predicate</a> elements or other <strong>logical operators</strong>). They may be nested to any depth.</p>
+<p>Logical operators are used to specify logical combinations of <a href="#filter_condition">Condition</a> elements (which may be either <a href="#filter_predicate">Predicate</a> elements or other <strong>logical operators</strong>). They may be nested to any depth.</p>
 <p>The following logical operators are available:</p>
 <blockquote>
 <ul>
@@ -28593,13 +28593,13 @@
 <li><code>&lt;Or&gt;</code> - computes the logical disjunction of the operands</li>
 </ul>
 </blockquote>
-<p>The content for <code>&lt;And&gt;</code> and <code>&lt;Or&gt;</code> is two operands given by <a href="./#filter_condition">Condition</a> elements.</p>
+<p>The content for <code>&lt;And&gt;</code> and <code>&lt;Or&gt;</code> is two operands given by <a href="#filter_condition">Condition</a> elements.</p>
 <blockquote>
 <ul>
 <li><code>&lt;Not&gt;</code> - computes the logical negation of the operand</li>
 </ul>
 </blockquote>
-<p>The content for <code>&lt;Not&gt;</code> is a single operand given by a <a href="./#filter_condition">Condition</a> element.</p>
+<p>The content for <code>&lt;Not&gt;</code> is a single operand given by a <a href="#filter_condition">Condition</a> element.</p>
 <h3 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>This filter uses <code>&lt;And&gt;</code> to combine a comparison predicate and a spatial predicate:</li>
@@ -28631,9 +28631,9 @@
 <li><code>&lt;Div&gt;</code> - divides the first operand by the second</li>
 </ul>
 </blockquote>
-<p>Each arithmetic operator element contains two <a href="./#filter_expression">Expression</a> elements providing the operands.</p>
+<p>Each arithmetic operator element contains two <a href="#filter_expression">Expression</a> elements providing the operands.</p>
 <h3 id="function">Function<a class="headerlink" href="#function" title="Permanent link">&para;</a></h3>
-<p>The <code>&lt;Function&gt;</code> element specifies a filter function to be evaluated. The required <code>name</code> attribute gives the function name. The element contains a sequence of zero or more <a href="./#filter_expression">Expression</a> elements providing the values of the function arguments.</p>
+<p>The <code>&lt;Function&gt;</code> element specifies a filter function to be evaluated. The required <code>name</code> attribute gives the function name. The element contains a sequence of zero or more <a href="#filter_expression">Expression</a> elements providing the values of the function arguments.</p>
 <p>See the <a href="../function_reference/">Filter Function Reference</a> for details of the functions provided by GeoServer.</p>
 <h3 id="property-value">Property Value<a class="headerlink" href="#property-value" title="Permanent link">&para;</a></h3>
 <p>The <code>&lt;PropertyName&gt;</code> element refers to the value of a feature attribute. It contains a <strong>string</strong> or an <strong>XPath expression</strong> specifying the attribute name.</p>

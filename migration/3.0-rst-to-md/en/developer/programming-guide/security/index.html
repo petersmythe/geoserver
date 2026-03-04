@@ -3080,7 +3080,7 @@
 <li>Manage the lifecycle of security services</li>
 <li>CRUD operations for security service configurations</li>
 <li>Access to various singleton classes such as <code>ResourceAccessManager</code>, <code>KeyStoreProvider</code>, <code>AuthenticationCache</code>, <code>GeoServerSecurityFilterChain</code>, etc..</li>
-<li>Implement the spring security AuthenticationProviderManager interface providing the list of active <a href="./#auth_provider">Authentication Provider</a> instances.</li>
+<li>Implement the spring security AuthenticationProviderManager interface providing the list of active <a href="#auth_provider">Authentication Provider</a> instances.</li>
 </ul>
 <h2 id="security-services">Security Services<a class="headerlink" href="#security-services" title="Permanent link">&para;</a></h2>
 <p><code>GeoServerSecurityService</code> is the base interface for all security services, including:</p>
@@ -3094,7 +3094,7 @@
 <p>The interface provides some common methods for all security services, including:</p>
 <div class="highlight"><pre><span></span><code>void initializeFromConfig(SecurityNamedServiceConfig config);
 </code></pre></div>
-<p>Every type of security service corresponds to a configuration object for that service. The configuration object is a simple java bean that contains the service configuration. These objects are persisted via xstream in the GeoServer data directory. See <a href="./#service_config">Security Plugin Provider</a> for more details.</p>
+<p>Every type of security service corresponds to a configuration object for that service. The configuration object is a simple java bean that contains the service configuration. These objects are persisted via xstream in the GeoServer data directory. See <a href="#service_config">Security Plugin Provider</a> for more details.</p>
 <p>Security services are created via methods provided by the security manager. For instance to create a new xml user group service:</p>
 <div class="highlight"><pre><span></span><code>GeoServerSecurityManager mgr = ...;
 XMLSecurityServiceConfig config = new XMLSecurityServiceConfig();
@@ -3167,7 +3167,7 @@ public abstract Authentication authenticate(Authentication authentication,
 <h3 id="auth_filter">Authentication Filter<a class="headerlink" href="#auth_filter" title="Permanent link">&para;</a></h3>
 <p><code>GeoServerSecurityFilter</code> is the base class for servlet filters that play a part in the authentication process. Such filters can play two roles. The first is to gather authentication credentials to passed off to a provider for actual authentication. An example would be a filter for doing HTTP basic auth.</p>
 <p>The second role is to perform "pre-authentication" in which involves doing authentication by recognizing authentication that has already taken place "outside" of GeoServer. An example would be when using a security proxy such as Siteminder or a "J2ee" authentication which involves delegating to the servlet container for doing authentication.</p>
-<p>Security filters are maintained in the <a href="./#auth_filter_chain">filter chain</a> which maintains the mapping of the filters to be applied to a specific type of request. For example the filters applied to a web UI request are different than those applied to an OGC or REST request.</p>
+<p>Security filters are maintained in the <a href="#auth_filter_chain">filter chain</a> which maintains the mapping of the filters to be applied to a specific type of request. For example the filters applied to a web UI request are different than those applied to an OGC or REST request.</p>
 <p><img alt="" src="images/filter_chain.png" /></p>
 <h3 id="password-policy">Password Policy<a class="headerlink" href="#password-policy" title="Permanent link">&para;</a></h3>
 <p><code>PasswordPolicy</code> is the interface for validating user passwords, applying constraints such as password length, character mix, etc...</p>
@@ -3273,7 +3273,7 @@ String getId();
 &lt;/userGroupService&gt;
 </code></pre></div>
 <h3 id="global-configuration">Global Configuration<a class="headerlink" href="#global-configuration" title="Permanent link">&para;</a></h3>
-<p>Aside from configuration objects for the various security services is the <code>SecurityManagerConfig</code> class which provides the same function but for global security settings. It contains a number of configuration properties such as the active role service, the list of authentication providers and filters making up the active <a href="./#auth_filter_chain">Authentication Chain</a>, and configuration for remember me services.</p>
+<p>Aside from configuration objects for the various security services is the <code>SecurityManagerConfig</code> class which provides the same function but for global security settings. It contains a number of configuration properties such as the active role service, the list of authentication providers and filters making up the active <a href="#auth_filter_chain">Authentication Chain</a>, and configuration for remember me services.</p>
 <p>Interacting with the global configuration is much like interacting with a security service configuration:</p>
 <div class="highlight"><pre><span></span><code>SecurityManagerConfig config = mgr.getSecurityConfig();
 config.setEncryptingUrlParams(false);
@@ -3281,10 +3281,10 @@ config.getAuthProviderNames().add(&quot;ldap&quot;);
 config.saveSecurityConfig(config);
 </code></pre></div>
 <h2 id="auth_filter_chain">Authentication Chain<a class="headerlink" href="#auth_filter_chain" title="Permanent link">&para;</a></h2>
-<p>The <code>GeoServerSecurityFilterChain</code> class is a data structure that maintains mappings from request type to a list of named <a href="./#auth_filter">security filters</a>. This class is persisted with the rest of the global security configuration as available as a property of the <code>SecurityManagerConfig</code> class:</p>
+<p>The <code>GeoServerSecurityFilterChain</code> class is a data structure that maintains mappings from request type to a list of named <a href="#auth_filter">security filters</a>. This class is persisted with the rest of the global security configuration as available as a property of the <code>SecurityManagerConfig</code> class:</p>
 <div class="highlight"><pre><span></span><code>GeoServerSecurityFilterChain filterChain = mgr.getSecurityConfig().getFilterChain();
 </code></pre></div>
-<p>The filterChain is essentially a map whose keys are strings corresponding to ant request patterns. The values are lists of <a href="./#auth_filter">Authentication Filter</a> names.</p>
+<p>The filterChain is essentially a map whose keys are strings corresponding to ant request patterns. The values are lists of <a href="#auth_filter">Authentication Filter</a> names.</p>
 <p><code>GeoServerSecurityFilterChainProxy</code> is an extension of the spring security <code>FilterChainProxy</code> and is responsible for creating the actual filter chain from the <code>GeoServerSecurityFilterChain</code> configuration object.</p>
 <h2 id="pluggable-login-endpoints">Pluggable Login Endpoints<a class="headerlink" href="#pluggable-login-endpoints" title="Permanent link">&para;</a></h2>
 <p>To enable a new Login button just add lines similar to the following configuration into the <code>applicationContext.xml</code>:</p>

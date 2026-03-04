@@ -28112,7 +28112,7 @@ wfs.Transaction=ROLE_WFS_WRITE
 <p>The parameters include:</p>
 <ul>
 <li><code>[]</code>---Denote optional parameters</li>
-<li><code>uriPattern</code>---The <a href="./#security_service_ant_patterns">ant pattern</a> that matches a set of request URIs</li>
+<li><code>uriPattern</code>---The <a href="#security_service_ant_patterns">ant pattern</a> that matches a set of request URIs</li>
 <li><code>method</code>---HTTP request method, one of <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>POST</code>, <code>DELETE</code>, or <code>HEAD</code></li>
 <li><code>role</code>---Name of a predefined role. The wildcard <code>*</code> is used to indicate all users, including anonymous users.</li>
 </ul>
@@ -28124,7 +28124,7 @@ wfs.Transaction=ROLE_WFS_WRITE
 </ul>
 </div>
 <h3 id="security_service_ant_patterns">Ant patterns<a class="headerlink" href="#security_service_ant_patterns" title="Permanent link">&para;</a></h3>
-<p>Ant patterns are commonly used for pattern matching directory and file paths. The following examples provide some basic instructions. The Apache ant <a href="http://ant.apache.org/manual/dirtasks.html">user manual</a> contains more sophisticated use cases.</p>
+<p>Ant patterns are commonly used for pattern matching directory and file paths. The following examples provide some basic instructions. The Apache ant <a href="http://ant.apache.org/manual/dirtasks.md">user manual</a> contains more sophisticated use cases.</p>
 <p>These examples are specific to GeoServer <a href="../../rest/">REST</a>, but any RESTful GeoServer service could be configured in the same manner.</p>
 <h3 id="disabling-anonymous-access-to-services">Disabling anonymous access to services<a class="headerlink" href="#disabling-anonymous-access-to-services" title="Permanent link">&para;</a></h3>
 <p>The most secure of configurations is one that forces any request, REST or otherwise, to be authenticated. The following will lock down access to all requests to users that are granted the <code>ROLE_ADMINISTRATOR</code> role:</p>

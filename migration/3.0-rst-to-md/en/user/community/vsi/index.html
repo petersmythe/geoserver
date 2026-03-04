@@ -27961,7 +27961,7 @@
 <h1 id="vsi-virtual-file-system-support">VSI Virtual File System Support<a class="headerlink" href="#vsi-virtual-file-system-support" title="Permanent link">&para;</a></h1>
 <p>Support for GDAL's virtual file systems, accessible via a <code>/vsi</code>-prefixed path.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>All configuration parameters are specified in a <code>vsi.properties</code> file. Any configuration option listed in <a href="https://gdal.org/user/virtual_file_systems.html">GDAL's documentation</a>. is available as a key in this file. You can specify its location on your system with the <code>-Dvsi.properties.location</code> option. An example configuration providing OpenStack credentials may look like:</p>
+<p>All configuration parameters are specified in a <code>vsi.properties</code> file. Any configuration option listed in <a href="https://gdal.org/user/virtual_file_systems.md">GDAL's documentation</a>. is available as a key in this file. You can specify its location on your system with the <code>-Dvsi.properties.location</code> option. An example configuration providing OpenStack credentials may look like:</p>
 <div class="highlight"><pre><span></span><code>OS_IDENTITY_API_VERSION = 3
 OS_AUTH_URL = https://swift.provider.com/v3
 OS_PROJECT_NAME = test-project
@@ -27971,7 +27971,7 @@ OS_USER_DOMAIN_NAME = Default
 OS_PROJECT_DOMAIN_NAME = default
 </code></pre></div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>This extension adds 'VSI Virtual File System' as a possible raster data store type. The only values required when choosing this type is a connection path. This is identical to the connection paths specified in <a href="https://gdal.org/user/virtual_file_systems.html">GDAL's documentation</a>. You may also chain GDAL drivers together by concatenating their prefixes, as in the example below.</p>
+<p>This extension adds 'VSI Virtual File System' as a possible raster data store type. The only values required when choosing this type is a connection path. This is identical to the connection paths specified in <a href="https://gdal.org/user/virtual_file_systems.md">GDAL's documentation</a>. You may also chain GDAL drivers together by concatenating their prefixes, as in the example below.</p>
 <p><img alt="" src="images/vsiconfig.png" />
 <em>VSI Virtual File System data store configuration</em></p>
 

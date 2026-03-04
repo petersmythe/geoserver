@@ -29239,7 +29239,7 @@ Content-Type: application/json
   }
 }
 </code></pre></div>
-<p>To get more information about transformations see the <a href="./#transformations">Transformation reference</a>.</p>
+<p>To get more information about transformations see the <a href="#transformations">Transformation reference</a>.</p>
 <h3 id="import-object">Import object<a class="headerlink" href="#import-object" title="Permanent link">&para;</a></h3>
 <h4 id="imports_1">/imports/<importId><a class="headerlink" href="#imports_1" title="Permanent link">&para;</a></h4>
 <table>
@@ -29301,7 +29301,7 @@ Content-Type: application/json
   &quot;domain&quot; : &quot;mydomain&quot;
 }
 </code></pre></div>
-<p>The location can be <a href="http://commons.apache.org/proper/commons-vfs/filesystems.html">any URI supported by Commons VFS</a>, including HTTP and FTP servers. The <code>username</code>, <code>password</code> and <code>domain</code> elements are all optional, and required only if the remote server demands an authentication of sorts. In case the referred file is compressed, it will be unpacked as the download completes, and the tasks will be created over the result of unpacking.</p>
+<p>The location can be <a href="http://commons.apache.org/proper/commons-vfs/filesystems.md">any URI supported by Commons VFS</a>, including HTTP and FTP servers. The <code>username</code>, <code>password</code> and <code>domain</code> elements are all optional, and required only if the remote server demands an authentication of sorts. In case the referred file is compressed, it will be unpacked as the download completes, and the tasks will be created over the result of unpacking.</p>
 <h3 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h3>
 <h4 id="importstasks">/imports/<importId>/tasks<a class="headerlink" href="#importstasks" title="Permanent link">&para;</a></h4>
 <table>
@@ -29326,7 +29326,7 @@ Content-Type: application/json
 <td>POST</td>
 <td>Create a new task</td>
 <td>201 with Location header</td>
-<td><a href="./#file_upload">Multipart form data</a></td>
+<td><a href="#file_upload">Multipart form data</a></td>
 <td>Tasks</td>
 </tr>
 </tbody>
@@ -30002,7 +30002,7 @@ Content-Type: application/json
 <tr>
 <td>format</td>
 <td>Y</td>
-<td>A date parsing pattern, setup using the Java <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat syntax</a>. In case it's missing, a number of built-in formats will be tried instead (short and full ISO date formats, dates without any separators).</td>
+<td>A date parsing pattern, setup using the Java <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.md">SimpleDateFormat syntax</a>. In case it's missing, a number of built-in formats will be tried instead (short and full ISO date formats, dates without any separators).</td>
 </tr>
 <tr>
 <td>enddate</td>

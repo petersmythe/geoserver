@@ -27973,7 +27973,7 @@
       - Dimension is either blank to simply copy the source scalar from one granule, or the name of one output NetCDF dimension to cause values to be copied from multiple granules (such as those from an ImageMosaic over a non-spatial dimension) into a one-dimensional variable. The example above copies a single value from multiple <code>reftime</code> scalars into <code>forecast_reference_time</code> dimensioned by <code>time</code> in an ImageMosaic over time.
       - For an ImageMosaic, one granule is chosen as the source for variable attributes.</p>
 <h2 id="cf-standard-names-support">CF Standard names support<a class="headerlink" href="#cf-standard-names-support" title="Permanent link">&para;</a></h2>
-<p>Note that the output name can also be chosen from the list of CF Standard names. Check <a href="http://cfconventions.org/standard-names.html">CF standard names</a> page for more info on it.</p>
+<p>Note that the output name can also be chosen from the list of CF Standard names. Check <a href="http://cfconventions.org/standard-names.md">CF standard names</a> page for more info on it.</p>
 <p>Once you click on the dropdown, you may choose from the set of available standard names.</p>
 <p><img alt="" src="cfnames.png" />
 <em>NetCDF CF Standard names list</em></p>
@@ -27984,7 +27984,7 @@
 <p>You have three ways to provide it to GeoServer.</p>
 <ol>
 <li>Add a <code>-DNETCDF_STANDARD_TABLE=/path/to/the/table/tablename.xml</code> property to the startup script.</li>
-<li>Put that xml file within the <code>NETCDF_DATA_DIR</code> which is the folder where all NetCDF auxiliary files are located. (<a href="http://geoserver.geo-solutions.it/multidim/en/mosaic_config/netcdf_mosaic.html#customizing-netcdf-ancillary-files-location">More info</a>)</li>
+<li>Put that xml file within the <code>NETCDF_DATA_DIR</code> which is the folder where all NetCDF auxiliary files are located. (<a href="http://geoserver.geo-solutions.it/multidim/en/mosaic_config/netcdf_mosaic.md#customizing-netcdf-ancillary-files-location">More info</a>)</li>
 <li>Put that xml file within the <code>GEOSERVER_DATA_DIR</code>.</li>
 </ol>
 <div class="admonition note">

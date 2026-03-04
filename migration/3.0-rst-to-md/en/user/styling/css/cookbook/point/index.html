@@ -28711,7 +28711,7 @@
 <h3 id="details">Details<a class="headerlink" href="#details" title="Permanent link">&para;</a></h3>
 <p>There are two rules in this CSS, the outer one matches all features, and asks them to be depicted with a circular mark, 6 pixels wide. The nested rule uses a symbol selector, <code>:mark</code>, which selects all marks, and allows to specify how to fill the contents of the circle, in this case, with a solid red fill (a stand alone fill property would have been interpreted as the request to fill all polygons in the input with solid red instead).</p>
 <h2 id="css_cookbook_points_simplepointwithstroke">Simple point with stroke<a class="headerlink" href="#css_cookbook_points_simplepointwithstroke" title="Permanent link">&para;</a></h2>
-<p>This example adds a stroke (or border) around the <a href="./#css_cookbook_points_simplepoint">Simple point</a>, with the stroke colored black and given a thickness of 2 pixels.</p>
+<p>This example adds a stroke (or border) around the <a href="#css_cookbook_points_simplepoint">Simple point</a>, with the stroke colored black and given a thickness of 2 pixels.</p>
 <p><img alt="" src="../../../sld/cookbook/images/point_simplepointwithstroke.png" />
 <em>Simple point with stroke</em></p>
 <h3 id="code_1">Code<a class="headerlink" href="#code_1" title="Permanent link">&para;</a></h3>
@@ -28726,7 +28726,7 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="details_1">Details<a class="headerlink" href="#details_1" title="Permanent link">&para;</a></h3>
-<p>This example is similar to the <a href="./#css_cookbook_points_simplepoint">Simple point</a> example, in this case a stroke and a stroke width have been specified in the mark selector in order to apply them to the circle symbols.</p>
+<p>This example is similar to the <a href="#css_cookbook_points_simplepoint">Simple point</a> example, in this case a stroke and a stroke width have been specified in the mark selector in order to apply them to the circle symbols.</p>
 <h2 id="rotated-square">Rotated square<a class="headerlink" href="#rotated-square" title="Permanent link">&para;</a></h2>
 <p>This example creates a square instead of a circle, colors it green, sizes it to 12 pixels, and rotates it by 45 degrees.</p>
 <p><img alt="" src="../../../sld/cookbook/images/point_rotatedsquare.png" />
@@ -28744,7 +28744,7 @@
 <h3 id="details_2">Details<a class="headerlink" href="#details_2" title="Permanent link">&para;</a></h3>
 <p>In this example, <strong>line 2</strong> sets the shape to be a square, with <strong>line 6</strong> setting the color to a dark green (<code>#009900</code>). <strong>Line 3</strong> sets the size of the square to be 12 pixels, and <strong>line 4</strong> set the rotation is to 45 degrees.</p>
 <h2 id="transparent-triangle">Transparent triangle<a class="headerlink" href="#transparent-triangle" title="Permanent link">&para;</a></h2>
-<p>This example draws a triangle, creates a black stroke identical to the <a href="./#css_cookbook_points_simplepointwithstroke">Simple point with stroke</a> example, and sets the fill of the triangle to 20% opacity (mostly transparent).</p>
+<p>This example draws a triangle, creates a black stroke identical to the <a href="#css_cookbook_points_simplepointwithstroke">Simple point with stroke</a> example, and sets the fill of the triangle to 20% opacity (mostly transparent).</p>
 <p><img alt="" src="../../../sld/cookbook/images/point_transparenttriangle.png" />
 <em>Transparent triangle</em></p>
 <h3 id="code_3">Code<a class="headerlink" href="#code_3" title="Permanent link">&para;</a></h3>
@@ -28776,7 +28776,7 @@
 <p><img alt="" src="../../../sld/cookbook/images/smileyface.png" />
 <em>Graphic used for points</em></p>
 <h2 id="css_cookbook_points_pointwithdefaultlabel">Point with default label<a class="headerlink" href="#css_cookbook_points_pointwithdefaultlabel" title="Permanent link">&para;</a></h2>
-<p>This example shows a text label on the <a href="./#css_cookbook_points_simplepoint">Simple point</a> that displays the "name" attribute of the point. This is how a label will be displayed in the absence of any other customization.</p>
+<p>This example shows a text label on the <a href="#css_cookbook_points_simplepoint">Simple point</a> that displays the "name" attribute of the point. This is how a label will be displayed in the absence of any other customization.</p>
 <p><img alt="" src="../../../sld/cookbook/images/point_pointwithdefaultlabel.png" />
 <em>Point with default label</em></p>
 <h3 id="code_5">Code<a class="headerlink" href="#code_5" title="Permanent link">&para;</a></h3>
@@ -28791,9 +28791,9 @@
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="details_5">Details<a class="headerlink" href="#details_5" title="Permanent link">&para;</a></h3>
-<p>This style is quite similar to the <a href="./#css_cookbook_points_simplepoint">Simple point</a>, but two new properties have been added to specify the labelling options. <strong>Line 4</strong> indicates that the label contents come from the "name" attribute (anything in square brackets is a CQL expression, the attribute name being the simplest case) while <strong>Line 5</strong> sets the label color to black.</p>
+<p>This style is quite similar to the <a href="#css_cookbook_points_simplepoint">Simple point</a>, but two new properties have been added to specify the labelling options. <strong>Line 4</strong> indicates that the label contents come from the "name" attribute (anything in square brackets is a CQL expression, the attribute name being the simplest case) while <strong>Line 5</strong> sets the label color to black.</p>
 <h2 id="css_cookbook_points_pointwithstyledlabel">Point with styled label<a class="headerlink" href="#css_cookbook_points_pointwithstyledlabel" title="Permanent link">&para;</a></h2>
-<p>This example improves the label style from the <a href="./#css_cookbook_points_pointwithdefaultlabel">Point with default label</a> example by centering the label above the point and providing a different font name and size.</p>
+<p>This example improves the label style from the <a href="#css_cookbook_points_pointwithdefaultlabel">Point with default label</a> example by centering the label above the point and providing a different font name and size.</p>
 <p><img alt="" src="../../../sld/cookbook/images/point_pointwithstyledlabel.png" />
 <em>Point with styled label</em></p>
 <h3 id="code_6">Code<a class="headerlink" href="#code_6" title="Permanent link">&para;</a></h3>
@@ -28814,10 +28814,10 @@
 <a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="details_6">Details<a class="headerlink" href="#details_6" title="Permanent link">&para;</a></h3>
-<p>This example expands on <a href="./#css_cookbook_points_pointwithdefaultlabel">Point with default label</a> and specifies the font attributes, in particular, the text is Aria, bold, 12px wide. Moreover, the label is moved on top of the point, by specifying an anchor of <code>0.5 0</code>, which sets the point to be centered (0.5) horizontally axis and bottom aligned (0.0) vertically with the label, and an offset which moves the label 5 pixels up vertically.</p>
+<p>This example expands on <a href="#css_cookbook_points_pointwithdefaultlabel">Point with default label</a> and specifies the font attributes, in particular, the text is Aria, bold, 12px wide. Moreover, the label is moved on top of the point, by specifying an anchor of <code>0.5 0</code>, which sets the point to be centered (0.5) horizontally axis and bottom aligned (0.0) vertically with the label, and an offset which moves the label 5 pixels up vertically.</p>
 <p>The result is a centered bold label placed slightly above each point.</p>
 <h2 id="point-with-rotated-label">Point with rotated label<a class="headerlink" href="#point-with-rotated-label" title="Permanent link">&para;</a></h2>
-<p>This example builds on the previous example, <a href="./#css_cookbook_points_pointwithstyledlabel">Point with styled label</a>, by rotating the label by 45 degrees, positioning the labels farther away from the points, and changing the color of the label to purple.</p>
+<p>This example builds on the previous example, <a href="#css_cookbook_points_pointwithstyledlabel">Point with styled label</a>, by rotating the label by 45 degrees, positioning the labels farther away from the points, and changing the color of the label to purple.</p>
 <p><img alt="" src="../../../sld/cookbook/images/point_pointwithrotatedlabel.png" />
 <em>Point with rotated label</em></p>
 <h3 id="code_7">Code<a class="headerlink" href="#code_7" title="Permanent link">&para;</a></h3>
@@ -28838,7 +28838,7 @@
 <a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="details_7">Details<a class="headerlink" href="#details_7" title="Permanent link">&para;</a></h3>
-<p>This example is similar to the <a href="./#css_cookbook_points_pointwithstyledlabel">Point with styled label</a>, but there are three important differences. <strong>Line 10</strong> specifies 25 pixels of vertical displacement. <strong>Line 11</strong> specifies a rotation of "-45" or 45 degrees counter-clockwise. (Rotation values increase clockwise, which is why the value is negative.) Finally, <strong>line 5</strong> sets the font color to be a shade of purple (<code>#99099</code>).</p>
+<p>This example is similar to the <a href="#css_cookbook_points_pointwithstyledlabel">Point with styled label</a>, but there are three important differences. <strong>Line 10</strong> specifies 25 pixels of vertical displacement. <strong>Line 11</strong> specifies a rotation of "-45" or 45 degrees counter-clockwise. (Rotation values increase clockwise, which is why the value is negative.) Finally, <strong>line 5</strong> sets the font color to be a shade of purple (<code>#99099</code>).</p>
 <p>Note that the displacement takes effect before the rotation during rendering, so in this example, the 25 pixel vertical displacement is itself rotated 45 degrees.</p>
 <h2 id="attribute-based-point">Attribute-based point<a class="headerlink" href="#attribute-based-point" title="Permanent link">&para;</a></h2>
 <p>This example alters the size of the symbol based on the value of the population ("pop") attribute.</p>
@@ -28864,7 +28864,7 @@
 <h3 id="details_8">Details<a class="headerlink" href="#details_8" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Refer to the <a href="./#css_cookbook_points_attributes">Example points layer</a> to see the attributes for this data. This example has eschewed labels in order to simplify the style, but you can refer to the example <a href="./#css_cookbook_points_pointwithstyledlabel">Point with styled label</a> to see which attributes correspond to which points.</p>
+<p>Refer to the <a href="#css_cookbook_points_attributes">Example points layer</a> to see the attributes for this data. This example has eschewed labels in order to simplify the style, but you can refer to the example <a href="#css_cookbook_points_pointwithstyledlabel">Point with styled label</a> to see which attributes correspond to which points.</p>
 </div>
 <p>This style shows how the basic mark setup (red circle, default size) can be overridden via cascading/nesting, changing the size depending on the pop attribute value, with smaller values yielding a smaller circle, and larger values yielding a larger circle.</p>
 <p>The three rules are designed as follows:</p>

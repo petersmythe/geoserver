@@ -28091,7 +28091,7 @@
 </code></pre></div>
 </li>
 <li>
-<p>GeoTools Logger names match up with the package names in the <a href="https://docs.geotools.org/latest/javadocs/overview-summary.html">project javadocs overview</a>.</p>
+<p>GeoTools Logger names match up with the package names in the <a href="https://docs.geotools.org/latest/javadocs/overview-summary.md">project javadocs overview</a>.</p>
 <p>As an example package <code>org.geotools.data.shapefile</code> is listed, allowing level of shapefile logging to be controlled:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;Logger</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;org.geotools.data.shapefile&quot;</span><span class="w"> </span><span class="na">level=</span><span class="s">&quot;debug&quot;</span><span class="w"> </span><span class="na">additivity=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&lt;AppenderRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;stdout&quot;</span><span class="nt">/&gt;</span>
@@ -28216,7 +28216,7 @@
 </ul>
 <p>This setting overrides global setting, and is applied to <code>geoserverlogfile</code> appender as a template for filename and filePattern.</p>
 <ul>
-<li>This same effect may be obtained using Log4J <a href="https://logging.apache.org/log4j/2.x/manual/configuration.html#PropertySubstitution">property substitution</a>, where a wide range of <a href="https://logging.apache.org/log4j/2.x/manual/lookups.html">property lookups</a> are available.</li>
+<li>This same effect may be obtained using Log4J <a href="https://logging.apache.org/log4j/2.x/manual/configuration.md#PropertySubstitution">property substitution</a>, where a wide range of <a href="https://logging.apache.org/log4j/2.x/manual/lookups.md">property lookups</a> are available.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;RollingFile</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;geoserverlogfile&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">&lt;filename&gt;</span>logs/geoserver-${hostName}.log<span class="nt">&lt;/filename&gt;</span>
@@ -28236,7 +28236,7 @@
 <p>If you wish GeoServer not to override the normal Log4J behavior you can set the following parameter among the JVM system variables, environment variables, or servlet context parameters:</p>
 <div class="highlight"><pre><span></span><code>RELINQUISH_LOG4J_CONTROL=true
 </code></pre></div>
-<p>This can be combined with <code>log4j2.configurationFile</code> system property to <a href="https://logging.apache.org/log4j/2.x/manual/configuration.html#AutomaticConfiguration">configure Log4J externally</a> :</p>
+<p>This can be combined with <code>log4j2.configurationFile</code> system property to <a href="https://logging.apache.org/log4j/2.x/manual/configuration.md#AutomaticConfiguration">configure Log4J externally</a> :</p>
 <div class="highlight"><pre><span></span><code>-DRELINQUISH_LOG4J_CONTROL=true -Dlog4j2.configurationFile=logging_configuration.xml
 </code></pre></div>
 <h2 id="forcing-geoserver-to-use-an-alternate-logging-redirection">Forcing GeoServer to use an alternate logging redirection<a class="headerlink" href="#forcing-geoserver-to-use-an-alternate-logging-redirection" title="Permanent link">&para;</a></h2>

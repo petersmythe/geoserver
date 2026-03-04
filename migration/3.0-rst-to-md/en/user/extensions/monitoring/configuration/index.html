@@ -28272,7 +28272,7 @@
         filter.properties
         monitor.properties
 </code></pre></div>
-<p>The <code>monitor.properties</code> file is the main configuration file whose contents are described in the following sections. The <code>filter.properties</code> allows for <a href="./#request_filters">filtering</a> out those requests from being monitored.</p>
+<p>The <code>monitor.properties</code> file is the main configuration file whose contents are described in the following sections. The <code>filter.properties</code> allows for <a href="#request_filters">filtering</a> out those requests from being monitored.</p>
 <h2 id="monitor_storage">Monitor Storage<a class="headerlink" href="#monitor_storage" title="Permanent link">&para;</a></h2>
 <p>How request data is persisted is configurable via the <code>storage</code> property defined in the <code>monitor.properties</code> file. The following values are supported for the <code>storage</code> property:</p>
 <ul>
@@ -28323,7 +28323,7 @@
 <h2 id="monitoring-threads">Monitoring threads<a class="headerlink" href="#monitoring-threads" title="Permanent link">&para;</a></h2>
 <p>You can choose the number of post processor threads by configuring the <code>postProcessorThreads</code> property in the <code>monitor.properties</code> file. The default is 2.</p>
 <h2 id="dns-cache-configuration">DNS cache configuration<a class="headerlink" href="#dns-cache-configuration" title="Permanent link">&para;</a></h2>
-<p>The reverseDNS post processor caches its result. You can modify the cache configuration by configuring the <code>dnsCacheConfiguration</code> property in the <code>monitor.properties</code> file. The default policy is <code>expireAfterWrite=15m,maximumSize=1000</code> . Consult the <a href="https://guava.dev/releases/32.0.0-jre/api/docs/com/google/common/cache/CacheBuilderSpec.html">guava cache builder documentation</a> for all possibilities.</p>
+<p>The reverseDNS post processor caches its result. You can modify the cache configuration by configuring the <code>dnsCacheConfiguration</code> property in the <code>monitor.properties</code> file. The default policy is <code>expireAfterWrite=15m,maximumSize=1000</code> . Consult the <a href="https://guava.dev/releases/32.0.0-jre/api/docs/com/google/common/cache/CacheBuilderSpec.md">guava cache builder documentation</a> for all possibilities.</p>
 <h3 id="how-to-determine-the-filter-path">How to determine the filter path<a class="headerlink" href="#how-to-determine-the-filter-path" title="Permanent link">&para;</a></h3>
 <p>The contents of <code>filter.properties</code> are a series of ant-style patterns that are applied to the <em>path</em> of the request. Consider the following request:</p>
 <div class="highlight"><pre><span></span><code>http://localhost:8080/geoserver/wms?request=getcapabilities
@@ -28337,7 +28337,7 @@
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For more information about ant-style pattern matching, see the <a href="http://ant.apache.org/manual/dirtasks.html">Apache Ant manual</a>.</p>
+<p>For more information about ant-style pattern matching, see the <a href="http://ant.apache.org/manual/dirtasks.md">Apache Ant manual</a>.</p>
 </div>
 <h2 id="samples">Samples<a class="headerlink" href="#samples" title="Permanent link">&para;</a></h2>
 <h3 id="monitorproperties">monitor.properties<a class="headerlink" href="#monitorproperties" title="Permanent link">&para;</a></h3>

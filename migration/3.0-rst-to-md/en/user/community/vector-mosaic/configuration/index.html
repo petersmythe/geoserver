@@ -28024,7 +28024,7 @@
 </tr>
 <tr>
 <td><code>delegateStoreName</code></td>
-<td>The data source name of the data store previously created that holds the index information about the constituent vector granules. See <a href="delegate.html">here</a> for more details about delegate store requirements.</td>
+<td>The data source name of the data store previously created that holds the index information about the constituent vector granules. See <a href="../delegate/">here</a> for more details about delegate store requirements.</td>
 </tr>
 <tr>
 <td><code>connectionParameterKey</code></td>
@@ -28032,7 +28032,7 @@
 </tr>
 <tr>
 <td><code>preferredDataStoreSPI</code></td>
-<td>This optional parameter can serve as an optimization to speed up the lookup of granule data stores. Instead of attempting to use the mandatory delegate params field (See <a href="delegate.html">delegate requirements</a> for more details about delegate store requirements.) to look up supported data store types, the Vector Mosaic data store will use the data store SPI specified in this field to identify the correct type.</td>
+<td>This optional parameter can serve as an optimization to speed up the lookup of granule data stores. Instead of attempting to use the mandatory delegate params field (See <a href="../delegate/">delegate requirements</a> for more details about delegate store requirements.) to look up supported data store types, the Vector Mosaic data store will use the data store SPI specified in this field to identify the correct type.</td>
 </tr>
 <tr>
 <td><code>commonParameters</code></td>
@@ -28061,7 +28061,7 @@
 <p>VectorMosaic: the commonParameters contains the specific collector configuration with inline definition within square brackets:</p>
 <div class="highlight"><pre><span></span><code>PropertyCollectors=TimestampFileNameExtractorSPI[regex=(\\d{4})/(\\d{2})/(\\d{2}),format=yyyyMMdd,fullPath=true](time)
 </code></pre></div>
-<p>See ImageMosaic's <a href="../../data/raster/imagemosaic/configuration.html#property-collectors">Propertycollectors</a> for further details on the available property collectors.</p>
+<p>See ImageMosaic's <a href="../../../data/raster/imagemosaic/configuration/#property-collectors">Propertycollectors</a> for further details on the available property collectors.</p>
 <h3 id="example-usage-dggs-geoparquet-ingestion">Example usage: DGGS GeoParquet Ingestion<a class="headerlink" href="#example-usage-dggs-geoparquet-ingestion" title="Permanent link">&para;</a></h3>
 <p>When ingesting GeoParquet files that contain DGGS cell geometries or DGGS zone identifiers, the ingestor requires additional context to interpret:</p>
 <ul>

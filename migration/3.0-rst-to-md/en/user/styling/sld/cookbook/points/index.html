@@ -28724,7 +28724,7 @@
 <h3 id="details">Details<a class="headerlink" href="#details" title="Permanent link">&para;</a></h3>
 <p>There is one <code>&lt;Rule&gt;</code> in one <code>&lt;FeatureTypeStyle&gt;</code> for this SLD, which is the simplest possible situation. (All subsequent examples will contain one <code>&lt;Rule&gt;</code> and one <code>&lt;FeatureTypeStyle&gt;</code> unless otherwise specified.) Styling points is accomplished via the <code>&lt;PointSymbolizer&gt;</code> (<strong>lines 3-13</strong>). <strong>Line 6</strong> specifies the shape of the symbol to be a circle, with <strong>line 8</strong> determining the fill color to be red (<code>#FF0000</code>). <strong>Line 11</strong> sets the size (diameter) of the graphic to be 6 pixels.</p>
 <h2 id="sld_cookbook_points_simplepointwithstroke">Simple point with stroke<a class="headerlink" href="#sld_cookbook_points_simplepointwithstroke" title="Permanent link">&para;</a></h2>
-<p>This example adds a stroke (or border) around the <a href="./#sld_cookbook_points_simplepoint">Simple point</a>, with the stroke colored black and given a thickness of 2 pixels.</p>
+<p>This example adds a stroke (or border) around the <a href="#sld_cookbook_points_simplepoint">Simple point</a>, with the stroke colored black and given a thickness of 2 pixels.</p>
 <p><img alt="" src="../images/point_simplepointwithstroke.png" />
 <em>Simple point with stroke</em></p>
 <h3 id="code_1">Code<a class="headerlink" href="#code_1" title="Permanent link">&para;</a></h3>
@@ -28750,7 +28750,7 @@
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="nt">&lt;/FeatureTypeStyle&gt;</span>
 </code></pre></div>
 <h3 id="details_1">Details<a class="headerlink" href="#details_1" title="Permanent link">&para;</a></h3>
-<p>This example is similar to the <a href="./#sld_cookbook_points_simplepoint">Simple point</a> example. <strong>Lines 10-13</strong> specify the stroke, with <strong>line 11</strong> setting the color to black (<code>#000000</code>) and <strong>line 12</strong> setting the width to 2 pixels.</p>
+<p>This example is similar to the <a href="#sld_cookbook_points_simplepoint">Simple point</a> example. <strong>Lines 10-13</strong> specify the stroke, with <strong>line 11</strong> setting the color to black (<code>#000000</code>) and <strong>line 12</strong> setting the width to 2 pixels.</p>
 <h2 id="rotated-square">Rotated square<a class="headerlink" href="#rotated-square" title="Permanent link">&para;</a></h2>
 <p>This example creates a square instead of a circle, colors it green, sizes it to 12 pixels, and rotates it by 45 degrees.</p>
 <p><img alt="" src="../images/point_rotatedsquare.png" />
@@ -28777,7 +28777,7 @@
 <h3 id="details_2">Details<a class="headerlink" href="#details_2" title="Permanent link">&para;</a></h3>
 <p>In this example, <strong>line 6</strong> sets the shape to be a square, with <strong>line 8</strong> setting the color to a dark green (<code>#009900</code>). <strong>Line 11</strong> sets the size of the square to be 12 pixels, and <strong>line 12</strong> set the rotation is to 45 degrees.</p>
 <h2 id="transparent-triangle">Transparent triangle<a class="headerlink" href="#transparent-triangle" title="Permanent link">&para;</a></h2>
-<p>This example draws a triangle, creates a black stroke identical to the <a href="./#sld_cookbook_points_simplepointwithstroke">Simple point with stroke</a> example, and sets the fill of the triangle to 20% opacity (mostly transparent).</p>
+<p>This example draws a triangle, creates a black stroke identical to the <a href="#sld_cookbook_points_simplepointwithstroke">Simple point with stroke</a> example, and sets the fill of the triangle to 20% opacity (mostly transparent).</p>
 <p><img alt="" src="../images/point_transparenttriangle.png" />
 <em>Transparent triangle</em></p>
 <h3 id="code_3">Code<a class="headerlink" href="#code_3" title="Permanent link">&para;</a></h3>
@@ -28832,7 +28832,7 @@
 <p><img alt="" src="../images/smileyface.png" />
 <em>Graphic used for points</em></p>
 <h2 id="sld_cookbook_points_pointwithdefaultlabel">Point with default label<a class="headerlink" href="#sld_cookbook_points_pointwithdefaultlabel" title="Permanent link">&para;</a></h2>
-<p>This example shows a text label on the <a href="./#sld_cookbook_points_simplepoint">Simple point</a> that displays the "name" attribute of the point. This is how a label will be displayed in the absence of any other customization.</p>
+<p>This example shows a text label on the <a href="#sld_cookbook_points_simplepoint">Simple point</a> that displays the "name" attribute of the point. This is how a label will be displayed in the absence of any other customization.</p>
 <p><img alt="" src="../images/point_pointwithdefaultlabel.png" />
 <em>Point with default label</em></p>
 <h3 id="code_5">Code<a class="headerlink" href="#code_5" title="Permanent link">&para;</a></h3>
@@ -28862,9 +28862,9 @@
 <a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="nt">&lt;/FeatureTypeStyle&gt;</span>
 </code></pre></div>
 <h3 id="details_5">Details<a class="headerlink" href="#details_5" title="Permanent link">&para;</a></h3>
-<p><strong>Lines 3-13</strong>, which contain the <code>&lt;PointSymbolizer&gt;</code>, are identical to the <a href="./#sld_cookbook_points_simplepoint">Simple point</a> example above. The label is set in the <code>&lt;TextSymbolizer&gt;</code> on <strong>lines 14-27</strong>. <strong>Lines 15-17</strong> determine what text to display in the label, which in this case is the value of the "name" attribute. (Refer to the attribute table in the <a href="./#sld_cookbook_points_attributes">Example points layer</a> section if necessary.) <strong>Line 19</strong> sets the text color. All other details about the label are set to the renderer default, which here is Times New Roman font, font color black, and font size of 10 pixels. The bottom left of the label is aligned with the center of the point.</p>
+<p><strong>Lines 3-13</strong>, which contain the <code>&lt;PointSymbolizer&gt;</code>, are identical to the <a href="#sld_cookbook_points_simplepoint">Simple point</a> example above. The label is set in the <code>&lt;TextSymbolizer&gt;</code> on <strong>lines 14-27</strong>. <strong>Lines 15-17</strong> determine what text to display in the label, which in this case is the value of the "name" attribute. (Refer to the attribute table in the <a href="#sld_cookbook_points_attributes">Example points layer</a> section if necessary.) <strong>Line 19</strong> sets the text color. All other details about the label are set to the renderer default, which here is Times New Roman font, font color black, and font size of 10 pixels. The bottom left of the label is aligned with the center of the point.</p>
 <h2 id="sld_cookbook_points_pointwithstyledlabel">Point with styled label<a class="headerlink" href="#sld_cookbook_points_pointwithstyledlabel" title="Permanent link">&para;</a></h2>
-<p>This example improves the label style from the <a href="./#sld_cookbook_points_pointwithdefaultlabel">Point with default label</a> example by centering the label above the point and providing a different font name and size.</p>
+<p>This example improves the label style from the <a href="#sld_cookbook_points_pointwithdefaultlabel">Point with default label</a> example by centering the label above the point and providing a different font name and size.</p>
 <p><img alt="" src="../images/point_pointwithstyledlabel.png" />
 <em>Point with styled label</em></p>
 <h3 id="code_6">Code<a class="headerlink" href="#code_6" title="Permanent link">&para;</a></h3>
@@ -28912,10 +28912,10 @@
 <a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="nt">&lt;/FeatureTypeStyle&gt;</span>
 </code></pre></div>
 <h3 id="details_6">Details<a class="headerlink" href="#details_6" title="Permanent link">&para;</a></h3>
-<p>In this example, <strong>lines 3-13</strong> are identical to the <a href="./#sld_cookbook_points_simplepoint">Simple point</a> example above. The <code>&lt;TextSymbolizer&gt;</code> on lines 14-39 contains many more details about the label styling than the previous example, <a href="./#sld_cookbook_points_pointwithdefaultlabel">Point with default label</a>. <strong>Lines 15-17</strong> once again specify the "name" attribute as text to display. <strong>Lines 18-23</strong> set the font information: <strong>line 19</strong> sets the font family to be "Arial", <strong>line 20</strong> sets the font size to 12, <strong>line 21</strong> sets the font style to "normal" (as opposed to "italic" or "oblique"), and <strong>line 22</strong> sets the font weight to "bold" (as opposed to "normal"). <strong>Lines 24-35</strong> (<code>&lt;LabelPlacement&gt;</code>) determine the placement of the label relative to the point. The <code>&lt;AnchorPoint&gt;</code> (<strong>lines 26-29</strong>) sets the point of intersection between the label and point, which here (<strong>line 27-28</strong>) sets the point to be centered (0.5) horizontally axis and bottom aligned (0.0) vertically with the label. There is also <code>&lt;Displacement&gt;</code> (<strong>lines 30-33</strong>), which sets the offset of the label relative to the line, which in this case is 0 pixels horizontally (<strong>line 31</strong>) and 5 pixels vertically (<strong>line 32</strong>). Finally, <strong>line 37</strong> sets the font color of the label to black (<code>#000000</code>).</p>
+<p>In this example, <strong>lines 3-13</strong> are identical to the <a href="#sld_cookbook_points_simplepoint">Simple point</a> example above. The <code>&lt;TextSymbolizer&gt;</code> on lines 14-39 contains many more details about the label styling than the previous example, <a href="#sld_cookbook_points_pointwithdefaultlabel">Point with default label</a>. <strong>Lines 15-17</strong> once again specify the "name" attribute as text to display. <strong>Lines 18-23</strong> set the font information: <strong>line 19</strong> sets the font family to be "Arial", <strong>line 20</strong> sets the font size to 12, <strong>line 21</strong> sets the font style to "normal" (as opposed to "italic" or "oblique"), and <strong>line 22</strong> sets the font weight to "bold" (as opposed to "normal"). <strong>Lines 24-35</strong> (<code>&lt;LabelPlacement&gt;</code>) determine the placement of the label relative to the point. The <code>&lt;AnchorPoint&gt;</code> (<strong>lines 26-29</strong>) sets the point of intersection between the label and point, which here (<strong>line 27-28</strong>) sets the point to be centered (0.5) horizontally axis and bottom aligned (0.0) vertically with the label. There is also <code>&lt;Displacement&gt;</code> (<strong>lines 30-33</strong>), which sets the offset of the label relative to the line, which in this case is 0 pixels horizontally (<strong>line 31</strong>) and 5 pixels vertically (<strong>line 32</strong>). Finally, <strong>line 37</strong> sets the font color of the label to black (<code>#000000</code>).</p>
 <p>The result is a centered bold label placed slightly above each point.</p>
 <h2 id="point-with-rotated-label">Point with rotated label<a class="headerlink" href="#point-with-rotated-label" title="Permanent link">&para;</a></h2>
-<p>This example builds on the previous example, <a href="./#sld_cookbook_points_pointwithstyledlabel">Point with styled label</a>, by rotating the label by 45 degrees, positioning the labels farther away from the points, and changing the color of the label to purple.</p>
+<p>This example builds on the previous example, <a href="#sld_cookbook_points_pointwithstyledlabel">Point with styled label</a>, by rotating the label by 45 degrees, positioning the labels farther away from the points, and changing the color of the label to purple.</p>
 <p><img alt="" src="../images/point_pointwithrotatedlabel.png" />
 <em>Point with rotated label</em></p>
 <h3 id="code_7">Code<a class="headerlink" href="#code_7" title="Permanent link">&para;</a></h3>
@@ -28964,7 +28964,7 @@
 <a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="nt">&lt;/FeatureTypeStyle&gt;</span>
 </code></pre></div>
 <h3 id="details_7">Details<a class="headerlink" href="#details_7" title="Permanent link">&para;</a></h3>
-<p>This example is similar to the <a href="./#sld_cookbook_points_pointwithstyledlabel">Point with styled label</a>, but there are three important differences. <strong>Line 32</strong> specifies 25 pixels of vertical displacement. <strong>Line 34</strong> specifies a rotation of "-45" or 45 degrees counter-clockwise. (Rotation values increase clockwise, which is why the value is negative.) Finally, <strong>line 38</strong> sets the font color to be a shade of purple (<code>#99099</code>).</p>
+<p>This example is similar to the <a href="#sld_cookbook_points_pointwithstyledlabel">Point with styled label</a>, but there are three important differences. <strong>Line 32</strong> specifies 25 pixels of vertical displacement. <strong>Line 34</strong> specifies a rotation of "-45" or 45 degrees counter-clockwise. (Rotation values increase clockwise, which is why the value is negative.) Finally, <strong>line 38</strong> sets the font color to be a shade of purple (<code>#99099</code>).</p>
 <p>Note that the displacement takes effect before the rotation during rendering, so in this example, the 25 pixel vertical displacement is itself rotated 45 degrees.</p>
 <h2 id="attribute-based-point">Attribute-based point<a class="headerlink" href="#attribute-based-point" title="Permanent link">&para;</a></h2>
 <p>This example alters the size of the symbol based on the value of the population ("pop") attribute.</p>
@@ -29047,7 +29047,7 @@
 <h3 id="details_8">Details<a class="headerlink" href="#details_8" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Refer to the <a href="./#sld_cookbook_points_attributes">Example points layer</a> to see the attributes for this data. This example has eschewed labels in order to simplify the style, but you can refer to the example <a href="./#sld_cookbook_points_pointwithstyledlabel">Point with styled label</a> to see which attributes correspond to which points.</p>
+<p>Refer to the <a href="#sld_cookbook_points_attributes">Example points layer</a> to see the attributes for this data. This example has eschewed labels in order to simplify the style, but you can refer to the example <a href="#sld_cookbook_points_pointwithstyledlabel">Point with styled label</a> to see which attributes correspond to which points.</p>
 </div>
 <p>This style contains three rules. Each <code>&lt;Rule&gt;</code> varies the style based on the value of the population ("pop") attribute for each point, with smaller values yielding a smaller circle, and larger values yielding a larger circle.</p>
 <p>The three rules are designed as follows:</p>

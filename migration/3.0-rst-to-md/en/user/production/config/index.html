@@ -28519,18 +28519,18 @@
 <li>Common Case: The System Administrator and the GeoServer Administrator are the same individual, or the GeoServer Administrator already has console access to perform data management.</li>
 </ul>
 <p>In this environment the GeoServer Administrator already has console access, and many settings are available in the Web administration interface to define proxy base url, log file location, or what file directories may be used for storage, that assume general knowledge of the environments and the ability to create folders and adjust file permissions.</p>
-<p>See <a href="./#production_config_geoserver_admin">GeoServer Administrator Guidance</a></p>
+<p>See <a href="#production_config_geoserver_admin">GeoServer Administrator Guidance</a></p>
 <ul>
 <li>Less common case: The GeoServer Administrator does not have any sort of console access, and the System Administrator define configuration settings using <a href="../../configuration/properties/">application properties</a>.</li>
 </ul>
 <p>In this environment the functionality of the Web administration interface is reduced. The GeoServer Administrator may see settings, such as log file location, which are ignored as they have been already specified by the System Administrator.</p>
 <p>This is most often seen when a system administrator is providing hosting for a GeoServer administrator. It is also seen when GeoServer is used in a container environment where Environmental Variables are used for integration defining settings such proxy base url and log file location.</p>
-<p>See <a href="./#production_config_system_admin">System Administrator Guidance</a></p>
+<p>See <a href="#production_config_system_admin">System Administrator Guidance</a></p>
 <ul>
 <li>Less common case: Configuring GeoServer with Workspace Administrators, where individuals each manage their own workspace contents, and web services.</li>
 </ul>
 <p>This is often seen when a GeoServer Administrator configures workspaces for different projects or teams. Settings such as <a href="../../security/sandbox/">Filesystem sandboxing</a> to limited directory access are established with this environment in mind.</p>
-<p>See <a href="./#production_config_workspace_admin">GeoServer Workspace Admin Guidance</a></p>
+<p>See <a href="#production_config_workspace_admin">GeoServer Workspace Admin Guidance</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Not all configuration options can be supplied using the Web administration interface. Some settings, such as the location of the <a href="../../datadirectory/setting/">GeoServer Data Directory</a>, may only be setup by a System Administrator.</p>
@@ -28763,14 +28763,14 @@
 </ul>
 <p>When both <code>frame-ancestors</code> and <code>X-Frame-Options</code> are present, browsers that support <code>frame-ancestors</code> should <strong>enforce</strong> the <code>frame-ancestors</code> policy and <strong>ignore</strong> the <code>X-Frame-Options</code> policy.</p>
 <h3 id="x-content-type-options-policy">X-Content-Type-Options Policy<a class="headerlink" href="#x-content-type-options-policy" title="Permanent link">&para;</a></h3>
-<p>In order to mitigate MIME confusion attacks (which often results in Cross-Site Scripting), GeoServer defaults to setting the <code>X-Content-Type-Options: nosniff</code> HTTP header. See the <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-content-type-options">OWASP X-Content-Type-Options entry</a> for details.</p>
+<p>In order to mitigate MIME confusion attacks (which often results in Cross-Site Scripting), GeoServer defaults to setting the <code>X-Content-Type-Options: nosniff</code> HTTP header. See the <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.md#x-content-type-options">OWASP X-Content-Type-Options entry</a> for details.</p>
 <p>If you wish to change this behavior you can do so through the following property:</p>
 <ul>
 <li><code>geoserver.xContentType.shouldSetPolicy</code>: controls whether the X-Content-Type-Options header should be set. Default is true.</li>
 </ul>
 <p>This property can be set either via Java system property, command line argument (-D), environment variable or web.xml init parameter.</p>
 <h3 id="x-xss-protection-policy">X-XSS-Protection Policy<a class="headerlink" href="#x-xss-protection-policy" title="Permanent link">&para;</a></h3>
-<p>GeoServer supports setting the X-XSS-Protection HTTP header in order to control the built-in reflected XSS filtering that existed in some older browsers. This header is <strong>NOT</strong> enabled by default since it does not affect modern browsers. Enabling the header without specifying a policy will default to Spring Security's default of <code>0</code> (which is also the current OWASP recommendation). See the <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-xss-protection">OWASP X-XSS-Protection entry</a> for details.</p>
+<p>GeoServer supports setting the X-XSS-Protection HTTP header in order to control the built-in reflected XSS filtering that existed in some older browsers. This header is <strong>NOT</strong> enabled by default since it does not affect modern browsers. Enabling the header without specifying a policy will default to Spring Security's default of <code>0</code> (which is also the current OWASP recommendation). See the <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.md#x-xss-protection">OWASP X-XSS-Protection entry</a> for details.</p>
 <p>If you wish to change this behavior you can do so through the following properties:</p>
 <ul>
 <li><code>geoserver.xXssProtection.shouldSetPolicy</code>: controls whether the X-XSS-Protection header should be set at all. Default is false.</li>
@@ -28778,7 +28778,7 @@
 </ul>
 <p>These properties can be set either via Java system property, command line argument (-D), environment variable or web.xml init parameter.</p>
 <h3 id="strict-transport-security-policy">Strict-Transport-Security Policy<a class="headerlink" href="#strict-transport-security-policy" title="Permanent link">&para;</a></h3>
-<p>In order to reduce the possibility of man-in-the-middle attacks GeoServer supports setting the Strict-Transport-Security HTTP header. This header is <strong>NOT</strong> enabled by default and, when enabled, this header will only be set on HTTPS requests. If a policy has not been set, the default policy will be the same as Spring Security's default of <code>max-age=31536000 ; includeSubDomains</code>. See the <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#strict-transport-security-hsts">OWASP Strict-Transport-Security entry</a> for details.</p>
+<p>In order to reduce the possibility of man-in-the-middle attacks GeoServer supports setting the Strict-Transport-Security HTTP header. This header is <strong>NOT</strong> enabled by default and, when enabled, this header will only be set on HTTPS requests. If a policy has not been set, the default policy will be the same as Spring Security's default of <code>max-age=31536000 ; includeSubDomains</code>. See the <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.md#strict-transport-security-hsts">OWASP Strict-Transport-Security entry</a> for details.</p>
 <p>If you wish to change this behavior you can do so through the following properties:</p>
 <ul>
 <li><code>geoserver.hsts.shouldSetPolicy</code>: controls whether the Strict-Transport-Security header should be set at all. Default is false.</li>

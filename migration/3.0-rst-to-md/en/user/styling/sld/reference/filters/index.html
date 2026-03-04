@@ -28047,7 +28047,7 @@
 <li><code>&lt;PropertyIsGreaterThanOrEqualTo&gt;</code></li>
 </ul>
 </blockquote>
-<p>These operators contain two <a href="./#sld_filter_expression">filter expressions</a> to be compared. The first operand is often a <code>&lt;PropertyName&gt;</code>, but both operands may be any expression, function or literal value.</p>
+<p>These operators contain two <a href="#sld_filter_expression">filter expressions</a> to be compared. The first operand is often a <code>&lt;PropertyName&gt;</code>, but both operands may be any expression, function or literal value.</p>
 <p>Binary comparison operators may include a <code>matchCase</code> attribute with the value <code>true</code> or <code>false</code>. If this attribute is <code>true</code> (which is the default), string comparisons are case-sensitive. If the attribute is specified and has the value <code>false</code> strings comparisons do not check case.</p>
 <p>Other available <strong>value comparison operators</strong> are:</p>
 <blockquote>
@@ -28066,7 +28066,7 @@
 </ul>
 </blockquote>
 <p><code>&lt;PropertyIsNull&gt;</code> tests whether a property value is null. It contains a single <code>&lt;PropertyName&gt;</code> element containing the name of the property containing the value to be tested.</p>
-<p><code>&lt;PropertyIsBetween&gt;</code> tests whether an expression value lies within a range. It contains a <a href="./#sld_filter_expression">filter expression</a> providing the value to test, followed by the elements <code>&lt;LowerBoundary&gt;</code> and <code>&lt;UpperBoundary&gt;</code>, each containing a <a href="./#sld_filter_expression">filter expression</a>.</p>
+<p><code>&lt;PropertyIsBetween&gt;</code> tests whether an expression value lies within a range. It contains a <a href="#sld_filter_expression">filter expression</a> providing the value to test, followed by the elements <code>&lt;LowerBoundary&gt;</code> and <code>&lt;UpperBoundary&gt;</code>, each containing a <a href="#sld_filter_expression">filter expression</a>.</p>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The following filter selects features whose <code>NAME</code> attribute has the value of "New York":</li>

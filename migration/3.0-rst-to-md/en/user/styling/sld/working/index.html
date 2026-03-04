@@ -28130,7 +28130,7 @@
 <li>An SLD document can be provided directly in a WMS <a href="../../../services/wms/reference/#wms_getmap">GetMap</a> GET request using the <code>SLD_BODY=style</code> parameter. The SLD XML must be URL-encoded.</li>
 <li>A <a href="../reference/sld/">StyledLayerDescriptor</a> element can be included in a WMS <code>GetMap</code> POST request XML document.</li>
 </ul>
-<p>In all of these cases, if the WMS <code>layers</code> parameter is not supplied then the map content is defined completely by the layers and styles present in the external SLD. If the <code>layers</code> parameter is present, then styling operates in <a href="./#sld_library_mode">Library Mode</a>.</p>
+<p>In all of these cases, if the WMS <code>layers</code> parameter is not supplied then the map content is defined completely by the layers and styles present in the external SLD. If the <code>layers</code> parameter is present, then styling operates in <a href="#sld_library_mode">Library Mode</a>.</p>
 <p>The structure of an external style is the same as a Style Layer Descriptor style, as described above.</p>
 <p>External styles can define new layers of styled data, by using the SLD <a href="../reference/layers/#sld_reference_inlinefeature">InlineFeature</a> element to provide feature data. This can be used to implement dynamic feature highlighting, for example.</p>
 <p>External styling may be generated dynamically by client applications, This provides a powerful way for clients to control styling effects.</p>

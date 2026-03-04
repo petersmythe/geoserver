@@ -28310,8 +28310,8 @@ frame-ancestors &#39;self&#39; https://geoserver.org;
 <li>A name that is unique among the rules within the specific policy must be provided in the <strong>Name</strong> text field when adding a new rule.</li>
 <li>The <strong>Description</strong> text field provides an optional description to help administrators understand what the rule does.</li>
 <li>The <strong>Enabled</strong> checkbox will enable/disable the rule.</li>
-<li>The <strong>Request Filter</strong> text field contains the filter to apply to each user request to determine whether to add this rule's directives to the CSP header value. (see <a href="./#security_csp_filters">Request Filters</a> below)</li>
-<li>The <strong>Header Directives</strong> text field contains the CSP directives to add to the header value when a request matches this rule's filter. (see <a href="./#security_csp_directives">Header Directives</a> below)</li>
+<li>The <strong>Request Filter</strong> text field contains the filter to apply to each user request to determine whether to add this rule's directives to the CSP header value. (see <a href="#security_csp_filters">Request Filters</a> below)</li>
+<li>The <strong>Header Directives</strong> text field contains the CSP directives to add to the header value when a request matches this rule's filter. (see <a href="#security_csp_directives">Header Directives</a> below)</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -28344,7 +28344,7 @@ frame-ancestors &#39;self&#39; https://geoserver.org;
 <h3 id="security_csp_directives">Header Directives<a class="headerlink" href="#security_csp_directives" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>GeoServer gives administrators complete control over the CSP header directives and sources and does not attempt to parse or validate them so it is the administrator's responsibility to verify that the header is working as intended when modifying this field. See <a href="./#security_csp_references">System Administrator CSP Settings</a> for detailed information about valid Content Security Policy header directives and sources.</p>
+<p>GeoServer gives administrators complete control over the CSP header directives and sources and does not attempt to parse or validate them so it is the administrator's responsibility to verify that the header is working as intended when modifying this field. See <a href="#security_csp_references">System Administrator CSP Settings</a> for detailed information about valid Content Security Policy header directives and sources.</p>
 </div>
 <p>Property keys can be used in the directives in the form <code>${key}</code> and they will be replaced with the property's value before being written to the header. Property keys must contain <code>GeoServer</code>, <code>GeoTools</code>, or <code>GeoWebCache</code> (case-insensitive) and property values must not contain special characters that are not allowed in valid CSP sources. Properties can be set either via Java system property, command line argument (-D), environment variable or web.xml init parameter. <code>geoserver.csp.remoteResources</code> and <code>geoserver.csp.frameAncestors</code> are special property keys that will use the value from their corresponding fields in the CSP configuration if they are not defined as properties.</p>
 <p><code>proxy.base.url</code> is a special property key that can be used to add the proxy base URL into the header if the request was not sent through the proxy. It will automatically be injected into the form-action and all fetch directives with a <code>'self'</code> source when the <strong>Inject proxy base URL into header</strong> feature is enabled. Only the protocol, host and port of the proxy base URL will be added to the header. The <code>X-Forwarded-Proto</code>, <code>X-Forwarded-Host</code>, <code>X-Forwarded-Port</code>, <code>Forwarded</code> and <code>Host</code> HTTP request headers are used to determine whether or not the original request was sent to the proxy. Ensure that the proxy server is properly setting these headers if the proxy base URL is being included in requests through the proxy and that is not the desired behavior.</p>
@@ -28360,7 +28360,7 @@ frame-ancestors &#39;self&#39; https://geoserver.org;
 <em>Test CSP with URL</em></p>
 <h2 id="security_csp_references">System Administrator CSP Settings<a class="headerlink" href="#security_csp_references" title="Permanent link">&para;</a></h2>
 <h3 id="csp-configuration-overrides">CSP Configuration Overrides<a class="headerlink" href="#csp-configuration-overrides" title="Permanent link">&para;</a></h3>
-<p>The following settings override the <a href="./#security_csp_strict">Configuring CSP</a> described above:</p>
+<p>The following settings override the <a href="#security_csp_strict">Configuring CSP</a> described above:</p>
 <ul>
 <li>The <code>geoserver.csp.remoteResources</code> system property will override <strong>Allowed sources for remote web resources</strong> field if it has been set.</li>
 <li>The <code>geoserver.csp.frameAncestors</code> system property will override <strong>Allowed frame-ancestors directive sources</strong> field if it has been set.</li>
@@ -28406,9 +28406,9 @@ frame-ancestors &#39;self&#39; https://geoserver.org;
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <p>See the following pages for details about CSP:</p>
 <ul>
-<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html">OWASP Cheat Sheet</a></li>
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.md">OWASP Cheat Sheet</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Mozilla Reference</a></li>
-<li><a href="https://nightlies.apache.org/wicket/guide/10.x/single.html#_content_security_policy_csp">Wicket Reference</a></li>
+<li><a href="https://nightlies.apache.org/wicket/guide/10.x/single.md#_content_security_policy_csp">Wicket Reference</a></li>
 </ul>
 
 

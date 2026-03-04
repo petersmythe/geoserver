@@ -28960,10 +28960,10 @@
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">190</span>
 </code></pre></div>
 <h3 id="dpi-and-pdf-dimensions">DPI and PDF Dimensions<a class="headerlink" href="#dpi-and-pdf-dimensions" title="Permanent link">&para;</a></h3>
-<p>A chosen DPI value from the above configuration is used in WMS GetMap requests as an added format_options (GeoServer) or map_resolution (MapServer) parameter. This is used for symbol/label-rescaling suitable for high resolution printouts, see <a href="https://docs.geoserver.org/stable/en/user/services/wms/vendor.html">Geoserver format_options specification</a> (Geoserver 2.1) and <a href="http://mapserver.org/development/rfc/ms-rfc-55.html">MapServer defresolution keyword</a> (MapServer 5.6) for more information.</p>
+<p>A chosen DPI value from the above configuration is used in WMS GetMap requests as an added format_options (GeoServer) or map_resolution (MapServer) parameter. This is used for symbol/label-rescaling suitable for high resolution printouts, see <a href="https://docs.geoserver.org/stable/en/user/services/wms/vendor.md">Geoserver format_options specification</a> (Geoserver 2.1) and <a href="http://mapserver.org/development/rfc/ms-rfc-55.md">MapServer defresolution keyword</a> (MapServer 5.6) for more information.</p>
 <p>In general, PDF dimensions and positions are specified in points. 72 points == 1 inch == 25.4 mm.</p>
 <h3 id="getting-maps">Getting Maps<a class="headerlink" href="#getting-maps" title="Permanent link">&para;</a></h3>
-<p>The list of {HOST_WHITELIST_DEFINITION} defines the allowed URLs for getting maps. Its format will be defined in <a href="configuration.html#host-whitelist-definition">the next sub-section</a>.</p>
+<p>The list of {HOST_WHITELIST_DEFINITION} defines the allowed URLs for getting maps. Its format will be defined in <a href="#host-whitelist-definition">the next sub-section</a>.</p>
 <p>The formats element lists the values formats that the server permits.</p>
 <ul>
 <li>If omitted only 'pdf' is permitted.</li>
@@ -28980,7 +28980,7 @@
 <h3 id="layouts">Layouts<a class="headerlink" href="#layouts" title="Permanent link">&para;</a></h3>
 <p>You can have as many layouts as you want. Their name must be unique and will be used on the client side.</p>
 <p>A layout can have a "titlePage" that will be added at the beginning of the generated document. It cannot contain any map.</p>
-<p>The "mainPage" section is mandatory and will be used once for each page requested. The details of a {PAGE_DEFINITION} section can be found <a href="configuration.html#page-definition">in another sub-section of this document</a>.</p>
+<p>The "mainPage" section is mandatory and will be used once for each page requested. The details of a {PAGE_DEFINITION} section can be found <a href="#page-definition">in another sub-section of this document</a>.</p>
 <p>A layout "lastPage", will be added for the end of the document, and cannot contain any map.</p>
 <p>If you want to let the user rotate the map (for a given layout), you have to set the "rotate" field to "true" in the corresponding "mainPage" section.</p>
 <h3 id="output-filename">Output filename<a class="headerlink" href="#output-filename" title="Permanent link">&para;</a></h3>
@@ -29082,7 +29082,7 @@
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p p-Indicator">?</span><span class="w">     </span><span class="nt">creator</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="p p-Indicator">?</span><span class="w">     </span><span class="nt">supportLegacyReader</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
-<p>All fields are optional and can use global variables, as defined in the <a href="configuration.html#block-definition">Block definition</a> chapter. Page specific variables are not accessible.</p>
+<p>All fields are optional and can use global variables, as defined in the <a href="#block-definition">Block definition</a> chapter. Page specific variables are not accessible.</p>
 <h2 id="page-definition">Page definition<a class="headerlink" href="#page-definition" title="Permanent link">&para;</a></h2>
 <p>The structure is like that:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">pageSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A4</span>
@@ -29200,7 +29200,7 @@
 <li>\${now}: The current date and time as defined by the machine's locale.</li>
 <li>\${now FORMAT}: The current date and time as defined by the FORMAT string. The syntax is here: <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html">http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html</a>.</li>
 <li>\${configDir}: The absolute path to the directory of the configuration file.</li>
-<li>\${format PRINTF VAR}: Format the value of VAR using the provided <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html#syntax">PRINTF format</a> (for example: %,d).</li>
+<li>\${format PRINTF VAR}: Format the value of VAR using the provided <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.md#syntax">PRINTF format</a> (for example: %,d).</li>
 </ul>
 <p>All the blocks can have a condition attribute that takes a spec attribute name. If the attribute name exists and is not equal to "false" or "0", the block is drawn. Otherwise, it is ignored. An exclamation mark may precede the condition to invert it, exclamation mark is part of yaml syntax, than the expression should be in quotes.</p>
 <p>Example: show text block only if in the spec the attribute name "showText" is given, is not equal to "false" and not equal to "0":</p>
@@ -29230,7 +29230,7 @@
 <li>Identity-V (vertical UTF-8)</li>
 <li>MacRoman</li>
 </ul>
-<p>The "font" must refer to a standard PDF font or a <a href="configuration.html#fonts-definition">declared font</a>.</p>
+<p>The "font" must refer to a standard PDF font or a <a href="#fonts-definition">declared font</a>.</p>
 <h3 id="html-in-text-blocks">HTML In Text Blocks<a class="headerlink" href="#html-in-text-blocks" title="Permanent link">&para;</a></h3>
 <p>The new configuration property <code>asHTML</code> (to be used in <strong><code>config.yaml</code></strong> text blocks) allows to automatically render the included text as HTML (when true), instead of simple text. HTML tags are interpreted and styled.</p>
 <h2 id="image-block">Image block<a class="headerlink" href="#image-block" title="Permanent link">&para;</a></h2>
@@ -29396,7 +29396,7 @@
 <a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">      </span><span class="nt">cell</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">BLOCK_DEFINITION</span><span class="p p-Indicator">}</span>
 <a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">  </span><span class="w w-Error">  </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span>
 </code></pre></div>
-<p>Look <a href="configuration.html#table-configuration">here</a> for how to specify the <em>tableConfig</em> field.</p>
+<p>Look <a href="#table-configuration">here</a> for how to specify the <em>tableConfig</em> field.</p>
 <p>The <em>columnWeigth</em> (MF_V1.2 only) allows to define a weight for the column width. If you specify it for one column, you have to specify it for all of them. The width of a given column is tableWidth*columnWeight/sum(columnWeight).</p>
 <p>The <strong>source</strong> value defines the name of the entry in the root of the client's <strong>spec</strong>. For example, it would look like that:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p p-Indicator">{</span>
@@ -29417,7 +29417,7 @@
 <a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="p p-Indicator">}</span>
 </code></pre></div>
 <p>With this spec you would have to define 3 columnDefs with the names <strong>id</strong>, <strong>name</strong> and <strong>icon</strong>. Each cell definition blocks have access to all the values of the current row.</p>
-<p>The spec part is filled automatically by the 2 MapFish widgets when their <a href="http://www.mapfish.org/apidoc/trunk/files/mapfish/widgets/print/Base-js.html#mapfish.widgets.print.Base.grids">grids</a> parameter is set.</p>
+<p>The spec part is filled automatically by the 2 MapFish widgets when their <a href="http://www.mapfish.org/apidoc/trunk/files/mapfish/widgets/print/Base-js.md#mapfish.widgets.print.Base.grids">grids</a> parameter is set.</p>
 <p>Here is a crazy example of columnDef that will show the name of the icon and it's bitmap side-by-side inside a single column:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">columnDefs</span><span class="p">:</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="nt">icon</span><span class="p">:</span>
@@ -29477,13 +29477,13 @@
 </code></pre></div>
 <p><strong>borders</strong> is mainly for debugging purpouses and shows all borders in the legend tables. This can be either 'true' or 'false'.</p>
 <p><strong>horizontalAlignment</strong> can be left, right or center (default) and aligns all items left, right or in the center.</p>
-<p><strong>iconMaxWidth</strong>, <strong>iconMaxHeight</strong>, <strong>defaultScale</strong> with value of 0 indicate that the value will be ignored, i.e. the values are automatically set to the equivalent of Infinity, Infinity and 1 respectively. If the legends URL passed to MapFish (see <a href="http://mapfish.org/doc/print/protocol.html#print-pdf">http://mapfish.org/doc/print/protocol.html#print-pdf</a>) are obtained from a WMS GetLegendGraphic request, the width/height are only indicative (even more when a label text is included with <a href="https://docs.geoserver.org/stable/en/user/services/wms/get_legend_graphic/index.html#controlling-legend-appearance-with-legend-options">LEGEND_OPTIONS/forceLabels parameter</a>) and it would be safer, in order to preserve scale coherence between legends and map, to set <strong>iconMaxWidth</strong> and <strong>iconMaxHeight</strong> to zero.</p>
+<p><strong>iconMaxWidth</strong>, <strong>iconMaxHeight</strong>, <strong>defaultScale</strong> with value of 0 indicate that the value will be ignored, i.e. the values are automatically set to the equivalent of Infinity, Infinity and 1 respectively. If the legends URL passed to MapFish (see <a href="http://mapfish.org/doc/print/protocol.html#print-pdf">http://mapfish.org/doc/print/protocol.html#print-pdf</a>) are obtained from a WMS GetLegendGraphic request, the width/height are only indicative (even more when a label text is included with <a href="https://docs.geoserver.org/stable/en/user/services/wms/get_legend_graphic/index.md#controlling-legend-appearance-with-legend-options">LEGEND_OPTIONS/forceLabels parameter</a>) and it would be safer, in order to preserve scale coherence between legends and map, to set <strong>iconMaxWidth</strong> and <strong>iconMaxHeight</strong> to zero.</p>
 <p><strong>textMaxWidth/Height</strong> and <strong>iconMaxWidth/Height</strong> define how wide/high the text/icon cells of a legend item can be. At this point textMaxHeight is ignored.</p>
 <p><strong>textPadding</strong> and <strong>iconPadding</strong> can be used like standard CSS padding. In the above example 8 is the padding top, 7 padding right, 6 padding bottom and 5 padding left.</p>
 <p>if <strong>inline</strong> is true icons and text are rendered on the same line, BUT multicolumn is still enabled.</p>
 <p>if <strong>maxWidth</strong> is set the whole legend gets a maximum width, just like other blocks. Note that <strong>maxWidth</strong> does not have any impact on icons size, thus icons may overflow outside the legends block.</p>
 <p>if <strong>maxHeight</strong> is set the whole legend gets a maximum height. This forces more than one column to appear if the legend is higher than the specified value. This can be used to enable the multi-column layout. 0 makes the maxHeight= max value, i.e. the equivalent of infinity.</p>
-<p>if <strong>defaultScale</strong> is non null it means that the legend image will be scaled so it doesn't take the full space. This can be overriden for individual classes in the spec JSON sent to the print module by adding an attribute called 'scale' and giving it a number. In conjunction with iconMaxWidth/Height this can be used to control average and also maximum width/height. If <strong>defaultScale</strong> equals 1, one pixel is scaled to one point (1/72 inch) in generated PDF. By default, as GeoServer legends are generated with \~90 dpi resolution (exactly 25.4/0.28), setting <strong>defaultScale</strong> value to 0.7937 (72*0.28/25.4) produces legend icons of same size as corresponding map icons. As the <a href="https://docs.geoserver.org/stable/en/user/services/wms/get_legend_graphic/index.html#controlling-legend-appearance-with-legend-options">LEGEND_OPTIONS/dpi GeoServer parameter</a> is not handled by MapFish, the resolution will necessary be \~91 dpi, which may cause visual quality difference with the map.</p>
+<p>if <strong>defaultScale</strong> is non null it means that the legend image will be scaled so it doesn't take the full space. This can be overriden for individual classes in the spec JSON sent to the print module by adding an attribute called 'scale' and giving it a number. In conjunction with iconMaxWidth/Height this can be used to control average and also maximum width/height. If <strong>defaultScale</strong> equals 1, one pixel is scaled to one point (1/72 inch) in generated PDF. By default, as GeoServer legends are generated with \~90 dpi resolution (exactly 25.4/0.28), setting <strong>defaultScale</strong> value to 0.7937 (72*0.28/25.4) produces legend icons of same size as corresponding map icons. As the <a href="https://docs.geoserver.org/stable/en/user/services/wms/get_legend_graphic/index.md#controlling-legend-appearance-with-legend-options">LEGEND_OPTIONS/dpi GeoServer parameter</a> is not handled by MapFish, the resolution will necessary be \~91 dpi, which may cause visual quality difference with the map.</p>
 <p>For this to work, you need to set the <strong>layerTree</strong> config option on MF print widgets, more precisely the legends should be present in the print.pdf JSON request.</p>
 <p><strong>layerSpaceBefore</strong> is to specify the space before the second and consecutive layers.</p>
 <p><strong>layerSpace</strong> and <strong>classSpace</strong> is to specify the line space to add after layers and classes.</p>
