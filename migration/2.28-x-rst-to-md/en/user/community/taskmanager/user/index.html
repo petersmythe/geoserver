@@ -28829,7 +28829,7 @@
 <p>To install the GeoServer Task Manager extension:</p>
 <ol>
 <li>Download the extension from the <a href="https://geoserver.org/download">GeoServer Download
-    Page</a> release page: <a href="https://build.geoserver.org/geoserver/main/community-latest/taskmanager-core">taskmanager-core</a>. For <a href="#s3-file-service">S3 support</a>, also install the plugin <a href="https://build.geoserver.org/geoserver/main/community-latest/taskmanager-s3">taskmanager-s3</a></li>
+    Page</a> release page: <a href="https://build.geoserver.org/geoserver/main/community-latest/taskmanager-core">taskmanager-core</a>. For <a href="#s3-file-service">S3 support</a>, also install the plugin <a href="https://build.geoserver.org/geoserver/main/community-latest/geoserver-2.28-SNAPSHOT-taskmanager-s3-plugin.zip">taskmanager-s3</a></li>
 <li>Extract this file and place the JARs in <strong><code>WEB-INF/lib</code></strong>.</li>
 <li>Perform any configuration required by your servlet container, and then restart. On startup, Task Manager will create a configuration directory <strong><code>taskmanager</code></strong> in the GeoServer Data Directory. You will be able to see the Task Manager configuration pages from the GeoServer WebGUI menu.</li>
 </ol>
@@ -29002,7 +29002,7 @@
 <p><img alt="" src="../img/template-db-workflow.png" />
 <em>template db workflow</em></p>
 <h3 id="configurations">Configurations<a class="headerlink" href="#configurations" title="Permanent link">&para;</a></h3>
-<p>From the <a href="basic.html#configurations">configurations</a> page, new configurations can be created from scratch or from templates (or copied from existing configurations), existing configurations can be edited and removed.</p>
+<p>From the <a href="../basic/#configurations">configurations</a> page, new configurations can be created from scratch or from templates (or copied from existing configurations), existing configurations can be edited and removed.</p>
 <p><img alt="" src="../img/configurations.png" />
 <em>configurations</em></p>
 <p>When removing a configuration, you have to option to do a <em>clean-up</em>, which will attempt to remove all resources (database tables, files, layers) that were created by (tasks of) this configuration. If this (partially) fails, the configuration will still be removed and the user will be notified.</p>
@@ -29010,14 +29010,14 @@
 <p><img alt="" src="../img/template-db-workflow-config2.png" />
 <em>workflow config 2</em></p>
 <p>The attribute table adjusts automatically based on the information in the tasks table; and only the values must be filled in. In the task table, the name and parameters of each task can be edited, and new tasks can be created. Tasks can only be removed if they are not part of a batch any longer. Batches can only be removed if they are not running anywhere. When removing a task, you have to option to do a <em>clean-up</em>, which will attempt to remove all resources (database tables, files, layers) that were created by this task. If this (partially) fails, the task will still be removed and the user will be notified.</p>
-<p>Batches can be created and edited from here as well, however the configuration must exist in order to be able to do that (in case of a new configuration, you must click <code>apply</code> once before you can create new batches). New tasks must also be saved (again, via the <code>apply</code> button) before they can be added to a batch. In case that the <a href="basic.html#batches">conditions</a> are met, batch runs can be started, and the status/history of current and past batch runs can be displayed. Current batch runs can be interrupted (which is not guaranteed to happen immediately).</p>
+<p>Batches can be created and edited from here as well, however the configuration must exist in order to be able to do that (in case of a new configuration, you must click <code>apply</code> once before you can create new batches). New tasks must also be saved (again, via the <code>apply</code> button) before they can be added to a batch. In case that the <a href="../basic/#batches">conditions</a> are met, batch runs can be started, and the status/history of current and past batch runs can be displayed. Current batch runs can be interrupted (which is not guaranteed to happen immediately).</p>
 <h4 id="importexport">Import/Export<a class="headerlink" href="#importexport" title="Permanent link">&para;</a></h4>
 <p>It is also possible to import/export entire configurations to XML, for example to transfer them from one geoserver to another. The import button is on the configurations page, while the export button is on the page of a specific configuration. The user is responsible for making sure that the configuration is compatible with the other geoserver (available task extensions, attribute values,...).</p>
 <h3 id="batches">Batches<a class="headerlink" href="#batches" title="Permanent link">&para;</a></h3>
-<p>From the <a href="basic.html#batches">batches</a> page, new independent batches (not associated with a configuration) can be created, existing batches can be edited and removed. All existing batches - independent as well as belonging to a configuration - are shown, unless they are special (if they start with a <code>@</code>) or if the configuration has not yet been completed (see <a href="basic.html#initializing-templates">initializing templates</a>).</p>
+<p>From the <a href="../basic/#batches">batches</a> page, new independent batches (not associated with a configuration) can be created, existing batches can be edited and removed. All existing batches - independent as well as belonging to a configuration - are shown, unless they are special (if they start with a <code>@</code>) or if the configuration has not yet been completed (see <a href="../basic/#initializing-templates">initializing templates</a>).</p>
 <p><img alt="" src="../img/batches.png" />
 <em>batches</em></p>
-<p>In case that the <a href="basic.html#batches">conditions</a> are met, batch runs can be started, and the status/history of current and past batch runs can be displayed. Current batch runs can be interrupted (which is not guaranteed to happen immediately).</p>
+<p>In case that the <a href="../basic/#batches">conditions</a> are met, batch runs can be started, and the status/history of current and past batch runs can be displayed. Current batch runs can be interrupted (which is not guaranteed to happen immediately).</p>
 <p><img alt="" src="../img/batchruns.png" />
 <em>batchruns</em></p>
 <p><img alt="" src="../img/batchrun.png" />

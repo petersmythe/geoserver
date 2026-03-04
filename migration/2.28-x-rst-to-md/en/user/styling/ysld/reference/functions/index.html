@@ -28562,7 +28562,7 @@
 </code></pre></div>
 <p>Functions are evaluated at rendering time, so the output is passed as the parameter value and then rendered accordingly.</p>
 <h2 id="list-of-functions">List of functions<a class="headerlink" href="#list-of-functions" title="Permanent link">&para;</a></h2>
-<p>A reference list of functions can be found in the <a href="../../../geoserver/filter/function_reference.html">GeoServer User Manual</a> and is also available in raw form in the <a href="https://docs.geotools.org/latest/userguide/library/main/function_list.html">GeoTools User Manual Function List</a>.</p>
+<p>A reference list of functions can be found in the <a href="../../../../filter/function_reference/">GeoServer User Manual</a> and is also available in raw form in the <a href="https://docs.geotools.org/latest/userguide/library/main/function_list.html">GeoTools User Manual Function List</a>.</p>
 <p>The functions can be broken up loosely into categories such as geometric, math, and string functions.</p>
 <h3 id="ysld_reference_functions_theming">Theming functions<a class="headerlink" href="#ysld_reference_functions_theming" title="Permanent link">&para;</a></h3>
 <p>There are three important functions that are often easier to use for theming than using rules, and can vastly simplify your style documents: <strong>Recode</strong>, <strong>Categorize</strong>, and <strong>Interpolate</strong>.</p>
@@ -28694,11 +28694,11 @@
 <em>Buffered outline</em></p>
 <p>See also:</p>
 <ul>
-<li><a href="../../../geoserver/filter/function_reference.html#geometric-functions">convexHull(geom)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#geometric-functions">octagonalEnvelope(geom)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#geometric-functions">mincircle(geom)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#geometric-functions">minrectangle(geom)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#geometric-functions">minimumdiameter(geom)</a></li>
+<li><a href="../../../../filter/function_reference/#geometric-functions">convexHull(geom)</a></li>
+<li><a href="../../../../filter/function_reference/#geometric-functions">octagonalEnvelope(geom)</a></li>
+<li><a href="../../../../filter/function_reference/#geometric-functions">mincircle(geom)</a></li>
+<li><a href="../../../../filter/function_reference/#geometric-functions">minrectangle(geom)</a></li>
+<li><a href="../../../../filter/function_reference/#geometric-functions">minimumdiameter(geom)</a></li>
 </ul>
 <h3 id="display-vertices-of-a-line">Display vertices of a line<a class="headerlink" href="#display-vertices-of-a-line" title="Permanent link">&para;</a></h3>
 <p>The <code>vertices(geom)</code> function takes a geometry and returns a collection of points representing the vertices of the geometry. This can be used to convert a polygon or line geometry into a point geometry:</p>
@@ -28709,8 +28709,8 @@
 <em>Endpoint arrows</em></p>
 <p>See also:</p>
 <ul>
-<li><a href="../../../geoserver/filter/function_reference.html#geometric-functions">boundary(geom)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#geometric-functions">centroid(geom)</a></li>
+<li><a href="../../../../filter/function_reference/#geometric-functions">boundary(geom)</a></li>
+<li><a href="../../../../filter/function_reference/#geometric-functions">centroid(geom)</a></li>
 </ul>
 <h3 id="angle-between-two-points">Angle between two points<a class="headerlink" href="#angle-between-two-points" title="Permanent link">&para;</a></h3>
 <p>The <code>atan2(x, y)</code> function calculates the arctangent of (y/x) and so is able to determine the angle (in radians) between two points. This function uses the signs of the x and y values to determine the computed angle, so it is preferable over <code>atan()</code>. The <code>getX(point_geom)</code> and <code>getY(point_geom)</code> extracts the <code>x</code> and <code>y</code> ordinates from a geometry respectively, while <code>toDegrees(value)</code> converts from radians to degrees:</p>
@@ -28724,14 +28724,14 @@
 </code></pre></div>
 <p>See also:</p>
 <ul>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">sin(value)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">cos(value)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">tan(value)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">asin(value)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">acos(value)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">atan(value)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">toRadians(value)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">pi()</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">sin(value)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">cos(value)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">tan(value)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">asin(value)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">acos(value)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">atan(value)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">toRadians(value)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">pi()</a></li>
 </ul>
 <h3 id="scale-objects-based-on-a-large-range-of-values">Scale objects based on a large range of values<a class="headerlink" href="#scale-objects-based-on-a-large-range-of-values" title="Permanent link">&para;</a></h3>
 <p>The <code>log(value)</code> function returns the natural logarithm of the provided value. Use <code>log(value)/log(base)</code> to specify a different base.</p>
@@ -28744,9 +28744,9 @@
 </code></pre></div>
 <p>See also:</p>
 <ul>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">exp(val)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">pow(base,exponent)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#math-functions">sqrt(val)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">exp(val)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">pow(base,exponent)</a></li>
+<li><a href="../../../../filter/function_reference/#math-functions">sqrt(val)</a></li>
 </ul>
 <h3 id="combine-several-strings-into-one">Combine several strings into one<a class="headerlink" href="#combine-several-strings-into-one" title="Permanent link">&para;</a></h3>
 <p>The <code>Concatenate(string1, string2, ...)</code> function takes any number of strings and combines them to form a single string. This can be used to display more than one attribute within a single label:</p>
@@ -28760,8 +28760,8 @@
 </code></pre></div>
 <p>See also:</p>
 <ul>
-<li><a href="../../../geoserver/filter/function_reference.html#string-functions">strToLowerCase(string)</a></li>
-<li><a href="../../../geoserver/filter/function_reference.html#string-functions">strToUpperCase(string)</a></li>
+<li><a href="../../../../filter/function_reference/#string-functions">strToLowerCase(string)</a></li>
+<li><a href="../../../../filter/function_reference/#string-functions">strToUpperCase(string)</a></li>
 </ul>
 <h3 id="color-based-on-discrete-values">Color based on discrete values<a class="headerlink" href="#color-based-on-discrete-values" title="Permanent link">&para;</a></h3>
 <p>In certain cases, theming functions can be used in place of filters to produce similar output much more simply. For example, the Recode function can take an attribute and output a different value based on an attribute value. So instead of various filters, the entire constructions can be done in a single line. For example, this could be used to color different types of buildings:</p>

@@ -28415,13 +28415,13 @@
 
 
 <h1 id="basic-concepts">Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permanent link">&para;</a></h1>
-<p>The two main kinds of objects of the <a href="index.html">Task Manager</a> are <a href="#configurations">configurations</a> and <a href="#batches">batches</a>. Task Manager also allows the creation of <a href="#templates">Templates</a> for configurations.</p>
+<p>The two main kinds of objects of the <a href="../">Task Manager</a> are <a href="#configurations">configurations</a> and <a href="#batches">batches</a>. Task Manager also allows the creation of <a href="#templates">Templates</a> for configurations.</p>
 <h2 id="configurations">Configurations<a class="headerlink" href="#configurations" title="Permanent link">&para;</a></h2>
 <p>The configuration is the central object in the Task Manager. A configuration is typically linked to a data object, such as a GeoServer layer, and serves as an entry point to the tasks and batches related to this data object.</p>
 <p>A configuration has a unique name, a description and a workspace. It contains three groups of objects:</p>
 <ul>
 <li><code>Attributes</code>: The attributes contain information about this configuration that can be shared between the different tasks of this configuration. An attribute has a name and a value. Each attribute is associated with at least one task parameter (see below). Attributes inherit their validation properties from their associated parameters, such as its accepted values and whether it is required.</li>
-<li><code>Tasks</code>: Each task configures an operation that can be executed on this configuration. Each task has a name that is unique within the configuration, a type and a list of parameters with each a name and a value. The full name of a task is donated as <em>configuration-name/task-name</em> (which serves as a unique identifier for the task). The task's type is chosen from a <a href="user.html#task-types">list of available task types</a> which define different kinds of operations (for example: copy a database table, publish a layer, ..) and expects a list of parameters that each has a name and a type. A parameter may or may not be required. The parameter type defines the accepted values of the parameter. Parameter types are dependent types when the list of accepted values depends on the value of another parameter (for example: tables inside a database). A parameter value is either a literal or a reference to an attribute of the form <code>${attribute-name}</code>.</li>
+<li><code>Tasks</code>: Each task configures an operation that can be executed on this configuration. Each task has a name that is unique within the configuration, a type and a list of parameters with each a name and a value. The full name of a task is donated as <em>configuration-name/task-name</em> (which serves as a unique identifier for the task). The task's type is chosen from a <a href="../user/#task-types">list of available task types</a> which define different kinds of operations (for example: copy a database table, publish a layer, ..) and expects a list of parameters that each has a name and a type. A parameter may or may not be required. The parameter type defines the accepted values of the parameter. Parameter types are dependent types when the list of accepted values depends on the value of another parameter (for example: tables inside a database). A parameter value is either a literal or a reference to an attribute of the form <code>${attribute-name}</code>.</li>
 <li><code>Batches</code>.</li>
 </ul>
 <h2 id="batches">Batches<a class="headerlink" href="#batches" title="Permanent link">&para;</a></h2>
@@ -28435,7 +28435,7 @@
 <p>A batch can be run manually if the following conditions are met:</p>
 <ul>
 <li>the list of tasks is non-empty;</li>
-<li>the operating user has the security rights to do so (see <a href="user.html#security">Security</a>).</li>
+<li>the operating user has the security rights to do so (see <a href="../user/#security">Security</a>).</li>
 </ul>
 <p>A batch will be run automatically on its scheduled time if the following conditions are met:</p>
 <ul>
@@ -28456,7 +28456,7 @@
 <p><em>run T1 -&gt; run T2 -&gt; run T3 -&gt; commit T3 -&gt; commit T2 -&gt; commit T1</em>.</p>
 <p>However, if T2 fails, the run would be</p>
 <p><em>run T1 -&gt; run T2 (failure) -&gt; rollback T1</em>.</p>
-<p>Most tasks support <code>COMMIT/ROLLBACK</code> by creating temporary objects that only become definite objects after a <code>COMMIT</code>. The <code>ROLLBACK</code> phase then simply cleans up those temporary objects. However, some particular <a href="user.html#task-types">task types</a> may not support the <code>COMMIT/ROLLBACK</code> mechanism (in which case running them is definite).</p>
+<p>Most tasks support <code>COMMIT/ROLLBACK</code> by creating temporary objects that only become definite objects after a <code>COMMIT</code>. The <code>ROLLBACK</code> phase then simply cleans up those temporary objects. However, some particular <a href="../user/#task-types">task types</a> may not support the <code>COMMIT/ROLLBACK</code> mechanism (in which case running them is definite).</p>
 <p>The commit phase happens in opposite order because dependencies in the old version of the data often requires this. A concrete example may clear things up. Imagine that <em>T1</em> copies a database table <em>R</em> from one database to another, while <em>T2</em> creates a view <em>V</em> based on that table, so <em>V</em> depends on <em>R</em>. If the table and view already exist in older versions (<em>R_old</em> and <em>V_old</em>), they must not be removed until the <code>COMMIT</code> phase, so that their original state remains in the case of a <code>ROLLBACK</code>. During the <code>COMMIT</code> phase, <em>R_old</em> and <em>V_old</em> are removed, but it is not possible to remove <em>R_old</em> until <em>V_old</em> is removed. Therefore it is necessary to commit <em>T2</em> before <em>T1</em>.</p>
 <p>The <code>COMMIT</code> phase typically replaces old objects with the new objects that have a temporary name. Since tasks often create objects that depend on objects of the previous tasks, these objects contain references to temporary names. Which means that when the temporary object is committed and becomes the real object, references in depending objects must also be updated. For this purpose, a tasks that uses a temporary object from a previous task registers a <em>dependency</em>, which is essentially an update added to the commit phase of that previous task.</p>
 <p>If <em>T3</em> has a dependency on task <em>T1</em> that we call <em>D1</em>, the following happens:</p>

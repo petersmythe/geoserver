@@ -29317,7 +29317,7 @@
 <p>A chosen DPI value from the above configuration is used in WMS GetMap requests as an added format_options (GeoServer) or map_resolution (MapServer) parameter. This is used for symbol/label-rescaling suitable for high resolution printouts, see <a href="https://docs.geoserver.org/stable/en/user/services/wms/vendor.html">Geoserver format_options specification</a> (Geoserver 2.1) and <a href="http://mapserver.org/development/rfc/ms-rfc-55.html">MapServer defresolution keyword</a> (MapServer 5.6) for more information.</p>
 <p>In general, PDF dimensions and positions are specified in points. 72 points == 1 inch == 25.4 mm.</p>
 <h3 id="getting-maps">Getting Maps<a class="headerlink" href="#getting-maps" title="Permanent link">&para;</a></h3>
-<p>The list of {HOST_WHITELIST_DEFINITION} defines the allowed URLs for getting maps. Its format will be defined in <a href="configuration.html#host-whitelist-definition">the next sub-section</a>.</p>
+<p>The list of {HOST_WHITELIST_DEFINITION} defines the allowed URLs for getting maps. Its format will be defined in <a href="./#host-whitelist-definition">the next sub-section</a>.</p>
 <p>The formats element lists the values formats that the server permits.</p>
 <ul>
 <li>If omitted only 'pdf' is permitted.</li>
@@ -29334,7 +29334,7 @@
 <h3 id="layouts">Layouts<a class="headerlink" href="#layouts" title="Permanent link">&para;</a></h3>
 <p>You can have as many layouts as you want. Their name must be unique and will be used on the client side.</p>
 <p>A layout can have a "titlePage" that will be added at the beginning of the generated document. It cannot contain any map.</p>
-<p>The "mainPage" section is mandatory and will be used once for each page requested. The details of a {PAGE_DEFINITION} section can be found <a href="configuration.html#page-definition">in another sub-section of this document</a>.</p>
+<p>The "mainPage" section is mandatory and will be used once for each page requested. The details of a {PAGE_DEFINITION} section can be found <a href="./#page-definition">in another sub-section of this document</a>.</p>
 <p>A layout "lastPage", will be added for the end of the document, and cannot contain any map.</p>
 <p>If you want to let the user rotate the map (for a given layout), you have to set the "rotate" field to "true" in the corresponding "mainPage" section.</p>
 <h3 id="output-filename">Output filename<a class="headerlink" href="#output-filename" title="Permanent link">&para;</a></h3>
@@ -29436,7 +29436,7 @@
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p p-Indicator">?</span><span class="w">     </span><span class="nt">creator</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="p p-Indicator">?</span><span class="w">     </span><span class="nt">supportLegacyReader</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
-<p>All fields are optional and can use global variables, as defined in the <a href="configuration.html#block-definition">Block definition</a> chapter. Page specific variables are not accessible.</p>
+<p>All fields are optional and can use global variables, as defined in the <a href="./#block-definition">Block definition</a> chapter. Page specific variables are not accessible.</p>
 <h2 id="page-definition">Page definition<a class="headerlink" href="#page-definition" title="Permanent link">&para;</a></h2>
 <p>The structure is like that:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">pageSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A4</span>
@@ -29604,7 +29604,7 @@
 <li>Identity-V (vertical UTF-8)</li>
 <li>MacRoman</li>
 </ul>
-<p>The "font" must refer to a standard PDF font or a <a href="configuration.html#fonts-definition">declared font</a>.</p>
+<p>The "font" must refer to a standard PDF font or a <a href="./#fonts-definition">declared font</a>.</p>
 <h3 id="html-in-text-blocks">HTML In Text Blocks<a class="headerlink" href="#html-in-text-blocks" title="Permanent link">&para;</a></h3>
 <p>The new configuration property <code>asHTML</code> (to be used in <strong><code>config.yaml</code></strong> text blocks) allows to automatically render the included text as HTML (when true), instead of simple text. HTML tags are interpreted and styled.</p>
 <h2 id="image-block">Image block<a class="headerlink" href="#image-block" title="Permanent link">&para;</a></h2>
@@ -29770,7 +29770,7 @@
 <a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">      </span><span class="nt">cell</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">BLOCK_DEFINITION</span><span class="p p-Indicator">}</span>
 <a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">  </span><span class="w w-Error">  </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span>
 </code></pre></div>
-<p>Look <a href="configuration.html#table-configuration">here</a> for how to specify the <em>tableConfig</em> field.</p>
+<p>Look <a href="./#table-configuration">here</a> for how to specify the <em>tableConfig</em> field.</p>
 <p>The <em>columnWeigth</em> (MF_V1.2 only) allows to define a weight for the column width. If you specify it for one column, you have to specify it for all of them. The width of a given column is tableWidth*columnWeight/sum(columnWeight).</p>
 <p>The <strong>source</strong> value defines the name of the entry in the root of the client's <strong>spec</strong>. For example, it would look like that:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p p-Indicator">{</span>
