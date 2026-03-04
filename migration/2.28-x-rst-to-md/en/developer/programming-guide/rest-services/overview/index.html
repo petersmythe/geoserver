@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../img/geoserver.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -2835,7 +2835,7 @@
 <p>GeoServer uses a library known as <a href="http://www.restlet.org/">Restlet</a> for all REST related functionality. Restlet is a lightweight rest framework written in Java that integrates nicely with existing servlet based applications.</p>
 <h2 id="rest-dispatching">REST dispatching<a class="headerlink" href="#rest-dispatching" title="Permanent link">&para;</a></h2>
 <p>In GeoServer, all requests under the path <code>/rest</code> are considered a call to a restful service. Every call of this nature is handled by a <em>rest dispatcher</em>. The job of the dispatcher is to route the request to the appropriate end point. This end point is known as a <em>restlet</em>.</p>
-<p><img alt="image" src="../rest-dispatch.png" /></p>
+<p><img alt="image" src="../img/rest-dispatch.png" /></p>
 <p>Restlets are loaded from the spring context, and therefore are pluggable.</p>
 <h2 id="restlets">Restlets<a class="headerlink" href="#restlets" title="Permanent link">&para;</a></h2>
 <p>A <em>restlet</em> is the generic entity which handles calls routed by the dispatcher, and corresponds to the class <code>org.restlet.Restlet</code>. One can extend this class directly to implement a service endpoint. Alternatively one can extend a subclass for a specialized purpose. Namely a <em>finder</em>, which is described in the next section.</p>

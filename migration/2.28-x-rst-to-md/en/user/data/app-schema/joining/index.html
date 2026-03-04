@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../img/geoserver.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -28369,7 +28369,7 @@
 </ul>
 <h2 id="effects-on-performance">Effects on Performance<a class="headerlink" href="#effects-on-performance" title="Permanent link">&para;</a></h2>
 <p>Typical curves of response time for configurations with and without joining against the amount of features produced will be shaped like this:</p>
-<p><img alt="image" src="../joining.png" /></p>
+<p><img alt="image" src="../img/joining.png" /></p>
 <p>In the default implementation, response time increases rapidly with respect to the amount of produced features. This is because feature chaining is implemented by sending multiple SQL requests to the DBMS per feature, so the amount of requests increases with the amount of features produced. When Joining is turned on, response time will be almost constant with respect to the number of features. This is because in this implementation a small amount of larger queries is sent to the DBMS, independent of the amount of features produced. In summary, difference in performance becomes greater as the amount of features requested gets bigger. General performance of joining will be dependant on database and mapping design (see above) and database size.</p>
 <p>Using joining is strongly recommended when a large number of features need to be produced, for example when producing maps with WMS (see <code class="interpreted-text" role="ref">app-schema.wms-support</code>).</p>
 <p>Optimising the performance of the database will maximise the benefit of using joining, including for small queries.</p>

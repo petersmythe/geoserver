@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../../img/geoserver.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -28345,7 +28345,7 @@
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>In KML a "Placemark" is used to mark a position on a map, often visualized with a yellow push pin. A placemark can have a "description" which allows one to attach information to it. Placemark descriptions are nothing more than an HTML snippet and can contain anything we want it to.</p>
 <p>By default GeoServer produces placemark descriptions which are HTML tables describing all the attributes available for a particular feature in a dataset. In the following image we see the placemark description for the feature representing Idaho state:</p>
-<p><img alt="" src="default.jpg" />
+<p><img alt="" src="img/default.jpg" />
 <em>The default placemark</em></p>
 <p>This is great, but what about if one wanted some other sort of information to be conveyed in the description. Or perhaps one does not want to show all the attributes of the dataset. The answer is Templates!!</p>
 <p>A template is more or less a way to create some output.</p>
@@ -28379,12 +28379,12 @@
 </code></pre></div>
 <p>And voila. Your first template</p>
 <blockquote>
-<p><img alt="" src="helloworld.png" />
+<p><img alt="" src="img/helloworld.png" />
 <em>Hello World template.</em></p>
 </blockquote>
 <p><strong>Refreshing Templates</strong>: One nice aspect of templates is that they are read upon every request. So one can simply edit the template in place and have it picked up by GeoServer as soon as the file is saved. So when after editing and saving a template simply "Refresh" the network link in Google Earth to have the new content picked up.</p>
 <blockquote>
-<p><img alt="" src="refresh.png" />
+<p><img alt="" src="img/refresh.png" />
 <em>Refresh Template</em></p>
 </blockquote>
 <p>As stated before template descriptions are nothing more than html. Play around with <code>description.ftl</code> and add some of your own html. Some examples you may want to try:</p>
@@ -28395,7 +28395,7 @@
 </ol>
 <p>Homepage of Topp</p>
 <blockquote>
-<p><img alt="" src="topplink.png" />
+<p><img alt="" src="img/topplink.png" />
 <em>Homepage of Topp</em></p>
 </blockquote>
 <ol>
@@ -28405,7 +28405,7 @@
 </ol>
 <p>Logo of Topp</p>
 <blockquote>
-<p><img alt="" src="topplogo.png" />
+<p><img alt="" src="img/topplogo.png" />
 <em>Logo of Topp</em></p>
 </blockquote>
 <p>The possibilities are endless. Now this is all great and everything but these examples are some what lacking in that the content is static. In the next section we will create more realistic template which actually access some the attributes of our data set.</p>
@@ -28421,13 +28421,13 @@
 <div class="highlight"><pre><span></span><code>This is feature ${fid} of type ${typeName}.
 </code></pre></div>
 <p>This is a feature of 3.1 of type states.</p>
-<p><img alt="" src="fid.png" />
+<p><img alt="" src="img/fid.png" />
 <em>FID</em></p>
 <p>Access to the values of two attributes named <code>STATE_NAME</code>, and <code>PERSONS</code>:</p>
 <div class="highlight"><pre><span></span><code>This is ${STATE_NAME.value} state which has a population of ${PERSONS.value}.
 </code></pre></div>
 <p>ID This is Idaho state which has a population of 1.006.749.</p>
-<p><img alt="" src="attributes.png" />
+<p><img alt="" src="img/attributes.png" />
 <em>Attributes</em></p>
 <h2 id="attribute-variables">Attribute Variables<a class="headerlink" href="#attribute-variables" title="Permanent link">&para;</a></h2>
 <p>A feature attribute a "complex object" which is made up of three parts:</p>
@@ -28452,7 +28452,7 @@
 </li>
 </ol>
 <p>Poi.4</p>
-<p><img alt="" src="wmsexample.png" />
+<p><img alt="" src="img/wmsexample.png" />
 <em>WMS Example</em></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

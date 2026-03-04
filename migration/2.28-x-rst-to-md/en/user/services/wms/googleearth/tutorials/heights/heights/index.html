@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../../../img/geoserver.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -28355,14 +28355,14 @@
 <p>To view the <code>topp:states</code> layer (packaged with all releases of GeoServer) in Google Earth, the easiest way is to use a network link. In Google Earth, under <strong>Places</strong>, right-click on <strong>Temporary Places</strong>, and go to <strong>Add --&gt; Network Link</strong>. In the dialog box, fill in <code>topp:states</code> as the <strong>Name</strong>, and the following URL as the <strong>Link</strong>:</p>
 <div class="highlight"><pre><span></span><code>http://localhost:8080/geoserver/wms/reflect?layers=topp:states&amp;format=application/vnd.google-earth.kml+xml
 </code></pre></div>
-<p><img alt="" src="../height-none.png" />
+<p><img alt="" src="../img/height-none.png" />
 <em>topp:states in Google Earth</em></p>
 <h2 id="step-two">Step Two<a class="headerlink" href="#step-two" title="Permanent link">&para;</a></h2>
 <p>An interesting value to use for the height would be the population of each state (so that more populated states appear taller on the map). We can do this by creating a file called <code>height.ftl</code> in the GeoServer data directory under <code>workspaces/topp/states_shapefile/states</code>. To set the population value, we enter the following text inside this new file:</p>
 <div class="highlight"><pre><span></span><code>${PERSONS.value}
 </code></pre></div>
 <p>This uses the value of the <code>PERSONS</code> attribute as the height for each feature. To admire our handiwork, we can refresh our view by right-clicking on our temporary place (called <code>topp:states</code>) and selecting <strong>Refresh</strong>:</p>
-<p><img alt="" src="../height-toomuch.png" />
+<p><img alt="" src="../img/height-toomuch.png" />
 <em>Height by Population</em></p>
 <h2 id="step-three">Step Three<a class="headerlink" href="#step-three" title="Permanent link">&para;</a></h2>
 <p>Looking at our population map, we see that California dwarfs the rest of the nation, and in general all of the states are too tall for us to see the heights from a convenient angle. In order to scale things down to a more manageable size, we can divide all height values by 100. Just change the template we wrote earlier to read:</p>
@@ -28376,7 +28376,7 @@ Expression PERSONS.value is not numerical
 <div class="highlight"><pre><span></span><code>${PERSONS.value?number / 100}
 </code></pre></div>
 <p>One final <strong>Refresh</strong> brings us to a nicely sized map of the US:</p>
-<p><img alt="" src="../height-math.png" />
+<p><img alt="" src="../img/height-math.png" />
 <em>Scaled Height</em></p>
 <h2 id="step-four">Step Four<a class="headerlink" href="#step-four" title="Permanent link">&para;</a></h2>
 <p>There are still a couple of tweaks we can make. The default is to create a 'solid' look for features with height, but Google Earth can also create floating polygons that are disconnected from the ground. To turn off the 'connect to ground' functionality, add a format option called 'extrude' whose value is 'false'. That is, change the <strong>Link</strong> in the Network Link to be:</p>
