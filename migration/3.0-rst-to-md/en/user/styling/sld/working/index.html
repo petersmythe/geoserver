@@ -23701,40 +23701,9 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../../community/jwt-headers/" class="md-nav__link">
         
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_17_29" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../../community/jwt-headers/" class="md-nav__link ">
-              
   
   
   <span class="md-ellipsis">
@@ -23748,115 +23717,7 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_17_29" id="__nav_17_29_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_17_29_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_17_29">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    JWT Headers
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../community/jwt-headers/overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    JWT Header Overview
-  
-
-    
-  </span>
-  
-  
-
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../community/jwt-headers/installing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../community/jwt-headers/configuration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    JWT Headers configuration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -28260,7 +28121,7 @@
 <p>A Style Layer Descriptor is a <a href="../reference/sld/">StyledLayerDescriptor</a> document containing any number of <code>&lt;NamedLayer&gt;</code> and <code>&lt;UserLayer&gt;</code> elements, each of which may contain any number of <code>&lt;UserStyle&gt;</code> or <code>&lt;NamedStyle&gt;</code> elements.</p>
 <p>Within a Style Layer Descriptor document, the name of any <code>&lt;NamedLayer&gt;</code> elements should match a layer (or layer group) in the catalog. Likewise, any <code>&lt;NamedStyle&gt;</code> elements should refer to a style in the catalog.</p>
 <p>Style Layer Descriptor styles can define new layers of styled data, by using the <a href="../reference/layers/#sld_reference_inlinefeature">InlineFeature</a> element to provide feature data.</p>
-<p>Within GeoServer, when Style Layer Descriptor styles are used they are typically in the form of style groups. Style groups can be added to layer groups as an alternative way of defining a collection of styled layers, using either the <a href="../../../data/webadmin/layergroups/">Web Administration interface</a> or the <a href="api/layergroups.yaml">REST API</a>.</p>
+<p>Within GeoServer, when Style Layer Descriptor styles are used they are typically in the form of style groups. Style groups can be added to layer groups as an alternative way of defining a collection of styled layers, using either the <a href="../../../data/webadmin/layergroups/">Web Administration interface</a> or the <a href="../../../rest/layergroups/">REST API</a>.</p>
 <p>Style Layer Descriptor styles can still be assigned to layers and used like a layer style, in which case only the first <code>&lt;NamedLayer&gt;</code> will be used. Style Layer Descriptor styles can also be used as an External Style, via the geoserver styles endpoint (<code>/geoserver/styles</code>) or the geoserver REST api.</p>
 <h3 id="external-styles">External Styles<a class="headerlink" href="#external-styles" title="Permanent link">&para;</a></h3>
 <p>Styling can be defined externally to the server in a number of ways:</p>
