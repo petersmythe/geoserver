@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://docs.geoserver.org/3.0/en/developer/policies/security/">
+        <link rel="canonical" href="https://docs.geoserver.org/3.0/en/developer/policies/gsip_voting/">
       
       
-        <link rel="prev" href="../service_providers/">
-      
-      
-        <link rel="next" href="../../installer/">
       
       
         
@@ -25,7 +21,7 @@
     
     
       
-        <title>Security Procedure - GeoServer Developer Manual</title>
+        <title>Gsip voting - GeoServer Developer Manual</title>
       
     
     
@@ -77,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#security-procedure" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -113,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Security Procedure
+              Gsip voting
             
           </span>
         </div>
@@ -455,12 +446,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../" class="md-tabs__link">
           
   
@@ -2254,8 +2243,6 @@
       
   
   
-    
-  
   
   
     
@@ -2287,19 +2274,18 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2321,13 +2307,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="">
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2568,37 +2554,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Security Procedure
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
         
   
   
@@ -2614,104 +2573,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vulnerability-reporting-and-discussion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vulnerability reporting and discussion
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Vulnerability reporting and discussion">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#guidance-on-communication-challenges" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Guidance on communication challenges
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geoserver-security-list-participation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        geoserver-security list participation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coordinated-vulnerability-disclosure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coordinated vulnerability disclosure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Coordinated vulnerability disclosure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#working-with-vulnerability-reports" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Working with vulnerability reports
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#publicly-reported-issue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Publicly reported issue
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2768,94 +2629,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vulnerability-reporting-and-discussion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vulnerability reporting and discussion
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Vulnerability reporting and discussion">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#guidance-on-communication-challenges" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Guidance on communication challenges
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geoserver-security-list-participation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        geoserver-security list participation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coordinated-vulnerability-disclosure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coordinated vulnerability disclosure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Coordinated vulnerability disclosure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#working-with-vulnerability-reports" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Working with vulnerability reports
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#publicly-reported-issue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Publicly reported issue
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -2872,7 +2645,7 @@
 
 
   
-    <a href="https://github.com/geoserver/geoserver/edit/main/doc/en/developer/docs/policies/security.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/geoserver/geoserver/edit/main/doc/en/developer/docs/policies/gsip_voting.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2880,270 +2653,82 @@
   
 
 
-<h1 id="security-procedure">Security Procedure<a class="headerlink" href="#security-procedure" title="Permanent link">&para;</a></h1>
-<p>This page covers some of the lines of communication and tools available to enact our public security policy (see <a href="https://github.com/geoserver/geoserver/blob/main/SECURITY.md">SECURITY.md</a>).</p>
-<h2 id="vulnerability-reporting-and-discussion">Vulnerability reporting and discussion<a class="headerlink" href="#vulnerability-reporting-and-discussion" title="Permanent link">&para;</a></h2>
-<p>Our security policy asks the community to take care in the reporting and discussion of security vulnerabilities:</p>
-<blockquote>
-<p><strong>Reporting a Vulnerability</strong></p>
-<p>If you encounter a security vulnerability in GeoServer, please take care to report it in a responsible fashion:</p>
-<ol>
-<li>Keep exploit details out of public mailing lists and the Jira issue tracker.</li>
-<li>
-<p>There are two options to report a security vulnerability:</p>
-<ul>
-<li>To report via email:</li>
-</ul>
-<p>Please send an email directly to the volunteers on the private <a href="mailto:geoserver-security@lists.osgeo.org">geoserver-security@lists.osgeo.org</a> mailing list. Provide information about the security vulnerability you might have found in your email.</p>
-<p>This is a moderated list: send directly to the address; your email will be moderated; and eventually shared with volunteers.</p>
-<ul>
-<li>To report via GitHub:</li>
-</ul>
-<p>Navigate to <a href="https://github.com/geoserver/geoserver/security">security</a> page, use link for Private vulnerability reporting.</p>
-<p>For more information see <a href="https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability#privately-reporting-a-security-vulnerability">GitHub documentation</a>.
-3.  There is no expected response time. Please be prepared to work with geoserver-security email list volunteers on a solution.
-4.  Keep in mind participants are volunteering their time, an extensive fix may require fundraising/resources.</p>
-</li>
-</ol>
-<p>For more information see <a href="http://geoserver.org/comm/">Community Support</a>.</p>
-</blockquote>
-<h3 id="guidance-on-communication-challenges">Guidance on communication challenges<a class="headerlink" href="#guidance-on-communication-challenges" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p>Issue tracker: If an issue is opened with a security vulnerability, send the link to SECURITY.md to the reporter and close the issue.</p>
-</li>
-<li>
-<p>Public Email: If a geoserver-devel or geoserver-user email comes in reporting the vulnerability (or discussing a vulnerability), link to the SECURITY.md file and invite parties to a discussion on the geoserver-security email list privately.</p>
-</li>
-<li>
-<p>Private Email: If you are contacted directly, share the SECURITY.md, and link to commercial support providers (which may include your employer of course).</p>
-</li>
-<li>
-<p>Social media: Ask parties to respect the coordinated vulnerability disclosure policy.</p>
-</li>
-</ul>
-<p>Recognize that such communication is outside our control and do not further engage.</p>
-<ul>
-<li>
-<p>Public CVE: Most reliable response is to locate the CVE on advisory database and issue a pull-request clarification.</p>
-</li>
-<li>
-<p><a href="https://github.com/advisories?query=geoserver">https://github.com/advisories?query=geoserver</a></p>
-</li>
-<li><a href="https://github.com/advisories?query=geotools">https://github.com/advisories?query=geotools</a></li>
-</ul>
-<p>You may also go through the steps of "disputing" a CVE, this involves contacting the original numbering authority (each of which have their own procedures).</p>
-<p>Keep in mind that security researchers may have obligations to report to their national numbering authority.</p>
-<p>Ask that they withhold details and work within our SECURITY.md policy (key phrase "coordinated vulnerability disclosure").</p>
-<p>Kindness:</p>
-<ul>
-<li>This is a long game, so prioritize sustainability and our geoserver-security volunteers.</li>
-<li>Recognize that the reporter is likely stressed, and may not have much flexibility due legal obligations around vulnerability disclosure.</li>
-<li>This is a sustainability challenge, so do not be shy about seeking sponsorship.</li>
-</ul>
-<h3 id="geoserver-security-list-participation">geoserver-security list participation<a class="headerlink" href="#geoserver-security-list-participation" title="Permanent link">&para;</a></h3>
-<p>Participation in the geoserver-security, like commit access, is volunteer based and reflects trust.</p>
-<ul>
-<li>
-<p>To volunteer, email <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#103;&#101;&#111;&#115;&#101;&#114;&#118;&#101;&#114;&#45;&#115;&#101;&#99;&#117;&#114;&#105;&#116;&#121;&#64;&#108;&#105;&#115;&#116;&#115;&#46;&#111;&#115;&#103;&#101;&#111;&#46;&#111;&#114;&#103;">&#103;&#101;&#111;&#115;&#101;&#114;&#118;&#101;&#114;&#45;&#115;&#101;&#99;&#117;&#114;&#105;&#116;&#121;&#64;&#108;&#105;&#115;&#116;&#115;&#46;&#111;&#115;&#103;&#101;&#111;&#46;&#111;&#114;&#103;</a> stating your interest.</p>
-</li>
-<li>
-<p>If you are unable to participate, send an email to step down.</p>
-</li>
-</ul>
-<p>We understand that short term commitments can get in the way of sustainability initiatives -- you are welcome to rejoin at any time.</p>
-<p>We will also retire inactive members as needed.</p>
-<p>When contacted by an external party on geoserver-security email list:</p>
+  <h1>Gsip voting</h1>
+
+<div class="admonition note">
+<p class="admonition-title">Voting on GeoServer Improvement Proposal (GSIP)</p>
 <ol>
 <li>
-<p>Engage with the reporter as normal to determine if the issue is reproducible, and assess vulnerability.</p>
+<p>Proposals may be made by any interested party (PSC, Non-PSC, committer, user, etc...).</p>
+<p>All community members are encouraged to review proposals, and provide their support and feedback.</p>
+</li>
+<li>
+<p>Each PSC member may vote one of the following in support of the proposal:</p>
 <ul>
-<li>For known issues we can add the reporter to an existing CVE, and indicate the assessment for their review.</li>
-<li>For new issues we can work with the reporter, and create a CVE (as below), and assess the vulnerability with the reporter's input.</li>
+<li>+1 : For</li>
+<li>+0: Mildly for, but mostly indifferent</li>
+<li>-0: Mildly against, but mostly indifferent</li>
+<li>-1 : Against, accompanied with a detailed reason of being against</li>
 </ul>
 </li>
 <li>
-<p>The same approach is used for "triage" reports made directly to the security advisory list.</p>
+<p>Voting remains open for ten days or until all PSC members have cast their vote.</p>
+<ul>
+<li>
+<p>At the end of ten days time any remaining votes are assumed to be +0.</p>
 </li>
 <li>
-<p>The policy of the reporter working with the geoserver-security volunteers remains steadfast.</p>
-<p>Especially with respect to mitigation and scheduling a fix we need to gather interested parties, including the reporter, with time/resources to address the issue.</p>
-<p>Reporters expecting a vendor relationship are invited to contact our service providers (who are very nice).</p>
+<p>Any active PSC member can during ten days request an extension of voting for
+  an additional ten days; the voting period can only be extended once.</p>
+</li>
+<li>
+<p>Any PSC member who votes "-1" against a proposal must provide a
+  reasonable explanation as to why.</p>
+</li>
+<li>
+<p>Any PSC member who votes "-1" against a proposal has a limited time to
+  provide constructive feedback as to how their -1 vote can be addressed.</p>
+</li>
+</ul>
+<p>The GSIP author must incorporate any reasonable feedback into the proposal.</p>
+<p>The PSC member who voted "-1" must consider whether their feedback has been
+  addressed and whether they wish to change their vote.</p>
+</li>
+<li>
+<p>Voting results:</p>
+<ul>
+<li>A vote of "+1" means support for a proposal</li>
+<li>The neutral votes "+0", "0", and "-0" all count the same as "0" but permit PSC members
+  to indicate a slight tendency for, neutral, or against a proposal respectively</li>
+<li>A vote of "-1" means opposition to the proposal</li>
+</ul>
+<p>A unanimous response is:</p>
+<ul>
+<li>Successful: No -1 votes against it, or</li>
+<li>Unsuccessful: No +1 votes for it.</li>
+</ul>
+</li>
+<li>
+<p>A GSIP is accepted if it receives:</p>
+<ul>
+<li>at least 30% "+1" votes, and</li>
+<li>no "-1" votes (or all feedback from any "-1" votes has been addressed and any "-1" voters have changed their votes)</li>
+</ul>
+</li>
+<li>
+<p>In the event of an <em>successful non unanimous</em> vote, the following steps are taken:</p>
+<ul>
+<li>Each member who votes -1 <em>may</em> supply an alternative with which the original author can use to rework the proposal in order to satisfy that PSC member.</li>
+<li>If at least one -1 voting PSC member supplies some alternative criteria, the original author must rework the proposal and resubmit, and the voting process starts again from scratch.</li>
+<li>If no -1 voters are able to supply alternative criteria, the proposal is accepted.</li>
+</ul>
+</li>
+<li>
+<p>In the event of an <em>unsuccessful</em> vote, the author may choose to rework and submit.</p>
+<p>A proposal may not be resubmitted after being rejected three times.</p>
 </li>
 </ol>
-<h2 id="coordinated-vulnerability-disclosure">Coordinated vulnerability disclosure<a class="headerlink" href="#coordinated-vulnerability-disclosure" title="Permanent link">&para;</a></h2>
-<p>GeoServer has adopted a coordinated vulnerability disclosure model, as outlined in <a href="https://github.com/geoserver/geoserver/blob/main/SECURITY.md">SECURITY.md</a>:</p>
-<blockquote>
-<p><strong>Coordinated vulnerability disclosure</strong></p>
-<p>Disclosure policy:</p>
-<ol>
-<li>The reported vulnerability has been verified by working with the geoserver-security list</li>
-<li>GitHub <a href="https://github.com/geoserver/geoserver/security">security advisory</a> is used to reserve a CVE number</li>
-<li>A fix or documentation clarification is accepted and backported to both the "stable" and "maintenance" branches</li>
-<li>A fix is included for the "stable" and "maintenance" downloads (<a href="https://github.com/geoserver/geoserver/wiki/Release-Schedule">released as scheduled</a>, or issued via emergency update)</li>
-<li>The CVE vulnerability is published with mitigation and patch instructions</li>
-</ol>
-<p>This represents a balance between transparency and participation that does not overwhelm participants. Those seeking greater visibility are encouraged to volunteer with the geoserver-security list; or work with one of the <a href="https://geoserver.org/support/">commercial support providers</a> who participate on behalf of their customers.</p>
-</blockquote>
-<h3 id="working-with-vulnerability-reports">Working with vulnerability reports<a class="headerlink" href="#working-with-vulnerability-reports" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p>When working with a "triage" or "draft" vulnerability:</p>
-<ul>
-<li>Invite reporter to participate, they are part of the team addressing the issue,</li>
-<li>Give credit to the reporter and anyone else involved using the allocated fields</li>
-<li>Do not immediately request a CVE, and be sure to confirm the vulnerability (for example with a proof of concept) first.</li>
-<li>A vulnerability flagged from a dependency scan does not automatically indicate that an exploit is available in GeoServer.</li>
-<li>For popular concerns (like spring-framework upgrade) add each reporter to same advisory.</li>
-</ul>
-<p>Be aware that a security researcher may only be tasked with reporting the issue, and might be unavailable once you have created a CVE.</p>
-</li>
-<li>
-<p>Preparing report:</p>
-<ul>
-<li>Package: Always report <code>org.geoserver.web:gs-web-app</code> as <code>geoserver.war</code> as a useful way to document that the <code>geoserver.war</code> includes other jars</li>
-<li>Affected versions: It is difficult to communicate version ranges, due to limitations in CVE advisory processing, requiring multiple lines.</li>
-</ul>
-<p><img alt="" src="../img/cve-version-range.png" />
-<em>Package guidance and version range</em></p>
-</li>
-<li>
-<p>Work on providing a fix, mitigation instructions, or best-practice clarification for documentation.</p>
-<ul>
-<li>The use of GitHub private repository associated with an advisory should be used with caution.</li>
-</ul>
-<p>If making extensive code changes keep in mind that automations, including QA automations, are not available to be run as part of the pull-request review process.</p>
-<p>This may be appropriate when updating documentation / best practice information.</p>
-<p>The key advantage is several pull-requests can be managed at once, and merged at the same time as disclosure (see below).</p>
-<ul>
-<li>
-<p>If you wish to work on a public pull-request (to take advantage of workflow automations) take care that test-cases, commit messages, and documentation updates do not immediately reveal the vulnerability.</p>
-</li>
-<li>
-<p>Although not ideal, it is possible to resolve some security issues by documenting a best-practice in the production consideration of the user guide.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Request a CVE from GitHub.</p>
-<p>This requires an external review as they check that the details provided are complete.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Example: The report "GHSA-cqpc-x2c6-2gmf" has been assigned CVE-2023-41339 and is shown as "not yet published".</p>
-<p><img alt="" src="../img/cve-not-yet-published.png" />
-<em>CVE-2023-41339 Not Yet Published</em></p>
 </div>
-</li>
-<li>
-<p>Assign a placeholder Jira issue with <code>Vulnerability</code> category with security level "geoserver-security"</p>
-<ul>
-<li>Mentioning the CVE is fine, even if it is not yet public, it will still show up in the database as reserved.</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Example: The Jira issue GEOS-11121 ticket is created for CVE-2023-41339.</p>
-<p><img alt="" src="../img/cve-issue.png" />
-<em>Jira GEOS-11121 Placeholder</em></p>
-</div>
-</li>
-<li>
-<p>During the release process list CVE in "Security Considerations" section of release announcements.</p>
-<ul>
-<li>Initially this lists CVE numbers, indicating a fix is included but does not provide any details</li>
-<li>An indication of the severity is provided to encourage community to update.</li>
-<li>You may change the wording of the recommendation to "recommended" or "essential" or "urgent" as you see fit.</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is our policy not to provide details at this time. Any deeply concerned parties can volunteer on the geoserver-security email list, or arrange a vendor relationship with a service provider.</p>
-</div>
-</li>
-<li>
-<p>Disclosure:</p>
-<ul>
-<li>Wait until the vulnerability has been addressed, for BOTH in stable and maintenance releases, before publishing.</li>
-</ul>
-<p>In practice this means that a batch of issues are disclosed alongside each initial release. Be considerate of those following at a slower paced maintenance release schedule, when two stable releases are made in a row it may be up to three months until they have a maintenance release to update to!</p>
-<p>For an urgent vulnerability both "stable" and "maintenance" may be issued concurrently via an emergency update rather than following the expected schedule. In this case the blog post should indicate when disclosure is expected (example "everyone has two weeks until public disclosure").</p>
-<ul>
-<li>Update prior release announcements, and placeholder Jira issue, with the complete title of the vulnerability.</li>
-</ul>
-<blockquote>
-<p>:::: note
-::: title
-Note
-:::</p>
-<p>Example: Security considerations section showing a mix of disclosed and not yet disclosed (no hyperlink) vulnerabilities.</p>
-<p><img alt="" src="../img/cve-disclosure.png" />
-<em>Release announcement communication</em>
-::::</p>
-</blockquote>
-<ul>
-<li>
-<p>Publish the security advisory to make the vulnerability public</p>
-</li>
-<li>
-<p>If you feel a statement is necessary, you may write an appropriate blog post.</p>
-</li>
-</ul>
-<blockquote>
-<p>:::: note
-::: title
-Note
-:::</p>
-<p>Examples statements:</p>
-<ul>
-<li><a href="https://geoserver.org/vulnerability/2024/09/12/cve-2024-36401.md">CVE-2024-36401 Remote Code Execution (RCE) vulnerability in evaluating property name expressions</a>.</li>
-<li><a href="https://geoserver.org/vulnerability/2022/04/11/geoserver-2-jiffle-jndi-rce.md">Jiffle and GeoTools RCE vulnerabilities</a>.
-::::</li>
-</ul>
-</blockquote>
-</li>
-</ol>
-<h3 id="publicly-reported-issue">Publicly reported issue<a class="headerlink" href="#publicly-reported-issue" title="Permanent link">&para;</a></h3>
-<p>When a national agency or similar has already reported a vulnerability publicly, it can be found in the GitHub security advisory database:</p>
-<ol>
-<li>
-<p>Locate the issue on <a href="https://github.com/advisories?query=geoserver">https://github.com/advisories?query=geoserver</a></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Example: Public reported CVE-2023-35042 is listed here <a href="https://github.com/advisories/GHSA-59x6-g4jr-4hxc">https://github.com/advisories/GHSA-59x6-g4jr-4hxc</a></p>
-</div>
-</li>
-<li>
-<p>Create a pull request to revise the issue with useful details such as:</p>
-<ul>
-<li>maven</li>
-<li>org.geoserver</li>
-<li>version</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Example: CVE-2023-35042 correction <a href="https://github.com/github/advisory-database/pull/2721">https://github.com/github/advisory-database/pull/2721</a></p>
-</div>
-</li>
-<li>
-<p>Optional: Work with original agency to try and revise their record.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Example:</p>
-<p>A request to mark <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-35042">CVE-2023-35042</a> as duplicate that had been fixed in all supported versions came out as:</p>
-<blockquote>
-<p>[DISPUTED] GeoServer 2, in some configurations, allows remote attackers to execute arbitrary code via java.lang.Runtime.getRuntime().exec in wps:LiteralData within a wps:Execute request, as exploited in the wild in June 2023. NOTE: the vendor states that they are unable to reproduce this in any version.</p>
-</blockquote>
-<p>This is the opposite of controlling the message, it now appears as if the issue being disputed - rather than accepted as already solved please update etc...</p>
-</div>
-</li>
-<li>
-<p>Claim the ticket with a Jira issue, linking to the revised GitHub record, or national record as appropriate.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Example: CVE-2023-35042 reported to our issue tracker as GEOS-11027</p>
-<p><img alt="" src="../img/cve-issue-public.png" />
-<em>GEOS-11027 documenting state of CVE-2023-35042</em></p>
-</div>
-</li>
-</ol>
 
 
 
