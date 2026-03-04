@@ -28168,12 +28168,12 @@
 <h2 id="logging_builtin">Built-in logging profiles<a class="headerlink" href="#logging_builtin" title="Permanent link">&para;</a></h2>
 <p>GeoServer includes several built-in logging profiles:</p>
 <ul>
-<li><a href="../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml">DEFAULT_LOGGING</a></li>
-<li><a href="../../../../src/main/src/main/resources/GEOSERVER_DEVELOPER_LOGGING.xml">GEOSERVER_DEVELOPER_LOGGING</a></li>
-<li><a href="../../../../src/main/src/main/resources/GEOTOOLS_DEVELOPER_LOGGING.xml">GEOTOOLS_DEVELOPER_LOGGING</a></li>
-<li><a href="../../../../src/main/src/main/resources/PRODUCTION_LOGGING.xml">PRODUCTION_LOGGING</a></li>
-<li><a href="../../../../src/main/src/main/resources/QUIET_LOGGING.xml">QUIET_LOGGING</a></li>
-<li><a href="../../../../src/main/src/main/resources/VERBOSE_LOGGING.xml">VERBOSE_LOGGING</a></li>
+<li><a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/DEFAULT_LOGGING.xml">DEFAULT_LOGGING</a></li>
+<li><a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/GEOSERVER_DEVELOPER_LOGGING.xml">GEOSERVER_DEVELOPER_LOGGING</a></li>
+<li><a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/GEOTOOLS_DEVELOPER_LOGGING.xml">GEOTOOLS_DEVELOPER_LOGGING</a></li>
+<li><a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/PRODUCTION_LOGGING.xml">PRODUCTION_LOGGING</a></li>
+<li><a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/QUIET_LOGGING.xml">QUIET_LOGGING</a></li>
+<li><a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/VERBOSE_LOGGING.xml">VERBOSE_LOGGING</a></li>
 </ul>
 <p>The built-in logging profiles are installed into your data directory the first time the application is run. If you have customized (see the next section) these files and wish to restore the original contents:</p>
 <ul>
@@ -28181,11 +28181,11 @@
 <li>Delete the file and restart GeoServer, the missing file will be restored; or</li>
 <li>Copy the contents from the download links above</li>
 </ul>
-<p>For a description of these logging profiles see <a href="../globalsettings/#config_globalsettings_log_profile">Logging Profile</a>. Additional built-in logging profiles are supplied by installed extensions (example <a href="../../../../src/extension/importer/core/src/main/resources/IMPORTER_LOGGING.xml">IMPORTER_LOGGING</a> profile is built into the importer extension).</p>
+<p>For a description of these logging profiles see <a href="../globalsettings/#config_globalsettings_log_profile">Logging Profile</a>. Additional built-in logging profiles are supplied by installed extensions (example <a href="https://github.com/geoserver/geoserver/blob/main/src/extension/importer/core/src/main/resources/IMPORTER_LOGGING.xml">IMPORTER_LOGGING</a> profile is built into the importer extension).</p>
 <h2 id="logging_custom">Custom logging profiles<a class="headerlink" href="#logging_custom" title="Permanent link">&para;</a></h2>
 <p>Anyone can write a new logging profile by adding a Log4J configuration file to the list of files already available in the <code>$GEOSERVER_DATA_DIR/logs</code> folder.</p>
 <p>Profiles in this folder that match <strong><code>*_LOGGING.*</code></strong> will be listed on the global settings page as available for use. The name of the file, excluding the extension, will be presented as the profile name.</p>
-<p>Here is an example, taken from the <a href="../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml">DEFAULT_LOGGING.xml</a> configuration, which enables additional GeoServer log messages to be included in the logs:</p>
+<p>Here is an example, taken from the <a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/DEFAULT_LOGGING.xml">DEFAULT_LOGGING.xml</a> configuration, which enables additional GeoServer log messages to be included in the logs:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">&lt;!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml --&gt;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cm">&lt;!-- TODO: Copy file to docs directory or use alternative approach --&gt;</span>
 </code></pre></div>
@@ -28304,7 +28304,7 @@
 <p>Copy built-in logging profile and customize:</p>
 <ol>
 <li>
-<p>Copy an example such as <a href="../../../../src/main/src/main/resources/QUIET_LOGGING.xml">QUIET_LOGGING.xml</a> to <strong><code>CONSOLE_LOGGING.xml</code></strong>:</p>
+<p>Copy an example such as <a href="https://github.com/geoserver/geoserver/blob/main/src/main/src/main/resources/QUIET_LOGGING.xml">QUIET_LOGGING.xml</a> to <strong><code>CONSOLE_LOGGING.xml</code></strong>:</p>
 </li>
 <li>
 <p>Update the initial part of <strong><code>CONSOLE_LOGGING.xml</code></strong> with the new name:</p>
