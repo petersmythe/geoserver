@@ -10,8 +10,6 @@ site_dir: mkdocs_output
 # Exclude include files from the build (they are included by other pages)
 exclude_docs: |
   en/user/styling/ysld/reference/symbolizers/include/
-  en/developer/policies/gsip_voting.md
-  en/developer/quickstart/checkout.md
 
 theme:
   name: material
