@@ -10,126 +10,126 @@ This implementation plan converts the GeoServer documentation from three separat
 
 - [x] 0. CRITICAL: Verify docs_dir behavior with test build
   - **COMPLETED**: Test confirmed that `docs_dir: doc` with content at `doc/en/` preserves `/en/` in output
-  - **Result**: `site/en/user/`, `site/en/developer/` structure confirmed ✅
+  - **Result**: `mkdocs_output/en/user/`, `mkdocs_output/en/developer/` structure confirmed ✅
   - **Solution**: Move mkdocs.yml to workspace root with `docs_dir: doc`
   - _Requirements: ALL - this validates the core assumption_
 
-- [ ] 1. Reorganize directory structure
-  - [ ] 1.1 Flatten user manual content
+- [x] 1. Reorganize directory structure
+  - [x] 1.1 Flatten user manual content
     - Move doc/en/user/docs/* to doc/en/user/
     - Use `git mv` to preserve history
     - Remove empty docs/ directory
     - _Requirements: 2.3, 2.4_
   
-  - [ ] 1.2 Flatten developer guide content
+  - [x] 1.2 Flatten developer guide content
     - Move doc/en/developer/docs/* to doc/en/developer/
     - Use `git mv` to preserve history
     - Remove empty docs/ directory
     - _Requirements: 2.3, 2.4_
   
-  - [ ] 1.3 Flatten documentation guide content
+  - [x] 1.3 Flatten documentation guide content
     - Move doc/en/docguide/docs/* to doc/en/docguide/
     - Use `git mv` to preserve history
     - Remove empty docs/ directory
     - _Requirements: 2.3, 2.4_
   
-  - [ ] 1.4 Verify API documentation location
+  - [x] 1.4 Verify API documentation location
     - API docs should already be at doc/en/api/
     - API docs are static files (Swagger UI + OpenAPI YAML specs)
     - No move needed - already in correct location
     - _Requirements: 2.3, 2.4_
   
-  - [ ] 1.5 Move mkdocs.yml to workspace root
+  - [x] 1.5 Move mkdocs.yml to workspace root
     - Move doc/en/user/mkdocs.yml to workspace root (mkdocs.yml)
     - Use `git mv` to preserve history
     - This will be the unified configuration file
     - _Requirements: 1.1, 2.1_
 
 - [ ] 2. Create unified MkDocs configuration
-  - [ ] 2.1 Update mkdocs.yml with basic structure
+  - [x] 2.1 Update mkdocs.yml with basic structure
     - Set docs_dir to "doc" (points to doc/ directory)
-    - Set site_dir to "site" (build output to site/)
+    - Set site_dir to "mkdocs_output" (build output to mkdocs_output/)
     - Update site_name and site_url
     - Update custom_dir to "doc/themes/geoserver"
     - _Requirements: 1.1, 2.1_
   
-  - [ ] 2.2 Configure navigation tabs feature
+  - [x] 2.2 Configure navigation tabs feature
     - Enable navigation.tabs in theme features
     - Enable navigation.tabs.sticky in theme features
     - Preserve other existing features (navigation.top, search, etc.)
     - _Requirements: 3.1, 3.2_
   
-  - [ ] 2.3 Merge user manual navigation structure
+  - [x] 2.3 Merge user manual navigation structure
     - Copy nav structure from doc/en/user/mkdocs.yml
     - Prefix all paths with en/user/ (e.g., en/user/index.md)
     - Create top-level "User Manual" section
     - _Requirements: 1.2, 3.4_
   
-  - [ ] 2.4 Merge developer guide navigation structure
+  - [x] 2.4 Merge developer guide navigation structure
     - Copy nav structure from doc/en/developer/mkdocs.yml
     - Prefix all paths with en/developer/ (e.g., en/developer/index.md)
     - Create top-level "Developer Guide" section
     - _Requirements: 1.2, 3.4_
   
-  - [ ] 2.5 Merge documentation guide navigation structure
+  - [x] 2.5 Merge documentation guide navigation structure
     - Copy nav structure from doc/en/docguide/mkdocs.yml
     - Prefix all paths with en/docguide/ (e.g., en/docguide/index.md)
     - Create top-level "Documentation Guide" section
     - _Requirements: 1.2, 3.4_
   
-  - [ ] 2.6 Add API Reference navigation entry
+  - [x] 2.6 Add API Reference navigation entry
     - Create top-level "API Reference" section
     - Point to en/api/index.html
     - _Requirements: 3.4, 3.5_
   
-  - [ ] 2.7 Consolidate theme configuration
+  - [x] 2.7 Consolidate theme configuration
     - Merge palette settings from all three configs
     - Merge extra configuration (version_selector, social links)
     - Merge plugins configuration
     - Merge markdown_extensions configuration
     - _Requirements: 7.1, 7.2, 7.3, 7.4_
 
-- [ ] 4. Simplify theme by removing doc_switcher
-  - [ ] 4.1 Remove doc_switcher configuration file
+- [x] 4. Simplify theme by removing doc_switcher
+  - [x] 4.1 Remove doc_switcher configuration file
     - Delete doc/themes/geoserver/doc_switcher.yml
     - _Requirements: 6.2_
   
-  - [ ] 4.2 Remove doc_switcher template files
+  - [x] 4.2 Remove doc_switcher template files
     - Delete doc/themes/geoserver/partials/header-switcher.html
     - _Requirements: 6.4_
   
-  - [ ] 4.3 Update header.html partial
+  - [x] 4.3 Update header.html partial
     - Remove {% include "partials/header-switcher.html" %}
     - Restore standard Material header title component
     - Ensure navigation tabs section is preserved
     - _Requirements: 6.1, 6.4_
   
-  - [ ] 4.4 Clean up version.py
+  - [x] 4.4 Clean up version.py
     - Remove doc_switcher loading logic
     - Remove extract_base_path function
     - Remove construct_absolute_path function
     - Keep version variables and other shared configuration
     - _Requirements: 6.3_
   
-  - [ ] 4.5 Remove doc_switcher CSS styles
+  - [x] 4.5 Remove doc_switcher CSS styles
     - Remove doc_switcher-related styles from extra.css
     - Keep other custom GeoServer branding styles
     - _Requirements: 6.4_
 
 - [ ] 5. Update deployment workflow
-  - [ ] 5.1 Modify docs-deploy.yml for unified build
+  - [x] 5.1 Modify docs-deploy.yml for unified build
     - Change working directory to workspace root for all steps
     - Update build step to run single mkdocs build command
     - _Requirements: 1.4, 10.1, 10.3_
   
-  - [ ] 5.2 Simplify mike deployment commands
+  - [x] 5.2 Simplify mike deployment commands
     - Remove --deploy-prefix parameter from mike deploy
     - Consolidate three deployment steps into one
     - Run from workspace root (NOT doc/ or doc/en/)
     - Command: `mike deploy $VERSION --push`
     - _Requirements: 5.1, 5.2, 10.2_
   
-  - [ ] 5.3 Update API documentation handling
+  - [x] 5.3 Update API documentation handling
     - **IMPORTANT**: API docs are purely static files (NO Maven build needed)
     - API docs are already in `doc/en/api/` as static resources
     - No copying needed - they're already in the correct location
@@ -137,34 +137,34 @@ This implementation plan converts the GeoServer documentation from three separat
     - API docs include: Swagger UI HTML/JS/CSS + OpenAPI YAML specs
     - _Requirements: 10.4_
   
-  - [ ] 5.4 Update version and alias logic
+  - [x] 5.4 Update version and alias logic
     - Ensure version determination works with unified config
     - Update DOCS_BASE_PATH environment variable usage
     - _Requirements: 5.4_
 
-- [ ] 6. Checkpoint - Local build and validation
+- [x] 6. Checkpoint - Local build and validation
   - Build documentation locally with `mkdocs build`
-  - Verify site/en/{user,developer,docguide,api}/ structure exists
+  - Verify mkdocs_output/en/{user,developer,docguide,api}/ structure exists
   - Check that all navigation tabs appear in generated HTML
   - Validate internal links with link checker
   - Test navigation tabs functionality in browser
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 7. Create validation tests
-  - [ ] 7.1 Create YAML configuration validation script
+- [-] 7. Create validation tests
+  - [x] 7.1 Create YAML configuration validation script
     - Write Python script to parse mkdocs.yml
     - Validate all nav paths exist in filesystem
     - Check theme configuration is valid
     - _Requirements: 1.1, 3.4_
   
-  - [ ] 7.2 Create path resolution test script
+  - [x] 7.2 Create path resolution test script
     - Write Python script to verify source-to-output path mapping
-    - Test that doc/en/user/index.md maps to site/en/user/index.html
+    - Test that doc/en/user/index.md maps to mkdocs_output/en/user/index.html
     - Validate /en/ appears in all output paths
     - _Requirements: 2.1, 4.1, 4.2_
   
-  - [ ] 7.3 Create build output structure validation script
-    - Write shell script to verify site/ directory structure
+  - [-] 7.3 Create build output structure validation script
+    - Write shell script to verify mkdocs_output/ directory structure
     - Check all expected directories exist
     - Verify HTML files are generated for all nav entries
     - _Requirements: 1.2, 1.3_
@@ -183,7 +183,7 @@ This implementation plan converts the GeoServer documentation from three separat
     - _Requirements: 1.1_
 
 - [ ] 9. Test deployment in staging environment
-  - [ ] 9.1 Deploy to test GitHub Pages site
+  - [-] 9.1 Deploy to test GitHub Pages site
     - Use test repository or branch for deployment
     - Run updated GitHub Actions workflow
     - Verify deployment completes successfully
@@ -225,7 +225,7 @@ This implementation plan converts the GeoServer documentation from three separat
     - _Requirements: 1.1_
   
   - [ ] 11.3 Update .gitignore
-    - Add site/ to .gitignore at workspace root (NOT doc/site/)
+    - Add mkdocs_output/ to .gitignore at workspace root
     - Remove old target/ directory entries
     - _Requirements: 1.1_
 
@@ -238,4 +238,4 @@ This implementation plan converts the GeoServer documentation from three separat
 - Testing should be thorough before production deployment to ensure no broken links
 - The /en/ path component is preserved for backward compatibility with existing bookmarks
 - **Key insight**: MkDocs strips `docs_dir` from output but preserves structure within it
-- **Solution**: mkdocs.yml at workspace root with `docs_dir: doc` → output preserves `doc/en/` as `site/en/`
+- **Solution**: mkdocs.yml at workspace root with `docs_dir: doc` → output preserves `doc/en/` as `mkdocs_output/en/`

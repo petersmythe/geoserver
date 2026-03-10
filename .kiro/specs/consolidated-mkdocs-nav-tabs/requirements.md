@@ -25,7 +25,7 @@ This document specifies the requirements for consolidating the GeoServer documen
 
 1. THE Build_System SHALL use a single mkdocs.yml file located at doc/en/mkdocs.yml
 2. WHEN the Build_System executes, THE Build_System SHALL generate all three manuals (user, developer, docguide) plus API documentation
-3. THE Build_System SHALL produce output in the site/ directory with structure site/en/{user,developer,docguide,api}/
+3. THE Build_System SHALL produce output in the mkdocs_output/ directory with structure mkdocs_output/en/{user,developer,docguide,api}/
 4. WHEN building documentation, THE Build_System SHALL complete in a single mkdocs build command
 
 ### Requirement 2: Directory Structure Reorganization
@@ -69,7 +69,7 @@ This document specifies the requirements for consolidating the GeoServer documen
 #### Acceptance Criteria
 
 1. WHEN deploying with mike, THE Deployment_System SHALL use no deploy-prefix parameter
-2. THE Deployment_System SHALL deploy the entire site/ directory contents to {VERSION}/
+2. THE Deployment_System SHALL deploy the entire mkdocs_output/ directory contents to {VERSION}/
 3. WHEN mike deploys documentation, THE Deployment_System SHALL preserve the /en/ structure from the build output
 4. THE Deployment_System SHALL maintain mike's version selector functionality alongside navigation tabs
 

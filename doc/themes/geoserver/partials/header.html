@@ -1,11 +1,9 @@
 {#
-  Override Material theme header to include documentation switcher
+  Override Material theme header for GeoServer customizations
   
-  This template overrides the Material theme's header.html partial to inject
-  the documentation switcher component after the logo while preserving all
-  existing header functionality.
-  
-  Requirements: 1.1, 1.3
+  This template overrides the Material theme's header.html partial to provide
+  GeoServer-specific header customizations while preserving all existing
+  header functionality including navigation tabs.
 #}
 
 {#- Site title -#}
@@ -22,8 +20,25 @@
       {% include ".icons/material/menu" ~ ".svg" %}
     </label>
 
-    {#- Header title with integrated documentation switcher -#}
-    {% include "partials/header-switcher.html" %}
+    {#- Header title -#}
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            {{ config.site_name }}
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            {% if page.meta and page.meta.title %}
+              {{ page.meta.title }}
+            {% else %}
+              {{ page.title }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
 
     {#- Color palette toggle -#}
     {% if config.theme.palette %}
