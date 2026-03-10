@@ -183,7 +183,7 @@ This implementation plan converts the GeoServer documentation from three separat
     - _Requirements: 1.1_
 
 - [ ] 9. Test deployment in staging environment
-  - [-] 9.1 Deploy to test GitHub Pages site
+  - [ ] 9.1 Deploy to test GitHub Pages site
     - Use test repository or branch for deployment
     - Run updated GitHub Actions workflow
     - Verify deployment completes successfully
