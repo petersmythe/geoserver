@@ -45,12 +45,13 @@ Deployment: Three separate `mike deploy` commands with `--deploy-prefix` for eac
 │   │   └── api/            # API docs (static files, already in place)
 │   └── themes/geoserver/
 │       └── partials/       # Simplified theme (no doc_switcher)
-└── site/                   # Build output
+└── mkdocs_output/          # Build output
     └── en/                 # /en/ preserved in output!
         ├── user/
         ├── developer/
         ├── docguide/
         └── api/
+
 ```
 
 **Key insight**: MkDocs strips `docs_dir` from output paths but preserves directory structure WITHIN docs_dir. By setting `docs_dir: doc`, the `/en/` directory inside `doc/` is preserved in the output.
@@ -77,7 +78,7 @@ Deployment: Single `mike deploy` command from workspace root with no `--deploy-p
 site_name: GeoServer Documentation
 site_url: https://docs.geoserver.org/3.0.x/
 docs_dir: doc      # Points to doc/ directory
-site_dir: site     # Build output to site/
+site_dir: mkdocs_output  # Build output to mkdocs_output/
 
 theme:
   name: material
@@ -114,7 +115,7 @@ nav:
 
 **Interface**:
 - Input: Markdown files in doc/en/{manual}/ (docs_dir: doc means paths start with en/)
-- Output: HTML files in site/en/{manual}/
+- Output: HTML files in mkdocs_output/en/{manual}/
 - Configuration: YAML structure defining navigation hierarchy
 
 ### 2. Directory Structure Reorganization
@@ -137,7 +138,7 @@ git mv doc/en/docguide/docs/* doc/en/docguide/
 
 **Path Mapping**:
 - Source: `doc/en/user/index.md` (via docs_dir: doc)
-- Build: `site/en/user/index.html`
+- Build: `mkdocs_output/en/user/index.html`
 - Deployed: `{VERSION}/en/user/index.html`
 
 **Key Insight**: MkDocs strips `docs_dir` from output paths but preserves directory structure WITHIN docs_dir. Setting `docs_dir: doc` means the `/en/` directory inside `doc/` is preserved in all output URLs.
@@ -237,7 +238,7 @@ extra:
 ```
 
 **Interface**:
-- Input: Built site/ directory
+- Input: Built mkdocs_output/ directory
 - Output: Deployed to gh-pages branch at {VERSION}/en/{manual}/
 - Mike handles: Version directory creation, alias management, version selector
 
@@ -326,7 +327,7 @@ VersionConfig:
 
 ### Property 1: Single Build Completeness
 
-*For any* valid MkDocs configuration, building the documentation should produce output for all three manuals (user, developer, docguide) plus API documentation in the site/en/ directory structure.
+*For any* valid MkDocs configuration, building the documentation should produce output for all three manuals (user, developer, docguide) plus API documentation in the mkdocs_output/en/ directory structure.
 
 **Validates: Requirements 1.2, 1.3**
 
@@ -427,7 +428,7 @@ Unit tests will validate specific components and configurations:
 
 2. **Path Resolution**
    - Test: Verify source paths map correctly to output paths
-   - Example: en/user/index.md → site/en/user/index.html
+   - Example: en/user/index.md → mkdocs_output/en/user/index.html
    - Tool: Custom Python script
 
 3. **Theme File Existence**
@@ -441,7 +442,7 @@ Integration tests will validate the complete build and deployment process:
 
 1. **Full Build Test**
    - Test: Run `mkdocs build` and verify output structure
-   - Validates: site/en/{user,developer,docguide,api}/ directories exist
+   - Validates: mkdocs_output/en/{user,developer,docguide,api}/ directories exist
    - Validates: All expected HTML files are generated
    - Tool: Shell script + directory structure validation
 
@@ -540,7 +541,7 @@ Manual testing will validate user experience and visual aspects:
 1. Build locally and verify output structure:
    ```bash
    mkdocs build
-   ls -la site/en/{user,developer,docguide,api}
+   ls -la mkdocs_output/en/{user,developer,docguide,api}
    ```
 
 2. Test navigation tabs functionality

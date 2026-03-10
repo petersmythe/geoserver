@@ -52,3 +52,6 @@ src/web/app/.temp-Start*
 # VS Code
 .vscode/
 test_conversion
+
+# MkDocs build output
+mkdocs_output/

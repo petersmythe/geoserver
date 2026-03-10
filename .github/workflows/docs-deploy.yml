@@ -40,9 +40,6 @@ jobs:
         run: |
           BRANCH=${GITHUB_REF##refs/heads/}
           
-          # Set docs_base_path using branch name
-          echo "docs_base_path=/geoserver/$BRANCH" >> $GITHUB_OUTPUT
-          
           if [ "$BRANCH" = "main" ]; then
             echo "version=latest" >> $GITHUB_OUTPUT
             echo "title=Latest (3.0 dev)" >> $GITHUB_OUTPUT
@@ -51,7 +48,7 @@ jobs:
             echo "version=stable" >> $GITHUB_OUTPUT
             echo "title=Stable (2.28.x)" >> $GITHUB_OUTPUT
             echo "is_default=true" >> $GITHUB_OUTPUT
-            ### TODO This logic will need to be generalised.
+          ### TODO This logic will need to be generalised.    
           elif [ "$BRANCH" = "3.0.x" ]; then
             echo "version=3.0.x" >> $GITHUB_OUTPUT
             echo "title=3.0.x" >> $GITHUB_OUTPUT
@@ -62,78 +59,23 @@ jobs:
             echo "is_default=false" >> $GITHUB_OUTPUT
           fi
       
-      # Deploy User Manual
-      - name: Deploy User Manual
-        working-directory: doc/en/user
-        env:
-          DOCS_BASE_PATH: ${{ steps.version.outputs.docs_base_path }}
+      # Build unified documentation
+      - name: Build unified documentation
+        run: |
+          mkdocs build
+      
+      # Deploy unified documentation with mike
+      - name: Deploy unified documentation
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          mike deploy --deploy-prefix "en/user" $VERSION \
+          mike deploy $VERSION \
             --title "${{ steps.version.outputs.title }}" \
             --push \
             --update-aliases
       
-      # Deploy Developer Guide
-      - name: Deploy Developer Guide
-        working-directory: doc/en/developer
-        env:
-          DOCS_BASE_PATH: ${{ steps.version.outputs.docs_base_path }}
-        run: |
-          VERSION=${{ steps.version.outputs.version }}
-          mike deploy --deploy-prefix "en/developer" $VERSION \
-            --push \
-            --update-aliases
-      
-      # Deploy Documentation Guide
-      - name: Deploy Documentation Guide
-        working-directory: doc/en/docguide
-        env:
-          DOCS_BASE_PATH: ${{ steps.version.outputs.docs_base_path }}
-        run: |
-          VERSION=${{ steps.version.outputs.version }}
-          mike deploy --deploy-prefix "en/docguide" $VERSION \
-            --push \
-            --update-aliases
-      
-      # Build API documentation
-      - name: Setup Java for API docs
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'temurin'
-      
-      - name: Build API documentation
-        run: |
-          mvn -B -ntp -f doc/en process-resources
-      
-      # Deploy API docs to gh-pages
-      - name: Deploy API documentation
-        run: |
-          VERSION=${{ steps.version.outputs.version }}
-          
-          # Checkout gh-pages branch
-          git fetch origin gh-pages
-          git checkout gh-pages
-          
-          # Create API directory
-          mkdir -p $VERSION/en/api
-          
-          # Copy API docs
-          cp -r doc/en/target/api/* $VERSION/en/api/
-          
-          # Commit and push
-          git add $VERSION/en/api
-          git commit -m "Update API docs for $VERSION" || echo "No changes"
-          git push origin gh-pages
-          
-          # Return to source branch
-          git checkout ${GITHUB_REF##refs/heads/}
-      
       # Set default version (stable only)
       - name: Set default version
         if: steps.version.outputs.is_default == 'true'
-        working-directory: doc/en/user
         run: |
           mike set-default ${{ steps.version.outputs.version }} --push
       
