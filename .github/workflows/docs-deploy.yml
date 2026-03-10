@@ -69,8 +69,7 @@ jobs:
           DOCS_BASE_PATH: ${{ steps.version.outputs.docs_base_path }}
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          mike deploy --deploy-prefix "$VERSION/en/user" \
-            $VERSION \
+          mike deploy --deploy-prefix "en/user" $VERSION \
             --title "${{ steps.version.outputs.title }}" \
             --push \
             --update-aliases
@@ -82,8 +81,7 @@ jobs:
           DOCS_BASE_PATH: ${{ steps.version.outputs.docs_base_path }}
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          mike deploy --deploy-prefix "$VERSION/en/developer" \
-            $VERSION \
+          mike deploy --deploy-prefix "en/developer" $VERSION \
             --push \
             --update-aliases
       
@@ -94,8 +92,7 @@ jobs:
           DOCS_BASE_PATH: ${{ steps.version.outputs.docs_base_path }}
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          mike deploy --deploy-prefix "$VERSION/en/docguide" \
-            $VERSION \
+          mike deploy --deploy-prefix "en/docguide" $VERSION \
             --push \
             --update-aliases
       
