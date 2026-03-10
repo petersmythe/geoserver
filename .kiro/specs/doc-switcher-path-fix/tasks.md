@@ -126,7 +126,7 @@
   - Test with multi-branch deployment structure (migration branch with DOCS_BASE_PATH)
   - Ask the user if questions arise
 
-- [ ] 5. Deploy and test on GitHub Pages
+- [x] 5. Deploy and test on GitHub Pages
   - Push changes to the migration/3.0-rst-to-md branch
   - Verify GitHub Actions workflow deploys successfully
   - Test doc_switcher navigation on deployed site at:
@@ -141,4 +141,19 @@
   - For testing 3.0.x branch URLs, you would need to either:
     - Create a 3.0.x branch with the fix and push it
     - Or manually test locally by setting site_url to use 3.0.x and building
+  - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
+
+- [x] 6. Test on 3.0.x branch with docs-deploy.yml workflow
+  - Create new 3.0.x branch from current migration branch
+  - Update docs-deploy.yml to include 3.0.x in the branches list
+  - Add 3.0.x branch handling in the "Determine version and aliases" step
+  - Push to 3.0.x branch to trigger docs-deploy.yml workflow
+  - Verify deployment uses mike for version management
+  - Test doc_switcher navigation on deployed site
+  - Expected URL structure: `https://petersmythe.github.io/geoserver/3.0.x/en/user/`
+  - Verify doc_switcher URLs use correct base path: `/geoserver/3.0.x/en/`
+  - Test navigation from pages at levels 2 and 3
+  - Confirm no regressions compared to migration branch deployment
+  - Afterwards, commit these changes back into the migration/3.0-rst-to-md branch
+  - Add a new task for: ### TODO This logic will need to be generalised.
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
