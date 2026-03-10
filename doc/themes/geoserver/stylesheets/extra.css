@@ -46,7 +46,7 @@
 /* Breadcrumb container - sticky positioning that stops at header */
 .md-path {
   position: sticky;
-  top: 2.4rem;  /* Adjusted to stick directly below header with no gap */
+  top: 4.8rem;  /* Header (2.4rem) + Navigation tabs (2.4rem) = 4.8rem */
   z-index: 1;  /* Lower z-index so hamburger menu (z-index: 4) appears above */
   margin: -1.5rem 0rem 1rem 0rem;  /* No negative top margin - let it flow naturally */
   padding: 0.5rem 0.8rem;
@@ -119,8 +119,8 @@
     font-size: 0.75rem;
     margin: -0.5rem -1rem 0.75rem -1rem;
     padding: 0.4rem 1rem;
-    /* Sticky position adjusted for mobile header */
-    top: 2.4rem;
+    /* Sticky position adjusted for mobile header + tabs */
+    top: 4.8rem;
   }
   
   .md-path__list {
