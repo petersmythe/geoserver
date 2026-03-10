@@ -1,6 +1,6 @@
 # IntelliJ QuickStart
 
-{% include "quickstart/checkout.md" %}
+{% include "en/developer/quickstart/checkout.md" %}
 
 ## Import modules into IntelliJ
 
