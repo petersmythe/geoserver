@@ -59,12 +59,7 @@ jobs:
             echo "is_default=false" >> $GITHUB_OUTPUT
           fi
       
-      # Build unified documentation
-      - name: Build unified documentation
-        run: |
-          mkdocs build
-      
-      # Deploy unified documentation with mike
+      # Deploy unified documentation with mike (builds and deploys)
       - name: Deploy unified documentation
         run: |
           VERSION=${{ steps.version.outputs.version }}
