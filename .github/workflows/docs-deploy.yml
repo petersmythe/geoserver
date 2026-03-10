@@ -41,6 +41,9 @@ jobs:
         run: |
           BRANCH=${GITHUB_REF##refs/heads/}
           
+          # Set docs_base_path using branch name
+          echo "docs_base_path=/geoserver/$BRANCH" >> $GITHUB_OUTPUT
+          
           if [ "$BRANCH" = "main" ]; then
             echo "version=latest" >> $GITHUB_OUTPUT
             echo "title=Latest (3.0 dev)" >> $GITHUB_OUTPUT
