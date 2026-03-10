@@ -1020,15 +1020,15 @@ nav:
   
   - Documentation Guide:
     - en/docguide/index.md
-    - en/docguide/background.md
-    - en/docguide/quickfix.md
-    - en/docguide/contributing.md
-    - en/docguide/workflow.md
-    - en/docguide/install.md
-    - en/docguide/installlatex.md
-    - en/docguide/sphinx.md
-    - en/docguide/style.md
-    - en/docguide/tutorial.md
+    - Background: en/docguide/background.md
+    - Quickfix: en/docguide/quickfix.md
+    - Contributing: en/docguide/contributing.md
+    - Installing Sphinx: en/docguide/install.md
+    - Installing LaTeX: en/docguide/installlatex.md
+    - Workflow: en/docguide/workflow.md
+    - Sphinx Syntax: en/docguide/sphinx.md
+    - Style Guidelines: en/docguide/style.md
+    - Writing a Tutorial: en/docguide/tutorial.md
   
   - API Reference:
     - en/api/index.html
