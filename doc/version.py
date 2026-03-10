@@ -59,3 +59,16 @@ def define_env(env):
     # This resolves to the correct path regardless of where the documentation is deployed
     # Usage in Markdown: [API reference]({{ api_url }}/styles.yaml)
     env.variables['api_url'] = '../api/#1.0.0'
+    
+    # Load shared doc_switcher configuration
+    # The doc_switcher provides navigation between different documentation types
+    # (User Manual, Developer Manual, Documentation Guide, Swagger APIs)
+    # This configuration is centralized in a single YAML file to avoid duplication
+    # across the three mkdocs.yml files
+    config_path = Path(__file__).parent / 'themes' / 'geoserver' / 'doc_switcher.yml'
+    with open(config_path, 'r') as f:
+        config = yaml.safe_load(f)
+    
+    # Inject doc_switcher into config.extra so it's available to theme templates
+    # Theme templates can access this via {{ config.extra.doc_switcher }}
+    env.conf['extra']['doc_switcher'] = config['doc_switcher']
