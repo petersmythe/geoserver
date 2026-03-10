@@ -354,3 +354,25 @@
 .md-nav--primary .md-nav__item:not(.md-nav__item--nested):not(.md-nav__item--active) {
   display: none !important;
 }
+
+/* Center the tabs list */
+.md-tabs__list {
+  justify-content: center !important;
+}
+
+/* Optional: Add some spacing between tabs for better visual separation */
+.md-tabs__item {
+  margin: 0 0.5rem;
+}
+
+/* Ensure tabs container uses flexbox for centering */
+.md-tabs {
+  display: flex;
+  justify-content: center;
+}
+
+.md-tabs .md-grid {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
