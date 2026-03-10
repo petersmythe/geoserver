@@ -1,0 +1,2124 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Template</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Template</h1>
+    <div class="app-desc">Manage templates used to configure output (for example GetFeatureInfo reponse). Templates can be registered for the entire server or workspace. You can also configure a template for use with a store, featureType or coverage.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Templates">Templates</a></h4>
+  <ul>
+  <li><a href="#templateCoverageDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateCoverageGet"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateCoveragePost"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateCoveragePut"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreCSDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreCSGet"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreCSPost"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreCSPut"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreFTDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreFTGet"><code><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreFTPost*"><code><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreFTPut"><code><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStoreGet"><code><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStorePost"><code><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDataStorePut"><code><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateDelete"><code><span class="http-method">delete</span> /templates/{template}.ftl</code></a></li>
+  <li><a href="#templateGet"><code><span class="http-method">get</span> /templates/{template}.ftl</code></a></li>
+  <li><a href="#templatePost"><code><span class="http-method">post</span> /templates/{template}.ftl</code></a></li>
+  <li><a href="#templatePut"><code><span class="http-method">put</span> /templates/{template}.ftl</code></a></li>
+  <li><a href="#templateWorkspaceDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateWorkspaceGet"><code><span class="http-method">get</span> /workspaces/{workspace}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateWorkspacePost"><code><span class="http-method">post</span> /workspaces/{workspace}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templateWorkspacePut"><code><span class="http-method">put</span> /workspaces/{workspace}/templates/{template}.ftl</code></a></li>
+  <li><a href="#templatesCoverageDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></a></li>
+  <li><a href="#templatesCoverageGet"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></a></li>
+  <li><a href="#templatesCoveragePost"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></a></li>
+  <li><a href="#templatesCoveragePut"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></a></li>
+  <li><a href="#templatesDataStoreCSDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></a></li>
+  <li><a href="#templatesDataStoreCSGet"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></a></li>
+  <li><a href="#templatesDataStoreCSPost"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></a></li>
+  <li><a href="#templatesDataStoreCSPut"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></a></li>
+  <li><a href="#templatesDataStoreDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/templates</code></a></li>
+  <li><a href="#templatesDataStoreFTDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></a></li>
+  <li><a href="#templatesDataStoreFTGet"><code><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></a></li>
+  <li><a href="#templatesDataStoreFTPost"><code><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></a></li>
+  <li><a href="#templatesDataStoreFTPut"><code><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></a></li>
+  <li><a href="#templatesDataStoreGet"><code><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/templates</code></a></li>
+  <li><a href="#templatesDataStorePost"><code><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/templates</code></a></li>
+  <li><a href="#templatesDataStorePut"><code><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/templates</code></a></li>
+  <li><a href="#templatesDelete"><code><span class="http-method">delete</span> /templates</code></a></li>
+  <li><a href="#templatesGet"><code><span class="http-method">get</span> /templates</code></a></li>
+  <li><a href="#templatesPost"><code><span class="http-method">post</span> /templates</code></a></li>
+  <li><a href="#templatesPut"><code><span class="http-method">put</span> /templates</code></a></li>
+  <li><a href="#templatesWorkspaceDelete"><code><span class="http-method">delete</span> /workspaces/{workspace}/templates</code></a></li>
+  <li><a href="#templatesWorkspaceGet"><code><span class="http-method">get</span> /workspaces/{workspace}/templates</code></a></li>
+  <li><a href="#templatesWorkspacePost"><code><span class="http-method">post</span> /workspaces/{workspace}/templates</code></a></li>
+  <li><a href="#templatesWorkspacePut"><code><span class="http-method">put</span> /workspaces/{workspace}/templates</code></a></li>
+  </ul>
+
+  <h1><a name="Templates">Templates</a></h1>
+  <div class="method"><a name="templateCoverageDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Delete a template. (<span class="nickname">templateCoverageDelete</span>)</div>
+    <div class="method-notes">Deletes a single template registered for use by a coverage.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Template not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateCoverageGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Return a template for a coverage (<span class="nickname">templateCoverageGet</span>)</div>
+    <div class="method-notes">Displays a single template registered for use by a coverage (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateCoveragePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templateCoveragePost</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to insert a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateCoveragePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Insert or update a template (<span class="nickname">templateCoveragePut</span>)</div>
+    <div class="method-notes">Inserts or updates a single template registered for use by a coverage (example for GetFeatureInfo WMS operation). Overwrites any existing template with the same name and location.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">template <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The template content to upload </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreCSDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Delete a template. (<span class="nickname">templateDataStoreCSDelete</span>)</div>
+    <div class="method-notes">Deletes a single template registered for use by all layers generated by a coverage store.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Template not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreCSGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Return a template for a coverage store (<span class="nickname">templateDataStoreCSGet</span>)</div>
+    <div class="method-notes">Displays a single template registered for use by all layers generated by a coverage store (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreCSPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templateDataStoreCSPost</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to insert a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreCSPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Insert or update a template (<span class="nickname">templateDataStoreCSPut</span>)</div>
+    <div class="method-notes">Inserts or updates a single template registered for use by all layers generated by a coverage store (example for GetFeatureInfo WMS operation). Overwrites any existing template with the same name and location.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">template <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The template content to upload </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Delete a template. (<span class="nickname">templateDataStoreDelete</span>)</div>
+    <div class="method-notes">Deletes a single template registered for use by all layers generated by a data store.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Template not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreFTDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Delete a template. (<span class="nickname">templateDataStoreFTDelete</span>)</div>
+    <div class="method-notes">Deletes a single template registered for use by a feature type.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Template not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreFTGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Return a template for a feature type. (<span class="nickname">templateDataStoreFTGet</span>)</div>
+    <div class="method-notes">Displays a single template registered for use by a feature type (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreFTPost*"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templateDataStoreFTPost*</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to insert a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreFTPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Insert or update a template (<span class="nickname">templateDataStoreFTPut</span>)</div>
+    <div class="method-notes">Inserts or updates a single template registered for use by a feature type (example for GetFeatureInfo WMS operation). Overwrites any existing template with the same name and location.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">template <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The template content to upload </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStoreGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Return a template for a data store (<span class="nickname">templateDataStoreGet</span>)</div>
+    <div class="method-notes">Displays a single template registered for use by all layers generated by a data store (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStorePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templateDataStorePost</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to insert a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDataStorePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Insert or update a template (<span class="nickname">templateDataStorePut</span>)</div>
+    <div class="method-notes">Inserts or updates a single template registered for use by all layers generated by a data store (example for GetFeatureInfo WMS operation). Overwrites any existing template with the same name and location.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">template <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The template content to upload </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Delete a template. (<span class="nickname">templateDelete</span>)</div>
+    <div class="method-notes">Deletes a single template registered for use on the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Template not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Return a template (<span class="nickname">templateGet</span>)</div>
+    <div class="method-notes">Displays a single template registered for use on the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /templates/{template}.ftl</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatePost</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to insert a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Insert or update a template (<span class="nickname">templatePut</span>)</div>
+    <div class="method-notes">Inserts or updates a single template registered for use on the server. Overwrites any existing template with the same name and location.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">template <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The template content to upload </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateWorkspaceDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Delete a template. (<span class="nickname">templateWorkspaceDelete</span>)</div>
+    <div class="method-notes">Deletes a single template registered for use in a workspace.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Template not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateWorkspaceGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Return a template for workspace (<span class="nickname">templateWorkspaceGet</span>)</div>
+    <div class="method-notes">Displays a single template registered for use in a workspace (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateWorkspacePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templateWorkspacePost</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to insert a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">template (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The template name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templateWorkspacePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/templates/{template}.ftl</code></pre></div>
+    <div class="method-summary">Insert or update a template (<span class="nickname">templateWorkspacePut</span>)</div>
+    <div class="method-notes">Inserts or updates a single template registered for use in a workspace (example for GetFeatureInfo WMS operation). Overwrites any existing template with the same name and location.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">template <a href="#string">string</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The template content to upload </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesCoverageDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesCoverageDelete</span>)</div>
+    <div class="method-notes">Invalid. Delete from <code>/{template}</code> to remove a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesCoverageGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></pre></div>
+    <div class="method-summary">List of templates for a coverage (<span class="nickname">templatesCoverageGet</span>)</div>
+    <div class="method-notes">Displays a list of templates registered for use by a coverage (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <layerGroups></layerGroups>
+</null></code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layerGroups" : "{}"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesCoveragePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesCoveragePost</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesCoveragePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/coverages/{coverage}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesCoveragePut</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The coverage name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreCSDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStoreCSDelete</span>)</div>
+    <div class="method-notes">Invalid. Delete from <code>/{template}</code> to remove a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreCSGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></pre></div>
+    <div class="method-summary">List of templates for a coverage store (<span class="nickname">templatesDataStoreCSGet</span>)</div>
+    <div class="method-notes">Displays a list of templates registered for use by all layers generated by a coverage store (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <layerGroups></layerGroups>
+</null></code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layerGroups" : "{}"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreCSPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStoreCSPost</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreCSPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestore/{store}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStoreCSPut</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStoreDelete</span>)</div>
+    <div class="method-notes">Invalid. Delete from <code>/{template}</code> to remove a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreFTDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStoreFTDelete</span>)</div>
+    <div class="method-notes">Invalid. Delete from <code>/{template}</code> to remove a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreFTGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></pre></div>
+    <div class="method-summary">List of templates for a feature type. (<span class="nickname">templatesDataStoreFTGet</span>)</div>
+    <div class="method-notes">Displays a list of templates registered for use by feature type (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <layerGroups></layerGroups>
+</null></code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layerGroups" : "{}"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreFTPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStoreFTPost</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreFTPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/featuretypes/{type}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStoreFTPut</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The feature type name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStoreGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/datastores/{store}/templates</code></pre></div>
+    <div class="method-summary">List of templates for a data store (<span class="nickname">templatesDataStoreGet</span>)</div>
+    <div class="method-notes">Displays a list of templates registered for use by all layers generated by a data store (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <layerGroups></layerGroups>
+</null></code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layerGroups" : "{}"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStorePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/datastores/{store}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStorePost</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDataStorePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/datastores/{store}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDataStorePut</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The store name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesDelete</span>)</div>
+    <div class="method-notes">Invalid. Delete from <code>/{template}</code> to remove a template.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /templates</code></pre></div>
+    <div class="method-summary">List of templates for the server (<span class="nickname">templatesGet</span>)</div>
+    <div class="method-notes">Displays a list of templates registered for use on the server.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <layerGroups></layerGroups>
+</null></code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layerGroups" : "{}"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesPost</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesPut</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesWorkspaceDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesWorkspaceDelete</span>)</div>
+    <div class="method-notes">Invalid. Delete from <code>/{template}</code> to remove a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesWorkspaceGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/templates</code></pre></div>
+    <div class="method-summary">List of templates for workspace (<span class="nickname">templatesWorkspaceGet</span>)</div>
+    <div class="method-notes">Displays a list of templates registered for use in a workspace (example for GetFeatureInfo WMS operation).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Templates">Templates</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <layerGroups></layerGroups>
+</null></code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layerGroups" : "{}"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Templates">Templates</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesWorkspacePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesWorkspacePost</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="templatesWorkspacePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/templates</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">templatesWorkspacePut</span>)</div>
+    <div class="method-notes">Invalid. PUT to <code>/{template}</code> to edit a template.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#TemplateReference"><code>TemplateReference</code> - layers</a></li>
+    <li><a href="#Templates"><code>Templates</code> - templates</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="TemplateReference"><code>TemplateReference</code> - layers</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of template </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to template definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Templates"><code>Templates</code> - templates</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">layerGroups (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

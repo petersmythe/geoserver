@@ -1,0 +1,354 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Metadata Community Module</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Metadata Community Module</h1>
+    <div class="app-desc">Customized Metadata Bulk Operations.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Metadata">Metadata</a></h4>
+  <ul>
+  <li><a href="#metadataDelete"><code><span class="http-method">delete</span> /metadata</code></a></li>
+  <li><a href="#metadataFixGet"><code><span class="http-method">get</span> /metadata/fix</code></a></li>
+  <li><a href="#metadataImportPost"><code><span class="http-method">post</span> /metadata/import</code></a></li>
+  <li><a href="#metadataNativeToCustomGet"><code><span class="http-method">get</span> /metadata/nativeToCustom</code></a></li>
+  <li><a href="#metadataNativeToCustomPost"><code><span class="http-method">post</span> /metadata/nativeToCustom</code></a></li>
+  </ul>
+
+  <h1><a name="Metadata">Metadata</a></h1>
+  <div class="method"><a name="metadataDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /metadata</code></pre></div>
+    <div class="method-summary">Delete all custom metadata (<span class="nickname">metadataDelete</span>)</div>
+    <div class="method-notes">Remove ALL custom metadata from ALL layers. All template links are removed. Used for testing and debugging.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    You must be sure (if safety flag not set)
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="metadataFixGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /metadata/fix</code></pre></div>
+    <div class="method-summary">Fix all custom metadata (<span class="nickname">metadataFixGet</span>)</div>
+    <div class="method-notes">Calls routine operations that may fix corrupted custom metadata in all layers. Used for testing and debugging.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="metadataImportPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /metadata/import</code></pre></div>
+    <div class="method-summary">Bulk import from geonetwork and/or template linking. (<span class="nickname">metadataImportPost</span>)</div>
+    <div class="method-notes">Will perform a bulk import and/or template linking for every layer specified in CSV file. CSV file must be of form &quot;prefix:layername; [geonetwork-id] [; template-1 [;template-2 ... ] ]&quot; Existing template links will be removed first.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="metadataNativeToCustomGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /metadata/nativeToCustom</code></pre></div>
+    <div class="method-summary">Perform native-to-custom mapping for all layers. (<span class="nickname">metadataNativeToCustomGet</span>)</div>
+    <div class="method-notes">With respect to your custom-to-native mapping file (see general documentation), this operation will perform an opposite synchronization from native fields to custom fields.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="metadataNativeToCustomPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /metadata/nativeToCustom</code></pre></div>
+    <div class="method-summary">Perform native-to-custom mapping for selected layers. (<span class="nickname">metadataNativeToCustomPost</span>)</div>
+    <div class="method-notes">With respect to your custom-to-native mapping file (see metadata module documentation), this operation will perform an opposite synchronization from native fields to custom fields. Your body must be a list layers, where each row is of the form &quot;prefix:layername&quot;.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+  </ol>
+
+  </body>
+</html>

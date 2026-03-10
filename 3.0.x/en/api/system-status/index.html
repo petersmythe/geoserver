@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer System Status</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer System Status</h1>
+    <div class="app-desc">Request provides details about OWS and REST requests that GeoServer has handled</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#SystemStatus">SystemStatus</a></h4>
+  <ul>
+  <li><a href="#getMonitorRequests"><code><span class="http-method">get</span> /about/system-status</code></a></li>
+  </ul>
+
+  <h1><a name="SystemStatus">SystemStatus</a></h1>
+  <div class="method"><a name="getMonitorRequests"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /about/system-status</code></pre></div>
+    <div class="method-summary">Get a list of requests (<span class="nickname">getMonitorRequests</span>)</div>
+    <div class="method-notes">Returns a list of system-level information.
+Major operating systems (Linux, Windows and MacOX) are supported out of the box.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Metrics">Metrics</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"metrics\": {\n      \"metric\": [\n          {\n        \"available\": true,\n        \"category\": \"FILE_SYSTEM\",\n        \"description\": \"Partition [/dev/nvme0n1p2] total space\",\n        \"identifier\": \"/dev/nvme0n1p2\",\n        \"name\": \"PARTITION_TOTAL\",\n        \"priority\": 507,\n        \"unit\": \"bytes\",\n        \"value\": 99614720\n    },\n          (...)\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<metrics>\n  <metric>\n    <value>99614720</value>\n    <available>true</available>\n    <description>Partition [/dev/nvme0n1p2] total space</description>\n    <name>PARTITION_TOTAL</name>\n    <unit>bytes</unit>\n    <category>FILE_SYSTEM</category>\n    <identifier>/dev/nvme0n1p2</identifier>\n    <priority>507</priority>\n  </metric>\n  (...)\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Metrics">Metrics</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "metrics": {
+      "metric": [
+          {
+        "available": true,
+        "category": "FILE_SYSTEM",
+        "description": "Partition [/dev/nvme0n1p2] total space",
+        "identifier": "/dev/nvme0n1p2",
+        "name": "PARTITION_TOTAL",
+        "priority": 507,
+        "unit": "bytes",
+        "value": 99614720
+    },
+          (...)
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><metrics>
+  <metric>
+    <value>99614720</value>
+    <available>true</available>
+    <description>Partition [/dev/nvme0n1p2] total space</description>
+    <name>PARTITION_TOTAL</name>
+    <unit>bytes</unit>
+    <category>FILE_SYSTEM</category>
+    <identifier>/dev/nvme0n1p2</identifier>
+    <priority>507</priority>
+  </metric>
+  (...)
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Metrics"><code>Metrics</code> - metrics</a></li>
+    <li><a href="#metric"><code>metric</code> - </a></li>
+    <li><a href="#metricValue"><code>metricValue</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Metrics"><code>Metrics</code> - metrics</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Metrics for system status properties</div>
+    <div class="field-items">
+      <div class="param">metric (optional)</div><div class="param-desc"><span class="param-type"><a href="#metric">metric</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="metric"><code>metric</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Metrics for system status properties</div>
+    <div class="field-items">
+      <div class="param">metrics (optional)</div><div class="param-desc"><span class="param-type"><a href="#metricValue">array[metricValue]</a></span> Metrics for system status properties </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="metricValue"><code>metricValue</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> System information value </div>
+<div class="param">category (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Category of this system information </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the metric </div>
+<div class="param">available (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> TRUE if the system information value is available </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Description of this system information </div>
+<div class="param">unit (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unit of the system information, can be empty </div>
+<div class="param">priority (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> This value can be used to render the metrics in a predefined order </div>
+<div class="param">identifier (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Identifies the resource associated with the metric, e.g. file partition name </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

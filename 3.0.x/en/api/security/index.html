@@ -1,0 +1,1695 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Security</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Security</h1>
+    <div class="app-desc">The Security area shows access rules and other configuration for the security subsystem</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Reload">Reload</a></h4>
+  <ul>
+  <li><a href="#deleteReload"><code><span class="http-method">delete</span> /rest/security/acl/catalog/reload</code></a></li>
+  <li><a href="#getReload"><code><span class="http-method">get</span> /rest/security/acl/catalog/reload</code></a></li>
+  <li><a href="#postReload"><code><span class="http-method">post</span> /rest/security/acl/catalog/reload</code></a></li>
+  <li><a href="#putReload"><code><span class="http-method">put</span> /rest/security/acl/catalog/reload</code></a></li>
+  </ul>
+  <h4><a href="#Security">Security</a></h4>
+  <ul>
+  <li><a href="#deleteACLLayer"><code><span class="http-method">delete</span> /rest/security/acl/layers/{rule}</code></a></li>
+  <li><a href="#deleteACLLayers"><code><span class="http-method">delete</span> /rest/security/acl/layers</code></a></li>
+  <li><a href="#deleteACLRESTRule"><code><span class="http-method">delete</span> /rest/security/acl/rest/{rule}</code></a></li>
+  <li><a href="#deleteACLRESTRules"><code><span class="http-method">delete</span> /rest/security/acl/rest</code></a></li>
+  <li><a href="#deleteACLService"><code><span class="http-method">delete</span> /rest/security/acl/services/{rule}</code></a></li>
+  <li><a href="#deleteACLServices"><code><span class="http-method">delete</span> /rest/security/acl/services</code></a></li>
+  <li><a href="#deleteCatalogMode"><code><span class="http-method">delete</span> /rest/security/acl/catalog</code></a></li>
+  <li><a href="#deleteMasterPW"><code><span class="http-method">delete</span> /rest/security/masterpw</code></a></li>
+  <li><a href="#deleteSelfPassword"><code><span class="http-method">delete</span> /rest/security/self/password</code></a></li>
+  <li><a href="#getACLLayer"><code><span class="http-method">get</span> /rest/security/acl/layers/{rule}</code></a></li>
+  <li><a href="#getACLLayers"><code><span class="http-method">get</span> /rest/security/acl/layers</code></a></li>
+  <li><a href="#getACLRESTRule"><code><span class="http-method">get</span> /rest/security/acl/rest/{rule}</code></a></li>
+  <li><a href="#getACLRESTRules"><code><span class="http-method">get</span> /rest/security/acl/rest</code></a></li>
+  <li><a href="#getACLService"><code><span class="http-method">get</span> /rest/security/acl/services/{rule}</code></a></li>
+  <li><a href="#getACLServices"><code><span class="http-method">get</span> /rest/security/acl/services</code></a></li>
+  <li><a href="#getCatalogMode"><code><span class="http-method">get</span> /rest/security/acl/catalog</code></a></li>
+  <li><a href="#getMasterPW"><code><span class="http-method">get</span> /rest/security/masterpw</code></a></li>
+  <li><a href="#getSelfPassword"><code><span class="http-method">get</span> /rest/security/self/password</code></a></li>
+  <li><a href="#postACLLayer"><code><span class="http-method">post</span> /rest/security/acl/layers/{rule}</code></a></li>
+  <li><a href="#postACLLayers"><code><span class="http-method">post</span> /rest/security/acl/layers</code></a></li>
+  <li><a href="#postACLRESTRule"><code><span class="http-method">post</span> /rest/security/acl/rest/{rule}</code></a></li>
+  <li><a href="#postACLRESTRules"><code><span class="http-method">post</span> /rest/security/acl/rest</code></a></li>
+  <li><a href="#postACLService"><code><span class="http-method">post</span> /rest/security/acl/services/{rule}</code></a></li>
+  <li><a href="#postACLServices"><code><span class="http-method">post</span> /rest/security/acl/services</code></a></li>
+  <li><a href="#postCatalogMode"><code><span class="http-method">post</span> /rest/security/acl/catalog</code></a></li>
+  <li><a href="#postMasterPW"><code><span class="http-method">post</span> /rest/security/masterpw</code></a></li>
+  <li><a href="#postSelfPassword"><code><span class="http-method">post</span> /rest/security/self/password</code></a></li>
+  <li><a href="#putACLLayer"><code><span class="http-method">put</span> /rest/security/acl/layers/{rule}</code></a></li>
+  <li><a href="#putACLLayers"><code><span class="http-method">put</span> /rest/security/acl/layers</code></a></li>
+  <li><a href="#putACLRESTRule"><code><span class="http-method">put</span> /rest/security/acl/rest/{rule}</code></a></li>
+  <li><a href="#putACLRESTRules"><code><span class="http-method">put</span> /rest/security/acl/rest</code></a></li>
+  <li><a href="#putACLService"><code><span class="http-method">put</span> /rest/security/acl/services/{rule}</code></a></li>
+  <li><a href="#putACLServices"><code><span class="http-method">put</span> /rest/security/acl/services</code></a></li>
+  <li><a href="#putMasterPW"><code><span class="http-method">put</span> /rest/security/masterpw</code></a></li>
+  <li><a href="#putSelfPassword"><code><span class="http-method">put</span> /rest/security/self/password</code></a></li>
+  <li><a href="#restSecurityAclCatalogPut"><code><span class="http-method">put</span> /rest/security/acl/catalog</code></a></li>
+  </ul>
+
+  <h1><a name="Reload">Reload</a></h1>
+  <div class="method"><a name="deleteReload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/catalog/reload</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteReload</span>)</div>
+    <div class="method-notes">Invalid. Use PUT or POST to reload the catalog and configuation.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getReload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/catalog/reload</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getReload</span>)</div>
+    <div class="method-notes">Invalid. Use PUT or POST to reload the catalog and configuation.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postReload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/catalog/reload</code></pre></div>
+    <div class="method-summary">Reload the configuration from disk, and reset all caches. (<span class="nickname">postReload</span>)</div>
+    <div class="method-notes">Reloads the GeoServer Security Manager catalog and configuration from disk. This operation is used in cases where an external tool has modified the on-disk configuration.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putReload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/catalog/reload</code></pre></div>
+    <div class="method-summary">Reload the configuration from disk, and reset all caches. (<span class="nickname">putReload</span>)</div>
+    <div class="method-notes">Reloads the GeoServer Security Manager catalog and configuration from disk. This operation is used in cases where an external tool has modified the on-disk configuration.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Security">Security</a></h1>
+  <div class="method"><a name="deleteACLLayer"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/layers/{rule}</code></pre></div>
+    <div class="method-summary">Delete layer rule. (<span class="nickname">deleteACLLayer</span>)</div>
+    <div class="method-notes">Deletes specific layer-based rule(s). The {rule} must specified in the last part of the URL and of the form &lt;workspace&gt;.&lt;layer&gt;.[r|w|a]</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteACLLayers"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/layers</code></pre></div>
+    <div class="method-summary">Delete layer rule(s) (<span class="nickname">deleteACLLayers</span>)</div>
+    <div class="method-notes">Deletes one or more layer-based rules in the list of security rules.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not found. Attempting to delete a non-existent rule.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteACLRESTRule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/rest/{rule}</code></pre></div>
+    <div class="method-summary">Delete REST access rule (<span class="nickname">deleteACLRESTRule</span>)</div>
+    <div class="method-notes">Deletes specific REST access rule(s). The {rule} must specified as the last part of the URL and must be of the form &lt;URL Ant pattern&gt;:&lt;comma separated list of HTTP methods&gt;</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; <p>The REST rule, specified as &lt;URL Ant pattern&gt;;&lt;comma separated list of HTTP methods&gt;. Examples are</p>
+<ul>
+<li>/**;GET</li>
+<li>/**;POST,DELETE,PUT</li>
+</ul>
+ </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteACLRESTRules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/rest</code></pre></div>
+    <div class="method-summary">Delete REST access rule(s) (<span class="nickname">deleteACLRESTRules</span>)</div>
+    <div class="method-notes">Deletes one or more service-based rules.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not found. Attempting to delete a non-existent rule.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteACLService"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/services/{rule}</code></pre></div>
+    <div class="method-summary">Delete service rule. (<span class="nickname">deleteACLService</span>)</div>
+    <div class="method-notes">Deletes specific service-based rule(s). The {rule} must be specified as the last part of the URL and must be of the form &lt;service&gt;.&lt;operation&gt;</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteACLServices"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/services</code></pre></div>
+    <div class="method-summary">Delete service rule(s) (<span class="nickname">deleteACLServices</span>)</div>
+    <div class="method-notes">Deletes one or more service-based rules in the list of security rules.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not found. Attempting to delete a non-existent rule.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteCatalogMode"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/acl/catalog</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteCatalogMode</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to change catalog mode.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteMasterPW"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/masterpw</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteMasterPW</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to change keystore password.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteSelfPassword"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/security/self/password</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteSelfPassword</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to change password.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getACLLayer"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/layers/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getACLLayer</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getACLLayers"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/layers</code></pre></div>
+    <div class="method-summary">Get layer rules (<span class="nickname">getACLLayers</span>)</div>
+    <div class="method-notes">Displays the current layer-based security rules.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ACLLayers">ACLLayers</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rules>\n  <rule resource=\"*.*.w\">GROUP_ADMIN,ADMIN</rule>\n  <rule resource=\"*.*.r\">*</rule>\n</rules>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"*.*.w\":\"GROUP_ADMIN,ADMIN\",\"*.*.r\":\"*\"}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ACLLayers">ACLLayers</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<rules>
+  <rule resource="*.*.w">GROUP_ADMIN,ADMIN</rule>
+  <rule resource="*.*.r">*</rule>
+</rules>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"*.*.w":"GROUP_ADMIN,ADMIN","*.*.r":"*"}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getACLRESTRule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/rest/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getACLRESTRule</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; <p>The REST rule, specified as &lt;URL Ant pattern&gt;;&lt;comma separated list of HTTP methods&gt;. Examples are</p>
+<ul>
+<li>/**;GET</li>
+<li>/**;POST,DELETE,PUT</li>
+</ul>
+ </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getACLRESTRules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/rest</code></pre></div>
+    <div class="method-summary">Get REST rules (<span class="nickname">getACLRESTRules</span>)</div>
+    <div class="method-notes">Displays the current REST access rules.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ACLREST">ACLREST</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<rules>\n  <rule resource=\"/**:GET\">ADMIN</rule>\n  <rule resource=\"/**:POST,DELETE,PUT\">ADMIN</rule>\n</rules>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"/**:GET\":\"ADMIN\",\"/**:POST,DELETE,PUT\":\"ADMIN\"}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ACLREST">ACLREST</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><rules>
+  <rule resource="/**:GET">ADMIN</rule>
+  <rule resource="/**:POST,DELETE,PUT">ADMIN</rule>
+</rules>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"/**:GET":"ADMIN","/**:POST,DELETE,PUT":"ADMIN"}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getACLService"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/services/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getACLService</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getACLServices"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/services</code></pre></div>
+    <div class="method-summary">Get service rules (<span class="nickname">getACLServices</span>)</div>
+    <div class="method-notes">Displays the current service-based security rules.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ACLServices">ACLServices</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rules>\n  <rule resource=\"*.*\">*</rule>\n</rules>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"*.*\":\"*\"}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#ACLServices">ACLServices</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<rules>
+  <rule resource="*.*">*</rule>
+</rules>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"*.*":"*"}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCatalogMode"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/acl/catalog</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getCatalogMode</span>)</div>
+    <div class="method-notes">Gets the catalog mode, which specifies how GeoServer will advertise secured layers and behave when a secured layer is accessed without the necessary privileges.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CatalogMode">CatalogMode</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<catalog>\n  <mode>HIDE</mode>\n</catalog>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"mode\":\"HIDE\"}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CatalogMode">CatalogMode</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+  <mode>HIDE</mode>
+</catalog>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"mode":"HIDE"}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getMasterPW"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/masterpw</code></pre></div>
+    <div class="method-summary">Get keystore password (<span class="nickname">getMasterPW</span>)</div>
+    <div class="method-notes">Displays the keystore password. HTTPS is strongly suggested, otherwise password will be sent in plain text. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/settings.xml&quot; for XML).</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#MasterPW">MasterPW</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<masterPassword>\n  <oldMasterPassword>geoserver</oldMasterPassword>\n</masterPassword>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"oldMasterPassword\":\"GeoServer\"}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#MasterPW">MasterPW</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<masterPassword>
+  <oldMasterPassword>geoserver</oldMasterPassword>
+</masterPassword>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"oldMasterPassword":"GeoServer"}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getSelfPassword"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/security/self/password</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getSelfPassword</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to change password.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postACLLayer"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/layers/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postACLLayer</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postACLLayers"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/layers</code></pre></div>
+    <div class="method-summary">Add layer rule(s) (<span class="nickname">postACLLayers</span>)</div>
+    <div class="method-notes">Adds one or more new layer-based rules to the list of security rules.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">ACLLayersBody <a href="#ACLLayers">ACLLayers</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The new rules to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Conflict. Adding an already-added rule. Use PUT to edit the rule in this case. All rule additions are aborted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postACLRESTRule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/rest/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postACLRESTRule</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; <p>The REST rule, specified as &lt;URL Ant pattern&gt;;&lt;comma separated list of HTTP methods&gt;. Examples are</p>
+<ul>
+<li>/**;GET</li>
+<li>/**;POST,DELETE,PUT</li>
+</ul>
+ </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postACLRESTRules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/rest</code></pre></div>
+    <div class="method-summary">Add REST access rule(s) (<span class="nickname">postACLRESTRules</span>)</div>
+    <div class="method-notes">Adds one or more new REST access rules.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">ACLRESTBody <a href="#ACLREST">ACLREST</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The new rules to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Conflict. Adding an already-added rule. Use PUT to edit the rule in this case. All rule additions are aborted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postACLService"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/services/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postACLService</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postACLServices"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/services</code></pre></div>
+    <div class="method-summary">Add service rule(s) (<span class="nickname">postACLServices</span>)</div>
+    <div class="method-notes">Adds one or more new service-based rules to the list of security rules.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">ACLServicesBody <a href="#ACLServices">ACLServices</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The new rules to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Conflict. Adding an already-added rule. Use PUT to edit the rule in this case. All rule additions are aborted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postCatalogMode"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/acl/catalog</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postCatalogMode</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to change catalog mode.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postMasterPW"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/masterpw</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postMasterPW</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to change keystore password.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postSelfPassword"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/security/self/password</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postSelfPassword</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to change password</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putACLLayer"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/layers/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putACLLayer</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putACLLayers"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/layers</code></pre></div>
+    <div class="method-summary">Edit layer rule(s) (<span class="nickname">putACLLayers</span>)</div>
+    <div class="method-notes">Edits one or more layer-based rules in the list of security rules.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">ACLLayersBody <a href="#ACLLayers">ACLLayers</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The altered rules to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Conflict. Attempting to modify a non-existent rule. Use POST to create the rule in this case. All rule modifications are aborted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putACLRESTRule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/rest/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putACLRESTRule</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; <p>The REST rule, specified as &lt;URL Ant pattern&gt;;&lt;comma separated list of HTTP methods&gt;. Examples are</p>
+<ul>
+<li>/**;GET</li>
+<li>/**;POST,DELETE,PUT</li>
+</ul>
+ </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putACLRESTRules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/rest</code></pre></div>
+    <div class="method-summary">Edit REST access rule(s) (<span class="nickname">putACLRESTRules</span>)</div>
+    <div class="method-notes">Edits one or more REST access rules.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">ACLRESTBody <a href="#ACLREST">ACLREST</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The altered rules to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Conflict. Attempting to modify a non-existent rule. Use POST to create the rule in this case. All rule modifications are aborted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putACLService"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/services/{rule}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putACLService</span>)</div>
+    <div class="method-notes">Has no effect. Endpoint that includes a specific rule is only used with DELETE.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">rule (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The specified rule, as the last part in the URI, e.g. /security/acl/layers/*.*.r </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putACLServices"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/services</code></pre></div>
+    <div class="method-summary">Edit service rule(s) (<span class="nickname">putACLServices</span>)</div>
+    <div class="method-notes">Edits one or more service-based rules in the list of security rules.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">ACLServicesBody <a href="#ACLServices">ACLServices</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The altered rules to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Conflict. Attempting to modify a non-existent rule. Use POST to create the rule in this case. All rule modifications are aborted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putMasterPW"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/masterpw</code></pre></div>
+    <div class="method-summary">Update keystore password (<span class="nickname">putMasterPW</span>)</div>
+    <div class="method-notes">Changes keystore password. Must supply current keystore password. HTTPS is strongly suggested, otherwise password will be sent in plain text.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">MasterPWBody <a href="#UpdateMasterPW">UpdateMasterPW</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The old and new keystore password information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    Unprocessable Entity. This error code will show when the current keystore password supplied is incorrect, or if the new keystore password is rejected by the password policy.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putSelfPassword"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/self/password</code></pre></div>
+    <div class="method-summary">Update password (<span class="nickname">putSelfPassword</span>)</div>
+    <div class="method-notes">Updates the password for the account used to issue the request.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">SelfPasswordBody <a href="#SelfPassword">SelfPassword</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The catalog mode information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    Bad password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="restSecurityAclCatalogPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/security/acl/catalog</code></pre></div>
+    <div class="method-summary">Update catalog mode (<span class="nickname">restSecurityAclCatalogPut</span>)</div>
+    <div class="method-notes">Changes catalog mode. The mode must be one of HIDE, MIXED, or CHALLENGE.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CatalogModeBody <a href="#CatalogMode">CatalogMode</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The catalog mode information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    Unprocessable Entity. This error code will show when an invalid catalog mode is specified.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#ACLLayers"><code>ACLLayers</code> - rules</a></li>
+    <li><a href="#ACLLayers_rule"><code>ACLLayers_rule</code> - </a></li>
+    <li><a href="#ACLREST"><code>ACLREST</code> - rules</a></li>
+    <li><a href="#ACLREST_rule"><code>ACLREST_rule</code> - </a></li>
+    <li><a href="#ACLServices"><code>ACLServices</code> - rules</a></li>
+    <li><a href="#ACLServices_rule"><code>ACLServices_rule</code> - </a></li>
+    <li><a href="#CatalogMode"><code>CatalogMode</code> - catalog</a></li>
+    <li><a href="#MasterPW"><code>MasterPW</code> - masterPassword</a></li>
+    <li><a href="#SelfPassword"><code>SelfPassword</code> - userPassword</a></li>
+    <li><a href="#UpdateMasterPW"><code>UpdateMasterPW</code> - masterPassword</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="ACLLayers"><code>ACLLayers</code> - rules</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rule (optional)</div><div class="param-desc"><span class="param-type"><a href="#ACLLayers_rule">ACLLayers_rule</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ACLLayers_rule"><code>ACLLayers_rule</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">@resource (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Security pattern of the form <workspace>.<layer>.[r|w|a] </div>
+<div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Comma-separated list of roles </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ACLREST"><code>ACLREST</code> - rules</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rule (optional)</div><div class="param-desc"><span class="param-type"><a href="#ACLREST_rule">ACLREST_rule</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ACLREST_rule"><code>ACLREST_rule</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">@resource (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Security pattern of the form &lt;URL Ant pattern&gt;:&lt;comma separated list of HTTP methods&gt; </div>
+<div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Comma-separated list of roles </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ACLServices"><code>ACLServices</code> - rules</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rule (optional)</div><div class="param-desc"><span class="param-type"><a href="#ACLServices_rule">ACLServices_rule</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ACLServices_rule"><code>ACLServices_rule</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">@resource (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Security pattern of the form &lt;service&gt;.&lt;operation&gt; </div>
+<div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Comma-separated list of roles </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CatalogMode"><code>CatalogMode</code> - catalog</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">HIDE</div><div class="param-enum">MIXED</div><div class="param-enum">CHALLENGE</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MasterPW"><code>MasterPW</code> - masterPassword</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">oldMasterPassword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Current keystore password </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SelfPassword"><code>SelfPassword</code> - userPassword</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">newPassword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> New password </div>
+          <div class="param-desc"><span class="param-type">example: newPassword</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UpdateMasterPW"><code>UpdateMasterPW</code> - masterPassword</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">oldMasterPassword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Current keystore password </div>
+          <div class="param-desc"><span class="param-type">example: oldPassword</span></div>
+<div class="param">newMasterPassword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> New keystore password </div>
+          <div class="param-desc"><span class="param-type">example: newPassword</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

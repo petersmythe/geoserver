@@ -1,0 +1,642 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Workspace</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Workspace</h1>
+    <div class="app-desc">A workspace is a grouping of data stores. Similar to a namespace, it is used to group data that is related in some way.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Workspaces">Workspaces</a></h4>
+  <ul>
+  <li><a href="#deleteWorkspace"><code><span class="http-method">delete</span> /workspaces/{workspaceName}</code></a></li>
+  <li><a href="#deleteWorkspaces"><code><span class="http-method">delete</span> /workspaces</code></a></li>
+  <li><a href="#getWorkspace"><code><span class="http-method">get</span> /workspaces/{workspaceName}</code></a></li>
+  <li><a href="#getWorkspaces"><code><span class="http-method">get</span> /workspaces</code></a></li>
+  <li><a href="#postWorkspace"><code><span class="http-method">post</span> /workspaces/{workspaceName}</code></a></li>
+  <li><a href="#postWorkspaces"><code><span class="http-method">post</span> /workspaces</code></a></li>
+  <li><a href="#putWorkspace"><code><span class="http-method">put</span> /workspaces/{workspaceName}</code></a></li>
+  <li><a href="#putWorkspaces"><code><span class="http-method">put</span> /workspaces</code></a></li>
+  </ul>
+
+  <h1><a name="Workspaces">Workspaces</a></h1>
+  <div class="method"><a name="deleteWorkspace"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspaceName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteWorkspace</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; name of workspace </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; delete workspace contents (default false) </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success workspace deleted
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Workspace or related Namespace is not empty (and recurse not true)
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workspace doesn't exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteWorkspaces"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteWorkspaces</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Not permitted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getWorkspace"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspaceName}</code></pre></div>
+    <div class="method-summary">Retrieve a layer group (<span class="nickname">getWorkspace</span>)</div>
+    <div class="method-notes">Retrieves a single workspace definition. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/workspaces/{workspace}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; the name of the workspace to fetch </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">quietOnNotFound (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The quietOnNotFound parameter avoids logging an exception when the workspace is not present. Note that 404 status code will still be returned. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#WorkspaceResponse">WorkspaceResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<workspace>\n  <name>topp</name>\n  <dataStores>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/topp/datastores.xml\" type=\"application/xml\"/>\n  </dataStores>\n  <coverageStores>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.xml\" type=\"application/xml\"/>\n  </coverageStores>\n  <wmsStores>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.xml\" type=\"application/xml\"/>\n  </wmsStores>\n</workspace>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n\"workspace\": {\n  \"name\": \"topp\",\n  \"dataStores\": \"http://localhost:8080/geoserver/rest/workspaces/topp/datastores.json\",\n  \"coverageStores\": \"http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.json\",\n  \"wmsStores\": \"http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.json\"\n}\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#WorkspaceResponse">WorkspaceResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><workspace>
+  <name>topp</name>
+  <dataStores>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp/datastores.xml" type="application/xml"/>
+  </dataStores>
+  <coverageStores>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.xml" type="application/xml"/>
+  </coverageStores>
+  <wmsStores>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.xml" type="application/xml"/>
+  </wmsStores>
+</workspace>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+"workspace": {
+  "name": "topp",
+  "dataStores": "http://localhost:8080/geoserver/rest/workspaces/topp/datastores.json",
+  "coverageStores": "http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.json",
+  "wmsStores": "http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.json"
+}
+}
+</code></pre>
+    <h4 class="field-label">404</h4>
+    workspace does not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getWorkspaces"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces</code></pre></div>
+    <div class="method-summary">Get a list of workspaces (<span class="nickname">getWorkspaces</span>)</div>
+    <div class="method-notes">Displays a list of all workspaces on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/workspaces.xml&quot; for XML)</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#WorkspacesResponse">WorkspacesResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<workspaces>\n  <workspace>\n    <name>topp</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/topp.xml\" type=\"application/xml\"/>\n  </workspace>\n  <workspace>\n    <name>it.geosolutions</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/it.geosolutions.xml\" type=\"application/xml\"/>\n  </workspace>\n</workspaces>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"workspaces\": {\n  \"workspace\": [\n    {\n     \"name\": \"topp\",\n     \"href\": \"http://localhost:8080/geoserver/rest/workspaces/topp.json\"\n    },\n    {\n      \"name\": \"it.geosolutions\",\n      \"href\": \"http://localhost:8080/geoserver/rest/workspaces/it.geosolutions.json\"\n    }\n  ]\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#WorkspacesResponse">WorkspacesResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><workspaces>
+  <workspace>
+    <name>topp</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/topp.xml" type="application/xml"/>
+  </workspace>
+  <workspace>
+    <name>it.geosolutions</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/it.geosolutions.xml" type="application/xml"/>
+  </workspace>
+</workspaces>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "workspaces": {
+  "workspace": [
+    {
+     "name": "topp",
+     "href": "http://localhost:8080/geoserver/rest/workspaces/topp.json"
+    },
+    {
+      "name": "it.geosolutions",
+      "href": "http://localhost:8080/geoserver/rest/workspaces/it.geosolutions.json"
+    }
+  ]
+  }
+}
+</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postWorkspace"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postWorkspace</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Forbidden to post to an existing workspace (use PUT)
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postWorkspaces"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces</code></pre></div>
+    <div class="method-summary">add a new workspace to GeoServer (<span class="nickname">postWorkspaces</span>)</div>
+    <div class="method-notes">Adds a new workspace to the server</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">workspaceBody <a href="#Workspace">Workspace</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The layer group body information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">default (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; New workspace will be the used as the default. Allowed values are true or false,  The default value is false. default: false </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>aeiou</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#String">String</a>
+    <h4 class="field-label">409</h4>
+    Unable to add workspace as it already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putWorkspace"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}</code></pre></div>
+    <div class="method-summary">Update a workspace (<span class="nickname">putWorkspace</span>)</div>
+    <div class="method-notes">takes the body of the post and modifies the workspace from it.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; name of workspace </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">workspaceBody <a href="#Workspace">Workspace</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The layer group body information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Modified
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workspace not found
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Forbidden to change the name of the workspace
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putWorkspaces"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putWorkspaces</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Not permitted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Workspace"><code>Workspace</code> - Workspace</a></li>
+    <li><a href="#WorkspaceResponse"><code>WorkspaceResponse</code> - Workspace Response</a></li>
+    <li><a href="#Workspace_workspace"><code>Workspace_workspace</code> - </a></li>
+    <li><a href="#WorkspacesResponse"><code>WorkspacesResponse</code> - Workspaces</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Workspace"><code>Workspace</code> - Workspace</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">workspace </div><div class="param-desc"><span class="param-type"><a href="#Workspace_workspace">Workspace_workspace</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WorkspaceResponse"><code>WorkspaceResponse</code> - Workspace Response</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of workspace </div>
+<div class="param">dataStores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to Datas tores in this workspace </div>
+<div class="param">coverageStores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to Coverage stores in this workspace </div>
+<div class="param">wmsStores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to WMS stores in this workspace </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Workspace_workspace"><code>Workspace_workspace</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> name of the workspace </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WorkspacesResponse"><code>WorkspacesResponse</code> - Workspaces</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">workspaces (optional)</div><div class="param-desc"><span class="param-type"><a href="#WorkspaceResponse">WorkspaceResponse</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

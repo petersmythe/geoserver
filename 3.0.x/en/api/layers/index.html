@@ -1,0 +1,1078 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Layers</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Layers</h1>
+    <div class="app-desc">A layer is a published resource (feature type or coverage).</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Layers">Layers</a></h4>
+  <ul>
+  <li><a href="#layersDelete"><code><span class="http-method">delete</span> /layers</code></a></li>
+  <li><a href="#layersGet"><code><span class="http-method">get</span> /layers</code></a></li>
+  <li><a href="#layersNameDelete"><code><span class="http-method">delete</span> /layers/{layerName}</code></a></li>
+  <li><a href="#layersNameGet"><code><span class="http-method">get</span> /layers/{layerName}</code></a></li>
+  <li><a href="#layersNamePost"><code><span class="http-method">post</span> /layers/{layerName}</code></a></li>
+  <li><a href="#layersNamePut"><code><span class="http-method">put</span> /layers/{layerName}</code></a></li>
+  <li><a href="#layersNameWorkspaceDelete"><code><span class="http-method">delete</span> /workspaces/{workspaceName}/layers/{layerName}</code></a></li>
+  <li><a href="#layersNameWorkspaceGet"><code><span class="http-method">get</span> /workspaces/{workspaceName}/layers/{layerName}</code></a></li>
+  <li><a href="#layersNameWorkspacePost"><code><span class="http-method">post</span> /workspaces/{workspaceName}/layers/{layerName}</code></a></li>
+  <li><a href="#layersNameWorkspacePut"><code><span class="http-method">put</span> /workspaces/{workspaceName}/layers/{layerName}</code></a></li>
+  <li><a href="#layersPost"><code><span class="http-method">post</span> /layers</code></a></li>
+  <li><a href="#layersPut"><code><span class="http-method">put</span> /layers</code></a></li>
+  <li><a href="#layersWorkspaceDelete"><code><span class="http-method">delete</span> /workspaces/{workspaceName}/layers</code></a></li>
+  <li><a href="#layersWorkspaceGet"><code><span class="http-method">get</span> /workspaces/{workspaceName}/layers</code></a></li>
+  <li><a href="#layersWorkspacePost"><code><span class="http-method">post</span> /workspaces/{workspaceName}/layers</code></a></li>
+  <li><a href="#layersWorkspacePut"><code><span class="http-method">put</span> /workspaces/{workspaceName}/layers</code></a></li>
+  </ul>
+
+  <h1><a name="Layers">Layers</a></h1>
+  <div class="method"><a name="layersDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /layers</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersDelete</span>)</div>
+    <div class="method-notes">Invalid.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /layers</code></pre></div>
+    <div class="method-summary">Get a list of layers (<span class="nickname">layersGet</span>)</div>
+    <div class="method-notes">Displays a list of all layers on the server. You must use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layers.xml&quot; for XML)</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Layers">Layers</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<layers>\n   <layer>\n     <name>tiger:giant_polygon</name>\n     <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\"\n       href=\"http://localhost:8080/geoserver/rest/layers/tiger%3Agiant_polygon.xml\"\n       type=\"application/xml\"/>\n   </layer>\n   <layer>\n     <name>sf:bugsites</name>\n     <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\"\n       href=\"http://localhost:8080/geoserver/rest/layers/sf%3Abugsites.xml\"\n       type=\"application/xml\"/>\n   </layer>\n </layers>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"layers\": {\n    \"layer\": [\n      {\n        \"name\": \"tiger:giant_polygon\",\n        \"href\": \"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/layers\\/tiger%3Agiant_polygon.json\"\n      },\n      {\n        \"name\": \"sf:bugsites\",\n        \"href\": \"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/layers\\/sf%3Abugsites.json\"\n      },\n    ]\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Layers">Layers</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><layers>
+   <layer>
+     <name>tiger:giant_polygon</name>
+     <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate"
+       href="http://localhost:8080/geoserver/rest/layers/tiger%3Agiant_polygon.xml"
+       type="application/xml"/>
+   </layer>
+   <layer>
+     <name>sf:bugsites</name>
+     <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate"
+       href="http://localhost:8080/geoserver/rest/layers/sf%3Abugsites.xml"
+       type="application/xml"/>
+   </layer>
+ </layers>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layers": {
+    "layer": [
+      {
+        "name": "tiger:giant_polygon",
+        "href": "http:\/\/localhost:8080\/geoserver\/rest\/layers\/tiger%3Agiant_polygon.json"
+      },
+      {
+        "name": "sf:bugsites",
+        "href": "http:\/\/localhost:8080\/geoserver\/rest\/layers\/sf%3Abugsites.json"
+      },
+    ]
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNameDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /layers/{layerName}</code></pre></div>
+    <div class="method-summary">Delete layer (<span class="nickname">layersNameDelete</span>)</div>
+    <div class="method-notes">Deletes a layer from the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layerName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to delete. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Recursively removes the layer from all layer groups which reference it. If this results in an empty layer group, also delete the layer group. Allowed values for this parameter are true or false. The default value is false. A request with 'recurse=false' will fail if any layer groups reference the layer. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNameGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /layers/{layerName}</code></pre></div>
+    <div class="method-summary">Retrieve a layer (<span class="nickname">layersNameGet</span>)</div>
+    <div class="method-notes">Retrieves a single layer definition. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layers/{layer}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layerName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Layer">Layer</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<layer>\n  <name>poi</name>\n  <path>/</path>\n  <type>VECTOR</type>\n  <defaultStyle>\n    <name>poi</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/poi.xml\" type=\"application/xml\"/>\n  </defaultStyle>\n  <styles class=\"linked-hash-set\">\n    <style>\n      <name>burg</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/burg.xml\" type=\"application/xml\"/>\n    </style>\n    <style>\n      <name>point</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/point.xml\" type=\"application/xml\"/>\n    </style>\n  </styles>\n  <resource class=\"featureType\">\n    <name>poi</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.xml\" type=\"application/xml\"/>\n  </resource>\n  <attribution>\n    <logoWidth>0</logoWidth>\n    <logoHeight>0</logoHeight>\n  </attribution>\n</layer>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n\n    \"layer\": {\n        \"name\": \"poi\",\n        \"path\": \"/\",\n        \"type\": \"VECTOR\",\n        \"defaultStyle\": {\n            \"name\": \"poi\",\n            \"href\": \"http://localhost:8080/geoserver/rest/styles/poi.json\"\n        },\n        \"styles\": {\n            \"@class\": \"linked-hash-set\",\n            \"style\": [\n                {\n                    \"name\": \"burg\",\n                    \"href\": \"http://localhost:8080/geoserver/rest/styles/burg.json\"\n                },\n                {\n                    \"name\": \"point\",\n                    \"href\": \"http://localhost:8080/geoserver/rest/styles/point.json\"\n                }\n            ]\n        },\n        \"resource\": {\n            \"@class\": \"featureType\",\n            \"name\": \"poi\",\n            \"href\": \"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.json\"\n        },\n        \"attribution\": {\n            \"logoWidth\": 0,\n            \"logoHeight\": 0\n        }\n    }\n\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Layer">Layer</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><layer>
+  <name>poi</name>
+  <path>/</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <name>poi</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/poi.xml" type="application/xml"/>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <name>burg</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/burg.xml" type="application/xml"/>
+    </style>
+    <style>
+      <name>point</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/point.xml" type="application/xml"/>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <name>poi</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.xml" type="application/xml"/>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+
+    "layer": {
+        "name": "poi",
+        "path": "/",
+        "type": "VECTOR",
+        "defaultStyle": {
+            "name": "poi",
+            "href": "http://localhost:8080/geoserver/rest/styles/poi.json"
+        },
+        "styles": {
+            "@class": "linked-hash-set",
+            "style": [
+                {
+                    "name": "burg",
+                    "href": "http://localhost:8080/geoserver/rest/styles/burg.json"
+                },
+                {
+                    "name": "point",
+                    "href": "http://localhost:8080/geoserver/rest/styles/point.json"
+                }
+            ]
+        },
+        "resource": {
+            "@class": "featureType",
+            "name": "poi",
+            "href": "http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.json"
+        },
+        "attribution": {
+            "logoWidth": 0,
+            "logoHeight": 0
+        }
+    }
+
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNamePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /layers/{layerName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersNamePost</span>)</div>
+    <div class="method-notes">Invalid. To create a new layer, instead POST to one of <code>/workspaces/{workspaceName}/coveragestores/{coveragestoreName}/coverages</code>, <code>/workspaces/{workspaceName}/datastores/{datastoreName}/featuretypes</code>, <code>/workspaces/{workspaceName}/wmsstores/{wmsstoreName}/wmslayers</code>, or <code>/workspaces/{workspaceName}/wmtsstores/{wmststoreName}/wmtslayers</code></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNamePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /layers/{layerName}</code></pre></div>
+    <div class="method-summary">Modify a layer. (<span class="nickname">layersNamePut</span>)</div>
+    <div class="method-notes">Modifies an existing layer on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layers/{layer}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layerName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to modify. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">layerBody <a href="#Layer">Layer</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The updated layer definition. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The layer was successfully updated.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNameWorkspaceDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspaceName}/layers/{layerName}</code></pre></div>
+    <div class="method-summary">Delete layer (<span class="nickname">layersNameWorkspaceDelete</span>)</div>
+    <div class="method-notes">Deletes a layer from the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace the layer is in. </div><div class="param">layerName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to delete. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Recursively removes the layer from all layer groups which reference it. If this results in an empty layer group, also delete the layer group. Allowed values for this parameter are true or false. The default value is false. A request with 'recurse=false' will fail if any layer groups reference the layer. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNameWorkspaceGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspaceName}/layers/{layerName}</code></pre></div>
+    <div class="method-summary">Retrieve a layer (<span class="nickname">layersNameWorkspaceGet</span>)</div>
+    <div class="method-notes">Retrieves a single layer definition. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layers/{layer}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace the layer is in. </div><div class="param">layerName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Layer">Layer</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<layer>\n  <name>poi</name>\n  <path>/</path>\n  <type>VECTOR</type>\n  <defaultStyle>\n    <name>poi</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/poi.xml\" type=\"application/xml\"/>\n  </defaultStyle>\n  <styles class=\"linked-hash-set\">\n    <style>\n      <name>burg</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/burg.xml\" type=\"application/xml\"/>\n    </style>\n    <style>\n      <name>point</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/point.xml\" type=\"application/xml\"/>\n    </style>\n  </styles>\n  <resource class=\"featureType\">\n    <name>poi</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.xml\" type=\"application/xml\"/>\n  </resource>\n  <attribution>\n    <logoWidth>0</logoWidth>\n    <logoHeight>0</logoHeight>\n  </attribution>\n</layer>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n\n    \"layer\": {\n        \"name\": \"poi\",\n        \"path\": \"/\",\n        \"type\": \"VECTOR\",\n        \"defaultStyle\": {\n            \"name\": \"poi\",\n            \"href\": \"http://localhost:8080/geoserver/rest/styles/poi.json\"\n        },\n        \"styles\": {\n            \"@class\": \"linked-hash-set\",\n            \"style\": [\n                {\n                    \"name\": \"burg\",\n                    \"href\": \"http://localhost:8080/geoserver/rest/styles/burg.json\"\n                },\n                {\n                    \"name\": \"point\",\n                    \"href\": \"http://localhost:8080/geoserver/rest/styles/point.json\"\n                }\n            ]\n        },\n        \"resource\": {\n            \"@class\": \"featureType\",\n            \"name\": \"poi\",\n            \"href\": \"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.json\"\n        },\n        \"attribution\": {\n            \"logoWidth\": 0,\n            \"logoHeight\": 0\n        }\n    }\n\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Layer">Layer</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><layer>
+  <name>poi</name>
+  <path>/</path>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <name>poi</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/poi.xml" type="application/xml"/>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <name>burg</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/burg.xml" type="application/xml"/>
+    </style>
+    <style>
+      <name>point</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/point.xml" type="application/xml"/>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <name>poi</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.xml" type="application/xml"/>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+
+    "layer": {
+        "name": "poi",
+        "path": "/",
+        "type": "VECTOR",
+        "defaultStyle": {
+            "name": "poi",
+            "href": "http://localhost:8080/geoserver/rest/styles/poi.json"
+        },
+        "styles": {
+            "@class": "linked-hash-set",
+            "style": [
+                {
+                    "name": "burg",
+                    "href": "http://localhost:8080/geoserver/rest/styles/burg.json"
+                },
+                {
+                    "name": "point",
+                    "href": "http://localhost:8080/geoserver/rest/styles/point.json"
+                }
+            ]
+        },
+        "resource": {
+            "@class": "featureType",
+            "name": "poi",
+            "href": "http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc/featuretypes/poi.json"
+        },
+        "attribution": {
+            "logoWidth": 0,
+            "logoHeight": 0
+        }
+    }
+
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNameWorkspacePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/layers/{layerName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersNameWorkspacePost</span>)</div>
+    <div class="method-notes">Invalid. To create a new layer, instead POST to one of <code>/workspaces/{workspaceName}/coveragestores/{coveragestoreName}/coverages</code>, <code>/workspaces/{workspaceName}/datastores/{datastoreName}/featuretypes</code>, <code>/workspaces/{workspaceName}/wmsstores/{wmsstoreName}/wmslayers</code>, or <code>/workspaces/{workspaceName}/wmtsstores/{wmststoreName}/wmtslayers</code></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersNameWorkspacePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/layers/{layerName}</code></pre></div>
+    <div class="method-summary">Modify a layer. (<span class="nickname">layersNameWorkspacePut</span>)</div>
+    <div class="method-notes">Modifies an existing layer on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layers/{layer}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace the layer is in. </div><div class="param">layerName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to modify. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">layerBody <a href="#Layer">Layer</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The updated layer definition. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The layer was successfully updated.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /layers</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersPost</span>)</div>
+    <div class="method-notes">Invalid. To create a new layer, instead POST to one of <code>/workspaces/{workspaceName}/coveragestores/{coveragestoreName}/coverages</code>, <code>/workspaces/{workspaceName}/datastores/{datastoreName}/featuretypes</code>, <code>/workspaces/{workspaceName}/wmsstores/{wmsstoreName}/wmslayers</code>, or <code>/workspaces/{workspaceName}/wmtsstores/{wmststoreName}/wmtslayers</code></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /layers</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersPut</span>)</div>
+    <div class="method-notes">Invalid. To edit a layer, use PUT on an individual layer instead.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersWorkspaceDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspaceName}/layers</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersWorkspaceDelete</span>)</div>
+    <div class="method-notes">Invalid.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersWorkspaceGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspaceName}/layers</code></pre></div>
+    <div class="method-summary">Get a list of layers in a workspace. (<span class="nickname">layersWorkspaceGet</span>)</div>
+    <div class="method-notes">Displays a list of all layers in the provided workspace. You must use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layers.xml&quot; for XML)</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace to list layers in </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Layers">Layers</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<layers>\n  <layer>\n    <name>bugsites</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\"\n      href=\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/bugsites.xml\"\n      type=\"application/xml\"/>\n  </layer>\n</layers>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"layers\": {\n    \"layer\": [\n      {\n        \"name\": \"bugsites\",\n        \"href\": \"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/workspaces\\/sf\\/layers\\/bugsites.json\"\n      },\n    ]\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Layers">Layers</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><layers>
+  <layer>
+    <name>bugsites</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate"
+      href="http://localhost:8080/geoserver/rest/workspaces/sf/layers/bugsites.xml"
+      type="application/xml"/>
+  </layer>
+</layers>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "layers": {
+    "layer": [
+      {
+        "name": "bugsites",
+        "href": "http:\/\/localhost:8080\/geoserver\/rest\/workspaces\/sf\/layers\/bugsites.json"
+      },
+    ]
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersWorkspacePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/layers</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersWorkspacePost</span>)</div>
+    <div class="method-notes">Invalid. To create a new layer, instead POST to one of <code>/workspaces/{workspaceName}/coveragestores/{coveragestoreName}/coverages</code>, <code>/workspaces/{workspaceName}/datastores/{datastoreName}/featuretypes</code>, <code>/workspaces/{workspaceName}/wmsstores/{wmsstoreName}/wmslayers</code>, or <code>/workspaces/{workspaceName}/wmtsstores/{wmststoreName}/wmtslayers</code></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layersWorkspacePut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/layers</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">layersWorkspacePut</span>)</div>
+    <div class="method-notes">Invalid. To edit a layer, use PUT on an individual layer instead.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#AuthorityURL"><code>AuthorityURL</code> - </a></li>
+    <li><a href="#Identifier"><code>Identifier</code> - </a></li>
+    <li><a href="#Layer"><code>Layer</code> - layer</a></li>
+    <li><a href="#LayerReference"><code>LayerReference</code> - layers</a></li>
+    <li><a href="#Layer_attribution"><code>Layer_attribution</code> - </a></li>
+    <li><a href="#Layer_resource"><code>Layer_resource</code> - </a></li>
+    <li><a href="#Layer_styles"><code>Layer_styles</code> - </a></li>
+    <li><a href="#Layers"><code>Layers</code> - layers</a></li>
+    <li><a href="#MetadataEntry"><code>MetadataEntry</code> - entry</a></li>
+    <li><a href="#StyleReference"><code>StyleReference</code> - style</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="AuthorityURL"><code>AuthorityURL</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Authory name, describing the industry, national or international origanization responsible for data product standard. </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to authority organization </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Identifier"><code>Identifier</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">authority (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Authority cited, for details see authorityURLs </div>
+<div class="param">identifier (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Work citied, often a data standard provided by </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layer"><code>Layer</code> - layer</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the layer </div>
+<div class="param">path (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Location of the layer in the WMS capabilities layer tree </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type of published layer. Can be VECTOR, RASTER, REMOTE, WMS or GROUP. Must be consistent with resource definition. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">VECTOR</div><div class="param-enum">RASTER</div><div class="param-enum">REMOTE</div><div class="param-enum">WMS</div><div class="param-enum">GROUP</div>
+<div class="param">defaultStyle (optional)</div><div class="param-desc"><span class="param-type"><a href="#StyleReference">StyleReference</a></span>  </div>
+<div class="param">styles (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layer_styles">Layer_styles</a></span>  </div>
+<div class="param">resource (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layer_resource">Layer_resource</a></span>  </div>
+<div class="param">opaque (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Controls layer transparency (whether the layer is opaque or transparent). </div>
+<div class="param">metadata (optional)</div><div class="param-desc"><span class="param-type"><a href="#MetadataEntry">array[MetadataEntry]</a></span>  </div>
+<div class="param">attribution (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layer_attribution">Layer_attribution</a></span>  </div>
+<div class="param">authorityURLs (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthorityURL">array[AuthorityURL]</a></span>  </div>
+<div class="param">identifiers (optional)</div><div class="param-desc"><span class="param-type"><a href="#Identifier">array[Identifier]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LayerReference"><code>LayerReference</code> - layers</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of layer </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to layer definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layer_attribution"><code>Layer_attribution</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>WMS attribution information to be drawn on each map</div>
+    <div class="field-items">
+      <div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Human-readable text describing the data provider </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to data provider </div>
+<div class="param">logoURL (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Data provider logo </div>
+<div class="param">logoWidth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Data provider logo width </div>
+<div class="param">logoHeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Data provider logo height </div>
+<div class="param">logoType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Format of data provider logo, example &quot;image/png&quot; </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layer_resource"><code>Layer_resource</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Resource supplying information for layer publication</div>
+    <div class="field-items">
+      <div class="param">@class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> required value featureType </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">featureType</div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of resource </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the resource definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layer_styles"><code>Layer_styles</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Avaialble styles for layer publication</div>
+    <div class="field-items">
+      <div class="param">@class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> required value linked-hash-set. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">linked-hash-set</div>
+<div class="param">style (optional)</div><div class="param-desc"><span class="param-type"><a href="#StyleReference">array[StyleReference]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layers"><code>Layers</code> - layers</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">layers (optional)</div><div class="param-desc"><span class="param-type"><a href="#LayerReference">LayerReference</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MetadataEntry"><code>MetadataEntry</code> - entry</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">@key (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Key used for metadata entry, additional keys are added over time </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">buffer</div>
+<div class="param">$ (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Text value for provided key Valid text depends on key used. Example  {'@key'='buffer','$'='5'}&quot;) or <entry key="buffer">5</entry> </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleReference"><code>StyleReference</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Reference to style definition</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of style </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the style definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

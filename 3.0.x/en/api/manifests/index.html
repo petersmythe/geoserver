@@ -1,0 +1,684 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Manifests API</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Manifests API</h1>
+    <div class="app-desc">GeoServer provides a REST service to expose a listing of all loaded JARs and resources on the running instance. This is useful for bug reports and to keep track of extensions deployed into the application.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>HTTP Basic Authentication</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Manifests">Manifests</a></h4>
+  <ul>
+  <li><a href="#aboutStatusGet"><code><span class="http-method">get</span> /about/status</code></a></li>
+  <li><a href="#aboutVersionGet"><code><span class="http-method">get</span> /about/version</code></a></li>
+  <li><a href="#getManifest"><code><span class="http-method">get</span> /about/manifest</code></a></li>
+  </ul>
+
+  <h1><a name="Manifests">Manifests</a></h1>
+  <div class="method"><a name="aboutStatusGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /about/status</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">aboutStatusGet</span>)</div>
+    <div class="method-notes"><p>This endpoint shows the status details of all installed and configured modules. Status details always include human readable name, and module name. Optional details include version, availability, status message, and links to documentation.</p>
+<p>Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/about/manifest.xml&quot; for XML).</p>
+</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">manifest (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The manifest parameter is used to filter over resulting resource (manifest) names attribute using Java regular expressions. </div><div class="param">key (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only return manifest entries with this key in their properties. It can be optionally combined with the value parameter. </div><div class="param">value (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only return manifest entries that have this value for the provided key parameter. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Status">Status</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"about\": {\n    \"status\": [\n      {\n        \"module\": \"gs-web-core\",\n        \"name\": \"GeoServer Web UI Core\",\n        \"isEnabled\": true,\n        \"isAvailable\": true\n      },\n      {\n        \"module\": \"gs-main\",\n        \"name\": \"GeoServer Main\",\n        \"isEnabled\": true,\n        \"isAvailable\": true\n      },\n      {\n        \"module\": \"jvm\",\n        \"name\": \"Rendering Engine\",\n        \"component\": \"java2d\",\n        \"version\": \"1.8.0_121\",\n        \"message\": \"Java 2D configured with DuctusRenderingEngine.\\nProvider: OracleJDK\\n\",\n        \"isEnabled\": true,\n        \"isAvailable\": true\n      },\n      {\n        \"module\": \"system-properties\",\n        \"name\": \"system-properties\",\n        \"component\": \"system-properties\",\n        \"message\": \"java.runtime.name=Java(TM) SE Runtime Environment\\nsun.boot.library.path=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib\\n\",\n        \"isEnabled\": true,\n        \"isAvailable\": true\n      },\n      {\n        \"module\": \"system-environment\",\n        \"name\": \"system-environment\",\n        \"component\": \"system-environment\",\n        \"message\": \"PATH=/usr/bin:/bin:/usr/sbin:/sbin\\nSHELL=/usr/local/bin/bash\\n\",\n        \"isEnabled\": true,\n        \"isAvailable\": true\n      },\n      {\n        \"module\": \"gs-web-wms\",\n        \"name\": \"GeoServer Web UI Web Map Service\",\n        \"isEnabled\": true,\n        \"isAvailable\": true\n      },\n      {\n        \"module\": \"gs-wms\",\n        \"name\": \"GeoServer Web Map Service\",\n        \"isEnabled\": true,\n        \"isAvailable\": true\n      }\n    ]\n  }\n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<about>\n  <status>\n    <module>gs-web-core</module>\n    <name>GeoServer Web UI Core</name>\n    <isEnabled>true</isEnabled>\n    <isAvailable>true</isAvailable>\n  </status>\n  <status>\n    <module>gs-main</module>\n    <name>GeoServer Main</name>\n    <isEnabled>true</isEnabled>\n    <isAvailable>true</isAvailable>\n  </status>\n  <status>\n    <module>jvm</module>\n    <name>Rendering Engine</name>\n    <component>java2d</component>\n    <version>1.8.0_121</version>\n    <message>Java 2D configured with DuctusRenderingEngine.\n    Provider: OracleJDK\n    </message>\n    <isEnabled>true</isEnabled>\n    <isAvailable>true</isAvailable>\n  </status>\n  <status>\n    <module>system-properties</module>\n    <name>system-properties</name>\n    <component>system-properties</component>\n    <message>java.runtime.name=Java(TM) SE Runtime Environment\n    sun.boot.library.path=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib\n    java.vm.version=25.121-b13\n    java.util.prefs.syncInterval=5000000\n    </message>\n    <isEnabled>true</isEnabled>\n    <isAvailable>true</isAvailable>\n  </status>\n  <status>\n    <module>system-environment</module>\n    <name>system-environment</name>\n    <component>system-environment</component>\n    <message>PATH=/usr/bin:/bin:/usr/sbin:/sbin\n    SHELL=/usr/local/bin/bash\n    </message>\n    <isEnabled>true</isEnabled>\n    <isAvailable>true</isAvailable>\n  </status>\n  <status>\n    <module>gs-web-wms</module>\n    <name>GeoServer Web UI Web Map Service</name>\n    <isEnabled>true</isEnabled>\n    <isAvailable>true</isAvailable>\n  </status>\n  <status>\n    <module>gs-wms</module>\n    <name>GeoServer Web Map Service</name>\n    <isEnabled>true</isEnabled>\n    <isAvailable>true</isAvailable>\n  </status>\n</about>\n"</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully retrieved status details.
+        <a href="#Status">Status</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"about": {
+    "status": [
+      {
+        "module": "gs-web-core",
+        "name": "GeoServer Web UI Core",
+        "isEnabled": true,
+        "isAvailable": true
+      },
+      {
+        "module": "gs-main",
+        "name": "GeoServer Main",
+        "isEnabled": true,
+        "isAvailable": true
+      },
+      {
+        "module": "jvm",
+        "name": "Rendering Engine",
+        "component": "java2d",
+        "version": "1.8.0_121",
+        "message": "Java 2D configured with DuctusRenderingEngine.\nProvider: OracleJDK\n",
+        "isEnabled": true,
+        "isAvailable": true
+      },
+      {
+        "module": "system-properties",
+        "name": "system-properties",
+        "component": "system-properties",
+        "message": "java.runtime.name=Java(TM) SE Runtime Environment\nsun.boot.library.path=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib\n",
+        "isEnabled": true,
+        "isAvailable": true
+      },
+      {
+        "module": "system-environment",
+        "name": "system-environment",
+        "component": "system-environment",
+        "message": "PATH=/usr/bin:/bin:/usr/sbin:/sbin\nSHELL=/usr/local/bin/bash\n",
+        "isEnabled": true,
+        "isAvailable": true
+      },
+      {
+        "module": "gs-web-wms",
+        "name": "GeoServer Web UI Web Map Service",
+        "isEnabled": true,
+        "isAvailable": true
+      },
+      {
+        "module": "gs-wms",
+        "name": "GeoServer Web Map Service",
+        "isEnabled": true,
+        "isAvailable": true
+      }
+    ]
+  }
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><about>
+  <status>
+    <module>gs-web-core</module>
+    <name>GeoServer Web UI Core</name>
+    <isEnabled>true</isEnabled>
+    <isAvailable>true</isAvailable>
+  </status>
+  <status>
+    <module>gs-main</module>
+    <name>GeoServer Main</name>
+    <isEnabled>true</isEnabled>
+    <isAvailable>true</isAvailable>
+  </status>
+  <status>
+    <module>jvm</module>
+    <name>Rendering Engine</name>
+    <component>java2d</component>
+    <version>1.8.0_121</version>
+    <message>Java 2D configured with DuctusRenderingEngine.
+    Provider: OracleJDK
+    </message>
+    <isEnabled>true</isEnabled>
+    <isAvailable>true</isAvailable>
+  </status>
+  <status>
+    <module>system-properties</module>
+    <name>system-properties</name>
+    <component>system-properties</component>
+    <message>java.runtime.name=Java(TM) SE Runtime Environment
+    sun.boot.library.path=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib
+    java.vm.version=25.121-b13
+    java.util.prefs.syncInterval=5000000
+    </message>
+    <isEnabled>true</isEnabled>
+    <isAvailable>true</isAvailable>
+  </status>
+  <status>
+    <module>system-environment</module>
+    <name>system-environment</name>
+    <component>system-environment</component>
+    <message>PATH=/usr/bin:/bin:/usr/sbin:/sbin
+    SHELL=/usr/local/bin/bash
+    </message>
+    <isEnabled>true</isEnabled>
+    <isAvailable>true</isAvailable>
+  </status>
+  <status>
+    <module>gs-web-wms</module>
+    <name>GeoServer Web UI Web Map Service</name>
+    <isEnabled>true</isEnabled>
+    <isAvailable>true</isAvailable>
+  </status>
+  <status>
+    <module>gs-wms</module>
+    <name>GeoServer Web Map Service</name>
+    <isEnabled>true</isEnabled>
+    <isAvailable>true</isAvailable>
+  </status>
+</about>
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="aboutVersionGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /about/version</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">aboutVersionGet</span>)</div>
+    <div class="method-notes"><p>'This endpoint shows only the details for the high-level components: GeoServer, GeoTools, and GeoWebCache.'</p>
+<p>Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/about/manifest.xml&quot; for XML).'</p>
+</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">manifest (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The manifest parameter is used to filter over resulting resource (manifest) names attribute using Java regular expressions. </div><div class="param">key (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only return manifest entries with this key in their properties. It can be optionally combined with the value parameter. </div><div class="param">value (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only return manifest entries that have this value for the provided key parameter. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Returns the manifest
+        <a href="#"></a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><about>
+    <resource name="GeoTools">
+        <Build-Timestamp>28-Mar-2017 15:44</Build-Timestamp>
+        <Version>18-SNAPSHOT</Version>
+        <Git-Revision>a96cee38ad6c8e87cb8ccdf75e1fb837bff35ef0</Git-Revision>
+    </resource>
+    <resource name="GeoWebCache">
+        <Version>1.12-SNAPSHOT</Version>
+        <Git-Revision>e9cdf1ecfcd97afc804ba43e04b2e1dedd4b5990/e9cdf1ecfcd97afc804ba43e04b2e1dedd4b5990</Git-Revision>
+    </resource>
+</about> 
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ "about": {
+    "resource": [
+      {
+        "@name": "GeoTools",
+        "Build-Timestamp": "28-Mar-2017 15:44",
+        "Version": "18-SNAPSHOT",
+        "Git-Revision": "a96cee38ad6c8e87cb8ccdf75e1fb837bff35ef0"
+      },
+      {
+        "@name": "GeoWebCache",
+        "Version": "1.12-SNAPSHOT",
+        "Git-Revision": "e9cdf1ecfcd97afc804ba43e04b2e1dedd4b5990/e9cdf1ecfcd97afc804ba43e04b2e1dedd4b5990"
+      }
+    ]
+  }
+}                            
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getManifest"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /about/manifest</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getManifest</span>)</div>
+    <div class="method-notes"><p>This endpoint retrieves details on all loaded JARs. All the GeoServer manifest JARs are marked with the property GeoServerModule and classified by type, so you can use filtering capabilities to search for a set of manifests using regular expressions (see the manifest parameter) or a type category (see the key and value parameter).</p>
+<p>The available types are core, extension, or community. To filter modules by a particular type, append a request with key=GeoServerModule&amp;value={type}</p>
+<p>Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/about/manifest.xml&quot; for XML).</p>
+<p>The model is very simple and is shared between the version and the resource requests to parse both requests. You can customize the results adding a properties file called manifest.properties into the root of the data directory.</p>
+</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">manifest (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The manifest parameter is used to filter over resulting resource (manifest) names attribute using Java regular expressions. </div><div class="param">key (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only return manifest entries with this key in their properties. It can be optionally combined with the value parameter. </div><div class="param">value (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only return manifest entries that have this value for the provided key parameter. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Manifest">Manifest</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{ \"about\": {\n    \"resource\": [      \n      {\n        \"@name\": \"postgresql-9.4.1211\",\n        \"Bundle-License\": \"http://www.postgresql.org/about/licence/\",\n        \"Specification-Version\": 4.2,\n        \"Bnd-LastModified\": 1474207285788,\n        \"Bundle-Name\": \"PostgreSQL JDBC Driver JDBC42\",\n        \"Bundle-Description\": \"Java JDBC 4.2 (JRE 8+) driver for PostgreSQL database\",\n        \"Build-Jdk\": \"1.8.0_60\",\n        \"Specification-Vendor\": \"Oracle Corporation\",\n        \"Bundle-SymbolicName\": \"org.postgresql.jdbc42\",\n        \"Bundle-Copyright\": \"Copyright (c) 2003-2015, PostgreSQL Global Development Group\",\n        \"Built-By\": \"vladimirsitnikov\",\n        \"Main-Class\": \"org.postgresql.util.PGJDBCMain\",\n        \"Bundle-Activator\": \"org.postgresql.osgi.PGBundleActivator\",\n        \"Require-Capability\": \"osgi.ee;filter:=\\\"(&(|(osgi.ee=J2SE)(osgi.ee=JavaSE))(version>=1.8))\\\"\",\n        \"Tool\": \"Bnd-2.4.0.201411031534\",\n        \"Implementation-Title\": \"PostgreSQL JDBC Driver - JDBC 4.2\",\n        \"Implementation-Version\": \"9.4.1211\",\n        \"Manifest-Version\": 1,\n        \"Created-By\": \"Apache Maven Bundle Plugin\",\n        \"Implementation-Vendor-Id\": \"org.postgresql\",\n        \"Bundle-DocURL\": \"http://jdbc.postgresql.org/\",\n        \"Bundle-Vendor\": \"PostgreSQL Global Development Group\",\n        \"Implementation-Vendor\": \"PostgreSQL Global Development Group\",\n        \"Bundle-ManifestVersion\": 2,\n        \"Bundle-Version\": \"9.4.1211\",\n        \"Specification-Title\": \"JDBC\"\n      },\n      {\n        \"@name\": \"wicket-core-7.6.0\",\n        \"Archiver-Version\": \"Plexus Archiver\",\n        \"Bundle-License\": \"http://www.apache.org/licenses/LICENSE-2.0.txt\",\n        \"Specification-Version\": \"7.6.0\",\n        \"Bnd-LastModified\": 1482777231886,\n        \"Bundle-Name\": \"Wicket Core\",\n        \"DynamicImport-Package\": \"*\",\n        \"Bundle-Description\": \"Wicket is a Java web application framework that takes simplicity, \\t\\tseparation of concerns and ease of development to a whole new level. \\t\\tWicket pages can be mocked up, previewed and later revised using \\t\\tstandard WYSIWYG HTML design tools. Dynamic content processing and \\t\\tform handling is all handled in Java code using a first-class \\t\\tcomponent model backed by POJO data beans that can easily be \\t\\tpersisted using your favorite technology.\",\n        \"Build-Jdk\": \"1.8.0_111\",\n        \"Specification-Vendor\": \"Apache Software Foundation\",\n        \"Bundle-SymbolicName\": \"org.apache.wicket.core\",\n        \"Built-By\": \"andrea\",\n        \"Require-Capability\": \"osgi.ee;filter:=\\\"(&(osgi.ee=JavaSE)(version=1.7))\\\"\",\n        \"Tool\": \"Bnd-2.3.0.201405100607\",\n        \"Implementation-Title\": \"Wicket Core\",\n        \"Implementation-Version\": \"7.6.0\",\n        \"Manifest-Version\": 1,\n        \"Created-By\": \"Apache Maven Bundle Plugin\",\n        \"Implementation-Vendor-Id\": \"org.apache.wicket\",\n        \"Bundle-DocURL\": \"http://apache.org\",\n        \"Bundle-Vendor\": \"Apache Software Foundation\",\n        \"Implementation-Vendor\": \"Apache Software Foundation\",\n        \"Bundle-ManifestVersion\": 2,\n        \"Bundle-Version\": \"7.6.0\",\n        \"Specification-Title\": \"Wicket Core\"\n      }\n    ]\n  }\n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<about>\n    <resource name=\"postgresql-9.4.1208\">\n        <Bundle-License>http://www.postgresql.org/about/licence/</Bundle-License>\n        <Specification-Version>4.2</Specification-Version>\n        <Bnd-LastModified>1455913825221</Bnd-LastModified>\n        <Bundle-Name>PostgreSQL JDBC Driver JDBC42</Bundle-Name>\n        <Bundle-Description>Java JDBC 4.2 (JRE 8+) driver for PostgreSQL database</Bundle-Description>\n        <Build-Jdk>1.8.0_66</Build-Jdk>\n        <Specification-Vendor>Oracle Corporation</Specification-Vendor>\n        <Bundle-SymbolicName>org.postgresql.jdbc42</Bundle-SymbolicName>\n        <Bundle-Copyright>Copyright (c) 2003-2015, PostgreSQL Global Development Group</Bundle-Copyright>\n        <Built-By>vladimirsitnikov</Built-By>\n        <Main-Class>org.postgresql.util.PGJDBCMain</Main-Class>\n        <Bundle-Activator>org.postgresql.osgi.PGBundleActivator</Bundle-Activator>\n        <Require-Capability>osgi.ee;filter:=&quot;(&amp;(|(osgi.ee=J2SE)(osgi.ee=JavaSE))(version&gt;=1.8))&quot;</Require-Capability>\n        <Tool>Bnd-2.3.0.201405100607</Tool>\n        <Implementation-Title>PostgreSQL JDBC Driver - JDBC 4.2</Implementation-Title>\n        <Implementation-Version>9.4.1208</Implementation-Version>\n        <Manifest-Version>1.0</Manifest-Version>\n        <Created-By>Apache Maven Bundle Plugin</Created-By>\n        <Implementation-Vendor-Id>org.postgresql</Implementation-Vendor-Id>\n        <Bundle-DocURL>http://jdbc.postgresql.org/</Bundle-DocURL>\n        <Bundle-Vendor>PostgreSQL Global Development Group</Bundle-Vendor>\n        <Implementation-Vendor>PostgreSQL Global Development Group</Implementation-Vendor>\n        <Bundle-ManifestVersion>2</Bundle-ManifestVersion>\n        <Bundle-Version>9.4.1208</Bundle-Version>\n        <Specification-Title>JDBC</Specification-Title>\n    </resource>    \n    <resource name=\"wicket-core-7.6.0\">\n        <Archiver-Version>Plexus Archiver</Archiver-Version>\n        <Bundle-License>http://www.apache.org/licenses/LICENSE-2.0.txt</Bundle-License>\n        <Specification-Version>7.6.0</Specification-Version>\n        <Bnd-LastModified>1482777231886</Bnd-LastModified>\n        <Bundle-Name>Wicket Core</Bundle-Name>\n        <DynamicImport-Package>*</DynamicImport-Package>\n        <Bundle-Description>Wicket is a Java web application framework that takes simplicity,       separation of concerns and ease of development to a whole new level.        Wicket pages can be mocked up, previewed and later revised using        standard WYSIWYG HTML design tools. Dynamic content processing and      form handling is all handled in Java code using a first-class       component model backed by POJO data beans that can easily be        persisted using your favorite technology.</Bundle-Description>\n        <Build-Jdk>1.8.0_111</Build-Jdk>\n        <Specification-Vendor>Apache Software Foundation</Specification-Vendor>\n        <Bundle-SymbolicName>org.apache.wicket.core</Bundle-SymbolicName>\n        <Built-By>andrea</Built-By>\n        <Require-Capability>osgi.ee;filter:=&quot;(&amp;(osgi.ee=JavaSE)(version=1.7))&quot;</Require-Capability>\n        <Tool>Bnd-2.3.0.201405100607</Tool>\n        <Implementation-Title>Wicket Core</Implementation-Title>\n        <Implementation-Version>7.6.0</Implementation-Version>\n        <Manifest-Version>1.0</Manifest-Version>\n        <Created-By>Apache Maven Bundle Plugin</Created-By>\n        <Implementation-Vendor-Id>org.apache.wicket</Implementation-Vendor-Id>\n        <Bundle-DocURL>http://apache.org</Bundle-DocURL>\n        <Bundle-Vendor>Apache Software Foundation</Bundle-Vendor>\n        <Implementation-Vendor>Apache Software Foundation</Implementation-Vendor>\n        <Bundle-ManifestVersion>2</Bundle-ManifestVersion>\n        <Bundle-Version>7.6.0</Bundle-Version>\n        <Specification-Title>Wicket Core</Specification-Title>\n    </resource>    \n</about>\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Returns the manifest
+        <a href="#Manifest">Manifest</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ "about": {
+    "resource": [      
+      {
+        "@name": "postgresql-9.4.1211",
+        "Bundle-License": "http://www.postgresql.org/about/licence/",
+        "Specification-Version": 4.2,
+        "Bnd-LastModified": 1474207285788,
+        "Bundle-Name": "PostgreSQL JDBC Driver JDBC42",
+        "Bundle-Description": "Java JDBC 4.2 (JRE 8+) driver for PostgreSQL database",
+        "Build-Jdk": "1.8.0_60",
+        "Specification-Vendor": "Oracle Corporation",
+        "Bundle-SymbolicName": "org.postgresql.jdbc42",
+        "Bundle-Copyright": "Copyright (c) 2003-2015, PostgreSQL Global Development Group",
+        "Built-By": "vladimirsitnikov",
+        "Main-Class": "org.postgresql.util.PGJDBCMain",
+        "Bundle-Activator": "org.postgresql.osgi.PGBundleActivator",
+        "Require-Capability": "osgi.ee;filter:=\"(&(|(osgi.ee=J2SE)(osgi.ee=JavaSE))(version>=1.8))\"",
+        "Tool": "Bnd-2.4.0.201411031534",
+        "Implementation-Title": "PostgreSQL JDBC Driver - JDBC 4.2",
+        "Implementation-Version": "9.4.1211",
+        "Manifest-Version": 1,
+        "Created-By": "Apache Maven Bundle Plugin",
+        "Implementation-Vendor-Id": "org.postgresql",
+        "Bundle-DocURL": "http://jdbc.postgresql.org/",
+        "Bundle-Vendor": "PostgreSQL Global Development Group",
+        "Implementation-Vendor": "PostgreSQL Global Development Group",
+        "Bundle-ManifestVersion": 2,
+        "Bundle-Version": "9.4.1211",
+        "Specification-Title": "JDBC"
+      },
+      {
+        "@name": "wicket-core-7.6.0",
+        "Archiver-Version": "Plexus Archiver",
+        "Bundle-License": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+        "Specification-Version": "7.6.0",
+        "Bnd-LastModified": 1482777231886,
+        "Bundle-Name": "Wicket Core",
+        "DynamicImport-Package": "*",
+        "Bundle-Description": "Wicket is a Java web application framework that takes simplicity, \t\tseparation of concerns and ease of development to a whole new level. \t\tWicket pages can be mocked up, previewed and later revised using \t\tstandard WYSIWYG HTML design tools. Dynamic content processing and \t\tform handling is all handled in Java code using a first-class \t\tcomponent model backed by POJO data beans that can easily be \t\tpersisted using your favorite technology.",
+        "Build-Jdk": "1.8.0_111",
+        "Specification-Vendor": "Apache Software Foundation",
+        "Bundle-SymbolicName": "org.apache.wicket.core",
+        "Built-By": "andrea",
+        "Require-Capability": "osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.7))\"",
+        "Tool": "Bnd-2.3.0.201405100607",
+        "Implementation-Title": "Wicket Core",
+        "Implementation-Version": "7.6.0",
+        "Manifest-Version": 1,
+        "Created-By": "Apache Maven Bundle Plugin",
+        "Implementation-Vendor-Id": "org.apache.wicket",
+        "Bundle-DocURL": "http://apache.org",
+        "Bundle-Vendor": "Apache Software Foundation",
+        "Implementation-Vendor": "Apache Software Foundation",
+        "Bundle-ManifestVersion": 2,
+        "Bundle-Version": "7.6.0",
+        "Specification-Title": "Wicket Core"
+      }
+    ]
+  }
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><about>
+    <resource name="postgresql-9.4.1208">
+        <Bundle-License>http://www.postgresql.org/about/licence/</Bundle-License>
+        <Specification-Version>4.2</Specification-Version>
+        <Bnd-LastModified>1455913825221</Bnd-LastModified>
+        <Bundle-Name>PostgreSQL JDBC Driver JDBC42</Bundle-Name>
+        <Bundle-Description>Java JDBC 4.2 (JRE 8+) driver for PostgreSQL database</Bundle-Description>
+        <Build-Jdk>1.8.0_66</Build-Jdk>
+        <Specification-Vendor>Oracle Corporation</Specification-Vendor>
+        <Bundle-SymbolicName>org.postgresql.jdbc42</Bundle-SymbolicName>
+        <Bundle-Copyright>Copyright (c) 2003-2015, PostgreSQL Global Development Group</Bundle-Copyright>
+        <Built-By>vladimirsitnikov</Built-By>
+        <Main-Class>org.postgresql.util.PGJDBCMain</Main-Class>
+        <Bundle-Activator>org.postgresql.osgi.PGBundleActivator</Bundle-Activator>
+        <Require-Capability>osgi.ee;filter:=&quot;(&amp;(|(osgi.ee=J2SE)(osgi.ee=JavaSE))(version&gt;=1.8))&quot;</Require-Capability>
+        <Tool>Bnd-2.3.0.201405100607</Tool>
+        <Implementation-Title>PostgreSQL JDBC Driver - JDBC 4.2</Implementation-Title>
+        <Implementation-Version>9.4.1208</Implementation-Version>
+        <Manifest-Version>1.0</Manifest-Version>
+        <Created-By>Apache Maven Bundle Plugin</Created-By>
+        <Implementation-Vendor-Id>org.postgresql</Implementation-Vendor-Id>
+        <Bundle-DocURL>http://jdbc.postgresql.org/</Bundle-DocURL>
+        <Bundle-Vendor>PostgreSQL Global Development Group</Bundle-Vendor>
+        <Implementation-Vendor>PostgreSQL Global Development Group</Implementation-Vendor>
+        <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+        <Bundle-Version>9.4.1208</Bundle-Version>
+        <Specification-Title>JDBC</Specification-Title>
+    </resource>    
+    <resource name="wicket-core-7.6.0">
+        <Archiver-Version>Plexus Archiver</Archiver-Version>
+        <Bundle-License>http://www.apache.org/licenses/LICENSE-2.0.txt</Bundle-License>
+        <Specification-Version>7.6.0</Specification-Version>
+        <Bnd-LastModified>1482777231886</Bnd-LastModified>
+        <Bundle-Name>Wicket Core</Bundle-Name>
+        <DynamicImport-Package>*</DynamicImport-Package>
+        <Bundle-Description>Wicket is a Java web application framework that takes simplicity,       separation of concerns and ease of development to a whole new level.        Wicket pages can be mocked up, previewed and later revised using        standard WYSIWYG HTML design tools. Dynamic content processing and      form handling is all handled in Java code using a first-class       component model backed by POJO data beans that can easily be        persisted using your favorite technology.</Bundle-Description>
+        <Build-Jdk>1.8.0_111</Build-Jdk>
+        <Specification-Vendor>Apache Software Foundation</Specification-Vendor>
+        <Bundle-SymbolicName>org.apache.wicket.core</Bundle-SymbolicName>
+        <Built-By>andrea</Built-By>
+        <Require-Capability>osgi.ee;filter:=&quot;(&amp;(osgi.ee=JavaSE)(version=1.7))&quot;</Require-Capability>
+        <Tool>Bnd-2.3.0.201405100607</Tool>
+        <Implementation-Title>Wicket Core</Implementation-Title>
+        <Implementation-Version>7.6.0</Implementation-Version>
+        <Manifest-Version>1.0</Manifest-Version>
+        <Created-By>Apache Maven Bundle Plugin</Created-By>
+        <Implementation-Vendor-Id>org.apache.wicket</Implementation-Vendor-Id>
+        <Bundle-DocURL>http://apache.org</Bundle-DocURL>
+        <Bundle-Vendor>Apache Software Foundation</Bundle-Vendor>
+        <Implementation-Vendor>Apache Software Foundation</Implementation-Vendor>
+        <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+        <Bundle-Version>7.6.0</Bundle-Version>
+        <Specification-Title>Wicket Core</Specification-Title>
+    </resource>    
+</about>
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Manifest"><code>Manifest</code> - </a></li>
+    <li><a href="#Manifest_about"><code>Manifest_about</code> - </a></li>
+    <li><a href="#Manifest_about_resource"><code>Manifest_about_resource</code> - </a></li>
+    <li><a href="#Status"><code>Status</code> - </a></li>
+    <li><a href="#Status_about"><code>Status_about</code> - </a></li>
+    <li><a href="#Status_about_status"><code>Status_about_status</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Manifest"><code>Manifest</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Details on loaded JARs.</div>
+    <div class="field-items">
+      <div class="param">about (optional)</div><div class="param-desc"><span class="param-type"><a href="#Manifest_about">Manifest_about</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Manifest_about"><code>Manifest_about</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">resource (optional)</div><div class="param-desc"><span class="param-type"><a href="#Manifest_about_resource">array[Manifest_about_resource]</a></span> Contains key/value pairs for the resource (the resource name is found in the name XML attribute and @name JSON property). </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Manifest_about_resource"><code>Manifest_about_resource</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">@name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the resource. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Status"><code>Status</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Details of installed and configured modules. Status details always include human readable name, and module name. Optional details include version, availability, status message, and links to documentation.</div>
+    <div class="field-items">
+      <div class="param">about (optional)</div><div class="param-desc"><span class="param-type"><a href="#Status_about">Status_about</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Status_about"><code>Status_about</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#Status_about_status">array[Status_about_status]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Status_about_status"><code>Status_about_status</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">module (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Module identifier based on artifact bundle. For example, gs-main, gs-oracle. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Human readable name (from GeoServer documentation), or as defined in the extension pom.xml. </div>
+<div class="param">component (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional component identifier within module. For example, rendering-engine. </div>
+<div class="param">version (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Human readable version, ie. for geotools it would be 15-SNAPSHOT </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional status message such as what Java rendering engine is in use, or the library path if the module/driver is unavailable </div>
+<div class="param">isEnabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Returns whether the module is enabled in the current GeoServer configuration. </div>
+<div class="param">isAvailable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Returns whether the module is available to GeoServer </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

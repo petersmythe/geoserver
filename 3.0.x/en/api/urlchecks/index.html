@@ -1,0 +1,647 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer UrlCheck</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer UrlCheck</h1>
+    <div class="app-desc">An URL External Access Check is the check performed on user provided URLs that GeoServer will use to access remote resources.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#UrlChecks">UrlChecks</a></h4>
+  <ul>
+  <li><a href="#deleteUrlCheck"><code><span class="http-method">delete</span> /urlchecks/{urlcheckname}</code></a></li>
+  <li><a href="#deleteUrlChecks"><code><span class="http-method">delete</span> /urlchecks</code></a></li>
+  <li><a href="#getUrlCheck"><code><span class="http-method">get</span> /urlchecks/{urlcheckname}</code></a></li>
+  <li><a href="#getUrlChecks"><code><span class="http-method">get</span> /urlchecks</code></a></li>
+  <li><a href="#postUrlCheck"><code><span class="http-method">post</span> /urlchecks/{urlcheckname}</code></a></li>
+  <li><a href="#postUrlChecks"><code><span class="http-method">post</span> /urlchecks</code></a></li>
+  <li><a href="#putUrlCheck"><code><span class="http-method">put</span> /urlchecks/{urlcheckname}</code></a></li>
+  <li><a href="#putUrlChecks"><code><span class="http-method">put</span> /urlchecks</code></a></li>
+  </ul>
+
+  <h1><a name="UrlChecks">UrlChecks</a></h1>
+  <div class="method"><a name="deleteUrlCheck"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /urlchecks/{urlcheckname}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteUrlCheck</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">urlcheckname (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; name of URL check to delete. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully deleted URL check
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Url check doesn't exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteUrlChecks"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /urlchecks</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteUrlChecks</span>)</div>
+    <div class="method-notes">Not permitted.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Not permitted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getUrlCheck"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /urlchecks/{urlcheckname}</code></pre></div>
+    <div class="method-summary">Retrieve a URL check (<span class="nickname">getUrlCheck</span>)</div>
+    <div class="method-notes">Retrieves a single URL check definition. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/urlchecks/{urlcheck}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">urlcheckname (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; the name of the URL check to fetch. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#urlCheck">urlCheck</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<urlChecks>\n    <urlCheck>\n        <name>icons</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/urlchecks/icons.xml\" type=\"application/atom+xml\"/>\n    </urlCheck>\n</urlChecks>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"urlCheck\": {\n      \"name\": \"icons\",\n      \"description\": \"External graphic icons\",\n      \"enabled\": true,\n      \"regex\": \"^https://styles.server.net/icons/.*$\"\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#urlCheck">urlCheck</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><urlChecks>
+    <urlCheck>
+        <name>icons</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/urlchecks/icons.xml" type="application/atom+xml"/>
+    </urlCheck>
+</urlChecks>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "urlCheck": {
+      "name": "icons",
+      "description": "External graphic icons",
+      "enabled": true,
+      "regex": "^https://styles.server.net/icons/.*$"
+  }
+}
+</code></pre>
+    <h4 class="field-label">404</h4>
+    URL check does not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getUrlChecks"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /urlchecks</code></pre></div>
+    <div class="method-summary">Get a list of URL checks (<span class="nickname">getUrlChecks</span>)</div>
+    <div class="method-notes">Displays a list of all URL checks on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/urlchecks.xml&quot; for XML)</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#urlChecks">urlChecks</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: text/html</div>
+    <pre class="example"><code>"<html>\n  <head>\n      <title>GeoServer Configuration</title>\n      <meta name=\"ROBOTS\" content=\"NOINDEX, NOFOLLOW\" />\n  </head>\n  <body>\n      <ul>\n          <li><a href=\"http://localhost:8080/geoserver/rest/urlchecks/external.html\">external</a></li>\n          <li><a href=\"http://localhost:8080/geoserver/rest/urlchecks/icons.html\">icons</a></li>\n          <li><a href=\"http://localhost:8080/geoserver/rest/urlchecks/safeWFS.html\">safeWFS</a></li>\n      </ul>\n  </body>\n</html>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<urlChecks>\n  <urlCheck>\n      <name>external</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/urlchecks/external.xml\" type=\"application/atom+xml\"/>\n  </urlCheck>\n  <urlCheck>\n      <name>icons</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/urlchecks/icons.xml\" type=\"application/atom+xml\"/>\n  </urlCheck>\n  <urlCheck>\n      <name>safeWFS</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/urlchecks/safeWFS.xml\" type=\"application/atom+xml\"/>\n  </urlCheck>\n</urlChecks>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"urlchecks\":{\"urlcheck\":[\n        {\"name\":\"external\",\"href\":\"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/urlchecks\\/external.json\"},\n        {\"name\":\"icons\",\"href\":\"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/urlchecks\\/icons.json\"},\n        {\"name\":\"safeWFS\",\"href\":\"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/urlchecks\\/safeWFS.json\"}]}}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#urlChecks">urlChecks</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: text/html</div>
+    <pre class="example"><code><html>
+  <head>
+      <title>GeoServer Configuration</title>
+      <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+      <ul>
+          <li><a href="http://localhost:8080/geoserver/rest/urlchecks/external.html">external</a></li>
+          <li><a href="http://localhost:8080/geoserver/rest/urlchecks/icons.html">icons</a></li>
+          <li><a href="http://localhost:8080/geoserver/rest/urlchecks/safeWFS.html">safeWFS</a></li>
+      </ul>
+  </body>
+</html>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><urlChecks>
+  <urlCheck>
+      <name>external</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/urlchecks/external.xml" type="application/atom+xml"/>
+  </urlCheck>
+  <urlCheck>
+      <name>icons</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/urlchecks/icons.xml" type="application/atom+xml"/>
+  </urlCheck>
+  <urlCheck>
+      <name>safeWFS</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/urlchecks/safeWFS.xml" type="application/atom+xml"/>
+  </urlCheck>
+</urlChecks>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"urlchecks":{"urlcheck":[
+        {"name":"external","href":"http:\/\/localhost:8080\/geoserver\/rest\/urlchecks\/external.json"},
+        {"name":"icons","href":"http:\/\/localhost:8080\/geoserver\/rest\/urlchecks\/icons.json"},
+        {"name":"safeWFS","href":"http:\/\/localhost:8080\/geoserver\/rest\/urlchecks\/safeWFS.json"}]}}
+</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postUrlCheck"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /urlchecks/{urlcheckname}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postUrlCheck</span>)</div>
+    <div class="method-notes">Not permitted.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">urlcheckname (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; the name of the URL check to fetch. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Not permitted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postUrlChecks"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /urlchecks</code></pre></div>
+    <div class="method-summary">add a new URL check to GeoServer (<span class="nickname">postUrlChecks</span>)</div>
+    <div class="method-notes">Adds a new URL check to the server</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">urlcheckBody <a href="#urlCheck">urlCheck</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The url check body to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>aeiou</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#String">String</a>
+    <h4 class="field-label">400</h4>
+    Unable to add provided URL check as it misses required fields
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    Unable to add URL check as it already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putUrlCheck"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /urlchecks/{urlcheckname}</code></pre></div>
+    <div class="method-summary">Update a URL check (<span class="nickname">putUrlCheck</span>)</div>
+    <div class="method-notes">Changes the URL check with the provided data.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">urlcheckname (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; name of URL check. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">urlcheckBody <a href="#urlCheck">urlCheck</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The url check body to perform the change against. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Modified
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Cannot perform the change to the URL check as required fields are missing
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Url check not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putUrlChecks"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /urlchecks</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putUrlChecks</span>)</div>
+    <div class="method-notes">Not permitted.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Not permitted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#urlCheck"><code>urlCheck</code> - </a></li>
+    <li><a href="#urlChecks"><code>urlChecks</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="urlCheck"><code>urlCheck</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'><p>The body for a URL check request.
+For a PUT, only values which should be changed need to be included.</p>
+<p>JSON or XML style requests should follow the schemas below:</p>
+<ul>
+<li>
+<p>application/xml:</p>
+<pre><code>&lt;regexUrlCheck&gt;
+	&lt;name&gt;string&lt;/name&gt;
+	&lt;description&gt;string&lt;/description&gt;
+	&lt;enabled&gt;false&lt;/enabled&gt;
+	&lt;regex&gt;string&lt;/regex&gt;
+&lt;/regexUrlCheck&gt;
+</code></pre>
+</li>
+<li>
+<p>application/json:</p>
+<pre><code>{
+  &quot;regexUrlCheck&quot;: {
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;description&quot;: &quot;string&quot;,
+    &quot;enabled&quot;: false,
+    &quot;regex&quot;: &quot;string&quot;
+  }
+}
+</code></pre>
+</li>
+</ul>
+</div>
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> name of the URL check </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> description for the URL check </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> enabled status of the URL check </div>
+<div class="param">regex </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> regex to perform the check with </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="urlChecks"><code>urlChecks</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

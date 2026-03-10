@@ -1,0 +1,1011 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer StructuredCoverageStores</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer StructuredCoverageStores</h1>
+    <div class="app-desc">A structured coverage store allows description of its &quot;granules&quot; and management of them.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#StructuredCoverages">StructuredCoverages</a></h4>
+  <ul>
+  <li><a href="#deleteCoverageStores"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></a></li>
+  <li><a href="#deleteStructuredCoverageGranule"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></a></li>
+  <li><a href="#deleteStructuredCoverageGranules"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></a></li>
+  <li><a href="#getStructuredCoverageGranule"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></a></li>
+  <li><a href="#getStructuredCoverageGranules"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></a></li>
+  <li><a href="#getStructuredCoverageIndex"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></a></li>
+  <li><a href="#postStructuredCoverageGranule"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></a></li>
+  <li><a href="#postStructuredCoverageGranules"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></a></li>
+  <li><a href="#postStructuredCoverageIndex"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></a></li>
+  <li><a href="#putStructuredCoverageGranule"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></a></li>
+  <li><a href="#putStructuredCoverageGranules"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></a></li>
+  <li><a href="#putStructuredCoverageIndex"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></a></li>
+  </ul>
+
+  <h1><a name="StructuredCoverages">StructuredCoverages</a></h1>
+  <div class="method"><a name="deleteCoverageStores"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteCoverageStores</span>)</div>
+    <div class="method-notes">Invalid, the index cannot be created or modified</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteStructuredCoverageGranule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteStructuredCoverageGranule</span>)</div>
+    <div class="method-notes">Allows removing the specified granule</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the worskpace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the coverage to be retrieved </div><div class="param">granuleId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The granule ID </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">purge (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The purge parameter specifies if and how the underlying raster data source is deleted. Allowable values for this parameter are &quot;none&quot;, &quot;metadata&quot; and &quot;all&quot;. When set to &quot;none&quot; data and auxiliary files are preserved, only the registration in the mosaic is removed When set to &quot;metadata&quot; delete only auxiliary files and metadata (e.g. NetCDF sidecar indexes). It’s recommended when data files (such as granules) should not be deleted from disk. Finally, when set to &quot;all&quot; both data and auxiliary files are removed. </div><div class="param">updateBBox (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; When set to &quot;true&quot;, triggers re-calculation of the layer native bbox. Defaults to &quot;false&quot;. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteStructuredCoverageGranules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteStructuredCoverageGranules</span>)</div>
+    <div class="method-notes">Allows removing one or more granules from the index</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the worskpace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the coverage to be retrieved </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">filter (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; A CQL filter to reduce the returned granules </div><div class="param">purge (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The purge parameter specifies if and how the underlying raster data source is deleted. Allowable values for this parameter are &quot;none&quot;, &quot;metadata&quot; and &quot;all&quot;. When set to &quot;none&quot; data and auxiliary files are preserved, only the registration in the mosaic is removed When set to &quot;metadata&quot; delete only auxiliary files and metadata (e.g. NetCDF sidecar indexes). It’s recommended when data files (such as granules) should not be deleted from disk. Finally, when set to &quot;all&quot; both data and auxiliary files are removed. </div><div class="param">updateBBox (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; When set to &quot;true&quot;, triggers re-calculation of the layer native bbox. Defaults to &quot;false&quot;. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getStructuredCoverageGranule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></pre></div>
+    <div class="method-summary">Get the attributes of a particular granule (<span class="nickname">getStructuredCoverageGranule</span>)</div>
+    <div class="method-notes">Displays a list of all the attributes associated to a particular coverage's granule. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/index.xml&quot; for XML). Defaults to XML representation. The XML output is actually WFS 1.0 GML, while the JSON output is GeoJSON</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the worskpace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the coverage to be retrieved </div><div class="param">granuleId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The granule ID </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "type": "FeatureCollection",
+  "bbox":   [
+    0.23722068851276978,
+    40.562080748421806,
+    14.592757149389236,
+    44.55808294568743
+  ],
+  "crs":   {
+    "type": "name",
+    "properties": {"name": "EPSG:4326"}
+  },
+  "features":   [
+        {
+      "type": "Feature",
+      "geometry":       {
+        "type": "MultiPolygon",
+        "coordinates": [[        [
+                    [
+            0.2372,
+            40.5621
+          ],
+                    [
+            0.2372,
+            44.5581
+          ],
+                    [
+            14.5928,
+            44.5581
+          ],
+                    [
+            14.5928,
+            40.5621
+          ],
+                    [
+            0.2372,
+            40.5621
+          ]
+        ]]]
+      },
+      "properties":       {
+        "location": "NCOM_wattemp_000_20081101T0000000_12.tiff",
+        "ingestion": "2008-11-01T00:00:00.000+0000",
+        "elevation": 0
+      },
+      "id": "watertemp.1"
+    }
+  ]
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection xmlns:wfs="http://www.opengis.net/wfs" xmlns:gf="http://www.geoserver.org/rest/granules" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<gml:boundedBy>
+    <gml:Box srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+    <gml:coord>
+        <gml:X>0.23722068851276978</gml:X>
+        <gml:Y>40.562080748421806</gml:Y>
+    </gml:coord>
+    <gml:coord>
+        <gml:X>14.592757149389236</gml:X>
+        <gml:Y>44.55808294568743</gml:Y>
+    </gml:coord>
+</gml:Box>
+</gml:boundedBy>
+<gml:featureMember>
+    <gf:watertemp fid="watertemp.1">
+        <gml:boundedBy>
+            <gml:Box srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+            <gml:coordinates>0.237221,40.562081 14.592757,44.558083</gml:coordinates>
+        </gml:Box>
+    </gml:boundedBy>
+    <gf:the_geom>
+        <gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+        <gml:polygonMember>
+            <gml:Polygon>
+                <gml:outerBoundaryIs>
+                    <gml:LinearRing>
+                        <gml:coordinates>0.237221,40.562081 0.237221,44.558083 14.592757,44.558083 14.592757,40.562081 0.237221,40.562081</gml:coordinates>
+                    </gml:LinearRing>
+                </gml:outerBoundaryIs>
+            </gml:Polygon>
+        </gml:polygonMember>
+    </gml:MultiPolygon>
+</gf:the_geom>
+<gf:location>NCOM_wattemp_000_20081101T0000000_12.tiff</gf:location>
+<gf:ingestion>2008-11-01T00:00:00Z</gf:ingestion>
+<gf:elevation>0</gf:elevation>
+</gf:watertemp>
+</gml:featureMember>
+</wfs:FeatureCollection>
+</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getStructuredCoverageGranules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></pre></div>
+    <div class="method-summary">Get the attributes associated to the granules (<span class="nickname">getStructuredCoverageGranules</span>)</div>
+    <div class="method-notes">Displays a list of all the attributes associated to a particular coverage's granules. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/index.xml&quot; for XML). Defaults to XML representation. The XML output is actually WFS 1.0 GML, while the JSON output is GeoJSON</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the worskpace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the coverage to be retrieved </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">filter (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; A CQL filter to reduce the returned granules </div><div class="param">offset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Used for paging, the start of the current page default: 0 </div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Used for paging, the number of items to be returned </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "type": "FeatureCollection",
+  "bbox":   [
+    0.23722068851276978,
+    40.562080748421806,
+    14.592757149389236,
+    44.55808294568743
+  ],
+  "crs":   {
+    "type": "name",
+    "properties": {"name": "EPSG:4326"}
+  },
+  "features":   [
+        {
+      "type": "Feature",
+      "geometry":       {
+        "type": "MultiPolygon",
+        "coordinates": [[        [
+                    [
+            0.2372,
+            40.5621
+          ],
+                    [
+            0.2372,
+            44.5581
+          ],
+                    [
+            14.5928,
+            44.5581
+          ],
+                    [
+            14.5928,
+            40.5621
+          ],
+                    [
+            0.2372,
+            40.5621
+          ]
+        ]]]
+      },
+      "properties":       {
+        "location": "NCOM_wattemp_000_20081101T0000000_12.tiff",
+        "ingestion": "2008-11-01T00:00:00.000+0000",
+        "elevation": 0
+      },
+      "id": "watertemp.1"
+    },
+        {
+      "type": "Feature",
+      "geometry":       {
+        "type": "MultiPolygon",
+        "coordinates": [[        [
+                    [
+            0.2372,
+            40.5621
+          ],
+                    [
+            0.2372,
+            44.5581
+          ],
+                    [
+            14.5928,
+            44.5581
+          ],
+                    [
+            14.5928,
+            40.5621
+          ],
+                    [
+            0.2372,
+            40.5621
+          ]
+        ]]]
+      },
+      "properties":       {
+        "location": "NCOM_wattemp_000_20081031T0000000_12.tiff",
+        "ingestion": "2008-10-31T00:00:00.000+0000",
+        "elevation": 0
+      },
+      "id": "watertemp.2"
+    }
+  ]
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection xmlns:wfs="http://www.opengis.net/wfs" xmlns:gf="http://www.geoserver.org/rest/granules" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<gml:boundedBy>
+    <gml:Box srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+    <gml:coord>
+        <gml:X>0.23722068851276978</gml:X>
+        <gml:Y>40.562080748421806</gml:Y>
+    </gml:coord>
+    <gml:coord>
+        <gml:X>14.592757149389236</gml:X>
+        <gml:Y>44.55808294568743</gml:Y>
+    </gml:coord>
+</gml:Box>
+</gml:boundedBy>
+<gml:featureMember>
+    <gf:watertemp fid="watertemp.1">
+        <gml:boundedBy>
+            <gml:Box srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+            <gml:coordinates>0.237221,40.562081 14.592757,44.558083</gml:coordinates>
+        </gml:Box>
+    </gml:boundedBy>
+    <gf:the_geom>
+        <gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+        <gml:polygonMember>
+            <gml:Polygon>
+                <gml:outerBoundaryIs>
+                    <gml:LinearRing>
+                        <gml:coordinates>0.237221,40.562081 0.237221,44.558083 14.592757,44.558083 14.592757,40.562081 0.237221,40.562081</gml:coordinates>
+                    </gml:LinearRing>
+                </gml:outerBoundaryIs>
+            </gml:Polygon>
+        </gml:polygonMember>
+    </gml:MultiPolygon>
+</gf:the_geom>
+<gf:location>NCOM_wattemp_000_20081101T0000000_12.tiff</gf:location>
+<gf:ingestion>2008-11-01T00:00:00Z</gf:ingestion>
+<gf:elevation>0</gf:elevation>
+</gf:watertemp>
+</gml:featureMember>
+<gml:featureMember>
+    <gf:watertemp fid="watertemp.2">
+        <gml:boundedBy>
+            <gml:Box srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+            <gml:coordinates>0.237221,40.562081 14.592757,44.558083</gml:coordinates>
+        </gml:Box>
+    </gml:boundedBy>
+    <gf:the_geom>
+        <gml:MultiPolygon srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+        <gml:polygonMember>
+            <gml:Polygon>
+                <gml:outerBoundaryIs>
+                    <gml:LinearRing>
+                        <gml:coordinates>0.237221,40.562081 0.237221,44.558083 14.592757,44.558083 14.592757,40.562081 0.237221,40.562081</gml:coordinates>
+                    </gml:LinearRing>
+                </gml:outerBoundaryIs>
+            </gml:Polygon>
+        </gml:polygonMember>
+    </gml:MultiPolygon>
+</gf:the_geom>
+<gf:location>NCOM_wattemp_000_20081031T0000000_12.tiff</gf:location>
+<gf:ingestion>2008-10-31T00:00:00Z</gf:ingestion>
+<gf:elevation>0</gf:elevation>
+</gf:watertemp>
+</gml:featureMember>
+</wfs:FeatureCollection>
+</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getStructuredCoverageIndex"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></pre></div>
+    <div class="method-summary">Get the information schema attached to the granules (<span class="nickname">getStructuredCoverageIndex</span>)</div>
+    <div class="method-notes">Displays a list of all the attributes associated to a particular coverage's granules. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/index.xml&quot; for XML). Defaults to XML representation.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the worskpace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div><div class="param">coverage (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the coverage to be retrieved </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Schema">Schema</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"Schema\": {\n    \"attributes\": {\"Attribute\":   [\n          {\n        \"name\": \"the_geom\",\n        \"minOccurs\": 0,\n        \"maxOccurs\": 1,\n        \"nillable\": true,\n        \"binding\": \"org.locationtech.jts.geom.MultiPolygon\"\n      },\n          {\n        \"name\": \"location\",\n        \"minOccurs\": 0,\n        \"maxOccurs\": 1,\n        \"nillable\": true,\n        \"binding\": \"java.lang.String\",\n        \"length\": 254\n      },\n          {\n        \"name\": \"ingestion\",\n        \"minOccurs\": 0,\n        \"maxOccurs\": 1,\n        \"nillable\": true,\n        \"binding\": \"java.util.Date\",\n        \"length\": 8\n      },\n          {\n        \"name\": \"elevation\",\n        \"minOccurs\": 0,\n        \"maxOccurs\": 1,\n        \"nillable\": true,\n        \"binding\": \"java.lang.Integer\",\n        \"length\": 9\n      }\n    ]},\n    \"href\": \"http://localhost:8080/geoserver/restng/workspaces/wcs/coveragestores/watertemp/coverages/watertemp/index/granules.json\"\n  }}            \n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Schema>\n  <attributes>\n    <Attribute>\n      <name>the_geom</name>\n      <minOccurs>0</minOccurs>\n      <maxOccurs>1</maxOccurs>\n      <nillable>true</nillable>\n      <binding>org.locationtech.jts.geom.MultiPolygon</binding>\n    </Attribute>\n    <Attribute>\n      <name>location</name>\n      <minOccurs>0</minOccurs>\n      <maxOccurs>1</maxOccurs>\n      <nillable>true</nillable>\n      <binding>java.lang.String</binding>\n      <length>254</length>\n    </Attribute>\n    <Attribute>\n      <name>ingestion</name>\n      <minOccurs>0</minOccurs>\n      <maxOccurs>1</maxOccurs>\n      <nillable>true</nillable>\n      <binding>java.util.Date</binding>\n      <length>8</length>\n    </Attribute>\n    <Attribute>\n      <name>elevation</name>\n      <minOccurs>0</minOccurs>\n      <maxOccurs>1</maxOccurs>\n      <nillable>true</nillable>\n      <binding>java.lang.Integer</binding>\n      <length>9</length>\n    </Attribute>\n  </attributes>\n  <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" href=\"http://localhost:8080/geoserver/rest/workspaces/wcs/coveragestores/watertemp/coverages/watertemp/index/granules.xml\" rel=\"alternate\" type=\"application/xml\"/>\n</Schema>\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Schema">Schema</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"Schema": {
+    "attributes": {"Attribute":   [
+          {
+        "name": "the_geom",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "nillable": true,
+        "binding": "org.locationtech.jts.geom.MultiPolygon"
+      },
+          {
+        "name": "location",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "nillable": true,
+        "binding": "java.lang.String",
+        "length": 254
+      },
+          {
+        "name": "ingestion",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "nillable": true,
+        "binding": "java.util.Date",
+        "length": 8
+      },
+          {
+        "name": "elevation",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "nillable": true,
+        "binding": "java.lang.Integer",
+        "length": 9
+      }
+    ]},
+    "href": "http://localhost:8080/geoserver/restng/workspaces/wcs/coveragestores/watertemp/coverages/watertemp/index/granules.json"
+  }}            
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<Schema>
+  <attributes>
+    <Attribute>
+      <name>the_geom</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>org.locationtech.jts.geom.MultiPolygon</binding>
+    </Attribute>
+    <Attribute>
+      <name>location</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.lang.String</binding>
+      <length>254</length>
+    </Attribute>
+    <Attribute>
+      <name>ingestion</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.util.Date</binding>
+      <length>8</length>
+    </Attribute>
+    <Attribute>
+      <name>elevation</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.lang.Integer</binding>
+      <length>9</length>
+    </Attribute>
+  </attributes>
+  <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://localhost:8080/geoserver/rest/workspaces/wcs/coveragestores/watertemp/coverages/watertemp/index/granules.xml" rel="alternate" type="application/xml"/>
+</Schema>
+</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postStructuredCoverageGranule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postStructuredCoverageGranule</span>)</div>
+    <div class="method-notes">Invalid, the granules cannot harvested here, use a POST request on /workspaces/{workspace}/coveragestores/{store}</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postStructuredCoverageGranules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postStructuredCoverageGranules</span>)</div>
+    <div class="method-notes">Invalid, the granules cannot harvested here, use a POST request on /workspaces/{workspace}/coveragestores/{store}</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postStructuredCoverageIndex"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postStructuredCoverageIndex</span>)</div>
+    <div class="method-notes">Invalid, the index cannot be created or modified</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putStructuredCoverageGranule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules/{granuleId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putStructuredCoverageGranule</span>)</div>
+    <div class="method-notes">Invalid, the granules cannot harvested here, use a POST request on /workspaces/{workspace}/coveragestores/{store}</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putStructuredCoverageGranules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index/granules</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putStructuredCoverageGranules</span>)</div>
+    <div class="method-notes">Invalid, the granules cannot harvested here, use a POST request on /workspaces/{workspace}/coveragestores/{store}</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putStructuredCoverageIndex"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/coverages/{coverage}/index</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putStructuredCoverageIndex</span>)</div>
+    <div class="method-notes">Invalid, the index cannot be created or modified</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Attribute"><code>Attribute</code> - </a></li>
+    <li><a href="#Schema"><code>Schema</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Attribute"><code>Attribute</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An attribute description</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the attribute </div>
+<div class="param">minOccurs (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Minimum number of occurrences (0 for optional attribute) </div>
+<div class="param">maxOccurs (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximumn number of occurrences (normally 1) </div>
+<div class="param">nillable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If the attribute can be missing </div>
+<div class="param">binding (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the java class for the attribute </div>
+<div class="param">length (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Length of the field </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Schema"><code>Schema</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">attributes </div><div class="param-desc"><span class="param-type"><a href="#Attribute">array[Attribute]</a></span> List of attributes </div>
+<div class="param">link </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Link to the list of granules </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

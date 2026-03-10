@@ -1,0 +1,1038 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Layer Groups</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Layer Groups</h1>
+    <div class="app-desc">A layer group is a group of layers that can be referenced as a single layer as part of a WMS request. A layer group can also be used as a container for layers.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#LayerGroups">LayerGroups</a></h4>
+  <ul>
+  <li><a href="#deleteLayergroup"><code><span class="http-method">delete</span> /layergroups/{layergroupName}</code></a></li>
+  <li><a href="#deleteLayergroups"><code><span class="http-method">delete</span> /layergroups</code></a></li>
+  <li><a href="#deleteWorkspaceLayergroup"><code><span class="http-method">delete</span> /workspaces/{workspace}/layergroups/{layergroup}</code></a></li>
+  <li><a href="#deleteWorkspaceLayergroups"><code><span class="http-method">delete</span> /workspaces/{workspace}/layergroups</code></a></li>
+  <li><a href="#getLayergroup"><code><span class="http-method">get</span> /layergroups/{layergroupName}</code></a></li>
+  <li><a href="#getLayergroups"><code><span class="http-method">get</span> /layergroups</code></a></li>
+  <li><a href="#getWorkspaceLayergroup"><code><span class="http-method">get</span> /workspaces/{workspace}/layergroups/{layergroup}</code></a></li>
+  <li><a href="#getWorkspaceLayergroups"><code><span class="http-method">get</span> /workspaces/{workspace}/layergroups</code></a></li>
+  <li><a href="#postLayergroup"><code><span class="http-method">post</span> /layergroups/{layergroupName}</code></a></li>
+  <li><a href="#postLayergroups"><code><span class="http-method">post</span> /layergroups</code></a></li>
+  <li><a href="#postWorkspaceLayergroup"><code><span class="http-method">post</span> /workspaces/{workspace}/layergroups/{layergroup}</code></a></li>
+  <li><a href="#postWorkspaceLayergroups"><code><span class="http-method">post</span> /workspaces/{workspace}/layergroups</code></a></li>
+  <li><a href="#putLayergroup"><code><span class="http-method">put</span> /layergroups/{layergroupName}</code></a></li>
+  <li><a href="#putLayergroups"><code><span class="http-method">put</span> /layergroups</code></a></li>
+  <li><a href="#putWorkspaceLayergroup"><code><span class="http-method">put</span> /workspaces/{workspace}/layergroups/{layergroup}</code></a></li>
+  <li><a href="#putWorkspaceLayergroups"><code><span class="http-method">put</span> /workspaces/{workspace}/layergroups</code></a></li>
+  </ul>
+
+  <h1><a name="LayerGroups">LayerGroups</a></h1>
+  <div class="method"><a name="deleteLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /layergroups/{layergroupName}</code></pre></div>
+    <div class="method-summary">Delete layer group (<span class="nickname">deleteLayergroup</span>)</div>
+    <div class="method-notes">Deletes a layer group from the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layergroupName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer group to delete. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /layergroups</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteLayergroups</span>)</div>
+    <div class="method-notes">Invalid. Use /layergroups/{layergroup} instead.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteWorkspaceLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/layergroups/{layergroup}</code></pre></div>
+    <div class="method-summary">Delete layer group (<span class="nickname">deleteWorkspaceLayergroup</span>)</div>
+    <div class="method-notes">Deletes a layer group from the server in the given workspace.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layergroup (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer group to delete. </div><div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteWorkspaceLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/layergroups</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteWorkspaceLayergroups</span>)</div>
+    <div class="method-notes">Invalid. Use /workspaces/{workspace}/layergroups/{layergroup} instead.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /layergroups/{layergroupName}</code></pre></div>
+    <div class="method-summary">Retrieve a layer group (<span class="nickname">getLayergroup</span>)</div>
+    <div class="method-notes">Retrieves a single layer group definition. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layergroups/{layergroup}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layergroupName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer group to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Layergroup">Layergroup</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<layerGroup>\n  <name>spearfish</name>\n  <mode>SINGLE</mode>\n  <title>Spearfish</title>\n  <abstractTxt>Spearfish City in Lawrence County, South Dakota</abstractTxt>\n  <publishables>\n    <published type=\"layer\">\n      <name>sfdem</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.xml\" type=\"application/xml\"/>\n    </published>\n    <published type=\"layer\">\n      <name>streams</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.xml\" type=\"application/xml\"/>\n    </published>\n  </publishables>\n  <styles>\n    <style>\n      <name>dem</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/dem.xml\" type=\"application/xml\"/>\n    <style/>\n  </styles>\n  <bounds>\n    <minx>589425.9342365642</minx>\n    <maxx>609518.6719560538</maxx>\n    <miny>4913959.224611808</miny>\n    <maxy>4928082.949945881</maxy>\n    <crs class=\"projected\">EPSG:26713</crs>\n  </bounds>\n  <metadata>\n    <entry key=\"rawStyleList\"></entry>\n  </metadata>\n  <keywords>\n    <keyword>keyword1\\@language=en\\;\\@vocabulary=vocabulary1\\;</keyword>\n    <keyword>keyword2\\@language=pt\\;\\@vocabulary=vocabulary2\\;</keyword>\n  </keywords>\n</layerGroup>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"layerGroup\": { \n  \"name\":\"spearfish\",\n  \"mode\":\"SINGLE\",\n  \"title\":\"Spearfish\",\n  \"abstractTxt\":\"Spearfish City in Lawrence County, South Dakota\",\n  \"publishables\":{\"published\":[\n      {\"@type\":\"layer\",\n      \"name\":\"sfdem\",\n      \"href\":\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.json\"},\n      {\"@type\":\"layer\",\n      \"name\":\"streams\",\n      \"href\":\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.json\"}]},\n  \"styles\": {\"style\":[\n      {\"name\":\"dem\",\n      \"href\":\"http://localhost:8080/geoserver/rest/styles/dem.json\"},\n      \"null\"]},\n  \"bounds\": { \"minx\":589425.9342365642,\n              \"maxx\":609518.6719560538,\n              \"miny\":4913959.224611808,\n              \"maxy\":4928082.949945881,\n              \"crs\":{\"@class\":\"projected\",\"$\":\"EPSG:26713\"}},\n  \"metadata\":{\"entry\":{\"@key\":\"rawStyleList\",\"$\":\"\"}}\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Layergroup">Layergroup</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><layerGroup>
+  <name>spearfish</name>
+  <mode>SINGLE</mode>
+  <title>Spearfish</title>
+  <abstractTxt>Spearfish City in Lawrence County, South Dakota</abstractTxt>
+  <publishables>
+    <published type="layer">
+      <name>sfdem</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.xml" type="application/xml"/>
+    </published>
+    <published type="layer">
+      <name>streams</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.xml" type="application/xml"/>
+    </published>
+  </publishables>
+  <styles>
+    <style>
+      <name>dem</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/dem.xml" type="application/xml"/>
+    <style/>
+  </styles>
+  <bounds>
+    <minx>589425.9342365642</minx>
+    <maxx>609518.6719560538</maxx>
+    <miny>4913959.224611808</miny>
+    <maxy>4928082.949945881</maxy>
+    <crs class="projected">EPSG:26713</crs>
+  </bounds>
+  <metadata>
+    <entry key="rawStyleList"></entry>
+  </metadata>
+  <keywords>
+    <keyword>keyword1\@language=en\;\@vocabulary=vocabulary1\;</keyword>
+    <keyword>keyword2\@language=pt\;\@vocabulary=vocabulary2\;</keyword>
+  </keywords>
+</layerGroup>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"layerGroup": { 
+  "name":"spearfish",
+  "mode":"SINGLE",
+  "title":"Spearfish",
+  "abstractTxt":"Spearfish City in Lawrence County, South Dakota",
+  "publishables":{"published":[
+      {"@type":"layer",
+      "name":"sfdem",
+      "href":"http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.json"},
+      {"@type":"layer",
+      "name":"streams",
+      "href":"http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.json"}]},
+  "styles": {"style":[
+      {"name":"dem",
+      "href":"http://localhost:8080/geoserver/rest/styles/dem.json"},
+      "null"]},
+  "bounds": { "minx":589425.9342365642,
+              "maxx":609518.6719560538,
+              "miny":4913959.224611808,
+              "maxy":4928082.949945881,
+              "crs":{"@class":"projected","$":"EPSG:26713"}},
+  "metadata":{"entry":{"@key":"rawStyleList","$":""}}
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /layergroups</code></pre></div>
+    <div class="method-summary">Get a list of layer groups (<span class="nickname">getLayergroups</span>)</div>
+    <div class="method-notes">Displays a list of all layer groups on the server not otherwise in a workspace. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layergroups.xml&quot; for XML)</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#LayergroupResponse">LayergroupResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<layerGroups>\n  <layerGroup>\n    <name>spearfish</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/layergroups/spearfish.xml\" type=\"application/xml\"/>\n  </layerGroup>\n</layerGroups>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"layerGroups\":{\"layerGroup\":[{\"name\":\"spearfish\",\"href\":\"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/layergroups\\/spearfish.json\"},{\"name\":\"tasmania\",\"href\":\"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/layergroups\\/tasmania.json\"},{\"name\":\"tiger-ny\",\"href\":\"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/layergroups\\/tiger-ny.json\"}]}}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#LayergroupResponse">LayergroupResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><layerGroups>
+  <layerGroup>
+    <name>spearfish</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/layergroups/spearfish.xml" type="application/xml"/>
+  </layerGroup>
+</layerGroups>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"layerGroups":{"layerGroup":[{"name":"spearfish","href":"http:\/\/localhost:8080\/geoserver\/rest\/layergroups\/spearfish.json"},{"name":"tasmania","href":"http:\/\/localhost:8080\/geoserver\/rest\/layergroups\/tasmania.json"},{"name":"tiger-ny","href":"http:\/\/localhost:8080\/geoserver\/rest\/layergroups\/tiger-ny.json"}]}}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getWorkspaceLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/layergroups/{layergroup}</code></pre></div>
+    <div class="method-summary">Retrieve a layer group (<span class="nickname">getWorkspaceLayergroup</span>)</div>
+    <div class="method-notes">Retrieves a single layer group definition. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/workspaces/{workspace}/layergroups/{layergroup}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">layergroup (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer group to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Layergroup">Layergroup</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"layerGroup\":{\"name\":\"spearfish\",\"mode\":\"SINGLE\",\"title\":\"Spearfish\",\"abstractTxt\":\"Spearfish City in Lawrence County, South Dakota\",\"workspace\":{\"name\":\"sf\"},\"publishables\":{\"published\":[{\"@type\":\"layer\",\"name\":\"sfdem\",\"href\":\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.json\"},{\"@type\":\"layer\",\"name\":\"streams\",\"href\":\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.json\"}]},\"styles\":{\"style\":[{\"name\":\"dem\",\"href\":\"http://localhost:8080/geoserver/rest/styles/dem.json\"},\"null\"]},\"bounds\":{\"minx\":589425.9342365642,\"maxx\":609518.6719560538,\"miny\":4913959.224611808,\"maxy\":4928082.949945881,\"crs\":{\"@class\":\"projected\",\"$\":\"EPSG:26713\"}},\"metadata\":{\"entry\":{\"@key\":\"rawStyleList\",\"$\":\"\"}}}}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<layerGroup>\n  <name>spearfish</name>\n  <mode>SINGLE</mode>\n  <title>Spearfish</title>\n  <abstractTxt>Spearfish City in Lawrence County, South Dakota</abstractTxt>\n  <workspace>\n    <name>sf</name>\n  </workspace>\n  <publishables>\n    <published type=\"layer\">\n      <name>sfdem</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.xml\" type=\"application/xml\"/>\n    </published>\n    <published type=\"layer\">\n      <name>streams</name>\n      <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.xml\" type=\"application/xml\"/>\n    </published>\n  </publishables>\n  <styles>\n    <style>\n      <name>dem</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/dem.xml\" type=\"application/xml\"/>\n    <style/>\n  </styles>\n  <bounds>\n    <minx>589425.9342365642</minx>\n    <maxx>609518.6719560538</maxx>\n    <miny>4913959.224611808</miny>\n    <maxy>4928082.949945881</maxy>\n    <crs class=\"projected\">EPSG:26713</crs>\n  </bounds>\n  <metadata>\n    <entry key=\"rawStyleList\"></entry>\n  </metadata>\n</layerGroup>              \n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Layergroup">Layergroup</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"layerGroup":{"name":"spearfish","mode":"SINGLE","title":"Spearfish","abstractTxt":"Spearfish City in Lawrence County, South Dakota","workspace":{"name":"sf"},"publishables":{"published":[{"@type":"layer","name":"sfdem","href":"http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.json"},{"@type":"layer","name":"streams","href":"http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.json"}]},"styles":{"style":[{"name":"dem","href":"http://localhost:8080/geoserver/rest/styles/dem.json"},"null"]},"bounds":{"minx":589425.9342365642,"maxx":609518.6719560538,"miny":4913959.224611808,"maxy":4928082.949945881,"crs":{"@class":"projected","$":"EPSG:26713"}},"metadata":{"entry":{"@key":"rawStyleList","$":""}}}}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><layerGroup>
+  <name>spearfish</name>
+  <mode>SINGLE</mode>
+  <title>Spearfish</title>
+  <abstractTxt>Spearfish City in Lawrence County, South Dakota</abstractTxt>
+  <workspace>
+    <name>sf</name>
+  </workspace>
+  <publishables>
+    <published type="layer">
+      <name>sfdem</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/sf/layers/sfdem.xml" type="application/xml"/>
+    </published>
+    <published type="layer">
+      <name>streams</name>
+      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/sf/layers/streams.xml" type="application/xml"/>
+    </published>
+  </publishables>
+  <styles>
+    <style>
+      <name>dem</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/dem.xml" type="application/xml"/>
+    <style/>
+  </styles>
+  <bounds>
+    <minx>589425.9342365642</minx>
+    <maxx>609518.6719560538</maxx>
+    <miny>4913959.224611808</miny>
+    <maxy>4928082.949945881</maxy>
+    <crs class="projected">EPSG:26713</crs>
+  </bounds>
+  <metadata>
+    <entry key="rawStyleList"></entry>
+  </metadata>
+</layerGroup>              
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getWorkspaceLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/layergroups</code></pre></div>
+    <div class="method-summary">Get a list of layer groups in a workspace (<span class="nickname">getWorkspaceLayergroups</span>)</div>
+    <div class="method-notes">Displays a list of all layer groups in a given workspace. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layergroups.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#LayergroupResponse">LayergroupResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>" <layerGroups> <layerGroup> <name>spearfish</name> <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/sf/layergroups/spearfish.xml\" type=\"application/xml\"/> </layerGroup> </layerGroups> "</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>" {\"layerGroups\":{\"layerGroup\":[{\"name\":\"spearfish\",\"href\":\"http:\\/\\/localhost:8080\\/geoserver\\/rest\\/workspaces\\/sf\\/layergroups\\/spearfish.json\"}]}} "</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#LayergroupResponse">LayergroupResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code> <layerGroups> <layerGroup> <name>spearfish</name> <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/sf/layergroups/spearfish.xml" type="application/xml"/> </layerGroup> </layerGroups> </code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code> {"layerGroups":{"layerGroup":[{"name":"spearfish","href":"http:\/\/localhost:8080\/geoserver\/rest\/workspaces\/sf\/layergroups\/spearfish.json"}]}} </code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /layergroups/{layergroupName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postLayergroup</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to edit a layer group definition, or POST with /layergroups to add a new definition.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /layergroups</code></pre></div>
+    <div class="method-summary">Add a new layer group (<span class="nickname">postLayergroups</span>)</div>
+    <div class="method-notes">Adds a new layer group entry to the server.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">layergroupBody <a href="#Layergroup">Layergroup</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The layer group body information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postWorkspaceLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/layergroups/{layergroup}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postWorkspaceLayergroup</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to edit a layer group definition, or POST with /workspaces/{workspace}/layergroups to add a new definition.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postWorkspaceLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/layergroups</code></pre></div>
+    <div class="method-summary">Add a new layer group (<span class="nickname">postWorkspaceLayergroups</span>)</div>
+    <div class="method-notes">Adds a new layer group entry to the server in the specified workspace.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">layergroupBody <a href="#Layergroup">Layergroup</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The layer group body information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /layergroups/{layergroupName}</code></pre></div>
+    <div class="method-summary">Modify a layer group. (<span class="nickname">putLayergroup</span>)</div>
+    <div class="method-notes">Modifies an existing layer group on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layergroups/{layergroup}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layergroupName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer group to modify. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">layergroupBody <a href="#Layergroup">Layergroup</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The updated layer group definition. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The layer group was successfully updated.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /layergroups</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putLayergroups</span>)</div>
+    <div class="method-notes">Invalid. Use POST for adding a new layer group, or PUT on /layergroups/{layergroup} to edit an existing layer group.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putWorkspaceLayergroup"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/layergroups/{layergroup}</code></pre></div>
+    <div class="method-summary">Modify a layer group. (<span class="nickname">putWorkspaceLayergroup</span>)</div>
+    <div class="method-notes">Modifies an existing layer group on the server in the given workspace. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/workspaces/{workspace}/layergroups/{layergroup}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">layergroup (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer group to modify. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">layergroupBody <a href="#Layergroup">Layergroup</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The updated layer group definition. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The layer group was successfully updated.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putWorkspaceLayergroups"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/layergroups</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putWorkspaceLayergroups</span>)</div>
+    <div class="method-notes">Invalid. Use POST for adding a new layer group to a workspace, or PUT on /workspaces/{workspace}/layergroups/{layergroup} to edit an existing layer group.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Layergroup"><code>Layergroup</code> - layerGroup</a></li>
+    <li><a href="#LayergroupMetadataLink"><code>LayergroupMetadataLink</code> - metadataLink</a></li>
+    <li><a href="#LayergroupPublished"><code>LayergroupPublished</code> - layer</a></li>
+    <li><a href="#LayergroupResponse"><code>LayergroupResponse</code> - layerGroups</a></li>
+    <li><a href="#LayergroupStyle"><code>LayergroupStyle</code> - style</a></li>
+    <li><a href="#Layergroup_bounds"><code>Layergroup_bounds</code> - </a></li>
+    <li><a href="#Layergroup_keywords"><code>Layergroup_keywords</code> - </a></li>
+    <li><a href="#Layergroup_publishables"><code>Layergroup_publishables</code> - </a></li>
+    <li><a href="#Layergroup_styles"><code>Layergroup_styles</code> - </a></li>
+    <li><a href="#Layergroup_workspace"><code>Layergroup_workspace</code> - </a></li>
+    <li><a href="#Layergroups"><code>Layergroups</code> - layerGroup</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Layergroup"><code>Layergroup</code> - layerGroup</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the layer group </div>
+<div class="param">mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the layer group mode. Can be SINGLE, NAMED, CONTAINER, or EO. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">SINGLE</div><div class="param-enum">NAMED</div><div class="param-enum">CONTAINER</div><div class="param-enum">EO</div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Title of the layer group </div>
+<div class="param">abstractTxt (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Abstract of the layer group </div>
+<div class="param">workspace (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layergroup_workspace">Layergroup_workspace</a></span>  </div>
+<div class="param">publishables (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layergroup_publishables">Layergroup_publishables</a></span>  </div>
+<div class="param">styles (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layergroup_styles">Layergroup_styles</a></span>  </div>
+<div class="param">metadataLinks (optional)</div><div class="param-desc"><span class="param-type"><a href="#LayergroupMetadataLink">array[LayergroupMetadataLink]</a></span>  </div>
+<div class="param">bounds (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layergroup_bounds">Layergroup_bounds</a></span>  </div>
+<div class="param">keywords (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layergroup_keywords">Layergroup_keywords</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LayergroupMetadataLink"><code>LayergroupMetadataLink</code> - metadataLink</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> MIME type </div>
+<div class="param">metadataType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Metadata type. Can be ISO9115:2003, FGDC, TC211, 19139, or other. </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL of metadata link </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LayergroupPublished"><code>LayergroupPublished</code> - layer</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the comprising layer, or empty to indicate a style group defined by the corresponding style. </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the comprising layer </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LayergroupResponse"><code>LayergroupResponse</code> - layerGroups</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">layerGroups (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layergroups">Layergroups</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LayergroupStyle"><code>LayergroupStyle</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Style to use to render layer</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the style for the corresponding layer in the list, or empty to use the default style of the corresponding layer. </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL of the style for the corresponding layer in the list </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layergroup_bounds"><code>Layergroup_bounds</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">minx (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Minimum X value of bounds </div>
+<div class="param">maxx (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Maximum X value of bounds </div>
+<div class="param">miny (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Minimum Y value of bounds </div>
+<div class="param">maxy (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Maximum Y value of bounds </div>
+<div class="param">crs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> CRS code, usually in the form EPSG:#### </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layergroup_keywords"><code>Layergroup_keywords</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A collection of keywords associated with the resource.</div>
+    <div class="field-items">
+      <div class="param">keyword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> List of keyword values with internationalization and vocabulary </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layergroup_publishables"><code>Layergroup_publishables</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Layers published by group (in draw order)</div>
+    <div class="field-items">
+      <div class="param">published (optional)</div><div class="param-desc"><span class="param-type"><a href="#LayergroupPublished">array[LayergroupPublished]</a></span> Published layer </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layergroup_styles"><code>Layergroup_styles</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Styles used to render layers in group</div>
+    <div class="field-items">
+      <div class="param">style (optional)</div><div class="param-desc"><span class="param-type"><a href="#LayergroupStyle">array[LayergroupStyle]</a></span> Style to render layer, or empty to use default style. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layergroup_workspace"><code>Layergroup_workspace</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of workspace that contains the layer group. Will only exist when request includes workspace name (/workspaces/{workspace}/...). </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layergroups"><code>Layergroups</code> - layerGroup</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of layer group </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to layer group definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

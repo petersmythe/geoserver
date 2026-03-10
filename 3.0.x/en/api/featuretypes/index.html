@@ -1,0 +1,1844 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Feature Types</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Feature Types</h1>
+    <div class="app-desc">A feature type is a vector based spatial resource or data set that originates from a data store. In some cases, such as with a shapefile, a feature type has a one-to-one relationship with its data store. In other cases, such as PostGIS, the relationship of feature type to data store is many-to-one, feature types corresponding to a table in the database.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>HTTP Basic Authentication</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#FeatureTypes">FeatureTypes</a></h4>
+  <ul>
+  <li><a href="#deleteFeatureType"><code><span class="http-method">delete</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#deleteFeatureType_1"><code><span class="http-method">delete</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#deleteFeatureTypes"><code><span class="http-method">delete</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></a></li>
+  <li><a href="#deleteFeatureTypes_2"><code><span class="http-method">delete</span> /workspaces/{workspaceName}/featuretypes</code></a></li>
+  <li><a href="#getFeatureType"><code><span class="http-method">get</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#getFeatureType_3"><code><span class="http-method">get</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#getFeatureTypes"><code><span class="http-method">get</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></a></li>
+  <li><a href="#getFeatureTypes_4"><code><span class="http-method">get</span> /workspaces/{workspaceName}/featuretypes</code></a></li>
+  <li><a href="#postFeatureType"><code><span class="http-method">post</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#postFeatureTypeReset"><code><span class="http-method">post</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}/reset</code></a></li>
+  <li><a href="#postFeatureTypeReset_5"><code><span class="http-method">post</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}/reset</code></a></li>
+  <li><a href="#postFeatureType_6"><code><span class="http-method">post</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#postFeatureTypes"><code><span class="http-method">post</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></a></li>
+  <li><a href="#postFeatureTypes_7"><code><span class="http-method">post</span> /workspaces/{workspaceName}/featuretypes</code></a></li>
+  <li><a href="#putFeatureType"><code><span class="http-method">put</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#putFeatureTypeReset"><code><span class="http-method">put</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}/reset</code></a></li>
+  <li><a href="#putFeatureTypeReset_8"><code><span class="http-method">put</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}/reset</code></a></li>
+  <li><a href="#putFeatureType_9"><code><span class="http-method">put</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></a></li>
+  <li><a href="#putFeatureTypes"><code><span class="http-method">put</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></a></li>
+  <li><a href="#putFeatureTypes_10"><code><span class="http-method">put</span> /workspaces/{workspaceName}/featuretypes</code></a></li>
+  </ul>
+
+  <h1><a name="FeatureTypes">FeatureTypes</a></h1>
+  <div class="method"><a name="deleteFeatureType"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteFeatureType</span>)</div>
+    <div class="method-notes">Delete a feature type (optionally recursively deleting layers).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">storeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the datastore </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Recursively deletes all layers referenced by the specified featuretype. Allowed values for this parameter are true or false. The default value is false. A request with 'recurse=false' will fail if any layers reference the featuretype. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The feature type was successfully deleted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteFeatureType_1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteFeatureType_1</span>)</div>
+    <div class="method-notes">Delete a feature type in the default data store for the workspace (optionally recursively deleting layers).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Recursively deletes all layers referenced by the specified featuretype. Allowed values for this parameter are true or false. The default value is false. A request with 'recurse=false' will fail if any layers reference the featuretype. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The feature type was successfully deleted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteFeatureTypes"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteFeatureTypes</span>)</div>
+    <div class="method-notes">Invalid.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteFeatureTypes_2"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspaceName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteFeatureTypes_2</span>)</div>
+    <div class="method-notes">Invalid.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getFeatureType"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getFeatureType</span>)</div>
+    <div class="method-notes">Get an individual feature type</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">storeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the datastore </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">quietOnNotFound (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Prevents logging an Exception when the feature type is not present. Note that 404 status code will be returned anyway. Defaults to &quot;false&quot;. default: false </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_1">inline_response_200_1</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{  \"name\": \"poi\",\n    \"nativeName\": \"poi\",\n    \"namespace\": {\n      \"name\": \"tiger\",\n      \"href\": \"http://localhost:8080/geoserver/rest/namespaces/tiger.json\"\n    },\n    \"title\": \"Manhattan (NY) points of interest\",\n    \"abstract\": \"Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.\",\n    \"keywords\": {\n      \"string\": [\n        \"poi\",\n        \"Manhattan\",\n        \"DS_poi\",\n        \"points_of_interest\",\n        \"sampleKeyword\\\\@language=ab\\\\;\",\n        \"area of effect\\\\@language=bg\\\\;\\\\@vocabulary=technical\\\\;\",\n        \"Привет\\\\@language=ru\\\\;\\\\@vocabulary=friendly\\\\;\"\n      ]\n    },\n    \"metadataLinks\": {\n      \"metadataLink\": [\n        {\n          \"type\": \"text/plain\",\n          \"metadataType\": \"FGDC\",\n          \"content\": \"www.google.com\"\n        }\n      ]\n    },\n    \"dataLinks\": {\n      \"org.geoserver.catalog.impl.DataLinkInfoImpl\": [\n        {\n          \"type\": \"text/plain\",\n          \"content\": \"http://www.google.com\"\n        }\n      ]\n    },                  \n    \"nativeCRS\": \"GEOGCS[\\\"WGS 84\\\", \\n  DATUM[\\\"World Geodetic System 1984\\\", \\n    SPHEROID[\\\"WGS 84\\\", 6378137.0, 298.257223563, AUTHORITY[\\\"EPSG\\\",\\\"7030\\\"]], \\n    AUTHORITY[\\\"EPSG\\\",\\\"6326\\\"]], \\n  PRIMEM[\\\"Greenwich\\\", 0.0, AUTHORITY[\\\"EPSG\\\",\\\"8901\\\"]], \\n  UNIT[\\\"degree\\\", 0.017453292519943295], \\n  AXIS[\\\"Geodetic longitude\\\", EAST], \\n  AXIS[\\\"Geodetic latitude\\\", NORTH], \\n  AUTHORITY[\\\"EPSG\\\",\\\"4326\\\"]]\",\n    \"srs\": \"EPSG:4326\",\n    \"nativeBoundingBox\": {\n      \"minx\": -74.0118315772888,\n      \"maxx\": -74.00153046439813,\n      \"miny\": 40.70754683896324,\n      \"maxy\": 40.719885123828675,\n      \"crs\": \"EPSG:4326\"\n    },\n    \"latLonBoundingBox\": {\n      \"minx\": -74.0118315772888,\n      \"maxx\": -74.00857344353275,\n      \"miny\": 40.70754683896324,\n      \"maxy\": 40.711945649065406,\n      \"crs\": \"EPSG:4326\"\n    },\n    \"projectionPolicy\": \"REPROJECT_TO_DECLARED\",\n    \"enabled\": true,\n    \"metadata\": {\n      \"entry\": [\n        {\n          \"@key\": \"kml.regionateStrategy\",\n          \"$\": \"external-sorting\"\n        },\n        {\n          \"@key\": \"kml.regionateFeatureLimit\",\n          \"$\": \"15\"\n        },\n        {\n          \"@key\": \"cacheAgeMax\",\n          \"$\": \"3000\"\n        },\n        {\n          \"@key\": \"cachingEnabled\",\n          \"$\": \"true\"\n        },\n        {\n          \"@key\": \"kml.regionateAttribute\",\n          \"$\": \"NAME\"\n        },\n        {\n          \"@key\": \"indexingEnabled\",\n          \"$\": \"false\"\n        },\n        {\n          \"@key\": \"dirName\",\n          \"$\": \"DS_poi_poi\"\n        },\n        {\n          \"@key\": \"time\",\n          \"dimensionInfo\": {\n            \"enabled\": true,\n            \"attribute\": \"time\",\n            \"presentation\": \"DISCRETE_INTERVAL\",\n            \"startValue\": \"2020-05-01T00:00:00Z\",\n            \"endValue\": \"2021-06-01T00:00:00Z\"\n          }\n        }\n      ]\n    },\n    \"store\": {\n      \"@class\": \"dataStore\",\n      \"name\": \"tiger:nyc\",\n      \"href\": \"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.json\"\n    },\n    \"cqlFilter\": \"INCLUDE\",\n    \"maxFeatures\": 100,\n    \"numDecimals\": 6,\n    \"responseSRS\": {\n      \"string\": [\n        4326\n      ]\n    },\n    \"overridingServiceSRS\": true,\n    \"skipNumberMatched\": true,\n    \"circularArcPresent\": true,\n    \"linearizationTolerance\": 10,\n    \"attributes\": {\n      \"attribute\": [\n        {\n          \"name\": \"the_geom\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"org.locationtech.jts.geom.Point\"\n        },\n        {\n          \"name\": \"NAME\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"java.lang.String\",\n          \"length\": 6\n        },\n        {\n          \"name\": \"THUMBNAIL\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"java.lang.String\",\n          \"length\": 20\n        },\n        {\n          \"name\": \"MAINPAGE\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"java.lang.String\",\n          \"length\": 19\n        }\n      ]\n    }              \n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<featureType>\n      <name>poi</name>\n      <nativeName>poi</nativeName>\n      <namespace>\n              <name>tiger</name>\n              <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/namespaces/tiger.xml\" type=\"application/xml\"/>\n      </namespace>\n      <title>Manhattan (NY) points of interest</title>\n      <abstract>Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.</abstract>\n      <keywords>\n              <string>poi</string>\n              <string>Manhattan</string>\n              <string>DS_poi</string>\n              <string>points_of_interest</string>\n              <string>fred\\@language=ab\\;</string>\n              <string>area of effect\\@language=bg\\;\\@vocabulary=Technical\\;</string>\n              <string>Привет\\@language=ru\\;\\@vocabulary=Friendly\\;</string>\n      </keywords>\n      <metadataLinks>\n              <metadataLink>\n                    <type>text/plain</type>\n                    <metadataType>FGDC</metadataType>\n                    <content>http://www.google.com</content>\n              </metadataLink>\n      </metadataLinks>\n      <dataLinks>\n              <org.geoserver.catalog.impl.DataLinkInfoImpl>\n                    <type>text/plain</type>\n                    <content>http://www.google.com</content>\n              </org.geoserver.catalog.impl.DataLinkInfoImpl>\n      </dataLinks>\n      <nativeCRS>GEOGCS[\"WGS 84\", DATUM[\"World Geodetic System 1984\", SPHEROID[\"WGS 84\", 6378137.0, 298.257223563, AUTHORITY[\"EPSG\",\"7030\"]], AUTHORITY[\"EPSG\",\"6326\"]], PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\",\"8901\"]], UNIT[\"degree\", 0.017453292519943295], AXIS[\"Geodetic longitude\", EAST], AXIS[\"Geodetic latitude\", NORTH], AUTHORITY[\"EPSG\",\"4326\"]]</nativeCRS>\n      <srs>EPSG:4326</srs>\n      <nativeBoundingBox>\n              <minx>-74.0118315772888</minx>\n              <maxx>-74.00153046439813</maxx>\n              <miny>40.70754683896324</miny>\n              <maxy>40.719885123828675</maxy>\n              <crs>EPSG:4326</crs>\n      </nativeBoundingBox>\n      <latLonBoundingBox>\n              <minx>-74.0118315772888</minx>\n              <maxx>-74.00857344353275</maxx>\n              <miny>40.70754683896324</miny>\n              <maxy>40.711945649065406</maxy>\n              <crs>EPSG:4326</crs>\n      </latLonBoundingBox>\n      <projectionPolicy>NONE</projectionPolicy>\n      <enabled>true</enabled>\n      <metadata>\n              <entry key=\"kml.regionateStrategy\">external-sorting</entry>\n              <entry key=\"elevation\">\n                    <dimensionInfo>\n                            <enabled>false</enabled>\n                    </dimensionInfo>\n              </entry>\n              <entry key=\"kml.regionateFeatureLimit\">15</entry>\n              <entry key=\"cacheAgeMax\">3000</entry>\n              <entry key=\"time\">\n                    <dimensionInfo>\n                            <enabled>true</enabled>\n                            <attribute>time</attribute>\n                            <presentation>DISCRETE_INTERVAL</presentation>\n                            <startValue>2020-05-01T00:00:00Z</startValue>\n                            <endValue>2021-06-01T00:00:00Z</endValue>\n                    </dimensionInfo>\n              </entry>\n              <entry key=\"cachingEnabled\">true</entry>\n              <entry key=\"kml.regionateAttribute\">NAME</entry>\n              <entry key=\"indexingEnabled\">false</entry>\n              <entry key=\"dirName\">DS_poi_poi</entry>\n      </metadata>\n      <store class=\"dataStore\">\n              <name>tiger:nyc</name>\n              <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.xml\" type=\"application/xml\"/>\n      </store>\n      <cqlFilter>INCLUDE</cqlFilter>\n      <maxFeatures>100</maxFeatures>\n      <numDecimals>6</numDecimals>\n      <responseSRS>\n              <string>4326</string>\n      </responseSRS>\n      <overridingServiceSRS>true</overridingServiceSRS>\n      <skipNumberMatched>true</skipNumberMatched>\n      <circularArcPresent>true</circularArcPresent>\n      <linearizationTolerance>10</linearizationTolerance>\n      <attributes>\n              <attribute>\n                    <name>the_geom</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>org.locationtech.jts.geom.Point</binding>\n              </attribute>\n              <attribute>\n                    <name>NAME</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>java.lang.String</binding>\n                    <length>6</length>\n              </attribute>\n              <attribute>\n                    <name>THUMBNAIL</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>java.lang.String</binding>\n                    <length>20</length>\n              </attribute>\n              <attribute>\n                    <name>MAINPAGE</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>java.lang.String</binding>\n                    <length>19</length>\n              </attribute>\n      </attributes>\n</featureType>\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful response containing feature type.
+        <a href="#inline_response_200_1">inline_response_200_1</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{  "name": "poi",
+    "nativeName": "poi",
+    "namespace": {
+      "name": "tiger",
+      "href": "http://localhost:8080/geoserver/rest/namespaces/tiger.json"
+    },
+    "title": "Manhattan (NY) points of interest",
+    "abstract": "Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.",
+    "keywords": {
+      "string": [
+        "poi",
+        "Manhattan",
+        "DS_poi",
+        "points_of_interest",
+        "sampleKeyword\\@language=ab\\;",
+        "area of effect\\@language=bg\\;\\@vocabulary=technical\\;",
+        "Привет\\@language=ru\\;\\@vocabulary=friendly\\;"
+      ]
+    },
+    "metadataLinks": {
+      "metadataLink": [
+        {
+          "type": "text/plain",
+          "metadataType": "FGDC",
+          "content": "www.google.com"
+        }
+      ]
+    },
+    "dataLinks": {
+      "org.geoserver.catalog.impl.DataLinkInfoImpl": [
+        {
+          "type": "text/plain",
+          "content": "http://www.google.com"
+        }
+      ]
+    },                  
+    "nativeCRS": "GEOGCS[\"WGS 84\", \n  DATUM[\"World Geodetic System 1984\", \n    SPHEROID[\"WGS 84\", 6378137.0, 298.257223563, AUTHORITY[\"EPSG\",\"7030\"]], \n    AUTHORITY[\"EPSG\",\"6326\"]], \n  PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\",\"8901\"]], \n  UNIT[\"degree\", 0.017453292519943295], \n  AXIS[\"Geodetic longitude\", EAST], \n  AXIS[\"Geodetic latitude\", NORTH], \n  AUTHORITY[\"EPSG\",\"4326\"]]",
+    "srs": "EPSG:4326",
+    "nativeBoundingBox": {
+      "minx": -74.0118315772888,
+      "maxx": -74.00153046439813,
+      "miny": 40.70754683896324,
+      "maxy": 40.719885123828675,
+      "crs": "EPSG:4326"
+    },
+    "latLonBoundingBox": {
+      "minx": -74.0118315772888,
+      "maxx": -74.00857344353275,
+      "miny": 40.70754683896324,
+      "maxy": 40.711945649065406,
+      "crs": "EPSG:4326"
+    },
+    "projectionPolicy": "REPROJECT_TO_DECLARED",
+    "enabled": true,
+    "metadata": {
+      "entry": [
+        {
+          "@key": "kml.regionateStrategy",
+          "$": "external-sorting"
+        },
+        {
+          "@key": "kml.regionateFeatureLimit",
+          "$": "15"
+        },
+        {
+          "@key": "cacheAgeMax",
+          "$": "3000"
+        },
+        {
+          "@key": "cachingEnabled",
+          "$": "true"
+        },
+        {
+          "@key": "kml.regionateAttribute",
+          "$": "NAME"
+        },
+        {
+          "@key": "indexingEnabled",
+          "$": "false"
+        },
+        {
+          "@key": "dirName",
+          "$": "DS_poi_poi"
+        },
+        {
+          "@key": "time",
+          "dimensionInfo": {
+            "enabled": true,
+            "attribute": "time",
+            "presentation": "DISCRETE_INTERVAL",
+            "startValue": "2020-05-01T00:00:00Z",
+            "endValue": "2021-06-01T00:00:00Z"
+          }
+        }
+      ]
+    },
+    "store": {
+      "@class": "dataStore",
+      "name": "tiger:nyc",
+      "href": "http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.json"
+    },
+    "cqlFilter": "INCLUDE",
+    "maxFeatures": 100,
+    "numDecimals": 6,
+    "responseSRS": {
+      "string": [
+        4326
+      ]
+    },
+    "overridingServiceSRS": true,
+    "skipNumberMatched": true,
+    "circularArcPresent": true,
+    "linearizationTolerance": 10,
+    "attributes": {
+      "attribute": [
+        {
+          "name": "the_geom",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "org.locationtech.jts.geom.Point"
+        },
+        {
+          "name": "NAME",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "java.lang.String",
+          "length": 6
+        },
+        {
+          "name": "THUMBNAIL",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "java.lang.String",
+          "length": 20
+        },
+        {
+          "name": "MAINPAGE",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "java.lang.String",
+          "length": 19
+        }
+      ]
+    }              
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><featureType>
+      <name>poi</name>
+      <nativeName>poi</nativeName>
+      <namespace>
+              <name>tiger</name>
+              <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/namespaces/tiger.xml" type="application/xml"/>
+      </namespace>
+      <title>Manhattan (NY) points of interest</title>
+      <abstract>Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.</abstract>
+      <keywords>
+              <string>poi</string>
+              <string>Manhattan</string>
+              <string>DS_poi</string>
+              <string>points_of_interest</string>
+              <string>fred\@language=ab\;</string>
+              <string>area of effect\@language=bg\;\@vocabulary=Technical\;</string>
+              <string>Привет\@language=ru\;\@vocabulary=Friendly\;</string>
+      </keywords>
+      <metadataLinks>
+              <metadataLink>
+                    <type>text/plain</type>
+                    <metadataType>FGDC</metadataType>
+                    <content>http://www.google.com</content>
+              </metadataLink>
+      </metadataLinks>
+      <dataLinks>
+              <org.geoserver.catalog.impl.DataLinkInfoImpl>
+                    <type>text/plain</type>
+                    <content>http://www.google.com</content>
+              </org.geoserver.catalog.impl.DataLinkInfoImpl>
+      </dataLinks>
+      <nativeCRS>GEOGCS["WGS 84", DATUM["World Geodetic System 1984", SPHEROID["WGS 84", 6378137.0, 298.257223563, AUTHORITY["EPSG","7030"]], AUTHORITY["EPSG","6326"]], PRIMEM["Greenwich", 0.0, AUTHORITY["EPSG","8901"]], UNIT["degree", 0.017453292519943295], AXIS["Geodetic longitude", EAST], AXIS["Geodetic latitude", NORTH], AUTHORITY["EPSG","4326"]]</nativeCRS>
+      <srs>EPSG:4326</srs>
+      <nativeBoundingBox>
+              <minx>-74.0118315772888</minx>
+              <maxx>-74.00153046439813</maxx>
+              <miny>40.70754683896324</miny>
+              <maxy>40.719885123828675</maxy>
+              <crs>EPSG:4326</crs>
+      </nativeBoundingBox>
+      <latLonBoundingBox>
+              <minx>-74.0118315772888</minx>
+              <maxx>-74.00857344353275</maxx>
+              <miny>40.70754683896324</miny>
+              <maxy>40.711945649065406</maxy>
+              <crs>EPSG:4326</crs>
+      </latLonBoundingBox>
+      <projectionPolicy>NONE</projectionPolicy>
+      <enabled>true</enabled>
+      <metadata>
+              <entry key="kml.regionateStrategy">external-sorting</entry>
+              <entry key="elevation">
+                    <dimensionInfo>
+                            <enabled>false</enabled>
+                    </dimensionInfo>
+              </entry>
+              <entry key="kml.regionateFeatureLimit">15</entry>
+              <entry key="cacheAgeMax">3000</entry>
+              <entry key="time">
+                    <dimensionInfo>
+                            <enabled>true</enabled>
+                            <attribute>time</attribute>
+                            <presentation>DISCRETE_INTERVAL</presentation>
+                            <startValue>2020-05-01T00:00:00Z</startValue>
+                            <endValue>2021-06-01T00:00:00Z</endValue>
+                    </dimensionInfo>
+              </entry>
+              <entry key="cachingEnabled">true</entry>
+              <entry key="kml.regionateAttribute">NAME</entry>
+              <entry key="indexingEnabled">false</entry>
+              <entry key="dirName">DS_poi_poi</entry>
+      </metadata>
+      <store class="dataStore">
+              <name>tiger:nyc</name>
+              <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.xml" type="application/xml"/>
+      </store>
+      <cqlFilter>INCLUDE</cqlFilter>
+      <maxFeatures>100</maxFeatures>
+      <numDecimals>6</numDecimals>
+      <responseSRS>
+              <string>4326</string>
+      </responseSRS>
+      <overridingServiceSRS>true</overridingServiceSRS>
+      <skipNumberMatched>true</skipNumberMatched>
+      <circularArcPresent>true</circularArcPresent>
+      <linearizationTolerance>10</linearizationTolerance>
+      <attributes>
+              <attribute>
+                    <name>the_geom</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>org.locationtech.jts.geom.Point</binding>
+              </attribute>
+              <attribute>
+                    <name>NAME</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>java.lang.String</binding>
+                    <length>6</length>
+              </attribute>
+              <attribute>
+                    <name>THUMBNAIL</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>java.lang.String</binding>
+                    <length>20</length>
+              </attribute>
+              <attribute>
+                    <name>MAINPAGE</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>java.lang.String</binding>
+                    <length>19</length>
+              </attribute>
+      </attributes>
+</featureType>
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getFeatureType_3"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getFeatureType_3</span>)</div>
+    <div class="method-notes">Get an individual feature type in the default data store for the workspace</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">quietOnNotFound (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Prevents logging an Exception when the feature type is not present. Note that 404 status code will be returned anyway. Defaults to &quot;false&quot;. default: false </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_1">inline_response_200_1</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{  \"name\": \"poi\",\n    \"nativeName\": \"poi\",\n    \"namespace\": {\n      \"name\": \"tiger\",\n      \"href\": \"http://localhost:8080/geoserver/rest/namespaces/tiger.json\"\n    },\n    \"title\": \"Manhattan (NY) points of interest\",\n    \"abstract\": \"Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.\",\n    \"keywords\": {\n      \"string\": [\n        \"poi\",\n        \"Manhattan\",\n        \"DS_poi\",\n        \"points_of_interest\",\n        \"sampleKeyword\\\\@language=ab\\\\;\",\n        \"area of effect\\\\@language=bg\\\\;\\\\@vocabulary=technical\\\\;\",\n        \"Привет\\\\@language=ru\\\\;\\\\@vocabulary=friendly\\\\;\"\n      ]\n    },\n    \"metadataLinks\": {\n      \"metadataLink\": [\n        {\n          \"type\": \"text/plain\",\n          \"metadataType\": \"FGDC\",\n          \"content\": \"www.google.com\"\n        }\n      ]\n    },\n    \"dataLinks\": {\n      \"org.geoserver.catalog.impl.DataLinkInfoImpl\": [\n        {\n          \"type\": \"text/plain\",\n          \"content\": \"http://www.google.com\"\n        }\n      ]\n    },                  \n    \"nativeCRS\": \"GEOGCS[\\\"WGS 84\\\", \\n  DATUM[\\\"World Geodetic System 1984\\\", \\n    SPHEROID[\\\"WGS 84\\\", 6378137.0, 298.257223563, AUTHORITY[\\\"EPSG\\\",\\\"7030\\\"]], \\n    AUTHORITY[\\\"EPSG\\\",\\\"6326\\\"]], \\n  PRIMEM[\\\"Greenwich\\\", 0.0, AUTHORITY[\\\"EPSG\\\",\\\"8901\\\"]], \\n  UNIT[\\\"degree\\\", 0.017453292519943295], \\n  AXIS[\\\"Geodetic longitude\\\", EAST], \\n  AXIS[\\\"Geodetic latitude\\\", NORTH], \\n  AUTHORITY[\\\"EPSG\\\",\\\"4326\\\"]]\",\n    \"srs\": \"EPSG:4326\",\n    \"nativeBoundingBox\": {\n      \"minx\": -74.0118315772888,\n      \"maxx\": -74.00153046439813,\n      \"miny\": 40.70754683896324,\n      \"maxy\": 40.719885123828675,\n      \"crs\": \"EPSG:4326\"\n    },\n    \"latLonBoundingBox\": {\n      \"minx\": -74.0118315772888,\n      \"maxx\": -74.00857344353275,\n      \"miny\": 40.70754683896324,\n      \"maxy\": 40.711945649065406,\n      \"crs\": \"EPSG:4326\"\n    },\n    \"projectionPolicy\": \"REPROJECT_TO_DECLARED\",\n    \"enabled\": true,\n    \"metadata\": {\n      \"entry\": [\n        {\n          \"@key\": \"kml.regionateStrategy\",\n          \"$\": \"external-sorting\"\n        },\n        {\n          \"@key\": \"kml.regionateFeatureLimit\",\n          \"$\": \"15\"\n        },\n        {\n          \"@key\": \"cacheAgeMax\",\n          \"$\": \"3000\"\n        },\n        {\n          \"@key\": \"cachingEnabled\",\n          \"$\": \"true\"\n        },\n        {\n          \"@key\": \"kml.regionateAttribute\",\n          \"$\": \"NAME\"\n        },\n        {\n          \"@key\": \"indexingEnabled\",\n          \"$\": \"false\"\n        },\n        {\n          \"@key\": \"dirName\",\n          \"$\": \"DS_poi_poi\"\n        }\n      ]\n    },\n    \"store\": {\n      \"@class\": \"dataStore\",\n      \"name\": \"tiger:nyc\",\n      \"href\": \"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.json\"\n    },\n    \"cqlFilter\": \"INCLUDE\",\n    \"maxFeatures\": 100,\n    \"numDecimals\": 6,\n    \"responseSRS\": {\n      \"string\": [\n        4326\n      ]\n    },\n    \"overridingServiceSRS\": true,\n    \"skipNumberMatched\": true,\n    \"circularArcPresent\": true,\n    \"linearizationTolerance\": 10,\n    \"attributes\": {\n      \"attribute\": [\n        {\n          \"name\": \"the_geom\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"org.locationtech.jts.geom.Point\"\n        },\n        {\n          \"name\": \"NAME\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"java.lang.String\",\n          \"length\": 6\n        },\n        {\n          \"name\": \"THUMBNAIL\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"java.lang.String\",\n          \"length\": 20\n        },\n        {\n          \"name\": \"MAINPAGE\",\n          \"minOccurs\": 0,\n          \"maxOccurs\": 1,\n          \"nillable\": true,\n          \"binding\": \"java.lang.String\",\n          \"length\": 19\n        }\n      ]\n    }              \n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<featureType>\n      <name>poi</name>\n      <nativeName>poi</nativeName>\n      <namespace>\n              <name>tiger</name>\n              <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/namespaces/tiger.xml\" type=\"application/xml\"/>\n      </namespace>\n      <title>Manhattan (NY) points of interest</title>\n      <abstract>Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.</abstract>\n      <keywords>\n              <string>poi</string>\n              <string>Manhattan</string>\n              <string>DS_poi</string>\n              <string>points_of_interest</string>\n              <string>fred\\@language=ab\\;</string>\n              <string>area of effect\\@language=bg\\;\\@vocabulary=Technical\\;</string>\n              <string>Привет\\@language=ru\\;\\@vocabulary=Friendly\\;</string>\n      </keywords>\n      <metadataLinks>\n              <metadataLink>\n                    <type>text/plain</type>\n                    <metadataType>FGDC</metadataType>\n                    <content>http://www.google.com</content>\n              </metadataLink>\n      </metadataLinks>\n      <dataLinks>\n              <org.geoserver.catalog.impl.DataLinkInfoImpl>\n                    <type>text/plain</type>\n                    <content>http://www.google.com</content>\n              </org.geoserver.catalog.impl.DataLinkInfoImpl>\n      </dataLinks>\n      <nativeCRS>GEOGCS[\"WGS 84\", DATUM[\"World Geodetic System 1984\", SPHEROID[\"WGS 84\", 6378137.0, 298.257223563, AUTHORITY[\"EPSG\",\"7030\"]], AUTHORITY[\"EPSG\",\"6326\"]], PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\",\"8901\"]], UNIT[\"degree\", 0.017453292519943295], AXIS[\"Geodetic longitude\", EAST], AXIS[\"Geodetic latitude\", NORTH], AUTHORITY[\"EPSG\",\"4326\"]]</nativeCRS>\n      <srs>EPSG:4326</srs>\n      <nativeBoundingBox>\n              <minx>-74.0118315772888</minx>\n              <maxx>-74.00153046439813</maxx>\n              <miny>40.70754683896324</miny>\n              <maxy>40.719885123828675</maxy>\n              <crs>EPSG:4326</crs>\n      </nativeBoundingBox>\n      <latLonBoundingBox>\n              <minx>-74.0118315772888</minx>\n              <maxx>-74.00857344353275</maxx>\n              <miny>40.70754683896324</miny>\n              <maxy>40.711945649065406</maxy>\n              <crs>EPSG:4326</crs>\n      </latLonBoundingBox>\n      <projectionPolicy>NONE</projectionPolicy>\n      <enabled>true</enabled>\n      <metadata>\n              <entry key=\"kml.regionateStrategy\">external-sorting</entry>\n              <entry key=\"elevation\">\n                    <dimensionInfo>\n                            <enabled>false</enabled>\n                    </dimensionInfo>\n              </entry>\n              <entry key=\"kml.regionateFeatureLimit\">15</entry>\n              <entry key=\"cacheAgeMax\">3000</entry>\n              <entry key=\"time\">\n                    <dimensionInfo>\n                            <enabled>false</enabled>\n                            <defaultValue/>\n                    </dimensionInfo>\n              </entry>\n              <entry key=\"cachingEnabled\">true</entry>\n              <entry key=\"kml.regionateAttribute\">NAME</entry>\n              <entry key=\"indexingEnabled\">false</entry>\n              <entry key=\"dirName\">DS_poi_poi</entry>\n      </metadata>\n      <store class=\"dataStore\">\n              <name>tiger:nyc</name>\n              <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.xml\" type=\"application/xml\"/>\n      </store>\n      <cqlFilter>INCLUDE</cqlFilter>\n      <maxFeatures>100</maxFeatures>\n      <numDecimals>6</numDecimals>\n      <responseSRS>\n              <string>4326</string>\n      </responseSRS>\n      <overridingServiceSRS>true</overridingServiceSRS>\n      <skipNumberMatched>true</skipNumberMatched>\n      <circularArcPresent>true</circularArcPresent>\n      <linearizationTolerance>10</linearizationTolerance>\n      <attributes>\n              <attribute>\n                    <name>the_geom</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>org.locationtech.jts.geom.Point</binding>\n              </attribute>\n              <attribute>\n                    <name>NAME</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>java.lang.String</binding>\n                    <length>6</length>\n              </attribute>\n              <attribute>\n                    <name>THUMBNAIL</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>java.lang.String</binding>\n                    <length>20</length>\n              </attribute>\n              <attribute>\n                    <name>MAINPAGE</name>\n                    <minOccurs>0</minOccurs>\n                    <maxOccurs>1</maxOccurs>\n                    <nillable>true</nillable>\n                    <binding>java.lang.String</binding>\n                    <length>19</length>\n              </attribute>\n      </attributes>\n</featureType>\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful response containing feature type.
+        <a href="#inline_response_200_1">inline_response_200_1</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{  "name": "poi",
+    "nativeName": "poi",
+    "namespace": {
+      "name": "tiger",
+      "href": "http://localhost:8080/geoserver/rest/namespaces/tiger.json"
+    },
+    "title": "Manhattan (NY) points of interest",
+    "abstract": "Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.",
+    "keywords": {
+      "string": [
+        "poi",
+        "Manhattan",
+        "DS_poi",
+        "points_of_interest",
+        "sampleKeyword\\@language=ab\\;",
+        "area of effect\\@language=bg\\;\\@vocabulary=technical\\;",
+        "Привет\\@language=ru\\;\\@vocabulary=friendly\\;"
+      ]
+    },
+    "metadataLinks": {
+      "metadataLink": [
+        {
+          "type": "text/plain",
+          "metadataType": "FGDC",
+          "content": "www.google.com"
+        }
+      ]
+    },
+    "dataLinks": {
+      "org.geoserver.catalog.impl.DataLinkInfoImpl": [
+        {
+          "type": "text/plain",
+          "content": "http://www.google.com"
+        }
+      ]
+    },                  
+    "nativeCRS": "GEOGCS[\"WGS 84\", \n  DATUM[\"World Geodetic System 1984\", \n    SPHEROID[\"WGS 84\", 6378137.0, 298.257223563, AUTHORITY[\"EPSG\",\"7030\"]], \n    AUTHORITY[\"EPSG\",\"6326\"]], \n  PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\",\"8901\"]], \n  UNIT[\"degree\", 0.017453292519943295], \n  AXIS[\"Geodetic longitude\", EAST], \n  AXIS[\"Geodetic latitude\", NORTH], \n  AUTHORITY[\"EPSG\",\"4326\"]]",
+    "srs": "EPSG:4326",
+    "nativeBoundingBox": {
+      "minx": -74.0118315772888,
+      "maxx": -74.00153046439813,
+      "miny": 40.70754683896324,
+      "maxy": 40.719885123828675,
+      "crs": "EPSG:4326"
+    },
+    "latLonBoundingBox": {
+      "minx": -74.0118315772888,
+      "maxx": -74.00857344353275,
+      "miny": 40.70754683896324,
+      "maxy": 40.711945649065406,
+      "crs": "EPSG:4326"
+    },
+    "projectionPolicy": "REPROJECT_TO_DECLARED",
+    "enabled": true,
+    "metadata": {
+      "entry": [
+        {
+          "@key": "kml.regionateStrategy",
+          "$": "external-sorting"
+        },
+        {
+          "@key": "kml.regionateFeatureLimit",
+          "$": "15"
+        },
+        {
+          "@key": "cacheAgeMax",
+          "$": "3000"
+        },
+        {
+          "@key": "cachingEnabled",
+          "$": "true"
+        },
+        {
+          "@key": "kml.regionateAttribute",
+          "$": "NAME"
+        },
+        {
+          "@key": "indexingEnabled",
+          "$": "false"
+        },
+        {
+          "@key": "dirName",
+          "$": "DS_poi_poi"
+        }
+      ]
+    },
+    "store": {
+      "@class": "dataStore",
+      "name": "tiger:nyc",
+      "href": "http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.json"
+    },
+    "cqlFilter": "INCLUDE",
+    "maxFeatures": 100,
+    "numDecimals": 6,
+    "responseSRS": {
+      "string": [
+        4326
+      ]
+    },
+    "overridingServiceSRS": true,
+    "skipNumberMatched": true,
+    "circularArcPresent": true,
+    "linearizationTolerance": 10,
+    "attributes": {
+      "attribute": [
+        {
+          "name": "the_geom",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "org.locationtech.jts.geom.Point"
+        },
+        {
+          "name": "NAME",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "java.lang.String",
+          "length": 6
+        },
+        {
+          "name": "THUMBNAIL",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "java.lang.String",
+          "length": 20
+        },
+        {
+          "name": "MAINPAGE",
+          "minOccurs": 0,
+          "maxOccurs": 1,
+          "nillable": true,
+          "binding": "java.lang.String",
+          "length": 19
+        }
+      ]
+    }              
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><featureType>
+      <name>poi</name>
+      <nativeName>poi</nativeName>
+      <namespace>
+              <name>tiger</name>
+              <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/namespaces/tiger.xml" type="application/xml"/>
+      </namespace>
+      <title>Manhattan (NY) points of interest</title>
+      <abstract>Points of interest in New York, New York (on Manhattan). One of the attributes contains the name of a file with a picture of the point of interest.</abstract>
+      <keywords>
+              <string>poi</string>
+              <string>Manhattan</string>
+              <string>DS_poi</string>
+              <string>points_of_interest</string>
+              <string>fred\@language=ab\;</string>
+              <string>area of effect\@language=bg\;\@vocabulary=Technical\;</string>
+              <string>Привет\@language=ru\;\@vocabulary=Friendly\;</string>
+      </keywords>
+      <metadataLinks>
+              <metadataLink>
+                    <type>text/plain</type>
+                    <metadataType>FGDC</metadataType>
+                    <content>http://www.google.com</content>
+              </metadataLink>
+      </metadataLinks>
+      <dataLinks>
+              <org.geoserver.catalog.impl.DataLinkInfoImpl>
+                    <type>text/plain</type>
+                    <content>http://www.google.com</content>
+              </org.geoserver.catalog.impl.DataLinkInfoImpl>
+      </dataLinks>
+      <nativeCRS>GEOGCS["WGS 84", DATUM["World Geodetic System 1984", SPHEROID["WGS 84", 6378137.0, 298.257223563, AUTHORITY["EPSG","7030"]], AUTHORITY["EPSG","6326"]], PRIMEM["Greenwich", 0.0, AUTHORITY["EPSG","8901"]], UNIT["degree", 0.017453292519943295], AXIS["Geodetic longitude", EAST], AXIS["Geodetic latitude", NORTH], AUTHORITY["EPSG","4326"]]</nativeCRS>
+      <srs>EPSG:4326</srs>
+      <nativeBoundingBox>
+              <minx>-74.0118315772888</minx>
+              <maxx>-74.00153046439813</maxx>
+              <miny>40.70754683896324</miny>
+              <maxy>40.719885123828675</maxy>
+              <crs>EPSG:4326</crs>
+      </nativeBoundingBox>
+      <latLonBoundingBox>
+              <minx>-74.0118315772888</minx>
+              <maxx>-74.00857344353275</maxx>
+              <miny>40.70754683896324</miny>
+              <maxy>40.711945649065406</maxy>
+              <crs>EPSG:4326</crs>
+      </latLonBoundingBox>
+      <projectionPolicy>NONE</projectionPolicy>
+      <enabled>true</enabled>
+      <metadata>
+              <entry key="kml.regionateStrategy">external-sorting</entry>
+              <entry key="elevation">
+                    <dimensionInfo>
+                            <enabled>false</enabled>
+                    </dimensionInfo>
+              </entry>
+              <entry key="kml.regionateFeatureLimit">15</entry>
+              <entry key="cacheAgeMax">3000</entry>
+              <entry key="time">
+                    <dimensionInfo>
+                            <enabled>false</enabled>
+                            <defaultValue/>
+                    </dimensionInfo>
+              </entry>
+              <entry key="cachingEnabled">true</entry>
+              <entry key="kml.regionateAttribute">NAME</entry>
+              <entry key="indexingEnabled">false</entry>
+              <entry key="dirName">DS_poi_poi</entry>
+      </metadata>
+      <store class="dataStore">
+              <name>tiger:nyc</name>
+              <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/tiger/datastores/nyc.xml" type="application/xml"/>
+      </store>
+      <cqlFilter>INCLUDE</cqlFilter>
+      <maxFeatures>100</maxFeatures>
+      <numDecimals>6</numDecimals>
+      <responseSRS>
+              <string>4326</string>
+      </responseSRS>
+      <overridingServiceSRS>true</overridingServiceSRS>
+      <skipNumberMatched>true</skipNumberMatched>
+      <circularArcPresent>true</circularArcPresent>
+      <linearizationTolerance>10</linearizationTolerance>
+      <attributes>
+              <attribute>
+                    <name>the_geom</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>org.locationtech.jts.geom.Point</binding>
+              </attribute>
+              <attribute>
+                    <name>NAME</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>java.lang.String</binding>
+                    <length>6</length>
+              </attribute>
+              <attribute>
+                    <name>THUMBNAIL</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>java.lang.String</binding>
+                    <length>20</length>
+              </attribute>
+              <attribute>
+                    <name>MAINPAGE</name>
+                    <minOccurs>0</minOccurs>
+                    <maxOccurs>1</maxOccurs>
+                    <nillable>true</nillable>
+                    <binding>java.lang.String</binding>
+                    <length>19</length>
+              </attribute>
+      </attributes>
+</featureType>
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getFeatureTypes"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getFeatureTypes</span>)</div>
+    <div class="method-notes">Get a list of feature types for the workspace and datastore. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/featuretypes.xml&quot; for XML)</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">storeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the datastore </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">list (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The list parameter is used to control the category of feature types that are returned. Must be one of &quot;configured&quot;, &quot;available&quot;, &quot;available_with_geom&quot;, &quot;all&quot; </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"featureTypes\": {\n    \"featureType\": [\n      {\n        \"name\": \"PrimitiveGeoFeature\",\n        \"href\": \"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.json\"\n      },\n      {\n        \"name\": \"archsites\",\n        \"href\": \"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.json\"\n      }\n    ]\n  }\n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<featureTypes>\n    <featureType>\n        <name>PrimitiveGeoFeature</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.xml\" type=\"application/atom+xml\"/>\n    </featureType>\n    <featureType>\n        <name>archsites</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.xml\" type=\"application/atom+xml\"/>\n    </featureType>\n</featureTypes>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml (list=available)</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<list>\n  <featureTypeName>pdsa</featureTypeName>\n  <featureTypeName>pdsb</featureTypeName>\n</list>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json (list=available)</div>
+    <pre class="example"><code>"{\"list\": { \n \"string\": [\n      \"pdsa\",\n      \"pdsb\"\n    ]\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful response containing featuretype list.
+        <a href="#inline_response_200">inline_response_200</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"featureTypes": {
+    "featureType": [
+      {
+        "name": "PrimitiveGeoFeature",
+        "href": "http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.json"
+      },
+      {
+        "name": "archsites",
+        "href": "http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.json"
+      }
+    ]
+  }
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><featureTypes>
+    <featureType>
+        <name>PrimitiveGeoFeature</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.xml" type="application/atom+xml"/>
+    </featureType>
+    <featureType>
+        <name>archsites</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.xml" type="application/atom+xml"/>
+    </featureType>
+</featureTypes>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml (list=available)</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<list>
+  <featureTypeName>pdsa</featureTypeName>
+  <featureTypeName>pdsb</featureTypeName>
+</list>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json (list=available)</div>
+    <pre class="example"><code>{"list": { 
+ "string": [
+      "pdsa",
+      "pdsb"
+    ]
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getFeatureTypes_4"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspaceName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getFeatureTypes_4</span>)</div>
+    <div class="method-notes">Get a list of all feature types for all datastores in the workspace. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/featuretypes.xml&quot; for XML)</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">list (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The list parameter is used to control the category of feature types that are returned. Must be one of &quot;configured&quot;, &quot;available&quot;, &quot;available_with_geom&quot;, &quot;all&quot; </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"featureTypes\": {\n    \"featureType\": [\n      {\n        \"name\": \"PrimitiveGeoFeature\",\n        \"href\": \"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.json\"\n      },\n      {\n        \"name\": \"archsites\",\n        \"href\": \"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.json\"\n      }\n    ]\n  }\n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<featureTypes>\n    <featureType>\n        <name>PrimitiveGeoFeature</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.xml\" type=\"application/atom+xml\"/>\n    </featureType>\n    <featureType>\n        <name>archsites</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.xml\" type=\"application/atom+xml\"/>\n    </featureType>\n</featureTypes>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml (list=available)</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<list>\n  <featureTypeName>pdsa</featureTypeName>\n  <featureTypeName>pdsb</featureTypeName>\n</list>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json (list=available)</div>
+    <pre class="example"><code>"{\"list\": { \n \"string\": [\n      \"pdsa\",\n      \"pdsb\"\n    ]\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful response containing featuretype list.
+        <a href="#inline_response_200">inline_response_200</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"featureTypes": {
+    "featureType": [
+      {
+        "name": "PrimitiveGeoFeature",
+        "href": "http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.json"
+      },
+      {
+        "name": "archsites",
+        "href": "http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.json"
+      }
+    ]
+  }
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><featureTypes>
+    <featureType>
+        <name>PrimitiveGeoFeature</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/PrimitiveGeoFeature.xml" type="application/atom+xml"/>
+    </featureType>
+    <featureType>
+        <name>archsites</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/sf/datastores/sf/featuretypes/archsites.xml" type="application/atom+xml"/>
+    </featureType>
+</featureTypes>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml (list=available)</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<list>
+  <featureTypeName>pdsa</featureTypeName>
+  <featureTypeName>pdsb</featureTypeName>
+</list>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json (list=available)</div>
+    <pre class="example"><code>{"list": { 
+ "string": [
+      "pdsa",
+      "pdsb"
+    ]
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postFeatureType"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postFeatureType</span>)</div>
+    <div class="method-notes">Invalid. Use POST on the /featuretypes endpoint to add a new feature type, or PUT on an individual feature type to edit that type.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postFeatureTypeReset"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}/reset</code></pre></div>
+    <div class="method-summary">Reset the caches related to this specific feature type (<span class="nickname">postFeatureTypeReset</span>)</div>
+    <div class="method-notes">Resets caches for this feature type. This operation is used to force GeoServer to drop cached feature type structures, and eventually re-compute them the next time it is needed by a request. This is useful as both GeoServer and the underlying data store can keep state information about a feature type attributes. Warning, if an explicit list of attributes is configured in the feature type, to support attribute selection, renaming, data type conversion and calculation of new attributes, the reset itself won't change such configuration, an explicit PUT on the feature type resource is required.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the data store. </div><div class="param">storeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the data store. </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postFeatureTypeReset_5"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}/reset</code></pre></div>
+    <div class="method-summary">Reset the caches related to this specific feature type (<span class="nickname">postFeatureTypeReset_5</span>)</div>
+    <div class="method-notes">Resets caches for this feature type. This operation is used to force GeoServer to drop cached feature type structures, and eventually re-compute them the next time it is needed by a request. This is useful as both GeoServer and the underlying data store can keep state information about a feature type attributes. Warning, if an explicit list of attributes is configured in the feature type, to support attribute selection, renaming, data type conversion and calculation of new attributes, the reset itself won't change such configuration, an explicit PUT on the feature type resource is required.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the data store. </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postFeatureType_6"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postFeatureType_6</span>)</div>
+    <div class="method-notes">Invalid. Use POST on the /featuretypes endpoint to add a new feature type, or PUT on an individual feature type to edit that type.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postFeatureTypes"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postFeatureTypes</span>)</div>
+    <div class="method-notes">Create a new feature type. Note -  when creating a new feature type via POST, if no underlying dataset with the specified name exists an attempt will be made to create it. This will work only in cases where the underlying data format supports the creation of new types (such as a database). When creating a feature type in this manner the client should include all attribute information in the feature type representation.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">storeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the datastore </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">featureType <a href="#FeatureTypeInfo">FeatureTypeInfo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The body of the feature type to POST </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The feature type was successfully created.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postFeatureTypes_7"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspaceName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postFeatureTypes_7</span>)</div>
+    <div class="method-notes">Create a new feature type, the feature type definition needs to reference a store. Note -  when creating a new feature type via POST, if no underlying dataset with the specified name exists an attempt will be made to create it. This will work only in cases where the underlying data format supports the creation of new types (such as a database). When creating a feature type in this manner the client should include all attribute information in the feature type representation.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">featureType <a href="#FeatureTypeInfo">FeatureTypeInfo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The body of the feature type to POST </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The feature type was successfully created.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putFeatureType"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putFeatureType</span>)</div>
+    <div class="method-notes">Update an individual feature type</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">storeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the datastore </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">featureType <a href="#FeatureTypeInfo">FeatureTypeInfo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The body of the feature type to POST </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">recalculate (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Specifies whether to recalculate properties for a feature type. Some properties of feature types are automatically recalculated when necessary. In particular, the native bounding box is recalculated when the projection or projection policy are changed, and the lat/lon bounding box is recalculated when the native bounding box is recalculated, or when a new native bounding box is explicitly provided in the request. (The native and lat/lon bounding boxes are not automatically recalculated when they are explicitly included in the request.) In addition, the client may explicitly request a fixed set of fields to calculate, by including a comma-separated list of their names in the recalculate parameter.  The empty parameter 'recalculate=' is useful avoid slow recalculation when operating against large datasets as 'recalculate=' avoids calculating any fields, regardless of any changes to projection, projection policy, etc. The nativebbox parameter 'recalculate=nativebbox' is used recalculates the native bounding box, while avoiding recalculating the lat/lon bounding box. Recalculate parameters can be used in together - 'recalculate=nativebbox,latlonbbox' can be used after a bulk import to recalculate both the native bounding box and the lat/lon bounding box. Finally, 'recalculate=attributes' can be  used to reset the attributes and reload them from the original vector source. Pay attention to its usage, if attributes were explicity configured to perform attribute selection, renaming, and other transformations, such configuration will be lost, resetting the feature type to the list of attributes found in the vector data source. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The feature type was successfully updated.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putFeatureTypeReset"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}/reset</code></pre></div>
+    <div class="method-summary">Reset the caches related to this specific feature type. (<span class="nickname">putFeatureTypeReset</span>)</div>
+    <div class="method-notes">Resets caches for this feature type. This operation is used to force GeoServer to drop cached feature type structures, and eventually re-compute them the next time it is needed by a request. This is useful as both GeoServer and the underlying data store can keep state information about a feature type attributes. Warning, if an explicit list of attributes is configured in the feature type, to support attribute selection, renaming, data type conversion and calculation of new attributes, the reset itself won't change such configuration, an explicit PUT on the feature type resource is required.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the data store. </div><div class="param">storeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the data store. </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putFeatureTypeReset_8"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}/reset</code></pre></div>
+    <div class="method-summary">Reset the caches related to this specific feature type. (<span class="nickname">putFeatureTypeReset_8</span>)</div>
+    <div class="method-notes">Resets caches for this feature type. This operation is used to force GeoServer to drop cached feature type structures, and eventually re-compute them the next time it is needed by a request. This is useful as both GeoServer and the underlying data store can keep state information about a feature type attributes. Warning, if an explicit list of attributes is configured in the feature type, to support attribute selection, renaming, data type conversion and calculation of new attributes, the reset itself won't change such configuration, an explicit PUT on the feature type resource is required.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the data store. </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putFeatureType_9"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/featuretypes/{featureTypeName}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putFeatureType_9</span>)</div>
+    <div class="method-notes">Update an individual feature type in the default data store for the workspace</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspaceName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace </div><div class="param">featureTypeName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the feature type </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">featureType <a href="#FeatureTypeInfo">FeatureTypeInfo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The body of the feature type to POST </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">recalculate (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Specifies whether to recalculate any bounding boxes for a feature type. Some properties of feature types are automatically recalculated when necessary. In particular, the native bounding box is recalculated when the projection or projection policy are changed, and the lat/lon bounding box is recalculated when the native bounding box is recalculated, or when a new native bounding box is explicitly provided in the request. (The native and lat/lon bounding boxes are not automatically recalculated when they are explicitly included in the request.) In addition, the client may explicitly request a fixed set of fields to calculate, by including a comma-separated list of their names in the recalculate parameter.  The empty parameter 'recalculate=' is useful avoid slow recalculation when operating against large datasets as 'recalculate=' avoids calculating any fields, regardless of any changes to projection, projection policy, etc. The nativebbox parameter 'recalculate=nativebbox' is used recalculates the native bounding box, while avoiding recalculating the lat/lon bounding box. Recalculate parameters can be used in together - 'recalculate=nativebbox,latlonbbox' can be used after a bulk import to recalculate both the native bounding box and the lat/lon bounding box. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The feature type was successfully updated.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putFeatureTypes"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/datastores/{storeName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putFeatureTypes</span>)</div>
+    <div class="method-notes">Invalid. Use POST for adding a new feature type, or PUT on an individual feature type to edit that type.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putFeatureTypes_10"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspaceName}/featuretypes</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putFeatureTypes_10</span>)</div>
+    <div class="method-notes">Invalid. Use POST for adding a new feature type, or PUT on an individual feature type to edit that type.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method not allowed.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#FeatureTypeInfo"><code>FeatureTypeInfo</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_attributes"><code>FeatureTypeInfo_attributes</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_attributes_attribute"><code>FeatureTypeInfo_attributes_attribute</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_dataLinks"><code>FeatureTypeInfo_dataLinks</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_dataLinks_metadataLink"><code>FeatureTypeInfo_dataLinks_metadataLink</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_keywords"><code>FeatureTypeInfo_keywords</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_latLonBoundingBox"><code>FeatureTypeInfo_latLonBoundingBox</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_metadatalinks"><code>FeatureTypeInfo_metadatalinks</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_metadatalinks_metadataLink"><code>FeatureTypeInfo_metadatalinks_metadataLink</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_namespace"><code>FeatureTypeInfo_namespace</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_nativeBoundingBox"><code>FeatureTypeInfo_nativeBoundingBox</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_responseSRS"><code>FeatureTypeInfo_responseSRS</code> - </a></li>
+    <li><a href="#FeatureTypeInfo_store"><code>FeatureTypeInfo_store</code> - </a></li>
+    <li><a href="#MetadataEntry"><code>MetadataEntry</code> - entry</a></li>
+    <li><a href="#inline_response_200"><code>inline_response_200</code> - </a></li>
+    <li><a href="#inline_response_200_1"><code>inline_response_200_1</code> - </a></li>
+    <li><a href="#inline_response_200_featureTypes"><code>inline_response_200_featureTypes</code> - </a></li>
+    <li><a href="#inline_response_200_featureTypes_featureType"><code>inline_response_200_featureTypes_featureType</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="FeatureTypeInfo"><code>FeatureTypeInfo</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the resource. This name corresponds to the &quot;published&quot; name of the resource. </div>
+<div class="param">nativeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The native name of the resource. This name corresponds to the physical resource that feature type is derived from -- a shapefile name, a database table, etc... </div>
+<div class="param">namespace (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_namespace">FeatureTypeInfo_namespace</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The title of the resource. This is usually something that is meant to be displayed in a user interface. </div>
+<div class="param">abstract (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A description of the resource. This is usually something that is meant to be displayed in a user interface. </div>
+<div class="param">keywords (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_keywords">FeatureTypeInfo_keywords</a></span>  </div>
+<div class="param">metadatalinks (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_metadatalinks">FeatureTypeInfo_metadatalinks</a></span>  </div>
+<div class="param">dataLinks (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_dataLinks">FeatureTypeInfo_dataLinks</a></span>  </div>
+<div class="param">nativeCRS (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The native coordinate reference system object of the resource. </div>
+<div class="param">srs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Returns the identifier of coordinate reference system of the resource. </div>
+<div class="param">nativeBoundingBox (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_nativeBoundingBox">FeatureTypeInfo_nativeBoundingBox</a></span>  </div>
+<div class="param">latLonBoundingBox (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_latLonBoundingBox">FeatureTypeInfo_latLonBoundingBox</a></span>  </div>
+<div class="param">metadata (optional)</div><div class="param-desc"><span class="param-type"><a href="#MetadataEntry">array[MetadataEntry]</a></span> A list of key/value metadata pairs. </div>
+<div class="param">store (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_store">FeatureTypeInfo_store</a></span>  </div>
+<div class="param">cqlFilter (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The ECQL string used as default feature type filter </div>
+<div class="param">maxFeatures (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> A cap on the number of features that a query against this type can return. </div>
+<div class="param">numDecimals (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The number of decimal places to use when encoding floating point numbers from data of this feature type. </div>
+<div class="param">responseSRS (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_responseSRS">FeatureTypeInfo_responseSRS</a></span>  </div>
+<div class="param">overridingServiceSRS (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> True if this feature type info is overriding the WFS global SRS list </div>
+<div class="param">skipNumberMatched (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> True if this feature type info is overriding the counting of numberMatched. </div>
+<div class="param">circularArcPresent (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">linearizationTolerance (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Tolerance used to linearize this feature type, as an absolute value expressed in the geometries own CRS </div>
+<div class="param">attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_attributes">FeatureTypeInfo_attributes</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_attributes"><code>FeatureTypeInfo_attributes</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Wrapper for the derived set of attributes for the feature type.</div>
+    <div class="field-items">
+      <div class="param">attribute (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_attributes_attribute">array[FeatureTypeInfo_attributes_attribute]</a></span> The derived set of attributes for the feature type. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_attributes_attribute"><code>FeatureTypeInfo_attributes_attribute</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A single attribute</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the attribute. </div>
+<div class="param">minOccurs (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Minimum number of occurrences of the attribute. </div>
+<div class="param">maxOccurs (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum number of occurrences of the attribute. </div>
+<div class="param">nillable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Flag indicating if null is an acceptable value for the attribute. </div>
+<div class="param">binding (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The java class that values of this attribute are bound to. </div>
+<div class="param">length (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Returns the length of this attribute. It's usually non null only for string and numeric types&quot; </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_dataLinks"><code>FeatureTypeInfo_dataLinks</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Wraps a collection of data links for the resource.</div>
+    <div class="field-items">
+      <div class="param">metadataLink (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_dataLinks_metadataLink">array[FeatureTypeInfo_dataLinks_metadataLink]</a></span> A collection of data links for the resource. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_dataLinks_metadataLink"><code>FeatureTypeInfo_dataLinks_metadataLink</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The MIME type </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The link URL </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_keywords"><code>FeatureTypeInfo_keywords</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A collection of keywords associated with the resource.</div>
+    <div class="field-items">
+      <div class="param">string (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> List of keyword values with internationalization and vocabulary </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_latLonBoundingBox"><code>FeatureTypeInfo_latLonBoundingBox</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The bounds of the resource in lat / lon. This value represents a "fixed value" and is not calculated on the underlying dataset.</div>
+    <div class="field-items">
+      <div class="param">minx (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The min x coordinate </div>
+<div class="param">maxx (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The max x coordinate </div>
+<div class="param">miny (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The min y coordinate </div>
+<div class="param">maxy (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The max y coordinate </div>
+<div class="param">crs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The coordinate reference system object of the bounding box. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_metadatalinks"><code>FeatureTypeInfo_metadatalinks</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Wraps a collection of metadata links for the resource.</div>
+    <div class="field-items">
+      <div class="param">metadataLink (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo_metadatalinks_metadataLink">array[FeatureTypeInfo_metadatalinks_metadataLink]</a></span> A collection of metadata links for the resource. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_metadatalinks_metadataLink"><code>FeatureTypeInfo_metadatalinks_metadataLink</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The MIME type </div>
+<div class="param">metadataType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of metadata, e.g. &quot;FGDC&quot; </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The link URL </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_namespace"><code>FeatureTypeInfo_namespace</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The namespace URI of the resource. Example would be an application schema namespace URI.</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the namespace. </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the namespace. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_nativeBoundingBox"><code>FeatureTypeInfo_nativeBoundingBox</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Returns the bounds of the resource in its declared CRS.</div>
+    <div class="field-items">
+      <div class="param">minx (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The min x coordinate </div>
+<div class="param">maxx (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The max x coordinate </div>
+<div class="param">miny (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The min y coordinate </div>
+<div class="param">maxy (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> The max y coordinate </div>
+<div class="param">crs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The coordinate reference system object of the bounding box. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_responseSRS"><code>FeatureTypeInfo_responseSRS</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The SRSs that the WFS service will advertise in the capabilities document for this feature type (overriding the global WFS settings).</div>
+    <div class="field-items">
+      <div class="param">string (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The value of the srs </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureTypeInfo_store"><code>FeatureTypeInfo_store</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The store the resource is a part of.</div>
+    <div class="field-items">
+      <div class="param">@class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The class of the store </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the store </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the data store </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MetadataEntry"><code>MetadataEntry</code> - entry</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">@key (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Key used for metadata entry, additional keys are added over time </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">regionateStrategy</div><div class="param-enum">regionateFeatureLimit</div><div class="param-enum">cacheAgeMax</div><div class="param-enum">cachingEnabled</div><div class="param-enum">regionateAttribute</div><div class="param-enum">indexingEnabled</div><div class="param-enum">dirName</div>
+<div class="param">$ (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Text value for provided key Valid text depends on key used. Example  {'@key'='cachingEnabled','$'='true'}. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200"><code>inline_response_200</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">featureTypes (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_featureTypes">inline_response_200_featureTypes</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_1"><code>inline_response_200_1</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">featureType (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureTypeInfo">FeatureTypeInfo</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_featureTypes"><code>inline_response_200_featureTypes</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">featureType (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_featureTypes_featureType">array[inline_response_200_featureTypes_featureType]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_featureTypes_featureType"><code>inline_response_200_featureTypes_featureType</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Name </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The URL </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

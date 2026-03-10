@@ -1,0 +1,395 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoWebCache Seeding and Truncating</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoWebCache Seeding and Truncating</h1>
+    <div class="app-desc">A layer is a published resource (feature type or coverage).</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/gwc/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#GwcSeed">GwcSeed</a></h4>
+  <ul>
+  <li><a href="#layerSeedGet"><code><span class="http-method">get</span> /seed/{layer}.{format}</code></a></li>
+  <li><a href="#layerSeedPost"><code><span class="http-method">post</span> /seed/{layer}.{format}</code></a></li>
+  <li><a href="#seedGet"><code><span class="http-method">get</span> /seed.json</code></a></li>
+  </ul>
+
+  <h1><a name="GwcSeed">GwcSeed</a></h1>
+  <div class="method"><a name="layerSeedGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /seed/{layer}.{format}</code></pre></div>
+    <div class="method-summary">Query's the currently running GWC task for a given layer (<span class="nickname">layerSeedGet</span>)</div>
+    <div class="method-notes">Returns HTML of the GeoWebCache Seed ui page or a json array of the status for currently running task of a given layer if using json extension. The json array contains a set of long in the following order:[tiles processed, total number of tiles to process, number of remaining tiles, Task ID, Task status]</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layer (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to query GWC task. </div><div class="param">format (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Based on format, the request will return an application/html or application/json response. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"long-array-array":[
+  [364832,2761733810,998564,16,1],
+  [373472,2761733810,975448,17,1],
+]}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: text/html</div>
+    <pre class="example"><code><html>
+  <title>GWC Seed Form</title>
+  <body> {contents of GeoWebCache Seed Form} <body>
+</html>
+</code></pre>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="layerSeedPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /seed/{layer}.{format}</code></pre></div>
+    <div class="method-summary">Issue a seed, reseed or truncate task request (<span class="nickname">layerSeedPost</span>)</div>
+    <div class="method-notes">Executes an issue to seed, reseed or truncate task request for a layer and returns HTML UI page of running GWC tasks and tasks to execute.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layer (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the layer to query GWC task. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">requestBody <a href="#seedRequest">seedRequest</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The updated layer definition. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Successfully created seed, reseed, or truncate request
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="seedGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /seed.json</code></pre></div>
+    <div class="method-summary">Query's currently running GWC task (<span class="nickname">seedGet</span>)</div>
+    <div class="method-notes">Query's and returns a json array of the status for all currently running task. Requires json extension in the request. The array contains a set of long in the following order:[tiles processed, total number of tiles to process, number of remaining tiles, Task ID, Task status]. The returned task status will be one of -1 = ABORTED, 0 = PENDING, 1 = RUNNING, 2 = DONE</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"long-array-array":[
+  [364832,2761733810,998564,16,1],
+  [373472,2761733810,975448,17,1],
+  [363760,2761733810,1001509,18,1]
+]}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#seedRequest"><code>seedRequest</code> - seedRequest</a></li>
+    <li><a href="#seedRequest_bounds"><code>seedRequest_bounds</code> - </a></li>
+    <li><a href="#seedRequest_parameters"><code>seedRequest_parameters</code> - </a></li>
+    <li><a href="#seedRequest_parameters_entry"><code>seedRequest_parameters_entry</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="seedRequest"><code>seedRequest</code> - seedRequest</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> name of the layer to seed, reseed, or truncate. </div>
+<div class="param">bounds (optional)</div><div class="param-desc"><span class="param-type"><a href="#seedRequest_bounds">seedRequest_bounds</a></span>  </div>
+<div class="param">gridSetId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The projection used for the layer. </div>
+<div class="param">zoomStart (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The zoom level to start seeding. </div>
+<div class="param">zoomStop (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The zoom level to stop seeding. </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type can be seed (add tiles), reseed (replace tiles), or truncate (remove tiles). </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">seed</div><div class="param-enum">reseed</div><div class="param-enum">truncate</div>
+<div class="param">threadCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of seeding threads to run in parallel. If type is truncate only one thread will be used regardless of this parameter. </div>
+<div class="param">parameters (optional)</div><div class="param-desc"><span class="param-type"><a href="#seedRequest_parameters">seedRequest_parameters</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="seedRequest_bounds"><code>seedRequest_bounds</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A set of coordinates describing the bounds of the seed layer.</div>
+    <div class="field-items">
+      <div class="param">coords (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="seedRequest_parameters"><code>seedRequest_parameters</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The filter parameters used for the requested layer</div>
+    <div class="field-items">
+      <div class="param">entry (optional)</div><div class="param-desc"><span class="param-type"><a href="#seedRequest_parameters_entry">seedRequest_parameters_entry</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="seedRequest_parameters_entry"><code>seedRequest_parameters_entry</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A set of strings used to describe what filters to use</div>
+    <div class="field-items">
+      <div class="param">string (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

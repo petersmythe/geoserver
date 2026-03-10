@@ -1,0 +1,942 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer CoverageStores</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer CoverageStores</h1>
+    <div class="app-desc">A coverage store describes how access a raster data source.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#CoverageStores">CoverageStores</a></h4>
+  <ul>
+  <li><a href="#deleteCoverageStore"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}</code></a></li>
+  <li><a href="#deleteCoverageStoreUpload"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></a></li>
+  <li><a href="#deleteCoverageStores"><code><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores</code></a></li>
+  <li><a href="#getCoverageStore"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}</code></a></li>
+  <li><a href="#getCoverageStoreUpload"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></a></li>
+  <li><a href="#getCoverageStores"><code><span class="http-method">get</span> /workspaces/{workspace}/coveragestores</code></a></li>
+  <li><a href="#postCoverageStore"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}</code></a></li>
+  <li><a href="#postCoverageStoreReset"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/reset</code></a></li>
+  <li><a href="#postCoverageStoreUpload"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></a></li>
+  <li><a href="#postCoverageStores"><code><span class="http-method">post</span> /workspaces/{workspace}/coveragestores</code></a></li>
+  <li><a href="#putCoverageStore"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}</code></a></li>
+  <li><a href="#putCoverageStoreReset"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/reset</code></a></li>
+  <li><a href="#putCoverageStoreUpload"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></a></li>
+  <li><a href="#putCoverageStores"><code><span class="http-method">put</span> /workspaces/{workspace}/coveragestores</code></a></li>
+  </ul>
+
+  <h1><a name="CoverageStores">CoverageStores</a></h1>
+  <div class="method"><a name="deleteCoverageStore"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}</code></pre></div>
+    <div class="method-summary">Delete coverage store (<span class="nickname">deleteCoverageStore</span>)</div>
+    <div class="method-notes">Deletes a coverage store</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">purge (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The purge parameter specifies if and how the underlying raster data source is deleted. Allowable values for this parameter are &quot;none&quot;, &quot;metadata&quot;, &quot;all&quot;. When set to &quot;none&quot; data and auxiliary files are preserved. When set to &quot;metadata&quot; delete only auxiliary files and metadata. It’s recommended when data files (such as granules) should not be deleted from disk. Finally, when set to &quot;all&quot; both data and auxiliary files are removed. </div><div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The recurse controls recursive deletion. When set to true all resources contained in the store are also removed. The default value is &quot;false&quot;. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteCoverageStoreUpload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteCoverageStoreUpload</span>)</div>
+    <div class="method-notes">Invalid, only used for uploads</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteCoverageStores"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/coveragestores</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteCoverageStores</span>)</div>
+    <div class="method-notes">Invalid. Use /coverage/{style} instead.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCoverageStore"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}</code></pre></div>
+    <div class="method-summary">Get a coverage store named {store} in the {workspace} workspace (<span class="nickname">getCoverageStore</span>)</div>
+    <div class="method-notes">Displays a representation of the coverage store. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/{store}.xml&quot; for XML). Defaults to HTML representation.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">quietOnNotFound (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; When set to true, avoids logging an Exception when the coverage store is not present. Note that 404 status code will be returned anyway. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CoverageStoreInfo">CoverageStoreInfo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"coverageStore\": {\n    \"name\": \"arcGridSample\",\n    \"description\": \"Sample ASCII GRID coverage of Global rainfall.\",\n    \"type\": \"ArcGrid\",\n    \"enabled\": true,\n    \"workspace\": {\n      \"name\": \"nurc\",\n      \"href\": \"http://localhost:8080/geoserver/restng/workspaces/nurc.json\"\n    },\n    \"_default\": false,\n    \"url\": \"file:coverages/arc_sample/precip30min.asc\",\n    \"coverages\": \"http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample/coverages.json\"\n  }\n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<coverageStore>\n  <name>arcGridSample</name>\n  <description>Sample ASCII GRID coverage of Global rainfall.</description>\n  <type>ArcGrid</type>\n  <enabled>true</enabled>\n  <workspace>\n    <name>nurc</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/nurc.xml\" type=\"application/atom+xml\"/>\n  </workspace>\n  <__default>false</__default>\n  <url>file:coverages/arc_sample/precip30min.asc</url>\n  <coverages>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample/coverages.xml\" type=\"application/atom+xml\"/>\n  </coverages>\n</coverageStore>\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CoverageStoreInfo">CoverageStoreInfo</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "coverageStore": {
+    "name": "arcGridSample",
+    "description": "Sample ASCII GRID coverage of Global rainfall.",
+    "type": "ArcGrid",
+    "enabled": true,
+    "workspace": {
+      "name": "nurc",
+      "href": "http://localhost:8080/geoserver/restng/workspaces/nurc.json"
+    },
+    "_default": false,
+    "url": "file:coverages/arc_sample/precip30min.asc",
+    "coverages": "http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample/coverages.json"
+  }
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><coverageStore>
+  <name>arcGridSample</name>
+  <description>Sample ASCII GRID coverage of Global rainfall.</description>
+  <type>ArcGrid</type>
+  <enabled>true</enabled>
+  <workspace>
+    <name>nurc</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/nurc.xml" type="application/atom+xml"/>
+  </workspace>
+  <__default>false</__default>
+  <url>file:coverages/arc_sample/precip30min.asc</url>
+  <coverages>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample/coverages.xml" type="application/atom+xml"/>
+  </coverages>
+</coverageStore>
+</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCoverageStoreUpload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getCoverageStoreUpload</span>)</div>
+    <div class="method-notes">Invalid, only used for uploads</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCoverageStores"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/coveragestores</code></pre></div>
+    <div class="method-summary">Get a list of all coverage stores in {workspace} (<span class="nickname">getCoverageStores</span>)</div>
+    <div class="method-notes">Displays a list of all styles on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/coveragestores.xml&quot; for XML). Defaults to HTML representation.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage stores. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CoverageStoreList">CoverageStoreList</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"coverageStores\": {\n    \"coverageStore\": [\n      {\n        \"name\": \"arcGridSample\",\n        \"href\": \"http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample.json\"\n      },\n      {\n        \"name\": \"worldImageSample\",\n        \"href\": \"http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/worldImageSample.json\"\n      }\n    ]\n  }\n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<coverageStores>\n  <coverageStore>\n    <name>arcGridSample</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample.xml\" type=\"application/atom+xml\"/>\n  </coverageStore>\n  <coverageStore>\n    <name>worldImageSample</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/worldImageSample.xml\" type=\"application/atom+xml\"/>\n  </coverageStore>\n</coverageStores>\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#CoverageStoreList">CoverageStoreList</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "coverageStores": {
+    "coverageStore": [
+      {
+        "name": "arcGridSample",
+        "href": "http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample.json"
+      },
+      {
+        "name": "worldImageSample",
+        "href": "http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/worldImageSample.json"
+      }
+    ]
+  }
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><coverageStores>
+  <coverageStore>
+    <name>arcGridSample</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/arcGridSample.xml" type="application/atom+xml"/>
+  </coverageStore>
+  <coverageStore>
+    <name>worldImageSample</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/restng/workspaces/nurc/coveragestores/worldImageSample.xml" type="application/atom+xml"/>
+  </coverageStore>
+</coverageStores>
+</code></pre>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postCoverageStore"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postCoverageStore</span>)</div>
+    <div class="method-notes">Invalid. Use POST on /workspaces/{workspace}/coveragestores for adding a new coverage store, or PUT on /workspaces/{workspace}/coveragestores/{store} to edit/upload an existing coverage store.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postCoverageStoreReset"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/reset</code></pre></div>
+    <div class="method-summary">Reset the caches related to this specific coverage store. (<span class="nickname">postCoverageStoreReset</span>)</div>
+    <div class="method-notes">Resets raster caches for this coverage store. This operation is used to force GeoServer to drop caches associated to this coverage store, and reconnect to the raster source the next time it is needed by a request. This is useful as the readers often cache some information about the bounds, coordinate system and image structure that might have changed in the meantime.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage store. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the coverage store to modify. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postCoverageStoreUpload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postCoverageStoreUpload</span>)</div>
+    <div class="method-notes">Used to harvest new granules in a writable structured grid coverage reader (e.g., image mosaic). Attempting to harvest a file into any other reader will result in a HTTP 405, method not allowed. Multiple granules can be uploaded by wrapping them in a ZIP file.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div><div class="param">method (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The upload method. Can be &quot;url&quot;, &quot;file&quot;, &quot;external&quot;, &quot;remote&quot;. &quot;file&quot; uploads a file from a local source. The body of the request is the file itself. &quot;url&quot; uploads a file from a remote source. The body of the request is a URL pointing to the file to upload. This URL must be visible from the server. &quot;external&quot; uses an existing file on the server. The body of the request is the absolute path to the existing file. &quot;remote&quot; uses a direct reference to a remote url, i.e. a file on a cloud storage. No data copy will occur. The body of the request is a URL pointing to the remote dataset. </div><div class="param">format (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The type of target coverage store (e.g., &quot;imagemosaic&quot;) </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">filename (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The filename parameter specifies the target file name for a file that needs to be harvested as part of a mosaic. This is important to avoid clashes and to make sure the right dimension values are available in the name for multidimensional mosaics to work. Only used if method=&quot;file&quot;. </div><div class="param">updateBBox (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; When set to &quot;true&quot;, triggers re-calculation of the layer native bbox. Defaults to &quot;false&quot;. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The coverage store was successfully updated.
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postCoverageStores"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/coveragestores</code></pre></div>
+    <div class="method-summary">Add a new coverage store (<span class="nickname">postCoverageStores</span>)</div>
+    <div class="method-notes">Adds a new coverage store entry to the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage stores. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">coverageStoreBody <a href="#CoverageStoreInfo">CoverageStoreInfo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; <p>The coverage store body information to upload.</p>
+<p>Examples:</p>
+<ul>
+<li>
+<p>application/xml:</p>
+<pre><code>&lt;coverageStore&gt;
+  &lt;name&gt;nyc&lt;/name&gt;
+  &lt;url&gt;file:/path/to/file.tiff&lt;/url&gt;
+&lt;/coverageStore&gt;
+</code></pre>
+</li>
+<li>
+<p>application/json:</p>
+<pre><code>{
+  &quot;coverageStore&quot;: {
+    &quot;name&quot;: &quot;nyc&quot;,
+    &quot;url&quot;: &quot;file:/path/to/file.tiff&quot;
+  }
+}
+</code></pre>
+</li>
+</ul>
+ </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putCoverageStore"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}</code></pre></div>
+    <div class="method-summary">Modify a single coverage store. (<span class="nickname">putCoverageStore</span>)</div>
+    <div class="method-notes">Modifies a single coverage store. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;{store}.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">coverageStoreBody <a href="#CoverageStoreInfo">CoverageStoreInfo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; <p>The coverage store body information to upload.
+For a PUT, only values which should be changed need to be included.</p>
+<p>Examples:</p>
+<ul>
+<li>
+<p>application/xml:</p>
+<pre><code>&lt;coverageStore&gt;
+  &lt;description&gt;A coverage store&lt;/description&gt;
+  &lt;enabled&gt;true&lt;/enabled&gt;
+  &lt;__default&gt;true&lt;/__default&gt;
+  &lt;url&gt;file:/path/to/file.tiff&lt;/url&gt;
+&lt;/coverageStore&gt;
+</code></pre>
+</li>
+<li>
+<p>application/json:</p>
+<pre><code>{
+  &quot;coverageStore&quot;: {
+    &quot;description&quot;: &quot;A coverage store&quot;,
+    &quot;enabled&quot;: &quot;true&quot;,
+    &quot;_default&quot;: &quot;true&quot;,
+    &quot;url&quot;: &quot;file:/path/to/file.tiff&quot;
+  }
+}
+</code></pre>
+</li>
+</ul>
+ </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The coverage store was successfully updated.
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putCoverageStoreReset"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/reset</code></pre></div>
+    <div class="method-summary">Reset the caches related to this specific coverage store. (<span class="nickname">putCoverageStoreReset</span>)</div>
+    <div class="method-notes">Resets raster caches for this coverage store. This operation is used to force GeoServer to drop caches associated to this coverage store, and reconnect to the raster source the next time it is needed by a request. This is useful as the readers often cache some information about the bounds, coordinate system and image structure that might have changed in the meantime.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage store. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the coverage store to modify. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putCoverageStoreUpload"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestores/{store}/{method}.{format}</code></pre></div>
+    <div class="method-summary">Creates or overwrites the files for a coverage store (<span class="nickname">putCoverageStoreUpload</span>)</div>
+    <div class="method-notes">Creates or modified a single coverage store by uploading its raster data files. Multi-file stores like mosaic can be created by uploading a zip file and setting the content type to &quot;application/zip&quot;</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the workspace containing the coverage stores. </div><div class="param">store (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The name of the store to be retrieved </div><div class="param">method (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The upload method. Can be &quot;url&quot;, &quot;file&quot;, &quot;external&quot;, &quot;remote&quot;. &quot;file&quot; uploads a file from a local source. The body of the request is the file itself. &quot;url&quot; uploads a file from a remote source. The body of the request is a URL pointing to the file to upload. This URL must be visible from the server. &quot;external&quot; uses an existing file on the server. The body of the request is the absolute path to the existing file. &quot;remote&quot; uses a direct reference to a remote url, i.e. a file on a cloud storage. No data copy will occur. The body of the request is a URL pointing to the remote dataset. </div><div class="param">format (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The type of target coverage store (e.g., &quot;imagemosaic&quot;) </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">configure (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The configure parameter controls if a coverage/layer are configured upon file upload, in addition to creating the store. It can have a value of &quot;none&quot; to avoid configuring coverages. </div><div class="param">USE_JAI_IMAGEREAD (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Whether to use deferred loading while configuring the coverage/layer. </div><div class="param">coverageName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Name of the newly created coverage/layer. </div><div class="param">filename (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The filename parameter specifies the target file name for a file that needs to be harvested as part of a mosaic. This is important to avoid clashes and to make sure the right dimension values are available in the name for multidimensional mosaics to work. Only used if method=&quot;file&quot;. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The coverage store was successfully updated.
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putCoverageStores"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/coveragestores</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putCoverageStores</span>)</div>
+    <div class="method-notes">Invalid. Use POST for adding a new coverage store, or PUT on /coveragestores/{store} to edit/upload an existing coverage store.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#CoverageStoreInfo"><code>CoverageStoreInfo</code> - </a></li>
+    <li><a href="#CoverageStoreInfo_coverages"><code>CoverageStoreInfo_coverages</code> - </a></li>
+    <li><a href="#CoverageStoreInfo_workspace"><code>CoverageStoreInfo_workspace</code> - </a></li>
+    <li><a href="#CoverageStoreList"><code>CoverageStoreList</code> - </a></li>
+    <li><a href="#CoverageStoreListItem"><code>CoverageStoreListItem</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="CoverageStoreInfo"><code>CoverageStoreInfo</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the coverage store </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Description of the coverage store </div>
+<div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type of coverage store </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Whether the store is enabled, or not </div>
+<div class="param">workspace (optional)</div><div class="param-desc"><span class="param-type"><a href="#CoverageStoreInfo_workspace">CoverageStoreInfo_workspace</a></span>  </div>
+<div class="param">__default__ (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Whether the store is the default store of the workspace </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Location of the raster data source (often, but not necessarily, a file). Can be relative to the data directory. </div>
+<div class="param">coverages (optional)</div><div class="param-desc"><span class="param-type"><a href="#CoverageStoreInfo_coverages">CoverageStoreInfo_coverages</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStoreInfo_coverages"><code>CoverageStoreInfo_coverages</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A link to the list of coverages contained in this store </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStoreInfo_workspace"><code>CoverageStoreInfo_workspace</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The workspace containing the store</div>
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the workspace </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A link to the workspace representation </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStoreList"><code>CoverageStoreList</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStoreListItem"><code>CoverageStoreListItem</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of coverage store </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to coverage store definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

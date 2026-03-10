@@ -1,0 +1,892 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Settings</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Settings</h1>
+    <div class="app-desc">The Settings area shows global configuration for the server</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Settings">Settings</a></h4>
+  <ul>
+  <li><a href="#deleteContactSettings"><code><span class="http-method">delete</span> /settings/contact</code></a></li>
+  <li><a href="#deleteSettings"><code><span class="http-method">delete</span> /settings</code></a></li>
+  <li><a href="#deleteWorkspaceSettings"><code><span class="http-method">delete</span> /workspaces/{workspace}/settings</code></a></li>
+  <li><a href="#getContactSettings"><code><span class="http-method">get</span> /settings/contact</code></a></li>
+  <li><a href="#getSettings"><code><span class="http-method">get</span> /settings</code></a></li>
+  <li><a href="#getWorkspaceSettings"><code><span class="http-method">get</span> /workspaces/{workspace}/settings</code></a></li>
+  <li><a href="#postContactSettings"><code><span class="http-method">post</span> /settings/contact</code></a></li>
+  <li><a href="#postSettings"><code><span class="http-method">post</span> /settings</code></a></li>
+  <li><a href="#postWorkspaceSettings"><code><span class="http-method">post</span> /workspaces/{workspace}/settings</code></a></li>
+  <li><a href="#putContactSettings"><code><span class="http-method">put</span> /settings/contact</code></a></li>
+  <li><a href="#putSettings*"><code><span class="http-method">put</span> /settings</code></a></li>
+  <li><a href="#putWorkspaceSettings"><code><span class="http-method">put</span> /workspaces/{workspace}/settings</code></a></li>
+  </ul>
+
+  <h1><a name="Settings">Settings</a></h1>
+  <div class="method"><a name="deleteContactSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /settings/contact</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteContactSettings</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to update contact settings.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /settings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteSettings</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to update settings.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteWorkspaceSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/settings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteWorkspaceSettings</span>)</div>
+    <div class="method-notes">Delete the settings for this workspace.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getContactSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /settings/contact</code></pre></div>
+    <div class="method-summary">Get a list of all global contact settings (<span class="nickname">getContactSettings</span>)</div>
+    <div class="method-notes">Displays a list of all global contact settings on the server. This is a subset of what is available at the /settings endpoint. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/settings/contact.xml&quot; for XML).</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Contact">Contact</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<contact>\n  <addressCity>Alexandria</addressCity>\n  <addressCountry>Egypt</addressCountry>\n  <addressType>Work</addressType>\n  <contactEmail>claudius.ptolomaeus@gmail.com</contactEmail>\n  <contactOrganization>The Ancient Geographers</contactOrganization>\n  <contactPerson>Claudius Ptolomaeus</contactPerson>\n  <contactPosition>Chief Geographer</contactPosition>\n</contact>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"contact\": {\n    \"addressCity\": \"Alexandria\",\n    \"addressCountry\": \"Egypt\",\n    \"addressType\": \"Work\",\n    \"contactEmail\": \"claudius.ptolomaeus@gmail.com\",\n    \"contactOrganization\": \"The Ancient Geographers\",\n    \"contactPerson\": \"Claudius Ptolomaeus\",\n    \"contactPosition\": \"Chief Geographer\"\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Contact">Contact</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><contact>
+  <addressCity>Alexandria</addressCity>
+  <addressCountry>Egypt</addressCountry>
+  <addressType>Work</addressType>
+  <contactEmail>claudius.ptolomaeus@gmail.com</contactEmail>
+  <contactOrganization>The Ancient Geographers</contactOrganization>
+  <contactPerson>Claudius Ptolomaeus</contactPerson>
+  <contactPosition>Chief Geographer</contactPosition>
+</contact>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "contact": {
+    "addressCity": "Alexandria",
+    "addressCountry": "Egypt",
+    "addressType": "Work",
+    "contactEmail": "claudius.ptolomaeus@gmail.com",
+    "contactOrganization": "The Ancient Geographers",
+    "contactPerson": "Claudius Ptolomaeus",
+    "contactPosition": "Chief Geographer"
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /settings</code></pre></div>
+    <div class="method-summary">Get a list of all global settings (<span class="nickname">getSettings</span>)</div>
+    <div class="method-notes">Displays a list of all global settings on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/settings.xml&quot; for XML).</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Global">Global</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<global>\n  <settings>\n    <id>SettingsInfoImpl-68f6c583:154ca420c47:-8000</id>\n    <contact>\n      <addressCity>Alexandria</addressCity>\n      <addressCountry>Egypt</addressCountry>\n      <addressType>Work</addressType>\n      <contactEmail>claudius.ptolomaeus@gmail.com</contactEmail>\n      <contactOrganization>The Ancient Geographers</contactOrganization>\n      <contactPerson>Claudius Ptolomaeus</contactPerson>\n      <contactPosition>Chief Geographer</contactPosition>\n    </contact>\n    <charset>UTF-8</charset>\n    <numDecimals>8</numDecimals>\n    <onlineResource>http://geoserver.org</onlineResource>\n    <verbose>false</verbose>\n    <verboseExceptions>false</verboseExceptions>\n    <localWorkspaceIncludesPrefix>false</localWorkspaceIncludesPrefix>\n  </settings>\n  <jai>\n    <allowInterpolation>false</allowInterpolation>\n    <recycling>false</recycling>\n    <tilePriority>5</tilePriority>\n    <tileThreads>7</tileThreads>\n    <memoryCapacity>0.5</memoryCapacity>\n    <memoryThreshold>0.75</memoryThreshold>\n    <imageIOCache>false</imageIOCache>\n    <pngAcceleration>true</pngAcceleration>\n    <jpegAcceleration>true</jpegAcceleration>\n    <allowNativeMosaic>false</allowNativeMosaic>\n    <allowNativeWarp>false</allowNativeWarp>\n  </jai>\n  <coverageAccess>\n    <maxPoolSize>10</maxPoolSize>\n    <corePoolSize>5</corePoolSize>\n    <keepAliveTime>30000</keepAliveTime>\n    <queueType>UNBOUNDED</queueType>\n    <imageIOCacheThreshold>10240</imageIOCacheThreshold>\n  </coverageAccess>\n  <updateSequence>180</updateSequence>\n  <featureTypeCacheSize>0</featureTypeCacheSize>\n  <globalServices>true</globalServices>\n  <xmlPostRequestLogBufferSize>1024</xmlPostRequestLogBufferSize>\n</global>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"global\": {\n    \"settings\": {\n      \"id\": \"SettingsInfoImpl-68f6c583:154ca420c47:-8000\",\n      \"contact\": {\n        \"addressCity\": \"Alexandria\",\n        \"addressCountry\": \"Egypt\",\n        \"addressType\": \"Work\",\n        \"contactEmail\": \"claudius.ptolomaeus@gmail.com\",\n        \"contactOrganization\": \"The Ancient Geographers\",\n        \"contactPerson\": \"Claudius Ptolomaeus\",\n        \"contactPosition\": \"Chief Geographer\"\n      },\n      \"charset\": \"UTF-8\",\n      \"numDecimals\": 8,\n      \"onlineResource\": \"http://geoserver.org\",\n      \"verbose\": false,\n      \"verboseExceptions\": false,\n      \"localWorkspaceIncludesPrefix\": false\n    },\n    \"jai\": {\n      \"allowInterpolation\": false,\n      \"recycling\": false,\n      \"tilePriority\": 5,\n      \"tileThreads\": 7,\n      \"memoryCapacity\": 0.5,\n      \"memoryThreshold\": 0.75,\n      \"imageIOCache\": false,\n      \"pngAcceleration\": true,\n      \"jpegAcceleration\": true,\n      \"allowNativeMosaic\": false,\n      \"allowNativeWarp\": false\n    },\n    \"coverageAccess\": {\n      \"maxPoolSize\": 10,\n      \"corePoolSize\": 5,\n      \"keepAliveTime\": 30000,\n      \"queueType\": \"UNBOUNDED\",\n      \"imageIOCacheThreshold\": 10240\n    },\n    \"updateSequence\": 180,\n    \"featureTypeCacheSize\": 0,\n    \"globalServices\": true,\n    \"xmlPostRequestLogBufferSize\": 1024\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Global">Global</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><global>
+  <settings>
+    <id>SettingsInfoImpl-68f6c583:154ca420c47:-8000</id>
+    <contact>
+      <addressCity>Alexandria</addressCity>
+      <addressCountry>Egypt</addressCountry>
+      <addressType>Work</addressType>
+      <contactEmail>claudius.ptolomaeus@gmail.com</contactEmail>
+      <contactOrganization>The Ancient Geographers</contactOrganization>
+      <contactPerson>Claudius Ptolomaeus</contactPerson>
+      <contactPosition>Chief Geographer</contactPosition>
+    </contact>
+    <charset>UTF-8</charset>
+    <numDecimals>8</numDecimals>
+    <onlineResource>http://geoserver.org</onlineResource>
+    <verbose>false</verbose>
+    <verboseExceptions>false</verboseExceptions>
+    <localWorkspaceIncludesPrefix>false</localWorkspaceIncludesPrefix>
+  </settings>
+  <jai>
+    <allowInterpolation>false</allowInterpolation>
+    <recycling>false</recycling>
+    <tilePriority>5</tilePriority>
+    <tileThreads>7</tileThreads>
+    <memoryCapacity>0.5</memoryCapacity>
+    <memoryThreshold>0.75</memoryThreshold>
+    <imageIOCache>false</imageIOCache>
+    <pngAcceleration>true</pngAcceleration>
+    <jpegAcceleration>true</jpegAcceleration>
+    <allowNativeMosaic>false</allowNativeMosaic>
+    <allowNativeWarp>false</allowNativeWarp>
+  </jai>
+  <coverageAccess>
+    <maxPoolSize>10</maxPoolSize>
+    <corePoolSize>5</corePoolSize>
+    <keepAliveTime>30000</keepAliveTime>
+    <queueType>UNBOUNDED</queueType>
+    <imageIOCacheThreshold>10240</imageIOCacheThreshold>
+  </coverageAccess>
+  <updateSequence>180</updateSequence>
+  <featureTypeCacheSize>0</featureTypeCacheSize>
+  <globalServices>true</globalServices>
+  <xmlPostRequestLogBufferSize>1024</xmlPostRequestLogBufferSize>
+</global>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "global": {
+    "settings": {
+      "id": "SettingsInfoImpl-68f6c583:154ca420c47:-8000",
+      "contact": {
+        "addressCity": "Alexandria",
+        "addressCountry": "Egypt",
+        "addressType": "Work",
+        "contactEmail": "claudius.ptolomaeus@gmail.com",
+        "contactOrganization": "The Ancient Geographers",
+        "contactPerson": "Claudius Ptolomaeus",
+        "contactPosition": "Chief Geographer"
+      },
+      "charset": "UTF-8",
+      "numDecimals": 8,
+      "onlineResource": "http://geoserver.org",
+      "verbose": false,
+      "verboseExceptions": false,
+      "localWorkspaceIncludesPrefix": false
+    },
+    "jai": {
+      "allowInterpolation": false,
+      "recycling": false,
+      "tilePriority": 5,
+      "tileThreads": 7,
+      "memoryCapacity": 0.5,
+      "memoryThreshold": 0.75,
+      "imageIOCache": false,
+      "pngAcceleration": true,
+      "jpegAcceleration": true,
+      "allowNativeMosaic": false,
+      "allowNativeWarp": false
+    },
+    "coverageAccess": {
+      "maxPoolSize": 10,
+      "corePoolSize": 5,
+      "keepAliveTime": 30000,
+      "queueType": "UNBOUNDED",
+      "imageIOCacheThreshold": 10240
+    },
+    "updateSequence": 180,
+    "featureTypeCacheSize": 0,
+    "globalServices": true,
+    "xmlPostRequestLogBufferSize": 1024
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getWorkspaceSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/settings</code></pre></div>
+    <div class="method-summary">Get a list of all workspace-specific settings (<span class="nickname">getWorkspaceSettings</span>)</div>
+    <div class="method-notes">Displays a list of all workspace-specific settings. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/settings.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#WorkspaceSettings">WorkspaceSettings</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<settings>\n  <contact>\n    <id>contact</id>\n  </contact>\n  <charset>UTF-8</charset>\n  <numDecimals>4</numDecimals>\n  <verbose>false</verbose>\n  <verboseExceptions>false</verboseExceptions>\n  <localWorkspaceIncludesPrefix>false</localWorkspaceIncludesPrefix>\n</settings>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"settings\": {\n    \"contact\": {\n      \"id\": \"contact\"\n    },\n    \"charset\": \"UTF-8\",\n    \"numDecimals\": 4,\n    \"verbose\": false,\n    \"verboseExceptions\": false,\n    \"localWorkspaceIncludesPrefix\": false\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#WorkspaceSettings">WorkspaceSettings</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><settings>
+  <contact>
+    <id>contact</id>
+  </contact>
+  <charset>UTF-8</charset>
+  <numDecimals>4</numDecimals>
+  <verbose>false</verbose>
+  <verboseExceptions>false</verboseExceptions>
+  <localWorkspaceIncludesPrefix>false</localWorkspaceIncludesPrefix>
+</settings>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "settings": {
+    "contact": {
+      "id": "contact"
+    },
+    "charset": "UTF-8",
+    "numDecimals": 4,
+    "verbose": false,
+    "verboseExceptions": false,
+    "localWorkspaceIncludesPrefix": false
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postContactSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /settings/contact</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postContactSettings</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to update contact settings.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /settings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postSettings</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to update settings.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postWorkspaceSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/settings</code></pre></div>
+    <div class="method-summary">Create workspace-specific settings (<span class="nickname">postWorkspaceSettings</span>)</div>
+    <div class="method-notes">Create new workspace-specific settings on the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">settingsBody <a href="#WorkspaceSettings">WorkspaceSettings</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The settings information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error: Settings already exist for workspace
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putContactSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /settings/contact</code></pre></div>
+    <div class="method-summary">Update contact settings (<span class="nickname">putContactSettings</span>)</div>
+    <div class="method-notes">Updates global contact settings on the server.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">settingscontactBody <a href="#Contact">Contact</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The contact settings information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putSettings*"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /settings</code></pre></div>
+    <div class="method-summary">Update settings (<span class="nickname">putSettings*</span>)</div>
+    <div class="method-notes">Updates global settings on the server.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">settingsBody <a href="#Global">Global</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The settings information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putWorkspaceSettings"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/settings</code></pre></div>
+    <div class="method-summary">Update workspace-specific settings (<span class="nickname">putWorkspaceSettings</span>)</div>
+    <div class="method-notes">Updates workspace-specific settings on the server.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The workspace name </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">settingsBody <a href="#WorkspaceSettings">WorkspaceSettings</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The settings information to upload. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Contact"><code>Contact</code> - </a></li>
+    <li><a href="#CoverageAccess"><code>CoverageAccess</code> - </a></li>
+    <li><a href="#Global"><code>Global</code> - </a></li>
+    <li><a href="#JAI"><code>JAI</code> - </a></li>
+    <li><a href="#Settings"><code>Settings</code> - </a></li>
+    <li><a href="#WorkspaceContact"><code>WorkspaceContact</code> - </a></li>
+    <li><a href="#WorkspaceSettings"><code>WorkspaceSettings</code> - settings</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Contact"><code>Contact</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">addressCity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin city </div>
+<div class="param">addressCountry (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin country </div>
+<div class="param">addressType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type of address </div>
+<div class="param">contactEmail (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin email </div>
+<div class="param">contactOrganization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin organization </div>
+<div class="param">contactPerson (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin point of contact </div>
+<div class="param">contactPosition (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin point of contact job title </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageAccess"><code>CoverageAccess</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">maxPoolSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Maximum number of threads that the Java ThreadPoolExecutor will create </div>
+<div class="param">corePoolSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Number of threads that the Java ThreadPoolExecutor will create </div>
+<div class="param">keepAlilveTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Timeout for threads to be terminated if they are idle and more than the core pool number exist. </div>
+<div class="param">queueType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type of Blocking Queue to managed submitted tasks. Can be either UNBOUNDED or DIRECT. </div>
+<div class="param">imageIOCacheThreshold (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Threshold size to choose between file-based cache and memory-based cach </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Global"><code>Global</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">settings (optional)</div><div class="param-desc"><span class="param-type"><a href="#Settings">Settings</a></span>  </div>
+<div class="param">jai (optional)</div><div class="param-desc"><span class="param-type"><a href="#JAI">JAI</a></span>  </div>
+<div class="param">coverageAccess (optional)</div><div class="param-desc"><span class="param-type"><a href="#CoverageAccess">CoverageAccess</a></span>  </div>
+<div class="param">updateSequence (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Number of times the server configuration has been modified </div>
+<div class="param">featureTypeCacheSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Maximum number of datastore connections and schemas that can be kept in memory </div>
+<div class="param">globalServices (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Allow access to both global services and virtual services </div>
+<div class="param">xmlPostRequestLogBufferSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> With more verbose logging levels, sets the size of the buffer GeoServer will use to log the body of POST requests </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="JAI"><code>JAI</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">allowInterpolation (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> No longer used </div>
+<div class="param">recycling (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Tile recycling </div>
+<div class="param">tilePriority (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Tile thread priority </div>
+<div class="param">tileThreads (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Tile threads </div>
+<div class="param">memoryCapacity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Memory capacity </div>
+<div class="param">memoryThreshold (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Memory threshold </div>
+<div class="param">imageIOCache (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enables Image IO cache </div>
+<div class="param">pngAcceleration (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable JAI PNG native acceleration </div>
+<div class="param">jpegAcceleration (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable JAI JPEG native acceleration </div>
+<div class="param">allowNativeMosaic (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable JAI mosaic native acceleration </div>
+<div class="param">allowNativeWarp (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable JAI native warp acceleration </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Settings"><code>Settings</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> For internal use only. Do not modify. </div>
+<div class="param">contact (optional)</div><div class="param-desc"><span class="param-type"><a href="#Contact">Contact</a></span>  </div>
+<div class="param">charset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Character set to use for encoding (such as UTF-8) </div>
+<div class="param">numDecimals (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Maximum nuber of decimal places to use (GML and GeoJSON output) </div>
+<div class="param">onlineResource (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin URL </div>
+<div class="param">verbose (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Return XML with newlines and indents </div>
+<div class="param">verboseExceptions (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Return service exceptions with full Java stack traces </div>
+<div class="param">localWorkspaceIncludesPrefix (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Show namespace prefix when using virtual service </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WorkspaceContact"><code>WorkspaceContact</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Contact ID </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WorkspaceSettings"><code>WorkspaceSettings</code> - settings</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">contact (optional)</div><div class="param-desc"><span class="param-type"><a href="#WorkspaceContact">WorkspaceContact</a></span>  </div>
+<div class="param">charset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Character set to use for encoding (such as UTF-8) </div>
+<div class="param">numDecimals (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span> Maximum nuber of decimal places to use (GML and GeoJSON output) </div>
+<div class="param">onlineResource (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Server admin URL </div>
+<div class="param">verbose (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Return XML with newlines and indents </div>
+<div class="param">verboseExceptions (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Return service exceptions with full Java stack traces </div>
+<div class="param">localWorkspaceIncludesPrefix (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Show namespace prefix when using virtual service </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

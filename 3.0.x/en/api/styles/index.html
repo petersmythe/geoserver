@@ -1,0 +1,1696 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Styles</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Styles</h1>
+    <div class="app-desc">A style describes how a resource is symbolized or rendered by the Web Map Service.</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Styles">Styles</a></h4>
+  <ul>
+  <li><a href="#deleteLayerStyles"><code><span class="http-method">delete</span> /rest/layers/{layer}/styles</code></a></li>
+  <li><a href="#deleteStyle"><code><span class="http-method">delete</span> /styles/{style}</code></a></li>
+  <li><a href="#deleteStyles"><code><span class="http-method">delete</span> /styles</code></a></li>
+  <li><a href="#deleteWorkspaceStyle"><code><span class="http-method">delete</span> /rest/workspaces/{workspace}/styles/{style}</code></a></li>
+  <li><a href="#deleteWorkspaceStyles"><code><span class="http-method">delete</span> /workspaces/{workspace}/styles</code></a></li>
+  <li><a href="#getLayerStyles"><code><span class="http-method">get</span> /rest/layers/{layer}/styles</code></a></li>
+  <li><a href="#getStyle"><code><span class="http-method">get</span> /styles/{style}</code></a></li>
+  <li><a href="#getStyles"><code><span class="http-method">get</span> /styles</code></a></li>
+  <li><a href="#getWorkspaceStyle"><code><span class="http-method">get</span> /rest/workspaces/{workspace}/styles/{style}</code></a></li>
+  <li><a href="#getWorkspaceStyles"><code><span class="http-method">get</span> /workspaces/{workspace}/styles</code></a></li>
+  <li><a href="#postLayerStyles"><code><span class="http-method">post</span> /rest/layers/{layer}/styles</code></a></li>
+  <li><a href="#postStyle"><code><span class="http-method">post</span> /styles/{style}</code></a></li>
+  <li><a href="#postStyles"><code><span class="http-method">post</span> /styles</code></a></li>
+  <li><a href="#postWorkspaceStyle"><code><span class="http-method">post</span> /rest/workspaces/{workspace}/styles/{style}</code></a></li>
+  <li><a href="#postWorkspaceStyles"><code><span class="http-method">post</span> /workspaces/{workspace}/styles</code></a></li>
+  <li><a href="#putLayerStyles"><code><span class="http-method">put</span> /rest/layers/{layer}/styles</code></a></li>
+  <li><a href="#putStyle"><code><span class="http-method">put</span> /styles/{style}</code></a></li>
+  <li><a href="#putStyles"><code><span class="http-method">put</span> /styles</code></a></li>
+  <li><a href="#putWorkspaceStyle"><code><span class="http-method">put</span> /rest/workspaces/{workspace}/styles/{style}</code></a></li>
+  <li><a href="#putWorkspaceStyles"><code><span class="http-method">put</span> /workspaces/{workspace}/styles</code></a></li>
+  </ul>
+
+  <h1><a name="Styles">Styles</a></h1>
+  <div class="method"><a name="deleteLayerStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/layers/{layer}/styles</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteLayerStyles</span>)</div>
+    <div class="method-notes">Invalid.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layer (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the layer to manage styles for </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /styles/{style}</code></pre></div>
+    <div class="method-summary">Delete style (<span class="nickname">deleteStyle</span>)</div>
+    <div class="method-notes">Deletes a style.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to delete. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">purge (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Specifies whether the underlying file containing the style should be deleted on disk. default: false </div><div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Removes references to the specified style in existing layers. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /styles</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteStyles</span>)</div>
+    <div class="method-notes">Invalid. Use /styles/{style} instead.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteWorkspaceStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /rest/workspaces/{workspace}/styles/{style}</code></pre></div>
+    <div class="method-summary">Delete style in a given workspace (<span class="nickname">deleteWorkspaceStyle</span>)</div>
+    <div class="method-notes">Deletes a style in a given workspace.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the workspace for style definitions </div><div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to delete. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">purge (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Specifies whether the underlying file containing the style should be deleted on disk. default: false </div><div class="param">recurse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Removes references to the specified style in existing layers. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteWorkspaceStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workspaces/{workspace}/styles</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteWorkspaceStyles</span>)</div>
+    <div class="method-notes">Invalid. Use /workspaces/{workspace}/styles/{style} instead.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of workspace </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getLayerStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/layers/{layer}/styles</code></pre></div>
+    <div class="method-summary">Get a list of layer alternate styles (<span class="nickname">getLayerStyles</span>)</div>
+    <div class="method-notes">Displays a list of all alternate styles for a given layer. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/layers/{layer}/styles.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layer (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the layer to manage styles for </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#StyleList">StyleList</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<styles>\n  <style>\n    <name>pophatch</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/layers/topp:states/styles/pophatch.xml\" type=\"application/xml\"/>\n  </style>\n  <style>\n    <name>polygon</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/layers/topp:states/styles/polygon.xml\" type=\"application/xml\"/>\n  </style>\n</styles>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"styles\": {\n    \"style\": [\n      {\n        \"name\": \"pophatch\",\n        \"href\": \"http://localhost:8080/geoserver/rest/layers/topp:states/styles/pophatch.json\"\n      },\n      {\n        \"name\": \"polygon\",\n        \"href\": \"http://localhost:8080/geoserver/rest/layers/topp:states/styles/polygon.json\"\n      }\n    ]\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#StyleList">StyleList</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><styles>
+  <style>
+    <name>pophatch</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/layers/topp:states/styles/pophatch.xml" type="application/xml"/>
+  </style>
+  <style>
+    <name>polygon</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/layers/topp:states/styles/polygon.xml" type="application/xml"/>
+  </style>
+</styles>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "styles": {
+    "style": [
+      {
+        "name": "pophatch",
+        "href": "http://localhost:8080/geoserver/rest/layers/topp:states/styles/pophatch.json"
+      },
+      {
+        "name": "polygon",
+        "href": "http://localhost:8080/geoserver/rest/layers/topp:states/styles/polygon.json"
+      }
+    ]
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /styles/{style}</code></pre></div>
+    <div class="method-summary">Retrieve a style (<span class="nickname">getStyle</span>)</div>
+    <div class="method-notes"><p>Retrieves a single style. Used to both request the style info and the style definition body, depending on the media type requested. The media type can be specified either by using the &quot;Accept:&quot; header or by appending an extension to the endpoint. For example, a style info can be requested in XML format using &quot;/styles/{style}.xml&quot; or &quot;Accept: application/xml&quot;. (Also available: &quot;{style}.json&quot;, &quot;Accept: application/json&quot; &quot;{style}.html&quot;, and &quot;Accept: text/html&quot;).</p>
+<p>The style definition body can be requested by either appending the file extension of the style file (e.g., &quot;{style}.sld&quot; or &quot;{style}.css&quot;) or by specifying the correct media type for the style definition in the &quot;Accept&quot; header.
+Be aware that by default, if extension is specified, it will override media type. For example if you use SLD 1.1.0 style and specify .sld extension (which provides SLD 1.0.0 result), but use application/vnd.ogc.se+xml media type (which provides SLD 1.1.0 result), response still will be presented in sld version 1.0.0
+Below are common style formats and the corresponding media types that can be used in the Accept header to request the style definition body.</p>
+<ul>
+<li>application/vnd.ogc.sld+xml for SLD 1.0.0 SLDs</li>
+<li>application/vnd.ogc.se+xml for SLD 1.1.0 SLDs</li>
+<li>application/vnd.geoserver.geocss+css for css styles</li>
+<li>application/vnd.geoserver.ysld+yaml for ysld styles</li>
+<li>application/vnd.geoserver.mbstyle+json for mb styles</li>
+</ul>
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Style">Style</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<style>\n  <name>rain</name>\n  <format>sld</format>\n  <languageVersion>\n    <version>1.0.0</version>\n  </languageVersion>\n  <filename>rain.sld</filename>\n</style>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"style\":\n  {\"name\":\"rain\", \"format\":\"sld\",\n  \"languageVersion\": {\"version\":\"1.0.0\"},\n  \"filename\":\"rain.sld\"}\n}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/vnd.ogc.sld+xml</div>
+    <pre class="example"><code>"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<StyledLayerDescriptor version=\"1.0.0\" xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\"\n  xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n  xsi:schemaLocation=\"http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\">\n  <NamedLayer>\n    <Name>rain</Name>\n    <UserStyle>\n      <Name>rain</Name>\n      <Title>Rain distribution</Title>\n      <FeatureTypeStyle>\n        <Rule>\n          <RasterSymbolizer>\n            <Opacity>1.0</Opacity>\n            <ColorMap>\n              <ColorMapEntry color=\"#FF0000\" quantity=\"0\" />\n              <ColorMapEntry color=\"#FFFFFF\" quantity=\"100\"/>\n              <ColorMapEntry color=\"#00FF00\" quantity=\"2000\"/>\n              <ColorMapEntry color=\"#0000FF\" quantity=\"5000\"/>\n            </ColorMap>\n          </RasterSymbolizer>\n        </Rule>\n      </FeatureTypeStyle>\n    </UserStyle>\n  </NamedLayer>\n</StyledLayerDescriptor>\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/vnd.ogc.sld+xml</code></li>
+      <li><code>application/vnd.ogc.se+xml</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Style">Style</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><style>
+  <name>rain</name>
+  <format>sld</format>
+  <languageVersion>
+    <version>1.0.0</version>
+  </languageVersion>
+  <filename>rain.sld</filename>
+</style>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"style":
+  {"name":"rain", "format":"sld",
+  "languageVersion": {"version":"1.0.0"},
+  "filename":"rain.sld"}
+}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/vnd.ogc.sld+xml</div>
+    <pre class="example"><code><?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd">
+  <NamedLayer>
+    <Name>rain</Name>
+    <UserStyle>
+      <Name>rain</Name>
+      <Title>Rain distribution</Title>
+      <FeatureTypeStyle>
+        <Rule>
+          <RasterSymbolizer>
+            <Opacity>1.0</Opacity>
+            <ColorMap>
+              <ColorMapEntry color="#FF0000" quantity="0" />
+              <ColorMapEntry color="#FFFFFF" quantity="100"/>
+              <ColorMapEntry color="#00FF00" quantity="2000"/>
+              <ColorMapEntry color="#0000FF" quantity="5000"/>
+            </ColorMap>
+          </RasterSymbolizer>
+        </Rule>
+      </FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /styles</code></pre></div>
+    <div class="method-summary">Get a list of styles (<span class="nickname">getStyles</span>)</div>
+    <div class="method-notes">Displays a list of all styles on the server. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/styles.xml&quot; for XML).</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#StyleList">StyleList</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<styles>\n    <style>\n        <name>burg</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/burg.xml\" type=\"application/xml\"/>\n    </style>\n    <style>\n        <name>capitals</name>\n        <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/styles/capitals.xml\" type=\"application/xml\"/>\n    </style>    \n</styles>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"styles\":\n  {\"style\":\n    [ {\"href\":\"http://localhost:8080/geoserver/rest/styles/burg.json\", \"name\":\"burg\"},\n      {\"href\":\"http://localhost:8080/geoserver/rest/styles/capitals.json\", \"name\":\"capitals\"}]}}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#StyleList">StyleList</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><styles>
+    <style>
+        <name>burg</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/burg.xml" type="application/xml"/>
+    </style>
+    <style>
+        <name>capitals</name>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/styles/capitals.xml" type="application/xml"/>
+    </style>    
+</styles>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"styles":
+  {"style":
+    [ {"href":"http://localhost:8080/geoserver/rest/styles/burg.json", "name":"burg"},
+      {"href":"http://localhost:8080/geoserver/rest/styles/capitals.json", "name":"capitals"}]}}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getWorkspaceStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rest/workspaces/{workspace}/styles/{style}</code></pre></div>
+    <div class="method-summary">Retrieve a style from a given workspace (<span class="nickname">getWorkspaceStyle</span>)</div>
+    <div class="method-notes"><p>Retrieves a single style. Used to both request the style info and the style definition body, depending on the media type requested. The media type can be specified either by using the &quot;Accept:&quot; header or by appending an extension to the endpoint. For example, a style info can be requested in XML format using &quot;/styles/{style}.xml&quot; or &quot;Accept: application/xml&quot;. (Also available: &quot;{style}.json&quot;, &quot;Accept: application/json&quot; &quot;{style}.html&quot;, and &quot;Accept: text/html&quot;).</p>
+<p>The style definition body can be requested by either appending the file extension of the style file (e.g., &quot;{style}.sld&quot; or &quot;{style}.css&quot;) or by specifying the correct media type for the style definition in the &quot;Accept&quot; header.
+Be aware that by default, if extension is specified, it will override media type. For example if you use SLD 1.1.0 style and specify .sld extension (which provides SLD 1.0.0 result), but use application/vnd.ogc.se+xml media type (which provides SLD 1.1.0 result), response still will be presented in sld version 1.0.0
+Below are common style formats and the corresponding media types that can be used in the Accept header to request the style definition body.</p>
+<ul>
+<li>application/vnd.ogc.sld+xml for SLD 1.0.0 SLDs</li>
+<li>application/vnd.ogc.se+xml for SLD 1.1.0 SLDs</li>
+<li>application/vnd.geoserver.geocss+css for css styles</li>
+<li>application/vnd.geoserver.ysld+yaml for ysld styles</li>
+<li>application/vnd.geoserver.mbstyle+json for mb styles</li>
+</ul>
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the workspace for style definitions </div><div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#StyleWorkspace">StyleWorkspace</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<style>\n  <name>burg</name>\n  <workspace>\n    <name>sf</name>\n  </workspace>\n  <format>sld</format>\n  <languageVersion>\n    <version>1.0.0</version>\n  </languageVersion>\n  <filename>burg.sld</filename>\n</style>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\"style\": \n  {\"name\":\"burg\", \n   \"workspace\": {\"name\":\"sf\"},\n   \"format\":\"sld\",\n   \"languageVersion\":{\"version\":\"1.0.0\"},\n   \"filename\":\"burg.sld\"}}\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/vnd.ogc.sld+xml</div>
+    <pre class="example"><code>"<StyledLayerDescriptor version=\"1.0.0\" xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\"\n  xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n  xsi:schemaLocation=\"http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd\">\n  <NamedLayer>\n    <Name>redflag</Name>\n    <UserStyle>\n      <Name>burg</Name>\n      <Title>A small red flag</Title>\n      <Abstract>A sample of how to use an SVG based symbolizer</Abstract>\n\n      <FeatureTypeStyle>\n        <Rule>\n          <Title>Red flag</Title>\n          <PointSymbolizer>\n            <Graphic>\n              <ExternalGraphic>\n                <OnlineResource xlink:type=\"simple\" xlink:href=\"burg02.svg\" />\n                <Format>image/svg+xml</Format>\n              </ExternalGraphic>\n              <Size>\n                <ogc:Literal>20</ogc:Literal>\n              </Size>\n            </Graphic>\n          </PointSymbolizer>\n        </Rule>\n\n      </FeatureTypeStyle>\n    </UserStyle>\n  </NamedLayer>\n</StyledLayerDescriptor>              \n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/vnd.ogc.sld+xml</code></li>
+      <li><code>application/vnd.ogc.se+xml</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#StyleWorkspace">StyleWorkspace</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><style>
+  <name>burg</name>
+  <workspace>
+    <name>sf</name>
+  </workspace>
+  <format>sld</format>
+  <languageVersion>
+    <version>1.0.0</version>
+  </languageVersion>
+  <filename>burg.sld</filename>
+</style>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"style": 
+  {"name":"burg", 
+   "workspace": {"name":"sf"},
+   "format":"sld",
+   "languageVersion":{"version":"1.0.0"},
+   "filename":"burg.sld"}}
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/vnd.ogc.sld+xml</div>
+    <pre class="example"><code><StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd">
+  <NamedLayer>
+    <Name>redflag</Name>
+    <UserStyle>
+      <Name>burg</Name>
+      <Title>A small red flag</Title>
+      <Abstract>A sample of how to use an SVG based symbolizer</Abstract>
+
+      <FeatureTypeStyle>
+        <Rule>
+          <Title>Red flag</Title>
+          <PointSymbolizer>
+            <Graphic>
+              <ExternalGraphic>
+                <OnlineResource xlink:type="simple" xlink:href="burg02.svg" />
+                <Format>image/svg+xml</Format>
+              </ExternalGraphic>
+              <Size>
+                <ogc:Literal>20</ogc:Literal>
+              </Size>
+            </Graphic>
+          </PointSymbolizer>
+        </Rule>
+
+      </FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>              
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getWorkspaceStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workspaces/{workspace}/styles</code></pre></div>
+    <div class="method-summary">Get a list of styles in a given workspace (<span class="nickname">getWorkspaceStyles</span>)</div>
+    <div class="method-notes">Displays a list of all styles in a given workspace. Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example &quot;/workspaces/{workspace}/styles.xml&quot; for XML).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of workspace </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#StyleList">StyleList</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code>"<styles>\n  <style>\n    <name>burg</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/sf/styles/burg.xml\" type=\"application/xml\"/>\n  </style>\n  <style>\n    <name>dem</name>\n    <atom:link xmlns:atom=\"http://www.w3.org/2005/Atom\" rel=\"alternate\" href=\"http://localhost:8080/geoserver/rest/workspaces/sf/styles/dem.xml\" type=\"application/xml\"/>\n  </style>\n</styles>\n"</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n  \"styles\": {\n    \"style\": [\n      {\n        \"name\": \"burg\",\n        \"href\": \"http://localhost:8080/geoserver/rest/workspaces/sf/styles/burg.json\"\n      },\n      {\n        \"name\": \"dem\",\n        \"href\": \"http://localhost:8080/geoserver/rest/workspaces/sf/styles/dem.json\"\n      }\n    ]\n  }\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#StyleList">StyleList</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><styles>
+  <style>
+    <name>burg</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/sf/styles/burg.xml" type="application/xml"/>
+  </style>
+  <style>
+    <name>dem</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/sf/styles/dem.xml" type="application/xml"/>
+  </style>
+</styles>
+</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "styles": {
+    "style": [
+      {
+        "name": "burg",
+        "href": "http://localhost:8080/geoserver/rest/workspaces/sf/styles/burg.json"
+      },
+      {
+        "name": "dem",
+        "href": "http://localhost:8080/geoserver/rest/workspaces/sf/styles/dem.json"
+      }
+    ]
+  }
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postLayerStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/layers/{layer}/styles</code></pre></div>
+    <div class="method-summary">Add a new style (<span class="nickname">postLayerStyles</span>)</div>
+    <div class="method-notes">Adds a new style entry to the layer. The style named in styleBody must already exist, and will not be altered by this request.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layer (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the layer to manage styles for </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">styleBody <a href="#StyleInfoPost">StyleInfoPost</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Style body information naming an existing style to add to the layer </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">default (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Whether to make this the default style for the layer. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /styles/{style}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postStyle</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to edit a style, or POST with /styles to add a new style.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /styles</code></pre></div>
+    <div class="method-summary">Add a new style (<span class="nickname">postStyles</span>)</div>
+    <div class="method-notes"><p>Adds a new style entry to the server.
+Using POST with the <code>application/xml</code> or <code>application/json</code> content only adds the style info to the catalog and does not upload style content. PUT to <code>/styles/{style}</code> to upload the style in this case.</p>
+<p>Use POST with a style file (<code>application/vnd.ogc.sld+xml</code> or <code>application/vnd.ogc.se+xml</code> for SLD; additional style types are added by extensions) to generate a style info and upload the style all at once. Then separately PUT the style info at <code>/styles/{style}</code> to make any desired changes to the generated catalog entry.
+You can also use POST with a ZIP file to upload a SLD 1.0 (<code>application/vnd.ogc.sld+xml</code>) file and any associated icon files, and then separately PUT the style info at /styles/{style}. POST with a ZIP file does not support any other style types.</p>
+</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/zip</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/vnd.ogc.sld+xml</code></li>
+      <li><code>application/vnd.ogc.se+xml</code></li>
+      <li><code>application/vnd.geoserver.geocss+css</code></li>
+      <li><code>application/vnd.geoserver.ysld+yaml</code></li>
+      <li><code>application/vnd.geoserver.mbstyle+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">styleBody <a href="#StyleInfoPost">StyleInfoPost</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; <p>The style body of a request JSON or XML style uploads follow the schema. For example:</p>
+<ul>
+<li>
+<p>application/xml:</p>
+<pre><code>&lt;style&gt;
+  &lt;name&gt;roads_style&lt;/name&gt;
+  &lt;filename&gt;roads.sld&lt;/filename&gt;
+&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+<p>application/json:</p>
+<pre><code>{
+  &quot;style&quot;: { 
+    &quot;name&quot;: &quot;roads_style&quot;, 
+    &quot;filename&quot;: &quot;roads.sld&quot;
+  }
+}
+</code></pre>
+</li>
+</ul>
+<p>Otherwise, the style body is an actual style:</p>
+<ul>
+<li>
+<p>application/zip:</p>
+<pre><code>&lt;ZIP file containing SLD and icons&gt;
+</code></pre>
+</li>
+<li>
+<p>application/vnd.ogc.sld+xml:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;StyledLayerDescriptor version=&quot;1.0.0&quot; 
+ xsi:schemaLocation=&quot;http://www.opengis.net/sld StyledLayerDescriptor.xsd&quot; 
+ xmlns=&quot;http://www.opengis.net/sld&quot; 
+ xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; 
+ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; 
+ xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;!-- a Named Layer is the basic building block of an SLD document --&gt;
+  &lt;NamedLayer&gt;
+    &lt;Name&gt;default_line&lt;/Name&gt;
+    &lt;UserStyle&gt;
+    &lt;!-- Styles can have names, titles and abstracts --&gt;
+      &lt;Title&gt;Default Line&lt;/Title&gt;
+      &lt;Abstract&gt;A sample style that draws a line&lt;/Abstract&gt;
+      &lt;!-- FeatureTypeStyles describe how to render different features --&gt;
+      &lt;!-- A FeatureTypeStyle for rendering lines --&gt;
+      &lt;FeatureTypeStyle&gt;
+        &lt;Rule&gt;
+          &lt;Name&gt;rule1&lt;/Name&gt;
+          &lt;Title&gt;Blue Line&lt;/Title&gt;
+          &lt;Abstract&gt;A solid blue line with a 1 pixel width&lt;/Abstract&gt;
+          &lt;LineSymbolizer&gt;
+            &lt;Stroke&gt;
+              &lt;CssParameter name=&quot;stroke&quot;&gt;#0000FF&lt;/CssParameter&gt;
+            &lt;/Stroke&gt;
+          &lt;/LineSymbolizer&gt;
+        &lt;/Rule&gt;
+      &lt;/FeatureTypeStyle&gt;
+    &lt;/UserStyle&gt;
+  &lt;/NamedLayer&gt;
+&lt;/StyledLayerDescriptor&gt;
+</code></pre>
+</li>
+</ul>
+ </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name of the style. Used only when POSTing a style file or ZIP bundle, to determine the name of the style in the catalog. Generated from the filename if not provided. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postWorkspaceStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /rest/workspaces/{workspace}/styles/{style}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">postWorkspaceStyle</span>)</div>
+    <div class="method-notes">Invalid. Use PUT to edit a style, or POST with /workspaces/{workspace}/styles to add a new style.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the workspace for style definitions </div><div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to retrieve. </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postWorkspaceStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workspaces/{workspace}/styles</code></pre></div>
+    <div class="method-summary">Add a new style to a given workspace (<span class="nickname">postWorkspaceStyles</span>)</div>
+    <div class="method-notes"><p>Adds a new style entry to the server.
+Using POST with the <code>application/xml</code> or <code>application/json</code> content only adds the style info to the catalog and does not upload style content. PUT to <code>/workspaces/{workspace}/styles/{style}</code> to upload the style in this case.</p>
+<p>Use POST with a style file (<code>application/vnd.ogc.sld+xml</code> or <code>application/vnd.ogc.sld+xml</code> for SLD; additional style types are added by extensions) to generate a style info and upload the style all at once. Then separately PUT the style info at <code>/workspaces/{workspace}/styles/{style}</code> to make any desired changes to the generated catalog entry.
+You can also use POST with a ZIP file to upload a SLD 1.0 (<code>application/vnd.ogc.sld+xml</code>) file and any associated icon files, and then separately PUT the style info at /workspaces/{workspace}/styles/{style}. POST with a ZIP file does not support any other style types.</p>
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of workspace </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/xml</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/zip</code></li>
+      <li><code>text/html</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/vnd.ogc.sld+xml</code></li>
+      <li><code>application/vnd.ogc.se+xml</code></li>
+      <li><code>application/vnd.geoserver.geocss+css</code></li>
+      <li><code>application/vnd.geoserver.ysld+yaml</code></li>
+      <li><code>application/vnd.geoserver.mbstyle+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">styleBody <a href="#StyleInfoPost">StyleInfoPost</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; <p>The style body of a request JSON or XML style uploads follow the schema. For example:</p>
+<ul>
+<li>
+<p>application/xml:</p>
+<pre><code>&lt;style&gt;
+  &lt;name&gt;roads_style&lt;/name&gt;
+  &lt;filename&gt;roads.sld&lt;/filename&gt;
+&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+<p>application/json:</p>
+<pre><code>{
+  &quot;style&quot;: { 
+    &quot;name&quot;: &quot;roads_style&quot;, 
+    &quot;filename&quot;: &quot;roads.sld&quot;
+  }
+}
+</code></pre>
+</li>
+</ul>
+<p>Otherwise, the style body is an actual style:</p>
+<ul>
+<li>
+<p>application/zip:</p>
+<pre><code>&lt;ZIP file containing SLD and icons&gt;
+</code></pre>
+</li>
+<li>
+<p>application/vnd.ogc.sld+xml:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;StyledLayerDescriptor version=&quot;1.0.0&quot; 
+ xsi:schemaLocation=&quot;http://www.opengis.net/sld StyledLayerDescriptor.xsd&quot; 
+ xmlns=&quot;http://www.opengis.net/sld&quot; 
+ xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; 
+ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; 
+ xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;!-- a Named Layer is the basic building block of an SLD document --&gt;
+  &lt;NamedLayer&gt;
+    &lt;Name&gt;default_line&lt;/Name&gt;
+    &lt;UserStyle&gt;
+    &lt;!-- Styles can have names, titles and abstracts --&gt;
+      &lt;Title&gt;Default Line&lt;/Title&gt;
+      &lt;Abstract&gt;A sample style that draws a line&lt;/Abstract&gt;
+      &lt;!-- FeatureTypeStyles describe how to render different features --&gt;
+      &lt;!-- A FeatureTypeStyle for rendering lines --&gt;
+      &lt;FeatureTypeStyle&gt;
+        &lt;Rule&gt;
+          &lt;Name&gt;rule1&lt;/Name&gt;
+          &lt;Title&gt;Blue Line&lt;/Title&gt;
+          &lt;Abstract&gt;A solid blue line with a 1 pixel width&lt;/Abstract&gt;
+          &lt;LineSymbolizer&gt;
+            &lt;Stroke&gt;
+              &lt;CssParameter name=&quot;stroke&quot;&gt;#0000FF&lt;/CssParameter&gt;
+            &lt;/Stroke&gt;
+          &lt;/LineSymbolizer&gt;
+        &lt;/Rule&gt;
+      &lt;/FeatureTypeStyle&gt;
+    &lt;/UserStyle&gt;
+  &lt;/NamedLayer&gt;
+&lt;/StyledLayerDescriptor&gt;
+</code></pre>
+</li>
+</ul>
+ </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name of the style. Used only when POSTing a style file or ZIP bundle, to determine the name of the style in the catalog. Generated from the filename if not provided. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putLayerStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/layers/{layer}/styles</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putLayerStyles</span>)</div>
+    <div class="method-notes">Invalid. Use POST to modify the styles for a layer.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">layer (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the layer to manage styles for </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /styles/{style}</code></pre></div>
+    <div class="method-summary">Modify a single style (<span class="nickname">putStyle</span>)</div>
+    <div class="method-notes"><p>Modifies a single style.
+Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example <code>/styles/{style}.xml</code> for XML).</p>
+<p>Using PUT with the <code>application/xml</code> or <code>application/json</code> content modifies the style info in the catalog and does not alter the style content.
+Using PUT with any other format will modify the content of the style. You can also use PUT with a ZIP file to upload a SLD 1.0 (<code>application/vnd.ogc.sld+xml</code>) file and any associated icon files</p>
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to edit. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/zip</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/vnd.ogc.sld+xml</code></li>
+      <li><code>application/vnd.ogc.se+xml</code></li>
+      <li><code>application/vnd.geoserver.geocss+css</code></li>
+      <li><code>application/vnd.geoserver.mbstyle+json</code></li>
+      <li><code>application/vnd.geoserver.ysld+yaml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">styleBody <a href="#StyleInfoPost">StyleInfoPost</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; <p>The style body of a request. For a PUT, only values which should be changed need to be included.
+JSON or XML style uploads follow the schema, and alter the style configuration. For example:</p>
+<ul>
+<li>
+<p>application/xml:</p>
+<pre><code>&lt;style&gt;
+  &lt;name&gt;roads_style&lt;/name&gt;
+  &lt;languageVersion&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+  &lt;/languageVersion&gt;
+  &lt;filename&gt;roads.sld&lt;/filename&gt;
+  &lt;legend&gt;
+    &lt;width&gt;32&lt;/width&gt;
+    &lt;height&gt;32&lt;/height&gt;
+    &lt;format&gt;image/png; charset=UTF-8&lt;/format&gt;
+    &lt;onlineResource&gt;legend.png&lt;/onlineResource&gt;
+  &lt;/legend&gt;
+&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+<p>application/json:</p>
+<pre><code>{
+  &quot;style&quot;: { 
+    &quot;name&quot;: &quot;roads_style&quot;, 
+    &quot;languageVersion&quot;: {
+      &quot;version&quot;: &quot;1.0.0&quot;
+    },
+    &quot;filename&quot;: &quot;roads.sld&quot;,
+    &quot;legend&quot;: {
+      &quot;format&quot;: &quot;image/png; charset=UTF-8&quot;,
+      &quot;height&quot;: 32,
+      &quot;width&quot;: 32,
+      &quot;onlineResource&quot;: &quot;grass_fill.png&quot;
+    }
+  }
+}
+</code></pre>
+</li>
+</ul>
+<p>Otherwise, the style body is an actual style:</p>
+<ul>
+<li>
+<p>application/zip:</p>
+<pre><code>&lt;ZIP file containing SLD and icons&gt;
+</code></pre>
+</li>
+<li>
+<p>application/vnd.ogc.sld+xml:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;StyledLayerDescriptor version=&quot;1.0.0&quot; 
+ xsi:schemaLocation=&quot;http://www.opengis.net/sld StyledLayerDescriptor.xsd&quot; 
+ xmlns=&quot;http://www.opengis.net/sld&quot; 
+ xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; 
+ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; 
+ xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;!-- a Named Layer is the basic building block of an SLD document --&gt;
+  &lt;NamedLayer&gt;
+    &lt;Name&gt;default_line&lt;/Name&gt;
+    &lt;UserStyle&gt;
+    &lt;!-- Styles can have names, titles and abstracts --&gt;
+      &lt;Title&gt;Default Line&lt;/Title&gt;
+      &lt;Abstract&gt;A sample style that draws a line&lt;/Abstract&gt;
+      &lt;!-- FeatureTypeStyles describe how to render different features --&gt;
+      &lt;!-- A FeatureTypeStyle for rendering lines --&gt;
+      &lt;FeatureTypeStyle&gt;
+        &lt;Rule&gt;
+          &lt;Name&gt;rule1&lt;/Name&gt;
+          &lt;Title&gt;Blue Line&lt;/Title&gt;
+          &lt;Abstract&gt;A solid blue line with a 1 pixel width&lt;/Abstract&gt;
+          &lt;LineSymbolizer&gt;
+            &lt;Stroke&gt;
+              &lt;CssParameter name=&quot;stroke&quot;&gt;#0000FF&lt;/CssParameter&gt;
+            &lt;/Stroke&gt;
+          &lt;/LineSymbolizer&gt;
+        &lt;/Rule&gt;
+      &lt;/FeatureTypeStyle&gt;
+    &lt;/UserStyle&gt;
+  &lt;/NamedLayer&gt;
+&lt;/StyledLayerDescriptor&gt;
+</code></pre>
+</li>
+</ul>
+ </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">raw (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; When set to &quot;true&quot;, will forgo parsing and encoding of the uploaded style content, and instead the style will be streamed directly to the GeoServer configuration. Use this setting if the content and formatting of the style is to be preserved exactly. May result in an invalid and unusable style if the payload is malformed. Allowable values are &quot;true&quot; or &quot;false&quot; (default). Only used when uploading a style file. default: false </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /styles</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putStyles</span>)</div>
+    <div class="method-notes">Invalid. Use POST for adding a new style, or use PUT with /styles/{style} to edit/upload an existing style.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putWorkspaceStyle"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /rest/workspaces/{workspace}/styles/{style}</code></pre></div>
+    <div class="method-summary">Modify a single style in a given workspace (<span class="nickname">putWorkspaceStyle</span>)</div>
+    <div class="method-notes"><p>Modifies a single style in a given workspace.
+Use the &quot;Accept:&quot; header to specify format or append an extension to the endpoint (example <code>/workspaces/{workspace}/styles/{style}.xml</code> for XML).</p>
+<p>Using PUT with the <code>application/xml</code> or <code>application/json</code> content modifies the style info in the catalog and does not alter the style content.
+Using PUT with any other format will modify the content of the style. You can also use PUT with a ZIP file to upload a SLD 1.0 (<code>application/vnd.ogc.sld+xml</code>) file and any associated icon files</p>
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the workspace for style definitions </div><div class="param">style (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the style to retrieve. </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/zip</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/vnd.ogc.sld+xml</code></li>
+      <li><code>application/vnd.ogc.se+xml</code></li>
+      <li><code>application/vnd.geoserver.geocss+css</code></li>
+      <li><code>application/vnd.geoserver.ysld+yaml</code></li>
+      <li><code>application/vnd.geoserver.mbstyle+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">styleBody <a href="#StyleInfoPost">StyleInfoPost</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; <p>The style body of a request. For a PUT, only values which should be changed need to be included.
+JSON or XML style uploads follow the schema, and alter the style configuration. For example:</p>
+<ul>
+<li>
+<p>application/xml:</p>
+<pre><code>&lt;style&gt;
+  &lt;name&gt;roads_style&lt;/name&gt;
+  &lt;languageVersion&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+  &lt;/languageVersion&gt;
+  &lt;filename&gt;roads.sld&lt;/filename&gt;
+  &lt;legend&gt;
+    &lt;width&gt;32&lt;/width&gt;
+    &lt;height&gt;32&lt;/height&gt;
+    &lt;format&gt;image/png; charset=UTF-8&lt;/format&gt;
+    &lt;onlineResource&gt;legend.png&lt;/onlineResource&gt;
+  &lt;/legend&gt;
+&lt;/style&gt;
+</code></pre>
+</li>
+<li>
+<p>application/json:</p>
+<pre><code>{
+  &quot;style&quot;: { 
+    &quot;name&quot;: &quot;roads_style&quot;, 
+    &quot;languageVersion&quot;: {
+      &quot;version&quot;: &quot;1.0.0&quot;
+    },
+    &quot;filename&quot;: &quot;roads.sld&quot;,
+    &quot;legend&quot;: {
+      &quot;format&quot;: &quot;image/png; charset=UTF-8&quot;,
+      &quot;height&quot;: 32,
+      &quot;width&quot;: 32,
+      &quot;onlineResource&quot;: &quot;grass_fill.png&quot;
+    }
+  }
+}
+</code></pre>
+</li>
+</ul>
+<p>Otherwise, the style body is an actual style:</p>
+<ul>
+<li>
+<p>application/zip:</p>
+<pre><code>&lt;ZIP file containing SLD and icons&gt;
+</code></pre>
+</li>
+<li>
+<p>application/vnd.ogc.sld+xml:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;StyledLayerDescriptor version=&quot;1.0.0&quot; 
+ xsi:schemaLocation=&quot;http://www.opengis.net/sld StyledLayerDescriptor.xsd&quot; 
+ xmlns=&quot;http://www.opengis.net/sld&quot; 
+ xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; 
+ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; 
+ xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;!-- a Named Layer is the basic building block of an SLD document --&gt;
+  &lt;NamedLayer&gt;
+    &lt;Name&gt;default_line&lt;/Name&gt;
+    &lt;UserStyle&gt;
+    &lt;!-- Styles can have names, titles and abstracts --&gt;
+      &lt;Title&gt;Default Line&lt;/Title&gt;
+      &lt;Abstract&gt;A sample style that draws a line&lt;/Abstract&gt;
+      &lt;!-- FeatureTypeStyles describe how to render different features --&gt;
+      &lt;!-- A FeatureTypeStyle for rendering lines --&gt;
+      &lt;FeatureTypeStyle&gt;
+        &lt;Rule&gt;
+          &lt;Name&gt;rule1&lt;/Name&gt;
+          &lt;Title&gt;Blue Line&lt;/Title&gt;
+          &lt;Abstract&gt;A solid blue line with a 1 pixel width&lt;/Abstract&gt;
+          &lt;LineSymbolizer&gt;
+            &lt;Stroke&gt;
+              &lt;CssParameter name=&quot;stroke&quot;&gt;#0000FF&lt;/CssParameter&gt;
+            &lt;/Stroke&gt;
+          &lt;/LineSymbolizer&gt;
+        &lt;/Rule&gt;
+      &lt;/FeatureTypeStyle&gt;
+    &lt;/UserStyle&gt;
+  &lt;/NamedLayer&gt;
+&lt;/StyledLayerDescriptor&gt;
+</code></pre>
+</li>
+</ul>
+ </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">raw (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; When set to &quot;true&quot;, will forgo parsing and encoding of the uploaded style content, and instead the style will be streamed directly to the GeoServer configuration. Use this setting if the content and formatting of the style is to be preserved exactly. May result in an invalid and unusable style if the payload is malformed. Allowable values are &quot;true&quot; or &quot;false&quot; (default). Only used when uploading a style file. </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putWorkspaceStyles"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workspaces/{workspace}/styles</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">putWorkspaceStyles</span>)</div>
+    <div class="method-notes">Invalid. Use POST for adding a new style, or use PUT with /workspaces/{workspace}/styles/{style} to edit/upload an existing style.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workspace (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of workspace </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Method Not Allowed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Style"><code>Style</code> - style</a></li>
+    <li><a href="#StyleInfoPost"><code>StyleInfoPost</code> - style</a></li>
+    <li><a href="#StyleLayer"><code>StyleLayer</code> - style</a></li>
+    <li><a href="#StyleLayer_layer"><code>StyleLayer_layer</code> - </a></li>
+    <li><a href="#StyleList"><code>StyleList</code> - styles</a></li>
+    <li><a href="#StyleListItem"><code>StyleListItem</code> - style</a></li>
+    <li><a href="#StyleWorkspace"><code>StyleWorkspace</code> - style</a></li>
+    <li><a href="#StyleWorkspace_workspace"><code>StyleWorkspace_workspace</code> - </a></li>
+    <li><a href="#Style_languageVersion"><code>Style_languageVersion</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Style"><code>Style</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of style </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Format of style </div>
+<div class="param">languageVersion (optional)</div><div class="param-desc"><span class="param-type"><a href="#Style_languageVersion">Style_languageVersion</a></span>  </div>
+<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> File name of the style </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleInfoPost"><code>StyleInfoPost</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of style </div>
+          <div class="param-desc"><span class="param-type">example: roads_style</span></div>
+<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of filename containing SLD code </div>
+          <div class="param-desc"><span class="param-type">example: roads.sld</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleLayer"><code>StyleLayer</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of style </div>
+<div class="param">layer (optional)</div><div class="param-desc"><span class="param-type"><a href="#StyleLayer_layer">StyleLayer_layer</a></span>  </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Format of style </div>
+<div class="param">languageVersion (optional)</div><div class="param-desc"><span class="param-type"><a href="#Style_languageVersion">Style_languageVersion</a></span>  </div>
+<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> File name of the style </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleLayer_layer"><code>StyleLayer_layer</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of layer containing the style </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleList"><code>StyleList</code> - styles</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleListItem"><code>StyleListItem</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of style </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to style definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleWorkspace"><code>StyleWorkspace</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of style </div>
+<div class="param">workspace (optional)</div><div class="param-desc"><span class="param-type"><a href="#StyleWorkspace_workspace">StyleWorkspace_workspace</a></span>  </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Format of style </div>
+<div class="param">languageVersion (optional)</div><div class="param-desc"><span class="param-type"><a href="#Style_languageVersion">Style_languageVersion</a></span>  </div>
+<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> File name of the style </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="StyleWorkspace_workspace"><code>StyleWorkspace_workspace</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of workspace containing the style </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Style_languageVersion"><code>Style_languageVersion</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">version (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Version of style format </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

@@ -1,0 +1,1067 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GeoServer Importer Extension - Main</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>GeoServer Importer Extension - Main</h1>
+    <div class="app-desc">The Importer extension gives a GeoServer administrator an alternate, more-streamlined method for uploading and configuring new layers. The main endpoint manages individual import jobs. The importer extension is an optional install and may not be available on all deployments of GeoServer</div>
+    <div class="app-desc">More information: <a href="https://geoserver.org/comm/">https://geoserver.org/comm/</a></div>
+    <div class="app-desc">Contact Info: <a href="geoserver-users@osgeo.org">geoserver-users@osgeo.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/geoserver/rest</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Importer">Importer</a></h4>
+  <ul>
+  <li><a href="#deleteImport"><code><span class="http-method">delete</span> /imports/{importId}</code></a></li>
+  <li><a href="#deleteImports"><code><span class="http-method">delete</span> /imports</code></a></li>
+  <li><a href="#getImport"><code><span class="http-method">get</span> /imports/{importId}</code></a></li>
+  <li><a href="#getImports"><code><span class="http-method">get</span> /imports</code></a></li>
+  <li><a href="#postImport"><code><span class="http-method">post</span> /imports/{importId}</code></a></li>
+  <li><a href="#postImports"><code><span class="http-method">post</span> /imports</code></a></li>
+  <li><a href="#putImport"><code><span class="http-method">put</span> /imports/{importId}</code></a></li>
+  </ul>
+
+  <h1><a name="Importer">Importer</a></h1>
+  <div class="method"><a name="deleteImport"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /imports/{importId}</code></pre></div>
+    <div class="method-summary">Delete an import (<span class="nickname">deleteImport</span>)</div>
+    <div class="method-notes">Deletes the import with id {importId}, as long as it is not in the COMPLETE state.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No Content.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteImports"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /imports</code></pre></div>
+    <div class="method-summary">Delete all imports (<span class="nickname">deleteImports</span>)</div>
+    <div class="method-notes">Deletes all imports that are not in the COMPLETE state.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    No Content.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getImport"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /imports/{importId}</code></pre></div>
+    <div class="method-summary">Retrieve import by id (<span class="nickname">getImport</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">importId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the import </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">expand (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; What level to expand the response object to. Can be &quot;self&quot; (expand only the response object and its immediate children), &quot;all&quot; (expand all children), &quot;none&quot; (don't include any children), or a nonnegative integer, indicating the depth of children to expand to. default: self </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Context">Context</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : {
+    "type" : "remote"
+  },
+  "targetStore" : {
+    "href" : "href",
+    "store" : "{}"
+  },
+  "targetWorkspace" : "targetWorkspace",
+  "transforms" : "",
+  "archive" : true,
+  "id" : "id",
+  "href" : "href",
+  "state" : "INIT",
+  "message" : "message",
+  "tasks" : ""
+}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>aeiou</id>
+  <href>aeiou</href>
+  <state>aeiou</state>
+  <message>aeiou</message>
+  <archive>true</archive>
+  <targetWorkspace>aeiou</targetWorkspace>
+null
+null
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/html</code></li>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Context">Context</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getImports"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /imports</code></pre></div>
+    <div class="method-summary">Get a list of all imports (<span class="nickname">getImports</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">expand (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; What level to expand the response object to. Can be &quot;self&quot; (expand only the response object and its immediate children), &quot;all&quot; (expand all children), &quot;none&quot; (don't include any children), or a nonnegative integer, indicating the depth of children to expand to. default: none </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Contexts">Contexts</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{\n   \"imports\": [{\n     \"id\": 0,\n     \"state\": \"COMPLETE\",\n     \"href\": \"http://localhost:8080/geoserver/rest/imports/0\"\n   }, {\n     \"id\": 1,\n     \"state\": \"PENDING\",\n     \"href\": \"http://localhost:8080/geoserver/rest/imports/1\"\n   }]\n}\n"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#Contexts">Contexts</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+   "imports": [{
+     "id": 0,
+     "state": "COMPLETE",
+     "href": "http://localhost:8080/geoserver/rest/imports/0"
+   }, {
+     "id": 1,
+     "state": "PENDING",
+     "href": "http://localhost:8080/geoserver/rest/imports/1"
+   }]
+}
+</code></pre>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postImport"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /imports/{importId}</code></pre></div>
+    <div class="method-summary">Create a new import, or execute an existing import (<span class="nickname">postImport</span>)</div>
+    <div class="method-notes">If an import with the id {importId} exists and is not in the INIT state, it is executed. If an import with that id does not exist, a new import is created with that id. If the exec parameter is true, this new import is immediately executed.</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">importBody <a href="#Context">Context</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The import context to create. </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">async (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Run the import asyncronously. default: false </div><div class="param">exec (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Run the import when it is created. default: false </div><div class="param">expand (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; What level to expand the response object to. Can be &quot;self&quot; (expand only the response object and its immediate children), &quot;all&quot; (expand all children), &quot;none&quot; (don't include any children), or a nonnegative integer, indicating the depth of children to expand to. default: self </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Context">Context</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : {
+    "type" : "remote"
+  },
+  "targetStore" : {
+    "href" : "href",
+    "store" : "{}"
+  },
+  "targetWorkspace" : "targetWorkspace",
+  "transforms" : "",
+  "archive" : true,
+  "id" : "id",
+  "href" : "href",
+  "state" : "INIT",
+  "message" : "message",
+  "tasks" : ""
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created. Returned if the import was created.
+        <a href="#Context">Context</a>
+    <h4 class="field-label">204</h4>
+    No Content. Returned if the import already existed and was executed.
+        <a href="#"></a>
+    <h4 class="field-label">412</h4>
+    Precondition Failed. Returned if the import already existed and was in the INIT state.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="postImports"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /imports</code></pre></div>
+    <div class="method-summary">Create a new import (<span class="nickname">postImports</span>)</div>
+    <div class="method-notes">Creates a new import. If the exec parameter is true, that import is immediately executed.</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">importBody <a href="#Context">Context</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The import context to create. </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">async (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Run the import asyncronously. default: false </div><div class="param">exec (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Run the import when it is created. default: false </div><div class="param">expand (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; What level to expand the response object to. Can be &quot;self&quot; (expand only the response object and its immediate children), &quot;all&quot; (expand all children), &quot;none&quot; (don't include any children), or a nonnegative integer, indicating the depth of children to expand to. default: self </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Context">Context</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : {
+    "type" : "remote"
+  },
+  "targetStore" : {
+    "href" : "href",
+    "store" : "{}"
+  },
+  "targetWorkspace" : "targetWorkspace",
+  "transforms" : "",
+  "archive" : true,
+  "id" : "id",
+  "href" : "href",
+  "state" : "INIT",
+  "message" : "message",
+  "tasks" : ""
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#Context">Context</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="putImport"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /imports/{importId}</code></pre></div>
+    <div class="method-summary">Tries to create a new import with the provided id. (<span class="nickname">putImport</span>)</div>
+    <div class="method-notes">Creates a new import with the next unclaimed id &gt;= {importId}. If the exec parameter is true, that import is immediately executed.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">importBody <a href="#Context">Context</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The import context to create. </div>
+
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">async (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Run the import asyncronously. default: false </div><div class="param">exec (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Run the import when it is created. default: false </div><div class="param">expand (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; What level to expand the response object to. Can be &quot;self&quot; (expand only the response object and its immediate children), &quot;all&quot; (expand all children), &quot;none&quot; (don't include any children), or a nonnegative integer, indicating the depth of children to expand to. default: self </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Context">Context</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : {
+    "type" : "remote"
+  },
+  "targetStore" : {
+    "href" : "href",
+    "store" : "{}"
+  },
+  "targetWorkspace" : "targetWorkspace",
+  "transforms" : "",
+  "archive" : true,
+  "id" : "id",
+  "href" : "href",
+  "state" : "INIT",
+  "message" : "message",
+  "tasks" : ""
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>text/html</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created
+        <a href="#Context">Context</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#AttributeRemapTransform"><code>AttributeRemapTransform</code> - AttributeRemapTransform</a></li>
+    <li><a href="#AttributesToPointGeometryTransform"><code>AttributesToPointGeometryTransform</code> - AttributesToPointGeometryTransform</a></li>
+    <li><a href="#Bbox"><code>Bbox</code> - Bbox</a></li>
+    <li><a href="#Context"><code>Context</code> - context</a></li>
+    <li><a href="#Contexts"><code>Contexts</code> - imports</a></li>
+    <li><a href="#CoverageStore"><code>CoverageStore</code> - Store</a></li>
+    <li><a href="#CoverageStore_coverageStore"><code>CoverageStore_coverageStore</code> - </a></li>
+    <li><a href="#CoverageStore_coverageStore_coverages"><code>CoverageStore_coverageStore_coverages</code> - </a></li>
+    <li><a href="#CoverageStore_coverageStore_workspace"><code>CoverageStore_coverageStore_workspace</code> - </a></li>
+    <li><a href="#CreateIndexTransform"><code>CreateIndexTransform</code> - CreateIndexTransform</a></li>
+    <li><a href="#Data"><code>Data</code> - data</a></li>
+    <li><a href="#DataFormatTransform"><code>DataFormatTransform</code> - DataFormatTransform</a></li>
+    <li><a href="#DataStore"><code>DataStore</code> - Store</a></li>
+    <li><a href="#Database"><code>Database</code> - database</a></li>
+    <li><a href="#Directory"><code>Directory</code> - directory</a></li>
+    <li><a href="#FeatureType"><code>FeatureType</code> - featureType</a></li>
+    <li><a href="#FeatureType_inner"><code>FeatureType_inner</code> - </a></li>
+    <li><a href="#File"><code>File</code> - file</a></li>
+    <li><a href="#FileContents"><code>FileContents</code> - filecontents</a></li>
+    <li><a href="#Files"><code>Files</code> - files</a></li>
+    <li><a href="#GdalAddoTransform"><code>GdalAddoTransform</code> - GdalAddoTransform</a></li>
+    <li><a href="#GdalTranslateTransform"><code>GdalTranslateTransform</code> - GdalTranslateTransform</a></li>
+    <li><a href="#GdalWarpTransform"><code>GdalWarpTransform</code> - GdalWarpTransform</a></li>
+    <li><a href="#IntegerFieldToDateTransform"><code>IntegerFieldToDateTransform</code> - IntegerFieldToDateTransform</a></li>
+    <li><a href="#Layer"><code>Layer</code> - layer</a></li>
+    <li><a href="#Message"><code>Message</code> - message</a></li>
+    <li><a href="#Messages"><code>Messages</code> - messages</a></li>
+    <li><a href="#PostScriptTransform"><code>PostScriptTransform</code> - PostScriptTransform</a></li>
+    <li><a href="#Remote"><code>Remote</code> - remote</a></li>
+    <li><a href="#ReprojectTransform"><code>ReprojectTransform</code> - ReprojectTransform</a></li>
+    <li><a href="#Store"><code>Store</code> - store</a></li>
+    <li><a href="#Style"><code>Style</code> - style</a></li>
+    <li><a href="#Style_languageVersion"><code>Style_languageVersion</code> - </a></li>
+    <li><a href="#Table"><code>Table</code> - table</a></li>
+    <li><a href="#Task"><code>Task</code> - task</a></li>
+    <li><a href="#Tasks"><code>Tasks</code> - tasks</a></li>
+    <li><a href="#Transform"><code>Transform</code> - transform</a></li>
+    <li><a href="#TransformChain"><code>TransformChain</code> - transformChain</a></li>
+    <li><a href="#Transforms"><code>Transforms</code> - transforms</a></li>
+    <li><a href="#datastore"><code>datastore</code> - </a></li>
+    <li><a href="#messages"><code>messages</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="AttributeRemapTransform"><code>AttributeRemapTransform</code> - AttributeRemapTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that maps an attribute from one type to another.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;AttributeRemapTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">field (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The field to remap. </div>
+<div class="param">target (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type to map the attribute to. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="AttributesToPointGeometryTransform"><code>AttributesToPointGeometryTransform</code> - AttributesToPointGeometryTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that maps two numerical attributes to a point geometry.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;AttributesToPointGeometryTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">latField (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The field used for the lattitude </div>
+<div class="param">lonField (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The field used for the longitude </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Bbox"><code>Bbox</code> - Bbox</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A spatially referenced bounding box.</div>
+    <div class="field-items">
+      <div class="param">minx (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The minimum x value </div>
+<div class="param">miny (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The minimum y value </div>
+<div class="param">maxx (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The maximum x value </div>
+<div class="param">maxy (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The maximum y value </div>
+<div class="param">crs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The WKT representation of the CRS. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Context"><code>Context</code> - context</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An import context</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The import id </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the import context endpoint </div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> State of the import. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">INIT</div><div class="param-enum">INIT_ERROR</div><div class="param-enum">PENDING</div><div class="param-enum">RUNNING</div><div class="param-enum">COMPLETE</div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The current context message, if any </div>
+<div class="param">archive (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Flag to control whether imported files (indirect) should be archived after import </div>
+<div class="param">targetWorkspace (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Target workspace of the import, if any. </div>
+<div class="param">targetStore (optional)</div><div class="param-desc"><span class="param-type"><a href="#Store">Store</a></span>  </div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#Data">Data</a></span>  </div>
+<div class="param">transforms (optional)</div><div class="param-desc"><span class="param-type"><a href="#Transforms">Transforms</a></span>  </div>
+<div class="param">tasks (optional)</div><div class="param-desc"><span class="param-type"><a href="#Tasks">Tasks</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Contexts"><code>Contexts</code> - imports</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>List of import contexts.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStore"><code>CoverageStore</code> - Store</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A raster store</div>
+    <div class="field-items">
+      <div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the task target endpoint </div>
+<div class="param">coverageStore (optional)</div><div class="param-desc"><span class="param-type"><a href="#CoverageStore_coverageStore">CoverageStore_coverageStore</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStore_coverageStore"><code>CoverageStore_coverageStore</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the coverage store </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Description of the coverage store </div>
+<div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type of coverage store </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Whether the store is enabled, or not </div>
+<div class="param">workspace (optional)</div><div class="param-desc"><span class="param-type"><a href="#CoverageStore_coverageStore_workspace">CoverageStore_coverageStore_workspace</a></span>  </div>
+<div class="param">__default__ (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Whether the store is the default store of the workspace </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Location of the raster data source (often, but not necessarily, a file). Can be relative to the data directory. </div>
+<div class="param">coverages (optional)</div><div class="param-desc"><span class="param-type"><a href="#CoverageStore_coverageStore_coverages">CoverageStore_coverageStore_coverages</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStore_coverageStore_coverages"><code>CoverageStore_coverageStore_coverages</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A link to the list of coverages contained in this store </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CoverageStore_coverageStore_workspace"><code>CoverageStore_coverageStore_workspace</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The workspace containing the store</div>
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the workspace </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A link to the workspace representation </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CreateIndexTransform"><code>CreateIndexTransform</code> - CreateIndexTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that creates an index in the data (assuming the import data is a database).</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;CreateIndexTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">field (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The field to create the index for </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Data"><code>Data</code> - data</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data representation. Paramaters vary depending on the type.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of the data </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">remote</div><div class="param-enum">file</div><div class="param-enum">directory</div><div class="param-enum">mosaic</div><div class="param-enum">database</div><div class="param-enum">table</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DataFormatTransform"><code>DataFormatTransform</code> - DataFormatTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that converts a non date attribute in a date attribute.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;DataFormatTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">field (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The field to apply the transform to </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A date parsing pattern, setup using the Java SimpleDateFormat syntax. In case it's missing, a number of built-in formats will be tried instead (short and full ISO date formats, dates without any separators). </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DataStore"><code>DataStore</code> - Store</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A vector store</div>
+    <div class="field-items">
+      <div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the task target endpoint </div>
+<div class="param">datastore (optional)</div><div class="param-desc"><span class="param-type"><a href="#datastore">datastore</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Database"><code>Database</code> - database</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An import data object representing a database</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;database&quot; </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the database endpoint </div>
+<div class="param">properties (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span> Database connection parameters. Actual paramaters vary depending on the type of database. </div>
+<div class="param">tables (optional)</div><div class="param-desc"><span class="param-type"><a href="#Table">array[Table]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Directory"><code>Directory</code> - directory</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An import data object representing a directory of spatial files or an image mosaic</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;directory&quot; or &quot;mosaic&quot; </div>
+<div class="param">location (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Absolute system path to the directory </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the directory endpoint </div>
+<div class="param">charset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Charset encoding of the data </div>
+<div class="param">files (optional)</div><div class="param-desc"><span class="param-type"><a href="#Files">Files</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureType"><code>FeatureType</code> - featureType</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Feature type attributes</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FeatureType_inner"><code>FeatureType_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A feature type attribute.</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the attribute </div>
+<div class="param">binding (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The java class representing the type of the attribute </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="File"><code>File</code> - file</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An import data object representing a spatial file or granule</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;file&quot; </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Format of the file </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the file endpoint </div>
+<div class="param">location (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Absolute system path to the file </div>
+<div class="param">charset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The charset encoding of the data </div>
+<div class="param">file (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the file </div>
+<div class="param">prj (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the .prj file, if applicable </div>
+<div class="param">other (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> List of other files that comprise this spatial file. </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#Message">Message</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FileContents"><code>FileContents</code> - filecontents</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Description of a spatial file or granule</div>
+    <div class="field-items">
+      <div class="param">file (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the file </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the file endpoint </div>
+<div class="param">prj (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the .prj file, if applicable </div>
+<div class="param">other (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> List of other files that comprise this spatial file. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Files"><code>Files</code> - files</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>List of file descriptors</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="GdalAddoTransform"><code>GdalAddoTransform</code> - GdalAddoTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that runs gdaladdo on a input raster file.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;GdalAddoTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">options (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Array of options that are passed to gdal when running the transform </div>
+<div class="param">levels (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span> The levels </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="GdalTranslateTransform"><code>GdalTranslateTransform</code> - GdalTranslateTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that runs gdal_translate on a input raster file.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;GdalTranslateTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">options (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Array of options that are passed to gdal when running the transform </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="GdalWarpTransform"><code>GdalWarpTransform</code> - GdalWarpTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that runs gdalwarp on a input raster file.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;GdalWarpTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">options (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Array of options that are passed to gdal when running the transform </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IntegerFieldToDateTransform"><code>IntegerFieldToDateTransform</code> - IntegerFieldToDateTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that allows a string or number field to be used as a year Date. The number is interpreted as an Integer.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;IntegerFieldToDateTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">field (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The field to apply the transform to </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Layer"><code>Layer</code> - layer</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A layer</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the layer </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the importer layer endpoint </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The layer title </div>
+<div class="param">abstract (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The layer abstract </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The layer description </div>
+<div class="param">originalName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The original name of the layer. This may be different from the name if this name already exists in geoserver. </div>
+<div class="param">nativeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the underlying resource </div>
+<div class="param">srs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SRS of the layer </div>
+<div class="param">bbox (optional)</div><div class="param-desc"><span class="param-type"><a href="#Bbox">Bbox</a></span>  </div>
+<div class="param">attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#FeatureType">FeatureType</a></span>  </div>
+<div class="param">style (optional)</div><div class="param-desc"><span class="param-type"><a href="#Style">Style</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Message"><code>Message</code> - message</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A message about the import data.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Messages"><code>Messages</code> - messages</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A list of log messages</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PostScriptTransform"><code>PostScriptTransform</code> - PostScriptTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Invokes a script found in $GEOSERVER_DATA_DIR/importer/scripts</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;PostScriptTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the script to be invoked </div>
+<div class="param">options (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Array of options that are passed to the script when running the transform </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Remote"><code>Remote</code> - remote</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An import data object representing remote data.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;remote&quot; </div>
+<div class="param">location (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The location from which to fetch the data. </div>
+<div class="param">username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Username required to access the data (optional). </div>
+<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Password required to access the data (optional). </div>
+<div class="param">domain (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> domain of the data. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ReprojectTransform"><code>ReprojectTransform</code> - ReprojectTransform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform that reprojects the geometry from one CRS to another.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;ReprojectTransform&quot; </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+<div class="param">source (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The CRS to reproject from </div>
+<div class="param">target (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The CRS to reproject to </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Store"><code>Store</code> - store</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A store</div>
+    <div class="field-items">
+      <div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the task target endpoint </div>
+<div class="param">store (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span> JSON representation of the store </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Style"><code>Style</code> - style</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A layer style</div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the style </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the importer layer style endpoint </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Format of style </div>
+<div class="param">languageVersion (optional)</div><div class="param-desc"><span class="param-type"><a href="#Style_languageVersion">Style_languageVersion</a></span>  </div>
+<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> File name of the style </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Style_languageVersion"><code>Style_languageVersion</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">version (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Version of style format </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Table"><code>Table</code> - table</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An import data object representing a a database table</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> &quot;table&quot; </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the table endpoint </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Task"><code>Task</code> - task</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An import task</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The task id </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the task endpoint </div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> State of the task. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">PENDING</div><div class="param-enum">READY</div><div class="param-enum">RUNNING</div><div class="param-enum">NO_CRS</div><div class="param-enum">NO_BOUNDS</div><div class="param-enum">NO_FORMAT</div><div class="param-enum">BAD_FORMAT</div><div class="param-enum">ERROR</div><div class="param-enum">CANCELED</div><div class="param-enum">COMPLETE</div>
+<div class="param">updateMode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Update mode of the task. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">CREATE</div><div class="param-enum">REPLACE</div><div class="param-enum">APPEND</div><div class="param-enum">UPDATE</div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#Data">Data</a></span>  </div>
+<div class="param">target (optional)</div><div class="param-desc"><span class="param-type"><a href="#Store">Store</a></span>  </div>
+<div class="param">progress (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the progress endpoint for this task </div>
+<div class="param">layer (optional)</div><div class="param-desc"><span class="param-type"><a href="#Layer">Layer</a></span>  </div>
+<div class="param">errorMessage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Any error messages for the task, concatenated. </div>
+<div class="param">transformChain (optional)</div><div class="param-desc"><span class="param-type"><a href="#TransformChain">TransformChain</a></span>  </div>
+<div class="param">messages (optional)</div><div class="param-desc"><span class="param-type"><a href="#Messages">Messages</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Tasks"><code>Tasks</code> - tasks</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A list of tasks</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Transform"><code>Transform</code> - transform</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A data transform applied to the import data.</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the transform </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to the transform endpoint </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TransformChain"><code>TransformChain</code> - transformChain</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A chain of tranform operations to apply during the import process</div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of transforms in the chain. One of &quot;vector&quot; or &quot;raster&quot; </div>
+<div class="param">transforms (optional)</div><div class="param-desc"><span class="param-type"><a href="#Transforms">Transforms</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Transforms"><code>Transforms</code> - transforms</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A list of transforms</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="datastore"><code>datastore</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of data store </div>
+<div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL to data store definition </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="messages"><code>messages</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">level (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Level of the log message. </div>
+<div class="param">messsage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The log message </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
