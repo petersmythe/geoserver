@@ -119,6 +119,7 @@ extra_javascript:
   - javascripts/hide-empty-toc.js
 
 nav:
+  - Home: index.md
   - User Manual:
     - en/user/index.md
     - Introduction:
