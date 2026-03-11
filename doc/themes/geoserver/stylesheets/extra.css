@@ -48,13 +48,13 @@
   position: sticky;
   top: 4.8rem;  /* Header (2.4rem) + Navigation tabs (2.4rem) = 4.8rem */
   z-index: 1;  /* Lower z-index so hamburger menu (z-index: 4) appears above */
-  margin: -1.5rem 0rem 1rem 0rem;  /* No negative top margin - let it flow naturally */
-  padding: 0.5rem 0.8rem;
-  font-size: 0.85rem;
+  margin: -1.5rem 0rem 1rem 0rem;
+  padding: 0.35rem 0.8rem;  /* Reduced from 0.5rem to make it more compact */
+  font-size: 0.75rem;  /* Reduced from 0.85rem for smaller text */
   color: rgba(255, 255, 255, 0.9);
   background-color: var(--md-primary-fg-color);  /* Blue background matching header */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);  /* Subtler shadow */
   transition: background-color 0.25s ease, box-shadow 0.2s ease;
 }
 
@@ -87,9 +87,14 @@
 
 /* Breadcrumb links */
 .md-path__link {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.7);  /* Much more transparent for non-current items */
   text-decoration: none;
   transition: color 0.2s ease;
+}
+
+/* Make only the first breadcrumb item uppercase (the top-level section) */
+.md-path__item:first-child .md-path__link {
+  text-transform: uppercase;
 }
 
 .md-path__link:hover {
@@ -103,11 +108,11 @@
   border-radius: 2px;
 }
 
-/* Current page (last breadcrumb) */
+/* Current page (last breadcrumb) - make it clickable to go to parent index */
 .md-path__item:last-child .md-path__link {
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
-  pointer-events: none;
+  /* Removed pointer-events: none to make last breadcrumb clickable */
 }
 
 /* Breadcrumb separator - Material for MkDocs provides default separator */
@@ -228,11 +233,14 @@
 .md-nav--secondary .md-nav__item {
   padding: 0;
   margin: 0;
+  line-height: 1.1 !important;  /* Tighter line-height for TOC */
 }
 
 .md-nav--secondary .md-nav__link {
-  padding: 0.25rem 0;  /* Reduced from default 0.625rem */
+  padding: 0.1rem 0;  /* Very tight spacing - much less than main nav (0.25rem) */
   font-size: 0.75rem;
+  color: var(--md-default-fg-color--light) !important;  /* Lighter grey to match PAGE CONTENTS heading */
+  line-height: 1.1 !important;  /* Tighter line-height */
 }
 
 /* Reduce spacing for nested items */
@@ -241,7 +249,7 @@
 }
 
 .md-nav--secondary .md-nav__item .md-nav__item .md-nav__link {
-  padding: 0.2rem 0;  /* Even tighter for nested items */
+  padding: 0.05rem 0;  /* Extremely tight for nested TOC items */
 }
 
 
@@ -258,8 +266,22 @@
   padding-left: 0.6rem;
 }
 
+/* Add vertical line for ALL items under top-level sections (User Manual, Developer Guide, etc.) */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link.md-nav__container + .md-nav {
+  border-left: 1px solid var(--md-default-fg-color--lightest);
+  margin-left: 0.6rem;
+  padding-left: 0.6rem;
+}
+
 /* Right sidebar (TOC) - add vertical line for nested items */
 .md-nav--secondary .md-nav__list {
+  border-left: 1px solid var(--md-default-fg-color--lightest);
+  padding-left: 0.8rem;
+  margin-left: 0.2rem;
+}
+
+/* Ensure the top-level TOC list also has the vertical line */
+.md-nav--secondary > .md-nav__list {
   border-left: 1px solid var(--md-default-fg-color--lightest);
   padding-left: 0.8rem;
   margin-left: 0.2rem;
@@ -276,47 +298,28 @@
  * Reduce spacing for collapsed navigation sections
  */
 
-/* CRITICAL: Target the <li> elements directly - they're the source of spacing */
-.md-nav--primary > .md-nav__list > .md-nav__item {
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0 !important;  /* Force line-height to 0 on the container */
-  font-size: 0 !important;    /* Collapse any text node spacing */
-}
-
-/* Also target nested list items */
+/* CRITICAL: Consistent spacing for all navigation items */
 .md-nav--primary .md-nav__item {
   margin: 0 !important;
   padding: 0 !important;
-  line-height: 0 !important;
-  font-size: 0 !important;
+  line-height: 1.5 !important;  /* Consistent line-height for all items */
 }
 
-/* Target active breadcrumb items specifically */
-.md-nav--primary .md-nav__item--active {
+/* Ensure links have consistent vertical spacing */
+.md-nav--primary .md-nav__link {
+  display: block !important;
   margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0 !important;
-  font-size: 0 !important;
+  line-height: 1.5 !important;  /* Match parent line-height */
 }
 
-/* Target simple (non-nested) nav items */
-.md-nav--primary .md-nav__item:not(.md-nav__item--nested) {
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0 !important;
-  font-size: 0 !important;
-}
-
-/* The container div inside nested items */
+/* The container div inside nested items - no extra spacing */
 .md-nav__item--nested > .md-nav__link.md-nav__container {
-  display: flex !important;  /* Use flex to control child spacing */
+  display: flex !important;
   padding: 0 !important;
   margin: 0 !important;
-  line-height: 0 !important;
-  font-size: 0 !important;
   min-height: 0 !important;
   height: auto !important;
+  line-height: 1.5 !important;  /* Match consistent line-height */
 }
 
 /* The actual link inside the container */
@@ -324,15 +327,15 @@
   display: block !important;
   padding: 0.25rem 0.8rem !important;
   margin: 0 !important;
-  line-height: normal !important;  /* Restore normal line-height for the actual link */
-  font-size: 0.8rem !important;    /* Restore font-size for the actual link */
+  line-height: 1.5 !important;  /* Match consistent line-height */
+  font-size: 0.8rem !important;
 }
 
 /* The label (expand/collapse button) */
 .md-nav__link.md-nav__container > label.md-nav__link {
   padding: 0.25rem 0.8rem !important;
   margin: 0 !important;
-  line-height: normal !important;
+  line-height: 1.5 !important;  /* Match consistent line-height */
   font-size: 0.8rem !important;
 }
 
@@ -348,11 +351,6 @@
 .md-nav__container {
   padding: 0 !important;
   margin: 0 !important;
-}
-
-/* Hide empty navigation items that are just breadcrumb placeholders */
-.md-nav--primary .md-nav__item:not(.md-nav__item--nested):not(.md-nav__item--active) {
-  display: none !important;
 }
 
 /* Center the tabs list */
@@ -375,4 +373,66 @@
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+/* Make navigation tabs uppercase */
+.md-tabs__link {
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
+
+
+/* 
+ * Fix duplicate page title in navigation
+ * 
+ * Material for MkDocs shows both a label (for TOC toggle) and a link
+ * for the active page when it has a table of contents. This creates
+ * visual duplication. Hide the label and keep only the link.
+ */
+
+/* Hide the label when the active page has both label and link with TOC */
+.md-nav__item--active > label.md-nav__link:has(+ a.md-nav__link) {
+  display: none !important;
+}
+
+/* Fallback for browsers without :has() support */
+.md-nav__item--active > input.md-nav__toggle + label.md-nav__link {
+  display: none !important;
+}
+
+
+/* 
+ * Normalize navigation link font sizes
+ * 
+ * Material for MkDocs makes nested items (with sub-menus) larger than
+ * regular items. This makes all navigation links the same size.
+ */
+
+/* Set consistent font size for all navigation links */
+.md-nav--primary .md-nav__link,
+.md-nav--primary .md-nav__link.md-nav__container,
+.md-nav--primary .md-nav__link.md-nav__container > .md-nav__link,
+.md-nav--primary .md-nav__link.md-nav__container > label.md-nav__link {
+  font-size: 0.8rem !important;
+}
+
+/* Ensure nested item containers don't increase font size */
+.md-nav__item--nested > .md-nav__link.md-nav__container {
+  font-size: 0.8rem !important;
+}
+
+
+/* 
+ * Make top-level section headings uppercase
+ * 
+ * Applies to main sections like "Developer Guide", "User Manual", etc.
+ * but not to their sub-items.
+ */
+
+/* Target only direct children of the primary nav list (level 1 items) */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link.md-nav__container > .md-nav__link {
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
 }
