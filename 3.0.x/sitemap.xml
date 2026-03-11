@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+         <loc>https://docs.geoserver.org/3.0.x/3.0.x/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
          <loc>https://docs.geoserver.org/3.0.x/3.0.x/BREADCRUMB-IMPLEMENTATION/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
@@ -10,6 +14,10 @@
     </url>
     <url>
          <loc>https://docs.geoserver.org/3.0.x/3.0.x/NAVIGATION-REDESIGN/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.geoserver.org/3.0.x/3.0.x/en/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
