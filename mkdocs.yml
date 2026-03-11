@@ -49,6 +49,8 @@ theme:
     - navigation.path
 
 extra:
+  version:
+    provider: mike
   version_selector:
     # GitHub Pages versions (new versions)
     - version: latest
