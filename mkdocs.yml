@@ -49,6 +49,8 @@ theme:
     - navigation.path
 
 extra:
+  version:
+    provider: mike
   version_selector:
     # GitHub Pages versions (new versions)
     - version: latest
@@ -119,6 +121,7 @@ extra_javascript:
   - javascripts/hide-empty-toc.js
 
 nav:
+  - Home: index.md
   - User Manual:
     - en/user/index.md
     - Introduction:
