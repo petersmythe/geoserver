@@ -1,6 +1,12 @@
 <html xmlns:wicket="http://wicket.apache.org/">
 <body>
-  <wicket:extend>
+  <wicket:panel>
+    <fieldset>
+      <legend><wicket:message key="wfsServiceControl">WFS Service Control</wicket:message></legend>
+      <div class="gs-form">
+         <div wicket:id="disabledVersions"></div>
+      </div>
+    </fieldset>
     <fieldset>
       <legend><span><wicket:message key="features">Features</wicket:message></span></legend>
       <div class="gs-form">
@@ -151,6 +157,6 @@
         </div>
       </div>
     </fieldset>
-  </wicket:extend>
+  </wicket:panel>
 </body>
 </html>

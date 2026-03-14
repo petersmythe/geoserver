@@ -6,6 +6,7 @@
 package org.geoserver.web.services;
 
 import java.io.Serial;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +22,7 @@ import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.util.CollectionModel;
+import org.geoserver.catalog.impl.ProxyUtils;
 import org.geoserver.ows.util.RequestUtils;
 import org.geoserver.web.wicket.SimpleChoiceRenderer;
 import org.geotools.util.Version;
@@ -34,15 +36,18 @@ public class DisabledVersionsPanel extends FormComponentPanel<List<Version>> {
     protected Palette<Version> palette;
     List<Behavior> toAdd = new ArrayList<>();
 
+    protected String serviceType;
     /**
-     * Creates a new DisabledVersionsPanel
+     * Creates a new DisabledVersionsPanel controlling which versions are available for specific service type
+     * ("WFS","WMS", "Features",...).
      *
      * @param id Component id
      * @param model Model holding the list of disabled versions
-     * @param serviceType The service type
+     * @param serviceType The specific service type
      */
     public DisabledVersionsPanel(String id, IModel<List<Version>> model, String serviceType) {
         super(id, model);
+        this.serviceType = serviceType;
 
         List<String> versionStrings = RequestUtils.getSupportedVersions(serviceType);
         if (versionStrings.isEmpty()) {
@@ -89,50 +94,7 @@ public class DisabledVersionsPanel extends FormComponentPanel<List<Version>> {
             }
         };
 
-        add(
-                palette =
-                        new Palette<>(
-                                "palette",
-                                safeModel,
-                                choicesModel,
-                                new SimpleChoiceRenderer<>() {
-                                    @Serial
-                                    private static final long serialVersionUID = 1L;
-
-                                    @Override
-                                    public Object getDisplayValue(Version object) {
-                                        return object.toString();
-                                    }
-
-                                    @Override
-                                    public String getIdValue(Version object, int index) {
-                                        return object.toString();
-                                    }
-                                },
-                                10,
-                                false) {
-                            @Serial
-                            private static final long serialVersionUID = 1L;
-
-                            @Override
-                            protected Recorder<Version> newRecorderComponent() {
-                                Recorder<Version> rec = super.newRecorderComponent();
-                                rec.add(toAdd.toArray(new Behavior[toAdd.size()]));
-                                toAdd.clear();
-                                return rec;
-                            }
-
-                            @Override
-                            public Component newSelectedHeader(final String componentId) {
-                                return new Label(componentId, new ResourceModel(getSelectedHeaderPropertyKey()));
-                            }
-
-                            @Override
-                            public Component newAvailableHeader(final String componentId) {
-                                return new Label(componentId, new ResourceModel(getAvailableHeaderPropertyKey()));
-                            }
-                        });
-
+        add(palette = new VersionPalette(safeModel, choicesModel));
         palette.add(new DefaultTheme());
         palette.setOutputMarkupId(true);
     }
@@ -148,17 +110,23 @@ public class DisabledVersionsPanel extends FormComponentPanel<List<Version>> {
     }
 
     /**
-     * Get versions from ServiceInfo when they're not available via RequestUtils. This is needed for services like WMTS
-     * that don't register operation beans.
+     * Get versions from ServiceInfo when they're not available via RequestUtils.
+     *
+     * <p>This is needed for services like WMTSServiceInfo that don't register operation beans.
      */
     private List<String> getVersionsFromServiceInfo(String serviceType) {
         try {
             org.geoserver.platform.GeoServerExtensions extensions = new org.geoserver.platform.GeoServerExtensions();
             org.geoserver.config.GeoServer geoServer = extensions.bean(org.geoserver.config.GeoServer.class);
             if (geoServer != null) {
-                for (org.geoserver.config.ServiceInfo service : geoServer.getServices()) {
-                    if (serviceType.equalsIgnoreCase(service.getName())) {
-                        return service.getVersions().stream()
+                for (org.geoserver.config.ServiceInfo serviceInfo : geoServer.getServices()) {
+                    if (serviceInfo instanceof Proxy) {
+                        serviceInfo = ProxyUtils.unwrap(
+                                serviceInfo,
+                                Proxy.getInvocationHandler(serviceInfo).getClass());
+                    }
+                    if (serviceInfo.getType().equalsIgnoreCase(serviceType)) {
+                        return serviceInfo.getVersions().stream()
                                 .map(Version::toString)
                                 .collect(Collectors.toList());
                     }
@@ -221,6 +189,53 @@ public class DisabledVersionsPanel extends FormComponentPanel<List<Version>> {
             if (newSelection != null) {
                 modelList.addAll(newSelection);
             }
+        }
+    }
+
+    /** Version palette for selected service. */
+    private class VersionPalette extends Palette<Version> {
+        @Serial
+        private static final long serialVersionUID = 1L;
+
+        public VersionPalette(IModel<Collection<Version>> safeModel, IModel<Collection<Version>> choicesModel) {
+            super(
+                    "palette",
+                    safeModel,
+                    choicesModel,
+                    new SimpleChoiceRenderer<>() {
+                        @Serial
+                        private static final long serialVersionUID = 1L;
+
+                        @Override
+                        public Object getDisplayValue(Version object) {
+                            return "%s %s".formatted(DisabledVersionsPanel.this.serviceType, object.toString());
+                        }
+
+                        @Override
+                        public String getIdValue(Version object, int index) {
+                            return object.toString();
+                        }
+                    },
+                    10,
+                    false);
+        }
+
+        @Override
+        protected Recorder<Version> newRecorderComponent() {
+            Recorder<Version> rec = super.newRecorderComponent();
+            rec.add(toAdd.toArray(new Behavior[toAdd.size()]));
+            toAdd.clear();
+            return rec;
+        }
+
+        @Override
+        public Component newSelectedHeader(final String componentId) {
+            return new Label(componentId, new ResourceModel(getSelectedHeaderPropertyKey()));
+        }
+
+        @Override
+        public Component newAvailableHeader(final String componentId) {
+            return new Label(componentId, new ResourceModel(getAvailableHeaderPropertyKey()));
         }
     }
 }
