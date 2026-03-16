@@ -4,7 +4,7 @@
 
 These tests MUST be written BEFORE implementing any fixes. They will FAIL on unfixed code, confirming the bugs exist.
 
-- [ ] 1. Write bug condition exploration test for navigation and title issues
+- [x] 1. Write bug condition exploration test for navigation and title issues
   - **Property 1: Bug Condition** - Navigation and Title Rendering Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -21,7 +21,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - Mark task complete when test is written, run, and failure is documented
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 2.1, 2.2, 2.3, 2.4_
 
-- [ ] 2. Write bug condition exploration test for code formatting issues
+- [x] 2. Write bug condition exploration test for code formatting issues
   - **Property 1: Bug Condition** - Code Formatting and Syntax Highlighting Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -37,7 +37,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - _Requirements: 1.5, 1.6, 1.7, 1.8, 2.5, 2.6, 2.7, 2.8_
 
 
-- [ ] 3. Write bug condition exploration test for list and nesting issues
+- [x] 3. Write bug condition exploration test for list and nesting issues
   - **Property 1: Bug Condition** - List and Nesting Structure Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -53,7 +53,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - Document counterexamples (e.g., "imagemosaic/tutorial has nested images rendered as code")
   - _Requirements: 1.9, 1.10, 1.11, 1.12, 1.13, 2.9, 2.10, 2.11, 2.12, 2.13_
 
-- [ ] 4. Write bug condition exploration test for admonition and note issues
+- [x] 4. Write bug condition exploration test for admonition and note issues
   - **Property 1: Bug Condition** - Admonition Block Rendering Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -67,7 +67,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - Document counterexamples (e.g., "wfs/axis_order shows '!!! warning' as code")
   - _Requirements: 1.14, 1.15, 1.16, 2.14, 2.15, 2.16_
 
-- [ ] 5. Write bug condition exploration test for image and caption issues
+- [x] 5. Write bug condition exploration test for image and caption issues
   - **Property 1: Bug Condition** - Image and Caption Rendering Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -80,7 +80,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - Document counterexamples (e.g., "win_installer page has captions left-aligned beside images")
   - _Requirements: 1.17, 1.18, 2.17, 2.18_
 
-- [ ] 6. Write bug condition exploration test for table structure issues
+- [x] 6. Write bug condition exploration test for table structure issues
   - **Property 1: Bug Condition** - Table Structure and Content Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -96,7 +96,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - Document counterexamples (e.g., "imagemosaic/configuration table has list items split across cells")
   - _Requirements: 1.19, 1.20, 1.21, 1.22, 1.23, 2.19, 2.20, 2.21, 2.22, 2.23_
 
-- [ ] 7. Write bug condition exploration test for link and anchor issues
+- [x] 7. Write bug condition exploration test for link and anchor issues
   - **Property 1: Bug Condition** - Link and Anchor Resolution Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -109,7 +109,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - Document counterexamples (e.g., "app-schema/app-schema-resolution shows dangling '[Cache]' anchor")
   - _Requirements: 1.24, 1.25, 2.24, 2.25_
 
-- [ ] 8. Write bug condition exploration test for indentation and whitespace issues
+- [x] 8. Write bug condition exploration test for indentation and whitespace issues
   - **Property 1: Bug Condition** - Indentation and Whitespace Rendering Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -123,7 +123,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
   - Document counterexamples (e.g., "app-schema/cql-functions has ': -' rendering as malformed text")
   - _Requirements: 1.26, 1.27, 1.28, 2.26, 2.27, 2.28_
 
-- [ ] 9. Write bug condition exploration test for heading and structure issues
+- [x] 9. Write bug condition exploration test for heading and structure issues
   - **Property 1: Bug Condition** - Heading and Structure Rendering Bugs
   - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
   - **DO NOT attempt to fix the test or the code when it fails**
@@ -140,7 +140,7 @@ These tests MUST be written BEFORE implementing any fixes. They will FAIL on unf
 
 These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed code, establishing baseline behavior to preserve.
 
-- [ ] 10. Write preservation property tests for correctly formatted pages
+- [x] 10. Write preservation property tests for correctly formatted pages
   - **Property 2: Preservation** - Correctly Formatted Content Preservation
   - **IMPORTANT**: Follow observation-first methodology
   - Observe behavior on UNFIXED code for pages without formatting issues
@@ -157,7 +157,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
   - Mark task complete when tests are written, run, and passing on unfixed code
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
 
-- [ ] 11. Write preservation property tests for MkDocs configuration
+- [x] 11. Write preservation property tests for MkDocs configuration
   - **Property 2: Preservation** - MkDocs Configuration Preservation
   - **IMPORTANT**: Follow observation-first methodology
   - Observe current MkDocs configuration on UNFIXED code
