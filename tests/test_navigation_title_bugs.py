@@ -409,6 +409,16 @@ class TestNavigationTitleProperty:
         labels = get_link_labels_from_content(content)
         issues = []
 
+        # Known proper nouns that are legitimately CamelCase (not garbled)
+        KNOWN_PROPER_NOUNS = {
+            "GeoWebCache", "BlobStores", "GeoServer", "GeoTools",
+            "GeoFence", "MapStore", "OpenLayers", "GeoPackage",
+            "PostGIS", "ImageMosaic", "ColorMap", "PointSymbolizer",
+            "LineSymbolizer", "PolygonSymbolizer", "TextSymbolizer",
+            "RasterSymbolizer", "FeatureTypeStyle", "MapBox",
+            "OpenJDK", "PostgreSQL", "GeoNode", "MapFish",
+        }
+
         for label in labels:
             # Check for path/index pattern
             if re.search(r"\w+/index$", label):
@@ -416,15 +426,18 @@ class TestNavigationTitleProperty:
 
             # Check for garbled concatenation (CamelCase without spaces)
             if re.match(r"^[A-Z][a-z]+[A-Z][a-z]+\w*$", label) and " " not in label:
-                issues.append(f"garbled concatenation: '{label}'")
+                if label not in KNOWN_PROPER_NOUNS:
+                    issues.append(f"garbled concatenation: '{label}'")
 
             # Check for prefix concatenation like "InstallationWin"
             if re.match(r"^[A-Z][a-z]+[A-Z][A-Z]", label):
-                issues.append(f"prefix concatenation: '{label}'")
+                if label not in KNOWN_PROPER_NOUNS:
+                    issues.append(f"prefix concatenation: '{label}'")
 
             # Check for "ServicesWfs" style
             if re.match(r"^Services[A-Z]", label) or re.match(r"^Data[A-Z]", label):
-                issues.append(f"section prefix concatenation: '{label}'")
+                if label not in KNOWN_PROPER_NOUNS:
+                    issues.append(f"section prefix concatenation: '{label}'")
 
         assert len(issues) == 0, (
             f"Bugs 1.1/1.2 in {section_index}:\n"

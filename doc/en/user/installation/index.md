@@ -12,6 +12,8 @@ There are many ways to install GeoServer on your system. This section will discu
     
     This must be done prior to installation.
 
+## Section contents
+
 <div class="grid cards" markdown>
 
 - [Linux binary](linux.md)

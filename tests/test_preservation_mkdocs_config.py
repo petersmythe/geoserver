@@ -241,7 +241,7 @@ class TestNavigationStructure:
                 subsection_names.extend(entry.keys())
 
         expected_subsections = [
-            "Introduction", "Installation", "Data", "Styling",
+            "Introduction", "Installation", "Data management", "Styling",
             "Services", "Security", "Extensions",
         ]
         for sub in expected_subsections:

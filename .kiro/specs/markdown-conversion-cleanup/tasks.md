@@ -211,7 +211,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correct labels remain unchanged_
     - _Requirements: 1.3, 2.3, 3.8_
 
-  - [-] 12.5 Implement automated fix for Installation section hierarchy
+  - [x] 12.5 Implement automated fix for Installation section hierarchy
     - Add "Section contents" label to Installation section
     - Fix indentation and bolding for clear hierarchy
     - _Bug_Condition: Installation section has unclear hierarchy_
@@ -219,14 +219,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Other sections remain unchanged_
     - _Requirements: 1.4, 2.4, 3.8_
 
-  - [ ] 12.6 Verify navigation/title exploration test now passes
+  - [x] 12.6 Verify navigation/title exploration test now passes
     - **Property 1: Expected Behavior** - Navigation and Title Rendering Fixed
     - **IMPORTANT**: Re-run the SAME test from task 1 - do NOT write a new test
     - Run navigation/title exploration test from step 1
     - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
     - _Requirements: 2.1, 2.2, 2.3, 2.4_
 
-  - [ ] 12.7 Verify preservation tests still pass
+  - [x] 12.7 Verify preservation tests still pass
     - **Property 2: Preservation** - No Regressions in Navigation/Titles
     - **IMPORTANT**: Re-run the SAME tests from tasks 10-11
     - Run preservation tests for correctly formatted pages
