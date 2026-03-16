@@ -250,6 +250,9 @@ class TestTitleNavMismatch:
                 continue
 
             # Check if nav label is a bare directory name (single capitalized word)
+            # "Home" is an intentional top-level label, not a conversion artifact
+            if nav_label == "Home":
+                continue
             is_bare_dirname = (
                 re.match(r"^[A-Z][a-z]+$", nav_label)
                 and len(nav_label) < 15

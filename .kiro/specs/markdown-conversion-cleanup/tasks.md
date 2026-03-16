@@ -177,7 +177,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 - [ ] 12. Fix navigation and title issues
 
-  - [ ] 12.1 Create detection script for navigation/title issues
+  - [x] 12.1 Create detection script for navigation/title issues
     - Scan all Markdown files for "path/index" in titles
     - Identify pages where title doesn't match navigation entry
     - Detect "Table of contents" vs "Page contents" labeling
@@ -185,7 +185,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - Generate report of affected files
     - _Requirements: 1.1, 1.2, 1.3, 1.4_
 
-  - [ ] 12.2 Implement automated fix for "path/index" titles
+  - [x] 12.2 Implement automated fix for "path/index" titles
     - Replace "path/index" patterns with human-readable titles
     - Extract proper title from navigation structure or file metadata
     - Update Markdown frontmatter if needed
@@ -194,7 +194,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted titles remain unchanged_
     - _Requirements: 1.2, 2.2, 3.1_
 
-  - [ ] 12.3 Implement automated fix for title/navigation mismatches
+  - [x] 12.3 Implement automated fix for title/navigation mismatches
     - Synchronize page titles with navigation tree entries
     - Update either title or navigation to match (prefer navigation as source of truth)
     - Preserve existing correct matches
@@ -203,7 +203,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Matching titles remain unchanged_
     - _Requirements: 1.1, 2.1, 3.1_
 
-  - [ ] 12.4 Implement automated fix for "Table of contents" labeling
+  - [x] 12.4 Implement automated fix for "Table of contents" labeling
     - Replace "Table of contents" with "Page contents" for page-level TOC
     - Update MkDocs configuration or theme templates
     - _Bug_Condition: Page TOC labeled as "Table of contents"_
