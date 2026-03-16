@@ -211,7 +211,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correct labels remain unchanged_
     - _Requirements: 1.3, 2.3, 3.8_
 
-  - [ ] 12.5 Implement automated fix for Installation section hierarchy
+  - [-] 12.5 Implement automated fix for Installation section hierarchy
     - Add "Section contents" label to Installation section
     - Fix indentation and bolding for clear hierarchy
     - _Bug_Condition: Installation section has unclear hierarchy_

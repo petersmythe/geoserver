@@ -212,7 +212,7 @@
  * Change title to "Page Contents" and reduce spacing between items
  */
 
-/* Change "Table of contents" to "Page Contents" */
+/* Change "Table of contents" to "Page Contents" - reinforces layout.html fix */
 .md-sidebar--secondary .md-sidebar__scrollwrap .md-sidebar__inner::before {
   content: "Page Contents";
   display: block;
