@@ -60,8 +60,8 @@ For the Mac OS X install, set the `GEOSERVER_DATA_DIR` environment variable to t
 
 2.  To make the variable persist, place the command in your preferred shell startup file:
 
-    > - Bash: **``**.bash_profile`or **`**.bashrc``
-    > - ZSH: **`\~/.zshrc`**
+    - Bash: **``**.bash_profile`or **`**.bashrc``
+    - ZSH: **`\~/.zshrc`**
 
 ## Web archive
 
@@ -203,18 +203,14 @@ The data directory loader provides several advantages:
 
 The data directory loader can be configured with the following environment variables or system properties:
 
-- 
+- `GEOSERVER_DATA_DIR_LOADER_ENABLED`: Controls whether the data directory loader optimizations are used.
 
-  `GEOSERVER_DATA_DIR_LOADER_ENABLED`: Controls whether the data directory loader optimizations are used.
-
-  :   - `true`: Default setting, used to enable data directory optimizations.
+  - `true`: Default setting, used to enable data directory optimizations.
       - `false`: Used to disable the optimizations and fall back to the traditional loader used prior to GeoServer 2.27 release.
 
-- 
+- `GEOSERVER_DATA_DIR_LOADER_THREADS`: Controls the number of threads used for loading and parsing
 
-  `GEOSERVER_DATA_DIR_LOADER_THREADS`: Controls the number of threads used for loading and parsing
-
-  :   - By default, the loader uses a heuristic that selects the minimum between `16` and the number of available processors as reported by the JVM
+  - By default, the loader uses a heuristic that selects the minimum between `16` and the number of available processors as reported by the JVM
       - Set to a specific number to override this heuristic (e.g., `8` to use 8 threads)
       - Values less than or equal to zero will produce a warning and fall back to the default heuristic
 

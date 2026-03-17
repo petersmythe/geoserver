@@ -10,9 +10,9 @@ The typical process of authentication is as follows:
 2.  If the user is accessing an unsecured resource, the request is handled normally
 3.  If the user is accessing a secured resource:
 
-> - An HTTP 401 status code is sent back to the client, typically forcing the client to prompt for credentials.
-> - The service request is then repeated with the appropriate credentials included, usually in the HTTP header as with Basic Authentication.
-> - If the user has sufficient privileges to access the resource the request is handled normally, otherwise, a HTTP 404 status code is returned to the client.
+    - An HTTP 401 status code is sent back to the client, typically forcing the client to prompt for credentials.
+    - The service request is then repeated with the appropriate credentials included, usually in the HTTP header as with Basic Authentication.
+    - If the user has sufficient privileges to access the resource the request is handled normally, otherwise, a HTTP 404 status code is returned to the client.
 
 4.  Subsequent requests should include the original user credentials
 

@@ -126,16 +126,16 @@ The value of a SQL View parameter can be an arbitrary string of text. The only c
 
 In general, SQL parameters must be used with care. They should always include validation regular expressions that accept only the intended parameter values. Note that while validation expressions should be constructed to prevent illegal values, they do not necessarily have to ensure the values are syntactically correct, since this will be checked by the database SQL parser. For example:
 
-> - `^[\d\.\+-eE]+$` checks that a parameter value contains valid characters for floating-point numbers (including scientific notation), but does not check that the value is actually a valid number
-> - `[^;']+` checks that a parameter value does not contain quotes or semicolons. This prevents common SQL injection attacks, but otherwise does not impose much limitation on the actual value
+- `^[\d\.\+-eE]+$` checks that a parameter value contains valid characters for floating-point numbers (including scientific notation), but does not check that the value is actually a valid number
+- `[^;']+` checks that a parameter value does not contain quotes or semicolons. This prevents common SQL injection attacks, but otherwise does not impose much limitation on the actual value
 
 ### Resources for Validation Regular expressions
 
 Defining effective validation regular expressions is important for security. Regular expressions are a complex topic that cannot be fully addressed here. The following are some resources for constructing regular expressions:
 
-> - GeoServer uses the standard Java regular expression engine. The [Pattern class Javadocs](http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.md) contain the full specification of the allowed syntax.
-> - <http://www.regular-expressions.info> has many tutorials and examples of regular expressions.
-> - The [myregexp](http://myregexp.com/) applet can be used to test regular expressions online.
+- GeoServer uses the standard Java regular expression engine. The [Pattern class Javadocs](http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.md) contain the full specification of the allowed syntax.
+- <http://www.regular-expressions.info> has many tutorials and examples of regular expressions.
+- The [myregexp](http://myregexp.com/) applet can be used to test regular expressions online.
 
 ### Place holder for the SQL WHERE clause
 
@@ -174,7 +174,7 @@ WHERE RANK = 1;
 
 A few restrictions apply when using the explicit `:where_clause:` place holder:
 
-> - it needs to be added in a position where all the attributes known by GeoServer are already present
-> - the `:where_clause:` can only appear once
+- it needs to be added in a position where all the attributes known by GeoServer are already present
+- the `:where_clause:` can only appear once
 
 When a `WHERE` clause place holder is present, GeoServer will always add an explicit `AND` at the beginning of the produced `WHERE` clause. This allows the injection of the produced `WHERE` in the middle of complex expressions if needed.

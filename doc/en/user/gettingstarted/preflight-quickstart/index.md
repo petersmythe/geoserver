@@ -52,20 +52,20 @@ There are several warnings shown when we first start up GeoServer and login as a
 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> If you do not know the current password, navigate to **Security > Passwords** and there is an option to recover the password (either to a local file or via REST API).
->
-> For more information see [Keystore password](../../security/passwd.md#security_master_passwd).
->
-> :::: note
-> ::: title
-> Note
-> :::
->
-> What is the keystore password or master password?
->
-> - The keystore password used to [store security credentials and encryption keys](../../security/passwd.md#security_passwd_keystore).
-> - Optional: When experimenting with security configuration, you can enable use of the [root account](../../security/passwd.md#security_master_passwd).
-> ::::
+If you do not know the current password, navigate to **Security > Passwords** and there is an option to recover the password (either to a local file or via REST API).
+
+For more information see [Keystore password](../../security/passwd.md#security_master_passwd).
+
+:::: note
+::: title
+Note
+:::
+
+What is the keystore password or master password?
+
+- The keystore password used to [store security credentials and encryption keys](../../security/passwd.md#security_passwd_keystore).
+- Optional: When experimenting with security configuration, you can enable use of the [root account](../../security/passwd.md#security_master_passwd).
+::::
 
 ## Global Settings
 

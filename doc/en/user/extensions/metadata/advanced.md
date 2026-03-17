@@ -6,8 +6,8 @@
 
 The **Import from Geonetwork** option allows the user to import existing metadata from [GeoNetwork](https://geonetwork-opensource.org//). Two confurations are needed for the import to work:
 
-> - **geonetworks:** configure a list geonetwork endpoints
-> - **geonetworkmapping:** define the mapping between the geonetwork fields and the fields configured in the metadata module.
+- **geonetworks:** configure a list geonetwork endpoints
+- **geonetworkmapping:** define the mapping between the geonetwork fields and the fields configured in the metadata module.
 
 The configuration can be added to the same [yaml](https://yaml.org/) file as the UI configuration or it can be put in a separate file.
 

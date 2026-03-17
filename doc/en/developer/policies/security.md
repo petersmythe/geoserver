@@ -6,27 +6,27 @@ This page covers some of the lines of communication and tools available to enact
 
 Our security policy asks the community to take care in the reporting and discussion of security vulnerabilities:
 
-> **Reporting a Vulnerability**
->
-> If you encounter a security vulnerability in GeoServer, please take care to report it in a responsible fashion:
->
-> 1.  Keep exploit details out of public mailing lists and the Jira issue tracker.
-> 2.  There are two options to report a security vulnerability:
->     - To report via email:
->
->       Please send an email directly to the volunteers on the private [geoserver-security@lists.osgeo.org](mailto:geoserver-security@lists.osgeo.org) mailing list. Provide information about the security vulnerability you might have found in your email.
->
->       This is a moderated list: send directly to the address; your email will be moderated; and eventually shared with volunteers.
->
->     - To report via GitHub:
->
->       Navigate to [security](https://github.com/geoserver/geoserver/security) page, use link for Private vulnerability reporting.
->
->       For more information see [GitHub documentation](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability#privately-reporting-a-security-vulnerability).
-> 3.  There is no expected response time. Please be prepared to work with geoserver-security email list volunteers on a solution.
-> 4.  Keep in mind participants are volunteering their time, an extensive fix may require fundraising/resources.
->
-> For more information see [Community Support](http://geoserver.org/comm/).
+**Reporting a Vulnerability**
+
+If you encounter a security vulnerability in GeoServer, please take care to report it in a responsible fashion:
+
+1.  Keep exploit details out of public mailing lists and the Jira issue tracker.
+2.  There are two options to report a security vulnerability:
+    - To report via email:
+
+      Please send an email directly to the volunteers on the private [geoserver-security@lists.osgeo.org](mailto:geoserver-security@lists.osgeo.org) mailing list. Provide information about the security vulnerability you might have found in your email.
+
+      This is a moderated list: send directly to the address; your email will be moderated; and eventually shared with volunteers.
+
+    - To report via GitHub:
+
+      Navigate to [security](https://github.com/geoserver/geoserver/security) page, use link for Private vulnerability reporting.
+
+      For more information see [GitHub documentation](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability#privately-reporting-a-security-vulnerability).
+3.  There is no expected response time. Please be prepared to work with geoserver-security email list volunteers on a solution.
+4.  Keep in mind participants are volunteering their time, an extensive fix may require fundraising/resources.
+
+For more information see [Community Support](http://geoserver.org/comm/).
 
 ### Guidance on communication challenges
 
@@ -88,17 +88,17 @@ When contacted by an external party on geoserver-security email list:
 
 GeoServer has adopted a coordinated vulnerability disclosure model, as outlined in [SECURITY.md](https://github.com/geoserver/geoserver/blob/main/SECURITY.md):
 
-> **Coordinated vulnerability disclosure**
->
-> Disclosure policy:
->
-> 1.  The reported vulnerability has been verified by working with the geoserver-security list
-> 2.  GitHub [security advisory](https://github.com/geoserver/geoserver/security) is used to reserve a CVE number
-> 3.  A fix or documentation clarification is accepted and backported to both the "stable" and "maintenance" branches
-> 4.  A fix is included for the "stable" and "maintenance" downloads ([released as scheduled](https://github.com/geoserver/geoserver/wiki/Release-Schedule), or issued via emergency update)
-> 5.  The CVE vulnerability is published with mitigation and patch instructions
->
-> This represents a balance between transparency and participation that does not overwhelm participants. Those seeking greater visibility are encouraged to volunteer with the geoserver-security list; or work with one of the [commercial support providers](https://geoserver.org/support/) who participate on behalf of their customers.
+**Coordinated vulnerability disclosure**
+
+Disclosure policy:
+
+1.  The reported vulnerability has been verified by working with the geoserver-security list
+2.  GitHub [security advisory](https://github.com/geoserver/geoserver/security) is used to reserve a CVE number
+3.  A fix or documentation clarification is accepted and backported to both the "stable" and "maintenance" branches
+4.  A fix is included for the "stable" and "maintenance" downloads ([released as scheduled](https://github.com/geoserver/geoserver/wiki/Release-Schedule), or issued via emergency update)
+5.  The CVE vulnerability is published with mitigation and patch instructions
+
+This represents a balance between transparency and participation that does not overwhelm participants. Those seeking greater visibility are encouraged to volunteer with the geoserver-security list; or work with one of the [commercial support providers](https://geoserver.org/support/) who participate on behalf of their customers.
 
 ### Working with vulnerability reports
 
@@ -176,31 +176,31 @@ GeoServer has adopted a coordinated vulnerability disclosure model, as outlined 
 
     - Update prior release announcements, and placeholder Jira issue, with the complete title of the vulnerability.
 
-      > :::: note
-      > ::: title
-      > Note
-      > :::
-      >
-      > Example: Security considerations section showing a mix of disclosed and not yet disclosed (no hyperlink) vulnerabilities.
-      >
-      > ![](img/cve-disclosure.png)
-      > *Release announcement communication*
-      > ::::
+      :::: note
+      ::: title
+      Note
+      :::
+
+      Example: Security considerations section showing a mix of disclosed and not yet disclosed (no hyperlink) vulnerabilities.
+
+      ![](img/cve-disclosure.png)
+      *Release announcement communication*
+      ::::
 
     - Publish the security advisory to make the vulnerability public
 
     - If you feel a statement is necessary, you may write an appropriate blog post.
 
-      > :::: note
-      > ::: title
-      > Note
-      > :::
-      >
-      > Examples statements:
-      >
-      > - [CVE-2024-36401 Remote Code Execution (RCE) vulnerability in evaluating property name expressions](https://geoserver.org/vulnerability/2024/09/12/cve-2024-36401.md).
-      > - [Jiffle and GeoTools RCE vulnerabilities](https://geoserver.org/vulnerability/2022/04/11/geoserver-2-jiffle-jndi-rce.md).
-      > ::::
+      :::: note
+      ::: title
+      Note
+      :::
+
+      Examples statements:
+
+      - [CVE-2024-36401 Remote Code Execution (RCE) vulnerability in evaluating property name expressions](https://geoserver.org/vulnerability/2024/09/12/cve-2024-36401.md).
+      - [Jiffle and GeoTools RCE vulnerabilities](https://geoserver.org/vulnerability/2022/04/11/geoserver-2-jiffle-jndi-rce.md).
+      ::::
 
 ### Publicly reported issue
 

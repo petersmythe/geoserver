@@ -4,17 +4,17 @@
 
 ## Installing the dynamic colormap community extension
 
-> 1.  Download the extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
->
->     :::: warning
->     ::: title
->     Warning
->     :::
->
->     Make sure to match the version of the extension to the version of the GeoServer instance!
->     ::::
->
-> 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
+1.  Download the extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
+
+    :::: warning
+    ::: title
+    Warning
+    :::
+
+    Make sure to match the version of the extension to the version of the GeoServer instance!
+    ::::
+
+2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 
 ## Usage
 
@@ -118,13 +118,13 @@ Key aspects of the SLD are:
 
 * **Lines 25** supplies the `maximum` parameter which is determined through a FilterFunction which takes the maximum value from the GridCoverage statistics,
 
-> The resulting image may look like this (you may note the STEPs across colors due to color intervals):
->
-> ![](images/panoply.png)
->
-> Using an GMT_drywet SVG, the resulting image may look like this, which uses a smoother color ramp:
->
-> ![](images/ramp.png)
+  The resulting image may look like this (you may note the STEPs across colors due to color intervals):
+
+  ![](images/panoply.png)
+
+  Using an GMT_drywet SVG, the resulting image may look like this, which uses a smoother color ramp:
+
+  ![](images/ramp.png)
 
 Alternatively, a ColorMap may be specified this way:
 

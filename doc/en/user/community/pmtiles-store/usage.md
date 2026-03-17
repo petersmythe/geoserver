@@ -160,18 +160,18 @@ For HTTP/HTTPS URLs requiring authentication, the form provides multiple authent
 
 **HTTP Basic Authentication**
 
-> - **HTTP Basic Auth username**: Username for HTTP Basic Authentication
-> - **HTTP Basic Auth password**: Password for HTTP Basic Authentication (hidden)
+- **HTTP Basic Auth username**: Username for HTTP Basic Authentication
+- **HTTP Basic Auth password**: Password for HTTP Basic Authentication (hidden)
 
 **Bearer Token Authentication**
 
-> - **HTTP Bearer Token**: Bearer token for authentication (hidden)
+- **HTTP Bearer Token**: Bearer token for authentication (hidden)
 
 **API Key Authentication**
 
-> - **API Key header name**: The HTTP header name for the API key (e.g., `X-API-Key`)
-> - **API Key value**: The API key value (hidden)
-> - **API Key value prefix**: Optional prefix for the API key value (e.g., "Bearer " or "ApiKey ")
+- **API Key header name**: The HTTP header name for the API key (e.g., `X-API-Key`)
+- **API Key value**: The API key value (hidden)
+- **API Key value prefix**: Optional prefix for the API key value (e.g., "Bearer " or "ApiKey ")
 
 ### Amazon S3 Parameters
 

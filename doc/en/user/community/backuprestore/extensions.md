@@ -41,13 +41,13 @@ In order to do that we envisage the following technical approach
 
 On a **BACKUP** operation
 
-> 1.  The Additional Resource Writer checks if the `ResourceInfo` is an ImageMosaic Coverage Store.
-> 2.  The Additional Resource Writer looks for `*.template` files on the ImageMosaic index directory. It must store them into the zip archive by reading the path from the Coverage Store.
-> 3.  The Additional Resource Writer stores the `*.template` along with the `*.properties` files on the target backup folder. Same as above.
+1.  The Additional Resource Writer checks if the `ResourceInfo` is an ImageMosaic Coverage Store.
+2.  The Additional Resource Writer looks for `*.template` files on the ImageMosaic index directory. It must store them into the zip archive by reading the path from the Coverage Store.
+3.  The Additional Resource Writer stores the `*.template` along with the `*.properties` files on the target backup folder. Same as above.
 
 On a **RESTORE** operation
 
-> 1.  The Additional Resource Reader checks if the `ResourceInfo` is an ImageMosaic Coverage Store.
-> 2.  The Additional Resource Reader looks for `*.template` files on the ImageMosaic index directory. It will try to restore them by using the path read from the Coverage Store configuration.
-> 3.  The Additional Resource Reader overwrites the `*.properties` files by resolving all the environment properties declared on the templates.
-> 4.  The Additional Resource Reader checks if the empty mosaic must be created or not.
+1.  The Additional Resource Reader checks if the `ResourceInfo` is an ImageMosaic Coverage Store.
+2.  The Additional Resource Reader looks for `*.template` files on the ImageMosaic index directory. It will try to restore them by using the path read from the Coverage Store configuration.
+3.  The Additional Resource Reader overwrites the `*.properties` files by resolving all the environment properties declared on the templates.
+4.  The Additional Resource Reader checks if the empty mosaic must be created or not.

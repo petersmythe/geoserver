@@ -14,9 +14,9 @@ A `properties` file holding the parametrized settings needs to be created. It ca
 
 GeoServer is also able to use a `properties` file outside the GeoServer's DATA_DIR. In this case the path to the `properties` file must be defined in one of the following ways:
 
-> - By providing a system variable `-DENV_PROPERTIES={properties filepath}`.
-> - By providing an environment variable named `ENV_PROPERTIES` and the path to the properties file as the value.
-> - By providing a context parameter in the `WEB-INF/web.xml` file for the GeoServer application:
+- By providing a system variable `-DENV_PROPERTIES={properties filepath}`.
+- By providing an environment variable named `ENV_PROPERTIES` and the path to the properties file as the value.
+- By providing a context parameter in the `WEB-INF/web.xml` file for the GeoServer application:
 
 ``` xml
 <web-app>

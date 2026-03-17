@@ -280,15 +280,15 @@ It is only possible to create two or more workspaces with the same XML namespace
 
 The following situation will be valid:
 
-> - Prefix: st1 Namespace: <http://www.stations.org/1.0> Isolated: false
-> - Prefix: st2 Namespace: <http://www.stations.org/1.0> Isolated: true
-> - Prefix: st3 Namespace: <http://www.stations.org/1.0> Isolated: true
+- Prefix: st1 Namespace: <http://www.stations.org/1.0> Isolated: false
+- Prefix: st2 Namespace: <http://www.stations.org/1.0> Isolated: true
+- Prefix: st3 Namespace: <http://www.stations.org/1.0> Isolated: true
 
 But not the following one:
 
-> - Prefix: st1 Namespace: <http://www.stations.org/1.0> Isolated: false
-> - **Prefix: st2 Namespace: http://www.stations.org/1.0 Isolated: false**
-> - Prefix: st3 Namespace: <http://www.stations.org/1.0> Isolated: true
+- Prefix: st1 Namespace: <http://www.stations.org/1.0> Isolated: false
+- **Prefix: st2 Namespace: http://www.stations.org/1.0 Isolated: false**
+- Prefix: st3 Namespace: <http://www.stations.org/1.0> Isolated: true
 
 At most only one non isolated workspace can use a certain XML namespace.
 
@@ -299,12 +299,12 @@ Consider the following image which shows to workspaces (st1 and st2) that use th
 
 In the example above st2 is the isolated workspace. Consider the following WFS GetFeature requests:
 
-> 1.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=layer2>
-> 2.  <http://localhost:8080/geoserver/st2/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=layer2>
-> 3.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=st1:layer2>
-> 4.  <http://localhost:8080/geoserver/st2/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=st2:layer2>
-> 5.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=st2:layer2>
-> 6.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=layer5>
+1.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=layer2>
+2.  <http://localhost:8080/geoserver/st2/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=layer2>
+3.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=st1:layer2>
+4.  <http://localhost:8080/geoserver/st2/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=st2:layer2>
+5.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=st2:layer2>
+6.  <http://localhost:8080/geoserver/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeName=layer5>
 
 The first request is targeting WFS global service and requesting layer2, this request will use layer2 contained by workspace st1. The second request is targeting st2 workspace WFS virtual service, layer2 belonging to workspace st2 will be used. Request three and four will use layer2 belonging to workspace, respectively, st1 and st2. The last two requests will fail saying that the feature type was not found, isolated workspaces content is not visible globally.
 

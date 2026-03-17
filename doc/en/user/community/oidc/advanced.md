@@ -13,38 +13,38 @@ There are a lot of little problems that can occur - here are some troubleshootin
 
 Common mistakes:
 
-> - Not putting the correct GeoServer callbacks in your IDP. The exact callback URL is shown as the read-only **Redirect URI** field in the filter configuration --- copy it from there.
-> - Not putting the user roles in the IDP's ID Token, Access Token, or userinfo
-> - Setting the wrong "JSON path" to find the roles in the ID Token, Access Token, or userinfo
-> - Not putting in a "Role Conversion" that maps your IDPs role name to GeoServer's role name (especially "ROLE_ADMINISTRATOR")
-> - Not setting `PROXY_BASE_URL` correctly in Docker or container deployments, causing the Redirect URI to resolve to an internal hostname that the user's browser cannot reach. See [Redirect Base URI](configuring.md#community_oidc_redirect_base_uri).
-> - After logout, being unexpectedly signed out of all applications that share the same IDP --- this is the expected default behavior. See [Logout Behavior](configuring.md#community_oidc_logout_behavior).
+- Not putting the correct GeoServer callbacks in your IDP. The exact callback URL is shown as the read-only **Redirect URI** field in the filter configuration --- copy it from there.
+- Not putting the user roles in the IDP's ID Token, Access Token, or userinfo
+- Setting the wrong "JSON path" to find the roles in the ID Token, Access Token, or userinfo
+- Not putting in a "Role Conversion" that maps your IDPs role name to GeoServer's role name (especially "ROLE_ADMINISTRATOR")
+- Not setting `PROXY_BASE_URL` correctly in Docker or container deployments, causing the Redirect URI to resolve to an internal hostname that the user's browser cannot reach. See [Redirect Base URI](configuring.md#community_oidc_redirect_base_uri).
+- After logout, being unexpectedly signed out of all applications that share the same IDP --- this is the expected default behavior. See [Logout Behavior](configuring.md#community_oidc_logout_behavior).
 
 If you are still having issues, you might need to attach a Java debugger to GeoServer. The standard OIDC process is as follows:
 
 1.  User clicks on the "login" button in GeoServer and is redirected to the External OIDC IDP
 
-    > - This will rarely be problematic
-    >
-    > - If there is a problem, its most likely that:
-    >
-    >   > - GeoServer is configured with the wrong "User Authorization URI"
-    >   > - The IDP is not configured to allow the redirect URL shown in the read-only **Redirect URI** field (e.g. `http://localhost:8080/geoserver/web/login/oauth2/code/oidc`)
+    - This will rarely be problematic
+
+    - If there is a problem, its most likely that:
+
+        - GeoServer is configured with the wrong "User Authorization URI"
+        - The IDP is not configured to allow the redirect URL shown in the read-only **Redirect URI** field (e.g. `http://localhost:8080/geoserver/web/login/oauth2/code/oidc`)
 
 2.  User logs into the IDP (if this is problematic, consult your IDP's administrator)
 
 3.  The user is then redirected back to GeoServer (the Redirect URI) with an attached ``?code=\...``. GeoServer will make a web request to the IDP to hand this "code" in for the Access/ID Token.
 
-    > - You should see this request in the Browser Network Logs (see your Browsers DevTools)
-    > - In the debugger, you can put a breakpoint in ``GeoServerOauth2AccessTokenResponseClient#getTokenResponse()`` to see this exchange
+    - You should see this request in the Browser Network Logs (see your Browsers DevTools)
+    - In the debugger, you can put a breakpoint in ``GeoServerOauth2AccessTokenResponseClient#getTokenResponse()`` to see this exchange
 
 4.  View the ID Token, Access Token, and userinfo. Use [JWT.io](https://jwt.io) to decode your JWT tokens.
 
-    > - The easiest way to see this is in ``GeoServerOAuth2RoleResolver#convert()`` (``pParam``)
+    - The easiest way to see this is in ``GeoServerOAuth2RoleResolver#convert()`` (``pParam``)
 
 5.  Ensure that the roles are being correctly accessed
 
-    > - The easiest way to see this is in ``GeoServerOAuth2RoleResolver#convert()``
+    - The easiest way to see this is in ``GeoServerOAuth2RoleResolver#convert()``
 
 ## Logging OAuth2 Activity
 
@@ -184,25 +184,25 @@ When using a custom `Keystore` or trying to access a non-trusted or self-signed 
 
 In order to do this you can follow the next steps:
 
-> In this example we are going to
->
-> 1.  Retrieve SSL certificates from Google domains:
->
->     > "Access Token URI" = <https://accounts.google.com/o/oauth2/token> therefore we need to trust `https://accounts.google.com` or (`accounts.google.com:443`) "Check Token Endpoint URL" = <https://www.googleapis.com/oauth2/v1/tokeninfo> therefore we need to trust `https://www.googleapis.com` or (`www.googleapis.com:443`)
->     >
->     > :::: note
->     > ::: title
->     > Note
->     > :::
->     >
->     > You will need to get and trust certificates from every different HTTPS URL used on OAuth2 Endpoints.
->     > ::::
->
-> 2.  Store SSL Certificates on local hard disk
->
-> 3.  Add SSL Certificates to the Java Keystore
->
-> 4.  Enable the JVM to check for SSL Certificates from the Keystore
+In this example we are going to
+
+1.  Retrieve SSL certificates from Google domains:
+
+    "Access Token URI" = <https://accounts.google.com/o/oauth2/token> therefore we need to trust `https://accounts.google.com` or (`accounts.google.com:443`) "Check Token Endpoint URL" = <https://www.googleapis.com/oauth2/v1/tokeninfo> therefore we need to trust `https://www.googleapis.com` or (`www.googleapis.com:443`)
+
+    :::: note
+    ::: title
+    Note
+    :::
+
+    You will need to get and trust certificates from every different HTTPS URL used on OAuth2 Endpoints.
+    ::::
+
+2.  Store SSL Certificates on local hard disk
+
+3.  Add SSL Certificates to the Java Keystore
+
+4.  Enable the JVM to check for SSL Certificates from the Keystore
 
 1.  Retrieve the SSL Certificates from Google domains
 

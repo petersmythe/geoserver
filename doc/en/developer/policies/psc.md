@@ -77,9 +77,9 @@ The primary role of the PSC is to make decisions relating to project management.
 
 A GeoServer Improvement Proposals (GSIPs) is needed for any action that:
 
-> - Has a major effect on others in the GeoServer community; or
-> - Will break backwards compatibility; or
-> - Change core code
+- Has a major effect on others in the GeoServer community; or
+- Will break backwards compatibility; or
+- Change core code
 
 For more on making a proposal see [GeoServer Improvement Proposals](gsip.md).
 
@@ -100,8 +100,8 @@ For these *snap decisions* that are not official GSIP proposals, everyone 'avail
 
 Responsibilities of PSC members fall into the following categories:
 
-> 1.  Operations
-> 2.  Planning
+1.  Operations
+2.  Planning
 
 ### Operations
 
@@ -148,14 +148,14 @@ Long term project management. Duties include:
 
 The PSC is responsible for defining project policies and practiced. Examples include:
 
-> - Development Practices
->   - Code Reviews
->   - Intellectual Property
->   - Documentation Requirements
->   - Commit Access
->   - Testing Requirements
->   - Branch Culture
-> - Release Procedures
->   - Frequency
->   - Version numbering
->   - Stable vs Maintenance vs R&D
+- Development Practices
+  - Code Reviews
+  - Intellectual Property
+  - Documentation Requirements
+  - Commit Access
+  - Testing Requirements
+  - Branch Culture
+- Release Procedures
+  - Frequency
+  - Version numbering
+  - Stable vs Maintenance vs R&D

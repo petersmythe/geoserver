@@ -22,15 +22,15 @@ This tutorial uses the [curl](http://curl.haxx.se/) utility to issue HTTP reques
 
 2.  Click the `Authentication` link located under the `Security` section of the navigation sidebar.
 
-    > ![](images/digest1.jpg)
+    ![](images/digest1.jpg)
 
 3.  Scroll down to the `Authentication Filters` panel and click the `Add new` link.
 
-    > ![](images/digest2.jpg)
+    ![](images/digest2.jpg)
 
 4.  Click the `Credentials From Headers` link.
 
-    > ![](images/digest3.jpg)
+    ![](images/digest3.jpg)
 
 5.  Fill in the fields of the settings form as follows:
 

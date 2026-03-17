@@ -49,11 +49,11 @@ Users authenticated via a X.509 certificate must be configured in GeoServer. For
 
 10. Click the **Authentication** link located under the **Security** section of the navigation sidebar.
 
-    > ![](images/cert6.jpg)
+    ![](images/cert6.jpg)
 
 11. Scroll down to the **Authentication Filters** panel and click the **Add new** link.
 
-    > ![](images/cert7.jpg)
+    ![](images/cert7.jpg)
 
 12. Click the **X.509** link and fill out form as follows:
 
@@ -121,13 +121,13 @@ Download and unpack the [sample certificate files](sample_certs.zip). This archi
 
 2.  Select the **Encryption** tab (or the **Certificates** tab, depending on your version) and click the **View Certificates** button.
 
-    > ![](images/cert10.jpg)
+    ![](images/cert10.jpg)
 
 3.  On the **Your Certificates** panel click the **Import** button and select the **`rod.p12`** file.
 
 4.  When prompted enter in the password ``password``.
 
-    > ![](images/cert11.jpg)
+    ![](images/cert11.jpg)
 
 5.  Click **OK** and close the Firefox Preferences.
 
@@ -137,7 +137,7 @@ Download and unpack the [sample certificate files](sample_certs.zip). This archi
 
 2.  You will be prompted for a certificate. Select the **rod** certificate for identification.
 
-    > ![](images/cert12.jpg)
+    ![](images/cert12.jpg)
 
 #\. When warned about the self-signed server certificate, click **Add Exception** to add a security exception.
 

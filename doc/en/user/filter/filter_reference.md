@@ -20,12 +20,12 @@ Comparison operators are used to specify conditions on non-spatial attributes.
 
 The **binary comparison operators** are:
 
-> - `<PropertyIsEqualTo>`
-> - `<PropertyIsNotEqualTo>`
-> - `<PropertyIsLessThan>`
-> - `<PropertyIsLessThanOrEqualTo>`
-> - `<PropertyIsGreaterThan>`
-> - `<PropertyIsGreaterThanOrEqualTo>`
+- `<PropertyIsEqualTo>`
+- `<PropertyIsNotEqualTo>`
+- `<PropertyIsLessThan>`
+- `<PropertyIsLessThanOrEqualTo>`
+- `<PropertyIsGreaterThan>`
+- `<PropertyIsGreaterThanOrEqualTo>`
 
 They contain the elements:
 
@@ -47,9 +47,9 @@ The `<PropertyIsLike>` operator matches a string property value against a text *
 
 The pattern is specified by a sequence of regular characters and three special pattern characters. The pattern characters are defined by the following *required* attributes of the `<PropertyIsLike>` element:
 
-> - `wildCard` specifies the pattern character which matches any sequence of zero or more string characters
-> - `singleChar` specifies the pattern character which matches any single string character
-> - `escapeChar` specifies the escape character which can be used to escape the pattern characters
+- `wildCard` specifies the pattern character which matches any sequence of zero or more string characters
+- `singleChar` specifies the pattern character which matches any single string character
+- `escapeChar` specifies the escape character which can be used to escape the pattern characters
 
 #### PropertyIsNull operator
 
@@ -77,14 +77,14 @@ Spatial operators are used to specify conditions on the geometric attributes of 
 
 These operators test topological spatial relationships using the standard OGC Simple Features predicates:
 
-> - `<Intersects>` - Tests whether two geometries intersect
-> - `<Disjoint>` - Tests whether two geometries are disjoint (do not interact)
-> - `<Contains>` - Tests whether a geometry contains another one
-> - `<Within>` - Tests whether a geometry is within another one
-> - `<Touches>` - Tests whether two geometries touch
-> - `<Crosses>` - Tests whether two geometries cross
-> - `<Overlaps>` - Tests whether two geometries overlap
-> - `<Equals>` - Tests whether two geometries are topologically equal
+- `<Intersects>` - Tests whether two geometries intersect
+- `<Disjoint>` - Tests whether two geometries are disjoint (do not interact)
+- `<Contains>` - Tests whether a geometry contains another one
+- `<Within>` - Tests whether a geometry is within another one
+- `<Touches>` - Tests whether two geometries touch
+- `<Crosses>` - Tests whether two geometries cross
+- `<Overlaps>` - Tests whether two geometries overlap
+- `<Equals>` - Tests whether two geometries are topologically equal
 
 These contains the elements:
 
@@ -97,8 +97,8 @@ These contains the elements:
 
 These operators test distance relationships between a geometry property and a geometry literal:
 
-> - `<DWithin>`
-> - `<Beyond>`
+- `<DWithin>`
+- `<Beyond>`
 
 They contain the elements:
 
@@ -167,12 +167,12 @@ Logical operators are used to specify logical combinations of [Condition](#filte
 
 The following logical operators are available:
 
-> - `<And>` - computes the logical conjunction of the operands
-> - `<Or>` - computes the logical disjunction of the operands
+- `<And>` - computes the logical conjunction of the operands
+- `<Or>` - computes the logical disjunction of the operands
 
 The content for `<And>` and `<Or>` is two operands given by [Condition](#filter_condition) elements.
 
-> - `<Not>` - computes the logical negation of the operand
+- `<Not>` - computes the logical negation of the operand
 
 The content for `<Not>` is a single operand given by a [Condition](#filter_condition) element.
 
@@ -205,10 +205,10 @@ The content for `<Not>` is a single operand given by a [Condition](#filter_condi
 
 The **arithmetic operator** elements compute arithmetic operations on numeric values.
 
-> - `<Add>` - adds the two operands
-> - `<Sub>` - subtracts the second operand from the first
-> - `<Mul>` - multiplies the two operands
-> - `<Div>` - divides the first operand by the second
+- `<Add>` - adds the two operands
+- `<Sub>` - subtracts the second operand from the first
+- `<Mul>` - multiplies the two operands
+- `<Div>` - divides the first operand by the second
 
 Each arithmetic operator element contains two [Expression](#filter_expression) elements providing the operands.
 

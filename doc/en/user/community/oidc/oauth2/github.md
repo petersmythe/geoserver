@@ -8,11 +8,11 @@ The first thing to do is to configure the OAuth2 Provider and obtain `Client ID`
 
 2.  At the very bottom of the left bar, click "<> Developer Settings"
 
-    > ![](../img/github-dev-settings.png)
+    ![](../img/github-dev-settings.png)
 
 3.  On the left, press "OAuth Apps" and then "New OAuth app"
 
-    > ![](../img/github-new-oauth2.png)
+    ![](../img/github-new-oauth2.png)
 
 4.  Give the application:
 
@@ -29,11 +29,11 @@ The first thing to do is to configure the OAuth2 Provider and obtain `Client ID`
 
 5.  You will be taken to the application page. Record the "Client ID" (you will need this in the GeoServer configuration)
 
-    > ![](../img/github-app-created.png)
+    ![](../img/github-app-created.png)
 
 6.  Press "Generate a new client secret"
 
-    > ![](../img/github-client-secret.png)
+    ![](../img/github-client-secret.png)
 
 7.  Record the client secret (you will need this in the GeoServer configuration)
 
@@ -45,33 +45,33 @@ The next step is to configure your Google application as the OIDC IDP for GeoSer
 
 ### Create the OIDC Filter
 
-> - Login to GeoServer as an Admin
->
-> - On the left bar under "Security", click "Authentication", and then "OpenID Connect Login"
->
->   > ![](../img/google-gs1.png)
->
-> - Give the it a name like "oidc-github", then from the **Provider** dropdown select **GitHub** and copy-and-paste in the Client ID and Client Secret (from when you configured the github client).
->
->   > ![](../img/github-gs1.png)
->
-> - Go down to the bottom and configure the role source (if you want) - see [role source](../role-config.md). NOTE: GitHub's access token in Opaque (not a JWT) and it does NOT supply an ID Token (it is OAUTH2, not OIDC).
->
-> - Press "Save"
+- Login to GeoServer as an Admin
+
+- On the left bar under "Security", click "Authentication", and then "OpenID Connect Login"
+
+    ![](../img/google-gs1.png)
+
+- Give the it a name like "oidc-github", then from the **Provider** dropdown select **GitHub** and copy-and-paste in the Client ID and Client Secret (from when you configured the github client).
+
+    ![](../img/github-gs1.png)
+
+- Go down to the bottom and configure the role source (if you want) - see [role source](../role-config.md). NOTE: GitHub's access token in Opaque (not a JWT) and it does NOT supply an ID Token (it is OAUTH2, not OIDC).
+
+- Press "Save"
 
 ### Allow Web Access (Filter Chain)
 
-> * On the left bar under "Security", click "Authentication", and then click "Web" under "Filter Chains"
->
-> > ![](../img/google-filterchain1.png)
-> >
-> > - Scroll down, and move the new GitHub OIDC Filter to the Selected side by pressing the "->" button.
-> >
-> > ![](../img/github-gs2.png)
-> >
-> > - Move the new GitHub OIDC Filter above "anonymous" by pressing the up arrow button (See above diagram).
-> > - Press "Close"
-> > - Press "Save"
+* On the left bar under "Security", click "Authentication", and then click "Web" under "Filter Chains"
+
+    ![](../img/google-filterchain1.png)
+
+    - Scroll down, and move the new GitHub OIDC Filter to the Selected side by pressing the "->" button.
+
+    ![](../img/github-gs2.png)
+
+    - Move the new GitHub OIDC Filter above "anonymous" by pressing the up arrow button (See above diagram).
+    - Press "Close"
+    - Press "Save"
 
 ## Notes
 
@@ -79,7 +79,7 @@ See [troubleshooting](../advanced.md#community_oidc_troubleshooting).
 
 1.  When you login, your username will be a number. For privacy reasons, GitHub does not usually include the email address of the user!
 
-    > ![](../img/github-gs-loggedin.png)
+    ![](../img/github-gs-loggedin.png)
 
 2.  GitHub's Access Token is opaque, so [configure roles](../role-config.md)
 

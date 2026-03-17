@@ -68,8 +68,8 @@ This configuration results in the following GUI:
 
 There are 3 main parts in the [yaml](https://yaml.org/):
 
-> - **attributes:** a list of GUI components that will be rendered in the tab. They can be a basic type or a complex type, a complex type is a collection of basic types.
-> - **types:** a list that defines the fields in each complex type.
-> - **tabs** optionally, attributes may be displayed on separate tabs.
+- **attributes:** a list of GUI components that will be rendered in the tab. They can be a basic type or a complex type, a complex type is a collection of basic types.
+- **types:** a list that defines the fields in each complex type.
+- **tabs** optionally, attributes may be displayed on separate tabs.
 
 [Fields configuration](uiconfiguration.md) gives an overview of all supported types and advanced features.

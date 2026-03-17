@@ -191,7 +191,7 @@ Link the shared folder to the `C:/share` through the NFS protocol. This is possi
     
       - Type:
     
-        > `mount \\{machinename}\{filesystem} {driveletter}`
+        `mount \\{machinename}\{filesystem} {driveletter}`
     
     Examples:
     
@@ -297,13 +297,13 @@ $> git clone https://github.com/geoserver/wps-remote RemoteWPS
 
 The requisites for this configuration to work properly are:
 
-> 1.  Make sure the `<XMPP_server_ip_address>` is reachable and the port **5223** is allowed by the Firewall
-> 2.  Make sure the `default.GdalContour` user exists into the XMPP Server and that the password is correct
->
-> ![](images/python001.jpg)
->
-> 3.  The MUC Service and the MUC Service Password are correct
-> 4.  The resource dir and the shared folder exists and are writable
+1.  Make sure the `<XMPP_server_ip_address>` is reachable and the port **5223** is allowed by the Firewall
+2.  Make sure the `default.GdalContour` user exists into the XMPP Server and that the password is correct
+
+![](images/python001.jpg)
+
+3.  The MUC Service and the MUC Service Password are correct
+4.  The resource dir and the shared folder exists and are writable
 
 **Setting Up The** `logger.properties`
 
@@ -349,7 +349,7 @@ datefmt=
 
 The requisites for this configuration to work properly are:
 
-> 1.  Make sure the "C:/share/xmpp_data/" exists and is writable
+1.  Make sure the "C:/share/xmpp_data/" exists and is writable
 
 **Setting Up The** `service.config`
 
@@ -492,32 +492,32 @@ The requisites for this configuration to work properly are:
 
 The requisites for this configuration to work properly are:
 
-> 1.  Make sure the `default.GdalContour` user exists into the XMPP Server and that the password is correct
->
-> 2.  Make sure the `default` channel exists on the XMPP Server
->
-> 3.  Make sure the executable path and command are correct
->
-> 4.  Make sure the `output_dir` exists and is writable
->
-> 5.  Make sure the `max_running_time_seconds` have been set to a value high enough to allow the executables to complete the jobs.
->
->     The GeoServer instance must also respect the WPS execution timings which must be configured accordingly. In order to do that access to the GeoServer Web Admin GUI.
->
->     > <http://host:8080/geoserver/web/>
->
->     login as administrator (default credentials are admin/geoserver which should be changed anyway).
->
->     From the Web Processing Service settings page
->
->     ![](images/python002.png)
->
->     ![](images/python003.png)
->
->     The timeouts and the number of parallel executions (both async and sync) must be tuned accordingly to the execution needs.
->
-> 6.  Make sure the inputs have been configured correctly for the command line execution
->
+1.  Make sure the `default.GdalContour` user exists into the XMPP Server and that the password is correct
+
+2.  Make sure the `default` channel exists on the XMPP Server
+
+3.  Make sure the executable path and command are correct
+
+4.  Make sure the `output_dir` exists and is writable
+
+5.  Make sure the `max_running_time_seconds` have been set to a value high enough to allow the executables to complete the jobs.
+
+    The GeoServer instance must also respect the WPS execution timings which must be configured accordingly. In order to do that access to the GeoServer Web Admin GUI.
+
+    <http://host:8080/geoserver/web/>
+
+    login as administrator (default credentials are admin/geoserver which should be changed anyway).
+
+    From the Web Processing Service settings page
+
+    ![](images/python002.png)
+
+    ![](images/python003.png)
+
+    The timeouts and the number of parallel executions (both async and sync) must be tuned accordingly to the execution needs.
+
+6.  Make sure the inputs have been configured correctly for the command line execution
+
     ``` bash
     [Input1]
     class = param
@@ -535,63 +535,63 @@ The requisites for this configuration to work properly are:
     alias = i
     template = -name value
     ```
->
->     The configuration above sets an input of type `int` (the expected value will be interpreted as text and declared as Literal to the WPS), which is mandatory (**min = 1**) and can have a single value (**max = 1**).
->
->     The `[Action1]` is connected to the input through the `input_ref` which is equal to the `[Input1].name`.
->
->     In the example above the action simply gets the input value specified by the user and forward it to the command line.
->
->     The final result will be something lihe this:
->
->         $> /work/RemoteWPS/xmpp_data/configs/myservice/code/test.py <input_value_here>
->
->     The `[Action1].template` property allows to specify the name of the option if required by the executable.
->
->     As an instance the following value for the `[Action1].template`:
->
->         alias = i
->         template = -name value
->
->     will result in something like this:
->
->         $> /work/RemoteWPS/xmpp_data/configs/myservice/code/test.py -i <input_value>
->
->     There exists other types of input and actions.
->
->     As an instance it is possible to specify `constant` input types like the following one:
->
->         [Const1]
->         class = const
->         name = workdir
->         type = string
->         description = Remote process sandbox working directory
->         value = %(workdir)s
->
->         [Action2]
->         class = cmdline
->         input_ref = workdir
->         alias = w
->         template = -name value
->
->     The `[Const1].value` can be a constant value or a reference to the configuration file properties.
->
->     In the example above we are going to pass to the command line the full path of the process workind directory, which is a unique folder created at runtime where the RemoteWPS framework stores temporary and intermediate results of the process execution.
->
->     Enabling the constant input above, the resulting command line will be something like the following one:
->
->         $> /work/RemoteWPS/xmpp_data/configs/myservice/code/test.py -i <input_value> -w /share/xmpp_data/output/<exec_id>
->
->     :::: note
->     ::: title
->     Note
->     :::
->
->     The **<exec_id>** is known at runtime only.
->     ::::
->
-> 7.  Make sure the outputs have been configured correctly for the command line execution
->
+
+    The configuration above sets an input of type `int` (the expected value will be interpreted as text and declared as Literal to the WPS), which is mandatory (**min = 1**) and can have a single value (**max = 1**).
+
+    The `[Action1]` is connected to the input through the `input_ref` which is equal to the `[Input1].name`.
+
+    In the example above the action simply gets the input value specified by the user and forward it to the command line.
+
+    The final result will be something lihe this:
+
+        $> /work/RemoteWPS/xmpp_data/configs/myservice/code/test.py <input_value_here>
+
+    The `[Action1].template` property allows to specify the name of the option if required by the executable.
+
+    As an instance the following value for the `[Action1].template`:
+
+        alias = i
+        template = -name value
+
+    will result in something like this:
+
+        $> /work/RemoteWPS/xmpp_data/configs/myservice/code/test.py -i <input_value>
+
+    There exists other types of input and actions.
+
+    As an instance it is possible to specify `constant` input types like the following one:
+
+        [Const1]
+        class = const
+        name = workdir
+        type = string
+        description = Remote process sandbox working directory
+        value = %(workdir)s
+
+        [Action2]
+        class = cmdline
+        input_ref = workdir
+        alias = w
+        template = -name value
+
+    The `[Const1].value` can be a constant value or a reference to the configuration file properties.
+
+    In the example above we are going to pass to the command line the full path of the process workind directory, which is a unique folder created at runtime where the RemoteWPS framework stores temporary and intermediate results of the process execution.
+
+    Enabling the constant input above, the resulting command line will be something like the following one:
+
+        $> /work/RemoteWPS/xmpp_data/configs/myservice/code/test.py -i <input_value> -w /share/xmpp_data/output/<exec_id>
+
+    :::: note
+    ::: title
+    Note
+    :::
+
+    The **<exec_id>** is known at runtime only.
+    ::::
+
+7.  Make sure the outputs have been configured correctly for the command line execution
+
     ``` bash
     [Output1]
     name = result1
@@ -604,17 +604,17 @@ The requisites for this configuration to work properly are:
     publish_target_workspace = it.geosolutions
     publish_layer_name = contour
     ```
->
->     In the example above we declare to the WPS only **one** output of type `application/zip`.
->
->     In this case the RemoteWPS framework expects to find a `contour.zip` file at the end of the execution into the working directory (see above).
->
->     There are many kind of possible outputs which can be defined here. As an instance it is possible to define an output of type `string` which can read the outcome from a file and stream it out as plain text.
->
->     It is also possible to define several kind of binary outputs depending on the executable outcomes. For more details please refer to the Remote WPS Python framework specific documentation at the end of this section.
->
-> 8.  Make sure the regular expressions of the "stdout_parser" are correct and valid accordingly to the output of the executable
->
+
+    In the example above we declare to the WPS only **one** output of type `application/zip`.
+
+    In this case the RemoteWPS framework expects to find a `contour.zip` file at the end of the execution into the working directory (see above).
+
+    There are many kind of possible outputs which can be defined here. As an instance it is possible to define an output of type `string` which can read the outcome from a file and stream it out as plain text.
+
+    It is also possible to define several kind of binary outputs depending on the executable outcomes. For more details please refer to the Remote WPS Python framework specific documentation at the end of this section.
+
+8.  Make sure the regular expressions of the "stdout_parser" are correct and valid accordingly to the output of the executable
+
     ``` bash
     [Logging]
     stdout_parser = [.*\[DEBUG\](.*), .*\[INFO\] ProgressInfo\:([-+]?[0-9]*\.?[0-9]*)\%, .*\[(INFO)\](.*), .*\[(WARN)\](.*), .*\[(ERROR)\](.*), .*\[(CRITICAL)\](.*)]
@@ -730,74 +730,74 @@ template = -name value
 
 The *Inputs Section* can contain three type of objects:
 
-> 1.  `[Input#]`; Descriptor of the corresponding GeoServer WPS Input parameter.
-> 2.  `[Action#]`; `1..n` actions of the Python Wrapper associated to an `[Input]`. The reference is done through the **input_ref** property.
-> 3.  `[Const#]`; Constant values passed to the executable and transparent to the GeoServer WPS.
+1.  `[Input#]`; Descriptor of the corresponding GeoServer WPS Input parameter.
+2.  `[Action#]`; `1..n` actions of the Python Wrapper associated to an `[Input]`. The reference is done through the **input_ref** property.
+3.  `[Const#]`; Constant values passed to the executable and transparent to the GeoServer WPS.
 
 **[Input#]**
 
-> - **class**; Uses introspection to instantiate an Input parameter. Currently the only value admitted is `param`
-> - **name**; The name of the input parameter. This will be also the name of the GeoServer Input parameter.
-> - **title**; The title of the input parameter. To be used as internal descriptor.
-> - **description**; The description of the input parameter. This will be also the description of the GeoServer Input parameter.
-> - **type**; The type of the input parameter. Allowed types are:
->   1.  `string`; Simple text input. Invalid characters will be automatically removed.
->   2.  `int`; Integer numeric input value.
->   3.  `float`; Float numeric input value.
->   4.  `url`; Must contain a valid URL. Invalid characters will be automatically removed.
->   5.  `application/json`; Threated as a JSON string. It will be parsed by the Python Wrapper and converted into a complex object.
->   6.  `datetime`; Converted into a Python `datetime` object accordingly to the **formatter** property containing the date pattern and which must also be provided.
-> - **min**; Optional parameter which sets the minimum set of inputs of this type allowed by the GeoServer WPS. *0* by default.
-> - **max**; Optional parameter which sets the maximum set of inputs of this type allowed by the GeoServer WPS. *0* (alias infinite) by default.
-> - **default**; Optional parameter for setting the default value of this input if a value has not provided.
-> - **formatter**; Optional parameter to be used along with `datetime` inputs. Defines the date pattern to be applied to the input string (e.g.: %Y-%m-%d %H:%M:%S)
+- **class**; Uses introspection to instantiate an Input parameter. Currently the only value admitted is `param`
+- **name**; The name of the input parameter. This will be also the name of the GeoServer Input parameter.
+- **title**; The title of the input parameter. To be used as internal descriptor.
+- **description**; The description of the input parameter. This will be also the description of the GeoServer Input parameter.
+- **type**; The type of the input parameter. Allowed types are:
+  1.  `string`; Simple text input. Invalid characters will be automatically removed.
+  2.  `int`; Integer numeric input value.
+  3.  `float`; Float numeric input value.
+  4.  `url`; Must contain a valid URL. Invalid characters will be automatically removed.
+  5.  `application/json`; Threated as a JSON string. It will be parsed by the Python Wrapper and converted into a complex object.
+  6.  `datetime`; Converted into a Python `datetime` object accordingly to the **formatter** property containing the date pattern and which must also be provided.
+- **min**; Optional parameter which sets the minimum set of inputs of this type allowed by the GeoServer WPS. *0* by default.
+- **max**; Optional parameter which sets the maximum set of inputs of this type allowed by the GeoServer WPS. *0* (alias infinite) by default.
+- **default**; Optional parameter for setting the default value of this input if a value has not provided.
+- **formatter**; Optional parameter to be used along with `datetime` inputs. Defines the date pattern to be applied to the input string (e.g.: %Y-%m-%d %H:%M:%S)
 
 **[Action#]**
 
-> - **class**; Uses introspection to instantiate the type of Action.
->
->   > 1.  `cmdline`; The value of the associated input will be passed to the executable as a key-value pair accordingly to the `template` specified (e.g.: --name=value).
->   >
->   >     > - `template`; Template of the key-value pair format (e.g.: template = -name value)
->   >     > - `alias`; Alias of the key (e.g.: alias = i will be translated as -i value)
->   >
->   > 2.  `createJSONfile`; The value of the associated input will be dumped to a JSON file and the reference to the file passed to the executable.
->   >
->   >     > - `target_filepath`; PATH Where to store the JSON file.
->   >     > - `json_schema`; The PATH to the JSON Schema to be used to validate the input values.
->   >
->   > 3.  `updateJSONfile`; The value of the associated input will be substituted into a target template JSON file, which then will be passed to the executbale as reference.
->   >
->   >     > - `source_filepath`; PATH of the source JSON template file.
->   >     > - `target_filepath`; PATH of the target JSON file.
->   >     > - `json_path_expr`; JSON path expression used to subsitute the values.
->   >
->   > 4.  `copyfile`; The value of the associated input will be interpreted as a path to a source file. The content of the file will be copied into a temporary file and then passed to the executbale as reference.
->   >
->   >     > - `source_filepath`; PATH of the source JSON template file.
->   >     > - `target_filepath`; PATH of the target JSON file.
->   >
->   > 5.  `updateINIfile`; The value of the associated input will be substituted into a target template INI file, which then will be passed to the executbale as reference.
->   >
->   >     > - `source_filepath`; PATH of the source JSON template file.
->   >     > - `target_filepath`; PATH of the target JSON file.
->   >     > - `section`; Section of the INI file where to store key-value pair entries.
->   >
->   > 6.  `updateINIfileList`; The value of the associated input will be parsed as a `list` and substituted into a target template INI file, which then will be passed to the executbale as reference.
->   >
->   >     > - `source_filepath`; PATH of the source JSON template file.
->   >     > - `target_filepath`; PATH of the target JSON file.
->   >     > - `section`; Section of the INI file where to store key-value pair entries.
->
-> - **input_ref**; `name` of the input parameter referenced by this Action.
+- **class**; Uses introspection to instantiate the type of Action.
+
+    1.  `cmdline`; The value of the associated input will be passed to the executable as a key-value pair accordingly to the `template` specified (e.g.: --name=value).
+
+        - `template`; Template of the key-value pair format (e.g.: template = -name value)
+        - `alias`; Alias of the key (e.g.: alias = i will be translated as -i value)
+
+    2.  `createJSONfile`; The value of the associated input will be dumped to a JSON file and the reference to the file passed to the executable.
+
+        - `target_filepath`; PATH Where to store the JSON file.
+        - `json_schema`; The PATH to the JSON Schema to be used to validate the input values.
+
+    3.  `updateJSONfile`; The value of the associated input will be substituted into a target template JSON file, which then will be passed to the executbale as reference.
+
+        - `source_filepath`; PATH of the source JSON template file.
+        - `target_filepath`; PATH of the target JSON file.
+        - `json_path_expr`; JSON path expression used to subsitute the values.
+
+    4.  `copyfile`; The value of the associated input will be interpreted as a path to a source file. The content of the file will be copied into a temporary file and then passed to the executbale as reference.
+
+        - `source_filepath`; PATH of the source JSON template file.
+        - `target_filepath`; PATH of the target JSON file.
+
+    5.  `updateINIfile`; The value of the associated input will be substituted into a target template INI file, which then will be passed to the executbale as reference.
+
+        - `source_filepath`; PATH of the source JSON template file.
+        - `target_filepath`; PATH of the target JSON file.
+        - `section`; Section of the INI file where to store key-value pair entries.
+
+    6.  `updateINIfileList`; The value of the associated input will be parsed as a `list` and substituted into a target template INI file, which then will be passed to the executbale as reference.
+
+        - `source_filepath`; PATH of the source JSON template file.
+        - `target_filepath`; PATH of the target JSON file.
+        - `section`; Section of the INI file where to store key-value pair entries.
+
+- **input_ref**; `name` of the input parameter referenced by this Action.
 
 **[Const#]**
 
-> - **class = const**
-> - **name**; Name of the input parameter, used by an action as reference.
-> - **type**; May be one of the **[Input#].type** ones.
-> - **description**; Internal description of the parameter.
-> - **value**; Fixed value parsed by the referencing Action.
+- **class = const**
+- **name**; Name of the input parameter, used by an action as reference.
+- **type**; May be one of the **[Input#].type** ones.
+- **description**; Internal description of the parameter.
+- **value**; Fixed value parsed by the referencing Action.
 
 ## Outputs Section
 
@@ -916,230 +916,230 @@ publish_metadata = /<path_to>/resource_dir/owc_json_ctx.json
 
 The examples above represents all the possible types of Outputs currently supported by the Remote WPS Wrapper.
 
-> - **type = string**
->
->   > The content of the file specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `text/plain` output type.
->
-> - **type = image/geotiff**
->
->   > The content of the binary GeoTIFF specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW FILE output type.
->
-> - **type = image/geotiff;stream**
->
->   > The content of the binary GeoTIFF specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW STREAM output type.
->
-> - **type = application/x-netcdf**
->
->   > The content of the binary NetCDF specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW FILE output type.
->
-> - **type = text/xml;subtype=gml/3.1.1**
->
->   > The content of the file specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `text/xml` output type.
->
-> - **type = video/mp4**
->
->   > The content of the binary MPEG-4 specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW FILE output type.
->
-> - **type = application/owc**
->
->   > This is a particular type of output. From the GeoServer WPS point of view is a `text/plain` JSON output type describing a Web Mapping Context.
->   >
->   > The Remote WPS Plugin on GeoServer side takes care of publishing the layers specified by `layers_to_publish = result2;result4` and render the templates specified by `publish_metadata` of each output.
->   >
->   > The outcome will be a complex JSON WMC describing the map to publish.
->   >
->   > In order to activate this funcionality, update the GeoServer `remoteProcess.properties` on the `GEOSERVER_DATA_DIR` with a new option:
->   >
->   > ``` bash
->   > # full path to the template used to generate the OWS WMC Json output
->   >
->   > owc_wms_json_template = /tmp/resource_dir/wmc_template.json
->   > ```
->   >
->   > *Sample* `wmc_template.json`
->   >
->   > ``` text
->   > {
->   >   "type": "FeatureCollection",
->   >   "id": "GeoServer OWC Map Context: version of 2015-07-14",
->   >   "geometry": {
->   >               "type":"Polygon",
->   >               "coordinates": ${renderingArea}
->   >     },
->   >     "features" : [
->   >             <#list featureList?keys as key>
->   >             {
->   >                 "type": "Feature",
->   >                 "id": "${featureList[key].name}",
->   >                 "geometry": 
->   >                 {
->   >                 "type" : "Polygon",
->   >                 "coordinates" : ${featureList[key].geometryCoords}
->   >             },
->   >             "properties": {
->   >                 <#if featureList[key].owcProperties != "">${featureList[key].owcProperties},</#if>
->   >                 "offerings" : [
->   >                     {
->   >                       "code" : "http://www.opengis.net/spec/owc-atom/1.0/req/wms",
->   >                       "operations" : [{
->   >                           "code" : "GetCapabilities",
->   >                           "method" : "GET",
->   >                           "type" : "application/xml",
->   >                           "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
->   >                           "request":{},
->   >                           "result":{}
->   >                         },{
->   >                           "code" : "GetMap",
->   >                           "method" : "GET",
->   >                           "type" : "image/png",
->   >                           "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=${featureList[key].srs}&BBOX=${featureList[key].bbox}&WIDTH=500&HEIGHT=500&LAYERS=${featureList[key].layers}&STYLES=${featureList[key].styles}&FORMAT=image/png&BGCOLOR=0xffffff&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_xml",
->   >                           "request":{},
->   >                           "result":{}
->   >                         }],
->   >                       "contents" : []
->   >                     }
->   >                 <#if featureList[key].type == "VECTOR">
->   >                     ,{
->   >                       "code" : "http://www.opengis.net/spec/owc-atom/1.0/req/wfs",
->   >                       "operations" : [{
->   >                           "code" : "DescribeFeatureType",
->   >                           "method" : "GET",
->   >                           "type" : "application/xml",
->   >                           "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WFS&VERSION=1.1.0&REQUEST=DescribeFeatureType&TYPENAME=${featureList[key].layers}",
->   >                           "request":{},
->   >                           "result":{}
->   >                         },{
->   >                           "code" : "GetFeature",
->   >                           "method" : "GET",
->   >                           "type" : "application/xml",
->   >                           "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=${featureList[key].layers}",
->   >                           "request":{},
->   >                           "result":{}
->   >                         }],
->   >                       "contents" : []
->   >                     }
->   >             <#elseif featureList[key].type == "RASTER">
->   >                     ,{
->   >                       "code" : "http://www.opengis.net/spec/owc-atom/1.0/req/wcs",
->   >                       "operations" : [{
->   >                           "code" : "DescribeCoverage",
->   >                           "method" : "GET",
->   >                           "type" : "application/xml",
->   >                           "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WCS&VERSION=1.1.0&REQUEST=GetCapabilities&IDENTIFIER=${featureList[key].layers}",
->   >                           "request":{},
->   >                           "result":{}
->   >                         },{
->   >                           "code" : "GetCoverage",
->   >                           "method" : "GET",
->   >                           "type" : "image/tiff",
->   >                           "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WCS&VERSION=1.1.0&REQUEST=GetCoverage&IDENTIFIER=${featureList[key].layers}&BOUNDINGBOX=${featureList[key].bbox}&FORMAT=GeoTIFF",
->   >                           "request":{},
->   >                           "result":{}
->   >                         }],
->   >                       "contents" : []
->   >                     }
->   >             </#if>
->   >             ]
->   >            }
->   >          }<#if key_has_next>,</#if>
->   >      </#list>
->   >      ]
->   >   , 
->   >
->   >   "properties" : {
->   >             ${owcProperties}
->   >       }      
->   >
->   > }
->   > ```
->   >
->   > *Sample* `owc_json_ctx.json`
->   >
->   > ``` text
->   > "lang" : "en",
->   > "title" : "Sample Title goes here",
->   > "subtitle" : "Sample sub-title goes here",
->   > "generator" : "Sample generator",
->   > "rights" : "Sample Legal Constraints and CopyRights (C)",
->   > "authors" : [{"name" : "Author1 Name"}, {"name" : "Author2 Name"}],
->   > "contributors" : [{"name" : "Contrib1 Name"}, {"name" : "Contrib2 Name"}],
->   > "categories" : [{
->   >         "term" : "wms",
->   >         "label" : "This file is compliant with version 1.0 of OGC Context"
->   >     },{
->   >         "term" : "maps",
->   >         "label" : "This file contains maps"
->   > }],
->   > "links" : [{
->   >         "rel" : "profile",
->   >         "href" : "http://www.opengis.net/spec/owc-atom/1.0/req/core",
->   >         "title" : "This file is compliant with version 1.0 of OGC Context"
->   >     },{
->   >         "rel" : "via",
->   >         "type" : "application/xml",
->   >         "href" : "http://www.opengis.uab.cat/wms/satcat/metadades/EPSG_23031/Cat_20110301.htm",
->   >         "title" : "HMTL metadata in Catalan"
->   >     }]
->   > ```
->   >
->   > *Sample* `result#.json`
->   >
->   > ``` text
->   > "title" : "Result 2",
->   > "updated" : "${lastUpdated}",
->   > "content" : "Sample Content Description for result 2 goes here",
->   > "authors" : [
->   >     {
->   >       "name" : "GeoServer Administrator",
->   >       "email" : "info@sample.author.com"
->   >     }
->   > ],
->   > "authors" : [{"name" : "Author2.1 Name"}, {"name" : "Author2.2 Name"}],
->   > "contributors" : [{"name" : "Contrib2.1 Name"}, {"name" : "Contrib2.2 Name"}],
->   > "categories" : [{"name" : "Category2.1 Name"}, {"name" : "Category2.2 Name"}],
->   > "links" : [
->   >     {
->   >      "rel" : "enclosure",
->   >      "type" : "image/png",
->   >      "title" : "WMS output for ${title}",
->   >      "href" : "${getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=${srs}&BBOX=${bbox}&WIDTH=500&HEIGHT=500&LAYERS=${layers}&FORMAT=image/png&BGCOLOR=0xffffff&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_xml"
->   >     },
->   >     {
->   >      "rel" : "icon",
->   >      "type" : "image/png",
->   >      "title" : "Preview for ${title}",
->   >      "href" : "${getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=${srs}&BBOX=${bbox}&WIDTH=100&HEIGHT=100&LAYERS=${layers}&STYLES=${styles}&FORMAT=image/png&BGCOLOR=0xffffff&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_xml"
->   >     },
->   >     {
->   >      "rel" : "via",
->   >      "type" : "application/vnd.ogc.wms_xml",
->   >      "title" : "Original GetCapabilities document",
->   >      "href" : "${getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
->   >     }
->   > ]
->   > ```
+- **type = string**
+
+    The content of the file specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `text/plain` output type.
+
+- **type = image/geotiff**
+
+    The content of the binary GeoTIFF specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW FILE output type.
+
+- **type = image/geotiff;stream**
+
+    The content of the binary GeoTIFF specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW STREAM output type.
+
+- **type = application/x-netcdf**
+
+    The content of the binary NetCDF specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW FILE output type.
+
+- **type = text/xml;subtype=gml/3.1.1**
+
+    The content of the file specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `text/xml` output type.
+
+- **type = video/mp4**
+
+    The content of the binary MPEG-4 specified by the `filepath` is read and sent to the WPS. The GeoServer WPS declares this as a `otput binary` RAW FILE output type.
+
+- **type = application/owc**
+
+    This is a particular type of output. From the GeoServer WPS point of view is a `text/plain` JSON output type describing a Web Mapping Context.
+
+    The Remote WPS Plugin on GeoServer side takes care of publishing the layers specified by `layers_to_publish = result2;result4` and render the templates specified by `publish_metadata` of each output.
+
+    The outcome will be a complex JSON WMC describing the map to publish.
+
+    In order to activate this funcionality, update the GeoServer `remoteProcess.properties` on the `GEOSERVER_DATA_DIR` with a new option:
+
+    ``` bash
+    # full path to the template used to generate the OWS WMC Json output
+
+    owc_wms_json_template = /tmp/resource_dir/wmc_template.json
+    ```
+
+    *Sample* `wmc_template.json`
+
+    ``` text
+    {
+      "type": "FeatureCollection",
+      "id": "GeoServer OWC Map Context: version of 2015-07-14",
+      "geometry": {
+                  "type":"Polygon",
+                  "coordinates": ${renderingArea}
+        },
+        "features" : [
+                <#list featureList?keys as key>
+                {
+                    "type": "Feature",
+                    "id": "${featureList[key].name}",
+                    "geometry": 
+                    {
+                    "type" : "Polygon",
+                    "coordinates" : ${featureList[key].geometryCoords}
+                },
+                "properties": {
+                    <#if featureList[key].owcProperties != "">${featureList[key].owcProperties},</#if>
+                    "offerings" : [
+                        {
+                          "code" : "http://www.opengis.net/spec/owc-atom/1.0/req/wms",
+                          "operations" : [{
+                              "code" : "GetCapabilities",
+                              "method" : "GET",
+                              "type" : "application/xml",
+                              "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+                              "request":{},
+                              "result":{}
+                            },{
+                              "code" : "GetMap",
+                              "method" : "GET",
+                              "type" : "image/png",
+                              "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=${featureList[key].srs}&BBOX=${featureList[key].bbox}&WIDTH=500&HEIGHT=500&LAYERS=${featureList[key].layers}&STYLES=${featureList[key].styles}&FORMAT=image/png&BGCOLOR=0xffffff&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_xml",
+                              "request":{},
+                              "result":{}
+                            }],
+                          "contents" : []
+                        }
+                    <#if featureList[key].type == "VECTOR">
+                        ,{
+                          "code" : "http://www.opengis.net/spec/owc-atom/1.0/req/wfs",
+                          "operations" : [{
+                              "code" : "DescribeFeatureType",
+                              "method" : "GET",
+                              "type" : "application/xml",
+                              "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WFS&VERSION=1.1.0&REQUEST=DescribeFeatureType&TYPENAME=${featureList[key].layers}",
+                              "request":{},
+                              "result":{}
+                            },{
+                              "code" : "GetFeature",
+                              "method" : "GET",
+                              "type" : "application/xml",
+                              "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=${featureList[key].layers}",
+                              "request":{},
+                              "result":{}
+                            }],
+                          "contents" : []
+                        }
+                <#elseif featureList[key].type == "RASTER">
+                        ,{
+                          "code" : "http://www.opengis.net/spec/owc-atom/1.0/req/wcs",
+                          "operations" : [{
+                              "code" : "DescribeCoverage",
+                              "method" : "GET",
+                              "type" : "application/xml",
+                              "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WCS&VERSION=1.1.0&REQUEST=GetCapabilities&IDENTIFIER=${featureList[key].layers}",
+                              "request":{},
+                              "result":{}
+                            },{
+                              "code" : "GetCoverage",
+                              "method" : "GET",
+                              "type" : "image/tiff",
+                              "href" : "${featureList[key].getMapBaseUrl}?SERVICE=WCS&VERSION=1.1.0&REQUEST=GetCoverage&IDENTIFIER=${featureList[key].layers}&BOUNDINGBOX=${featureList[key].bbox}&FORMAT=GeoTIFF",
+                              "request":{},
+                              "result":{}
+                            }],
+                          "contents" : []
+                        }
+                </#if>
+                ]
+               }
+             }<#if key_has_next>,</#if>
+         </#list>
+         ]
+      , 
+
+      "properties" : {
+                ${owcProperties}
+          }      
+
+    }
+    ```
+
+    *Sample* `owc_json_ctx.json`
+
+    ``` text
+    "lang" : "en",
+    "title" : "Sample Title goes here",
+    "subtitle" : "Sample sub-title goes here",
+    "generator" : "Sample generator",
+    "rights" : "Sample Legal Constraints and CopyRights (C)",
+    "authors" : [{"name" : "Author1 Name"}, {"name" : "Author2 Name"}],
+    "contributors" : [{"name" : "Contrib1 Name"}, {"name" : "Contrib2 Name"}],
+    "categories" : [{
+            "term" : "wms",
+            "label" : "This file is compliant with version 1.0 of OGC Context"
+        },{
+            "term" : "maps",
+            "label" : "This file contains maps"
+    }],
+    "links" : [{
+            "rel" : "profile",
+            "href" : "http://www.opengis.net/spec/owc-atom/1.0/req/core",
+            "title" : "This file is compliant with version 1.0 of OGC Context"
+        },{
+            "rel" : "via",
+            "type" : "application/xml",
+            "href" : "http://www.opengis.uab.cat/wms/satcat/metadades/EPSG_23031/Cat_20110301.htm",
+            "title" : "HMTL metadata in Catalan"
+        }]
+    ```
+
+    *Sample* `result#.json`
+
+    ``` text
+    "title" : "Result 2",
+    "updated" : "${lastUpdated}",
+    "content" : "Sample Content Description for result 2 goes here",
+    "authors" : [
+        {
+          "name" : "GeoServer Administrator",
+          "email" : "info@sample.author.com"
+        }
+    ],
+    "authors" : [{"name" : "Author2.1 Name"}, {"name" : "Author2.2 Name"}],
+    "contributors" : [{"name" : "Contrib2.1 Name"}, {"name" : "Contrib2.2 Name"}],
+    "categories" : [{"name" : "Category2.1 Name"}, {"name" : "Category2.2 Name"}],
+    "links" : [
+        {
+         "rel" : "enclosure",
+         "type" : "image/png",
+         "title" : "WMS output for ${title}",
+         "href" : "${getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=${srs}&BBOX=${bbox}&WIDTH=500&HEIGHT=500&LAYERS=${layers}&FORMAT=image/png&BGCOLOR=0xffffff&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_xml"
+        },
+        {
+         "rel" : "icon",
+         "type" : "image/png",
+         "title" : "Preview for ${title}",
+         "href" : "${getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=${srs}&BBOX=${bbox}&WIDTH=100&HEIGHT=100&LAYERS=${layers}&STYLES=${styles}&FORMAT=image/png&BGCOLOR=0xffffff&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_xml"
+        },
+        {
+         "rel" : "via",
+         "type" : "application/vnd.ogc.wms_xml",
+         "title" : "Original GetCapabilities document",
+         "href" : "${getMapBaseUrl}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+        }
+    ]
+    ```
 
 **Other options for the Outputs**
 
-> - **backup_on_wps_execution_shared_dir**; This is a boolean which tells to the Remote WPS to store first the outcome into the **sharedir** defined into the `[DEFAULT]` section before streaming out to GeoServer. This allows the Remote WPS to preserve the outcomes even when the resources are cleaned out.
->
-> - **upload_data**; This is a boolean which tells to the Remote WPS to upload first the outcome into the **host** defined into the `[UPLOADER]` section before streaming out to GeoServer. This allows the Remote WPS to preserve the outcomes even when the resources are cleaned out.
->
->   > :::: warning
->   > ::: title
->   > Warning
->   > :::
->   >
->   > If both enabled for a certain output, the **backup_on_wps_execution_shared_dir** takes precedence to the **upload_data** one.
->   > ::::
->
-> - **publish_as_layer**; A boolean to instruct GeoServer Remote WPS to *try* to automatically publish the outcome as a new Layer through the GeoServer **Importer** Plugin.
->
-> - **publish_default_style**; The default style to use when publishing the Layer.
->
-> - **publish_target_workspace**; The default workspace to use when publishing the Layer.
->
-> - **publish_layer_name**; The default name to use when publishing the Layer.
+- **backup_on_wps_execution_shared_dir**; This is a boolean which tells to the Remote WPS to store first the outcome into the **sharedir** defined into the `[DEFAULT]` section before streaming out to GeoServer. This allows the Remote WPS to preserve the outcomes even when the resources are cleaned out.
+
+- **upload_data**; This is a boolean which tells to the Remote WPS to upload first the outcome into the **host** defined into the `[UPLOADER]` section before streaming out to GeoServer. This allows the Remote WPS to preserve the outcomes even when the resources are cleaned out.
+
+    :::: warning
+    ::: title
+    Warning
+    :::
+
+    If both enabled for a certain output, the **backup_on_wps_execution_shared_dir** takes precedence to the **upload_data** one.
+    ::::
+
+- **publish_as_layer**; A boolean to instruct GeoServer Remote WPS to *try* to automatically publish the outcome as a new Layer through the GeoServer **Importer** Plugin.
+
+- **publish_default_style**; The default style to use when publishing the Layer.
+
+- **publish_target_workspace**; The default workspace to use when publishing the Layer.
+
+- **publish_layer_name**; The default name to use when publishing the Layer.
 
 ## Logging Section
 
@@ -1155,10 +1155,10 @@ stdout_action = [ignore,          progress,                                     
 
 - **stdout_parser**
 
-  > This property must contain a *list* of regular expressions matching the possible executable `STDOUT` logging messages the user wants to forward to GeoServer.
-  >
-  > As an instance
-  >
+  This property must contain a *list* of regular expressions matching the possible executable `STDOUT` logging messages the user wants to forward to GeoServer.
+
+  As an instance
+
   ``` text
   .*\[DEBUG\](.*)
   ```
@@ -1179,11 +1179,11 @@ stdout_action = [ignore,          progress,                                     
 
 - **stdout_action**
 
-  > This property must contain a *list* of keywords associated to a *particular action* which will take the content of the corresponding regular expression and forwards it to GeoServer packaged ad a specific XMPP message.
-  >
-  > As an instance
-  >
-  > - *progress*; gets the content of the match and sends a **PROGRESS** XMPP message to GeoServer. The **PROGRESS** messgae must always contain a number.
-  > - *abort*; gets the content of the match and sends a **ABORT** XMPP message to GeoServer. This will cause GeoServer to mark the WPS Process as **FAILED**.
-  > - *ignore*; simply throws out everything matching the corresponding regular expression.
-  > - *log*; sends a **LOG** message to GeoServer with the content of the match. This will appear into the GeoServer Log file.
+  This property must contain a *list* of keywords associated to a *particular action* which will take the content of the corresponding regular expression and forwards it to GeoServer packaged ad a specific XMPP message.
+
+  As an instance
+
+  - *progress*; gets the content of the match and sends a **PROGRESS** XMPP message to GeoServer. The **PROGRESS** messgae must always contain a number.
+  - *abort*; gets the content of the match and sends a **ABORT** XMPP message to GeoServer. This will cause GeoServer to mark the WPS Process as **FAILED**.
+  - *ignore*; simply throws out everything matching the corresponding regular expression.
+  - *log*; sends a **LOG** message to GeoServer with the content of the match. This will appear into the GeoServer Log file.

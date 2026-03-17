@@ -121,13 +121,13 @@ Note that the Shuffle and Compression parameters take effect only when the NetCD
 
 The supported writing parameters are:
 
-> - `compression` : NetCDF-4 Lossless compression level. An integer between 0 (no compression, fastest) and 9 (most compression, slowest).
-> - `shuffle` : Apply Lossless byte reordering to improve NetCDF-4 compression.
-> - `dataPacking`: Lossy compression by storing data in reduced precision. One of NONE, BYTE, SHORT, or INT.
-> - `variableName` : Set the NetCDF variable name in the output file.
-> - `uom` : Set the NetCDF uom attribute for the output variable.
-> - `copyGlobalAttributes` : If the input layer is based on NetCDF/GRIB sources, copy attributes from the source NetCDF/GRIB global attributes.
-> - `copyVariableAttributes` : If the input layer is based on NetCDF/GRIB sources, copy attributes from the source NetCDF/GRIB variableSet.
+- `compression` : NetCDF-4 Lossless compression level. An integer between 0 (no compression, fastest) and 9 (most compression, slowest).
+- `shuffle` : Apply Lossless byte reordering to improve NetCDF-4 compression.
+- `dataPacking`: Lossy compression by storing data in reduced precision. One of NONE, BYTE, SHORT, or INT.
+- `variableName` : Set the NetCDF variable name in the output file.
+- `uom` : Set the NetCDF uom attribute for the output variable.
+- `copyGlobalAttributes` : If the input layer is based on NetCDF/GRIB sources, copy attributes from the source NetCDF/GRIB global attributes.
+- `copyVariableAttributes` : If the input layer is based on NetCDF/GRIB sources, copy attributes from the source NetCDF/GRIB variableSet.
 
 ### Note on NetCDF PPIO supported by the module:
 

@@ -17,16 +17,14 @@ This is a process very similar to creating a featuretype. More specifically, one
 
 3.  In order to create a new mosaic it is necessary to choose a workspace and store name in the **Basic Store Info** section, as well as a URL in the **Connection Parameters** section. Valid URLs include:
 
-    > - The absolute path to the shapefile index, or a directory containing the shapefile index.
-    > - The absolute path to the configuration file (``\*.properties````) or a directory containing the configuration file. If ````datastore.properties```` and ````indexer.properties``\` exist, they should be in the same directory as this configuration file.
-    > - The absolute path of a directory where the files you want to mosaic reside. In this case GeoServer automatically creates the needed mosaic files (.dbf, .prj, .properties, .shp and .shx) by inspecting the data present in the given directory and any subdirectories.
+    - The absolute path to the shapefile index, or a directory containing the shapefile index.
+    - The absolute path to the configuration file (``\*.properties````) or a directory containing the configuration file. If ````datastore.properties```` and ````indexer.properties``\` exist, they should be in the same directory as this configuration file.
+    - The absolute path of a directory where the files you want to mosaic reside. In this case GeoServer automatically creates the needed mosaic files (.dbf, .prj, .properties, .shp and .shx) by inspecting the data present in the given directory and any subdirectories.
 
 4.  Click **Save**:
 
-    ``` raw_markdown
     ![](images/imagemosaicconfigure.png)
     *Configuring an ImageMosaic data store*
-    ```
 
 ### Create a new coverage
 
@@ -34,17 +32,13 @@ This is a process very similar to creating a featuretype. More specifically, one
 
 2.  Choose the name of the store you just created:
 
-    ``` raw_markdown
     ![](images/vito_newlayerchoser.png)
     *Layer Chooser*
-    ```
 
 3.  Click the layer you wish to configure and you will be presented with the Coverage Editor:
 
-    ``` raw_markdown
     ![](images/vito_coverageeditor.png)
     *Coverage Editor*
-    ```
 
 4.  Make sure there is a value for **Native SRS**, then click the **Submit** button. If the **Native** `CRS` is `UNKNOWN`, you must declare the SRS in the **Declared SRS** field.
 
@@ -103,9 +97,7 @@ Inside the Coverage Editor Publishing tab, you can specify the **dem** default s
 
 In this way you have a clear distinction between the different intervals of the dataset that compose the mosaic, like the background and the \"nodata\" area.
 
-``` raw_markdown
 ![](images/vito_config_1.png)
-```
 
 !!! note
 
@@ -113,19 +105,15 @@ In this way you have a clear distinction between the different intervals of the 
 
 The result is the following:
 
-``` raw_markdown
 ![](images/vito_1.png)
 *Basic configuration*
-```
 
 By setting the other configuration parameters appropriately, it is possible to improve both the appearance of the mosaic as well as its performance. For instance, we could:
 
 - Make the \"nodata\" areas transparent and coherent with the real data. To achieve this we need to change the opacity of the \"nodata\" ColorMapEntry in the `dem` style to `0.0` and set the `BackgroundValues` parameter to `-9999` so that empty areas will be filled with this value. The result is as follows:
 
-  ``` raw_markdown
   ![](images/vito_2.png)
   *Advanced configuration*
-  ```
 
 - Allow multithreaded granules loading. By setting the `AllowMultiThreading` parameter to `true`, GeoServer will load the granules in parallel using multiple threads with a increase in performance on some architectures.
 
@@ -172,10 +160,8 @@ In this example we are going to create a mosaic that will serve aerial imagery, 
 
 The result is the following:
 
-``` raw_markdown
 ![](images/prato_1.png)
 *Basic configuration*
-```
 
 !!! note
 
@@ -195,10 +181,8 @@ The various parameters can be set as follows:
 
 The result is the following:
 
-``` raw_markdown
 ![](images/prato_2.png)
 *Advanced configuration*
-```
 
 ### Scanned maps
 
@@ -208,10 +192,8 @@ In the Coverage Editor you can use the basic `raster` since there is no need to 
 
 The result is the following.
 
-``` raw_markdown
 ![](images/iacovella_1.png)
 *Basic configuration*
-```
 
 This mosaic, formed by two single granules, shows a typical case where the \"nodata\" collar areas of the granules overlap, as shown in the picture above. In this case we can use the `InputTransparentColor` parameter to make the collar areas disappear during the superimposition process --- in this case, by using an `InputTransparentColor` of `#FFFFFF`.
 
@@ -229,10 +211,8 @@ The final configuration parameters are the following:
 
 This is the result:
 
-``` raw_markdown
 ![](images/iacovella_2.png)
 *Advanced configuration*
-```
 
 ### Dynamic imagery
 
@@ -240,10 +220,8 @@ A mosaic need not be static. It can contain granules which change, are added or 
 
 1.  Create a mosaic in the standard way. (The specific configuration isn\'t important.)
 
-``` raw_markdown
 ![](images/tutorial_dynamic1.png)
 *This mosaic contains 5 granules. Note that ``InputTransparentColor`` is set to ``#FFFFFF`` here.*
-```
 
 To add new granules, the index that was created when the mosaic was originally created needs to be regenerated. There are two ways to do this:
 
@@ -263,10 +241,8 @@ To update an ImageMosaic through the file system:
 3.  *(Optional but recommended)* Edit the layer definition in GeoServer, making to sure to update the bounding box information (if changed).
 4.  Save the layer. The index will be recreated.
 
-``` raw_markdown
 ![](images/tutorial_dynamic2.png)
 *This mosaic contains 9 granules*
-```
 
 !!! note
 
@@ -301,17 +277,13 @@ Schema=*the_geom:Polygon,location:String,crs:String,resolution:String
 
 6.  Save this file in the root of the mosaic directory (along with the index files). The result is the following:
 
-    ``` raw_markdown
     ![](images/tutorial_reproj_artifact.png)
     *Closeup of granule overlap (high resolution granule on right)*
-    ```
 
 7.  To remove the reprojection artifact (shown in the above as a black area) edit the layer configuration to set `InputTransparentColor` to `#000000`.
 
-    ``` raw_markdown
     ![](images/tutorial_reproj_noartifact.png)
     *Closeup of granule overlap (high resolution granule on right)*
-    ```
 
 ## Referring to a datastore configured in GeoServer
 

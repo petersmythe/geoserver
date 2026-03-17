@@ -75,10 +75,10 @@ where `id` is the numeric identifier of a single request, and `format` specifies
 
     An alternative to specifying the returned representation with the `format` extension is to use the http `Accept` header and specify the MIME type as one of:
     
-    > - `text/html`
-    > - `application/csv`
-    > - `application/zip`
-    > - `application/vnd.ms-excel`
+- `text/html`
+- `application/csv`
+- `application/zip`
+- `application/vnd.ms-excel`
     
     See the [HTTP specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.md) for more information about the `Accept` header.
 

@@ -307,7 +307,7 @@ The fill pattern is defined by repeating one of the built-in symbols, or making 
 
 17. This produces the same visual result:
 
-    > ![image](../style/img/polygon_pattern_5.png)
+    ![image](../style/img/polygon_pattern_5.png)
 
 18. Multiple fills can be combined by supplying more than one fill as part of the same rule.
 
@@ -812,11 +812,11 @@ label-max-displacement: 130;
 
 ### Challenge Use of Z-Index {: #css.polygon.q6 }
 
-> 1.  Earlier we looked at using **z-index** to simulate line string casing. The line work was drawn twice, once with thick line, and then a second time with a thinner line. The resulting effect is similar to text halos - providing breathing space around complex line work allowing it to stand out.
->
-> 2.  **Challenge:** Use what you know of LineString **z-index** to reproduce the following map:
->
->     ![image](../style/img/polygon_zorder.png)
->
+1.  Earlier we looked at using **z-index** to simulate line string casing. The line work was drawn twice, once with thick line, and then a second time with a thinner line. The resulting effect is similar to text halos - providing breathing space around complex line work allowing it to stand out.
+
+2.  **Challenge:** Use what you know of LineString **z-index** to reproduce the following map:
+
+    ![image](../style/img/polygon_zorder.png)
+
 !!! note
     Answer [provided](#css.polygon.a6) at the end of the workbook.

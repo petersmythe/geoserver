@@ -32,23 +32,23 @@ docker run --name geoserver_keycloak -p 7777:8080 \
 
 2.  In the top left corner, click on "Keycloak master" and then "Create realm"
 
-    > ![](../img/keycloak-create-realm.png)
+    ![](../img/keycloak-create-realm.png)
 
 3.  Give the realm a name (i.e. "gs-realm") and then press "Create"
 
-    > ![](../img/keycloak-create-realm2.png)
+    ![](../img/keycloak-create-realm2.png)
 
 4.  On the left bar, press "Clients" for your new realm, then "Create client"
 
-    > ![](../img/keycloak-create-client.png)
+    ![](../img/keycloak-create-client.png)
 
 5.  Give the new Client a name ("gs-client") and press "Next"
 
-    > ![](../img/keycloak-create-client2.png)
+    ![](../img/keycloak-create-client2.png)
 
 6.  Turn on "Client authentication" and then press "Next"
 
-    > ![](../img/keycloak-create-client3.png)
+    ![](../img/keycloak-create-client3.png)
 
 7.  Set the "Root URL" and "Home URL" as "http://localhost:8080". Set the "Valid post logout redirect URIs" and "Valid redirect URIs" as "http://localhost:8080/*". Then press "Save".
 
@@ -70,13 +70,13 @@ This will create a "geoserverAdmin" role that can be used to give users admin ac
 
 1.  Go to your client ("gs-client"):
 
-    > - Make sure you are in the correct realm ("gs-realm") in the top left corner
-    > - Click on "Clients" (left bar)
-    > - Choose your client ("gs-client")
+    - Make sure you are in the correct realm ("gs-realm") in the top left corner
+    - Click on "Clients" (left bar)
+    - Choose your client ("gs-client")
 
 2.  In the client's top bar, press "Roles", then "Create Role".
 
-    > ![](../img/keycloak-create-role1.png)
+    ![](../img/keycloak-create-role1.png)
 
 #\. Set the role's name as "geoserverAdmin" and press "Save"
 
@@ -86,8 +86,8 @@ This will create a "geoserverAdmin" role that can be used to give users admin ac
 
 We will create two user:
 
-> - "admin/admin" who has administration rights (role "geoserverAdmin")
-> - "user/user" who does not have administration rights
+- "admin/admin" who has administration rights (role "geoserverAdmin")
+- "user/user" who does not have administration rights
 
 We will also put the Keycloak roles in the ID Token. By default, keycloak only puts the roles in the Access Token JWT (not in the ID Token).
 
@@ -95,63 +95,63 @@ We will also put the Keycloak roles in the ID Token. By default, keycloak only p
 
 2.  Press "Users" (left column) and then "Create new User"
 
-    > ![](../img/keycloak-create-user1.png)
+    ![](../img/keycloak-create-user1.png)
 
 3.  Create the "admin" user - you can use your own name and email if you want. Ensure that the user's email is verified. When finished, press "Create".
 
-    > ![](../img/keycloak-create-user2.png)
+    ![](../img/keycloak-create-user2.png)
 
 4.  Press the "Users" (left column) again, and then "Add User".
 
-    > ![](../img/keycloak-create-user3.png)
+    ![](../img/keycloak-create-user3.png)
 
 5.  Add the "user" user. Ensure that the user's email is verified. When finished, press "Create". On he next screen, press "Save".
 
-    > ![](../img/keycloak-create-user4.png)
+    ![](../img/keycloak-create-user4.png)
 
 #\. Press the "Users" (left column) again, then click on the "admin" user.
 
-> ![](../img/keycloak-create-user5.png)
->
-> 1.  Press "Role mapping"
->
-> ![](../img/keycloak-create-user6.png)
->
-> 1.  Press "Assign role" - you will get a pop-up
->
-> ![](../img/keycloak-create-user7.png)
->
-> 1.  Check the "geoserverAdmin" role, and then press "Assign"
->
-> ![](../img/keycloak-create-user8.png)
+![](../img/keycloak-create-user5.png)
+
+1.  Press "Role mapping"
+
+![](../img/keycloak-create-user6.png)
+
+1.  Press "Assign role" - you will get a pop-up
+
+![](../img/keycloak-create-user7.png)
+
+1.  Check the "geoserverAdmin" role, and then press "Assign"
+
+![](../img/keycloak-create-user8.png)
 
 1.  Go to the "Credentials" tab and Press "Set Password"
 
-    > ![](../img/keycloak-set-password-admin1.png)
+    ![](../img/keycloak-set-password-admin1.png)
 
 2.  Fill in the Password as "admin" and set "Temporary" to "off". Press "Save" and Confirm setting the password.
 
-    > ![](../img/keycloak-set-password-admin2.png)
+    ![](../img/keycloak-set-password-admin2.png)
 
 3.  Do the same for the User "user"
 
-    > - Press "Users" (left column)
-    > - Select the "user" User
-    > - Press "Credentials"
-    > - Press "Set Password"
-    > - Fill in "user" as the password
-    > - Set "Temporary" to "off"
-    > - Press "Save" and Confirm setting the password.
-    >
-    > ![](../img/keycloak-set-password-user1.png)
+    - Press "Users" (left column)
+    - Select the "user" User
+    - Press "Credentials"
+    - Press "Set Password"
+    - Fill in "user" as the password
+    - Set "Temporary" to "off"
+    - Press "Save" and Confirm setting the password.
+
+    ![](../img/keycloak-set-password-user1.png)
 
 4.  One the left column, choose "Client scope". In the search box, enter "roles" and press the "->" search button. In the results, click on "roles".
 
-    > ![](../img/keycloak-id-token.png)
+    ![](../img/keycloak-id-token.png)
 
 5.  Click on "Mappers" (top), and then "client roles" (middle).
 
-    > ![](../img/keycloak-id-token2.png)
+    ![](../img/keycloak-id-token2.png)
 
 #\. Turn on "Add to ID token" and "Add to userinfo". Then press "Save".
 
@@ -165,9 +165,9 @@ This allow you to get a Client Secret.
 
 1.  Navigate to your Client ("gs-client") in your Realm ("gs-realm")
 
-    > - Make sure you are in the correct realm ("gs-realm") in the top left corner
-    > - Click on "Clients" (left bar)
-    > - Choose your client ("gs-client")
+    - Make sure you are in the correct realm ("gs-realm") in the top left corner
+    - Click on "Clients" (left bar)
+    - Choose your client ("gs-client")
 
 #\. Click on the "Credentials" tab (top) and then the copy button.
 
@@ -181,13 +181,13 @@ This is for technical people wanting to see the Access Token, ID Token, and User
 
 1.  Navigate to your Client ("gs-client") in your Realm ("gs-realm")
 
-    > - Make sure you are in the correct realm ("gs-realm") in the top left corner
-    > - Click on "Clients" (left bar)
-    > - Choose your client ("gs-client")
+    - Make sure you are in the correct realm ("gs-realm") in the top left corner
+    - Click on "Clients" (left bar)
+    - Choose your client ("gs-client")
 
 2.  At the top, go to "Client Scopes", then press "Evaluate" (near the top), then select a User. You must not just type in the user's name, you **must** select it from the auto-complete pop-up!
 
-    > ![](../img/keycloak-debug1.png)
+    ![](../img/keycloak-debug1.png)
 
 3.  In the bottom right, you can look at the Access Token, ID Token, and Userinfo JSON claims payloads.
 
@@ -314,11 +314,11 @@ The next step is to configure your Keycloak as the OIDC IDP for GeoServer. You w
 
 2.  On the left bar under "Security", click "Authentication", and then "OpenID Connect Login"
 
-    > ![](../img/google-gs1.png)
+    ![](../img/google-gs1.png)
 
 3.  Give the it a name like "test-keycloak", then from the **Provider** dropdown select **OpenID Connect Provider** (this is the default selection).
 
-    > ![](../img/keycloak-gs-filter1.png)
+    ![](../img/keycloak-gs-filter1.png)
 
 4.  Fill in the required information:
 
@@ -339,37 +339,37 @@ The next step is to configure your Keycloak as the OIDC IDP for GeoServer. You w
 
 One the same page, we will configure the Role source:
 
-> - Get the roles from the ID Token's "resource_access.gs-client.roles" claim
-> - Convert the keycloak "geoserverAdmin" role to GeoServer's "ROLE_ADMINISTRATOR".
+- Get the roles from the ID Token's "resource_access.gs-client.roles" claim
+- Convert the keycloak "geoserverAdmin" role to GeoServer's "ROLE_ADMINISTRATOR".
 
 #\. Go down to the bottom and configure the role source (for more info see [role source](../role-config.md)).
 
-> - Choose "ID Token" as the "Role Source"
-> - Set "resource_access.gs-client.roles" as the "JSON Path"
-> - Set "geoserverAdmin=ROLE_ADMINISTRATOR" as the "Role Converter Map"
-> - (optionally) Check "Only allow External Roles that are explicitly named above"
-> - Press Save
->
-> ![](../img/keycloak-rolesource-id.png)
+- Choose "ID Token" as the "Role Source"
+- Set "resource_access.gs-client.roles" as the "JSON Path"
+- Set "geoserverAdmin=ROLE_ADMINISTRATOR" as the "Role Converter Map"
+- (optionally) Check "Only allow External Roles that are explicitly named above"
+- Press Save
+
+![](../img/keycloak-rolesource-id.png)
 
 **NOTE:** You can also change the above to get the role from the ID Token, Access Token, or userinfo.
 
 ### Allow Web Access (Filter Chain)
 
-> * On the left bar under "Security", click "Authentication", and then click "Web" under "Filter Chains"
->
-> > ![](../img/google-filterchain1.png)
-> >
-> > - Scroll down, and move the new Keycloak OIDC Filter to the Selected side by pressing the "->" button.
-> >
-> > ![](../img/keycloak-filterchain2.png)
-> >
-> > - Move the new Keycloak OIDC Filter above "anonymous" by pressing the up arrow button.
-> >
-> > ![](../img/keycloak-filterchain3.png)
-> >
-> > - Press "Close"
-> > - Press "Save"
+* On the left bar under "Security", click "Authentication", and then click "Web" under "Filter Chains"
+
+    ![](../img/google-filterchain1.png)
+
+    - Scroll down, and move the new Keycloak OIDC Filter to the Selected side by pressing the "->" button.
+
+    ![](../img/keycloak-filterchain2.png)
+
+    - Move the new Keycloak OIDC Filter above "anonymous" by pressing the up arrow button.
+
+    ![](../img/keycloak-filterchain3.png)
+
+    - Press "Close"
+    - Press "Save"
 
 ## Testing
 
@@ -379,19 +379,19 @@ See [troubleshooting](../advanced.md#community_oidc_troubleshooting).
 
 2.  Press the OIDC login button in the top left of the GeoServer Main Page
 
-    > ![](../img/keycloak-login1.png)
+    ![](../img/keycloak-login1.png)
 
 3.  The keycloak Login screen will appear. Login as:
 
-    > - user "admin", password "admin"
-    > - user "user", password "user"
+    - user "admin", password "admin"
+    - user "user", password "user"
 
 4.  If you login as "admin", you should see the GeoServer administration screens. If you login as "user", you will not.
 
-    > - Admin
-    >
-    >   > ![](../img/keycloak-login2.png)
-    >
-    > - User
-    >
-    >   > ![](../img/keycloak-login3.png)
+    - Admin
+
+        ![](../img/keycloak-login2.png)
+
+    - User
+
+        ![](../img/keycloak-login3.png)

@@ -70,8 +70,8 @@ There is not much in the way of strict commit policies when it comes to committi
     When adding new source files to the repository remember to add the standard copyright header:
 
         /* (c) 2016 Open Source Geospatial Foundation - all rights reserved
-         * This code is licensed under the GPL 2.0 license, available at the root
-         * application directory.
+          * This code is licensed under the GPL 2.0 license, available at the root
+          * application directory.
          */
 
     When updating a file that does not have an existing header, add one (as above).
@@ -79,13 +79,13 @@ There is not much in the way of strict commit policies when it comes to committi
     When adding content from another organisation maintain copyright history and original license. Only add Open Source Geospatial Foundation if you have made modifications to the file for GeoServer:
 
         /* (c) 2016 Open Source Geospatial Foundation - all rights reserved
-         * (c) 2014 OpenPlans
-         * (c) 2008-2010 GeoSolutions
-         * 
-         * This code is licensed under the GPL 2.0 license, available at the root
-         * application directory.
-         * 
-         * Original from GeoWebCache 1.5.1 under a LGPL license 
+          * (c) 2014 OpenPlans
+          * (c) 2008-2010 GeoSolutions
+          * 
+          * This code is licensed under the GPL 2.0 license, available at the root
+          * application directory.
+          * 
+          * Original from GeoWebCache 1.5.1 under a LGPL license 
          */
 
     In a rare case (as when asking to migrate content from GeoTools) you can obtain permission to change the license to our GPL 2.0 license.

@@ -26,8 +26,8 @@ GeoServer supports MrSID, ECW and JPEG 2000 through the GDAL Image Format plugin
 
 As soon as your Geotiffs gets beyond some tens of megabytes you'll want to add the following capabilities:
 
-> - inner tiling
-> - overviews
+- inner tiling
+- overviews
 
 Inner tiling sets up the image layout so that it's organized in tiles instead of simple stripes (rows). This allows much quicker access to a certain area of the geotiff, and the GeoServer readers will leverage this by accessing only the tiles needed to render the current display area. The following sample command instructs [gdal_translate](http://www.gdal.org/gdal_translate.md) to create a tiled [geotiff](http://www.gdal.org/frmt_gtiff.md).
 

@@ -53,28 +53,22 @@ The time dimension would thus be exposed in GeoServer as {1/1/2017, 1/2/2017, 1/
 
 Some additional functionality was introduced to maximally exploit two-dimensional coordinate variables:
 
-> - With requests that do not specify certain dimension values, we want to select default values that makes sense with regards to the dimensions values that *were* specified in the request. More specifically we want the maximum or minimum of the domain that matches the specified request's other dimension values; rather than the maximum or minimum of the entire domain.
-> - The user may want to query which combination of dimension values do exist and which don't. This can be done through an Auxiliary Vector Store that publishes the entire index.
+- With requests that do not specify certain dimension values, we want to select default values that makes sense with regards to the dimensions values that *were* specified in the request. More specifically we want the maximum or minimum of the domain that matches the specified request's other dimension values; rather than the maximum or minimum of the entire domain.
+- The user may want to query which combination of dimension values do exist and which don't. This can be done through an Auxiliary Vector Store that publishes the entire index.
 
 A number of system properties allow us to configure this behavior:
 
-> - 
->
->   `org.geotools.coverage.io.netcdf.param.max`
->
->   :   A comma separated list of dimensions that must be maximised when their value is absent in the request. In the layer configuration, the default value of these dimensions must be set to 'Built-in'.
->
-> - 
->
->   `org.geotools.coverage.io.netcdf.param.min`
->
->   :   A comma separated list of dimensions that must be minimised when their value is absent in the request. In the layer configuration, the default value of these dimensions must be set to 'Built-in'.
->
-> - 
->
->   `org.geotools.coverage.io.netcdf.auxiliary.store`
->
->   :   Set to TRUE to display the 'NetCDF Auxiliary Store' option in Geoserver. A NetCDF Auxiliary Store must be published *after* publishing the actual NetCDF store.
+- `org.geotools.coverage.io.netcdf.param.max`
+
+  A comma separated list of dimensions that must be maximised when their value is absent in the request. In the layer configuration, the default value of these dimensions must be set to 'Built-in'.
+
+- `org.geotools.coverage.io.netcdf.param.min`
+
+  A comma separated list of dimensions that must be minimised when their value is absent in the request. In the layer configuration, the default value of these dimensions must be set to 'Built-in'.
+
+- `org.geotools.coverage.io.netcdf.auxiliary.store`
+
+  Set to TRUE to display the 'NetCDF Auxiliary Store' option in Geoserver. A NetCDF Auxiliary Store must be published *after* publishing the actual NetCDF store.
 
 The NetCDF Auxiliary Store returns a WFS record like this for each possible combination of dimension values that do not include the two prime spatial dimensions:
 
@@ -205,17 +199,13 @@ You may also specify the NetCDF projections definition file by setting a **Java 
 
 Some NetCDFs may include a text attribute containing the WKT definition of a Coordinate Reference System. When present, it will be parsed by GeoServer to setup a CRS and a lookup will be performed to see if any EPSG is matching it.
 
-> - 
->
->   spatial_ref
->
->   :   GDAL *spatial_ref* attribute
->
-> - 
->
->   esri_pe_string
->
->   :   An attribute being defined by [NetCDF CERP Metadata Convention](https://www.jem.gov/downloads/CERP%20NetCDF%20standard/CERP_NetCDF_Metadata_Conventions_1.2.pdf)
+- spatial_ref
+
+  GDAL *spatial_ref* attribute
+
+- esri_pe_string
+
+  An attribute being defined by [NetCDF CERP Metadata Convention](https://www.jem.gov/downloads/CERP%20NetCDF%20standard/CERP_NetCDF_Metadata_Conventions_1.2.pdf)
 
 ## NetCDF files in read-only directories
 

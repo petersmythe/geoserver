@@ -195,8 +195,8 @@ GeoServer ships with a Content Security Policy (CSP) that will prevent Cesium an
         child-src  'self' https://*.arcgis.com https://services.arcgisonline.com blob:;
         ```
 
-  > 6.  Save the i3s rule, and then use the arrows to place the Cesium and i3s rules above the "other requests" line, it should look as follows:
-  >
-  > ![](img/geoserver-csp-order.png)
-  >
-  > 7.  Finally click Save on the geoserver-csp policy page, and then again on the main Content Security Policy main page. The Cesium and i3s viewers should now work correctly.
+6.  Save the i3s rule, and then use the arrows to place the Cesium and i3s rules above the "other requests" line, it should look as follows:
+
+![](img/geoserver-csp-order.png)
+
+7.  Finally click Save on the geoserver-csp policy page, and then again on the main Content Security Policy main page. The Cesium and i3s viewers should now work correctly.

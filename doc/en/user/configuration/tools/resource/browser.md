@@ -33,13 +33,13 @@ User interface elements:
 
 - **Rename** to rename a selected resource.
 
-  > ![](img/rename_resource.png)
-  > *Rename a Resource*
+  ![](img/rename_resource.png)
+  *Rename a Resource*
 
 - **Delete** to remove a selected resource.
 
-  > ![](img/delete_resource.png)
-  > *Delete a resource*
+  ![](img/delete_resource.png)
+  *Delete a resource*
 
 ## Before you start
 

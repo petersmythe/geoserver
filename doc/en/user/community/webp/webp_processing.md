@@ -40,19 +40,19 @@ WebP supports lossless compression (for graphics) and lossy compression (for pho
 
 - | Lossless compression: A small factor enables faster compression speed, but produces a larger file (maximum compression q=100).
 
-> | q   | lossless [ms] | lossless [kb] | lossy [ms] | lossy [kb] |
-> |-----|-----------------|-----------------|--------------|--------------|
-> | 0.0 | 48              | 57              | **18.6**     | **25**       |
-> | 0.1 | 48.8            | 57              | 19.5         | 26           |
-> | 0.2 | 48.7            | 57              | 19.7         | 27           |
-> | 0.3 | 82.6            | 45              | 20.4         | 27           |
-> | 0.4 | 84.6            | 45              | 20.6         | 28           |
-> | 0.5 | 85.6            | 45              | 20.8         | 29           |
-> | 0.6 | 89.1            | 45              | 20.8         | 29           |
-> | 0.7 | 93.9            | 45              | 21.2         | 30           |
-> | 0.8 | 99.3            | 45              | 21.4         | 32           |
-> | 0.9 | 99.3            | 45              | 22.5         | 36           |
-> | 1.0 | 1425            | 44              | 25.3         | 46           |
+  | q   | lossless [ms] | lossless [kb] | lossy [ms] | lossy [kb] |
+  |-----|-----------------|-----------------|--------------|--------------|
+  | 0.0 | 48              | 57              | **18.6**     | **25**       |
+  | 0.1 | 48.8            | 57              | 19.5         | 26           |
+  | 0.2 | 48.7            | 57              | 19.7         | 27           |
+  | 0.3 | 82.6            | 45              | 20.4         | 27           |
+  | 0.4 | 84.6            | 45              | 20.6         | 28           |
+  | 0.5 | 85.6            | 45              | 20.8         | 29           |
+  | 0.6 | 89.1            | 45              | 20.8         | 29           |
+  | 0.7 | 93.9            | 45              | 21.2         | 30           |
+  | 0.8 | 99.3            | 45              | 21.4         | 32           |
+  | 0.9 | 99.3            | 45              | 22.5         | 36           |
+  | 1.0 | 1425            | 44              | 25.3         | 46           |
 
 **Table 3**: Comparison of the lossy/lossless mode and compression factor (q) for LibWebP encoding time and file size. Input image, see below. The average of the encoding duration was calculated for 10 passes.
 

@@ -1285,4 +1285,4 @@ The **symbol** layer with the **label** property are used to label Point Locatio
 
         Answer [provided](#mbstyle.point.a2) at the end of the workbook.
 
-> 1.  Challenge: Use the **Interpolate** function to smoothly change the mark **size** based on city population.
+1.  Challenge: Use the **Interpolate** function to smoothly change the mark **size** based on city population.

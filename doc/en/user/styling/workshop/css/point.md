@@ -650,7 +650,7 @@ The key properties **mark** and **label** are required to label Point locations.
 
         Answer [provided](#ysld.point.a2) at the end of the workbook.
 
-> 1.  Challenge: Use the **Interpolate** function to smoothly change **mark-size** based on city population.
+1.  Challenge: Use the **Interpolate** function to smoothly change **mark-size** based on city population.
 
 ### Challenge Layer Group {: #css.point.q3 }
 

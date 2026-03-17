@@ -215,8 +215,8 @@ While an example rule in a sld style sheet could be:
 
 PostgreSQL defines two JSON datatypes:
 
-> - `json` that stores an exact copy of the input text.
-> - `jsonb` which store the value in a decomposed binary format.
+- `json` that stores an exact copy of the input text.
+- `jsonb` which store the value in a decomposed binary format.
 
 The jsonPointer function supports both, as well as the text format if it contains a valid json representation. Anyways, the PostgreSQL documentation recommends usage of jsonb, as it is faster to process.
 

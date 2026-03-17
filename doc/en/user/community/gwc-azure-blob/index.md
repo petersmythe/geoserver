@@ -4,17 +4,17 @@ This plugin supports the use of the [Azure BLOB storage](https://azure.microsoft
 
 ## Installing the Azure BlobStore plugin
 
-> 1.  Download the extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
->
->     :::: warning
->     ::: title
->     Warning
->     :::
->
->     Make sure to match the version of the extension to the version of the GeoServer instance!
->     ::::
->
-> 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
+1.  Download the extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
+
+    :::: warning
+    ::: title
+    Warning
+    :::
+
+    Make sure to match the version of the extension to the version of the GeoServer instance!
+    ::::
+
+2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 
 ## Configuring the Azure BlobStore plugin
 

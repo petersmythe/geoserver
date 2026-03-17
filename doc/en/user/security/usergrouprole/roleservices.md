@@ -81,12 +81,12 @@ The J2EE role service parses roles from the `WEB-INF/web.xml` file. As a consequ
    <role-name>employee</role-name>
 </security-role>
 ```
->
-> Roles retrieved:
->
-> - `role1`
-> - `role2`
-> - `employee`
+
+Roles retrieved:
+
+- `role1`
+- `role2`
+- `employee`
 
 ### `<security-constraint>`
 
@@ -106,11 +106,11 @@ The J2EE role service parses roles from the `WEB-INF/web.xml` file. As a consequ
    </auth-constraint>
    </security-constraint>
 ```
->
-> Roles retrieved:
->
-> - `role1`
-> - `employee`
+
+Roles retrieved:
+
+- `role1`
+- `employee`
 
 ### `<security-role-ref>`
 
@@ -121,10 +121,10 @@ The J2EE role service parses roles from the `WEB-INF/web.xml` file. As a consequ
     <role-link>employee</role-link>
   </security-role-ref>      
 ```
->
-> Roles retrieved:
->
-> - `MGR`
+
+Roles retrieved:
+
+- `MGR`
 
 ## JDBC role service {: #security_rolesystem_rolejdbc }
 

@@ -6,20 +6,20 @@ It can also be used to display the Git branch the node is running from, which ca
 
 This is possible by setting one variable, `GEOSERVER_NODE_OPTS`, with one of the supported mechanisms (in order of priority):
 
-> 1.  Java System Properties
-> 2.  Web Application context parameters
-> 3.  System Environmental Variables
+1.  Java System Properties
+2.  Web Application context parameters
+3.  System Environmental Variables
 
 `GEOSERVER_NODE_OPTS` is a semicolon separated list of key/value pairs and it can contain the following keys:
 
-> - `id`: the string identifying the node, which in turn can be a static string, or include the following substitution tokens
->   - `$host_ip`: the IP address of the node
->   - `$host_name`: the hostname of the node
->   - `$host_short_name`: the hostname truncated to not include the domain (`foo.local` becomes `foo`)
->   - `$host_compact_name`: the hostname with all domain parts shortened to their first character (`foo.local` becomes `foo.l`)
->   - `$git_branch`: the Git branch name (requires the `.git` folder to be present in the GEOSERVER_DATA_DIR, its immediate parent or the current working directory)
-> - `color`: the label color, as a CSS color
-> - `background`: the background color, as a CSS color
+- `id`: the string identifying the node, which in turn can be a static string, or include the following substitution tokens
+  - `$host_ip`: the IP address of the node
+  - `$host_name`: the hostname of the node
+  - `$host_short_name`: the hostname truncated to not include the domain (`foo.local` becomes `foo`)
+  - `$host_compact_name`: the hostname with all domain parts shortened to their first character (`foo.local` becomes `foo.l`)
+  - `$git_branch`: the Git branch name (requires the `.git` folder to be present in the GEOSERVER_DATA_DIR, its immediate parent or the current working directory)
+- `color`: the label color, as a CSS color
+- `background`: the background color, as a CSS color
 
 Here are some examples:
 

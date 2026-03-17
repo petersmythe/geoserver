@@ -1,6 +1,6 @@
 PRESERVATION BASELINE
 ================================================================================
 
-Internal links: 52
-External links: 6
-Total: 58
+Internal links: 0
+External links: 0
+Total: 0

@@ -6,9 +6,9 @@ The z-ordering is implemented as a new FeatureTypeStyle vendor option, `sortBy`,
 
 Some examples:
 
-> - "z": sorts the features based on the `z` field, ascending (lower z values are painted first, higher later)
-> - "cat,z D": sorts the features on the `cat` attribute, with ascending order, and for those that have the same `cat` value, the sorting is on descending `z`
-> - "cat D,z D": sorts the features on the `cat` attribute, with descending order, and for those that have the same `cat` value, the sorting is on descending `z`
+- "z": sorts the features based on the `z` field, ascending (lower z values are painted first, higher later)
+- "cat,z D": sorts the features on the `cat` attribute, with ascending order, and for those that have the same `cat` value, the sorting is on descending `z`
+- "cat D,z D": sorts the features on the `cat` attribute, with descending order, and for those that have the same `cat` value, the sorting is on descending `z`
 
 So, if we wanted to order features based on a single "elevation" attribute we'd be using the following SLD snippet:
 
@@ -134,8 +134,8 @@ When grouping is used, the code will first paint `Line.1,Line3` with the thick l
 
 Different layers, such for example roads and rails, can have their features z-ordered together by putting all the `FeatureTypeStyle` in their styles in the same `sortByGroup`, provided the following conditions are met:
 
-> - The layers are side by side in the WMS request/layer group. In other words, the z-ordering allows to break the WMS specified order only if the layers are directly subsequent in the request. This can be extended to any number of layers, provided the progression of `FeatureTypeStyle` in the same group is not broken
-> - There is no FeatureTypeStyle in the layer style that's breaking the sequence
+- The layers are side by side in the WMS request/layer group. In other words, the z-ordering allows to break the WMS specified order only if the layers are directly subsequent in the request. This can be extended to any number of layers, provided the progression of `FeatureTypeStyle` in the same group is not broken
+- There is no FeatureTypeStyle in the layer style that's breaking the sequence
 
 Let's consider an example, with a rails layer having two `FeatureTypeStyle`, one with a group, the other not:
 

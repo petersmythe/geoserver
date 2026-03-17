@@ -34,10 +34,10 @@ For example if a Shapefile called **fakeShapeFile** stores the various footprint
 
 And the associated granules are:
 
-> - ortho_1-1_1n_s_la087_2010_1.tif
-> - ortho_2-2_1n_s_la075_2010_1.tif
-> - ortho_1-1_1n_s_la103_2010_1.tif
-> - and so on \...
+- ortho_1-1_1n_s_la087_2010_1.tif
+- ortho_2-2_1n_s_la075_2010_1.tif
+- ortho_1-1_1n_s_la103_2010_1.tif
+- and so on \...
 
 The associated **footprints.properties** file must be like this:
 
@@ -50,9 +50,9 @@ The substring operation is done for comparing the footprint attribute names and 
 
 There are three possible behaviours for Footprint:
 
-> - *None*: simply doesn't use the Footprint and behaves like a standard ImageMosaic layer;
-> - *Transparent*: adds an alpha band of 0s on the image portions outside of the Footprint making them transparent, typically used for RGB data;
-> - *Cut*: set the background value on the image portions outside of the Footprint, typically used for GrayScale data.
+- *None*: simply doesn't use the Footprint and behaves like a standard ImageMosaic layer;
+- *Transparent*: adds an alpha band of 0s on the image portions outside of the Footprint making them transparent, typically used for RGB data;
+- *Cut*: set the background value on the image portions outside of the Footprint, typically used for GrayScale data.
 
 The behaviour must be set directly on the Layer configuration page.
 
@@ -214,16 +214,16 @@ overviewsSuffixFormat=_%d
 
 Notes:
 
-> - *footprintLoaderSPI*: Contains the fully qualified name of the SPI implementation for main footprint loading (Optional property. When not specified, the proper footprint loader will be automatically found by scanning the available SPIs). Currently supported values are:
->
->   > - org.geotools.coverage.grid.io.footprint.WKBLoaderSPI for WKB overviews
->   > - org.geotools.coverage.grid.io.footprint.WKTLoaderSPI for WKT overviews
->   > - org.geotools.gce.imagemosaic.catalog.ShapeFileLoaderSPI for Shapefile overviews
->
-> - *overviewsFootprintLoaderSPI*: Contains the fully qualified name of the SPI implementation for overviews footprints loading (Optional property. When not specified, same loader as footprintLoaderSpi will be used if provided);
->
-> - *overviewsRoiInRasterSpace*: Specifies whether the overviews ROI footprint geometrys are in raster space or model space coordinates. (Optional property. Default is False, meaning that overviews footprints are in model space);
->
-> - *overviewsSuffixFormat*: Specifies the String format syntax used to define the suffix of the overviews footprints file name. (Optional property. Default is _%d). To give an example, if granule file is R1C1.tif and related 1st overview footprint is stored into R1C1_1.wkt, overviewsSuffixFormat should be _%d. In case 1st overview footprint is stored into R1C1-Ov1.wkt, overviewsSuffixFormat should be -Ov%d.
+- *footprintLoaderSPI*: Contains the fully qualified name of the SPI implementation for main footprint loading (Optional property. When not specified, the proper footprint loader will be automatically found by scanning the available SPIs). Currently supported values are:
+
+    - org.geotools.coverage.grid.io.footprint.WKBLoaderSPI for WKB overviews
+    - org.geotools.coverage.grid.io.footprint.WKTLoaderSPI for WKT overviews
+    - org.geotools.gce.imagemosaic.catalog.ShapeFileLoaderSPI for Shapefile overviews
+
+- *overviewsFootprintLoaderSPI*: Contains the fully qualified name of the SPI implementation for overviews footprints loading (Optional property. When not specified, same loader as footprintLoaderSpi will be used if provided);
+
+- *overviewsRoiInRasterSpace*: Specifies whether the overviews ROI footprint geometrys are in raster space or model space coordinates. (Optional property. Default is False, meaning that overviews footprints are in model space);
+
+- *overviewsSuffixFormat*: Specifies the String format syntax used to define the suffix of the overviews footprints file name. (Optional property. Default is _%d). To give an example, if granule file is R1C1.tif and related 1st overview footprint is stored into R1C1_1.wkt, overviewsSuffixFormat should be _%d. In case 1st overview footprint is stored into R1C1-Ov1.wkt, overviewsSuffixFormat should be -Ov%d.
 
 Same steps of previous section are required to configure an ImageMosaic layer with footprint management.

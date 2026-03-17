@@ -64,12 +64,12 @@ docker run -it -p 9999:8080 \
 
 If your OIDC IDP server (i.e. keycloak) is running on ``localhost``, then you should ensure that all requests to the IDP occur using the same hostname (this includes the local user's browser and GeoServer directly connecting to the IDP). If you are running your IDP from a real host, then you do NOT have to do this;
 
-> 1.  Add this to your `/etc/hosts`:
->
+1.  Add this to your `/etc/hosts`:
+
     ``` bash
     127.0.0.1       host.docker.internal
     ```
->
-> 2.  In your GeoServer OIDC configuration, use ``host.docker.internal`` instead of ``localhost``
->
-> 3.  Access GeoServer and Keycloak with [http://host.docker.internal:PORT](http://host.docker.internal:PORT)
+
+2.  In your GeoServer OIDC configuration, use ``host.docker.internal`` instead of ``localhost``
+
+3.  Access GeoServer and Keycloak with [http://host.docker.internal:PORT](http://host.docker.internal:PORT)

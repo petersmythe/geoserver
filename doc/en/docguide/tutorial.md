@@ -8,10 +8,10 @@ This introductory sentence should state the intent and goal of the tutorial. Kee
 
 This next block should state any assumptions that you the writer are making. Present them in list form, for example:
 
-> This tutorial assumes:
->
-> - GeoServer is running on <http://localhost:8080/geoserver>
-> - PostGIS is installed on the system
+This tutorial assumes:
+
+- GeoServer is running on <http://localhost:8080/geoserver>
+- PostGIS is installed on the system
 
 ### Getting started
 

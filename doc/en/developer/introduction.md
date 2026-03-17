@@ -71,14 +71,14 @@ Additionally:
 - Several files supporting GZIP compressions (GZIPFilter, GZIPResponseStream, GZIPResponseWrapper are provided using:
 
       /*
-       * Copyright 2003 Jayson Falkner (jayson@jspinsider.com)
-       * This code is from "Servlets and JavaServer pages; the J2EE Web Tier",
-       * http://www.jspbook.com. You may freely use the code both commercially
-       * and non-commercially. If you like the code, please pick up a copy of
-       * the book and help support the authors, development of more free code,
-       * and the JSP/Servlet/J2EE community.
+        * Copyright 2003 Jayson Falkner (jayson@jspinsider.com)
+        * This code is from "Servlets and JavaServer pages; the J2EE Web Tier",
+        * http://www.jspbook.com. You may freely use the code both commercially
+        * and non-commercially. If you like the code, please pick up a copy of
+        * the book and help support the authors, development of more free code,
+        * and the JSP/Servlet/J2EE community.
        *
-       * Modified by David Winslow <dwinslow@openplans.org>
+        * Modified by David Winslow <dwinslow@openplans.org>
        */
 
 - SetCharacterEncodingFilter and RewindableInputStream makes use of code provided under [Apache License Version 2.0](https://github.com/geoserver/geoserver/blob/main/licenses/apache-2.0.md).

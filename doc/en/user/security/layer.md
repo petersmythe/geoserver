@@ -32,11 +32,11 @@ The parameters include:
 
 - `permission`--- Type of access permission/mode.
 
-  > - `r`---Read access
-  > - `w`---Write access
-  > - `a`---Admin access
-  >
-  > See [Access modes](#access_mode) for more details.
+  - `r`---Read access
+  - `w`---Write access
+  - `a`---Admin access
+
+  See [Access modes](#access_mode) for more details.
 
 - `role[,role2,...]` is the name(s) of predefined roles. The wildcard `*` is used to indicate the permission is applied to all users, including anonymous users.
 

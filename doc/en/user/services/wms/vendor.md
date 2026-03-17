@@ -312,17 +312,13 @@ tiled = new OpenLayers.Layer.WMS(
 
 The `scaleMethod` parameter controls how the scale denominator is computed by GeoServer The two possible values are:
 
-> - 
->
->   `OGC` (default): the scale denominator is computed according to the OGC SLD specification, which
->
->   :   imposes simplified formulas for the sake of interoperability
->
-> - 
->
->   `Accurate`: use the full expressions for computing the scale denominator against geographic
->
->   :   data, taking into account the ellipsoidal shape of Earth
+- `OGC` (default): the scale denominator is computed according to the OGC SLD specification, which
+
+  imposes simplified formulas for the sake of interoperability
+
+- `Accurate`: use the full expressions for computing the scale denominator against geographic
+
+  data, taking into account the ellipsoidal shape of Earth
 
 The two methods tend to return values rather close to each other near the equator, but they do diverge to larger differences as the latitude approaches the poles.
 
@@ -338,9 +334,9 @@ interpolations=method1,method2,...
 
 method<n> values can be one of the following:
 
-> - **nearest neighbor**
-> - **bilinear**
-> - **bicubic**
+- **nearest neighbor**
+- **bilinear**
+- **bicubic**
 
 or empty if the default method has to be used for the related layer.
 

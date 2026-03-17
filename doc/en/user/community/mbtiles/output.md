@@ -18,14 +18,14 @@ The following additional parameters can be passed on using [format_options](../.
 
 It is possible to generate an `mbtiles` file by calling the WPS process `gs:MBTiles`. This process requires the following parameters:
 
-> - `layername`: Name of the input layer.
-> - `format` : format of the final images composing the file.
-> - `minZoom`, `maxZoom`, `minColumn`, `maxColumn`, `minRow`, `maxRow`: *(Optional)* set the minimum and maximum zoom level, column, and rows.
-> - `boundingbox`: *(Optional)* Bounding box of the final mbtiles. If CRS is not set, the layer native one is used.
-> - `filename`: *(Optional)* name of the mbtiles file created.
-> - `bgColor`: *(Optional)* value associated to the background colour.
-> - `transparency`: *(Optional)* parameter indicating if the transparency must be present.
-> - `stylename`, `stylepath`, `stylebody`: *(Optional)* style to associate to the layer. Only one of these 3 parameters can be used.
+- `layername`: Name of the input layer.
+- `format` : format of the final images composing the file.
+- `minZoom`, `maxZoom`, `minColumn`, `maxColumn`, `minRow`, `maxRow`: *(Optional)* set the minimum and maximum zoom level, column, and rows.
+- `boundingbox`: *(Optional)* Bounding box of the final mbtiles. If CRS is not set, the layer native one is used.
+- `filename`: *(Optional)* name of the mbtiles file created.
+- `bgColor`: *(Optional)* value associated to the background colour.
+- `transparency`: *(Optional)* parameter indicating if the transparency must be present.
+- `stylename`, `stylepath`, `stylebody`: *(Optional)* style to associate to the layer. Only one of these 3 parameters can be used.
 
 The process returns an URL containing the path of the generated file.
 

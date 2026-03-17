@@ -139,8 +139,8 @@ The following settings allow to disable caching when a WMS dimension warning is 
 
 The best settings depend on the type of dataset and disk-quota configurations:
 
-> - For **static datasets with dimensions**, the default value skip could be removed, as it's going to generate at most one copy of the tiles. The nearest match and failed nearest could be cached if there is a disk quota (to speed up clients that repeatedly fail to perform an exact time match), but it's best not to cache it if there is no disk quota, as the mismatches can be potentially infinite, leading to an uncontrolled growth of the cache.
-> - For a **datasets growing over time**, it's better to disable caching on the default value, as it's often the "latest", that is, the most recently added to the dataset. This means the tiles contents change based on when they are asked for. The considerations for nearest and failed matches are the same as for the static datasets.
+- For **static datasets with dimensions**, the default value skip could be removed, as it's going to generate at most one copy of the tiles. The nearest match and failed nearest could be cached if there is a disk quota (to speed up clients that repeatedly fail to perform an exact time match), but it's best not to cache it if there is no disk quota, as the mismatches can be potentially infinite, leading to an uncontrolled growth of the cache.
+- For a **datasets growing over time**, it's better to disable caching on the default value, as it's often the "latest", that is, the most recently added to the dataset. This means the tiles contents change based on when they are asked for. The considerations for nearest and failed matches are the same as for the static datasets.
 
 Caution is advised if the data ingestion might happen to skip some time/elevation values, to fill them only at a later time. In this case, nearest matches could cause the system to cache a tile for a nearby time value, which would hide the actual values if they get ingested at a later time.
 

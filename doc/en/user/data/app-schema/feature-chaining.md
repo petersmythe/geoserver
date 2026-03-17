@@ -4,11 +4,11 @@
 
 This page describes the use of "Feature Chaining" to compose complex features from simpler components, and in particular to address some requirements that have proven significant in practice.
 
-> - Handling multiple cases of multi-valued properties within a single Feature Type
-> - Handing nesting of multi-valued properties within other multi-valued properties
-> - Linking related (through association) Feature Types, and in particular allowing re-use of the related features types (for example the O&M pattern has relatedObservation from a samplingFeature, but Observation may be useful in its own right)
-> - Encoding the same referenced property object as links when it appears in multiple containing features
-> - Eliminating the need for large denormalized data store views of top level features and their related features. Denormalized views would still be needed for special cases, such as many-to-many relationships, but won't be as large.
+- Handling multiple cases of multi-valued properties within a single Feature Type
+- Handing nesting of multi-valued properties within other multi-valued properties
+- Linking related (through association) Feature Types, and in particular allowing re-use of the related features types (for example the O&M pattern has relatedObservation from a samplingFeature, but Observation may be useful in its own right)
+- Encoding the same referenced property object as links when it appears in multiple containing features
+- Eliminating the need for large denormalized data store views of top level features and their related features. Denormalized views would still be needed for special cases, such as many-to-many relationships, but won't be as large.
 
 For non-application schema configurations, please refer to [app-schema.data-access-integration](#app-schema.data-access-integration).
 
@@ -33,11 +33,11 @@ Feature types that can be individually accessed don't need to be explicitly incl
 
 For this output: [MappedFeature_Output.xml](MappedFeature_Output.xml), here are the mapping files:
 
-> - [MappedFeature_MappingFile.xml](MappedFeature_MappingFile.xml)
-> - [GeologicUnit_MappingFile.xml](GeologicUnit_MappingFile.xml)
-> - [CompositionPart_MappingFile.xml](CompositionPart_MappingFile.xml)
-> - [GeologicEvent_MappingFile.xml](GeologicEvent_MappingFile.xml)
-> - [CGITermValue_MappingFile.xml](CGITermValue_MappingFile.xml)
+- [MappedFeature_MappingFile.xml](MappedFeature_MappingFile.xml)
+- [GeologicUnit_MappingFile.xml](GeologicUnit_MappingFile.xml)
+- [CompositionPart_MappingFile.xml](CompositionPart_MappingFile.xml)
+- [GeologicEvent_MappingFile.xml](GeologicEvent_MappingFile.xml)
+- [CGITermValue_MappingFile.xml](CGITermValue_MappingFile.xml)
 
 *GeologicUnit type*
 
@@ -53,7 +53,7 @@ In the nested feature type, make sure we have a field that can be referenced by 
 
 In the source expression tag:
 
-> - OCQL: the value of this should correspond to the OCQL part of the parent feature
+- OCQL: the value of this should correspond to the OCQL part of the parent feature
 
 **Example One**: Using *FEATURE_LINK* in CGI TermValue type, which is referred by GeologicEvent as gsml:eventProcess and gsml:eventEnvironment.
 
@@ -232,16 +232,14 @@ Test this configuration by running a getFeature request for the nested feature t
 
 When nesting another complex type, you need to specify in your source expression:
 
-> - **OCQL**: OGC's Common Query Language expression of the data store column
->
-> - 
->
->   **linkElement**:
->
->   :   - the nested element name, which is normally the targetElement or mappingName of the corresponding type.
->       - on some cases, it has to be an OCQL function (see [app-schema.polymorphism](#app-schema.polymorphism))
->
-> - **linkField**: the indexed XPath attribute on the nested element that OCQL corresponds to
+- **OCQL**: OGC's Common Query Language expression of the data store column
+
+- **linkElement**:
+
+  - the nested element name, which is normally the targetElement or mappingName of the corresponding type.
+      - on some cases, it has to be an OCQL function (see [app-schema.polymorphism](#app-schema.polymorphism))
+
+- **linkField**: the indexed XPath attribute on the nested element that OCQL corresponds to
 
 **Example:** Nesting composition part in geologic unit feature.
 
@@ -299,8 +297,8 @@ This is when the optional mappingName tag mentioned in [app-schema.mapping-file]
 
 The solution for the last point above is to break them up into separate files and locations with only 1 featuretype.xml in the intended top level feature location. E.g.
 
-> - You can have 2 FeatureTypeMapping instances in the same file for gsml:CGI_TermValue type since it's not a feature type.
-> - You can have 2 FeatureTypeMapping instances for gsml:MappedFeature, but they have to be broken up into separate files. The one that can be queried as top level feature type would have featuretype.xml in its location.
+- You can have 2 FeatureTypeMapping instances in the same file for gsml:CGI_TermValue type since it's not a feature type.
+- You can have 2 FeatureTypeMapping instances for gsml:MappedFeature, but they have to be broken up into separate files. The one that can be queried as top level feature type would have featuretype.xml in its location.
 
 ## Nesting simple properties
 
@@ -326,39 +324,39 @@ Filters would work as usual. You can supply the full XPath of the attribute, and
 
 You may want to use feature chaining to set multi-valued properties by reference. This is particularly handy to avoid endless loop in circular relationships. For example, you may have a circular relationship between gsml:MappedFeature and gsml:GeologicUnit. E.g.
 
-> - gsml:MappedFeature has gsml:GeologicUnit as gsml:specification
-> - gsml:GeologicUnit has gsml:MappedFeature as gsml:occurrence
+- gsml:MappedFeature has gsml:GeologicUnit as gsml:specification
+- gsml:GeologicUnit has gsml:MappedFeature as gsml:occurrence
 
 Obviously you can only encode one side of the relationship, or you'll end up with an endless loop. You would need to pick one side to "chain" and use xlink:href for the other side of the relationship.
 
 For this example, we are nesting gsml:GeologicUnit in gsml:MappedFeature as gsml:specification.
 
-> - Set up nesting on the container feature type mapping as usual:
->
->       <AttributeMapping>
->         <targetAttribute>gsml:specification</targetAttribute>
->         <sourceExpression>
->             <OCQL>GEOLOGIC_UNIT_ID</OCQL>
->           <linkElement>gsml:GeologicUnit</linkElement>
->           <linkField>gml:name[2]</linkField>
->         </sourceExpression>
->       </AttributeMapping>
->
-> - Set up xlink:href as client property on the other mapping file:
->
->       <AttributeMapping>
->         <targetAttribute>gsml:occurrence</targetAttribute>      
->         <sourceExpression>
->           <OCQL>id</OCQL>
->           <linkElement>gsml:MappedFeature</linkElement>
->           <linkField>gsml:specification</linkField>
->         </sourceExpression>                               
->         <isMultiple>true</isMultiple>                                       
->         <ClientProperty>
->            <name>xlink:href</name>
->            <value>strConcat('urn:cgi:feature:MappedFeature:', ID)</value>
->         </ClientProperty>       
->       </AttributeMapping>
+- Set up nesting on the container feature type mapping as usual:
+
+      <AttributeMapping>
+        <targetAttribute>gsml:specification</targetAttribute>
+        <sourceExpression>
+            <OCQL>GEOLOGIC_UNIT_ID</OCQL>
+          <linkElement>gsml:GeologicUnit</linkElement>
+          <linkField>gml:name[2]</linkField>
+        </sourceExpression>
+      </AttributeMapping>
+
+- Set up xlink:href as client property on the other mapping file:
+
+      <AttributeMapping>
+        <targetAttribute>gsml:occurrence</targetAttribute>      
+        <sourceExpression>
+          <OCQL>id</OCQL>
+          <linkElement>gsml:MappedFeature</linkElement>
+          <linkField>gsml:specification</linkField>
+        </sourceExpression>                               
+        <isMultiple>true</isMultiple>                                       
+        <ClientProperty>
+           <name>xlink:href</name>
+           <value>strConcat('urn:cgi:feature:MappedFeature:', ID)</value>
+        </ClientProperty>       
+      </AttributeMapping>
 
 As we are getting the client property value from a nested feature, we have to set it as if we are chaining the feature; but we also add the client property containing *xlink:href* in the attribute mapping. The code will detect the *xlink:href* setting, and will not proceed to build the nested feature's attributes, and we will end up with empty attributes with *xlink:href* client properties.
 

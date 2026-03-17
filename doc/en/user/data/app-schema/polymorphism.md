@@ -156,11 +156,9 @@ Otherwise, if NUMERIC_VALUE is less or equal than 1000, it would be encoded with
 
 - **EXPRESSION**: column name to get values from, or another function
 
-- 
+- **key-n**:
 
-  **key-n**:
-
-  :   - key expression to map to value-n
+  - key expression to map to value-n
       - if the evaluated value of EXPRESSION doesn't match any key, nothing would be encoded for the attribute.
 
 - **value-n**: value expression which translates to a mappingName or targetElement
@@ -213,11 +211,9 @@ Special function written for referential polymorphism and feature chaining, not 
 
     toXlinkHref(XLINK_HREF_EXPRESSION)
 
-- 
+- **XLINK_HREF_EXPRESSION**:
 
-  **XLINK_HREF_EXPRESSION**:
-
-  :   - could be a function or a literal
+  - could be a function or a literal
       - has to be wrapped in single quotes if it's a literal
 
 !!! note
@@ -317,7 +313,7 @@ If the type is conditional, the mapping style for such attributes is the same as
 
 Filters should work as usual, as long as the users know what they want to filter. For example, when an attribute could be encoded as gsml:CGI_TermValue or gsml:CGI_NumericValue, users can run filters with property names of:
 
-> - ex:someAttribute/gsml:CGI_TermValue/gsml:value to return matching attributes that are encoded as gsml:CGI_TermValue and satisfy the filter.
-> - likewise, ex:someAttribute/gsml:CGI_NumericValue/gsml:principalValue should return matching gsml:CGI_NumericValue attributes.
+- ex:someAttribute/gsml:CGI_TermValue/gsml:value to return matching attributes that are encoded as gsml:CGI_TermValue and satisfy the filter.
+- likewise, ex:someAttribute/gsml:CGI_NumericValue/gsml:principalValue should return matching gsml:CGI_NumericValue attributes.
 
 Another limitation is filtering attributes of an xlink:href attribute pointing to an instance outside of the document.

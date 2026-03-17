@@ -17,32 +17,32 @@ The following is a list of metrics collected by the Monitor Micrometer extension
 | The total time spent handling the request, measured in seconds.
 | Available metrics types:
 
-> - **requests_total_seconds (summary)**: tracks the total duration of requests (`sum`) and their number (`count`).
-> - **requests_total_seconds_max (gauge)**: tracks the highest recorded request time at a given moment (`max`).
+- **requests_total_seconds (summary)**: tracks the total duration of requests (`sum`) and their number (`count`).
+- **requests_total_seconds_max (gauge)**: tracks the highest recorded request time at a given moment (`max`).
 
 - `requests_response_length_bytes`
 
 | The total number of bytes comprising the response to the request.
 | Available metrics types:
 
-> - **requests_response_length_bytes (summary)**: tracks the length of responses (`sum`) and their number (`count`).
-> - **requests_response_length_bytes_max (gauge)**: tracks the highest recorded response length at a given moment (`max`).
+- **requests_response_length_bytes (summary)**: tracks the length of responses (`sum`) and their number (`count`).
+- **requests_response_length_bytes_max (gauge)**: tracks the highest recorded response length at a given moment (`max`).
 
 - `requests_processing_seconds`
 
 | Sum of the rendering times for resources in seconds.
 | Available metrics types:
 
-> - **requests_processing_seconds (summary)**: tracks the total duration of request processing (`sum`) and the number of requests (`count`).
-> - **requests_processing_seconds_max (gauge)**: tracks the highest recorded request processing time at a given moment (`max`).
+- **requests_processing_seconds (summary)**: tracks the total duration of request processing (`sum`) and the number of requests (`count`).
+- **requests_processing_seconds_max (gauge)**: tracks the highest recorded request processing time at a given moment (`max`).
 
 - `requests_labelling_processing_seconds`
 
 | Processing time in seconds for the labels of all requested resources.
 | Available metrics types:
 
-> - **requests_labelling_processing_seconds (summary)**: tracks the total duration of labeling processing (`sum`) and the number of requests (`count`).
-> - **requests_labelling_processing_seconds_max (gauge)**: tracks the highest recorded labelling processing time at a given moment (`max`).
+- **requests_labelling_processing_seconds (summary)**: tracks the total duration of labeling processing (`sum`) and the number of requests (`count`).
+- **requests_labelling_processing_seconds_max (gauge)**: tracks the highest recorded labelling processing time at a given moment (`max`).
 
 - `requests_host_total`
 
@@ -50,7 +50,7 @@ The following is a list of metrics collected by the Monitor Micrometer extension
 | Tracks the total number of requests made by different remote callers.
 | Available metrics types:
 
-> - **requests_host_total (counter)**: tracks the total number of requests for each unique combination of remote address, remote host, and remote user (`total`).
+- **requests_host_total (counter)**: tracks the total number of requests for each unique combination of remote address, remote host, and remote user (`total`).
 
 ## Tags
 

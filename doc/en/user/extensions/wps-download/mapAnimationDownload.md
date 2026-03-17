@@ -6,22 +6,22 @@ These processes allow download large maps and animations.
 
 The map and animation downloads work off a set of common parameters:
 
-> - `bbox` : a geo-referenced bounding box, controlling both output area and desired projection
-> - `decoration` : the name of a decoration layout to be added on top of the map
-> - `decorationEnvironment` : a valid value for the `env` parameter used when painting the decoration. Used for [dynamic decoration layouts<wms_dynamic_decorations>](#dynamic decoration layouts<wms_dynamic_decorations>).
-> - `time` : a WMS `time` specification used to drive the selection of times across the layers in the map, and to control the frame generation in the animation
-> - `width` and `height` : size of the output map/animation (and in combination with bounding box, also controls the output map scale)
-> - `layer`: a list of layer specifications, from a client side point of view (thus, a layer can be composed of multiple server side layers). When dwn:DecorationName layer option is used, it allows to define a specific layout that will be used when decorations are applied to the layer. It allows to render more than one Legend on the resulting image, when having more than one Layer declared.
-> - `headerheight` : height size of a header space allocated at top of rendered map. It's an optional parameter, that forces to shrink the maps view height in order to avoid overlapping header over the maps. In combination with the use of layer specification options allows to group decorators at the top of resulting image.
+- `bbox` : a geo-referenced bounding box, controlling both output area and desired projection
+- `decoration` : the name of a decoration layout to be added on top of the map
+- `decorationEnvironment` : a valid value for the `env` parameter used when painting the decoration. Used for [dynamic decoration layouts<wms_dynamic_decorations>](#dynamic decoration layouts<wms_dynamic_decorations>).
+- `time` : a WMS `time` specification used to drive the selection of times across the layers in the map, and to control the frame generation in the animation
+- `width` and `height` : size of the output map/animation (and in combination with bounding box, also controls the output map scale)
+- `layer`: a list of layer specifications, from a client side point of view (thus, a layer can be composed of multiple server side layers). When dwn:DecorationName layer option is used, it allows to define a specific layout that will be used when decorations are applied to the layer. It allows to render more than one Legend on the resulting image, when having more than one Layer declared.
+- `headerheight` : height size of a header space allocated at top of rendered map. It's an optional parameter, that forces to shrink the maps view height in order to avoid overlapping header over the maps. In combination with the use of layer specification options allows to group decorators at the top of resulting image.
 
 ## The layer specification
 
 A layer specification is a XML structure made of three parts:
 
-> - Name: a comma separated list of layer names (eventually just one)
-> - Capabilities: link to a capabilities document (optional, used when targetting remote WMS layers)
-> - Parameter (key, value): an extra parameter to be added in the WMS request represented by this layer (e.g., `elevation`, `CQL_FILTER`, `env`)
-> - Opacity: an optional parameter, ranging from 0 to 100, that controls the layer image level of translucency during the merge process. When not set the layer image is fully opaque. Note that this is seperate from the overall map `transparent` boolean parameter.
+- Name: a comma separated list of layer names (eventually just one)
+- Capabilities: link to a capabilities document (optional, used when targetting remote WMS layers)
+- Parameter (key, value): an extra parameter to be added in the WMS request represented by this layer (e.g., `elevation`, `CQL_FILTER`, `env`)
+- Opacity: an optional parameter, ranging from 0 to 100, that controls the layer image level of translucency during the merge process. When not set the layer image is fully opaque. Note that this is seperate from the overall map `transparent` boolean parameter.
 
 For example:
 

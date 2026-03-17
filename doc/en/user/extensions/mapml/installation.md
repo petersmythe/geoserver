@@ -30,10 +30,10 @@ Configuration can be done using the Geoserver administrator GUI. The MapML confi
 
 For example, for the State layer, you can define a template showing the State Name and the number of persons, by following these steps:
 
-> 1.  Write "State Name:" on the text area
-> 2.  Double click on the *STATE_NAME* attribute from the list of attributes, which will result in appending the *\${STATE_NAME}* placeholder to the previous text.
-> 3.  Continue writing ", Persons:" on the text area
-> 4.  Double click on the *PERSONS* attribute from the list of attributes, which will result in appending the *\${PERSONS}* placeholder to the previous text.
+1.  Write "State Name:" on the text area
+2.  Double click on the *STATE_NAME* attribute from the list of attributes, which will result in appending the *\${STATE_NAME}* placeholder to the previous text.
+3.  Continue writing ", Persons:" on the text area
+4.  Double click on the *PERSONS* attribute from the list of attributes, which will result in appending the *\${PERSONS}* placeholder to the previous text.
 
 See the following gif showing the result.
 

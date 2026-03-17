@@ -125,25 +125,25 @@ There are a number of tests that try out 3D features in App-schema. To run these
 
 For PostGIS:
 
-> - You must use postgis 2 to support 3D.
->
-> - In your postgis, if it hasn't been done yet, this command must be executed to support srid 4979 (wgs84 with 3d):
->
->       INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 4979, 'epsg', 4979, '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs ', 'GEOGCS["WGS 84",DATUM["World Geodetic System 1984",SPHEROID["WGS 84",6378137.0,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0.0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.017453292519943295],AXIS["Geodetic latitude",NORTH],AXIS["Geodetic longitude",EAST],AXIS["Ellipsoidal height",UP],AUTHORITY["EPSG","4979"]]');
+- You must use postgis 2 to support 3D.
+
+- In your postgis, if it hasn't been done yet, this command must be executed to support srid 4979 (wgs84 with 3d):
+
+      INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext) values ( 4979, 'epsg', 4979, '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs ', 'GEOGCS["WGS 84",DATUM["World Geodetic System 1984",SPHEROID["WGS 84",6378137.0,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0.0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.017453292519943295],AXIS["Geodetic latitude",NORTH],AXIS["Geodetic longitude",EAST],AXIS["Ellipsoidal height",UP],AUTHORITY["EPSG","4979"]]');
 
 For Oracle:
 
-> - You must use Oracle 11g Release 2, preferably the latest version that can be downloaded for best 3D support
->
-> - Oracle does NOT support WKT parsing of 3d geometries, so some extra DBA work is needed to set this up. Otherwise the online tests, which rely on WKT to enter data in the database, will fail.
->
->   You need the following package 'SC4O' (Spatial Companion for Oracle), created Simon Greener: download at <http://www.spatialdbadvisor.com/files/SC4O.zip>. It has an installation script for linux and windows that must be run from the server that runs oracle. The package will provide JTS functionality that can be called from PL/SQL.
->
->   If the online test user is different from the user used for the installation of the package, the online test user must be given permission to use the package. You must also execute as an admin user the following command (with 'onlinetestuser' being the online test user):
->
->       CALL DBMS_JAVA.GRANT_PERMISSION('onlinetestuser','java.lang.RuntimePermission','getClassLoader','');
->
->   Afterwards, you have to specify the user where the SC4O package was installed to the online testing system. You do this by specifying the system property -DSC4OUser. If it is the same as the online test user, you can omit this parameter. The online test will use the JTS method for wkt parsing (ST_GeomFromEWKT) rather than the regular oracle method SDO_GEOMETRY. For example, I installed the package using the System user. Then I gave onlinetestuser permission to execute it. I run the tests with -DSC4OUser=System so it knows to use the System.SC4O.ST_GeomFromEWKT method.
+- You must use Oracle 11g Release 2, preferably the latest version that can be downloaded for best 3D support
+
+- Oracle does NOT support WKT parsing of 3d geometries, so some extra DBA work is needed to set this up. Otherwise the online tests, which rely on WKT to enter data in the database, will fail.
+
+  You need the following package 'SC4O' (Spatial Companion for Oracle), created Simon Greener: download at <http://www.spatialdbadvisor.com/files/SC4O.zip>. It has an installation script for linux and windows that must be run from the server that runs oracle. The package will provide JTS functionality that can be called from PL/SQL.
+
+  If the online test user is different from the user used for the installation of the package, the online test user must be given permission to use the package. You must also execute as an admin user the following command (with 'onlinetestuser' being the online test user):
+
+      CALL DBMS_JAVA.GRANT_PERMISSION('onlinetestuser','java.lang.RuntimePermission','getClassLoader','');
+
+  Afterwards, you have to specify the user where the SC4O package was installed to the online testing system. You do this by specifying the system property -DSC4OUser. If it is the same as the online test user, you can omit this parameter. The online test will use the JTS method for wkt parsing (ST_GeomFromEWKT) rather than the regular oracle method SDO_GEOMETRY. For example, I installed the package using the System user. Then I gave onlinetestuser permission to execute it. I run the tests with -DSC4OUser=System so it knows to use the System.SC4O.ST_GeomFromEWKT method.
 
 ## Running MongoDB Online Tests
 

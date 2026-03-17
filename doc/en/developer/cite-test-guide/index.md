@@ -376,13 +376,13 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
 1.  Prepare the environment:
 
-> - Start GeoServer with the citewms-1.1 data directory. Example:
->
-> > ``` shell
-> > cd <root of GeoServer install>
-> > export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wms11/citewms-1.1
-> > ./bin/startup.sh
-> > ```
+    - Start GeoServer with the citewms-1.1 data directory. Example:
+
+        ``` shell
+        cd <root of GeoServer install>
+        export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wms11/citewms-1.1
+        ./bin/startup.sh
+        ```
 
 1.  Start the test:
 
@@ -397,7 +397,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`
 
-        > <http://><ip-of-the-GeoServer>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
+        <http://><ip-of-the-GeoServer>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
 
     2.  `UpdateSequence Values`:
 
@@ -424,13 +424,13 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
 1.  Prepare the environment:
 
-> - Start GeoServer with the citewcs-1.0 data directory. Example:
->
-> > ``` shell
-> > cd <root of GeoServer install>
-> > export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wcs10/citewcs-1.0
-> > ./bin/startup.sh
-> > ```
+    - Start GeoServer with the citewcs-1.0 data directory. Example:
+
+        ``` shell
+        cd <root of GeoServer install>
+        export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wcs10/citewcs-1.0
+        ./bin/startup.sh
+        ```
 
 1.  Start the test:
 
@@ -445,7 +445,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`:
 
-        > <http://><ip-of-the-GeoServer>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
+        <http://><ip-of-the-GeoServer>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
 
     2.  `MIME Header Setup`: "image/tiff"
 
@@ -476,13 +476,13 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
 1.  Prepare the environment:
 
-> - Start GeoServer with the citewcs-1.1 data directory. Example:
->
-> > ``` shell
-> > cd <root of GeoServer install>
-> > export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wcs11/citewcs-1.1
-> > ./bin/startup.sh
-> > ```
+    - Start GeoServer with the citewcs-1.1 data directory. Example:
+
+        ``` shell
+        cd <root of GeoServer install>
+        export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wcs11/citewcs-1.1
+        ./bin/startup.sh
+        ```
 
 1.  Start the test:
 
@@ -497,7 +497,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`:
 
-        > <http://><ip-of-the-GeoServer>:8080/geoserver/wcs
+        <http://><ip-of-the-GeoServer>:8080/geoserver/wcs
 
     Click `Next`
 
@@ -507,13 +507,13 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
 1.  Prepare the environment:
 
-> - Start GeoServer with the citewcs-1.3 data directory. Example:
->
-> > ``` shell
-> > cd <root of GeoServer install>
-> > export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wms13/citewms-1.3
-> > ./bin/startup.sh
-> > ```
+    - Start GeoServer with the citewcs-1.3 data directory. Example:
+
+        ``` shell
+        cd <root of GeoServer install>
+        export GEOSERVER_DATA_DIR=<path of GeoServer repository>/build/cite/wms13/citewms-1.3
+        ./bin/startup.sh
+        ```
 
 1.  Start the test:
 
@@ -528,7 +528,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`:
 
-        > <http://><ip-of-the-GeoServer>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.3.0
+        <http://><ip-of-the-GeoServer>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.3.0
 
     2.  `UpdateSequence Values`:
 
@@ -680,22 +680,22 @@ It will also spin up 7 GeoServer services, typically 1 data directory per CITE t
 
 1.  Log into <https://cite.opengeospatial.org/teamengine> and create Test Sessions for all the tests that GeoServer should pass:
 
-    > 1.  OGC API - Features 1.0 <https://g1.cite.geoserver.org/geoserver/cite/ogc/features/v1>
-    > 2.  Web Map Tile Service (WMTS) 1.0.0 <https://g1.cite.geoserver.org/geoserver/gwc/service/wmts?service=WMTS&request=GetCapabilities&AcceptVersions=1.0.0> ``**``
-    > 3.  Web Map Service (WMS) 1.3.0 <https://g1.cite.geoserver.org/geoserver/cite/wms?service=wms&request=GetCapabilities&version=1.3.0>
-    > 4.  Web Map Service (WMS) 1.1.1 <https://g1.cite.geoserver.org/geoserver/cite/wms?service=wms&request=GetCapabilities&version=1.1.1>
-    > 5.  Web Feature Service (WFS) 2.0 <https://g2.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=2.0.0>
-    > 6.  Web Feature Service (WFS) 1.1.0 <https://g3.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=1.1.0>
-    > 7.  Web Feature Service (WFS) 1.0.0 <https://g4.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=1.0.0>
-    > 8.  Web Coverage Service (WCS) 2.0.1 <https://g5.cite.geoserver.org/geoserver/wcs?service=WCS&request=GetCapabilities&version=2.0.1> (yes, uppercase WCS is needed) ``**``
-    > 9.  Web Coverage Service (WCS) 1.1.1 <https://g5.cite.geoserver.org/geoserver/wcs?service=wcs&request=GetCapabilities&version=1.1.1>
-    > 10. Web Coverage Service (WCS) 1.0.0 <https://g6.cite.geoserver.org/geoserver/wcs?service=wcs&request=GetCapabilities&version=1.0.0>
-    > 11. GeoPackage 1.2 <https://g7.cite.geoserver.org/geoserver/topp/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=topp:states&outputFormat=application/geopackage%2bsqlite3> (upload, not URL ``**``)
-    > 12. GeoTiff 1.1 <https://g5.cite.geoserver.org/geoserver/wms?service=WMS&version=1.1.0&request=GetMap&layers=topp:tazbm&bbox=146.49999999999477,-44.49999999999785,147.99999999999474,-42.99999999999787&width=767&height=768&srs=EPSG:4326&styles=&format=image/geotiff>
-    >
-    > Follow the Run xxx tests instructions above for all the tests settings. Run them one at a time, it should take less than 2 hours to complete, sometimes with manual visual checks (WMS).
-    >
-    > ``**`` These ones are currently still failing. See [previous test results](https://docs.google.com/spreadsheets/d/1FzsQE_WX0RdnXek1bJSIuO2AkRdmq__6JUJHEjSEoQ4).
+    1.  OGC API - Features 1.0 <https://g1.cite.geoserver.org/geoserver/cite/ogc/features/v1>
+    2.  Web Map Tile Service (WMTS) 1.0.0 <https://g1.cite.geoserver.org/geoserver/gwc/service/wmts?service=WMTS&request=GetCapabilities&AcceptVersions=1.0.0> ``**``
+    3.  Web Map Service (WMS) 1.3.0 <https://g1.cite.geoserver.org/geoserver/cite/wms?service=wms&request=GetCapabilities&version=1.3.0>
+    4.  Web Map Service (WMS) 1.1.1 <https://g1.cite.geoserver.org/geoserver/cite/wms?service=wms&request=GetCapabilities&version=1.1.1>
+    5.  Web Feature Service (WFS) 2.0 <https://g2.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=2.0.0>
+    6.  Web Feature Service (WFS) 1.1.0 <https://g3.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=1.1.0>
+    7.  Web Feature Service (WFS) 1.0.0 <https://g4.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=1.0.0>
+    8.  Web Coverage Service (WCS) 2.0.1 <https://g5.cite.geoserver.org/geoserver/wcs?service=WCS&request=GetCapabilities&version=2.0.1> (yes, uppercase WCS is needed) ``**``
+    9.  Web Coverage Service (WCS) 1.1.1 <https://g5.cite.geoserver.org/geoserver/wcs?service=wcs&request=GetCapabilities&version=1.1.1>
+    10. Web Coverage Service (WCS) 1.0.0 <https://g6.cite.geoserver.org/geoserver/wcs?service=wcs&request=GetCapabilities&version=1.0.0>
+    11. GeoPackage 1.2 <https://g7.cite.geoserver.org/geoserver/topp/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=topp:states&outputFormat=application/geopackage%2bsqlite3> (upload, not URL ``**``)
+    12. GeoTiff 1.1 <https://g5.cite.geoserver.org/geoserver/wms?service=WMS&version=1.1.0&request=GetMap&layers=topp:tazbm&bbox=146.49999999999477,-44.49999999999785,147.99999999999474,-42.99999999999787&width=767&height=768&srs=EPSG:4326&styles=&format=image/geotiff>
+
+    Follow the Run xxx tests instructions above for all the tests settings. Run them one at a time, it should take less than 2 hours to complete, sometimes with manual visual checks (WMS).
+
+    ``**`` These ones are currently still failing. See [previous test results](https://docs.google.com/spreadsheets/d/1FzsQE_WX0RdnXek1bJSIuO2AkRdmq__6JUJHEjSEoQ4).
 
 2.  Note all the test sessions that passed (hopefully all of them!) and provide these to our OSGeo contact (currently kalxas), along with your TE username and password (yes, ridiculous!)
 

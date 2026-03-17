@@ -23,9 +23,9 @@ The most commonly maven command used with GeoServer is the install command:
 
 While the `clean` command is not necessary, it is recommended. Running this command does the following:
 
-> - compiles source code
-> - runs unit tests
-> - installs artifacts into the local maven repository
+- compiles source code
+- runs unit tests
+- installs artifacts into the local maven repository
 
 ## Skipping tests
 

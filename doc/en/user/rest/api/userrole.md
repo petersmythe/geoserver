@@ -72,9 +72,9 @@ Encoding of a list of roles in JSON:
 
 The default user/group service is by default the service named "default". This can be altered in the following manner:
 
-> 1.  Start geoserver with the following java system property present:
->
->         org.geoserver.rest.DefaultUserGroupServiceName=<name_of_usergroupservice>
+1.  Start geoserver with the following java system property present:
+
+        org.geoserver.rest.DefaultUserGroupServiceName=<name_of_usergroupservice>
 
 ## Requests
 

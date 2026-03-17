@@ -8,11 +8,11 @@ The are several approaches to implement a clustered deployment with GeoServer, b
 
 This module implements a robust Primary/Replica approach which leverages on a Message Oriented Middleware (MOM) where:
 
-> - The Primaries accept changes to the internal configuration, persist them on their own data directory but also forward them to the Replicas via the MOM
-> - The Replicas should not be used to change their configuration from either REST or the User Interface, since are configured to inject configuration changes disseminated by the Primary(s) via the MOM
-> - The MOM is used to make the Primary and the Replicas exchange messages in a durable fashion
-> - Each Replicas has its own data directory and it is responsible for keeping it aligned with the Primary's one. In case a Replicas goes down when it goes up again he might receive a bunch of JMS messages to align its configuration to the Primary's one.
-> - A Node can be both Primary and Replica at the same time, this means that we don't have a single point of failure, i.e. the Primary itself
+- The Primaries accept changes to the internal configuration, persist them on their own data directory but also forward them to the Replicas via the MOM
+- The Replicas should not be used to change their configuration from either REST or the User Interface, since are configured to inject configuration changes disseminated by the Primary(s) via the MOM
+- The MOM is used to make the Primary and the Replicas exchange messages in a durable fashion
+- Each Replicas has its own data directory and it is responsible for keeping it aligned with the Primary's one. In case a Replicas goes down when it goes up again he might receive a bunch of JMS messages to align its configuration to the Primary's one.
+- A Node can be both Primary and Replica at the same time, this means that we don't have a single point of failure, i.e. the Primary itself
 
 Summarizing, the Primary as well as each Replicas use a private data directory, Replicas receive changes from the Primary, which is the only one where configuration changes are allowed, via JMS messages. Such messages transport GeoServer configuration objects that the Replicas inject directly in their own in-memory configuration and then persist on disk on their data directory, completely removing the need for a configuration reload for each configuration change.
 

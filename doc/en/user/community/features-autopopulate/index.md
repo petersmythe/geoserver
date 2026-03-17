@@ -10,8 +10,8 @@ Assume that we want to allow GeoServer updating automatically two attributes of 
 
 In particular what we want to do is:
 
-> - Update/insert into the `EDITOR` the current GeoServer user.
-> - Update/insert into the `LAST_UPDATE` the current timestamp
+- Update/insert into the `EDITOR` the current GeoServer user.
+- Update/insert into the `LAST_UPDATE` the current timestamp
 
 We can leverage on two GeoServer `CQL Expressions` that allow us to get thos values at runtime
 

@@ -43,15 +43,15 @@ The LDAP tree consists of:
 
 2.  Click the `Authentication` link located under the `Security` section of the navigation sidebar.
 
-    > ![](images/ldap1.jpg)
+    ![](images/ldap1.jpg)
 
 3.  Scroll down to the `Authentication Providers` panel and click the `Add new` link.
 
-    > ![](images/ldap2.jpg)
+    ![](images/ldap2.jpg)
 
 4.  Click the `LDAP` link.
 
-    > ![](images/ldap3.jpg)
+    ![](images/ldap3.jpg)
 
 5.  Fill in the fields of the settings form as follows:
 

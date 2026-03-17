@@ -298,7 +298,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 - [ ] 14. Fix list and nesting structure issues
 
-  - [ ] 14.1 Create detection script for list/nesting issues
+  - [x] 14.1 Create detection script for list/nesting issues
     - Scan for nested lists with incorrect indentation
     - Identify images in lists rendered as code blocks
     - Detect indented content incorrectly rendered as blockquotes
@@ -307,7 +307,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - Generate detailed report with examples
     - _Requirements: 1.9, 1.10, 1.11, 1.12, 1.13_
 
-  - [ ] 14.2 Implement automated fix for nested list indentation
+  - [x] 14.2 Implement automated fix for nested list indentation
     - Correct indentation levels for nested list items
     - Ensure proper spacing (2 or 4 spaces per level)
     - Maintain list marker consistency (-, *, 1., etc.)
@@ -316,7 +316,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly indented lists remain unchanged_
     - _Requirements: 1.9, 2.9, 3.4_
 
-  - [ ] 14.3 Implement automated fix for images in list items
+  - [x] 14.3 Implement automated fix for images in list items
     - Convert code block image references back to proper image syntax
     - Maintain list indentation for images
     - Ensure images render inline with list content
@@ -325,7 +325,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted list images remain unchanged_
     - _Requirements: 1.10, 2.10, 3.4, 3.5_
 
-  - [ ] 14.4 Implement automated fix for indented content as blockquotes
+  - [x] 14.4 Implement automated fix for indented content as blockquotes
     - Remove incorrect blockquote markers (>) from indented list content
     - Preserve proper indentation without blockquote formatting
     - Maintain list structure and hierarchy
@@ -334,7 +334,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Intentional blockquotes remain unchanged_
     - _Requirements: 1.11, 2.11, 3.4_
 
-  - [ ] 14.5 Implement automated fix for flattened numbered lists
+  - [x] 14.5 Implement automated fix for flattened numbered lists
     - Restore list structure from text blocks
     - Detect numbered patterns (1., 2., etc.) in text
     - Add proper list formatting with line breaks
@@ -343,7 +343,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted numbered lists remain unchanged_
     - _Requirements: 1.12, 2.12, 3.4_
 
-  - [ ] 14.6 Implement automated fix for lost list content
+  - [x] 14.6 Implement automated fix for lost list content
     - Identify empty list items and restore content from RST source
     - Cross-reference with original RST files
     - Ensure all list items have their content
@@ -352,14 +352,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Non-empty list items remain unchanged_
     - _Requirements: 1.13, 2.13, 3.4_
 
-  - [ ] 14.7 Verify list/nesting exploration test now passes
+  - [x] 14.7 Verify list/nesting exploration test now passes
     - **Property 1: Expected Behavior** - List and Nesting Fixed
     - **IMPORTANT**: Re-run the SAME test from task 3
     - Run list/nesting exploration test from step 3
     - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
     - _Requirements: 2.9, 2.10, 2.11, 2.12, 2.13_
 
-  - [ ] 14.8 Verify preservation tests still pass
+  - [x] 14.8 Verify preservation tests still pass
     - **Property 2: Preservation** - No Regressions in Lists
     - **IMPORTANT**: Re-run preservation tests from tasks 10-11
     - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)

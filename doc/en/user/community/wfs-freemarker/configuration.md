@@ -16,7 +16,7 @@ Assume we have a Vectorial layer named **geosolutions:bplandmarks**
 
 2.  Search for the HTML format from the **All Formats** select-box, under the WFS ones.
 
-    > ![](images/info1.png)
+    ![](images/info1.png)
 
 3.  In order to configure a custom template of the GetFeature results create three files `.ftl` in `$geoserver_data/workspaces/geosolutions` directory named:
 
@@ -121,4 +121,4 @@ Assume we have a Vectorial layer named **geosolutions:bplandmarks**
 
 7.  Refresh the WFS GetFeature HTML output
 
-    > ![](images/info2.png)
+    ![](images/info2.png)

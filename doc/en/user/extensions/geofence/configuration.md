@@ -21,25 +21,19 @@ Configure the following settings here:
 
 - Use GeoServer roles to get authorizations
 
-  > - 
-  >
-  >   Disabled: For each authorization request, GeoServer sends only the user info to GeoFence.
-  >
-  >   :   GeoFence will retrieve all the roles associated with the user, and will merge the permissions granted for each role.
-  >
-  > - 
-  >
-  >   Enabled: For each authorization request, GeoServer sends to GeoFence the user info AND the roles assigned in the current request session.
-  >
-  >   :   GeoFence will retrieve all the roles associated to the user, and will only consider the requested roles that are really associated to the user.
+  - Disabled: For each authorization request, GeoServer sends only the user info to GeoFence.
+
+    GeoFence will retrieve all the roles associated with the user, and will merge the permissions granted for each role.
+
+  - Enabled: For each authorization request, GeoServer sends to GeoFence the user info AND the roles assigned in the current request session.
+
+    GeoFence will retrieve all the roles associated to the user, and will only consider the requested roles that are really associated to the user.
 
 - Comma delimited list of mutually exclusive roles for authorization
 
-  > - 
-  >
-  >   This field is mandatory when the previous option is enabled.
-  >
-  >   :   GeoServer will send to GeoFence the roles in the current request session which match the entries in this list. You can use the '*' symbol to match any session role. When using "*", you can use the format "`-ROLENAME`" to exclude one or more roles from the session roles list.
+  - This field is mandatory when the previous option is enabled.
+
+    GeoServer will send to GeoFence the roles in the current request session which match the entries in this list. You can use the '*' symbol to match any session role. When using "*", you can use the format "`-ROLENAME`" to exclude one or more roles from the session roles list.
 
 ## Cache
 
@@ -63,16 +57,16 @@ Collected data about the cache can be retrieved here. Per cache (rules, admin ru
 
 - Open the GeoFence admin page; you'll get to this page:
 
-  > You can notice here the information that allow the GeoFence probe inside GeoServer to communicate with the GeoFence engine:
-  >
-  > - the URL that the probe shall use to communicate with GeoFence;
-  > - the name (default is ``default-gs``) this instance will use to identify itself to GeoFence. This instance name should be equal to the one we set into GeoFence.
+  You can notice here the information that allow the GeoFence probe inside GeoServer to communicate with the GeoFence engine:
+
+  - the URL that the probe shall use to communicate with GeoFence;
+  - the name (default is ``default-gs``) this instance will use to identify itself to GeoFence. This instance name should be equal to the one we set into GeoFence.
 
 - Testing connection to GeoFence.
 
-  > We already performed a connection test from GeoFence to GeoServer. Using the button **Test connection** we can also test that GeoServer can communicate to GeoFence. If everything is ok, you'll get this message:
-  >
-  > ![](images/basic_003.png)
+  We already performed a connection test from GeoFence to GeoServer. Using the button **Test connection** we can also test that GeoServer can communicate to GeoFence. If everything is ok, you'll get this message:
+
+  ![](images/basic_003.png)
 
 - Open the **Authentication** page under the **Security** settings:
 
@@ -96,18 +90,18 @@ Collected data about the cache can be retrieved here. Per cache (rules, admin ru
 
 - Get back to GeoFence, and add a rule which allows all layers in workspace tiger for user `tiger`; create a rule defining:
 
-  > - user `tiger`
-  > - instance `default-gs`
-  > - workspace `tiger` (you will get a dropdown menu containing all the workspaces available in the selected instance)
-  > - grant type: `allow` You'll get a line like this one:
-  >
-  > ![](images/basic_008.png)
+  - user `tiger`
+  - instance `default-gs`
+  - workspace `tiger` (you will get a dropdown menu containing all the workspaces available in the selected instance)
+  - grant type: `allow` You'll get a line like this one:
+
+  ![](images/basic_008.png)
 
 - Verify the new authorizations.
 
-  > Since the probe caches the GeoFence responses, you may need to login again as administrator (or you may keep an admin session open in another browser) and clear the probe cache. You can do it by pressing the "Invalidate" button in the bottom of the GeoFence admin page:
-  >
-  > ![](images/basic_009.png)
+  Since the probe caches the GeoFence responses, you may need to login again as administrator (or you may keep an admin session open in another browser) and clear the probe cache. You can do it by pressing the "Invalidate" button in the bottom of the GeoFence admin page:
+
+  ![](images/basic_009.png)
 
 - Login again in GeoServer as user tiger and you will see in **layer preview** all the layers in the `tiger` workspace:
 

@@ -4,21 +4,17 @@
 
 The importer REST api is built around a tree of objects representing a single import, structured as follows:
 
-> - 
->
->   import
->
->   :   - target workspace
->
->       - data
->
->       - 
->
->         task (one or more)
->
->         :   - data
->             - layer
->             - transformation (one or more)
+- import
+
+  - target workspace
+
+      - data
+
+      - task (one or more)
+
+          - data
+          - layer
+          - transformation (one or more)
 
 An **import** refers to the top level object and is a "session" like entity the state of the entire import. It maintains information relevant to the import as a whole such as user information, timestamps along with optional information that is uniform along all tasks, such as a target workspace, the shared input data (e.g., a directory, a database). An import is made of any number of task objects.
 

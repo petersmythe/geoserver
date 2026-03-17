@@ -65,17 +65,17 @@ Removed complex mobile navigation workarounds from `doc/themes/geoserver/stylesh
 With `navigation.tabs` disabled, the navigation hierarchy is now:
 
 1. **Sidebar (hamburger menu on mobile)**
-   - All first-level sections (Introduction, Installation, Getting Started, etc.)
-   - Expandable subsections
-   - Full navigation tree accessible
+    - All first-level sections (Introduction, Installation, Getting Started, etc.)
+    - Expandable subsections
+    - Full navigation tree accessible
 
 2. **Top Bar**
-   - Logo
-   - Documentation switcher (User Manual | Developer Manual | Documentation Guide | Swagger APIs)
-   - Color scheme toggle
-   - Search button
-   - GitHub link
-   - Reserved space for version switcher (future)
+    - Logo
+    - Documentation switcher (User Manual | Developer Manual | Documentation Guide | Swagger APIs)
+    - Color scheme toggle
+    - Search button
+    - GitHub link
+    - Reserved space for version switcher (future)
 
 ## Testing Recommendations
 
@@ -87,20 +87,20 @@ Test the navigation on multiple screen sizes:
    source ../../../.venv/Scripts/activate
    mkdocs serve
    ```
-   - Verify sidebar navigation shows all sections
-   - Verify no horizontal tabs appear
-   - Verify documentation switcher works
+    - Verify sidebar navigation shows all sections
+    - Verify no horizontal tabs appear
+    - Verify documentation switcher works
 
 2. **Tablet (768px)**
-   - Use browser dev tools to resize viewport
-   - Verify sidebar navigation is accessible via hamburger menu
-   - Verify no horizontal overflow
+    - Use browser dev tools to resize viewport
+    - Verify sidebar navigation is accessible via hamburger menu
+    - Verify no horizontal overflow
 
 3. **Mobile (375px)**
-   - Use browser dev tools to resize viewport
-   - Verify hamburger menu opens full navigation
-   - Verify documentation switcher dropdown works
-   - Verify all touch targets are adequately sized
+    - Use browser dev tools to resize viewport
+    - Verify hamburger menu opens full navigation
+    - Verify documentation switcher dropdown works
+    - Verify all touch targets are adequately sized
 
 ## Future Work
 

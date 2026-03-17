@@ -104,15 +104,15 @@ First thing to do is to:
 
 2.  Move to `Security` > `Users, Groups, Roles` and select `Add new` from `User Group Services`
 
-    > ![](images/001_user_group_service.png)
+    ![](images/001_user_group_service.png)
 
 3.  Click on `AuthKEY WebService Body Response`
 
-    > ![](images/002_user_group_service.png)
+    ![](images/002_user_group_service.png)
 
 4.  Provide a `Name` and select anything you want from `Passwords` - those won't be used by this service, but they are still mandatory for GeoServer -
 
-    > ![](images/003_user_group_service.png)
+    ![](images/003_user_group_service.png)
 
 5\. Provide a suitable `Roles Regex` to apply to your Web Service Response
 
@@ -133,41 +133,41 @@ Once the new `GeoServer UserGroup Service` has been configured, it can be easily
 
 1.  *Optional static comma-separated list of available Groups from the Web Service response*
 
-    > It is worth notice that this `UserGroup Service` will **always** translate fetched Roles in the form `ROLE_<ROLENAME>`
+    It is worth notice that this `UserGroup Service` will **always** translate fetched Roles in the form `ROLE_<ROLENAME>`
+
+    As an instance, if the `Roles Regular Expression` will match something like:
+
+        my_user_role1, another_custom_user_role, role_External_Role_X
+
+    this will be converted into **3** different `GeoServer User Roles` named as:
+
+        ROLE_MY_USER_ROLE1
+        ROLE_ANOTHER_CUSTOM_USER_ROLE
+        ROLE_EXTERNAL_ROLE_X
+
+    Of course the role names are known only at runtime; nevertheless it is possible to **statically** specify associated `GeoServer User Groups` to be mapped later to other internal `GeoServer User Roles`.
+
+    What does this mean? A `GeoServer User Group` can be defined on the GeoServer Catalog and can be mapped by the active `Role Services` to one or more specific `GeoServer User Roles`.
+
+    This mainly depends on the `GeoServer Role Service` you use. By default, the internal `GeoServer Role Service` can map Roles and Groups through static configuration stored on the GeoServer Data Dir. This is possible by editing `GeoServer User Group` details from the `Users, Groups, and Roles` panel
+
+    > ![](images/006_user_group_service.png)
     >
-    > As an instance, if the `Roles Regular Expression` will match something like:
-    >
-    >     my_user_role1, another_custom_user_role, role_External_Role_X
-    >
-    > this will be converted into **3** different `GeoServer User Roles` named as:
-    >
-    >     ROLE_MY_USER_ROLE1
-    >     ROLE_ANOTHER_CUSTOM_USER_ROLE
-    >     ROLE_EXTERNAL_ROLE_X
-    >
-    > Of course the role names are known only at runtime; nevertheless it is possible to **statically** specify associated `GeoServer User Groups` to be mapped later to other internal `GeoServer User Roles`.
-    >
-    > What does this mean? A `GeoServer User Group` can be defined on the GeoServer Catalog and can be mapped by the active `Role Services` to one or more specific `GeoServer User Roles`.
-    >
-    > This mainly depends on the `GeoServer Role Service` you use. By default, the internal `GeoServer Role Service` can map Roles and Groups through static configuration stored on the GeoServer Data Dir. This is possible by editing `GeoServer User Group` details from the `Users, Groups, and Roles` panel
-    >
-    > > ![](images/006_user_group_service.png)
-    > >
-    > > ![](images/007_user_group_service.png)
-    >
-    > Now, this custom `UserGroup Service` maps dynamically `GeoServer User Role` to `GeoServer User Group` as follows:
-    >
-    >     ROLE_MY_USER_ROLE1              <> GROUP_MY_USER_ROLE1
-    >     ROLE_ANOTHER_CUSTOM_USER_ROLE   <> GROUP_ANOTHER_CUSTOM_USER_ROLE
-    >     ROLE_EXTERNAL_ROLE_X            <> GROUP_EXTERNAL_ROLE_X
-    >
-    > In order to be able to assign any `GeoServer User Group` to other internal `GeoServer User Roles`, since those are known only at runtime, the `UserGroup Service` allows us to **statically** specify the `GeoServer User Groups` the Web Service can use; this possible by setting the `Optional static comma-separated list of available Groups from the Web Service response` option:
-    >
-    > > ![](images/008_user_group_service.png)
-    >
-    > Once this is correctly configured, it will be possible to edit and assign `GeoServer User Roles` to the Groups by using the standard way
-    >
-    > > ![](images/009_user_group_service.png)
+    > ![](images/007_user_group_service.png)
+
+    Now, this custom `UserGroup Service` maps dynamically `GeoServer User Role` to `GeoServer User Group` as follows:
+
+        ROLE_MY_USER_ROLE1              <> GROUP_MY_USER_ROLE1
+        ROLE_ANOTHER_CUSTOM_USER_ROLE   <> GROUP_ANOTHER_CUSTOM_USER_ROLE
+        ROLE_EXTERNAL_ROLE_X            <> GROUP_EXTERNAL_ROLE_X
+
+    In order to be able to assign any `GeoServer User Group` to other internal `GeoServer User Roles`, since those are known only at runtime, the `UserGroup Service` allows us to **statically** specify the `GeoServer User Groups` the Web Service can use; this possible by setting the `Optional static comma-separated list of available Groups from the Web Service response` option:
+
+    > ![](images/008_user_group_service.png)
+
+    Once this is correctly configured, it will be possible to edit and assign `GeoServer User Roles` to the Groups by using the standard way
+
+    > ![](images/009_user_group_service.png)
 
 2\. *Role Service to use*
 

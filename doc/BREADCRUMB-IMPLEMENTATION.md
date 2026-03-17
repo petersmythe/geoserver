@@ -78,27 +78,27 @@ GeoServer Documentation Guide > Workflow
 ### Accessibility Features
 
 1. **Semantic HTML:**
-   - Uses `<nav>` element with `aria-label="Navigation"`
-   - Ordered list (`<ol>`) for breadcrumb items
-   - Proper link structure
+    - Uses `<nav>` element with `aria-label="Navigation"`
+    - Ordered list (`<ol>`) for breadcrumb items
+    - Proper link structure
 
 2. **Keyboard Navigation:**
-   - All breadcrumb links are keyboard accessible
-   - Focus states with visible outline
-   - Tab order follows logical sequence
+    - All breadcrumb links are keyboard accessible
+    - Focus states with visible outline
+    - Tab order follows logical sequence
 
 3. **Screen Reader Support:**
-   - Aria labels for navigation context
-   - Current page indicated by styling (not clickable)
+    - Aria labels for navigation context
+    - Current page indicated by styling (not clickable)
 
 4. **High Contrast Mode:**
-   - Increased font weight for better visibility
-   - Thicker outlines for focus states
-   - Bold separators
+    - Increased font weight for better visibility
+    - Thicker outlines for focus states
+    - Bold separators
 
 5. **Reduced Motion:**
-   - Transitions disabled for users who prefer reduced motion
-   - Respects `prefers-reduced-motion` media query
+    - Transitions disabled for users who prefer reduced motion
+    - Respects `prefers-reduced-motion` media query
 
 ## Testing
 

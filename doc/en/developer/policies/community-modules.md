@@ -386,50 +386,50 @@ The following properties must hold true in order to promote a community module:
         </plugin>
         ```
 
-    > 1.  Update the ``/doc/en/user/source/community`` documentation:
-    >
-    >     - Add a section to the user manual for the new module:
-    >
-    >       Create a folder:
-    >
-    >       - ``community/%module%``
-    >       - ``community/%module%/files`` - example files
-    >       - ``community/%module%/img`` - screen snaps
-    >       - ``community/%module%/index.rst``
-    >       - ``community/%module%/installing.rst``
-    >       - ``community/%module%/usage.rst``
-    >
-    >     - Include module in ``community/index.rst`` toctree:
-    >
-    >       > ``` rst
-    >       > .. toctree::
-    >       >    :maxdepth: 1
-    >       >
-    >       >    backuprestore/index
-    >       >    cog/index
-    >       >    ...
-    >       >    %module%/index.rst
-    >       > ```
-    >
-    >     - When writing ``installing.rst`` use the sphinx external link ``download_community`` to generate a download link for the current release.
-    >
+1.  Update the ``/doc/en/user/source/community`` documentation:
+
+    - Add a section to the user manual for the new module:
+
+      Create a folder:
+
+      - ``community/%module%``
+      - ``community/%module%/files`` - example files
+      - ``community/%module%/img`` - screen snaps
+      - ``community/%module%/index.rst``
+      - ``community/%module%/installing.rst``
+      - ``community/%module%/usage.rst``
+
+    - Include module in ``community/index.rst`` toctree:
+
+    ``` rst
+    .. toctree::
+       :maxdepth: 1
+
+       backuprestore/index
+       cog/index
+       ...
+       %module%/index.rst
+    ```
+
+    - When writing ``installing.rst`` use the sphinx external link ``download_community`` to generate a download link for the current release.
+
           ``` rst
           To install the JDBCConfig module:
     
           #. Visit the :website:`website download <download>` page and download :download_community:`jdbcconfig`.
           ```
-    >
-    >     For more information see [documentation guide <>](../docguide/documentation guide <>).
-    >
-    > 2.  Download and a contributor license agreement as pdf for txt file:
-    >
-    >     - [Individual Contributor License Agreement](https://www.osgeo.org/resources/individual-contributor-license/)
-    >
-    >     - [Software Grant and Corporate Contributor License Agreement](https://www.osgeo.org/resources/corporate-contributor-license/)
-    >
-    >       This option can also be used as a "software grant" to donate a specific named contribution in its entirety, as was done for GeoFence, and indeed GeoServer itself.
-    >
-    > 3.  Follow the instructions on the form to submit it.
+
+    For more information see [documentation guide <>](../docguide/documentation guide <>).
+
+2.  Download and a contributor license agreement as pdf for txt file:
+
+    - [Individual Contributor License Agreement](https://www.osgeo.org/resources/individual-contributor-license/)
+
+    - [Software Grant and Corporate Contributor License Agreement](https://www.osgeo.org/resources/corporate-contributor-license/)
+
+      This option can also be used as a "software grant" to donate a specific named contribution in its entirety, as was done for GeoFence, and indeed GeoServer itself.
+
+3.  Follow the instructions on the form to submit it.
 
 ## Demoting a community module
 

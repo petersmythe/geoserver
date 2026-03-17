@@ -24,19 +24,19 @@ Enter the keystore password and confirm the certificate to be trustable.
 
 2.  Click the `Authentication` link located under the `Security` section of the navigation sidebar.
 
-    > ![](images/cas1.jpg)
+    ![](images/cas1.jpg)
 
 3.  Scroll down to the `Authentication Filters` panel and click the `Add new` link.
 
-    > ![](images/cas2.jpg)
+    ![](images/cas2.jpg)
 
 4.  Click the `CAS` link.
 
-    > ![](images/cas3.jpg)
+    ![](images/cas3.jpg)
 
 5.  Fill in the fields of the settings form as follows:
 
-    > ![](images/cas4.jpg)
+    ![](images/cas4.jpg)
 
 6.  Update the filter chains by adding the new CAS filter.
 

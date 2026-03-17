@@ -4,17 +4,17 @@ This module allows GeoServer to add graticules or grids to a WMS (or to allow th
 
 ## Installing the graticule extension
 
-> 1.  Download the graticule extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
->
->     :::: warning
->     ::: title
->     Warning
->     :::
->
->     Make sure to match the version of the extension to the version of the GeoServer instance!
->     ::::
->
-> 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
+1.  Download the graticule extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
+
+    :::: warning
+    ::: title
+    Warning
+    :::
+
+    Make sure to match the version of the extension to the version of the GeoServer instance!
+    ::::
+
+2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 
 ## Checking if the extension is enabled
 
@@ -36,11 +36,11 @@ Displaying a graticule in a sensible way will require creating a custom style to
 
 Let's assume one has a graticule with 5 levels of lines at different resolutions (e.g., 1, 5, 10, 20 and 30 degrees spacing), and wants to display them as follows:
 
-> - level 0: scale denominator lower than 1M
-> - level 1: scale denominator between 1M and 20M
-> - level 2: scale denominator between 20M and 100M
-> - level 3: scale denominator between 10M and 400M
-> - level 4: scale denominator higher than 400M
+- level 0: scale denominator lower than 1M
+- level 1: scale denominator between 1M and 20M
+- level 2: scale denominator between 20M and 100M
+- level 3: scale denominator between 10M and 400M
+- level 4: scale denominator higher than 400M
 
 The following style would be used, using a single Rule, by leveraging the `Categorize` function along with the `wms_scale_denominator` environment variable ([Variable substitution in SLD](../../styling/sld/extensions/substitution.md)):
 

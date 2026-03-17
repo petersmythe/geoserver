@@ -258,30 +258,30 @@ public interface RawData {
     public String getFileExtension();
 }
 ```
->
-> As an input, the RawData will be provided to the process, that will discover the mimeType chosen by the user, and will get access to the raw input stream of the data. As an output, the process will return a RawData and the WPS will see what mimeType the result will be in, get access to the raw contents, and grab a file extension to build file names for the user file downloads.
->
-> The process using RawData will also have to provide some extra metadata in the annotations, in order to declare which mime types are supported and to allow the process to know which output mime types were chosen in the Execute request. The extra annotations `mimeTypes` and `chosenMimeType` are placed in the `meta` section of the result and parameter annotations:
->
-> > ``` java
-> > @DescribeResult(name = "result", description = "Output raster", 
-> >                 meta = {"mimeTypes=application/json,text/xml", 
-> >                         "chosenMimeType=outputMimeType" })
-> > public RawData execute(
-> >         @DescribeParameter(name = "data",  
-> >                            meta = { "mimeTypes=text/plain" }) 
-> >                            final RawData input,
-> >         @DescribeParameter(name = "outputMimeType", min = 0) 
-> >                            final String outputMimeType) {
-> > ```
->
-> The above instructs GeoServer WPS about raw data handling:
->
-> - The `result` output can be returned in `application/json` or `text/xml`, with `application/json` as the default one
->
-> * The mime type chosen by the user for the output will be provided to the process as the `outputMimeType` parameter (and this parameter will be
-> :   hidden from the DescribeProcess output)
->
-> - The `input` parameter will be advertised as supporting the `text/plain` mime type
->
-> In terms of building a `RawData`, the process is free to create its own class if needed, or it can use one of the existing `FileRawData`, `StringRawData`, `StreamRawData` implementations.
+
+As an input, the RawData will be provided to the process, that will discover the mimeType chosen by the user, and will get access to the raw input stream of the data. As an output, the process will return a RawData and the WPS will see what mimeType the result will be in, get access to the raw contents, and grab a file extension to build file names for the user file downloads.
+
+The process using RawData will also have to provide some extra metadata in the annotations, in order to declare which mime types are supported and to allow the process to know which output mime types were chosen in the Execute request. The extra annotations `mimeTypes` and `chosenMimeType` are placed in the `meta` section of the result and parameter annotations:
+
+    ``` java
+    @DescribeResult(name = "result", description = "Output raster", 
+                    meta = {"mimeTypes=application/json,text/xml", 
+                            "chosenMimeType=outputMimeType" })
+    public RawData execute(
+            @DescribeParameter(name = "data",  
+                               meta = { "mimeTypes=text/plain" }) 
+                               final RawData input,
+            @DescribeParameter(name = "outputMimeType", min = 0) 
+                               final String outputMimeType) {
+    ```
+
+The above instructs GeoServer WPS about raw data handling:
+
+- The `result` output can be returned in `application/json` or `text/xml`, with `application/json` as the default one
+
+* The mime type chosen by the user for the output will be provided to the process as the `outputMimeType` parameter (and this parameter will be
+:   hidden from the DescribeProcess output)
+
+- The `input` parameter will be advertised as supporting the `text/plain` mime type
+
+In terms of building a `RawData`, the process is free to create its own class if needed, or it can use one of the existing `FileRawData`, `StringRawData`, `StreamRawData` implementations.

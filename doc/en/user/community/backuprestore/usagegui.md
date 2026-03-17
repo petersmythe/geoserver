@@ -16,15 +16,15 @@ Here you'll be able to specify various parameters for the Backup / Restore proce
 
 3.  `Backup Options`:
 
-    > 1.  `Overwrite Existing Archive`: When enabled the backup procedure will overwrite any previously existing archive
-    > 2.  `Skip Failing Resources`: If enabled and errors are found during the backup of existing resources, skip the resource and go ahead with the backup procedure
+    1.  `Overwrite Existing Archive`: When enabled the backup procedure will overwrite any previously existing archive
+    2.  `Skip Failing Resources`: If enabled and errors are found during the backup of existing resources, skip the resource and go ahead with the backup procedure
 
 4.  `Backup Executions`: Report of running and previously run backups
 
 5.  `Restore Options`:
 
-    > 1.  `Dry Run`: Test the restore procedure using the provided archive but do not apply any changes to current configuration. Useful to test archives before actually performing a Restore
-    > 2.  `Skip Failing Resources`: If enabled and errors are found during the restore of resources, skip the resource and go ahead with the restore procedure
+    1.  `Dry Run`: Test the restore procedure using the provided archive but do not apply any changes to current configuration. Useful to test archives before actually performing a Restore
+    2.  `Skip Failing Resources`: If enabled and errors are found during the restore of resources, skip the resource and go ahead with the restore procedure
 
 6.  `Restore Executions`: Report of running and previously run restore
 

@@ -162,32 +162,32 @@ And the file contents might look like:
     No deadlocks found.
 
     Thread 16269: (state = BLOCKED)
-     - java.lang.Object.wait(long) @bci=0 (Interpreted frame)
-     - org.apache.tomcat.util.threads.ThreadPool$MonitorRunnable.run() @bci=10, line=565 (Interpreted frame)
-     - java.lang.Thread.run() @bci=11, line=619 (Interpreted frame)
+      - java.lang.Object.wait(long) @bci=0 (Interpreted frame)
+      - org.apache.tomcat.util.threads.ThreadPool$MonitorRunnable.run() @bci=10, line=565 (Interpreted frame)
+      - java.lang.Thread.run() @bci=11, line=619 (Interpreted frame)
 
     Locked ownable synchronizers:
         - None
 
     Thread 16268: (state = IN_NATIVE)
-     - java.net.PlainSocketImpl.socketAccept(java.net.SocketImpl) @bci=0 (Interpreted frame)
-     - java.net.PlainSocketImpl.accept(java.net.SocketImpl) @bci=7, line=390 (Interpreted frame)
-     - java.net.ServerSocket.implAccept(java.net.Socket) @bci=60, line=453 (Interpreted frame)
-     - java.net.ServerSocket.accept() @bci=48, line=421 (Interpreted frame)
-     - org.apache.jk.common.ChannelSocket.accept(org.apache.jk.core.MsgContext) @bci=46, line=306 (Interpreted frame)
-     - org.apache.jk.common.ChannelSocket.acceptConnections() @bci=72, line=660 (Interpreted frame)
-     - org.apache.jk.common.ChannelSocket$SocketAcceptor.runIt(java.lang.Object[]) @bci=4, line=870 (Interpreted frame)
-     - org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run() @bci=167, line=690 (Interpreted frame)
-     - java.lang.Thread.run() @bci=11, line=619 (Interpreted frame)
+      - java.net.PlainSocketImpl.socketAccept(java.net.SocketImpl) @bci=0 (Interpreted frame)
+      - java.net.PlainSocketImpl.accept(java.net.SocketImpl) @bci=7, line=390 (Interpreted frame)
+      - java.net.ServerSocket.implAccept(java.net.Socket) @bci=60, line=453 (Interpreted frame)
+      - java.net.ServerSocket.accept() @bci=48, line=421 (Interpreted frame)
+      - org.apache.jk.common.ChannelSocket.accept(org.apache.jk.core.MsgContext) @bci=46, line=306 (Interpreted frame)
+      - org.apache.jk.common.ChannelSocket.acceptConnections() @bci=72, line=660 (Interpreted frame)
+      - org.apache.jk.common.ChannelSocket$SocketAcceptor.runIt(java.lang.Object[]) @bci=4, line=870 (Interpreted frame)
+      - org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run() @bci=167, line=690 (Interpreted frame)
+      - java.lang.Thread.run() @bci=11, line=619 (Interpreted frame)
 
     Locked ownable synchronizers:
         - None
 
     Thread 16267: (state = BLOCKED)
-     - java.lang.Object.wait(long) @bci=0 (Interpreted frame)
-     - java.lang.Object.wait() @bci=2, line=485 (Interpreted frame)
-     - org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run() @bci=26, line=662 (Interpreted frame)
-     - java.lang.Thread.run() @bci=11, line=619 (Interpreted frame)
+      - java.lang.Object.wait(long) @bci=0 (Interpreted frame)
+      - java.lang.Object.wait() @bci=2, line=485 (Interpreted frame)
+      - org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run() @bci=26, line=662 (Interpreted frame)
+      - java.lang.Thread.run() @bci=11, line=619 (Interpreted frame)
 
     Locked ownable synchronizers:
         - None

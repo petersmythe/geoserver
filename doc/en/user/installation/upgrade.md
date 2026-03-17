@@ -278,13 +278,13 @@ Due to the above compatibility issues, **some** layers based on underlying GRIB 
 
 #\. Remove any auxiliary/cache file associated with the underlying GRIB file (assuming the file is named gribfile.grib2):
 
-> - gribfile.ncx3
-> - gribfile.ncx4
-> - gribfile.gbx9
-> - .gribfile_hash folder (if not previously deleted) either located beside the original file, or within the configured [NETCDF_DATA_DIR](https://docs.geoserver.org/main/en/user/extensions/netcdf/netcdf.md#netcdf-files-in-read-only-directories) (if defined).
-> - The screenshot below represents an actual example of a tpcprblty.2019100912.incremental.grib2 file with related auxiliary/cache files
->
-> > ![](images/grib_auxiliary_files.png)
+- gribfile.ncx3
+- gribfile.ncx4
+- gribfile.gbx9
+- .gribfile_hash folder (if not previously deleted) either located beside the original file, or within the configured [NETCDF_DATA_DIR](https://docs.geoserver.org/main/en/user/extensions/netcdf/netcdf.md#netcdf-files-in-read-only-directories) (if defined).
+- The screenshot below represents an actual example of a tpcprblty.2019100912.incremental.grib2 file with related auxiliary/cache files
+
+    ![](images/grib_auxiliary_files.png)
 
 #### Additional steps needed in case of ImageMosaic of GRIBs
 
@@ -311,8 +311,8 @@ If the above did not help, then a full cleanup of the GeoServer configuration is
 
 1.  Remove the affected store, either Mosaic or GRIB Store, referring to the problematic GRIB files.
 
-    > - Follow up standard procedure to delete affected stores and underlying layer
-    > - Alternatively, consider using [REST APIs](https://docs.geoserver.org/stable/en/api/#1.0.0/coveragestores.yaml/) to do that by referring to the DELETE method for `/workspaces/{workspace}/coveragestores/{store}` . Use `?recurse=true&purge=metadata` to delete layers and auxiliary files as well
+    - Follow up standard procedure to delete affected stores and underlying layer
+    - Alternatively, consider using [REST APIs](https://docs.geoserver.org/stable/en/api/#1.0.0/coveragestores.yaml/) to do that by referring to the DELETE method for `/workspaces/{workspace}/coveragestores/{store}` . Use `?recurse=true&purge=metadata` to delete layers and auxiliary files as well
 
 2.  Recreate the stores and layers using the known procedures.
 

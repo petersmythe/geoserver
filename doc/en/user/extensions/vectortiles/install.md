@@ -18,8 +18,8 @@ render_macros: true
 
 3.  Extract the archive and copy the contents into the GeoServer library **`WEB-INF/lib`** directory located in:
 
-> - GeoServer binary Jetty: **`<GEOSERVER_ROOT>/webapps/geoserver/WEB-INF/lib`**
-> - Default Tomcat deployment: **`<CATALINA_BASE>/webapps/geoserver/WEB-INF/lib`**
+    - GeoServer binary Jetty: **`<GEOSERVER_ROOT>/webapps/geoserver/WEB-INF/lib`**
+    - Default Tomcat deployment: **`<CATALINA_BASE>/webapps/geoserver/WEB-INF/lib`**
 
 1.  Restart GeoServer.
 

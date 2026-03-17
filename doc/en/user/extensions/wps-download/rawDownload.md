@@ -6,10 +6,10 @@ These processes allow download of vector and raster data in raw form, without re
 
 The *Download Estimator Process* checks the size of the file to download. This process takes in input the following parameters:
 
-> - `layername` : name of the layer to check
-> - `ROI` : ROI object to use for cropping data
-> - `filter` : filter for filtering input data
-> - `targetCRS` : CRS of the final layer if reprojection is needed
+- `layername` : name of the layer to check
+- `ROI` : ROI object to use for cropping data
+- `filter` : filter for filtering input data
+- `targetCRS` : CRS of the final layer if reprojection is needed
 
 This process will return a boolean which will be **true** if the downloaded file will not exceed the configured limits.
 
@@ -17,27 +17,27 @@ This process will return a boolean which will be **true** if the downloaded file
 
 The *Download Process* calls the *Download Estimator Process*, checks the file size, and, if the file does not exceed the limits, download the file as a zip. The parameters to set are
 
-> - `layerName` : the name of the layer to process/download
-> - `filter` : a vector filter for filtering input data(optional)
-> - `outputFormat` : the MIME type of the format of the final file
-> - `targetCRS` : the CRS of the output file (optional)
-> - `RoiCRS` : Region Of Interest CRS (optional)
-> - `ROI` : Region Of Interest object to use for cropping data (optional)
-> - `cropToROI` : boolean parameter to allow cropping to actual ROI, or its envelope (optional)
-> - `interpolation` : interpolation function to use when reprojecting / scaling raster data. Values are NEAREST (default), BILINEAR, BICUBIC2, BICUBIC (optional)
-> - `targetSizeX` : size X in pixels of the output (optional, applies for raster input only)
-> - `targetSizeY` : size Y in pixels of the output (optional, applies for raster input only)
-> - `selectedBands` : a set of the band indices of the original raster that will be used for producing the final result (optional, applies for raster input only)
-> - `writeParameters` : a set of writing parameters (optional, applies for raster input only). See [Writing parameters](#writing_params) below section for more details on writing parameters defintion.
-> - `minimizeReprojections` : since 2.17, parameter to control CRS management when dealing with heterogeneous CRS's coverages, in order to minimize reprojections when granules in ROI match the TargetCRS. See [RasterDownload of Heterogeneous CRS ImageMosaic](#heterogeneous_imagemosaic) below section for more details on this param.
-> - `bestResolutionOnMatchingCRS` : since 2.17, parameter to control CRS and resolution management when dealing with heterogeneous CRS's coverages. See [RasterDownload of Heterogeneous CRS ImageMosaic](#heterogeneous_imagemosaic) below section for more details on this param.
-> - `targetVerticalCRS` : optional TargetVerticalCRS, to be used to transform elevation data from a VerticalCRS to another one. See [Vertical data resampling on download](#vertical_resampling) below section for more details on this param
-> - `resolutionsDifferenceTolerance` : the parameter allows to specify a tolerance value to control the use of native resolution of the data, when no target size has been specified and granules are reprojected. If
->   - the percentage difference between original and reprojected coverages resolutions is below the specified tolerance value,
->   - native resolution is the same for all the requested granules,
->   - the unit of measure is the same for native and target CRS,
->
-> > the reprojected coverage will be forced to use native resolutions. For example by specifying a value of 5.0, if the percentage difference between native and reprojected data is below 5%, assuming that also the other two conditions are respected, the native resolutions will be preserved. Default values is 0.
+- `layerName` : the name of the layer to process/download
+- `filter` : a vector filter for filtering input data(optional)
+- `outputFormat` : the MIME type of the format of the final file
+- `targetCRS` : the CRS of the output file (optional)
+- `RoiCRS` : Region Of Interest CRS (optional)
+- `ROI` : Region Of Interest object to use for cropping data (optional)
+- `cropToROI` : boolean parameter to allow cropping to actual ROI, or its envelope (optional)
+- `interpolation` : interpolation function to use when reprojecting / scaling raster data. Values are NEAREST (default), BILINEAR, BICUBIC2, BICUBIC (optional)
+- `targetSizeX` : size X in pixels of the output (optional, applies for raster input only)
+- `targetSizeY` : size Y in pixels of the output (optional, applies for raster input only)
+- `selectedBands` : a set of the band indices of the original raster that will be used for producing the final result (optional, applies for raster input only)
+- `writeParameters` : a set of writing parameters (optional, applies for raster input only). See [Writing parameters](#writing_params) below section for more details on writing parameters defintion.
+- `minimizeReprojections` : since 2.17, parameter to control CRS management when dealing with heterogeneous CRS's coverages, in order to minimize reprojections when granules in ROI match the TargetCRS. See [RasterDownload of Heterogeneous CRS ImageMosaic](#heterogeneous_imagemosaic) below section for more details on this param.
+- `bestResolutionOnMatchingCRS` : since 2.17, parameter to control CRS and resolution management when dealing with heterogeneous CRS's coverages. See [RasterDownload of Heterogeneous CRS ImageMosaic](#heterogeneous_imagemosaic) below section for more details on this param.
+- `targetVerticalCRS` : optional TargetVerticalCRS, to be used to transform elevation data from a VerticalCRS to another one. See [Vertical data resampling on download](#vertical_resampling) below section for more details on this param
+- `resolutionsDifferenceTolerance` : the parameter allows to specify a tolerance value to control the use of native resolution of the data, when no target size has been specified and granules are reprojected. If
+  - the percentage difference between original and reprojected coverages resolutions is below the specified tolerance value,
+  - native resolution is the same for all the requested granules,
+  - the unit of measure is the same for native and target CRS,
+
+    the reprojected coverage will be forced to use native resolutions. For example by specifying a value of 5.0, if the percentage difference between native and reprojected data is below 5%, assuming that also the other two conditions are respected, the native resolutions will be preserved. Default values is 0.
 
 The `targetCRS` and `RoiCRS` parameters are using EPSG code terminology, so, valid parameters are literals like `EPSG:4326` (if we are referring to a the Geogaphic WGS84 CRS), `EPSG:3857` (for WGS84 Web Mercator CRS), etc.
 
@@ -45,18 +45,18 @@ The `targetCRS` and `RoiCRS` parameters are using EPSG code terminology, so, val
 
 A `ROI` parameter is a geometry object which can also be defined if three different forms:
 
-> - as `TEXT`, in various geometry textual formats/representations
-> - as `REFERENCE`, which is the textual result of an HTTP GET/POST request to a specific url
-> - as a `SUPPROCESS` result: the format produced as result of the process execution must be a compatible geometry textual format.
+- as `TEXT`, in various geometry textual formats/representations
+- as `REFERENCE`, which is the textual result of an HTTP GET/POST request to a specific url
+- as a `SUPPROCESS` result: the format produced as result of the process execution must be a compatible geometry textual format.
 
 As noted above, in all above forms/cases ROI geometry is defined as text, in specific formats. These can be:
 
-> - `text/xml; subtype=gml/3.1.1`: conforming to gml specs 3.1.1
-> - `text/xml; subtype=gml/2.1.2`: conforming to gml specs 2.1.2
-> - `application/wkt`: the WKT geometry representation
-> - `application/json`: the JSON geometry representation
-> - `application/gml-3.1.1`: conforming to gml specs 3.1.1
-> - `application/gml-2.1.2`: conforming to gml specs 2.1.2
+- `text/xml; subtype=gml/3.1.1`: conforming to gml specs 3.1.1
+- `text/xml; subtype=gml/2.1.2`: conforming to gml specs 2.1.2
+- `application/wkt`: the WKT geometry representation
+- `application/json`: the JSON geometry representation
+- `application/gml-3.1.1`: conforming to gml specs 3.1.1
+- `application/gml-2.1.2`: conforming to gml specs 2.1.2
 
 For example, a polygon used as ROI with the following WKT representation:
 
@@ -64,11 +64,11 @@ For example, a polygon used as ROI with the following WKT representation:
 
 would be represented in the following forms:
 
-> - in application/wkt: `POLYGON (( 500116.08576537756 499994.25579707103, 500116.08576537756 500110.1012210889, 500286.2657688021 500110.1012210889, 500286.2657688021 499994.25579707103, 500116.08576537756 499994.25579707103 ))`
-> - in application/json: `{"type":"Polygon","coordinates":[[[500116.0858,499994.2558],[500116.0858,500110.1012],[500286.2658,500110.1012],[500286.2658,499994.2558],[500116.0858,499994.2558]]]}`
-> - in text/xml:`500116.08576537756,499994.25579707103 500116.08576537756,500110.1012210889 500286.2657688021,500110.1012210889 500286.2657688021,499994.25579707103 500116.08576537756,499994.25579707103`
-> - in application/xml: the following xml
->
+- in application/wkt: `POLYGON (( 500116.08576537756 499994.25579707103, 500116.08576537756 500110.1012210889, 500286.2657688021 500110.1012210889, 500286.2657688021 499994.25579707103, 500116.08576537756 499994.25579707103 ))`
+- in application/json: `{"type":"Polygon","coordinates":[[[500116.0858,499994.2558],[500116.0858,500110.1012],[500286.2658,500110.1012],[500286.2658,499994.2558],[500116.0858,499994.2558]]]}`
+- in text/xml:`500116.08576537756,499994.25579707103 500116.08576537756,500110.1012210889 500286.2657688021,500110.1012210889 500286.2657688021,499994.25579707103 500116.08576537756,499994.25579707103`
+- in application/xml: the following xml
+
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?><gml:Polygon xmlns:gml="http://www.opengis.net/gml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink">
   <gml:outerBoundaryIs>
@@ -149,15 +149,15 @@ Note the `<wps:Reference>` tag replacing `<wps:ComplexData>` tag, and the extra 
 
 A `filter` parameter is a definition of a vector filter operation:
 
-> - as `TEXT`, in various textual formats/representations
-> - as `REFERENCE`, which is the textual result of an HTTP GET/POST request to a specific url
-> - as a `SUBPROCESS` result: the format produced as result of the process execution must be a compatible geometry textual format.
+- as `TEXT`, in various textual formats/representations
+- as `REFERENCE`, which is the textual result of an HTTP GET/POST request to a specific url
+- as a `SUBPROCESS` result: the format produced as result of the process execution must be a compatible geometry textual format.
 
 Compatible text formats for filter definitions are:
 
-> - `text/xml; filter/1.0`
-> - `text/xml; filter/1.1`
-> - `text/xml; cql`
+- `text/xml; filter/1.0`
+- `text/xml; filter/1.1`
+- `text/xml; cql`
 
 For more details on filter formats/languages, one can see [../../filter/syntax](../../filter/syntax.md) and [../../filter/function](../../filter/function.md). Filter parameter applies to vector data. If this is the case with input data, a sample `<wps:Input>` block of a filter intersecting the polygon we used earlier as an example for ROI definition would be:
 
@@ -417,19 +417,19 @@ The `writeParameters` input element of a process execution allows to specify par
 
 The supported writing parameters are:
 
-> - `tilewidth` : Width of internal tiles, in pixels
-> - `tileheight` : Height of internal tiles, in pixels
-> - `compression` : Compression type used to store internal tiles. Supported values are:
->   - `CCITT RLE` (Lossless) (Huffman)
->   - `LZW` (Lossless)
->   - `JPEG` (Lossy)
->   - `ZLib` (Lossless)
->   - `PackBits` (Lossless)
->   - `Deflate` (Lossless)
-> - `quality` : Compression quality. Value is in the range [0 : 1]
->   - for `JPEG` lossy compression, 0 is for worst quality/higher compression and 1 is for best quality/lower compression. (default is 1).
->   - for `Deflate` lossless compression, input value in the range [0 : 1] is linearly mapped to output deflate level in the range [1 : 9]: `(deflate level = 1 + 8 * (quality))`, where level 1 is for best speed and level 9 is for best compression. (default level is 9)
-> - `writenodata` : Supported value is one of true/false. Note that, by default, a [nodata TAG](https://www.awaresystems.be/imaging/tiff/tifftags/gdal_nodata.md) is produced as part of the output GeoTIFF file as soon as a nodata is found in the GridCoverage2D to be written. Therefore, not specifying this parameter will result into writing nodata to preserve default behavior. Setting it to false will avoid writing that TAG.
+- `tilewidth` : Width of internal tiles, in pixels
+- `tileheight` : Height of internal tiles, in pixels
+- `compression` : Compression type used to store internal tiles. Supported values are:
+  - `CCITT RLE` (Lossless) (Huffman)
+  - `LZW` (Lossless)
+  - `JPEG` (Lossy)
+  - `ZLib` (Lossless)
+  - `PackBits` (Lossless)
+  - `Deflate` (Lossless)
+- `quality` : Compression quality. Value is in the range [0 : 1]
+  - for `JPEG` lossy compression, 0 is for worst quality/higher compression and 1 is for best quality/lower compression. (default is 1).
+  - for `Deflate` lossless compression, input value in the range [0 : 1] is linearly mapped to output deflate level in the range [1 : 9]: `(deflate level = 1 + 8 * (quality))`, where level 1 is for best speed and level 9 is for best compression. (default level is 9)
+- `writenodata` : Supported value is one of true/false. Note that, by default, a [nodata TAG](https://www.awaresystems.be/imaging/tiff/tifftags/gdal_nodata.md) is produced as part of the output GeoTIFF file as soon as a nodata is found in the GridCoverage2D to be written. Therefore, not specifying this parameter will result into writing nodata to preserve default behavior. Setting it to false will avoid writing that TAG.
 
 # Direct download
 
@@ -487,8 +487,8 @@ The following example shows a DSM layer being configured to specify EPSG:5778 as
 
 This section will only show up if:
 
-> - The wps-download module has been deployed in GeoServer
-> - The underlying data is single-band and datatype is at least 16 bit. (i.e.: no Byte datatype, no RGB images, \...)
+- The wps-download module has been deployed in GeoServer
+- The underlying data is single-band and datatype is at least 16 bit. (i.e.: no Byte datatype, no RGB images, \...)
 
 ### WPS Download - Vertical resampling
 

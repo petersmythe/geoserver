@@ -40,31 +40,31 @@ The first thing to do is to configure the OAuth2 Provider and obtain `Client ID`
 
     - Type in an "App name" (like "test-gs"), choose your Email address, and then press "Next"
 
-      > ![](../img/google-credentials6.png)
+      ![](../img/google-credentials6.png)
 
     - In the Audience section, choose "External" then press "Next"
 
-      > ![](../img/google-credentials7.png)
+      ![](../img/google-credentials7.png)
 
     - Type in a contact email, then press "Next"
 
-      > ![](../img/google-credentials8.png)
+      ![](../img/google-credentials8.png)
 
     - Agree to the terms, then press "Continue", and then "Create"
 
-      > ![](../img/google-credentials9.png)
+      ![](../img/google-credentials9.png)
 
     - Go to Clients (Left Bar), press the 3-vertical-dots ,and then press "+ Create Client"
 
-      > ![](../img/google-credentials10.png)
+      ![](../img/google-credentials10.png)
 
     - Choose "Web Application" and name the web application (i.e. "gs test app")
 
-      > ![](../img/google-credentials11.png)
+      ![](../img/google-credentials11.png)
 
     * Go down to "Authorized redirect URIs" and press "+ Add URI", type in "http://localhost:8080/geoserver/web/login/oauth2/code/google", then press "Create"
 
-    > ![](../img/google-credentials12.png)
+      ![](../img/google-credentials12.png)
 
     !!! tip
 
@@ -88,36 +88,36 @@ The next step is to configure your Google application as the OIDC IDP for GeoSer
 
 ### Create the OIDC Filter
 
-> - Login to GeoServer as an Admin
->
-> - On the left bar under "Security", click "Authentication", and then "OpenID Connect Login"
->
->   > ![](../img/google-gs1.png)
->
-> - Give the it a name like "test-google", then from the **Provider** dropdown select **Google** and copy-and-paste in the Client ID and Client Secret (from when you configured the google client).
->
->   > ![](../img/google-gs2.png)
->
-> - Go down to the bottom and configure the role source (if you want) - see [role source](../role-config.md)
->
-> - Press "Save"
+- Login to GeoServer as an Admin
+
+- On the left bar under "Security", click "Authentication", and then "OpenID Connect Login"
+
+    ![](../img/google-gs1.png)
+
+- Give the it a name like "test-google", then from the **Provider** dropdown select **Google** and copy-and-paste in the Client ID and Client Secret (from when you configured the google client).
+
+    ![](../img/google-gs2.png)
+
+- Go down to the bottom and configure the role source (if you want) - see [role source](../role-config.md)
+
+- Press "Save"
 
 ### Allow Web Access (Filter Chain)
 
-> * On the left bar under "Security", click "Authentication", and then click "Web" under "Filter Chains"
->
-> > ![](../img/google-filterchain1.png)
-> >
-> > - Scroll down, and move the new Google OIDC Filter to the Selected side by pressing the "->" button.
-> >
-> > ![](../img/google-filterchain2.png)
-> >
-> > - Move the new Google OIDC Filter above "anonymous" by pressing the up arrow button.
-> >
-> > ![](../img/google-filterchain3.png)
-> >
-> > - Press "Close"
-> > - Press "Save"
+* On the left bar under "Security", click "Authentication", and then click "Web" under "Filter Chains"
+
+    ![](../img/google-filterchain1.png)
+
+    - Scroll down, and move the new Google OIDC Filter to the Selected side by pressing the "->" button.
+
+    ![](../img/google-filterchain2.png)
+
+    - Move the new Google OIDC Filter above "anonymous" by pressing the up arrow button.
+
+    ![](../img/google-filterchain3.png)
+
+    - Press "Close"
+    - Press "Save"
 
 ## Notes
 

@@ -46,19 +46,19 @@ If your IDP exposes a `.well-known/openid-configuration` endpoint, this is the q
 
 1.  Create a new OIDC Filter
 
-    > - From the **Provider** dropdown, select **OpenID Connect Provider** (this is the default selection)
-    >
-    > - Enter your IDP's Client ID and Client Secret
-    >
-    > - In the **OpenID Discovery Document** field, type the URL to your IDP's discovery endpoint, e.g.:
-    >
-    >       https://idp.example.com/.well-known/openid-configuration
-    >
-    > - Press **Discover** --- this will download the OIDC metadata and fill in most fields automatically
-    >
-    > - Look in the **Advanced Settings** section to see if you need any of those options
-    >
-    > - Set up the [roles source](../role-config.md) for the Filter (if needed)
+    - From the **Provider** dropdown, select **OpenID Connect Provider** (this is the default selection)
+
+    - Enter your IDP's Client ID and Client Secret
+
+    - In the **OpenID Discovery Document** field, type the URL to your IDP's discovery endpoint, e.g.:
+
+          https://idp.example.com/.well-known/openid-configuration
+
+    - Press **Discover** --- this will download the OIDC metadata and fill in most fields automatically
+
+    - Look in the **Advanced Settings** section to see if you need any of those options
+
+    - Set up the [roles source](../role-config.md) for the Filter (if needed)
 
 2.  Add your new OIDC Filter to the "web" filter Chain
 

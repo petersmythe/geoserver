@@ -39,26 +39,26 @@ GeoServer allows finer control over the legend appearance via the vendor paramet
 
 Here is a description of the various parameters that can be used in `LEGEND_OPTIONS`:
 
-> - **fontName (string)** the name of the font to be used when generating rule titles. The font must be available on the server
-> - **fontStyle (string)** can be set to italic or bold to control the text style. Other combinations are not allowed right now but we could implement that as well.
-> - **fontSize (integer)** allows us to set the Font size for the various text elements. Notice that default size is 12.
-> - **fontColor (hex)** allows us to set the color for the text of rules and labels (see above for recommendation on how to create values). Values are expressed in `0xRRGGBB` format
-> - **fontAntiAliasing (true/false)** when true enables antialiasing for rule titles
-> - **bgColor (hex)** background color for the generated legend, values are expressed in `0xRRGGBB` format
-> - **dpi (integer)** sets the DPI for the current request, in the same way as it is supported by GetMap. Setting a DPI larger than 91 (the default) makes all fonts, symbols and line widths grow without changing the current scale, making it possible to get a high resolution version of the legend suitable for inclusion in printouts
-> - **forceLabels** "on" means labels will always be drawn, even if only one rule is available. "off" means labels will never be drawn, even if multiple rules are available. Off by default.
-> - **forceTitles** "off" means layer titles will not be drawn for layer groups. On by default.
-> - **labelMargin** margin (in pixels) to use between icons and labels.
-> - **layout** sets icons layout to be **vertical** (default) or **horizontal**.
-> - **columnheight** enables **multicolumn** layout when layout is **vertical**. Each column height is limited by the columnheight value (in pixels).
-> - **rowwidth** enables **multirow** layout when layout is **horizontal**. Each row width is limited by the rowwidth value (in pixels).
-> - **columns** enables **multicolumn** layout when layout is **vertical**. The value is the maximum columns number of legend. The rows used are equal to the next greater integer of <total of icons>/<number of columns>.
-> - **rows** enables **multirow** layout when layout is **horizontal**. The value is the maximum rows number of legend. The columns used are equal to the next greater integer of <total of icons>/<number of rows>.
-> - **grouplayout** Orientation of groups of layer, possible values are **horizontal** and **vertical** (default if not specified).
-> - **countMatched** When set to true, adds at the end of each label the number of features matching that rule in the current map. Requires extra parameters, see details in the [dedicated section](#content-dependent).
-> - **hideEmptyRules** When set to true hides rules that are not matching any feature.
-> - **wrap** When set to true word wraps long legend labels, leading to taller legends but less wide ones.
-> - **wrap_limit** when set, it wraps the legend label with the specified number of pixels.
+- **fontName (string)** the name of the font to be used when generating rule titles. The font must be available on the server
+- **fontStyle (string)** can be set to italic or bold to control the text style. Other combinations are not allowed right now but we could implement that as well.
+- **fontSize (integer)** allows us to set the Font size for the various text elements. Notice that default size is 12.
+- **fontColor (hex)** allows us to set the color for the text of rules and labels (see above for recommendation on how to create values). Values are expressed in `0xRRGGBB` format
+- **fontAntiAliasing (true/false)** when true enables antialiasing for rule titles
+- **bgColor (hex)** background color for the generated legend, values are expressed in `0xRRGGBB` format
+- **dpi (integer)** sets the DPI for the current request, in the same way as it is supported by GetMap. Setting a DPI larger than 91 (the default) makes all fonts, symbols and line widths grow without changing the current scale, making it possible to get a high resolution version of the legend suitable for inclusion in printouts
+- **forceLabels** "on" means labels will always be drawn, even if only one rule is available. "off" means labels will never be drawn, even if multiple rules are available. Off by default.
+- **forceTitles** "off" means layer titles will not be drawn for layer groups. On by default.
+- **labelMargin** margin (in pixels) to use between icons and labels.
+- **layout** sets icons layout to be **vertical** (default) or **horizontal**.
+- **columnheight** enables **multicolumn** layout when layout is **vertical**. Each column height is limited by the columnheight value (in pixels).
+- **rowwidth** enables **multirow** layout when layout is **horizontal**. Each row width is limited by the rowwidth value (in pixels).
+- **columns** enables **multicolumn** layout when layout is **vertical**. The value is the maximum columns number of legend. The rows used are equal to the next greater integer of <total of icons>/<number of columns>.
+- **rows** enables **multirow** layout when layout is **horizontal**. The value is the maximum rows number of legend. The columns used are equal to the next greater integer of <total of icons>/<number of rows>.
+- **grouplayout** Orientation of groups of layer, possible values are **horizontal** and **vertical** (default if not specified).
+- **countMatched** When set to true, adds at the end of each label the number of features matching that rule in the current map. Requires extra parameters, see details in the [dedicated section](#content-dependent).
+- **hideEmptyRules** When set to true hides rules that are not matching any feature.
+- **wrap** When set to true word wraps long legend labels, leading to taller legends but less wide ones.
+- **wrap_limit** when set, it wraps the legend label with the specified number of pixels.
 
 Here is a sample request sporting most the options:
 
@@ -96,14 +96,14 @@ Take as an instance one of the SLD files attached to this page, each row in the 
 
 The producer for the raster legend will make use of this elements in order to build the legend, with this in mind, notice that:
 
-> - the width of the Color element is driven by the requested width for the GetLegendGraphic request
-> - the width and height of label and rules is computed accordingly to the used Font and Font size for the prepared text (**no new line management for the moment**)
-> - the height of the Color element is driven by the requested width for the GetLegendGraphic request, but notice that for ramps we expand this a little since the goal is to turn the various Color elements into a single long strip
-> - the height of each row is set to the maximum height of the single elements
-> - the width of each row is set to the sum of the width of the various elements plus the various paddings
-> - **dx,dy** the spaces between elements and rows are set to the 15% of the requested width and height. Notice that **dy** is ignored for the colormaps of type **ramp** since they must create a continuous color strip.
-> - **absoluteMargins** true/false, used to change the Unit of Measure of **dx** from percentage (when false) to a fixed number of pixels (when true).
-> - **mx,my** the margins from the border of the legends are set to the 1.5% of the total size of the legend
+- the width of the Color element is driven by the requested width for the GetLegendGraphic request
+- the width and height of label and rules is computed accordingly to the used Font and Font size for the prepared text (**no new line management for the moment**)
+- the height of the Color element is driven by the requested width for the GetLegendGraphic request, but notice that for ramps we expand this a little since the goal is to turn the various Color elements into a single long strip
+- the height of each row is set to the maximum height of the single elements
+- the width of each row is set to the sum of the width of the various elements plus the various paddings
+- **dx,dy** the spaces between elements and rows are set to the 15% of the requested width and height. Notice that **dy** is ignored for the colormaps of type **ramp** since they must create a continuous color strip.
+- **absoluteMargins** true/false, used to change the Unit of Measure of **dx** from percentage (when false) to a fixed number of pixels (when true).
+- **mx,my** the margins from the border of the legends are set to the 1.5% of the total size of the legend
 
 In conclusion, here below I am adding an image of a sample legend with all the various options at work. The request that generated it is the following:
 
@@ -118,9 +118,9 @@ Do not worry if it seems like something written in ancient dead language, I am g
 
 As you may know (well, actually you might not since I never wrote any real docs about the RasterSymbolizer work I did) GeoServer supports three types of ColorMaps:
 
-> - **ramp** this is what SLD 1.0 dictates, which means a linear interpolation weighted on values between the colors of the various ColorMapEntries.
-> - **values** this is an extension that allows link quantities to colors as specified by the ColorMapEntries quantities. Values not specified are translated into transparent pixels.
-> - **classes** this is an extension that allows pure classifications based on intervals created from the ColorMapEntries quantities. Values not specified are translated into transparent pixels.
+- **ramp** this is what SLD 1.0 dictates, which means a linear interpolation weighted on values between the colors of the various ColorMapEntries.
+- **values** this is an extension that allows link quantities to colors as specified by the ColorMapEntries quantities. Values not specified are translated into transparent pixels.
+- **classes** this is an extension that allows pure classifications based on intervals created from the ColorMapEntries quantities. Values not specified are translated into transparent pixels.
 
 Here below I am going to list various examples that use the attached styles on a rainfall floating point geotiff.
 
@@ -153,10 +153,10 @@ I am now going to briefly explain the various parameters that we can use to cont
 
 Let's now examine all the interesting elements, one by one. Notice that I am not going to discuss the mechanics of the GetLegendGraphic operation, for that you may want to refer to the SLD 1.0 spec, my goal is to briefly discuss the LEGEND_OPTIONS parameter.
 
-> - **forceRule (boolean)** by default rules for a ColorMapEntry are not drawn to keep the legend small and compact, unless there are no labels at all. You can change this behaviour by setting this parameter to true.
-> - **dx,dy,mx,my (double)** can be used to set the margin and the buffers between elements
-> - **border (boolean)** activates or deactivates the border on the color elements in order to make the separations clearer. Notice that I decided to **always** have a line that would split the various color elements for the ramp type of colormap.
-> - **borderColor (hex)** allows us to set the color for the border in 0xRRGGBB format
+- **forceRule (boolean)** by default rules for a ColorMapEntry are not drawn to keep the legend small and compact, unless there are no labels at all. You can change this behaviour by setting this parameter to true.
+- **dx,dy,mx,my (double)** can be used to set the margin and the buffers between elements
+- **border (boolean)** activates or deactivates the border on the color elements in order to make the separations clearer. Notice that I decided to **always** have a line that would split the various color elements for the ramp type of colormap.
+- **borderColor (hex)** allows us to set the color for the border in 0xRRGGBB format
 
 ### CQL Expressions and ENV
 
@@ -166,14 +166,14 @@ If CQL expressions are used in ColorMapEntry attributes (see [here](../../../sty
 
 GeoServer allows building content dependent legend, that is, legends whose contents depend on the currently displayed map. In order to support it the GetLegendGraphic call needs the following extra parameters:
 
-> - BBOX
-> - SRS or CRS (depending on the WMS version, SRS for 1.1.1 and CRS for 1.3.0)
-> - SRCWIDTH and SRCHEIGHT, the size of the reference map (width and height already have a different meaning in GetLegendGraphic)
+- BBOX
+- SRS or CRS (depending on the WMS version, SRS for 1.1.1 and CRS for 1.3.0)
+- SRCWIDTH and SRCHEIGHT, the size of the reference map (width and height already have a different meaning in GetLegendGraphic)
 
 and the following LEGEND_OPTIONS parameters:
 
-> - countMatched: adds the number of features matching the particular rule at the end of the rule label (requires visible labels to work). Applicable only to vector layers.
-> - hideEmptyRules: hides rules that are not matching any feature.
+- countMatched: adds the number of features matching the particular rule at the end of the rule label (requires visible labels to work). Applicable only to vector layers.
+- hideEmptyRules: hides rules that are not matching any feature.
 
 Other parameters can also be added to better match the GetMap request, for example, it is recommended to mirror filtering vendor parameters such as, for example, CQL_FILTER,FILTER,FEATUREID,TIME,ELEVATION.
 

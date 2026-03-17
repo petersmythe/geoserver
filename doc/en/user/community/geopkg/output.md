@@ -35,11 +35,11 @@ General outline of a `contents` scheme:
 
 Each GeoPackage has a mandatory `name`, which will be the name of the file (with the extension .gpkg added). Each layer (features or tiles) has the following properties:
 
-> - `name` (mandatory): the name of the layer in the GeoPackage;
-> - `identifier` (optional): an identifier for the layer;
-> - `description` (optional): a description for the layer;
-> - `srs` ( mandatory for tiles, optional for features): coordinate reference system; for features the default is the SRS of the feature type;
-> - `bbox` ( mandatory for tiles, optional for features): the bounding box; for features the default is the bounding box of the feature type.
+- `name` (mandatory): the name of the layer in the GeoPackage;
+- `identifier` (optional): an identifier for the layer;
+- `description` (optional): a description for the layer;
+- `srs` ( mandatory for tiles, optional for features): coordinate reference system; for features the default is the SRS of the feature type;
+- `bbox` ( mandatory for tiles, optional for features): the bounding box; for features the default is the bounding box of the feature type.
 
 Outline of the features layer:
 
@@ -109,11 +109,9 @@ Each tiles layer has the following properties:
 
 :   - `layers` (mandatory): comma-separated list of layers that will be included
 
-    - 
+    - `styles`, `sld`, and `sldbody` are mutually exclusive, having one is mandatory
 
-      `styles`, `sld`, and `sldbody` are mutually exclusive, having one is mandatory
-
-      :   - `styles`: list of comma-separated styles to be used
+      - `styles`: list of comma-separated styles to be used
           - `sld`: path to SLD style file
           - `sldbody`: inline SLD style file
 
@@ -165,10 +163,10 @@ The process can create generalized tables, as described in [Testbed 16 generaliz
 
 Generalized tables are sidecar tables that typically contain less records than the original table, with the option to also generalize their geometry. These are created by adding a list of `overview` directives in a feature layer description, each one containing:
 
-> - `name` (mandatory): the generalized table name
-> - `distance` (optional): the generalization distance to create simplified geometries
-> - `scaleDenominator`: the scale denominator at which the table starts being used, in preference to the original table, and other tables with a lower scale denominator value
-> - `filter` (optional): an OGC filter removing features that are not meant to be rendered at the target scale denominator
+- `name` (mandatory): the generalized table name
+- `distance` (optional): the generalization distance to create simplified geometries
+- `scaleDenominator`: the scale denominator at which the table starts being used, in preference to the original table, and other tables with a lower scale denominator value
+- `filter` (optional): an OGC filter removing features that are not meant to be rendered at the target scale denominator
 
 Here is an example:
 

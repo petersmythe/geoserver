@@ -26,9 +26,9 @@ The following command translates the shapefile in CSV (the command should be typ
 
 Some observations:
 
-> - The SQL is used mostly to include the special FID field into the results (a unique field is required)
-> - The reprojection is performed to ensure the output geometries are in WGS84
-> - The `layer_s` dynamic field is added to
+- The SQL is used mostly to include the special FID field into the results (a unique field is required)
+- The reprojection is performed to ensure the output geometries are in WGS84
+- The `layer_s` dynamic field is added to
 
 This will generate a CSV file looking as follows:
 
@@ -43,8 +43,8 @@ At this point the CSV can be imported into SOLR using CURL:
 
 Some observations:
 
-> - The files gets uploaded as a `text/csv` file, older versions might require a `text/plain` mime type
-> - The `fieldnames` overrides the CSV header and allows us to specify the field name as expected by SOLR
+- The files gets uploaded as a `text/csv` file, older versions might require a `text/plain` mime type
+- The `fieldnames` overrides the CSV header and allows us to specify the field name as expected by SOLR
 
 At this point it's possible to configure a layer showing only the roads in the GeoServer UI:
 

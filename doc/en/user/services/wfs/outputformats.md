@@ -55,12 +55,12 @@ The `zip` property is the name of the archive, the `shp` property is the name of
 
 The properties available in the template are:
 
-> - `typename`---Feature type name (for the `zip` property this will be the first feature type if the request contains many feature types)
-> - `geometryName`---Name of the geometry attribute. Used only if the original feature type has more than one geometry attribute.
-> - `geometryType`---Type of geometry contained in the shapefile. This is only used if the output geometry type is generic and the various geometries are stored in one shapefile per type.
-> - `workspace`---Workspace of the feature type
-> - `timestamp`---Date object with the request timestamp
-> - `iso_timestamp`---String (ISO timestamp of the request at GMT) in `yyyyMMdd_HHmmss` format
+- `typename`---Feature type name (for the `zip` property this will be the first feature type if the request contains many feature types)
+- `geometryName`---Name of the geometry attribute. Used only if the original feature type has more than one geometry attribute.
+- `geometryType`---Type of geometry contained in the shapefile. This is only used if the output geometry type is generic and the various geometries are stored in one shapefile per type.
+- `workspace`---Workspace of the feature type
+- `timestamp`---Date object with the request timestamp
+- `iso_timestamp`---String (ISO timestamp of the request at GMT) in `yyyyMMdd_HHmmss` format
 
 ## JSON and JSONP output
 
@@ -100,9 +100,9 @@ JSON output `format_options`:
 
 - `format_options=id_policy:<attribute name>=<attribute|true|false>` is used to determine if the id values are included in the output.
 
-  > Use `format_options=id_policy:reference_no` for feature id generation using the reference_no attribute, or `format_options=id_policy:reference_no=true` for default feature id generation, or `format_options=id_policy:reference_no=false` to suppress feature id output.
-  >
-  > If id_policy is not specified the geotools default feature id generation is used.
+  Use `format_options=id_policy:reference_no` for feature id generation using the reference_no attribute, or `format_options=id_policy:reference_no=true` for default feature id generation, or `format_options=id_policy:reference_no=false` to suppress feature id output.
+
+  If id_policy is not specified the geotools default feature id generation is used.
 
 - `format_options=callback:<parseResponse>` applies only to the JSONP output format. See [WMS vendor parameters](../wms/vendor.md) to change the callback name. Note that this format is disabled by default (See [Global variables affecting WMS](../wms/global.md)).
 

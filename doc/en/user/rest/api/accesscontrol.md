@@ -4,9 +4,9 @@
 
 Fetches the catalog mode and allows to change the catalog mode. The mode must be one of
 
-> - HIDE
-> - MIXED
-> - CHALLENGE
+- HIDE
+- MIXED
+- CHALLENGE
 
 | Method | Action                 | Status code     | Formats   | Default Format |
 |--------|------------------------|-----------------|-----------|----------------|
@@ -45,9 +45,9 @@ Formats:
 
 API for administering access control for
 
-> - Layers
-> - Services
-> - The REST API
+- Layers
+- Services
+- The REST API
 
 | Method | Action                 | Status code | Formats   | Default Format |
 |--------|------------------------|-------------|-----------|----------------|
@@ -89,14 +89,14 @@ Formats for GET,POST and PUT:
 
 The resource attribute specifies a rule. There are three different formats.
 
-> - For layers: <workspace>.<layer>.<access>. The asterisk is a wild card for <workspace> and <layer>. <access> is one of **r** (read), **w** (write) or **a** (administer).
-> - For services: <service>.<method>. The asterisk is a wild card wild card for <service> and <method>. Examples:
->   - wfs.GetFeature
->   - wfs.GetTransaction
->   - wfs.*
-> - For REST: <URL Ant pattern>;<comma separated list of HTTP methods>. Examples:
->   - /**;GET
->   - /**;POST,DELETE,PUT
+- For layers: <workspace>.<layer>.<access>. The asterisk is a wild card for <workspace> and <layer>. <access> is one of **r** (read), **w** (write) or **a** (administer).
+- For services: <service>.<method>. The asterisk is a wild card wild card for <service> and <method>. Examples:
+  - wfs.GetFeature
+  - wfs.GetTransaction
+  - wfs.*
+- For REST: <URL Ant pattern>;<comma separated list of HTTP methods>. Examples:
+  - /**;GET
+  - /**;POST,DELETE,PUT
 
 The content of a rule element is a comma separated list of roles or the asterisk.
 

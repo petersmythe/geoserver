@@ -10,16 +10,16 @@
 ### ✓ Breadcrumbs WILL appear on nested pages:
 
 1. **Navigate to a nested page** (breadcrumbs show the path):
-   - http://127.0.0.1:8001/3.0/en/user/styling/sld/cookbook/points/
-   - http://127.0.0.1:8001/3.0/en/user/services/wms/reference/
-   - http://127.0.0.1:8001/3.0/en/user/data/database/postgis/
-   - http://127.0.0.1:8001/3.0/en/user/extensions/monitoring/installation/
+    - http://127.0.0.1:8001/3.0/en/user/styling/sld/cookbook/points/
+    - http://127.0.0.1:8001/3.0/en/user/services/wms/reference/
+    - http://127.0.0.1:8001/3.0/en/user/data/database/postgis/
+    - http://127.0.0.1:8001/3.0/en/user/extensions/monitoring/installation/
 
 ### ✗ Breadcrumbs will NOT appear on:
 
 1. **Root/Index pages** (by Material for MkDocs design):
-   - http://127.0.0.1:8001/3.0/en/user/ (home page)
-   - Top-level section index pages
+    - http://127.0.0.1:8001/3.0/en/user/ (home page)
+    - Top-level section index pages
 
 ## Visual Location
 
@@ -52,16 +52,16 @@ Breadcrumbs appear:
    ```
 
 2. **Click on a nested section** in the left sidebar:
-   - Click "Styling" → "SLD" → "Cookbook" → "Points"
+    - Click "Styling" → "SLD" → "Cookbook" → "Points"
 
 3. **Look for breadcrumbs** at the top of the page content:
-   - You should see: `GeoServer User Manual › Styling › SLD › Cookbook › Points`
-   - Each item (except the last) is clickable
+    - You should see: `GeoServer User Manual › Styling › SLD › Cookbook › Points`
+    - Each item (except the last) is clickable
 
 4. **Try other nested pages:**
-   - Services → WMS → Reference
-   - Data → Database → PostGIS
-   - Extensions → Monitoring → Installation
+    - Services → WMS → Reference
+    - Data → Database → PostGIS
+    - Extensions → Monitoring → Installation
 
 ## Styling Details
 
@@ -76,8 +76,8 @@ The breadcrumbs use:
 ### "I still don't see breadcrumbs"
 
 1. **Check you're on a nested page:**
-   - Breadcrumbs only show on pages with parent sections
-   - Root pages and top-level pages may not show breadcrumbs
+    - Breadcrumbs only show on pages with parent sections
+    - Root pages and top-level pages may not show breadcrumbs
 
 2. **Clear browser cache:**
    ```bash
@@ -86,7 +86,7 @@ The breadcrumbs use:
    ```
 
 3. **Verify the feature is enabled:**
-   - Check `doc/en/user/mkdocs.yml` contains:
+    - Check `doc/en/user/mkdocs.yml` contains:
      ```yaml
      features:
        - navigation.path
@@ -102,9 +102,9 @@ The breadcrumbs use:
 ### "Breadcrumbs look wrong"
 
 1. **Check custom CSS is loaded:**
-   - Open browser DevTools (F12)
-   - Look for `.md-path` styles in the Styles panel
-   - Verify `extra.css` is loaded
+    - Open browser DevTools (F12)
+    - Look for `.md-path` styles in the Styles panel
+    - Verify `extra.css` is loaded
 
 2. **Verify Material for MkDocs version:**
    ```bash

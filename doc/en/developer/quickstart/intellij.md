@@ -74,11 +74,11 @@
 
     In the case of compiler errors like `java.lang.NoSuchMethodError`, it might be due to `Error Prone`. This tool is switched off by default, but sometimes it turns on after import to IntelliJ. There are two options to fix it:
 
-    :   1.  Go to Maven tool window and uncheck the `errorprone` profile, then click `Reimport All Maven Projects`:
+    1.  Go to Maven tool window and uncheck the `errorprone` profile, then click `Reimport All Maven Projects`:
 
-            ![image](img/intellij_maven_errorprone.png){width="400px"}
+        ![image](img/intellij_maven_errorprone.png){width="400px"}
 
-        2.  To use `errorprone`, notably to perform the QA checks, install the `Error Prone Compiler` plugin, restart the IDE and set `Javac with error-prone` as a default compiler for the project. Please note that this will slow down the build.
+    2.  To use `errorprone`, notably to perform the QA checks, install the `Error Prone Compiler` plugin, restart the IDE and set `Javac with error-prone` as a default compiler for the project. Please note that this will slow down the build.
 
 3.  If there are errors such as "cannot find symbol AbstractUserGroupServiceTest", rebuild the `security-tests` project in the security module. Right-click on the `security-tests` project and click Rebuild.
 

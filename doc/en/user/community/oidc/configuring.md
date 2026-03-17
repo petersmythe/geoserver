@@ -9,11 +9,11 @@ The basic steps are:
 
 For more details, here are detailed examples for different OIDC server types:
 
-> - [Google](oauth2/google.md)
-> - [GitHub](oauth2/github.md)
-> - [Keycloak](oauth2/keycloak.md)
-> - [MS Azure and Entra](oauth2/azure.md)
-> - [Generic OpenID Connect](oauth2/generic.md)
+- [Google](oauth2/google.md)
+- [GitHub](oauth2/github.md)
+- [Keycloak](oauth2/keycloak.md)
+- [MS Azure and Entra](oauth2/azure.md)
+- [Generic OpenID Connect](oauth2/generic.md)
 
 ## Common Login Settings {: #community_oidc_common_settings }
 

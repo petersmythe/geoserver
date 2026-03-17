@@ -64,7 +64,7 @@ The beginning sections---Basic Resource Info, Keywords and Metadata link---are a
 
 - **Name**---Identifier used to reference the layer in service requests.
 
-  > Names are required to be unique within a workspace. If two DataStores have resources with the same name, or when creating a new layer for an already-published resource, the layer name must be changed to avoid conflict.
+  Names are required to be unique within a workspace. If two DataStores have resources with the same name, or when creating a new layer for an already-published resource, the layer name must be changed to avoid conflict.
 
   !!! note
 

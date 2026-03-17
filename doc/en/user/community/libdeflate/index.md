@@ -2,10 +2,10 @@
 
 Support for alternative Deflate encoder/decoder provided through [libdeflate JNI bindings for Java](https://github.com/astei/libdeflate-java) which provides better performance.
 
-> - Reading can be 10% - 20% faster
-> - Writing can be 40% - 60% faster
->
-> (Tests have been made on deflate input data stored on SSD disk so neither Disk I/O, nor Network transfer was the bottleneck)
+- Reading can be 10% - 20% faster
+- Writing can be 40% - 60% faster
+
+(Tests have been made on deflate input data stored on SSD disk so neither Disk I/O, nor Network transfer was the bottleneck)
 
 ## Installation
 

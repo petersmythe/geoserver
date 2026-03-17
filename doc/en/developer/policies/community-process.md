@@ -58,18 +58,18 @@ For each GeoServer release, we spend six month "prerelease" in a development cyc
 
 **Prerelease**
 
-> - Month -6: main development branch open for development
-> - Month -1: month: release candidate is made on new branch
-> - Month 1: (start of month): second release candidate is made, if there are sufficient changes to warrant it.
+- Month -6: main development branch open for development
+- Month -1: month: release candidate is made on new branch
+- Month 1: (start of month): second release candidate is made, if there are sufficient changes to warrant it.
 
 **Release**
 
-> - Month 1: initial stable release (aim for one month after the first release candidate)
-> - Month 3: stable release
-> - Month 5: stable release
-> - Month 7: maintenance release
-> - Month 9: maintenance release
-> - Month 11: maintenance release
+- Month 1: initial stable release (aim for one month after the first release candidate)
+- Month 3: stable release
+- Month 5: stable release
+- Month 7: maintenance release
+- Month 9: maintenance release
+- Month 11: maintenance release
 
 We alternate between releasing the stable and maintenance branches. A release goes out each month forming a yearly release cycle.
 
@@ -78,17 +78,17 @@ We alternate between releasing the stable and maintenance branches. A release go
 
 Here is what that looks like:
 
-> - Month 1: Release N.0 stable
-> - Month 2: (previous branch N-1 issues a maintenance release)
-> - Month 3: Release N.1 stable
-> - Month 4: (previous branch N-1 issues a maintenance release)
-> - Month 5: Release N.2 stable
-> - Month 6: (next branch N+1 issues a stable release)
-> - Month 7: Release N.3 maintenance
-> - Month 8: (next branch N+1 issues a stable release)
-> - Month 9: Release N.4 maintenance
-> - Month 10: (next branch N+1 issues a stable release)
-> - Month 11: Release N.5 maintenance
+- Month 1: Release N.0 stable
+- Month 2: (previous branch N-1 issues a maintenance release)
+- Month 3: Release N.1 stable
+- Month 4: (previous branch N-1 issues a maintenance release)
+- Month 5: Release N.2 stable
+- Month 6: (next branch N+1 issues a stable release)
+- Month 7: Release N.3 maintenance
+- Month 8: (next branch N+1 issues a stable release)
+- Month 9: Release N.4 maintenance
+- Month 10: (next branch N+1 issues a stable release)
+- Month 11: Release N.5 maintenance
 
 For more information, or to volunteer, please check the [Release-Schedule](https://github.com/geoserver/geoserver/wiki/Release-Schedule) in the wiki.
 

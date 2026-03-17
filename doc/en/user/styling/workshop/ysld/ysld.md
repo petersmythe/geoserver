@@ -307,13 +307,13 @@ If you are really stuck please consider the following challenge rather than skip
 
 \# The rest API can be used to review your YAML file directly.
 
-> Browser:
->
-> - <view-source:http://localhost:8080/geoserver/rest/styles/airport0.yaml>
->
-> Command line:
->
->     curl -v -u admin:geoserver -XGET http://localhost:8080/geoserver/rest/styles/airports0.yaml
+Browser:
+
+- <view-source:http://localhost:8080/geoserver/rest/styles/airport0.yaml>
+
+Command line:
+
+    curl -v -u admin:geoserver -XGET http://localhost:8080/geoserver/rest/styles/airports0.yaml
 
 1.  The REST API can also be used generate an SLD file:
 
@@ -321,9 +321,9 @@ If you are really stuck please consider the following challenge rather than skip
 
     - <view-source:http://localhost:8080/geoserver/rest/styles/airport0.sld?pretty=true>
 
-> Command line:
->
->     curl -v -u admin:geoserver -XGET http://localhost:8080/geoserver/rest/styles/airports0.sld?pretty=true
+      Command line:
+
+          curl -v -u admin:geoserver -XGET http://localhost:8080/geoserver/rest/styles/airports0.sld?pretty=true
 
 1.  Compare the generated SLD differ above with the handwritten [SLD file](../files/airports0.sld) used as an example?
 

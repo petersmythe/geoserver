@@ -16,5 +16,5 @@ render_macros: true
 
     Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example {{ release }} above).
 
-> 1.  Extract the files in this archive to the **`WEB-INF/lib`** directory of your GeoServer installation.
-> 2.  Restart GeoServer
+1.  Extract the files in this archive to the **`WEB-INF/lib`** directory of your GeoServer installation.
+2.  Restart GeoServer

@@ -14,10 +14,10 @@ The binary release of GeoServer should be somehere around 45 - 46 megabytes.
 
 To do the demo page, <http://localhost:8080/geoserver/demo.do>, and test all of the demos. This includes:
 
-> - WFS-T demo
-> - GeoRSS demo with Google Maps, Virtual Earth, and Yahoo Maps
-> - WMS Overlay demo
-> - WMS Example
+- WFS-T demo
+- GeoRSS demo with Google Maps, Virtual Earth, and Yahoo Maps
+- WMS Overlay demo
+- WMS Example
 
 ## Sample requests
 

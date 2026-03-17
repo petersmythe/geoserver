@@ -6,15 +6,15 @@ The ui for the metadata tab is made from a list of field components. The type of
 
 A field is defined in the yaml following key-value pairs:
 
-> - [key](#key)
-> - [fieldType](#fieldtype)
-> - [label](#label)
-> - [occurrence](#occurrence)
-> - [condition](#condition)
-> - [tab](#tab)
-> - [values](#values) (specific field types)
-> - [derivedFrom](#derivedfrom) (specific field types)
-> - [typename](#typename) (specific field types)
+- [key](#key)
+- [fieldType](#fieldtype)
+- [label](#label)
+- [occurrence](#occurrence)
+- [condition](#condition)
+- [tab](#tab)
+- [values](#values) (specific field types)
+- [derivedFrom](#derivedfrom) (specific field types)
+- [typename](#typename) (specific field types)
 
 ### key
 
@@ -103,18 +103,18 @@ The `typename` is a required attribute for [COMPLEX](#complex) fields. It contai
 
 ## Field Types
 
-> - [TEXT](#text)
-> - [TEXT_AREA](#text_area)
-> - [UUID](#uuid)
-> - [NUMBER](#number)
-> - [BOOLEAN](#boolean)
-> - [DATE](#date)
-> - [DATETIME](#datetime)
-> - [DROPDOWN](#dropdown)
-> - [SUGGESTBOX](#suggestbox)
-> - [REQUIREBOX](#requirebox)
-> - [DERIVED](#derived)
-> - [COMPLEX](#complex)
+- [TEXT](#text)
+- [TEXT_AREA](#text_area)
+- [UUID](#uuid)
+- [NUMBER](#number)
+- [BOOLEAN](#boolean)
+- [DATE](#date)
+- [DATETIME](#datetime)
+- [DROPDOWN](#dropdown)
+- [SUGGESTBOX](#suggestbox)
+- [REQUIREBOX](#requirebox)
+- [DERIVED](#derived)
+- [COMPLEX](#complex)
 
 ### TEXT
 
@@ -397,4 +397,4 @@ Drop-down labels can be translated too, in the same properties file, using the k
 
 Hidden fields are not visible in the GUI and do not need to be configured. They are updated automatically.
 
-> - `_timestamp`: date and time of the last metadata update.
+- `_timestamp`: date and time of the last metadata update.

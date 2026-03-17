@@ -20,9 +20,9 @@ To define a custom projection, edit the EPSG.sql file, which is used to create t
 
         where:
 
-        > - **1324** is the EPSG_AREA code that describes the area covered by my projection
-        > - **4400** is the EPSG_COORDINATESYSTEM code for my projection
-        > - **20000** is the EPSG_COORDOPERATIONPARAMVALUE key for the array that contains my projection parameters
+- **1324** is the EPSG_AREA code that describes the area covered by my projection
+- **4400** is the EPSG_COORDINATESYSTEM code for my projection
+- **20000** is the EPSG_COORDOPERATIONPARAMVALUE key for the array that contains my projection parameters
 
     2.  An entry in the EPSG_COORDOPERATIONPARAMVALUE table:
 
@@ -35,7 +35,7 @@ To define a custom projection, edit the EPSG.sql file, which is used to create t
 
         where:
 
-        > - **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
+- **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
 
     3.  An entry in the EPSG_COORDOPERATION table:
 
@@ -43,8 +43,8 @@ To define a custom projection, edit the EPSG.sql file, which is used to create t
 
         where:
 
-        > - **1324** is the EPSG_AREA code that describes the area covered by my projection
-        > - **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
+- **1324** is the EPSG_AREA code that describes the area covered by my projection
+- **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
 
 !!! note
 

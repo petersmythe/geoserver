@@ -2,8 +2,8 @@
 
 You can configure role sources from two main groups:
 
-> - [The standard GeoServer role source](../../security/usergrouprole/index.md)
-> - From OIDC-specific sources (see below)
+- [The standard GeoServer role source](../../security/usergrouprole/index.md)
+- From OIDC-specific sources (see below)
 
 For more examples, see the IDP-specific configuration examples - [Google](oauth2/google.md), [GitHub](oauth2/github.md), [Keycloak](oauth2/keycloak.md), [MS Azure and Entra](oauth2/azure.md), [Generic OpenID Connect](oauth2/generic.md).
 

@@ -45,10 +45,10 @@ GeoFence Server extension is provided as two mutually exclusive packages, to be 
 
     Make sure to match the plugin version (e.g. {{ release }} above) to the version of the GeoServer instance.
 
-> 1.  Extract the files in this archive to the **`WEB-INF/lib`** directory of your GeoServer installation.
-> 2.  Add the following system variable among the JVM startup options (location varies depending on installation type): `-Dgwc.context.suffix=gwc` to avoid conflicts with GWC pages.
-> 3.  [Configure the plugin<Configure the plugin>](#Configure the plugin<Configure the plugin>)
-> 4.  Restart GeoServer
+1.  Extract the files in this archive to the **`WEB-INF/lib`** directory of your GeoServer installation.
+2.  Add the following system variable among the JVM startup options (location varies depending on installation type): `-Dgwc.context.suffix=gwc` to avoid conflicts with GWC pages.
+3.  [Configure the plugin<Configure the plugin>](#Configure the plugin<Configure the plugin>)
+4.  Restart GeoServer
 
 ## Configure the plugin {: #Configure the plugin }
 

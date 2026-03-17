@@ -4,9 +4,9 @@ The following commands will prepare a CentOS 7 Minimal ISO machine for the deplo
 
 - GeoServer with the following plugins:
 
-  > - GeoServer WPS
-  > - GeoServer Remote WPS Orchestrator
-  > - GeoServer Importer
+  - GeoServer WPS
+  - GeoServer Remote WPS Orchestrator
+  - GeoServer Importer
 
 The OS iso has been downloaded from::
 
@@ -87,9 +87,9 @@ Edit `server.xml` file
 
 GeoServer is the first tomcat instance we are installing in this VM, so we can keep the default ports:
 
-> - 8005 for commands to catalina instance
-> - 8009 for the AJP connection port
-> - 8080 for the HTTP connection port
+- 8005 for commands to catalina instance
+- 8009 for the AJP connection port
+- 8080 for the HTTP connection port
 
 Remember that you may change these ports in the file `/var/lib/tomcat/geoserver/conf/server.xml`
 

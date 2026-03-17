@@ -40,23 +40,23 @@ The full list of supported profiles can be found in `src/web/app/pom.xml`.
 
 If unset, GeoServer will default to the `minimal` directory inside of the `web-app` module for its data directory. To change this:
 
-> 1.  Open `Debug Configurations...` from the Eclipse menu
->
->     ![image](dd1.jpg)
->
-> 2.  Select the `Start` configuration, select the `Arguments` panel and specify the `-DGEOSERVER_DATA_DIR` parameter, setting it to the absolute path of the data directory
->
->     ![image](dd2.jpg)
+1.  Open `Debug Configurations...` from the Eclipse menu
+
+    ![image](dd1.jpg)
+
+2.  Select the `Start` configuration, select the `Arguments` panel and specify the `-DGEOSERVER_DATA_DIR` parameter, setting it to the absolute path of the data directory
+
+    ![image](dd2.jpg)
 
 ### Changing the default port for Jetty
 
 If unset, Jetty will default to port `8080`. To change this:
 
-> 1.  Open the `Arguments` panel of the `Start` configuration as described in the above section
->
-> 2.  Specify the `-Djetty.port` parameter, setting it to the desired port
->
->     ![image](port.jpg)
+1.  Open the `Arguments` panel of the `Start` configuration as described in the above section
+
+2.  Specify the `-Djetty.port` parameter, setting it to the desired port
+
+    ![image](port.jpg)
 
 ### Configuring JNDI resources in Jetty
 
@@ -106,11 +106,11 @@ Jetty does not mandate a `reference-ref` in GeoServer `WEB-INF/web.xml`, so ther
 
 The SSL port used `8443`.
 
-> 1.  Open the `Arguments` panel of the `Start` configuration.
->
-> 2.  Specify the `-Dssl.hostname` parameter, setting it to the full qualified host name of the box running Jetty.
->
->     ![image](ssl.jpeg)
+1.  Open the `Arguments` panel of the `Start` configuration.
+
+2.  Specify the `-Dssl.hostname` parameter, setting it to the full qualified host name of the box running Jetty.
+
+    ![image](ssl.jpeg)
 
 On first time startup, a key store is created in `<home directory>/.geoserver/keystore.jks`. The password is **changeit** and the key store contains a self-signed certificate for the host name passed in the `ssl.hostname` parameter.
 
