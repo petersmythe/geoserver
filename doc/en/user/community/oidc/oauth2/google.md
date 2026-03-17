@@ -127,21 +127,21 @@ See [troubleshooting](../advanced.md#community_oidc_troubleshooting).
 
 2.  Google's ID Token does not contain very much info
 
-    > ``` json
-    > {
-    >    "iss": "https://accounts.google.com",
-    >    "azp": "...",
-    >    "aud": "...",
-    >    "sub": "..",
-    >    "email": "dblasby@gmail.com",
-    >    "email_verified": true,
-    >    "at_hash": "1iKn2vPzlGpK-aY2n3",
-    >    "nonce": "Gi-fBHjrpUdC3o8K6zYhIbEdv1Jz6Zu0IF3sIT",
-    >    "name": "David Blasby",
-    >    "picture": "https://lh3.googleusercontent.com/a/ACg8ocLEhY",
-    >    "given_name": "David",
-    >    "family_name": "Blasby",
-    >    "iat": 175,
-    >    "exp": 175
-    > }
-    > ```
+    ``` json
+    {
+       "iss": "https://accounts.google.com",
+       "azp": "...",
+       "aud": "...",
+       "sub": "..",
+       "email": "dblasby@gmail.com",
+       "email_verified": true,
+       "at_hash": "1iKn2vPzlGpK-aY2n3",
+       "nonce": "Gi-fBHjrpUdC3o8K6zYhIbEdv1Jz6Zu0IF3sIT",
+       "name": "David Blasby",
+       "picture": "https://lh3.googleusercontent.com/a/ACg8ocLEhY",
+       "given_name": "David",
+       "family_name": "Blasby",
+       "iat": 175,
+       "exp": 175
+    }
+    ```

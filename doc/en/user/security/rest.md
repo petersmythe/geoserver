@@ -49,8 +49,10 @@ The following configuration is similar to the previous one except it grants acce
 
 The following configuration allows anonymous access when the `GET` (read) method is used but forces authentication for a `POST`, `PUT`, or `DELETE` (write):
 
-    /**;GET=IS_AUTHENTICATED_ANONYMOUSLY
-    /**;POST,PUT,DELETE=TRUSTED_ROLE
+```
+/**;GET=IS_AUTHENTICATED_ANONYMOUSLY
+/**;POST,PUT,DELETE=TRUSTED_ROLE
+```
 
 ### Securing a specific resource
 

@@ -32,33 +32,35 @@ The log directory will contain a number of log files following the `geoserver_au
 
 By default each log file contents will be a xml document looking like the following:
 
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <Requests>
-        <Request id="168">
-           <Service>WMS</Service> 
-           <Version>1.1.1</Version>
-           <Operation>GetMap</Operation> 
-           <SubOperation></SubOperation>
-           <Resources>GeoSolutions:elba-deparea</Resources>
-           <ResourcesProcessingTime>4</ResourcesProcessingTime>
-           <LabelsProcessingTime>0</LabelsProcessingTime>
-           <Path>/GeoSolutions/wms</Path>
-           <QueryString>LAYERS=GeoSolutions:elba-deparea&amp;STYLES=&amp;FORMAT=image/png&amp;TILED=true&amp;TILESORIGIN=9.916,42.312&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;EXCEPTIONS=application/vnd.ogc.se_inimage&amp;SRS=EPSG:4326&amp;BBOX=9.58375,42.64425,9.916,42.9765&amp;WIDTH=256&amp;HEIGHT=256</QueryString>
-           <HttpMethod>GET</HttpMethod>
-           <StartTime>2011-08-11T20:19:28.277Z</StartTime> 
-           <EndTime>2011-08-11T20:19:28.29Z</EndTime>
-           <TotalTime>13</TotalTime> 
-           <RemoteAddr>192.168.1.5</RemoteAddr>
-           <RemoteHost>192.168.1.5</RemoteHost>
-           <Host>demo1.geo-solutions.it</Host> 
-           <RemoteUser>admin</RemoteUser>
-           <ResponseStatus>200</ResponseStatus>
-           <ResponseLength>1670</ResponseLength>
-           <ResponseContentType>image/png</ResponseContentType>
-           <Failed>false</Failed>
-        </Request>
-        ...
-    </Requests>
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<Requests>
+    <Request id="168">
+       <Service>WMS</Service> 
+       <Version>1.1.1</Version>
+       <Operation>GetMap</Operation> 
+       <SubOperation></SubOperation>
+       <Resources>GeoSolutions:elba-deparea</Resources>
+       <ResourcesProcessingTime>4</ResourcesProcessingTime>
+       <LabelsProcessingTime>0</LabelsProcessingTime>
+       <Path>/GeoSolutions/wms</Path>
+       <QueryString>LAYERS=GeoSolutions:elba-deparea&amp;STYLES=&amp;FORMAT=image/png&amp;TILED=true&amp;TILESORIGIN=9.916,42.312&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;EXCEPTIONS=application/vnd.ogc.se_inimage&amp;SRS=EPSG:4326&amp;BBOX=9.58375,42.64425,9.916,42.9765&amp;WIDTH=256&amp;HEIGHT=256</QueryString>
+       <HttpMethod>GET</HttpMethod>
+       <StartTime>2011-08-11T20:19:28.277Z</StartTime> 
+       <EndTime>2011-08-11T20:19:28.29Z</EndTime>
+       <TotalTime>13</TotalTime> 
+       <RemoteAddr>192.168.1.5</RemoteAddr>
+       <RemoteHost>192.168.1.5</RemoteHost>
+       <Host>demo1.geo-solutions.it</Host> 
+       <RemoteUser>admin</RemoteUser>
+       <ResponseStatus>200</ResponseStatus>
+       <ResponseLength>1670</ResponseLength>
+       <ResponseContentType>image/png</ResponseContentType>
+       <Failed>false</Failed>
+    </Request>
+    ...
+</Requests>
+```
 
 ## Customizing Log Contents
 
@@ -66,48 +68,52 @@ The log contents are driven by three FreeMarker templates.
 
 `header.ftl` is used once when a new log file is created to form the first few lines of the file. The default header template is:
 
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <Requests>
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<Requests>
+```
 
 `content.ftl` is used to write out the request details. The default template dumps all the known fields about the request:
 
-    <#escape x as x?xml>
-    <Request id="${id!""}">
-       <Service>${service!""}</Service> 
-       <Version>${owsVersion!""}</Version>
-       <Operation>${operation!""}</Operation> 
-       <SubOperation>${subOperation!""}</SubOperation>
-       <Resources>${resourcesList!""}</Resources>
-       <ResourcesProcessingTime>${resourcesProcessingTimeList!""}</ResourcesProcessingTime>
-       <LabelsProcessingTime>${labellingProcessingTime!""}</LabelsProcessingTime>
-       <Path>${path!""}</Path>
-       <QueryString>${queryString!""}</QueryString>
-       <#if bodyAsString??>
-       <Body>
-       ${bodyAsString}
-       </Body>
-       </#if>
-       <HttpMethod>${httpMethod!""}</HttpMethod>
-       <StartTime>${startTime?datetime?iso_utc_ms}</StartTime> 
-       <EndTime>${endTime?datetime?iso_utc_ms}</EndTime>
-       <TotalTime>${totalTime}</TotalTime> 
-       <RemoteAddr>${remoteAddr!""}</RemoteAddr>
-       <RemoteHost>${remoteHost!""}</RemoteHost>
-       <Host>${host}</Host> 
-       <RemoteUser>${remoteUser!""}</RemoteUser>
-       <ResponseStatus>${responseStatus!""}</ResponseStatus>
-       <ResponseLength>${responseLength?c}</ResponseLength>
-       <ResponseContentType>${responseContentType!""}</ResponseContentType>
-       <CacheResult>${cacheResult!""}</CacheResult>
-       <MissReason>${missReason!""}</MissReason>
-       <#if error??>
-       <Failed>true</Failed>
-       <ErrorMessage>${errorMessage!""}</ErrorMessage>
-       <#else>
-       <Failed>false</Failed>
-       </#if>
-    </Request>
-    </#escape>
+```xml
+<#escape x as x?xml>
+<Request id="${id!""}">
+   <Service>${service!""}</Service> 
+   <Version>${owsVersion!""}</Version>
+   <Operation>${operation!""}</Operation> 
+   <SubOperation>${subOperation!""}</SubOperation>
+   <Resources>${resourcesList!""}</Resources>
+   <ResourcesProcessingTime>${resourcesProcessingTimeList!""}</ResourcesProcessingTime>
+   <LabelsProcessingTime>${labellingProcessingTime!""}</LabelsProcessingTime>
+   <Path>${path!""}</Path>
+   <QueryString>${queryString!""}</QueryString>
+   <#if bodyAsString??>
+   <Body>
+   ${bodyAsString}
+   </Body>
+   </#if>
+   <HttpMethod>${httpMethod!""}</HttpMethod>
+   <StartTime>${startTime?datetime?iso_utc_ms}</StartTime> 
+   <EndTime>${endTime?datetime?iso_utc_ms}</EndTime>
+   <TotalTime>${totalTime}</TotalTime> 
+   <RemoteAddr>${remoteAddr!""}</RemoteAddr>
+   <RemoteHost>${remoteHost!""}</RemoteHost>
+   <Host>${host}</Host> 
+   <RemoteUser>${remoteUser!""}</RemoteUser>
+   <ResponseStatus>${responseStatus!""}</ResponseStatus>
+   <ResponseLength>${responseLength?c}</ResponseLength>
+   <ResponseContentType>${responseContentType!""}</ResponseContentType>
+   <CacheResult>${cacheResult!""}</CacheResult>
+   <MissReason>${missReason!""}</MissReason>
+   <#if error??>
+   <Failed>true</Failed>
+   <ErrorMessage>${errorMessage!""}</ErrorMessage>
+   <#else>
+   <Failed>false</Failed>
+   </#if>
+</Request>
+</#escape>
+```
 
 `footer.ftl` is executed just once when the log file is closed to build the last few lines of the file. The default footer template is:
 

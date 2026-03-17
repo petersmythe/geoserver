@@ -32,37 +32,39 @@ If not set elsewhere, the following properties are set for each mapping file:
 
 This example defines an Oracle data store, where the connection parameter are interpolated from properties:
 
-    <sourceDataStores>
-        <DataStore>
-            <id>datastore</id>
-            <parameters>
-                <Parameter>
-                    <name>dbtype</name>
-                    <value>Oracle</value>
-                </Parameter>
-                <Parameter>
-                    <name>host</name>
-                    <value>${example.host}</value>
-                </Parameter>
-                <Parameter>
-                    <name>port</name>
-                    <value>1521</value>
-                </Parameter>
-                <Parameter>
-                    <name>database</name>
-                    <value>${example.database}</value>
-                </Parameter>
-                <Parameter>
-                    <name>user</name>
-                    <value>${example.user}</value>
-                </Parameter>
-                <Parameter>
-                    <name>passwd</name>
-                    <value>${example.passwd}</value>
-                </Parameter>
-            </parameters>
-        </DataStore>
-    </sourceDataStores>
+```xml
+<sourceDataStores>
+    <DataStore>
+        <id>datastore</id>
+        <parameters>
+            <Parameter>
+                <name>dbtype</name>
+                <value>Oracle</value>
+            </Parameter>
+            <Parameter>
+                <name>host</name>
+                <value>${example.host}</value>
+            </Parameter>
+            <Parameter>
+                <name>port</name>
+                <value>1521</value>
+            </Parameter>
+            <Parameter>
+                <name>database</name>
+                <value>${example.database}</value>
+            </Parameter>
+            <Parameter>
+                <name>user</name>
+                <value>${example.user}</value>
+            </Parameter>
+            <Parameter>
+                <name>passwd</name>
+                <value>${example.passwd}</value>
+            </Parameter>
+        </parameters>
+    </DataStore>
+</sourceDataStores>
+```
 
 ## Example property file
 

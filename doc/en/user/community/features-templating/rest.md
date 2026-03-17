@@ -91,14 +91,16 @@ Both XML and JSON are supported for transfer of data objects.
 
 Encoding of a template rule in XML:
 
-    <Rule>
-        <ruleId>..</ruleId>
-        <priority>..</priority>
-        <templateName>..</templateName>
-        <outputFormat>..</outputFormat>
-        <cqlFilter>..</cqlFilter>
-    <profileFilter>...</profileFilter>
-    </Rule>
+```xml
+<Rule>
+    <ruleId>..</ruleId>
+    <priority>..</priority>
+    <templateName>..</templateName>
+    <outputFormat>..</outputFormat>
+    <cqlFilter>..</cqlFilter>
+<profileFilter>...</profileFilter>
+</Rule>
+```
 
 Encoding of a rule in JSON:
 
@@ -108,10 +110,14 @@ When applying partial updates missing attributes/element in incoming object are 
 
 XML:
 
-    <Rule>
-      <profileFilter xsi:nil="true"/>
-    </Rule>
+```xml
+<Rule>
+  <profileFilter xsi:nil="true"/>
+</Rule>
+```
 
 JSON:
 
-    {"Rule":{"profileFilter":null}}
+```json
+{"Rule":{"profileFilter":null}}
+```

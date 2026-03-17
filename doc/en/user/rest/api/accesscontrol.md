@@ -80,10 +80,12 @@ Formats for GET,POST and PUT:
 
 **JSON** :
 
-    {
-    "*.*.r": "*",
-    "myworkspace".*.w": "ROLE_1,ROLE_2"
-    }
+```json
+{
+"*.*.r": "*",
+"myworkspace".*.w": "ROLE_1,ROLE_2"
+}
+```
 
 The resource attribute specifies a rule. There are three different formats.
 

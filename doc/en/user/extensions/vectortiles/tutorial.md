@@ -122,7 +122,7 @@ This guarantees that vector tile metatiling cannot exhaust heap memory or destab
 
 4.  In a text editor, create a new file with the following content:
 
-    ``` {.html emphasize-lines="5"}
+    ```html hl_lines="5"
     <!DOCTYPE html>
     <html>
     <head>
@@ -213,7 +213,7 @@ These tiles are being rendered by the OpenLayers client.
 
 4.  In a text editor, create a new file with the following content:
 
-    ``` {.html emphasize-lines="5"}
+    ```html hl_lines="5"
     <!doctype html>
     <html>
     <head>
@@ -312,7 +312,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 
 1.  Change the fill color to light green:
 
-    ``` {.none emphasize-lines="3"}
+    ```text hl_lines="3"
     var style_simple = new ol.style.Style({
       fill: new ol.style.Fill({
         color: 'lightgreen'
@@ -331,7 +331,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 
 3.  We can also do attributed-based styling. This dataset contains has a property (`region_un`) which contains the region the country is in. Let's highlight countries in Africa by adding another style definition below the existing style:
 
-    ``` {.html emphasize-lines="3"}
+    ```html hl_lines="3"
     var style_highlighted = new ol.style.Style({
       fill: new ol.style.Fill({
         color: 'yellow'
@@ -345,7 +345,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 
 4.  Replace the existing style function:
 
-    ``` {.html emphasize-lines="2"}
+    ```html hl_lines="2"
     function simpleStyle(feature) { 
       return style_simple;
     }
@@ -353,7 +353,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 
     with the following:
 
-    ``` {.html emphasize-lines="2-5"}
+    ```html hl_lines="2-5"
     function simpleStyle(feature) { 
       if (feature.get("region_un") == "Africa") {
         return style_highlighted;

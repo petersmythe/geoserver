@@ -6,7 +6,7 @@ The GeoPackage Output Extension adds support to WFS and WMS to request `GetFeatu
 
 Add `&outputFormat=geopkg` to your request. The result will be a GeoPackage (MIME type `application/geopackage+sqlite3`) containing the requested features.
 
-``` 
+```bash
 curl "http://localhost:8080/geoserver/wfs?service=wfs&version=2.0.0&request=GetFeature&typeNames=ws:layername&outputFormat=geopkg" \
 -o wfs.gpkg
 ```
@@ -41,14 +41,14 @@ Add `&format=geopkg` to your request. The result will be a GeoPackage (MIME type
 
 Using WMS 1.1.0 to access tiled image geopkg:
 
-``` 
+```bash
 curl "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.0&request=GetMap&layers=ws:layername&bbox=-123.43670607166865%2C48.3956835%2C-123.2539813%2C48.5128362547052&width=1536&height=984&srs=EPSG%3A4326&styles=&format=geopkg" \
 -o wms.gpkg
 ```
 
 Using WMS 1.3.0 to access tiled image geopkg:
 
-``` 
+```bash
 curl "http://localhost:8080/geoserver/wms?service=WMS&version=1.3.0&request=GetMap&layers=ws:layername&bbox=48.3956835,-123.43670607166865,48.5128362547052,-123.2539813&width=768&height=492&srs=EPSG%3A4326&styles=&format=geopkg" \
 -o wms.gpkg
 ```

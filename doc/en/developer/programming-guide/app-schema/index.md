@@ -10,23 +10,25 @@ You would also need to have test databases for both Oracle and Postgis. Then fol
 
 - Populate each properties file with database details, e.g.:
 
-      password=onlinetestuser
+  ```properties
+password=onlinetestuser
 
-      passwd=onlinetestuser
+passwd=onlinetestuser
 
-      user=onlinetestuser
+user=onlinetestuser
 
-      port=5432
+port=5432
 
-      url=jdbc\:postgresql\://localhost:5432/onlinetest
+url=jdbc\:postgresql\://localhost:5432/onlinetest
 
-      host=localhost
+host=localhost
 
-      database=onlinetest
+database=onlinetest
 
-      driver=org.postgresql.Driver
+driver=org.postgresql.Driver
 
-      dbtype=postgisng 
+dbtype=postgisng 
+  ```
 
 ## Running tests from Maven
 
@@ -46,8 +48,10 @@ The online tests require more memory than usual, so specifying the usual -Dtest.
 
 When the build is successful, you would see this in the "Reactor Summary":
 
-    [INFO] Application Schema Integration Online Test with Oracle Database  SUCCESS  [5:52.980s]
-    [INFO] Application Schema Integration Online Test with Postgis Database  SUCCESS  [1:42.428s]
+```json
+[INFO] Application Schema Integration Online Test with Oracle Database  SUCCESS  [5:52.980s]
+[INFO] Application Schema Integration Online Test with Postgis Database  SUCCESS  [1:42.428s]
+```
 
 ## Running tests from JUnit
 
@@ -85,18 +89,20 @@ If your test database does not use primary keys, ensure idExpression is specifie
 
 When testing multi-valued properties, the order of the values could vary depending on the data source type. To be safe, compare your values as a list, instead of evaluating individual xpath node against a single value for such properties. E.g.:
 
-    List<String> names = new ArrayList<String>();
-    names.add("New Group");
-    names.add("-Xy");
-    String name = evaluate("//gsml:MappedFeature[@gml:id='" + id
-            + "']/gsml:specification/gsml:GeologicUnit/gml:name[1]", doc);
-    assertTrue(names.contains(name));
-    names.remove(name);
-    name = evaluate("//gsml:MappedFeature[@gml:id='" + id
-            + "']/gsml:specification/gsml:GeologicUnit/gml:name[2]", doc);
-    assertTrue(names.contains(name));
-    names.remove(name);
-    assertTrue(names.isEmpty());
+```
+List<String> names = new ArrayList<String>();
+names.add("New Group");
+names.add("-Xy");
+String name = evaluate("//gsml:MappedFeature[@gml:id='" + id
+        + "']/gsml:specification/gsml:GeologicUnit/gml:name[1]", doc);
+assertTrue(names.contains(name));
+names.remove(name);
+name = evaluate("//gsml:MappedFeature[@gml:id='" + id
+        + "']/gsml:specification/gsml:GeologicUnit/gml:name[2]", doc);
+assertTrue(names.contains(name));
+names.remove(name);
+assertTrue(names.isEmpty());
+```
 
 This is because of the difference in the handling of queries with joining. Joining uses order by when querying tables. When the tests run offline, property data store returns data from properties file unordered.
 

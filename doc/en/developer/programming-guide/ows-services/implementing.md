@@ -142,13 +142,13 @@ hello/
 
     - If running with ***Eclipse*** using maven eclipse plugin, the easiest approach is edit the **`web-app/pom.xml`** with the following dependency:
 
-      > ``` xml
-      > <dependency>
-      >    <groupId>org.geoserver</groupId>
-      >    <artifactId>hello</artifactId>
-      >    <version>1.0-SNAPSHOT</version>
-      >   </dependency>
-      > ```
+      ``` xml
+      <dependency>
+         <groupId>org.geoserver</groupId>
+         <artifactId>hello</artifactId>
+         <version>1.0-SNAPSHOT</version>
+        </dependency>
+      ```
       >
       > After editing **`webapps/pom.xml`** we need run ``mvn eclipse:eclipse``, and then from ***Eclipse*** right click on web-app project and **Refresh** for the IDE to notice the change.
 
@@ -196,9 +196,9 @@ An alternative to plugging into an existing installation is to build a complete 
 
 4.  Install the **`web/app`** module
 
-> ``` sh
-> [web/app] mvn install
-> ```
+``` sh
+[web/app] mvn install
+```
 
 A GeoServer war including the hello extension should now be present in the **`target`** directory.
 
@@ -216,12 +216,14 @@ During development the most convenient way to work with the extension is to run 
 
 3.  Edit the **`community/pom.xml`** and add a new profile:
 
-        <profile>
-          <id>hello</id>
-          <modules>
-            <module>hello</module>
-          </modules>
-        </profile>
+    ```xml
+<profile>
+  <id>hello</id>
+  <modules>
+    <module>hello</module>
+  </modules>
+</profile>
+    ```
 
 4.  If not already done, edit **`web/app/pom.xml`** and add the following dependency:
 
@@ -235,9 +237,9 @@ During development the most convenient way to work with the extension is to run 
 
 5.  From the root of the GeoServer source tree run the following maven command:
 
-> ``` sh
-> [src] mvn -P hello eclipse:eclipse
-> ```
+``` sh
+[src] mvn -P hello eclipse:eclipse
+```
 
 1.  In eclipse import the new hello module and refresh all modules.
 2.  In the `web-app` module run the `Start.java` main class to start GeoServer.

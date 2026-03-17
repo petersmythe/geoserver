@@ -157,52 +157,58 @@ When creating the first release candidate of a series, there are some extra step
 
     Edit **`build/rename.xml`** to update GeoServer, GeoTools and GeoWebCache version numbers:
 
-        <property name="current" value="2.28"/>
-        <property name="release" value="2.29"/>
-        ..
-        <replacefilter token="34-SNAPSHOT" value="35-SNAPSHOT"/>
-        <replacefilter token="1.28-SNAPSHOT" value="1.29-SNAPSHOT"/>
+    ```xml
+<property name="current" value="2.28"/>
+<property name="release" value="2.29"/>
+..
+<replacefilter token="34-SNAPSHOT" value="35-SNAPSHOT"/>
+<replacefilter token="1.28-SNAPSHOT" value="1.29-SNAPSHOT"/>
+    ```
 
-    And then run:
+```sql
+And then run:
 
-        ant -f build/rename.xml 
+    ant -f build/rename.xml 
 
-    !!! note
+!!! note
 
-        `sed` behaves differently on Linux vs. Mac OS X. If running on OS X, the `-i` should be followed by `'' -e` for each of these `sed` commands.
+    `sed` behaves differently on Linux vs. Mac OS X. If running on OS X, the `-i` should be followed by `'' -e` for each of these `sed` commands.
 
-    Update release artifact paths and labels, for example, if changing the main development branch from `2.28-SNAPSHOT` to `2.29-SNAPSHOT`:
+Update release artifact paths and labels, for example, if changing the main development branch from `2.28-SNAPSHOT` to `2.29-SNAPSHOT`:
 
-        sed -i 's/2.28-SNAPSHOT/2.29-SNAPSHOT/g' src/release/bin.xml
-        sed -i 's/2.28-SNAPSHOT/2.29-SNAPSHOT/g' src/release/installer/win/GeoServerEXE.nsi
-        sed -i 's/2.28-SNAPSHOT/2.29-SNAPSHOT/g' src/release/installer/win/wrapper.conf
+    sed -i 's/2.28-SNAPSHOT/2.29-SNAPSHOT/g' src/release/bin.xml
+    sed -i 's/2.28-SNAPSHOT/2.29-SNAPSHOT/g' src/release/installer/win/GeoServerEXE.nsi
+    sed -i 's/2.28-SNAPSHOT/2.29-SNAPSHOT/g' src/release/installer/win/wrapper.conf
 
-    !!! note
+!!! note
 
-        These can be written as a single `sed` command with multiple files.
+    These can be written as a single `sed` command with multiple files.
 
-    Update GeoTools dependency; for example if changing from `28-SNAPSHOT` to `29-SNAPSHOT`:
+Update GeoTools dependency; for example if changing from `28-SNAPSHOT` to `29-SNAPSHOT`:
 
-        sed -i 's/34-SNAPSHOT/35-SNAPSHOT/g' src/pom.xml
+    sed -i 's/34-SNAPSHOT/35-SNAPSHOT/g' src/pom.xml
 
-    Update GeoWebCache dependency; for example if changing from `1.28-SNAPSHOT` to `1.29-SNAPSHOT`:
+Update GeoWebCache dependency; for example if changing from `1.28-SNAPSHOT` to `1.29-SNAPSHOT`:
 
-        sed -i 's/1.28-SNAPSHOT/1.29-SNAPSHOT/g' src/pom.xml
+    sed -i 's/1.28-SNAPSHOT/1.29-SNAPSHOT/g' src/pom.xml
 
-    Manually update hardcoded versions in configuration files:
+Manually update hardcoded versions in configuration files:
 
-    - `doc/en/developer/source/conf.py`
-    - `doc/en/docguide/source/conf.py`
-    - `doc/en/user/source/conf.py`
-    ::::::::
+- `doc/en/developer/source/conf.py`
+- `doc/en/docguide/source/conf.py`
+- `doc/en/user/source/conf.py`
+::::::::
+```
 
 6.  Add the new version to the documentation index (`doc/en/index.html`) just after line 105, e.g.:
 
-        <tr>
-          <td><strong><a href="https://geoserver.org/release/2.29.x/">2.29.x</a></strong></td>
-          <td><a href="2.29.x/en/user/">User Manual</a></td>
-          <td><a href="2.29.x/en/developer/">Developer Manual</a></td>
-        </tr>
+    ```xml
+<tr>
+  <td><strong><a href="https://geoserver.org/release/2.29.x/">2.29.x</a></strong></td>
+  <td><a href="2.29.x/en/user/">User Manual</a></td>
+  <td><a href="2.29.x/en/developer/">Developer Manual</a></td>
+</tr>
+    ```
 
 7.  Commit the changes and push to the main development branch on GitHub:
 
@@ -395,38 +401,40 @@ Post an announcement on both the Discourse User and Developer groups announcing 
 
 The following is an example:
 
-    Subject: GeoServer 2.5.1 Released
+```
+Subject: GeoServer 2.5.1 Released
 
-    The GeoServer team is happy to announce the release of GeoServer 2.5.1.
+The GeoServer team is happy to announce the release of GeoServer 2.5.1.
 
-    The release is available for download from:
+The release is available for download from:
 
-    https://geoserver.org/release/2.29.0/
+https://geoserver.org/release/2.29.0/
 
-    GeoServer 2.29.0 is the next stable release of GeoServer and is recommended for production deployment.
+GeoServer 2.29.0 is the next stable release of GeoServer and is recommended for production deployment.
 
-    This release comes with some exciting new features. The new and
-    noteworthy include:
+This release comes with some exciting new features. The new and
+noteworthy include:
 
-    * By popular request Top/Bottom labels when configuring layer group order
-    * You can now identify GeoServer “nodes” in a cluster by configuring a label and color in the UI. Documentation and example in the user guide.
-    * Have you ever run GeoServer and not quite gotten your file permissions correct? GeoServer now has better logging when it cannot your data directory and is required to “fall back” to the embedded data directory during start up.
-    * We have a new GRIB community module (community modules are not in the release until they pass a    QA check, but great to see new development taking shape)
-    * Documentation on the jp2kak extension now in the user guide
-    * Additional documentation for the image mosaic in the user guide with tutorials covering the plugin, raster time-series, time and elevation and footprint management.
-    * WCS 2.0 support continues to improve with DescribeCoverage now supporting null values
-    * Central Authentication Service (CAS) authentication has received a lot of QA this release and is now available in the GeoServer 2.5.x series.
-    * This release is made in conjunction with GeoTools 34.0
+* By popular request Top/Bottom labels when configuring layer group order
+* You can now identify GeoServer “nodes” in a cluster by configuring a label and color in the UI. Documentation and example in the user guide.
+* Have you ever run GeoServer and not quite gotten your file permissions correct? GeoServer now has better logging when it cannot your data directory and is required to “fall back” to the embedded data directory during start up.
+* We have a new GRIB community module (community modules are not in the release until they pass a    QA check, but great to see new development taking shape)
+* Documentation on the jp2kak extension now in the user guide
+* Additional documentation for the image mosaic in the user guide with tutorials covering the plugin, raster time-series, time and elevation and footprint management.
+* WCS 2.0 support continues to improve with DescribeCoverage now supporting null values
+* Central Authentication Service (CAS) authentication has received a lot of QA this release and is now available in the GeoServer 2.5.x series.
+* This release is made in conjunction with GeoTools 34.0
 
-    Along with many other improvements and bug fixes:
+Along with many other improvements and bug fixes:
 
-    * https://osgeo-org.atlassian.net/jira/secure/ReleaseNote.jspa?projectId=10000&version=10164
+* https://osgeo-org.atlassian.net/jira/secure/ReleaseNote.jspa?projectId=10000&version=10164
 
-    Thanks to Andrea and Jody (GeoSolutions and Boundless) for publishing this release. A very special thanks to all those who contributed bug fixes, new
-    features, bug reports, and testing to this release.
+Thanks to Andrea and Jody (GeoSolutions and Boundless) for publishing this release. A very special thanks to all those who contributed bug fixes, new
+features, bug reports, and testing to this release.
 
-    --
-    The GeoServer Team
+--
+The GeoServer Team
+```
 
 ### OSGeo Announcement
 

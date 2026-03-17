@@ -149,9 +149,9 @@ There are 2 ways to run the suites. One is running with `make` that will automat
 
     - Alternative, specify a `war_url` variable to fetch the `geoserver.war` from an URL:
 
-      > ``` 
-      > make build suite=<suite-name> war_url=<url-or-the-GeoServer-war-file-desired>
-      > ```
+      ``` 
+      make build suite=<suite-name> war_url=<url-or-the-GeoServer-war-file-desired>
+      ```
 
     The `war_url` can point to a `.war` or `.zip` file containing the `.war` like in `https://build.geoserver.org/geoserver/main/geoserver-main-latest-war.zip`
 
@@ -553,34 +553,34 @@ As a result of the test run, a `logs/testng-results.xml` file will be generated,
 
 Make sure you've prepared the `geoserver.war` as instructed above with `make war`.
 
-> ``` shell
-> make clean build test suite=ogcapi-features10
-> ```
+``` shell
+make clean build test suite=ogcapi-features10
+```
 
 If there are test errors, a human readable summary will be printed to the console, similar to this:
 
-> ``` shell
-> test-method: verifyCollectionsPathCollectionCrsPropertyContainsDefaultCrs
-> description: Implements A.1 Discovery, Abstract Test 2 (Requirement /req/crs/fc-md-crs-list B), crs property contains default crs in the collection objects in the path /collections
-> depends-on-groups: crs-conformance
-> status: FAIL
-> exception: Collection with id 'sf:restricted' at collections path /collections does not specify one of the default CRS 'http://www.opengis.net/def/crs/OGC/1.3/CRS84' or 'http://www.opengis.net/def/crs/OGC/0/CRS84h' but provides at least one spatial feature collections
-> Request URI:
->
-> test-method: verifyCollectionsPathCollectionCrsPropertyContainsDefaultCrs
-> description: Implements A.1 Discovery, Abstract Test 2 (Requirement /req/crs/fc-md-crs-list B), crs property contains default crs in the collection objects in the path /collections
-> depends-on-groups: crs-conformance
-> status: FAIL
-> exception: Collection with id 'sf:roads' at collections path /collections does not specify one of the default CRS 'http://www.opengis.net/def/crs/OGC/1.3/CRS84' or 'http://www.opengis.net/def/crs/OGC/0/CRS84h' but provides at least one spatial feature collections
-> Request URI:
->
-> Passed: 2153
-> Failed: 9
-> Skipped: 96
-> make[2]: *** [validate-testng-results] Error 1
-> make[1]: *** [test-rest] Error 2
-> make: *** [test] Error 2
-> ```
+``` shell
+test-method: verifyCollectionsPathCollectionCrsPropertyContainsDefaultCrs
+description: Implements A.1 Discovery, Abstract Test 2 (Requirement /req/crs/fc-md-crs-list B), crs property contains default crs in the collection objects in the path /collections
+depends-on-groups: crs-conformance
+status: FAIL
+exception: Collection with id 'sf:restricted' at collections path /collections does not specify one of the default CRS 'http://www.opengis.net/def/crs/OGC/1.3/CRS84' or 'http://www.opengis.net/def/crs/OGC/0/CRS84h' but provides at least one spatial feature collections
+Request URI:
+
+test-method: verifyCollectionsPathCollectionCrsPropertyContainsDefaultCrs
+description: Implements A.1 Discovery, Abstract Test 2 (Requirement /req/crs/fc-md-crs-list B), crs property contains default crs in the collection objects in the path /collections
+depends-on-groups: crs-conformance
+status: FAIL
+exception: Collection with id 'sf:roads' at collections path /collections does not specify one of the default CRS 'http://www.opengis.net/def/crs/OGC/1.3/CRS84' or 'http://www.opengis.net/def/crs/OGC/0/CRS84h' but provides at least one spatial feature collections
+Request URI:
+
+Passed: 2153
+Failed: 9
+Skipped: 96
+make[2]: *** [validate-testng-results] Error 1
+make[1]: *** [test-rest] Error 2
+make: *** [test] Error 2
+```
 
 Either way, both the `teamengine` and `geoserver` containers will keep on running.
 
@@ -596,41 +596,41 @@ Since teamengine runs as a Docker container, in order to reach out to a GeoServe
 
 For the case of the `ogcapi-features10`, you can simply run
 
-> ``` shell
-> make ogcapi-features10-localhost
-> ```
+``` shell
+make ogcapi-features10-localhost
+```
 
 And it'll print out
 
-> ``` shell
-> Running the ogcapi-features10 test suite with the teamengine REST API against http://172.17.0.1:8080/geoserver/ogc/features/v1
-> ```
+``` shell
+Running the ogcapi-features10 test suite with the teamengine REST API against http://172.17.0.1:8080/geoserver/ogc/features/v1
+```
 
 The `ogcapi-features10-localhost` target is a special case of `test-external`, which assumes the most common case of GeoServer running on `localhost:8080`.
 
 During development or troubleshooting, you might want to either use a different GeoServer port, or test only a specific workspace or feature type. For that you can use a custom `iut` (Instance Under Test) URL for the `test-external` make target. For example, to hit a GeoServer instance running on the host at port `9090`, and address only the `sf:archsites` layer, you can use a `iut` URL combining the `172.17.0.1` IP address and GeoServer's `/sf/archsites` virtual service:
 
-> ``` shell
-> make test-external suite=ogcapi-features10 iut="http://172.17.0.1:9090/geoserver/sf/archsites/ogc/features/v1"
-> ```
+``` shell
+make test-external suite=ogcapi-features10 iut="http://172.17.0.1:9090/geoserver/sf/archsites/ogc/features/v1"
+```
 
 And it'll print out
 
-> ``` shell
-> Running the ogcapi-features10 test suite with the teamengine REST API against http://172.17.0.1:9090/geoserver/sf/archsites/ogc/features/v1
-> ```
+``` shell
+Running the ogcapi-features10 test suite with the teamengine REST API against http://172.17.0.1:9090/geoserver/sf/archsites/ogc/features/v1
+```
 
 Finally, run
 
-> ``` shell
-> make clean
-> ```
+``` shell
+make clean
+```
 
 to stop the docker composition and clean up the `logs/` directory, or
 
-> ``` shell
-> make stop
-> ```
+``` shell
+make stop
+```
 
 to just shut down the docker composition without cleaning up the `logs/` directory.
 
@@ -669,10 +669,10 @@ Shortly before a major (2.xx.0) release, the following process should be followe
 
 4.  Start up the Docker services (PostgreSQL & 7x GeoServer instances) against an empty database directory
 
-> ``` shell
-> rm -rf /home/cite/postgis-data/wfs
-> docker compose -f docker-compose.yml up
-> ```
+``` shell
+rm -rf /home/cite/postgis-data/wfs
+docker compose -f docker-compose.yml up
+```
 
 This will spin up a PostgreSQL service which will be populated with 3 different WFS databases if the database is empty (using the cite init-scripts in build/cite/wfsxx/).
 

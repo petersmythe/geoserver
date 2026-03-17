@@ -22,21 +22,23 @@ The REST API allows you to list, create, upload, update, and delete layers in Ge
 
 *Response*
 
-    {
-      "layers": {
-         "layer": [
-             {
-                 "name": "giant_polygon",
-                 "href": "http://localhost:8080/geoserver/rest/layers/giant_polygon.json"
-             },
-             {
-                 "name": "poi",
-                 "href": "http://localhost:8080/geoserver/rest/layers/poi.json"
-             },
-             ...
-          ]
-       }
-    }
+```json
+{
+  "layers": {
+     "layer": [
+         {
+             "name": "giant_polygon",
+             "href": "http://localhost:8080/geoserver/rest/layers/giant_polygon.json"
+         },
+         {
+             "name": "poi",
+             "href": "http://localhost:8080/geoserver/rest/layers/poi.json"
+         },
+         ...
+      ]
+   }
+}
+```
 
 **List all layers on the server, in XML format:**
 

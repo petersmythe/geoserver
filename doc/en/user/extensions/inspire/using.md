@@ -55,25 +55,27 @@ If you have enabled the check box to create the INSPIRE ExtendedCapabilities ele
 
 With the example values shown in the above configuration panel, this block would contain the following content:
 
-    <inspire_vs:ExtendedCapabilities>
-     <inspire_common:MetadataUrl>
-      <inspire_common:URL>
-       http://mysite.org/metadata.xml
-      </inspire_common:URL>
-      <inspire_common:MediaType>
-       application/vnd.iso.19139+xml
-      </inspire_common:MediaType>
-     </inspire_common:MetadataUrl>
-     <inspire_common:SupportedLanguages>
-      <inspire_common:DefaultLanguage>
-       <inspire_common:Language>eng</inspire_common:Language>
-      </inspire_common:DefaultLanguage>
-      <inspire_common:SupportedLanguage>fre</inspire_common:SupportedLanguage>
-     </inspire_common:SupportedLanguages>
-     <inspire_common:ResponseLanguage>
-      <inspire_common:Language>eng</inspire_common:Language>
-     </inspire_common:ResponseLanguage>
-    </inspire_vs:ExtendedCapabilities>
+```xml
+<inspire_vs:ExtendedCapabilities>
+ <inspire_common:MetadataUrl>
+  <inspire_common:URL>
+   http://mysite.org/metadata.xml
+  </inspire_common:URL>
+  <inspire_common:MediaType>
+   application/vnd.iso.19139+xml
+  </inspire_common:MediaType>
+ </inspire_common:MetadataUrl>
+ <inspire_common:SupportedLanguages>
+  <inspire_common:DefaultLanguage>
+   <inspire_common:Language>eng</inspire_common:Language>
+  </inspire_common:DefaultLanguage>
+  <inspire_common:SupportedLanguage>fre</inspire_common:SupportedLanguage>
+ </inspire_common:SupportedLanguages>
+ <inspire_common:ResponseLanguage>
+  <inspire_common:Language>eng</inspire_common:Language>
+ </inspire_common:ResponseLanguage>
+</inspire_vs:ExtendedCapabilities>
+```
 
 INSPIRE recommends that every layer offered by an INSPIRE WMTS should use the InspireCRS84Quad grid set which is already configured in GeoServer, but is up to the user to select it when publishing an INSPIRE WMTS layer.
 
@@ -126,33 +128,35 @@ If you have enabled the check box to create the INSPIRE ExtendedCapabilities ele
 
 With the example values shown in the above configuration panel, this block would contain the following content:
 
-    <inspire_dls:ExtendedCapabilities>
-      <inspire_common:MetadataUrl>
-        <inspire_common:URL>
-          http://mysite.org/csw?SERVICE=CSW&REQUEST=GetRecord
-        </inspire_common:URL>
-        <inspire_common:MediaType>
-          application/vnd.iso.19139+xml
-        </inspire_common:MediaType>
-      </inspire_common:MetadataUrl>
-      <inspire_common:SupportedLanguages>
-        <inspire_common:DefaultLanguage>
-         <inspire_common:Language>eng</inspire_common:Language>
-        </inspire_common:DefaultLanguage>
-        <inspire_common:SupportedLanguage>fre</inspire_common:SupportedLanguage>
-      </inspire_common:SupportedLanguages>
-      <inspire_common:ResponseLanguage>
-        <inspire_common:Language>eng</inspire_common:Language>
-      </inspire_common:ResponseLanguage>
-      <inspire_dls:SpatialDataSetIdentifier metadataURL="http://mysite.org/ds/md/ds1.xml">
-        <inspire_common:Code>
-         fc929094-8a30-2617-e044-002128a47908
-        </inspire_common:Code>
-      <inspire_common:Namespace>
-         http://metadata.mysite.org/ds
-      </inspire_common:Namespace>
-     </inspire_dls:SpatialDataSetIdentifier>
-    </inspire_dls:ExtendedCapabilities>
+```xml
+<inspire_dls:ExtendedCapabilities>
+  <inspire_common:MetadataUrl>
+    <inspire_common:URL>
+      http://mysite.org/csw?SERVICE=CSW&REQUEST=GetRecord
+    </inspire_common:URL>
+    <inspire_common:MediaType>
+      application/vnd.iso.19139+xml
+    </inspire_common:MediaType>
+  </inspire_common:MetadataUrl>
+  <inspire_common:SupportedLanguages>
+    <inspire_common:DefaultLanguage>
+     <inspire_common:Language>eng</inspire_common:Language>
+    </inspire_common:DefaultLanguage>
+    <inspire_common:SupportedLanguage>fre</inspire_common:SupportedLanguage>
+  </inspire_common:SupportedLanguages>
+  <inspire_common:ResponseLanguage>
+    <inspire_common:Language>eng</inspire_common:Language>
+  </inspire_common:ResponseLanguage>
+  <inspire_dls:SpatialDataSetIdentifier metadataURL="http://mysite.org/ds/md/ds1.xml">
+    <inspire_common:Code>
+     fc929094-8a30-2617-e044-002128a47908
+    </inspire_common:Code>
+  <inspire_common:Namespace>
+     http://metadata.mysite.org/ds
+  </inspire_common:Namespace>
+ </inspire_dls:SpatialDataSetIdentifier>
+</inspire_dls:ExtendedCapabilities>
+```
 
 The spatial data identifiers section is mandatory, but cannot be filled by default, it is your duty to provide at least one spatial dataset identifier (see the INSPIRE download service technical guidelines for more information).
 
@@ -164,32 +168,34 @@ At the time of writing the [INSPIRE Schemas](https://inspire.ec.europa.eu/schema
 
 The language list available from the UI is define in a classpath file named `available_languages.properties` with the following content:
 
-    bul=bg
-    cze=cs
-    dan=da
-    dut=nl
-    eng=en
-    est=et
-    fin=fi
-    fre=fr
-    hrv=hr
-    ice=is
-    ger=de
-    gle=ga
-    gre=el
-    gsw=de-CH
-    hun=hu
-    ita=it
-    lav=lv
-    lit=lt
-    mlt=mt
-    nor=nb
-    pol=pl
-    por=pt
-    rum=ro
-    slo=sk
-    slv=sl
-    spa=es
-    swe=sv 
+```properties
+bul=bg
+cze=cs
+dan=da
+dut=nl
+eng=en
+est=et
+fin=fi
+fre=fr
+hrv=hr
+ice=is
+ger=de
+gle=ga
+gre=el
+gsw=de-CH
+hun=hu
+ita=it
+lav=lv
+lit=lt
+mlt=mt
+nor=nb
+pol=pl
+por=pt
+rum=ro
+slo=sk
+slv=sl
+spa=es
+swe=sv 
+```
 
 The entries of the above list represent the available INSPIRE language code matched with the corresponding `ISO 639-1` code. The GeoServer internationalization support is based on OWS 2.0, and thus using ISO codes internally. The INSPIRE module maps on the fly the INSPIRE names to ISO codes based on the above property file. The property file can be overridden by placing a properties file named `available_languages.properties` in the `inspire` directory inside the GeoServer data directory.

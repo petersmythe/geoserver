@@ -94,13 +94,17 @@ The file showcases all possible usage of the configuration elements:
 
 - `executable` can be just gdal_translate if the command is in the path, otherwise it should be the full path to the executable. For example, on a Linux box with a custom build GDAL library might be:
 
-      <executable>/usr/local/bin/gdal_translate</executable>
+  ```xml
+<executable>/usr/local/bin/gdal_translate</executable>
+  ```
 
 - `environment` contains a list of `variable` elements, which can be used to define environment variables that should be set prior to invoking gdal_translate. For example, to setup a GDAL_DATA environment variable pointing to the GDAL data directory, the configuration might be:
 
-      <environment>
-       <variable name="GDAL_DATA" value="/usr/local/share/gdal" />
-      </environment>
+  ```xml
+<environment>
+ <variable name="GDAL_DATA" value="/usr/local/share/gdal" />
+</environment>
+  ```
 
 - `Format` defines a single format, which is defined by the following tags:
 

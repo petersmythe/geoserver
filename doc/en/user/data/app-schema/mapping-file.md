@@ -6,16 +6,18 @@ An app-schema feature type is configured using a mapping file that defines the d
 
 Here is an outline of a mapping file:
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <as:AppSchemaDataAccess xmlns:as="http://www.geotools.org/app-schema"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.geotools.org/app-schema AppSchemaDataAccess.xsd">
-        <namespaces>...</namespaces>
-        <includedTypes>...</includedTypes>
-        <sourceDataStores>...</sourceDataStores>
-        <catalog>...</catalog>
-        <targetTypes...</targetTypes>
-        <typeMappings>...</typeMappings>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<as:AppSchemaDataAccess xmlns:as="http://www.geotools.org/app-schema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.geotools.org/app-schema AppSchemaDataAccess.xsd">
+    <namespaces>...</namespaces>
+    <includedTypes>...</includedTypes>
+    <sourceDataStores>...</sourceDataStores>
+    <catalog>...</catalog>
+    <targetTypes...</targetTypes>
+    <typeMappings>...</typeMappings>
+```
 </as:AppSchemaDataAccess>
 
 - `namespaces` defines all the namespace prefixes used in the mapping file.
@@ -35,40 +37,46 @@ Here is an outline of a mapping file:
 
 The `namespaces` section defines all the XML namespaces used in the mapping file:
 
-    <Namespace>
-        <prefix>gsml</prefix>
-        <uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
-    </Namespace>
-    <Namespace>
-        <prefix>gml</prefix>
-        <uri>http://www.opengis.net/gml</uri>
-    </Namespace>
-    <Namespace>
-        <prefix>xlink</prefix>
-        <uri>http://www.w3.org/1999/xlink</uri>
-    </Namespace>
+```xml
+<Namespace>
+    <prefix>gsml</prefix>
+    <uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
+</Namespace>
+<Namespace>
+    <prefix>gml</prefix>
+    <uri>http://www.opengis.net/gml</uri>
+</Namespace>
+<Namespace>
+    <prefix>xlink</prefix>
+    <uri>http://www.w3.org/1999/xlink</uri>
+</Namespace>
+```
 
 ### includedTypes (optional)
 
 Non-feature types (eg. gsml:CompositionPart is a data type that is nested in gsml:GeologicUnit) may be mapped separately for its reusability, but we don't want to configure it as a feature type as we don't want to individually access it. Related feature types don't need to be explicitly included here as it would have its own workspace configuration for GeoServer to find it. The location path in `Include` tag is relative to the mapping file. For an example, if gsml:CompositionPart configuration file is located in the same directory as the gsml:GeologicUnit configuration:
 
-    <includedTypes>
-        <Include>gsml_CompositionPart.xml</Include>
-    </includedTypes>
+```xml
+<includedTypes>
+    <Include>gsml_CompositionPart.xml</Include>
+</includedTypes>
+```
 
 ### sourceDataStores
 
 Every mapping file requires at least one data store to provide data for features. app-schema reuses GeoServer data stores, so there are many available types. See [app-schema.data-stores](#app-schema.data-stores) for details of data store configuration. For example:
 
-    <sourceDataStores>
-        <DataStore>
-            <id>datastore</id>
-            <parameters>
-                ...
-            </parameters>
-        </DataStore>
-        ...
-    </sourceDataStores>
+```xml
+<sourceDataStores>
+    <DataStore>
+        <id>datastore</id>
+        <parameters>
+            ...
+        </parameters>
+    </DataStore>
+    ...
+</sourceDataStores>
+```
 
 If you have more than one `DataStore` in a mapping file, be sure to give them each a distinct `id`.
 
@@ -76,17 +84,21 @@ If you have more than one `DataStore` in a mapping file, be sure to give them ea
 
 The location of an OASIS XML Catalog configuration file, given as a path relative to the mapping file. See [app-schema.app-schema-resolution](#app-schema.app-schema-resolution) for more information. For example:
 
-    <catalog>../../../schemas/catalog.xml</catalog>
+```xml
+<catalog>../../../schemas/catalog.xml</catalog>
+```
 
 ### targetTypes
 
 The `targetTypes` section lists all the application schemas required to define the mapping. Typically only one is required. For example:
 
-    <targetTypes>
-        <FeatureType>
-            <schemaUri>http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd</schemaUri>
-        </FeatureType>
-    </targetTypes>
+```xml
+<targetTypes>
+    <FeatureType>
+        <schemaUri>http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd</schemaUri>
+    </FeatureType>
+</targetTypes>
+```
 
 ## Mappings
 
@@ -94,17 +106,19 @@ The `targetTypes` section lists all the application schemas required to define t
 
 The `typeMappings` section is the heart of the app-schema module. It defines the mapping from simple features to the nested structure of one or more simple features. It consists of a list of `FeatureTypeMapping` elements, which each define one output feature type. For example:
 
-    <typeMappings>
-        <FeatureTypeMapping>
-            <mappingName>mappedfeature1</mappingName>
-            <sourceDataStore>datastore</sourceDataStore>
-            <sourceType>mappedfeature</sourceType>
-            <targetElement>gsml:MappedFeature</targetElement>
-            <isDenormalised>true</isDenormalised>
-            <defaultGeometry>gsml:MappedFeature/gsml:shape/gml:Polygon</defaultGeometry>
-            <attributeMappings>
-                <AttributeMapping>
-                    ...
+```xml
+<typeMappings>
+    <FeatureTypeMapping>
+        <mappingName>mappedfeature1</mappingName>
+        <sourceDataStore>datastore</sourceDataStore>
+        <sourceType>mappedfeature</sourceType>
+        <targetElement>gsml:MappedFeature</targetElement>
+        <isDenormalised>true</isDenormalised>
+        <defaultGeometry>gsml:MappedFeature/gsml:shape/gml:Polygon</defaultGeometry>
+        <attributeMappings>
+            <AttributeMapping>
+                ...
+```
 
 - `mappingName` is an optional tag, to identify the mapping in [app-schema.feature-chaining](#app-schema.feature-chaining) when there are multiple FeatureTypeMapping instances for the same type. This is solely for feature chaining purposes, and would not work for identifying top level features.
 
@@ -125,24 +139,30 @@ The `typeMappings` section is the heart of the app-schema module. It defines the
 
 `attributeMappings` comprises a list of `AttributeMapping` elements:
 
-    <AttributeMapping>
-        <targetAttribute>...</targetAttribute>
-        <idExpression>...</idExpression>
-        <sourceExpression>...</sourceExpression>
-        <targetAttributeNode>...</targetAttributeNode>
-        <isMultiple>...</isMultiple>
-        <ClientProperty>...</ClientProperty>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>...</targetAttribute>
+    <idExpression>...</idExpression>
+    <sourceExpression>...</sourceExpression>
+    <targetAttributeNode>...</targetAttributeNode>
+    <isMultiple>...</isMultiple>
+    <ClientProperty>...</ClientProperty>
+</AttributeMapping>
+```
 
 ### targetAttribute
 
 `targetAttribute` is the XPath to the output element, in the context of the target element. For example, if the containing mapping is for a feature, you should be able to map a `gml:name` property by setting the target attribute:
 
-    <targetAttribute>gml:name</targetAttribute>
+```xml
+<targetAttribute>gml:name</targetAttribute>
+```
 
 Multivalued attributes resulting from [app-schema.denormalised-sources](#app-schema.denormalised-sources) are automatically encoded. If you wish to encode multivalued attributes from different input columns as a specific instance of an attribute, you can use a (one-based) index. For example, you can set the third `gml:name` with:
 
-    <targetAttribute>gml:name[3]</targetAttribute>
+```xml
+<targetAttribute>gml:name[3]</targetAttribute>
+```
 
 The reserved name `FEATURE_LINK` is used to map data that is not encoded in XML but is required for use in [app-schema.feature-chaining](#app-schema.feature-chaining).
 
@@ -166,15 +186,19 @@ A CQL expression that is used to set the custom `gml:id` of the output feature t
 
 Use a `sourceExpression` tag to set the element content from source data. For example, to set the element content from a column called `DESCRIPTION`:
 
-    <sourceExpression><OCQL>DESCRIPTION</OCQL></sourceExpression>
+```xml
+<sourceExpression><OCQL>DESCRIPTION</OCQL></sourceExpression>
+```
 
 If `sourceExpression` is not present, the generated element is empty (unless set by another mapping).
 
 You can use CQL expressions to calculate the content of the element. This example concatenated strings from two columns and a literal:
 
-    <sourceExpression>
-        <OCQL>strConCat(FIRST , strConCat(' followed by ', SECOND))</OCQL>
-    </sourceExpression>
+```xml
+<sourceExpression>
+    <OCQL>strConCat(FIRST , strConCat(' followed by ', SECOND))</OCQL>
+</sourceExpression>
+```
 
 You can also use [app-schema.cql-functions](#app-schema.cql-functions) for vocabulary translations.
 
@@ -186,11 +210,13 @@ You can also use [app-schema.cql-functions](#app-schema.cql-functions) for vocab
 
 The presence of `linkElement` and `linkField` change the meaning of `sourceExpression` to a [app-schema.feature-chaining](#app-schema.feature-chaining) mapping, in which the source of the mapping is the feature of type `linkElement` with property `linkField` matching the expression. For example, the following `sourceExpression` uses as the result of the mapping the (possibly multivalued) `gsml:MappedFeature` for which `gml:name[2]` is equal to the value of `URN` for the source feature. This is in effect a foreign key relation:
 
-    <sourceExpression>
-        <OCQL>URN</OCQL>
-        <linkElement>gsml:MappedFeature</linkElement>
-        <linkField>gml:name[2]</linkField>
-    </sourceExpression>
+```xml
+<sourceExpression>
+    <OCQL>URN</OCQL>
+    <linkElement>gsml:MappedFeature</linkElement>
+    <linkField>gml:name[2]</linkField>
+</sourceExpression>
+```
 
 The feature type `gsml:MappedFeature` might be defined in another mapping file. The `linkField` can be `FEATURE_LINK` if you wish to relate the features by a property not exposed in XML. See [app-schema.feature-chaining](#app-schema.feature-chaining) for a comprehensive discussion.
 
@@ -202,43 +228,49 @@ For special cases, `linkElement` could be an OCQL function, and `linkField` coul
 
 In this example, `om:result` is of `xs:anyType`, which is abstract. We can use `targetAttributeNode` to set the type of the property type to a type that encloses a non-abstract element:
 
-    <AttributeMapping>
-          <targetAttribute>om:result</targetAttribute>
-          <targetAttributeNode>gml:MeasureType</targetAttributeNode>
-          <sourceExpression>
-              <OCQL>TOPAGE</OCQL>
-          </sourceExpression>
-          <ClientProperty>
-              <name>xsi:type</name>
-              <value>'gml:MeasureType'</value>
-          </ClientProperty>
-          <ClientProperty>
-              <name>uom</name> 
-              <value>'http://www.opengis.net/def/uom/UCUM/0/Ma'</value>
-          </ClientProperty> 
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+      <targetAttribute>om:result</targetAttribute>
+      <targetAttributeNode>gml:MeasureType</targetAttributeNode>
+      <sourceExpression>
+          <OCQL>TOPAGE</OCQL>
+      </sourceExpression>
+      <ClientProperty>
+          <name>xsi:type</name>
+          <value>'gml:MeasureType'</value>
+      </ClientProperty>
+      <ClientProperty>
+          <name>uom</name> 
+          <value>'http://www.opengis.net/def/uom/UCUM/0/Ma'</value>
+      </ClientProperty> 
+</AttributeMapping>
+```
 
 If the casting type is complex, the specific type is implicitly determined by the XPath in targetAttribute and targetAttributeNode is not required. E.g., in this example `om:result` is automatically specialised as a MappedFeatureType:
 
-    <AttributeMapping>
-          <targetAttribute>om:result/gsml:MappedFeature/gml:name</targetAttribute>
-          <sourceExpression>
-              <OCQL>NAME</OCQL>
-          </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+      <targetAttribute>om:result/gsml:MappedFeature/gml:name</targetAttribute>
+      <sourceExpression>
+          <OCQL>NAME</OCQL>
+      </sourceExpression>
+</AttributeMapping>
+```
 
 Although it is not required, we may still specify targetAttributeNode for the root node, and map the children attributes as per normal. This mapping must come before the mapping for the enclosed elements. By doing this, app-schema will report an exception if a mapping is specified for any of the children attributes that violates the type in targetAttributeNode. E.g.:
 
-    <AttributeMapping>
-          <targetAttribute>om:result</targetAttribute>
-          <targetAttributeNode>gsml:MappedFeatureType<targetAttributeNode>
-    </AttributeMapping> 
-    <AttributeMapping>
-          <targetAttribute>om:result/gsml:MappedFeature/gml:name</targetAttribute>
-          <sourceExpression>
-              <OCQL>NAME</OCQL>
-          </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+      <targetAttribute>om:result</targetAttribute>
+      <targetAttributeNode>gsml:MappedFeatureType<targetAttributeNode>
+</AttributeMapping> 
+<AttributeMapping>
+      <targetAttribute>om:result/gsml:MappedFeature/gml:name</targetAttribute>
+      <sourceExpression>
+          <OCQL>NAME</OCQL>
+      </sourceExpression>
+</AttributeMapping>
+```
 
 Note that the GML encoding rules require that complex types are never the direct property of another complex type; they are always contained in a property type to ensure that their type is encoded in a surrounding element. Encoded GML is always type/property/type/property. This is also known as the GML "striping" rule. The consequence of this for app-schema mapping files is that `targetAttributeNode` must be applied to the property and the type must be set to the XSD property type, not to the type of the contained attribute (`gsml:CGI_TermValuePropertyType` not `gsml:CGI_TermValueType`). Because the XPath refers to a property type not the encoded content, `targetAttributeNode` appears in a mapping with `targetAttribute` and no other elements when using with complex types.
 
@@ -248,7 +280,9 @@ The XML encoder will encode nested complex features that are mapped to a complex
 
 The `encodeIfEmpty` element will determine if an attribute will be encoded if it contains a null or empty value. By default `encodeIfEmpty` is set to false therefore any attribute that does not contain a value will be skipped:
 
-    <encodeIfEmpty>true</encodeIfEmpty>
+```xml
+<encodeIfEmpty>true</encodeIfEmpty>
+```
 
 `encodeIfEmpty` can be used to bring up attributes that only contain client properties such as `xlink:title`.
 
@@ -256,7 +290,9 @@ The `encodeIfEmpty` element will determine if an attribute will be encoded if it
 
 The `isMultiple` element states whether there might be multiple values for this attribute, coming from denormalised rows. Because the default value is `false` and it is omitted in this case, it is most usually seen as:
 
-    <isMultiple>true</isMultiple>
+```xml
+<isMultiple>true</isMultiple>
+```
 
 For example, the table below is denormalised with `NAME` column having multiple values:
 
@@ -267,31 +303,37 @@ For example, the table below is denormalised with `NAME` column having multiple 
 
 The configuration file specifies `isMultiple` for `gml:name` attribute that is mapped to the `NAME` column:
 
-    <AttributeMapping>
-        <targetAttribute>gml:name</targetAttribute>                       
-        <sourceExpression>
-            <OCQL>NAME</OCQL>
-    </sourceExpression>                 
-    <isMultiple>true</isMultiple>
-    <ClientProperty>
-        <name>codeSpace</name>
-        <value>'urn:ietf:rfc:2141'</value>
-    </ClientProperty>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>gml:name</targetAttribute>                       
+    <sourceExpression>
+        <OCQL>NAME</OCQL>
+</sourceExpression>                 
+<isMultiple>true</isMultiple>
+<ClientProperty>
+    <name>codeSpace</name>
+    <value>'urn:ietf:rfc:2141'</value>
+</ClientProperty>
+</AttributeMapping>
+```
 
 The output produces multiple `gml:name` attributes for each feature grouped by the id:
 
-    <gsml:GeologicUnit gml:id="gu.25678">
-        <gml:description>Olivine basalt, tuff, microgabbro</gml:description>
-        <gml:name codeSpace="urn:ietf:rfc:2141">Yaugher Volcanic Group 1</gml:name>
-        <gml:name codeSpace="urn:ietf:rfc:2141">Yaugher Volcanic Group 2</gml:name>
-     ...
+```xml
+<gsml:GeologicUnit gml:id="gu.25678">
+    <gml:description>Olivine basalt, tuff, microgabbro</gml:description>
+    <gml:name codeSpace="urn:ietf:rfc:2141">Yaugher Volcanic Group 1</gml:name>
+    <gml:name codeSpace="urn:ietf:rfc:2141">Yaugher Volcanic Group 2</gml:name>
+ ...
+```
 
 ### isList (optional)
 
 The `isList` element states whether there might be multiple values for this attribute, concatenated as a list. The usage is similar with `isMultiple`, except the values appear concatenated inside a single node instead of each value encoded in a separate node. Because the default value is `false` and it is omitted in this case, it is most usually seen as:
 
-    <isList>true</isList>
+```xml
+<isList>true</isList>
+```
 
 For example, the table below has multiple `POSITION` for each feature:
 
@@ -305,21 +347,25 @@ For example, the table below has multiple `POSITION` for each feature:
 
 The configuration file uses `isList` on `timePositionList` attribute mapped to `POSITION` column:
 
-    <AttributeMapping>
-        <targetAttribute>csml:timePositionList</targetAttribute>
-        <sourceExpression>
-        <OCQL>POSITION</OCQL>
-        </sourceExpression>
-        <isList>true</isList>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>csml:timePositionList</targetAttribute>
+    <sourceExpression>
+    <OCQL>POSITION</OCQL>
+    </sourceExpression>
+    <isList>true</isList>
+</AttributeMapping>
+```
 
 The output produced:
 
-    <csml:pointSeriesDomain>
-        <csml:TimeSeries gml:id="ID1.2">
-            <csml:timePositionList>1949-05 1949-06 1949-07 1949-08 1949-09</csml:timePositionList>
-        </csml:TimeSeries>
-    </csml:pointSeriesDomain>
+```xml
+<csml:pointSeriesDomain>
+    <csml:TimeSeries gml:id="ID1.2">
+        <csml:timePositionList>1949-05 1949-06 1949-07 1949-08 1949-09</csml:timePositionList>
+    </csml:TimeSeries>
+</csml:pointSeriesDomain>
+```
 
 ### ClientProperty (optional, multivalued)
 
@@ -327,17 +373,21 @@ A mapping can have one or more `ClientProperty` elements which set XML attribute
 
 This example of a `ClientProperty` element sets the `codeSpace` XML attribute to the literal string `urn:ietf:rfc:2141`. Note the use of single quotes around the literal string. This could be applied to any target attribute of GML CodeType:
 
-    <ClientProperty>
-        <name>codeSpace</name>
-        <value>'urn:ietf:rfc:2141'</value>
-    </ClientProperty>
+```xml
+<ClientProperty>
+    <name>codeSpace</name>
+    <value>'urn:ietf:rfc:2141'</value>
+</ClientProperty>
+```
 
 When the GML association pattern is used to encode a property by reference, the `xlink:href` attribute is set and the element is empty. This `ClientProperty` element sets the `xlink:href` XML attribute to the value of the `RELATED_FEATURE_URN` field in the data source (for example, a column in an Oracle database table). This mapping could be applied to any property type, such a `gml:FeaturePropertyType`, or other type modelled on the GML association pattern:
 
-    <ClientProperty>
-        <name>xlink:href</name>
-        <value>RELATED_FEATURE_URN</value>
-    </ClientProperty>
+```xml
+<ClientProperty>
+    <name>xlink:href</name>
+    <value>RELATED_FEATURE_URN</value>
+</ClientProperty>
+```
 
 See the discussion in [app-schema.feature-chaining](#app-schema.feature-chaining) for the special case in which `xlink:href` is created for multivalued properties by reference.
 
@@ -387,13 +437,15 @@ The second table contains tags that are associated with meteorological stations:
 
 A station can have multiple tags, establishing a one to many relationship between stations and tags, the GML representation of the first station should look like this:
 
-    (...)
-    <st:Station gml:id="st.1">
-      <st:name>Station 1</st:name>
-      <st:tag st:code="X1Y">temperature</st:tag>
-      <st:tag st:code="X2Y">wind</st:tag>
-    </st:Station_gml32>
-    (...)
+```xml
+(...)
+<st:Station gml:id="st.1">
+  <st:name>Station 1</st:name>
+  <st:tag st:code="X1Y">temperature</st:tag>
+  <st:tag st:code="X2Y">wind</st:tag>
+</st:Station_gml32>
+(...)
+```
 
 Mappings with a one to many relationship are supported with a custom syntax in JDBC based data stores and Apache Solr data store.
 
@@ -401,191 +453,207 @@ Mappings with a one to many relationship are supported with a custom syntax in J
 
 When using JDBC based data stores attributes with a 1..N relationship can be mapped like this:
 
-    (...)
-    <AttributeMapping>
-      <targetAttribute>st:tag</targetAttribute>
-      <jdbcMultipleValue>
-        <sourceColumn>ID</sourceColumn>
-        <targetTable>TAGS</targetTable>
-        <targetColumn>STATION_ID</targetColumn>
-        <targetValue>TAG</targetValue>
-      </jdbcMultipleValue>
-      <ClientProperty>
-        <name>st:code</name>
-        <value>CODE</value>
-      </ClientProperty>
-    </AttributeMapping>
-    (...)
+```xml
+(...)
+<AttributeMapping>
+  <targetAttribute>st:tag</targetAttribute>
+  <jdbcMultipleValue>
+    <sourceColumn>ID</sourceColumn>
+    <targetTable>TAGS</targetTable>
+    <targetColumn>STATION_ID</targetColumn>
+    <targetValue>TAG</targetValue>
+  </jdbcMultipleValue>
+  <ClientProperty>
+    <name>st:code</name>
+    <value>CODE</value>
+  </ClientProperty>
+</AttributeMapping>
+(...)
+```
 
 The `targetValue` refers to the value of the `<st:tag>` element, the client property is mapped with the usual syntax. Behind the scenes App-Schema will take care of associating the `st:code` attribute value with the correct tag.
 
 Another variant of this feature can be used for nested elements on an unbounded anonymous sequence, Using 'anonymousAttribute' element definition for generating child elements and values inside an anonymous umbounded sequence:
 
-    (...)
-    <AttributeMapping>
-      <targetAttribute>st:tag</targetAttribute>
-      <jdbcMultipleValue>
-        <sourceColumn>ID</sourceColumn>
-        <targetTable>TAGS</targetTable>
-        <targetColumn>STATION_ID</targetColumn>
-      </jdbcMultipleValue>
-      <anonymousAttribute>
-        <name>st:code</name>
-        <value>CODE</value>
-      </anonymousAttribute>
-    </AttributeMapping>
-    (...)
+```xml
+(...)
+<AttributeMapping>
+  <targetAttribute>st:tag</targetAttribute>
+  <jdbcMultipleValue>
+    <sourceColumn>ID</sourceColumn>
+    <targetTable>TAGS</targetTable>
+    <targetColumn>STATION_ID</targetColumn>
+  </jdbcMultipleValue>
+  <anonymousAttribute>
+    <name>st:code</name>
+    <value>CODE</value>
+  </anonymousAttribute>
+</AttributeMapping>
+(...)
+```
 
 In this case 'st:code' element children will be generated with the computed client property value:
 
-    (...)
-    <st:Station gml:id="st.1">
-      <st:name>Station 1</st:name>
-      <st:tag>
-        <st:code>X1Y</st:code>
-        <st:code>X2Y</st:code>
-      </st:tag>
-    </st:Station_gml32>
-    (...)
+```xml
+(...)
+<st:Station gml:id="st.1">
+  <st:name>Station 1</st:name>
+  <st:tag>
+    <st:code>X1Y</st:code>
+    <st:code>X2Y</st:code>
+  </st:tag>
+</st:Station_gml32>
+(...)
+```
 
 Having an schema with anonymous unbounded sequence like :
 
-    <xs:complexType name="StationType">
-      <xs:complexContent>
-        <xs:extension base="gml:AbstractFeatureType">
-          <xs:sequence>
-            <xs:element name="name" type="xs:string"/>
-            <xs:element name="contact" type="st:ContactPropertyType"/>
-            <xs:element name="location" type="gml:GeometryPropertyType"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="tag" type="st:TagType"/>
-            <xs:element name="measurements" type="ms:MeasurementPropertyType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="maintainer" minOccurs="0">
-              <xs:complexType>
-                <xs:sequence maxOccurs="unbounded">
-                  <xs:element name="name" type="xs:string"/>
-                  <xs:element name="level" type="xs:integer" nillable="true"/>
-                  <xs:element name="classType" />
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
+```xml
+<xs:complexType name="StationType">
+  <xs:complexContent>
+    <xs:extension base="gml:AbstractFeatureType">
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="contact" type="st:ContactPropertyType"/>
+        <xs:element name="location" type="gml:GeometryPropertyType"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="tag" type="st:TagType"/>
+        <xs:element name="measurements" type="ms:MeasurementPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="maintainer" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+              <xs:element name="name" type="xs:string"/>
+              <xs:element name="level" type="xs:integer" nillable="true"/>
+              <xs:element name="classType" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+```
 
 We could define the following mapping :
 
-    <FeatureTypeMapping>
-     <sourceDataStore>stations_gml32</sourceDataStore>
-     <sourceType>stations_gml32</sourceType>
-     <targetElement>st_gml32:Station_gml32</targetElement>
-     <attributeMappings>
-       <AttributeMapping>
-         <targetAttribute>st_gml32:Station_gml32</targetAttribute>
-         <idExpression>
-           <OCQL>ID</OCQL>
-         </idExpression>
-       </AttributeMapping>
-       <AttributeMapping>
-         <targetAttribute>st_gml32:name</targetAttribute>
-         <sourceExpression>
-           <OCQL>NAME</OCQL>
-         </sourceExpression>
-       </AttributeMapping>
-       <AttributeMapping>
-         <targetAttribute>st_gml32:location</targetAttribute>
-         <sourceExpression>
-           <OCQL>LOCATION</OCQL>
-         </sourceExpression>
-       </AttributeMapping>
-       <AttributeMapping>
-         <targetAttribute>st_gml32:maintainer</targetAttribute>
-         <jdbcMultipleValue>
-           <sourceColumn>ID</sourceColumn>
-           <targetTable>MAINTAINERS_GML32</targetTable>
-           <targetColumn>OWNER</targetColumn>
-         </jdbcMultipleValue>
-         <anonymousAttribute>
-           <name>st_gml32:name</name>
-           <value>NAME</value>
-         </anonymousAttribute>
-         <anonymousAttribute>
-           <name>st_gml32:level</name>
-           <value>LEVEL</value>
-         </anonymousAttribute>
-         <anonymousAttribute>
-           <name>st_gml32:classType</name>
-           <value>CLASSTYPE</value>
-         </anonymousAttribute>
-       </AttributeMapping>
-       <AttributeMapping>
-         <targetAttribute>st_gml32:measurements</targetAttribute>
-         <sourceExpression>
-           <OCQL>ID</OCQL>
-           <linkElement>ms_gml32:Measurement_gml32</linkElement>
-           <linkField>FEATURE_LINK[1]</linkField>
-         </sourceExpression>
-       </AttributeMapping>
-     </attributeMappings>
-    </FeatureTypeMapping>
+```xml
+<FeatureTypeMapping>
+ <sourceDataStore>stations_gml32</sourceDataStore>
+ <sourceType>stations_gml32</sourceType>
+ <targetElement>st_gml32:Station_gml32</targetElement>
+ <attributeMappings>
+   <AttributeMapping>
+     <targetAttribute>st_gml32:Station_gml32</targetAttribute>
+     <idExpression>
+       <OCQL>ID</OCQL>
+     </idExpression>
+   </AttributeMapping>
+   <AttributeMapping>
+     <targetAttribute>st_gml32:name</targetAttribute>
+     <sourceExpression>
+       <OCQL>NAME</OCQL>
+     </sourceExpression>
+   </AttributeMapping>
+   <AttributeMapping>
+     <targetAttribute>st_gml32:location</targetAttribute>
+     <sourceExpression>
+       <OCQL>LOCATION</OCQL>
+     </sourceExpression>
+   </AttributeMapping>
+   <AttributeMapping>
+     <targetAttribute>st_gml32:maintainer</targetAttribute>
+     <jdbcMultipleValue>
+       <sourceColumn>ID</sourceColumn>
+       <targetTable>MAINTAINERS_GML32</targetTable>
+       <targetColumn>OWNER</targetColumn>
+     </jdbcMultipleValue>
+     <anonymousAttribute>
+       <name>st_gml32:name</name>
+       <value>NAME</value>
+     </anonymousAttribute>
+     <anonymousAttribute>
+       <name>st_gml32:level</name>
+       <value>LEVEL</value>
+     </anonymousAttribute>
+     <anonymousAttribute>
+       <name>st_gml32:classType</name>
+       <value>CLASSTYPE</value>
+     </anonymousAttribute>
+   </AttributeMapping>
+   <AttributeMapping>
+     <targetAttribute>st_gml32:measurements</targetAttribute>
+     <sourceExpression>
+       <OCQL>ID</OCQL>
+       <linkElement>ms_gml32:Measurement_gml32</linkElement>
+       <linkField>FEATURE_LINK[1]</linkField>
+     </sourceExpression>
+   </AttributeMapping>
+ </attributeMappings>
+</FeatureTypeMapping>
+```
 
 So Geoserver will produce GML like this :
 
-    <st_gml32:Station_gml32 gml:id="st.2">
-      <st_gml32:name>station2</st_gml32:name>
-      <st_gml32:location>
-        <gml:Point srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4326">
-          <gml:pos>-3 -2</gml:pos>
-        </gml:Point>
-      </st_gml32:location>
-      <st_gml32:measurements>
-        <ms_gml32:Measurement_gml32 gml:id="ms.3">
-          <ms_gml32:name>pressure</ms_gml32:name>
-          <ms_gml32:tag>pressure_tag</ms_gml32:tag>
-        </ms_gml32:Measurement_gml32>
-      </st_gml32:measurements>
-      <st_gml32:maintainer>
-        <st_gml32:name>mnt_c</st_gml32:name>
-        <st_gml32:level>73</st_gml32:level>
-        <st_gml32:classType>st_2_mnt_c</st_gml32:classType>
-        <st_gml32:name>mnt_d</st_gml32:name>
-        <st_gml32:level>74</st_gml32:level>
-        <st_gml32:classType>st_2_mnt_d</st_gml32:classType>
-        <st_gml32:name>mnt_e</st_gml32:name>
-        <st_gml32:level>75</st_gml32:level>
-        <st_gml32:classType>st_2_mnt_e</st_gml32:classType>
-      </st_gml32:maintainer>
-    </st_gml32:Station_gml32>
+```xml
+<st_gml32:Station_gml32 gml:id="st.2">
+  <st_gml32:name>station2</st_gml32:name>
+  <st_gml32:location>
+    <gml:Point srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4326">
+      <gml:pos>-3 -2</gml:pos>
+    </gml:Point>
+  </st_gml32:location>
+  <st_gml32:measurements>
+    <ms_gml32:Measurement_gml32 gml:id="ms.3">
+      <ms_gml32:name>pressure</ms_gml32:name>
+      <ms_gml32:tag>pressure_tag</ms_gml32:tag>
+    </ms_gml32:Measurement_gml32>
+  </st_gml32:measurements>
+  <st_gml32:maintainer>
+    <st_gml32:name>mnt_c</st_gml32:name>
+    <st_gml32:level>73</st_gml32:level>
+    <st_gml32:classType>st_2_mnt_c</st_gml32:classType>
+    <st_gml32:name>mnt_d</st_gml32:name>
+    <st_gml32:level>74</st_gml32:level>
+    <st_gml32:classType>st_2_mnt_d</st_gml32:classType>
+    <st_gml32:name>mnt_e</st_gml32:name>
+    <st_gml32:level>75</st_gml32:level>
+    <st_gml32:classType>st_2_mnt_e</st_gml32:classType>
+  </st_gml32:maintainer>
+</st_gml32:Station_gml32>
+```
 
 ### Apache Solr
 
 When using Apache Solr data stores, 1..N relationships can be handled with `multiValued` fields and mapped like this:
 
-    (...)
-    <AttributeMapping>
-      <targetAttribute>st:tag</targetAttribute>
-      <solrMultipleValue>TAG</solrMultipleValue>
-      <ClientProperty>
-        <name>st:code</name>
-        <value>CODE</value>
-      </ClientProperty>
-    </AttributeMapping>
-    (...)
+```xml
+(...)
+<AttributeMapping>
+  <targetAttribute>st:tag</targetAttribute>
+  <solrMultipleValue>TAG</solrMultipleValue>
+  <ClientProperty>
+    <name>st:code</name>
+    <value>CODE</value>
+  </ClientProperty>
+</AttributeMapping>
+(...)
+```
 
 ## External Apache Solr Index
 
 Is possible to use an external Apache Solr index to speed up text based searches. Consider the following WFS `GetFeatureRequest`:
 
-    <wfs:GetFeature service="WFS" version="2.0.0" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:gml="http://www.opengis.net/gml/3.2.1" xmlns:wfs="http://www.opengis.net/wfs/2.0">
-      <wfs:Query typeNames="st:Station">
-        <fes:Filter>
-          <fes:PropertyIsLike escapeChar="!" singleChar="." wildCard="*">
-            <fes:ValueReference>st:Station/st:measurement/st:Measurement/st:description</fes:ValueReference>
-            <fes:Literal>*high*</fes:Literal>
-          </fes:PropertyIsLike>
-        </fes:Filter>
-      </wfs:Query>
-    </wfs:GetFeature>
+```xml
+<wfs:GetFeature service="WFS" version="2.0.0" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:gml="http://www.opengis.net/gml/3.2.1" xmlns:wfs="http://www.opengis.net/wfs/2.0">
+  <wfs:Query typeNames="st:Station">
+    <fes:Filter>
+      <fes:PropertyIsLike escapeChar="!" singleChar="." wildCard="*">
+        <fes:ValueReference>st:Station/st:measurement/st:Measurement/st:description</fes:ValueReference>
+        <fes:Literal>*high*</fes:Literal>
+      </fes:PropertyIsLike>
+    </fes:Filter>
+  </wfs:Query>
+</wfs:GetFeature>
+```
 
 This request will return all the stations that have at least one measurement that contains the text `high` in its description. This type of text based queries are (usually) quite expensive to execute in relational data bases.
 

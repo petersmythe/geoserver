@@ -49,18 +49,20 @@ The mosaic configuration file is the primary file used to store the configuratio
 
 A sample configuration file follows:
 
-    Levels=0.4,0.4
-    Heterogeneous=false
-    AbsolutePath=false
-    Name=osm
-    TypeName=osm
-    Caching=false
-    ExpandToRGB=false
-    LocationAttribute=location
-    SuggestedSPI=it.geosolutions.imageioimpl.plugins.tiff.TIFFImageReaderSpi
-    SuggestedFormat=org.geotools.gce.geotiff.GeoTiffFormat
-    CheckAuxiliaryMetadata=false
-    LevelsNum=1
+```properties
+Levels=0.4,0.4
+Heterogeneous=false
+AbsolutePath=false
+Name=osm
+TypeName=osm
+Caching=false
+ExpandToRGB=false
+LocationAttribute=location
+SuggestedSPI=it.geosolutions.imageioimpl.plugins.tiff.TIFFImageReaderSpi
+SuggestedFormat=org.geotools.gce.geotiff.GeoTiffFormat
+CheckAuxiliaryMetadata=false
+LevelsNum=1
+```
 
 ### **`datastore.properties`** {: #mosaic_datastore_properties }
 
@@ -98,36 +100,40 @@ If needed, different storage can be used for the index - like a spatial DBMS, wh
 
 Here is a sample **`datastore.properties`** file for a PostGIS index:
 
-    SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
-    host=localhost
-    port=5432
-    database=osm
-    schema=public
-    user=user
-    passwd=password
-    Loose\ bbox=true
-    Estimated\ extends=false
-    validate\ connections=true
-    Connection\ timeout=10
-    preparedStatements=true
+```properties
+SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
+host=localhost
+port=5432
+database=osm
+schema=public
+user=user
+passwd=password
+Loose\ bbox=true
+Estimated\ extends=false
+validate\ connections=true
+Connection\ timeout=10
+preparedStatements=true
+```
 
 Here is a sample **`datastore.properties`** file for a PostGIS index via JNDI:
 
-    SPI=org.geotools.data.postgis.PostgisNGJNDIDataStoreFactory
-    #String
-    # JNDI data source
-    # Default "java:comp/env/"+"jdbc/mydatabase"
-    jndiReferenceName=
+```
+SPI=org.geotools.data.postgis.PostgisNGJNDIDataStoreFactory
+#String
+# JNDI data source
+# Default "java:comp/env/"+"jdbc/mydatabase"
+jndiReferenceName=
 
-    #Boolean
-    # perform only primary filter on bbox
-    # Default Boolean.TRUE
-    Loose\ bbox=true
+#Boolean
+# perform only primary filter on bbox
+# Default Boolean.TRUE
+Loose\ bbox=true
 
-    #Boolean
-    # use prepared statements
-    #Default Boolean.FALSE
-    preparedStatements=false
+#Boolean
+# use prepared statements
+#Default Boolean.FALSE
+preparedStatements=false
+```
 
 ### **`indexer.properties`**
 
@@ -164,16 +170,20 @@ In addition to the required envelope and location attributes, the schema for the
 
 Here is a sample **`indexer.properties`** file:
 
-    Schema=*the_geom:Polygon,location:String,ingestion:java.util.Date,elevation:Double
-    PropertyCollectors=TimestampFileNameExtractorSPI[timeregex](ingestion),DoubleFileNameExtractorSPI[elevationregex](elevation)
-    TimeAttribute=ingestion
-    ElevationAttribute=elevation
-    Caching=false
-    AbsolutePath=false
+```properties
+Schema=*the_geom:Polygon,location:String,ingestion:java.util.Date,elevation:Double
+PropertyCollectors=TimestampFileNameExtractorSPI[timeregex](ingestion),DoubleFileNameExtractorSPI[elevationregex](elevation)
+TimeAttribute=ingestion
+ElevationAttribute=elevation
+Caching=false
+AbsolutePath=false
+```
 
 An example of optional CoverageNameCollectorSPI could be:
 
-    CoverageNameCollectorSPI=org.geotools.gce.imagemosaic.namecollector.FileNameRegexNameCollectorSPI:regex=^([a-zA-Z0-9]+)
+```properties
+CoverageNameCollectorSPI=org.geotools.gce.imagemosaic.namecollector.FileNameRegexNameCollectorSPI:regex=^([a-zA-Z0-9]+)
+```
 
 This defines a regex-based name collector which extracts the coverage name from the prefix of the file name, so that an ImageMosaic with temperature_2015.tif, temperature_2016.tif, pressure_2015.tif, pressure_2016.tif will put temperature* granules on a `temperature` coverage and pressure* granules on a `pressure` coverage.
 
@@ -200,7 +210,9 @@ The ``PropertyCollectors`` parameter in the example above indicates two addition
 
 **`timeregex.properties`**:
 
-    regex=[0-9]{8}T[0-9]{9}Z(\?!.*[0-9]{8}T[0-9]{9}Z.*)
+```properties
+regex=[0-9]{8}T[0-9]{9}Z(\?!.*[0-9]{8}T[0-9]{9}Z.*)
+```
 
 The above is a property file containing a regex used to extract Date and Time represented in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) as part of the filename. (Note the T char between digits for date and digits for time, as per ISO-8601)
 
@@ -236,7 +248,9 @@ In case the temporal information is spread along the whole file path, an additio
 
 **`elevationregex.properties`**:
 
-    regex=(?<=_)(\\d{4}\\.\\d{3})(?=_)
+```properties
+regex=(?<=_)(\\d{4}\\.\\d{3})(?=_)
+```
 
 ## Store parameters
 

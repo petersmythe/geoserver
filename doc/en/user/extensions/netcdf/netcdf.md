@@ -78,19 +78,21 @@ A number of system properties allow us to configure this behavior:
 
 The NetCDF Auxiliary Store returns a WFS record like this for each possible combination of dimension values that do not include the two prime spatial dimensions:
 
-    <topp:my-aux-store gml:id="1">
-     <topp:the_geom>
-      <gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#4326" srsDimension="2">
-       <gml:exterior><gml:LinearRing>
-       <gml:posList>259.96003054 -0.04 259.96003054 70.04 310.03999998 70.04 310.03999998 -0.04 259.96003054   -0.04</gml:posList>
-       </gml:LinearRing></gml:exterior>
-      </gml:Polygon>
-     </topp:the_geom>
-     <topp:imageindex>160</topp:imageindex>
-     <topp:depth>0.0</topp:depth>
-     <topp:time>2017-01-01T00:00:00Z</topp:time>
-     <topp:runtime>2017-01-02T00:00:00Z</topp:runtime>
-    </topp:my-aux-store>
+```xml
+<topp:my-aux-store gml:id="1">
+ <topp:the_geom>
+  <gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#4326" srsDimension="2">
+   <gml:exterior><gml:LinearRing>
+   <gml:posList>259.96003054 -0.04 259.96003054 70.04 310.03999998 70.04 310.03999998 -0.04 259.96003054   -0.04</gml:posList>
+   </gml:LinearRing></gml:exterior>
+  </gml:Polygon>
+ </topp:the_geom>
+ <topp:imageindex>160</topp:imageindex>
+ <topp:depth>0.0</topp:depth>
+ <topp:time>2017-01-01T00:00:00Z</topp:time>
+ <topp:runtime>2017-01-02T00:00:00Z</topp:runtime>
+</topp:my-aux-store>
+```
 
 ## Supporting Custom NetCDF Coordinate Reference Systems
 
@@ -250,25 +252,29 @@ There are two property files that can be setup in order to modify unit magement,
 
 The alias file is called `netcdf-unit-aliases.properties`, if not provided these contents are assumed:
 
-    # Aliases for unit names that can in turn be used to build more complex units
-    Meter=m
-    meter=m
-    Metre=m
-    microgram=µg
-    microgrammes=µg
-    nanograms=ng
-    degree=deg
-    percentage=%
-    celsius=°C
-    ````
+```
+# Aliases for unit names that can in turn be used to build more complex units
+Meter=m
+meter=m
+Metre=m
+microgram=µg
+microgrammes=µg
+nanograms=ng
+degree=deg
+percentage=%
+celsius=°C
+````
+```
 
 The replacement file is called `netcdf-unit-replacements.properties`, if not provided the following contents are assumed:
 
-    microgrammes\ per\ cubic\ meter=µg*m^-3
-    DU=µmol*m^-2*446.2
-    m2=m^2
-    m3=m^3
-    s2=s^2
+```properties
+microgrammes\ per\ cubic\ meter=µg*m^-3
+DU=µmol*m^-2*446.2
+m2=m^2
+m3=m^3
+s2=s^2
+```
 
 Both files express the NetCDF unit as the key, and the standard symbol or replacement text as the value.
 
@@ -341,22 +347,26 @@ This will generate the files and it\'s going to be good enough if each NetCDF co
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?><Indexer>
   <domains>
-    <domain name="time">
-      <attributes><attribute>time</attribute></attributes>
-    </domain>
+```xml
+<domain name="time">
+  <attributes><attribute>time</attribute></attributes>
+</domain>
+```
   </domains>
   <coverages>
-    <coverage>
-      <name>dbz</name>
-      <schema name="dbz">
-        <attributes>
-           the_geom:Polygon,imageindex:Integer,location:String,time:java.util.Date
-        </attributes>
-      </schema>
-      <domains>
-        <domain ref="time" />
-      </domains>
-    </coverage>
+```xml
+<coverage>
+  <name>dbz</name>
+  <schema name="dbz">
+    <attributes>
+       the_geom:Polygon,imageindex:Integer,location:String,time:java.util.Date
+    </attributes>
+  </schema>
+  <domains>
+    <domain ref="time" />
+  </domains>
+</coverage>
+```
   </coverages>
   <parameters>
 <parameter name="AuxiliaryFile" value="/path/to/the/mosaic/_auxiliary.xml" />
@@ -369,17 +379,19 @@ While the `_auxiliary.xml` file might look like:
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?><Indexer>
-    <coverages>
-        <coverage>
-            <schema name="dbz">
-                <attributes>
-                   the_geom:Polygon,imageindex:Integer,time:java.util.Date
-                </attributes>
-            </schema>
-            <origName>dbz</origName>
-            <name>dbz</name>
-        </coverage>
-    </coverages>
+```xml
+<coverages>
+    <coverage>
+        <schema name="dbz">
+            <attributes>
+               the_geom:Polygon,imageindex:Integer,time:java.util.Date
+            </attributes>
+        </schema>
+        <origName>dbz</origName>
+        <name>dbz</name>
+    </coverage>
+</coverages>
+```
 </Indexer>
 ```
 
@@ -390,19 +402,21 @@ If instead there are different NetCDF files containing different coverages in th
 
 NetCDF files contain usually time dimensions, as a result, it\'s not possible to rely on Shapefile based indexes, but use a relational database instead. So, add a `datastore.properties` file into the mosaic directory, pointing to a database of choice. Here is an example file, suitable to connect to a PostGIS enabled database, with a schema dedicated to contain the mosaic indexes (make sure it already exists in the database, GeoServer won\'t create it):
 
-    SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
-    host=localhost
-    port=5432
-    database=netcdf
-    schema=mosaic_indexes
-    user=user
-    passwd=pwd
-    Loose\ bbox=true
-    Estimated\ extends=false
-    validate\ connections=true
-    Connection\ timeout=10
-    preparedStatements=true
-    max\ connections=20
+```properties
+SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
+host=localhost
+port=5432
+database=netcdf
+schema=mosaic_indexes
+user=user
+passwd=pwd
+Loose\ bbox=true
+Estimated\ extends=false
+validate\ connections=true
+Connection\ timeout=10
+preparedStatements=true
+max\ connections=20
+```
 
 With this in place, it\'s possible to create stores and layers in GeoServer:
 
@@ -426,19 +440,21 @@ As an alternative, it\'s possible to store all slice metadata from H2 to a centr
 
 As a first step, create a store connection property file named `netcdf_datastore.properties`. Here is an example file, suitable to connect to a PostGIS enabled database, which makes the pair with the previously introduced `datastore.properties` :
 
-    SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
-    host=localhost
-    port=5432
-    database=netcdf
-    schema=netcdf_indexes
-    user=user
-    passwd=pwd
-    Loose\ bbox=true
-    Estimated\ extends=false
-    validate\ connections=true
-    Connection\ timeout=10
-    preparedStatements=true
-    max\ connections=20
+```properties
+SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
+host=localhost
+port=5432
+database=netcdf
+schema=netcdf_indexes
+user=user
+passwd=pwd
+Loose\ bbox=true
+Estimated\ extends=false
+validate\ connections=true
+Connection\ timeout=10
+preparedStatements=true
+max\ connections=20
+```
 
 Notice how the NetCDF indexes are going to be stored in a different database schema, to prevent eventual table name conflicts (again, make sure the schema already exists in the database).
 

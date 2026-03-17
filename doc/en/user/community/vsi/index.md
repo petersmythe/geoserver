@@ -6,13 +6,15 @@ Support for GDAL's virtual file systems, accessible via a ``/vsi``-prefixed path
 
 All configuration parameters are specified in a `vsi.properties` file. Any configuration option listed in [GDAL's documentation](https://gdal.org/user/virtual_file_systems.md). is available as a key in this file. You can specify its location on your system with the `-Dvsi.properties.location` option. An example configuration providing OpenStack credentials may look like:
 
-    OS_IDENTITY_API_VERSION = 3
-    OS_AUTH_URL = https://swift.provider.com/v3
-    OS_PROJECT_NAME = test-project
-    OS_USERNAME = user@example.com
-    OS_PASSWORD = example-password
-    OS_USER_DOMAIN_NAME = Default
-    OS_PROJECT_DOMAIN_NAME = default
+```
+OS_IDENTITY_API_VERSION = 3
+OS_AUTH_URL = https://swift.provider.com/v3
+OS_PROJECT_NAME = test-project
+OS_USERNAME = user@example.com
+OS_PASSWORD = example-password
+OS_USER_DOMAIN_NAME = Default
+OS_PROJECT_DOMAIN_NAME = default
+```
 
 ## Usage
 

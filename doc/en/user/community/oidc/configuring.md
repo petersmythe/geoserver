@@ -60,7 +60,9 @@ Without this, GeoServer may resolve the redirect URI to an internal hostname tha
 
 The **Redirect URI** field is calculated automatically from the Redirect Base URI and cannot be edited directly. It has the form:
 
-    <Redirect Base URI>/web/login/oauth2/code/<provider>
+```xml
+<Redirect Base URI>/web/login/oauth2/code/<provider>
+```
 
 For example:
 

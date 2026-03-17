@@ -12,11 +12,13 @@ Both XML and JSON are supported for transfer of data objects. The default is XML
 
 Encoding of a user in XML:
 
-    <user>
-        <userName>..</userName>
-        <password>..</password>
-        <enabled>true/false</enabled>
-    </user>
+```xml
+<user>
+    <userName>..</userName>
+    <password>..</password>
+    <enabled>true/false</enabled>
+</user>
+```
 
 Encoding of a user in JSON:
 
@@ -26,11 +28,13 @@ Passwords are left out in results of reading requests.
 
 Encoding of a list of users in XML:
 
-    <users>
-        <user> ... </user>
-        <user> ... </user>
-        ...     
-    </users>
+```xml
+<users>
+    <user> ... </user>
+    <user> ... </user>
+    ...     
+</users>
+```
 
 Encoding of a list of users in JSON:
 
@@ -38,11 +42,13 @@ Encoding of a list of users in JSON:
 
 Encoding of a list of groups in XML:
 
-    <groups>
-        <group> agroupname </group>
-        <group> bgroupname </group>
-        ...     
-    </groups>
+```xml
+<groups>
+    <group> agroupname </group>
+    <group> bgroupname </group>
+    ...     
+</groups>
+```
 
 Encoding of a list of groups in JSON:
 
@@ -50,11 +56,13 @@ Encoding of a list of groups in JSON:
 
 Encoding of a list of roles:
 
-    <roles>
-        <role> arolename </role>
-        <role> brolename </role>
-        ...     
-    </roles>
+```xml
+<roles>
+    <role> arolename </role>
+    <role> brolename </role>
+    ...     
+</roles>
+```
 
 Encoding of a list of roles in JSON:
 

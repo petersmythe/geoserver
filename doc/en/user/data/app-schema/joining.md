@@ -73,11 +73,15 @@ OR conditions are difficult to optimize for postgresql and are usually slow. App
 
 With UNION improvement enabled main OR binary operator on nested filter subquery will rebuild normal OR query like:
 
-    SELECT id, name FROM table WHERE name = "A" OR name = "B"
+```sql
+SELECT id, name FROM table WHERE name = "A" OR name = "B"
+```
 
 to:
 
-    SELECT id, name FROM table WHERE name = "A" UNION SELECT id, name FROM table WHERE name = "B"
+```sql
+SELECT id, name FROM table WHERE name = "A" UNION SELECT id, name FROM table WHERE name = "B"
+```
 
 UNION improvement is enabled by default, and it is disabled by adding to your app-schema.properties file the line :
 

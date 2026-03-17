@@ -29,7 +29,9 @@ Every attempt to load a schema works down this list, so imports can be resolved 
 
 An [OASIS XML Catalog](http://www.oasis-open.org/committees/entity/spec-2001-08-06.md) is a standard configuration file format that instructs an XML processing system how to process entity references. The GeoServer app-schema resolver uses catalog URI semantics to locate application schemas, so `uri` or `rewriteURI` entries should be present in your catalog. The optional mapping file `catalog` element provides the location of the OASIS XML Catalog configuration file, given as a path relative to the mapping file, for example:
 
-    <catalog>../../../schemas/catalog.xml</catalog>
+```xml
+<catalog>../../../schemas/catalog.xml</catalog>
+```
 
 Earlier versions of the app-schema plugin required all schemas to be present in the catalog. This is no longer the case. Because the catalog is searched first, existing catalog-based deployments will continue to work as before.
 

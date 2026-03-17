@@ -36,11 +36,13 @@ The property file format is a subset of the Java properties format: a list of li
 
 This example `stations.properties` defines four features of the feature type (layer) `stations`:
 
-    _=id:Integer,code:String,name:String,location:Geometry:srid=4326
-    stations.27=27|ALIC|Alice Springs|POINT(133.8855 -23.6701)
-    stations.4=4|NORF|Norfolk Island|POINT(167.9388 -29.0434)
-    stations.12=12|COCO|Cocos|POINT(96.8339 -12.1883)
-    stations.31=31|ALBY|Albany|POINT(117.8102 -34.9502)
+```properties
+_=id:Integer,code:String,name:String,location:Geometry:srid=4326
+stations.27=27|ALIC|Alice Springs|POINT(133.8855 -23.6701)
+stations.4=4|NORF|Norfolk Island|POINT(167.9388 -29.0434)
+stations.12=12|COCO|Cocos|POINT(96.8339 -12.1883)
+stations.31=31|ALBY|Albany|POINT(117.8102 -34.9502)
+```
 
 - Blank lines are not permitted anywhere in the file.
 - The first line of the property file begins with `_=` and defines the type information required to interpret the following lines.

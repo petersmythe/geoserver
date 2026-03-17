@@ -18,9 +18,11 @@ With this you will get the default monitor config installed automatically in `sr
 
 Then you need to configure the `monitor-kafka` extension for it with:
 
-    storage=kafka
-    kafka.bootstrap.servers=localhost:9092
-    kafka.schema.registry.url=http://localhost:8081
+```properties
+storage=kafka
+kafka.bootstrap.servers=localhost:9092
+kafka.schema.registry.url=http://localhost:8081
+```
 
 Create your topic with:
 

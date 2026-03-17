@@ -21,18 +21,20 @@ This will expand the structure of the `workspaces` folder in the GeoServer data 
 
 The file layer.xml must have the following contents: :
 
-    <layer>
-    <id>[mylayerid]</id>
-    <name>[mylayername]</name>
-    <path>/</path>
-    <type>VECTOR</type>
-    <defaultStyle>
-        <name>[mydefaultstyle]</name>
-    </defaultStyle>
-    <resource class="featureType">
-        <id>[myfeaturetypeid]</id>
-    </resource>
-    <enabled>true</enabled>
+```xml
+<layer>
+<id>[mylayerid]</id>
+<name>[mylayername]</name>
+<path>/</path>
+<type>VECTOR</type>
+<defaultStyle>
+    <name>[mydefaultstyle]</name>
+</defaultStyle>
+<resource class="featureType">
+    <id>[myfeaturetypeid]</id>
+</resource>
+<enabled>true</enabled>
+```
 <attribution>
         <logoWidth>0</logoWidth>
         <logoHeight>0</logoHeight>
@@ -123,37 +125,39 @@ Read [GetFeatureInfo](../../services/wms/reference.md#wms_getfeatureinfo) for ge
 
 Read the tutorial on [Freemarker Templates](../../tutorials/freemarker.md) for more information on how to use the freemarker templates. Freemarker templates support recursive calls, which can be useful for templating complex content. For example, the following freemarker template creates a table of features with a column for each property, and will create another table inside each cell that contains a feature as property: :
 
-    <#-- 
-    Macro's used for content
-    -->
+```
+<#-- 
+Macro's used for content
+-->
 
-    <#macro property node>
-        <#if !node.isGeometry>
-          <#if node.isComplex>      
-          <td> <@feature node=node.rawValue type=node.type /> </td>  
-          <#else>
-          <td>${node.value?string}</td>
-          </#if>
-        </#if>
-    </#macro>
-
-    <#macro header typenode>
-    <caption class="featureInfo">${typenode.name}</caption>
-      <tr>
-      <th>fid</th>
-    <#list typenode.attributes as attribute>
-      <#if !attribute.isGeometry>
-        <#if attribute.prefix == "">      
-            <th >${attribute.name}</th>
-        <#else>
-            <th >${attribute.prefix}:${attribute.name}</th>
-        </#if>
+<#macro property node>
+    <#if !node.isGeometry>
+      <#if node.isComplex>      
+      <td> <@feature node=node.rawValue type=node.type /> </td>  
+      <#else>
+      <td>${node.value?string}</td>
       </#if>
-    </#list>
-      </tr>
-    </#macro>
+    </#if>
+</#macro>
 
-    <#macro feature node type>
+<#macro header typenode>
+<caption class="featureInfo">${typenode.name}</caption>
+  <tr>
+  <th>fid</th>
+<#list typenode.attributes as attribute>
+  <#if !attribute.isGeometry>
+    <#if attribute.prefix == "">      
+        <th >${attribute.name}</th>
+    <#else>
+        <th >${attribute.prefix}:${attribute.name}</th>
+    </#if>
+  </#if>
+</#list>
+  </tr>
+</#macro>
+
+<#macro feature node type>
+```
 <table class="featureInfo">
       <@header typenode=type />
       <tr>
@@ -172,20 +176,24 @@ Read the tutorial on [Freemarker Templates](../../tutorials/freemarker.md) for m
 <table class="featureInfo">
       <@header typenode=type />
 
-    <#assign odd = false>
-    <#list features as feature>
-      <#if odd>
-        <tr class="odd">
-      <#else>
-        <tr>
-      </#if>
-      <#assign odd = !odd>
+```
+<#assign odd = false>
+<#list features as feature>
+  <#if odd>
+    <tr class="odd">
+  <#else>
+    <tr>
+  </#if>
+  <#assign odd = !odd>
 
-      <td>${feature.fid}</td>    
-      <#list feature.attributes as attribute>
-        <@property node=attribute />
-      </#list>
-      </tr>
-    </#list>
+  <td>${feature.fid}</td>    
+  <#list feature.attributes as attribute>
+    <@property node=attribute />
+  </#list>
+  </tr>
+</#list>
+```
 </table>
-    <br/>
+```xml
+<br/>
+```

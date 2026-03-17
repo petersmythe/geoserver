@@ -6,18 +6,20 @@ See [Mapping Files](../../services/csw/features.md#csw_mapping_file) for basic i
 
 Below is an example of an ISO Metadata Profile Mapping File:
 
-    @fileIdentifier.CharacterString=id
-    identificationInfo.MD_DataIdentification.citation.CI_Citation.title.CharacterString=title
-    identificationInfo.MD_DataIdentification.citation.CI_Citation.alternateTitle.CharacterString=list(description,alias,strConcat('##',title)) 
-    identificationInfo.MD_DataIdentification.descriptiveKeywords.MD_Keywords.keyword.CharacterString=keywords 
-    identificationInfo.MD_DataIdentification.abstract.CharacterString=abstract
-    $dateStamp.Date= if_then_else ( isNull("metadata.date") , 'Unknown', "metadata.date")
-    hierarchyLevel.MD_ScopeCode.@codeListValue='http://purl.org/dc/dcmitype/Dataset'
-    $contact.CI_ResponsibleParty.individualName.CharacterString=
-    identificationInfo.MD_DataIdentification.resourceConstraints[0].MD_LegalConstraints.accessConstraints.MD_RestrictionCode=
-    identificationInfo.MD_DataIdentification.resourceConstraints[1].MD_SecurityConstraints.classification.MD_ClassificationCode=
-    identificationInfo.MD_DataIdentification.citation.CI_Citation.date%.CI_Date.date.Date=lapply("metadata.citation-date", if_then_else(isNull("."), "Expression/NIL", dateFormat('YYYY-MM-dd', ".")))
-    identificationInfo.MD_DataIdentification.descriptiveKeywords.MD_Keywords.keyword.CharacterString=list(keywords, if_then_else(equalTo(typeOf("."), 'FeatureTypeInfo'), 'vector', 'raster'))
+```
+@fileIdentifier.CharacterString=id
+identificationInfo.MD_DataIdentification.citation.CI_Citation.title.CharacterString=title
+identificationInfo.MD_DataIdentification.citation.CI_Citation.alternateTitle.CharacterString=list(description,alias,strConcat('##',title)) 
+identificationInfo.MD_DataIdentification.descriptiveKeywords.MD_Keywords.keyword.CharacterString=keywords 
+identificationInfo.MD_DataIdentification.abstract.CharacterString=abstract
+$dateStamp.Date= if_then_else ( isNull("metadata.date") , 'Unknown', "metadata.date")
+hierarchyLevel.MD_ScopeCode.@codeListValue='http://purl.org/dc/dcmitype/Dataset'
+$contact.CI_ResponsibleParty.individualName.CharacterString=
+identificationInfo.MD_DataIdentification.resourceConstraints[0].MD_LegalConstraints.accessConstraints.MD_RestrictionCode=
+identificationInfo.MD_DataIdentification.resourceConstraints[1].MD_SecurityConstraints.classification.MD_ClassificationCode=
+identificationInfo.MD_DataIdentification.citation.CI_Citation.date%.CI_Date.date.Date=lapply("metadata.citation-date", if_then_else(isNull("."), "Expression/NIL", dateFormat('YYYY-MM-dd', ".")))
+identificationInfo.MD_DataIdentification.descriptiveKeywords.MD_Keywords.keyword.CharacterString=list(keywords, if_then_else(equalTo(typeOf("."), 'FeatureTypeInfo'), 'vector', 'raster'))
+```
 
 The full path of each field must be specified (separated with dots). XML attributes are specified with the `@` symbol, similar to the usual XML X-path notation. To avoid confusion with the identifier-symbol at the beginning of a mapping line, use `@` (for an attribute that is not an identifier) or `@@` (for an attribute that is also the identifier) - see the feature catatalog mapping file for an example.
 

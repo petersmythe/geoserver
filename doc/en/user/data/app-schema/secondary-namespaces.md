@@ -18,7 +18,9 @@ The GeoTools encoder does not honour these namespaces and writes out:
 
 The result is c's element being encoded as:
 
-    <null:cElement/>
+```xml
+<null:cElement/>
+```
 
 ## When to configure for secondary namespaces
 
@@ -53,18 +55,22 @@ Contents of these files are as follows:
 
 namespace.xml(uri is a valid uri for the secondary namespace, in this case the sampling namespace uri):
 
-    <namespace>
-        <id>sa_workspace</id>   
-        <prefix>sa</prefix>
-        <uri>http://www.opengis.net/sampling/1.0</uri>
-    </namespace> 
+```xml
+<namespace>
+    <id>sa_workspace</id>   
+    <prefix>sa</prefix>
+    <uri>http://www.opengis.net/sampling/1.0</uri>
+</namespace> 
+```
 
 workspace.xml:
 
-    <workspace>
-        <id>sa_workspace</id>   
-        <name>sa</name>
-    </workspace> 
+```xml
+<workspace>
+    <id>sa_workspace</id>   
+    <name>sa</name>
+</workspace> 
+```
 
 That's it.
 

@@ -20,10 +20,12 @@ We need one mapping file per complex type that is going to be nested, including 
 
 Non-feature types that cannot be individually accessed (eg. CompositionPart as a Data Type) can still be mapped separately for its reusability. For this case, the containing feature type has to include these types in its mapping file. The include tag should contain the nested mapping file path relative to the location of the containing type mapping file. In [GeologicUnit_MappingFile.xml](GeologicUnit_MappingFile.xml):
 
-    <includedTypes>   
-        <Include>CGITermValue_MappingFile.xml</Include>
-        <Include>CompositionPart_MappingFile.xml</Include>
-    </includedTypes>
+```xml
+<includedTypes>   
+    <Include>CGITermValue_MappingFile.xml</Include>
+    <Include>CompositionPart_MappingFile.xml</Include>
+</includedTypes>
+```
 
 Feature types that can be individually accessed don't need to be explicitly included in the mapping file, as they would be configured for GeoServer to find. Such types would have their mapping file associated with a corresponding datastore.xml file, which means that it can be found from the data store registry. In other words, if the type is associated with a datastore.xml file, it doesn't need to be explicitly included if referred from another mapping file.
 
@@ -57,41 +59,45 @@ In the source expression tag:
 
 In GeologicEvent (the container feature) mapping:
 
-    <AttributeMapping>
-      <targetAttribute>gsml:eventEnvironment</targetAttribute>
-      <sourceExpression>
-          <OCQL>id</OCQL>
-          <linkElement>gsml:CGI_TermValue</linkElement>
-          <linkField>FEATURE_LINK[1]</linkField>
-      </sourceExpression>
-      <isMultiple>true</isMultiple>
-    </AttributeMapping>
-    <AttributeMapping>
-      <targetAttribute>gsml:eventProcess</targetAttribute>
-      <sourceExpression>
-          <OCQL>id</OCQL>
-          <linkElement>gsml:CGI_TermValue</linkElement>
-          <linkField>FEATURE_LINK[2]</linkField>
-      </sourceExpression>
-      <isMultiple>true</isMultiple>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gsml:eventEnvironment</targetAttribute>
+  <sourceExpression>
+      <OCQL>id</OCQL>
+      <linkElement>gsml:CGI_TermValue</linkElement>
+      <linkField>FEATURE_LINK[1]</linkField>
+  </sourceExpression>
+  <isMultiple>true</isMultiple>
+</AttributeMapping>
+<AttributeMapping>
+  <targetAttribute>gsml:eventProcess</targetAttribute>
+  <sourceExpression>
+      <OCQL>id</OCQL>
+      <linkElement>gsml:CGI_TermValue</linkElement>
+      <linkField>FEATURE_LINK[2]</linkField>
+  </sourceExpression>
+  <isMultiple>true</isMultiple>
+</AttributeMapping>
+```
 
 In CGI_TermValue (the nested feature) mapping:
 
-    <AttributeMapping>
-      <!-- FEATURE_LINK[1] is referred by geologic event as environment -->
-      <targetAttribute>FEATURE_LINK[1]</targetAttribute>
-      <sourceExpression>
-          <OCQL>ENVIRONMENT_OWNER</OCQL>
-      </sourceExpression>
-    </AttributeMapping>
-    <AttributeMapping>
-      <!-- FEATURE_LINK[2] is referred by geologic event as process -->
-      <targetAttribute>FEATURE_LINK[2]</targetAttribute>
-      <sourceExpression><
-          <OCQL>PROCESS_OWNER</OCQL>
-      </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <!-- FEATURE_LINK[1] is referred by geologic event as environment -->
+  <targetAttribute>FEATURE_LINK[1]</targetAttribute>
+  <sourceExpression>
+      <OCQL>ENVIRONMENT_OWNER</OCQL>
+  </sourceExpression>
+</AttributeMapping>
+<AttributeMapping>
+  <!-- FEATURE_LINK[2] is referred by geologic event as process -->
+  <targetAttribute>FEATURE_LINK[2]</targetAttribute>
+  <sourceExpression><
+      <OCQL>PROCESS_OWNER</OCQL>
+  </sourceExpression>
+</AttributeMapping>
+```
 
 The ENVIRONMENT_OWNER column in CGI_TermValue view corresponds to the ID column in GeologicEvent view.
 
@@ -120,89 +126,97 @@ The ENVIRONMENT_OWNER column in CGI_TermValue view corresponds to the ID column 
 
 The system field *FEATURE_LINK* doesn't get encoded in the output:
 
-    <gsml:GeologicEvent>                      
-      <gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalUnitId">gu.25699</gml:name>
-      <gsml:eventAge>
-        <gsml:CGI_TermRange>
-           <gsml:lower>
-              <gsml:CGI_TermValue>   
-                <gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">Oligocene</gsml:value>
-              </gsml:CGI_TermValue>
-           </gsml:lower>
-           <gsml:upper>
-              <gsml:CGI_TermValue>
-                <gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">Paleocene</gsml:value>
-              </gsml:CGI_TermValue>
-           </gsml:upper>
-        </gsml:CGI_TermRange>
-      </gsml:eventAge>
-      <gsml:eventEnvironment>
-        <gsml:CGI_TermValue>
-           <gsml:value>fluvial</gsml:value>
-        </gsml:CGI_TermValue>
-      </gsml:eventEnvironment>
-      <gsml:eventProcess>
-        <gsml:CGI_TermValue>
-           <gsml:value>channelled stream flow</gsml:value>
-        </gsml:CGI_TermValue>
-      </gsml:eventProcess>
+```xml
+<gsml:GeologicEvent>                      
+  <gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalUnitId">gu.25699</gml:name>
+  <gsml:eventAge>
+    <gsml:CGI_TermRange>
+       <gsml:lower>
+          <gsml:CGI_TermValue>   
+            <gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">Oligocene</gsml:value>
+          </gsml:CGI_TermValue>
+       </gsml:lower>
+       <gsml:upper>
+          <gsml:CGI_TermValue>
+            <gsml:value codeSpace="urn:cgi:classifierScheme:ICS:StratChart:2008">Paleocene</gsml:value>
+          </gsml:CGI_TermValue>
+       </gsml:upper>
+    </gsml:CGI_TermRange>
+  </gsml:eventAge>
+  <gsml:eventEnvironment>
+    <gsml:CGI_TermValue>
+       <gsml:value>fluvial</gsml:value>
+    </gsml:CGI_TermValue>
+  </gsml:eventEnvironment>
+  <gsml:eventProcess>
+    <gsml:CGI_TermValue>
+       <gsml:value>channelled stream flow</gsml:value>
+    </gsml:CGI_TermValue>
+  </gsml:eventProcess>
+```
 
 **Example Two**: Using existing field (gml:name) to hold the foreign key, see [MappedFeature_MappingFile.xml](MappedFeature_MappingFile.xml):
 
 gsml:specification links to gml:name in GeologicUnit:
 
-    <AttributeMapping>
-      <targetAttribute>gsml:specification</targetAttribute> 
-      <sourceExpression>
-        <OCQL>GEOLOGIC_UNIT_ID</OCQL> 
-        <linkElement>gsml:GeologicUnit</linkElement> 
-        <linkField>gml:name[3]</linkField> 
-      </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gsml:specification</targetAttribute> 
+  <sourceExpression>
+    <OCQL>GEOLOGIC_UNIT_ID</OCQL> 
+    <linkElement>gsml:GeologicUnit</linkElement> 
+    <linkField>gml:name[3]</linkField> 
+  </sourceExpression>
+</AttributeMapping>
+```
 
 In [GeologicUnit_MappingFile.xml](GeologicUnit_MappingFile.xml):
 
 GeologicUnit has 3 gml:name properties in the mapping file, so each has a code space to clarify them:
 
-    <AttributeMapping>
-      <targetAttribute>gml:name[1]</targetAttribute> 
-      <sourceExpression>
-        <OCQL>ABBREVIATION</OCQL> 
-      </sourceExpression>
-      <ClientProperty>
-        <name>codeSpace</name> 
-        <value>'urn:cgi:classifierScheme:GSV:GeologicalUnitCode'</value> 
-      </ClientProperty>
-    </AttributeMapping>
-    <AttributeMapping>
-      <targetAttribute>gml:name[2]</targetAttribute> 
-      <sourceExpression>
-        <OCQL>NAME</OCQL> 
-      </sourceExpression>
-      <ClientProperty>
-        <name>codeSpace</name> 
-        <value>'urn:cgi:classifierScheme:GSV:GeologicalUnitName'</value> 
-      </ClientProperty>
-    </AttributeMapping>
-    <AttributeMapping>
-      <targetAttribute>gml:name[3]</targetAttribute> 
-      <sourceExpression>
-        <OCQL>id</OCQL> 
-      </sourceExpression>
-      <ClientProperty>
-        <name>codeSpace</name> 
-        <value>'urn:cgi:classifierScheme:GSV:MappedFeatureReference'</value> 
-      </ClientProperty>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gml:name[1]</targetAttribute> 
+  <sourceExpression>
+    <OCQL>ABBREVIATION</OCQL> 
+  </sourceExpression>
+  <ClientProperty>
+    <name>codeSpace</name> 
+    <value>'urn:cgi:classifierScheme:GSV:GeologicalUnitCode'</value> 
+  </ClientProperty>
+</AttributeMapping>
+<AttributeMapping>
+  <targetAttribute>gml:name[2]</targetAttribute> 
+  <sourceExpression>
+    <OCQL>NAME</OCQL> 
+  </sourceExpression>
+  <ClientProperty>
+    <name>codeSpace</name> 
+    <value>'urn:cgi:classifierScheme:GSV:GeologicalUnitName'</value> 
+  </ClientProperty>
+</AttributeMapping>
+<AttributeMapping>
+  <targetAttribute>gml:name[3]</targetAttribute> 
+  <sourceExpression>
+    <OCQL>id</OCQL> 
+  </sourceExpression>
+  <ClientProperty>
+    <name>codeSpace</name> 
+    <value>'urn:cgi:classifierScheme:GSV:MappedFeatureReference'</value> 
+  </ClientProperty>
+</AttributeMapping>
+```
 
 The output with multiple gml:name properties and their code spaces:
 
-    <gsml:specification>
-      <gsml:GeologicUnit gml:id="gu.25678">
-          <gml:description>Olivine basalt, tuff, microgabbro, minor sedimentary rocks</gml:description>
-          <gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalUnitCode">-Py</gml:name>
-          <gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalUnitName">Yaugher Volcanic Group</gml:name>
-          <gml:name codeSpace="urn:cgi:classifierScheme:GSV:MappedFeatureReference">gu.25678</gml:name>
+```xml
+<gsml:specification>
+  <gsml:GeologicUnit gml:id="gu.25678">
+      <gml:description>Olivine basalt, tuff, microgabbro, minor sedimentary rocks</gml:description>
+      <gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalUnitCode">-Py</gml:name>
+      <gml:name codeSpace="urn:cgi:classifierScheme:GSV:GeologicalUnitName">Yaugher Volcanic Group</gml:name>
+      <gml:name codeSpace="urn:cgi:classifierScheme:GSV:MappedFeatureReference">gu.25678</gml:name>
+```
 
 If this is the "one" side of a one-to-many or many-to-one database relationship, we can use the feature id as the source expression field, as you can see in above examples. See [one_to_many_relationship.JPG](one_to_many_relationship.JPG) as an illustration.
 
@@ -233,15 +247,17 @@ When nesting another complex type, you need to specify in your source expression
 
 In Geologic Unit mapping file:
 
-    <AttributeMapping>
-        <targetAttribute>gsml:composition</targetAttribute>
-        <sourceExpression>
-            <OCQL>id</OCQL>
-            <linkElement>gsml:CompositionPart</linkElement>
-            <linkField>FEATURE_LINK</linkField>
-        </sourceExpression>
-        <isMultiple>true</isMultiple>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>gsml:composition</targetAttribute>
+    <sourceExpression>
+        <OCQL>id</OCQL>
+        <linkElement>gsml:CompositionPart</linkElement>
+        <linkField>FEATURE_LINK</linkField>
+    </sourceExpression>
+    <isMultiple>true</isMultiple>
+</AttributeMapping>
+```
 
 - *OCQL*: id is the geologic unit id
 - *linkElement*: links to gsml:CompositionPart type
@@ -294,15 +310,17 @@ You don't need to chain multi-valued simple properties and map them separately. 
 
 Filters would work as usual. You can supply the full XPath of the attribute, and the code would handle this. E.g. You can run the following filter on gsml:MappedFeatureUseCase2A:
 
-    <ogc:Filter>
-          <ogc:PropertyIsEqualTo>
-              <ogc:Function name="contains_text">
-                  <ogc:PropertyName>gsml:specification/gsml:GeologicUnit/gml:description</ogc:PropertyName>
-                  <ogc:Literal>Olivine basalt, tuff, microgabbro, minor sedimentary rocks</ogc:Literal>
-              </ogc:Function>
-              <ogc:Literal>1</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-    </ogc:Filter>
+```xml
+<ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+          <ogc:Function name="contains_text">
+              <ogc:PropertyName>gsml:specification/gsml:GeologicUnit/gml:description</ogc:PropertyName>
+              <ogc:Literal>Olivine basalt, tuff, microgabbro, minor sedimentary rocks</ogc:Literal>
+          </ogc:Function>
+          <ogc:Literal>1</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+</ogc:Filter>
+```
 
 ## Multi-valued properties by reference (*xlink:href*)
 
@@ -346,9 +364,11 @@ As we are getting the client property value from a nested feature, we have to se
 
 This would be the encoded result for gsml:GeologicUnit:
 
-    <gsml:GeologicUnit gml:id="gu.25678">
-             <gsml:occurrence xlink:href="urn:cgi:feature:MappedFeature:mf2"/>
-             <gsml:occurrence xlink:href="urn:cgi:feature:MappedFeature:mf3"/>
+```xml
+<gsml:GeologicUnit gml:id="gu.25678">
+         <gsml:occurrence xlink:href="urn:cgi:feature:MappedFeature:mf2"/>
+         <gsml:occurrence xlink:href="urn:cgi:feature:MappedFeature:mf3"/>
+```
 
 !!! note
 

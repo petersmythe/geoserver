@@ -4,29 +4,31 @@ In this section is described how to implement a new *RESTUploadPathMapper* sub-c
 
 This is the *RESTUploadPathMapper* interface:
 
+```java
+/**
+ * Plugin interface used to transform the position of files during rest uploads
+ */
+public interface RESTUploadPathMapper{
     /**
-     * Plugin interface used to transform the position of files during rest uploads
+     * Remaps the position of a store path. The implementor is free to append, modify 
+     * or replace the store root directory, REST upload will append workspace/store to 
+     * it
+     * 
+     * @throws IOException
      */
-    public interface RESTUploadPathMapper{
-        /**
-         * Remaps the position of a store path. The implementor is free to append, modify 
-         * or replace the store root directory, REST upload will append workspace/store to 
-         * it
-         * 
-         * @throws IOException
-         */
-        public void mapStorePath(StringBuilder rootDir, String workspace, String store,
-            Map<String, String> storeParams) throws IOException;
+    public void mapStorePath(StringBuilder rootDir, String workspace, String store,
+        Map<String, String> storeParams) throws IOException;
 
-        /**
-         * Remaps the position of a file inside a store (e.g., a image being harvested into 
-         * a mosaic. The implementor is free to alter the item path.
-         * 
-         * @throws IOException
-         */
-        public void mapItemPath(String workspace, String store,
-            Map<String, String> storeParams, StringBuilder itemPath, String itemName) throws IOException;
-    }
+    /**
+     * Remaps the position of a file inside a store (e.g., a image being harvested into 
+     * a mosaic. The implementor is free to alter the item path.
+     * 
+     * @throws IOException
+     */
+    public void mapItemPath(String workspace, String store,
+        Map<String, String> storeParams, StringBuilder itemPath, String itemName) throws IOException;
+}
+```
 
 ## Implementation
 
@@ -48,9 +50,11 @@ The steps for creating a new **RESTUploadPathMapper** implementation are:
 
 2.  Configure it as a Spring Bean inside the *applicationContext*. For example:
 
-        <bean id="ECQLRUPathMapper" class="org.geoserver.rest.ecql.RESTUploadECQLPathMapper">
-          <constructor-arg ref="catalog"/>
-        </bean>
+    ```xml
+<bean id="ECQLRUPathMapper" class="org.geoserver.rest.ecql.RESTUploadECQLPathMapper">
+  <constructor-arg ref="catalog"/>
+</bean>
+    ```
 
 If any optional parameter requires to be configured, then a GUI panel must be created using Wicket. The panel will be added to the Global and WorkSpace Settings configuration page.
 
@@ -68,13 +72,15 @@ The steps for creating the GUI panel are:
 
 2.  Definition of a Spring Bean which will be an instance of the *SettingsPluginPanelInfo* class and will have the class defined above as component class (*priority* property can be avoided). For example:
 
-        <bean id="restECQLSettingsPanel" class="org.geoserver.web.data.settings.SettingsPluginPanelInfo">
-          <description>This bean adds the necessary form fields to REST Settings</description>
-          <property name="id" value="restECQLSettingsPanel"/>
-          <property name="titleKey" value="restECQLsettings"/>
-          <property name="componentClass" value="org.geoserver.rest.web.RESTECQLSettingsPanel"/>
-          <property name="priority" value="1"/>
-        </bean>
+    ```xml
+<bean id="restECQLSettingsPanel" class="org.geoserver.web.data.settings.SettingsPluginPanelInfo">
+  <description>This bean adds the necessary form fields to REST Settings</description>
+  <property name="id" value="restECQLSettingsPanel"/>
+  <property name="titleKey" value="restECQLsettings"/>
+  <property name="componentClass" value="org.geoserver.rest.web.RESTECQLSettingsPanel"/>
+  <property name="priority" value="1"/>
+</bean>
+    ```
 
 3.  Then the result will be added at the bottom of the GeoServer *Global Settings* and *Edit WorkSpace* Pages:
 

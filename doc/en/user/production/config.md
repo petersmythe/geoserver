@@ -353,13 +353,17 @@ GeoServer provides a number of facilities to control external entity resolution:
 
 - To allow additional external entity ``http`` and ``https`` locations use a comma or bar separated list:
 
-      -DENTITY_RESOLUTION_ALLOWLIST=server1|server2|server3/schemas
+  ```
+-DENTITY_RESOLUTION_ALLOWLIST=server1|server2|server3/schemas
+  ```
 
   These locations are in addition to the default w3c, ogc, and inspire schema locations above. Access is provided to the proxy base url from global settings. Access to local ``file`` references remains restricted.
 
 - To allow all ``http`` and ``https`` entity resolution use ``*`` wildcard:
 
-      -DENTITY_RESOLUTION_ALLOWLIST=*
+  ```
+-DENTITY_RESOLUTION_ALLOWLIST=*
+  ```
 
   Access to local ``file`` references remains restricted.
 

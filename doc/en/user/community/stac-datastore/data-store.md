@@ -30,21 +30,25 @@ The STAC store can then be used as the index of an image mosaic, setting up two 
 
 Here is an example `datastore.properties`, pointing at an existing STAC store already configured in GeoServer:
 
-    StoreName=stac\:dlr-eoc
+```properties
+StoreName=stac\:dlr-eoc
+```
 
 And here is an `indexer.properties`:
 
-    MosaicCRS=EPSG\:4326
-    TimeAttribute=datetime
-    AbsolutePath=true
-    Name=WSF_2019
-    Cog=true
-    Heterogeneous=true
-    HeterogeneousCRS=false
-    TypeName=WSF_2019
-    UseExistingSchema=true
-    LocationAttribute=assets/wsf2019/href
-    MaxInitTiles=10
+```properties
+MosaicCRS=EPSG\:4326
+TimeAttribute=datetime
+AbsolutePath=true
+Name=WSF_2019
+Cog=true
+Heterogeneous=true
+HeterogeneousCRS=false
+TypeName=WSF_2019
+UseExistingSchema=true
+LocationAttribute=assets/wsf2019/href
+MaxInitTiles=10
+```
 
 Notes about the file contents:
 
@@ -60,67 +64,69 @@ It's also possible to mosaic images whose bands are offered as separate images a
 
 The `datastore.properties` configures two new properties, enabling query caching (as the coverage view machinery will load each band in turn, repeating the same queries):
 
-    StoreName=stac\:dlr-loose
-    QueryCacheMaxAge=10000
-    QueryCacheMaxFeatures=1000
+```properties
+StoreName=stac\:dlr-loose
+QueryCacheMaxAge=10000
+QueryCacheMaxFeatures=1000
+```
 
 The indexer must instead be provided in XML format, to configure multiple coverage and their attributes:
 
-> ``` xml
-> <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-> <Indexer>
->   <domains>
->      <domain name="time">
->        <attributes><attribute>datetime</attribute></attributes>
->      </domain>
->      <domain name="crs">
->        <attributes><attribute>proj:epsg</attribute></attributes>
->      </domain>
->   </domains>
->   <coverages>
->     <coverage>
->       <name>B04</name>
->       <domains>
->         <domain ref="time" />
->         <domain ref="crs" />
->       </domains>
->       <parameters>
->           <parameter name="LocationAttribute" value="assets/B04/href" />
->       </parameters>
->     </coverage>
->     <coverage>
->       <name>B03</name>
->       <domains>
->         <domain ref="time" />
->         <domain ref="crs" />
->       </domains>
->       <parameters>
->           <parameter name="LocationAttribute" value="assets/B03/href" />
->       </parameters>
->     </coverage>
->     <coverage>
->       <name>B02</name>
->       <domains>
->         <domain ref="time" />
->         <domain ref="crs" />
->       </domains>
->       <parameters>
->           <parameter name="LocationAttribute" value="assets/B02/href" />
->       </parameters>
->     </coverage>
->   </coverages>
->   <parameters>
->       <parameter name="MosaicCRS" value="EPSG:4326" />
->       <parameter name="AbsolutePath" value="true" />
->       <parameter name="Cog" value="true" />
->       <parameter name="Heterogeneous" value="true" />
->       <parameter name="HeterogeneousCRS" value="true" />
->       <parameter name="UseExistingSchema" value="true" />
->       <parameter name="TypeName" value="S2_L2A_MSI_COG" />
->       <parameter name="MaxInitTiles" value="10"/>
->   </parameters>
-> </Indexer>
-> ```
+``` xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Indexer>
+  <domains>
+     <domain name="time">
+       <attributes><attribute>datetime</attribute></attributes>
+     </domain>
+     <domain name="crs">
+       <attributes><attribute>proj:epsg</attribute></attributes>
+     </domain>
+  </domains>
+  <coverages>
+    <coverage>
+      <name>B04</name>
+      <domains>
+        <domain ref="time" />
+        <domain ref="crs" />
+      </domains>
+      <parameters>
+          <parameter name="LocationAttribute" value="assets/B04/href" />
+      </parameters>
+    </coverage>
+    <coverage>
+      <name>B03</name>
+      <domains>
+        <domain ref="time" />
+        <domain ref="crs" />
+      </domains>
+      <parameters>
+          <parameter name="LocationAttribute" value="assets/B03/href" />
+      </parameters>
+    </coverage>
+    <coverage>
+      <name>B02</name>
+      <domains>
+        <domain ref="time" />
+        <domain ref="crs" />
+      </domains>
+      <parameters>
+          <parameter name="LocationAttribute" value="assets/B02/href" />
+      </parameters>
+    </coverage>
+  </coverages>
+  <parameters>
+      <parameter name="MosaicCRS" value="EPSG:4326" />
+      <parameter name="AbsolutePath" value="true" />
+      <parameter name="Cog" value="true" />
+      <parameter name="Heterogeneous" value="true" />
+      <parameter name="HeterogeneousCRS" value="true" />
+      <parameter name="UseExistingSchema" value="true" />
+      <parameter name="TypeName" value="S2_L2A_MSI_COG" />
+      <parameter name="MaxInitTiles" value="10"/>
+  </parameters>
+</Indexer>
+```
 
 Some notes about the configuration:
 

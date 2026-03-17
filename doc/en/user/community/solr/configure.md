@@ -82,17 +82,21 @@ This can be done by specifying those as `viewparams`, pretty much like in parame
 
 For example, the following URL:
 
-    http://localhost:8080/geoserver/nurc/wms?service=WMS&version=1.1.0&request=GetMap
-         &layers=nurc:active&styles=geo2&bbox=0.0,0.0,24.0,44.0&width=279&height=512
-         &srs=EPSG:4326&format=application/openlayers
-         &viewparams=fq:security_ss:WEP
+```
+http://localhost:8080/geoserver/nurc/wms?service=WMS&version=1.1.0&request=GetMap
+     &layers=nurc:active&styles=geo2&bbox=0.0,0.0,24.0,44.0&width=279&height=512
+     &srs=EPSG:4326&format=application/openlayers
+     &viewparams=fq:security_ss:WEP
+```
 
 Will send down to SOLR a query looking like:
 
-    omitHeader=true&fl=geo,id&q=*:*&rows=2147483647&sort=id asc
-    &fq=status_s:active AND geo:"Intersects(POLYGON ((-0.125 -0.5333333333333333, -0.125 44.53333333333333, 
-    24.125 44.53333333333333, 24.125 -0.5333333333333333, -0.125 -0.5333333333333333)))"
-    &fq=security_ss:WEP&cursorMark=*
+```
+omitHeader=true&fl=geo,id&q=*:*&rows=2147483647&sort=id asc
+&fq=status_s:active AND geo:"Intersects(POLYGON ((-0.125 -0.5333333333333333, -0.125 44.53333333333333, 
+24.125 44.53333333333333, 24.125 -0.5333333333333333, -0.125 -0.5333333333333333)))"
+&fq=security_ss:WEP&cursorMark=*
+```
 
 You can notice that:
 

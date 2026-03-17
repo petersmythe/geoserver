@@ -17,17 +17,19 @@ With this setup the polygonal geometry will still be used for all spatial filter
 
 Then, a style with scale dependencies can be setup in order to fetch only then centroids when fairly zoomed out, like in the following CSS example: :
 
-    [@scale > 50000] {
-      geometry: [centroid];
-      mark: symbol(square);
-    }
-    :mark {
-      fill: red;
-      size: 3;
-    }​
-    [@scale <= 50000] {
-      fill: red;
-      stroke: black;
-    }
+```json
+[@scale > 50000] {
+  geometry: [centroid];
+  mark: symbol(square);
+}
+:mark {
+  fill: red;
+  size: 3;
+}​
+[@scale <= 50000] {
+  fill: red;
+  stroke: black;
+}
+```
 
 Using this style the `spatial` field will still be used to resolve the BBOX filter implicit in the WMS requests, but only the much smaller `centroid` one will be transferred to GeoServer for rendering.

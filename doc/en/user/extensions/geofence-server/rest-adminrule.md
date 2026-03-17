@@ -12,15 +12,17 @@ Both XML and JSON are supported for transfer of data objects. The default is XML
 
 Encoding of an AdminRule in XML:
 
-    <AdminRule>
-        <id>..</id>
-        <priority>..</priority>
-        <userName>..</userName>
-        <roleName>..</roleName>
-        <addressRange>..</addressRange>
-        <workspace>..</workspace>
-        <access>..</access>
-    </AdminRule>
+```xml
+<AdminRule>
+    <id>..</id>
+    <priority>..</priority>
+    <userName>..</userName>
+    <roleName>..</roleName>
+    <addressRange>..</addressRange>
+    <workspace>..</workspace>
+    <access>..</access>
+</AdminRule>
+```
 
 Encoding of a rule in JSON:
 
@@ -34,11 +36,13 @@ In case a rule that has "any" ("*") for a particular field the field is either n
 
 Encoding of a list of rules in XML:
 
-    <AdminRules count="n">
-        <AdminRule> ... </AdminRule>
-        <AdminRule> ... </AdminRule>
-        ...     
-    </AdminRules>
+```xml
+<AdminRules count="n">
+    <AdminRule> ... </AdminRule>
+    <AdminRule> ... </AdminRule>
+    ...     
+</AdminRules>
+```
 
 The result of a count would not include the actual <AdminRule> tags.
 

@@ -60,32 +60,38 @@ This tutorial uses the [curl](http://curl.haxx.se/) utility to issue HTTP reques
 
 1.  Execute the following curl command (with a wrong password):
 
-        curl -v -H "X-Credentials: private-user=admin&private-pw=wrong" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
+    ```bash
+curl -v -H "X-Credentials: private-user=admin&private-pw=wrong" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
+    ```
 
-    The result should be a 403 response signaling that access is denied. The output should look something like the following:
+```html
+The result should be a 403 response signaling that access is denied. The output should look something like the following:
 
-        * About to connect() to localhost port 8080 (#0)
-        *   Trying ::1... connected
-        > GET /geoserver/wfs?request=getcapabilities HTTP/1.1
-        > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
-        > Host: localhost:8080
-        > Accept: */*
-        > 
-        < HTTP/1.1 403 Access Denied
-        < Content-Type: text/html; charset=iso-8859-1
-        < Content-Length: 1407
-        < Server: Jetty(6.1.8)
-        < 
-        <html>
-        <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-        <title>Error 403 Access Denied</title>
-        </head>
-            ...
+    * About to connect() to localhost port 8080 (#0)
+    *   Trying ::1... connected
+    > GET /geoserver/wfs?request=getcapabilities HTTP/1.1
+    > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+    > Host: localhost:8080
+    > Accept: */*
+    > 
+    < HTTP/1.1 403 Access Denied
+    < Content-Type: text/html; charset=iso-8859-1
+    < Content-Length: 1407
+    < Server: Jetty(6.1.8)
+    < 
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Error 403 Access Denied</title>
+    </head>
+        ...
+```
 
 2.  Execute the same command but specify the right password.:
 
-        curl -v -H "X-Credentials: private-user=admin&private-pw=geoserver" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
+    ```bash
+curl -v -H "X-Credentials: private-user=admin&private-pw=geoserver" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
+    ```
 
     The result should be a successful authentication and contain the normal WMS capabilities response.
 
@@ -93,16 +99,16 @@ This tutorial uses the [curl](http://curl.haxx.se/) utility to issue HTTP reques
 
 This can be done with an HTTPD configuration that looks like the following:
 
-> ``` apacheconf
-> <Location  /geoserver>
->    Session On
->    SessionEnv On
->    SessionHeader X-Replace-Session
->    SessionCookieName session path=/
->    SessionCryptoPassphrase secret
->    RequestHeader set X-Credentials "%{HTTP_SESSION}e"
-> </Location>
-> ```
+``` apacheconf
+<Location  /geoserver>
+   Session On
+   SessionEnv On
+   SessionHeader X-Replace-Session
+   SessionCookieName session path=/
+   SessionCryptoPassphrase secret
+   RequestHeader set X-Credentials "%{HTTP_SESSION}e"
+</Location>
+```
 
 This configuration adds a new ``X-Credentials`` Request Header to each GeoServer request. The request header will contain the HTTPD Session information in a special format.
 

@@ -156,26 +156,26 @@ See [troubleshooting](../advanced.md#community_oidc_troubleshooting).
 
 1.  Typical MS ID Token. Note that the roles have been put in the "roles" claim.
 
-    > ``` json
-    > {
-    >     "aud": "594c52eb-e3a4-4c74-bbdf-ccc803383c99",
-    >     "iss": "https://login.microsoftonline.com/87f91494-c0dc-493e-83c3-9226c111850a/v2.0",
-    >     "iat": 1759773505,
-    >     "nbf": 1759773505,
-    >     "exp": 1759777405,
-    >     "email": "david.blasby@geocat.net",
-    >     "name": "david blasby",
-    >     "nonce": "m3HsvD9JqU4uWbP1oPzP3Wb-n5u-aXdJAd",
-    >     "oid": "6ac682b6-6048-4eb6-b4ca-2538e33cc",
-    >     "preferred_username": "david.blasby@geocat.net",
-    >     "rh": "1.AV8AlBT5h9zAPkmDw5ImwRGFCutSTFmk43RMu9_PAXZfAA.",
-    >     "roles": [
-    >         "geoserverAdmin"
-    >     ],
-    >     "sid": "009988c9-ae02-a521-d4cc-9aaf1a722",
-    >     "sub": "oV3o_mu_PccTipAPJSpLJxzdzV2LKZv8mDQauGnY",
-    >     "tid": "87f91494-c0dc-493e-83c3-9226c10a",
-    >     "uti": "DfmjGZesdUODrGNYAA",
-    >     "ver": "2.0"
-    > }
-    > ```
+    ``` json
+    {
+        "aud": "594c52eb-e3a4-4c74-bbdf-ccc803383c99",
+        "iss": "https://login.microsoftonline.com/87f91494-c0dc-493e-83c3-9226c111850a/v2.0",
+        "iat": 1759773505,
+        "nbf": 1759773505,
+        "exp": 1759777405,
+        "email": "david.blasby@geocat.net",
+        "name": "david blasby",
+        "nonce": "m3HsvD9JqU4uWbP1oPzP3Wb-n5u-aXdJAd",
+        "oid": "6ac682b6-6048-4eb6-b4ca-2538e33cc",
+        "preferred_username": "david.blasby@geocat.net",
+        "rh": "1.AV8AlBT5h9zAPkmDw5ImwRGFCutSTFmk43RMu9_PAXZfAA.",
+        "roles": [
+            "geoserverAdmin"
+        ],
+        "sid": "009988c9-ae02-a521-d4cc-9aaf1a722",
+        "sub": "oV3o_mu_PccTipAPJSpLJxzdzV2LKZv8mDQauGnY",
+        "tid": "87f91494-c0dc-493e-83c3-9226c10a",
+        "uti": "DfmjGZesdUODrGNYAA",
+        "ver": "2.0"
+    }
+    ```

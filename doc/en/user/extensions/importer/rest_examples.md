@@ -6,7 +6,7 @@ In order to initiate an import of the `c:\data\tasmania` directory into the exis
 
 1.  The following JSON will be POSTed to GeoServer.
 
-    ``` {.json caption="import.json"}
+    ```json
     {
        "import": {
           "targetWorkspace": {
@@ -24,11 +24,11 @@ In order to initiate an import of the `c:\data\tasmania` directory into the exis
 
 2.  This curl command can be used for the purpose:
 
-> ``` bash
-> curl -u admin:geoserver -XPOST -H "Content-type: application/json" \
->   -d @import.json \
->   "http://localhost:8080/geoserver/rest/imports"
-> ```
+``` bash
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" \
+  -d @import.json \
+  "http://localhost:8080/geoserver/rest/imports"
+```
 >
 > The importer will locate the files to be imported, and automatically prepare the tasks, returning the following response:
 >
@@ -142,7 +142,7 @@ In this case, let's assume we have a single shapefile, **`tasmania_cities.shp`**
 
 1.  We are going to post the following import definition:
 
-    ``` {.json caption="import.json"}
+    ```json
     {
        "import": {
           "targetWorkspace": {
@@ -255,7 +255,7 @@ In this case, let's assume we have a single shapefile, **`tasmania_cities.shp`**
 
 4.  Use the following json snippet to update the SRS:
 
-    ``` {.bash caption="layerUpdate.json"}
+    ```bash
     {
        layer : {
           srs: "EPSG:4326"
@@ -391,7 +391,7 @@ This example shows the process for uploading a Shapefile (in a zip file) to an e
 
     Create the following JSON file:
 
-    ``` {.json caption="target.json"}
+    ```json
     {
       "dataStore": {
         "name":"postgis"
@@ -631,7 +631,7 @@ To update the `values` layer with new content:
       http://localhost:8080/geoserver/rest/imports/1.json
     ```
 
-    ``` {.json emphasize-lines="15"}
+    ```json hl_lines="15"
     {
       "import": {
         "id": 2,
@@ -668,7 +668,7 @@ To update the `values` layer with new content:
       http://localhost:8080/geoserver/rest/imports/1/tasks/0.json
     ```
 
-    ``` {.json emphasize-lines="5"}
+    ```json hl_lines="5"
     {
       "task": {
         "id": 0,
@@ -712,7 +712,7 @@ To update the `values` layer with new content:
       http://localhost:8080/geoserver/rest/imports/1/tasks/0/layer.json
     ```
 
-    ``` {.json emphasize-lines="3,5,6,7"}
+    ```json hl_lines="3 5 6 7"
     {
       "layer": {
         "name": "values",
@@ -777,55 +777,71 @@ A data supplier is periodically providing GeoTiffs that we need to configure in 
 
 First, we are going to create a empty import with no store as the target:
 
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @import.json "http://localhost:8080/geoserver/rest/imports"
+```bash
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @import.json "http://localhost:8080/geoserver/rest/imports"
+```
 
 Where import.json is:
 
-    {
-       "import": {
-          "targetWorkspace": {
-             "workspace": {
-                "name": "sf"
-             }
-          }
-       }
-    }
+```json
+{
+   "import": {
+      "targetWorkspace": {
+         "workspace": {
+            "name": "sf"
+         }
+      }
+   }
+}
+```
 
 Then, we are going to POST the GeoTiff file to the tasks list, in order to create an import task for it:
 
-    curl -u admin:geoserver -F name=test -F filedata=@box_gcp_fixed.tif "http://localhost:8080/geoserver/rest/imports/0/tasks"
+```bash
+curl -u admin:geoserver -F name=test -F filedata=@box_gcp_fixed.tif "http://localhost:8080/geoserver/rest/imports/0/tasks"
+```
 
 We are then going to append the transformations to rectify (gdalwarp), retile (gdal_translate) and add overviews (gdaladdo) to it:
 
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @warp.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gtx.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gad.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
+```bash
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @warp.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gtx.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gad.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
+```
 
 `warp.json` is:
 
-    {
-      "type": "GdalWarpTransform",
-      "options": [ "-t_srs", "EPSG:4326"]
-    }
+```json
+{
+  "type": "GdalWarpTransform",
+  "options": [ "-t_srs", "EPSG:4326"]
+}
+```
 
 `gtx.json` is:
 
-    {
-      "type": "GdalTranslateTransform",
-      "options": [ "-co", "TILED=YES", "-co", "BLOCKXSIZE=512", "-co", "BLOCKYSIZE=512"]
-    }
+```json
+{
+  "type": "GdalTranslateTransform",
+  "options": [ "-co", "TILED=YES", "-co", "BLOCKXSIZE=512", "-co", "BLOCKYSIZE=512"]
+}
+```
 
 `gad.json` is:
 
-    {
-      "type": "GdalAddoTransform",
-      "options": [ "-r", "average"],
-      "levels" : [2, 4, 8, 16]
-    }
+```json
+{
+  "type": "GdalAddoTransform",
+  "options": [ "-r", "average"],
+  "levels" : [2, 4, 8, 16]
+}
+```
 
 Now the import is ready to run, and we'll execute it using:
 
-    curl -u admin:geoserver -XPOST "http://localhost:8080/geoserver/rest/imports/0"
+```bash
+curl -u admin:geoserver -XPOST "http://localhost:8080/geoserver/rest/imports/0"
+```
 
 A new layer `box_gcp_fixed` layer will appear in GeoServer, with an underlying GeoTiff file ready for web serving.
 
@@ -839,48 +855,58 @@ First, we are going to create a import with an indication of where the granule i
 
 Where import.json is:
 
-    {
-       "import": {
-          "targetWorkspace": {
-             "workspace": {
-                "name": "topp"
-             }
-          },
-          "data": {
-            "type": "file",
-            "file": "/home/aaime/devel/gisData/ndimensional/data/world/world.200407.3x5400x2700.tiff"
-          },
-          "targetStore": {
-             "dataStore": {
-                "name": "bluemarble"
-             }
-          }
-       }
-    }
+```json
+{
+   "import": {
+      "targetWorkspace": {
+         "workspace": {
+            "name": "topp"
+         }
+      },
+      "data": {
+        "type": "file",
+        "file": "/home/aaime/devel/gisData/ndimensional/data/world/world.200407.3x5400x2700.tiff"
+      },
+      "targetStore": {
+         "dataStore": {
+            "name": "bluemarble"
+         }
+      }
+   }
+}
+```
 
 We are then going to append the transformations to harmonize the file with the rest of the mosaic:
 
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gtx.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gad.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
+```bash
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gtx.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @gad.json "http://localhost:8080/geoserver/rest/imports/0/tasks/0/transforms"
+```
 
 `gtx.json` is:
 
-    {
-      "type": "GdalTranslateTransform",
-      "options": [ "-co", "TILED=YES"]
-    }
+```json
+{
+  "type": "GdalTranslateTransform",
+  "options": [ "-co", "TILED=YES"]
+}
+```
 
 `gad.json` is:
 
-    {
-      "type": "GdalAddoTransform",
-      "options": [ "-r", "average"],
-      "levels" : [2, 4, 8, 16, 32, 64, 128]
-    }
+```json
+{
+  "type": "GdalAddoTransform",
+  "options": [ "-r", "average"],
+  "levels" : [2, 4, 8, 16, 32, 64, 128]
+}
+```
 
 Now the import is ready to run, and we'll execute it using:
 
-    curl -u admin:geoserver -XPOST "http://localhost:8080/geoserver/rest/imports/0"
+```bash
+curl -u admin:geoserver -XPOST "http://localhost:8080/geoserver/rest/imports/0"
+```
 
 The new granule will be ingested into the mosaic, and will thus be available for time based requests.
 
@@ -890,29 +916,35 @@ We assume a remote FTP server contains multiple shapefiles that we need to impor
 
 In this case a asynchronous request using `remote` data will be the best fit:
 
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @import.json "http://localhost:8080/geoserver/rest/imports?async=true"
+```bash
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @import.json "http://localhost:8080/geoserver/rest/imports?async=true"
+```
 
 Where import.json is:
 
-    {
-       "import": {
-          "targetWorkspace": {
-             "workspace": {
-                "name": "topp"
-             }
-          },
-          "data": {
-            "type": "remote",
-            "location": "ftp://myserver/data/bc_shapefiles",
-            "username": "dan",
-            "password": "secret"
-          }
-       }
-    }
+```json
+{
+   "import": {
+      "targetWorkspace": {
+         "workspace": {
+            "name": "topp"
+         }
+      },
+      "data": {
+        "type": "remote",
+        "location": "ftp://myserver/data/bc_shapefiles",
+        "username": "dan",
+        "password": "secret"
+      }
+   }
+}
+```
 
 The request will return immediately with an import context in "INIT" state, and it will remain in such state until the data is fetched and the tasks created. Once the state switches to "PENDING" the import will be ready for execution. Since there is a lot of shapefiles to process, also the import run will be done in asynchronous mode:
 
-    curl -u admin:geoserver -XPOST "http://localhost:8080/geoserver/rest/imports/0?async=true"
+```bash
+curl -u admin:geoserver -XPOST "http://localhost:8080/geoserver/rest/imports/0?async=true"
+```
 
 The response will return immediately in this case as well, and the progress can be followed as the tasks in the import switch state.
 
@@ -922,43 +954,47 @@ A large image appears every now and then on a mounted disk share, the image need
 
 The request will then look as follows:
 
-    curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @import.json "http://localhost:8080/geoserver/rest/imports?async=true&exec=true"
+```bash
+curl -u admin:geoserver -XPOST -H "Content-type: application/json" -d @import.json "http://localhost:8080/geoserver/rest/imports?async=true&exec=true"
+```
 
 Where import.json is:
 
-    {
-      "import": {
-        "targetWorkspace": {
-          "workspace": {
-            "name": "topp"
-          }
-        },
-        "data": {
-          "type": "remote",
-          "location": "\/mnt\/remoteDisk\/bluemarble.tiff"
-        },
-        "transforms": [
-          {
-            "type": "GdalTranslateTransform",
-            "options": [
-              "-co", "TILED=YES",
-              "-co", "COMPRESS=JPEG",
-              "-co", "JPEG_QUALITY=85",
-              "-co", "PHOTOMETRIC=YCBCR"
-            ]
-          },
-          {
-            "type": "GdalAddoTransform",
-            "options": [
-              "-r",
-              "average",
-              "--config", "COMPRESS_OVERVIEW", "JPEG",
-              "--config", "PHOTOMETRIC_OVERVIEW", "YCBCR"
-            ],
-            "levels": [ 2, 4, 8, 16, 32, 64 ]
-          }
-        ]
+```json
+{
+  "import": {
+    "targetWorkspace": {
+      "workspace": {
+        "name": "topp"
       }
-    }
+    },
+    "data": {
+      "type": "remote",
+      "location": "\/mnt\/remoteDisk\/bluemarble.tiff"
+    },
+    "transforms": [
+      {
+        "type": "GdalTranslateTransform",
+        "options": [
+          "-co", "TILED=YES",
+          "-co", "COMPRESS=JPEG",
+          "-co", "JPEG_QUALITY=85",
+          "-co", "PHOTOMETRIC=YCBCR"
+        ]
+      },
+      {
+        "type": "GdalAddoTransform",
+        "options": [
+          "-r",
+          "average",
+          "--config", "COMPRESS_OVERVIEW", "JPEG",
+          "--config", "PHOTOMETRIC_OVERVIEW", "YCBCR"
+        ],
+        "levels": [ 2, 4, 8, 16, 32, 64 ]
+      }
+    ]
+  }
+}
+```
 
 Given the request is asynchronous, the client will have to poll the server in order to check if the initialization and execution have succeeded.

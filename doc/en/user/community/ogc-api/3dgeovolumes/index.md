@@ -157,21 +157,21 @@ GeoServer ships with a Content Security Policy (CSP) that will prevent Cesium an
 
       - Header Directives:
 
-        > ``` 
-        > base-uri 'self';
-        > default-src 'none';
-        > frame-ancestors 'self';
-        > form-action 'self';
-        >
-        > script-src 'self' https://cesium.com https://*.cesium.com 'unsafe-inline' 'unsafe-eval';
-        > style-src  'self' https://cesium.com https://*.cesium.com 'unsafe-inline';
-        > img-src    'self' https://cesium.com https://*.cesium.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org data:;
-        > font-src   'self' https://cesium.com https://*.cesium.com data:;
-        > connect-src 'self' https://cesium.com https://*.cesium.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org;
-        >
-        > worker-src 'self' https://cesium.com https://*.cesium.com blob:;
-        > child-src  'self' https://cesium.com https://*.cesium.com blob:;
-        > ```
+        ``` 
+        base-uri 'self';
+        default-src 'none';
+        frame-ancestors 'self';
+        form-action 'self';
+        
+        script-src 'self' https://cesium.com https://*.cesium.com 'unsafe-inline' 'unsafe-eval';
+        style-src  'self' https://cesium.com https://*.cesium.com 'unsafe-inline';
+        img-src    'self' https://cesium.com https://*.cesium.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org data:;
+        font-src   'self' https://cesium.com https://*.cesium.com data:;
+        connect-src 'self' https://cesium.com https://*.cesium.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org;
+        
+        worker-src 'self' https://cesium.com https://*.cesium.com blob:;
+        child-src  'self' https://cesium.com https://*.cesium.com blob:;
+        ```
   5.  Save the rule, and proceed to add a new one for i3s:
       - Name: `3dgeovolumes-i3s``
 
@@ -179,21 +179,21 @@ GeoServer ships with a Content Security Policy (CSP) that will prevent Cesium an
 
       - Header Directives:
 
-        > ``` 
-        > base-uri 'self';
-        > default-src 'none';
-        > frame-ancestors 'self';
-        > form-action 'self';
-        >
-        > script-src 'self' https://*.arcgis.com https://services.arcgisonline.com 'unsafe-inline' 'unsafe-eval';
-        > style-src  'self' https://*.arcgis.com https://services.arcgisonline.com 'unsafe-inline';
-        > img-src    'self' https://*.arcgis.com https://services.arcgisonline.com data:;
-        > font-src   'self' https://*.arcgis.com https://services.arcgisonline.com data:;
-        > connect-src 'self' https://*.arcgis.com https://services.arcgisonline.com;
-        >
-        > worker-src 'self' https://*.arcgis.com https://services.arcgisonline.com blob:;
-        > child-src  'self' https://*.arcgis.com https://services.arcgisonline.com blob:;
-        > ```
+        ``` 
+        base-uri 'self';
+        default-src 'none';
+        frame-ancestors 'self';
+        form-action 'self';
+        
+        script-src 'self' https://*.arcgis.com https://services.arcgisonline.com 'unsafe-inline' 'unsafe-eval';
+        style-src  'self' https://*.arcgis.com https://services.arcgisonline.com 'unsafe-inline';
+        img-src    'self' https://*.arcgis.com https://services.arcgisonline.com data:;
+        font-src   'self' https://*.arcgis.com https://services.arcgisonline.com data:;
+        connect-src 'self' https://*.arcgis.com https://services.arcgisonline.com;
+        
+        worker-src 'self' https://*.arcgis.com https://services.arcgisonline.com blob:;
+        child-src  'self' https://*.arcgis.com https://services.arcgisonline.com blob:;
+        ```
 
   > 6.  Save the i3s rule, and then use the arrows to place the Cesium and i3s rules above the "other requests" line, it should look as follows:
   >

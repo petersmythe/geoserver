@@ -46,7 +46,7 @@ This is a process very similar to creating a featuretype. More specifically, one
     *Coverage Editor*
     ```
 
-4.  Make sure there is a value for **Native SRS**, then click the **Submit** button. If the **Native CRS** is `UNKNOWN`, you must declare the SRS in the **Declared SRS** field.
+4.  Make sure there is a value for **Native SRS**, then click the **Submit** button. If the **Native** `CRS` is `UNKNOWN`, you must declare the SRS in the **Declared SRS** field.
 
 5.  Click **Save**.
 
@@ -288,12 +288,14 @@ In this example, we will serve up overlapping granules that have varying resolut
 
 5.  Also, in order to allow for multiple CRSs in a single mosaic, an **\`indexer.properties\`** file will need to be created. Use the following :
 
-        GranuleAcceptors=org.geotools.gce.imagemosaic.acceptors.HeterogeneousCRSAcceptorFactory
-        GranuleHandler=org.geotools.gce.imagemosaic.granulehandler.ReprojectingGranuleHandlerFactory
-        HeterogeneousCRS=true
-        MosaicCRS=EPSG\:4326
-        PropertyCollectors=CRSExtractorSPI(crs),ResolutionExtractorSPI(resolution)
-        Schema=*the_geom:Polygon,location:String,crs:String,resolution:String
+    ```properties
+GranuleAcceptors=org.geotools.gce.imagemosaic.acceptors.HeterogeneousCRSAcceptorFactory
+GranuleHandler=org.geotools.gce.imagemosaic.granulehandler.ReprojectingGranuleHandlerFactory
+HeterogeneousCRS=true
+MosaicCRS=EPSG\:4326
+PropertyCollectors=CRSExtractorSPI(crs),ResolutionExtractorSPI(resolution)
+Schema=*the_geom:Polygon,location:String,crs:String,resolution:String
+    ```
 
     The MosaicCRS property is not mandatory, but it\'s a good idea to set a predictable target CRS that all granule footprints can be reprojected into, otherwise the mosaic machinery will use the CRS of the first indexed granule.
 
@@ -315,12 +317,16 @@ In this example, we will serve up overlapping granules that have varying resolut
 
 It is possible to make the mosaic refer to an existing data store. The **\`\`datastore.properties\`\`** file in this case will contain only one or two properties, referring to the store to be used via the `StoreName` property. For simple cases, e.g., a PostGIS store, the following will be sufficient:
 
-    StoreName=workspace:storename
+```properties
+StoreName=workspace:storename
+```
 
 For Oracle or H2, it\'s best to also specify the SPI in order to inform the mosaic that it needs to work around specific limitations of the storage (e.g., forced uppercase attribute usage, limitation in attribute name length and the like):
 
-    StoreName=workspace:storename
-    SPI=org.geotools.data.oracle.OracleNGDataStoreFactory
+```properties
+StoreName=workspace:storename
+SPI=org.geotools.data.oracle.OracleNGDataStoreFactory
+```
 
 The above will be sufficient in case the image mosaic can create the index table and perform normal indexing, using the directory name as the table name. In case a specific table name needs to be used, add an **\`\`indexer.properties\`\`** specifying the `TypeName` property, e.g.:
 
@@ -328,8 +334,10 @@ The above will be sufficient in case the image mosaic can create the index table
 
 In case the index \"table\" already exists instead, then a **\`\`indexer.properties\`\`** file will be required, with the following contents:
 
-    UseExistingSchema=true
-    TypeName=nameOfTheFeatureTypeContainingTheIndex
-    AbsolutePath=true
+```properties
+UseExistingSchema=true
+TypeName=nameOfTheFeatureTypeContainingTheIndex
+AbsolutePath=true
+```
 
 The above assumes `location` attribute provides absolute paths to the mosaic granules, instead of paths relative to the mosaic configuration files directory.

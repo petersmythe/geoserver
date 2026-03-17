@@ -34,15 +34,17 @@ For example, if we had a database table `stations` containing information about 
 
 GeoServer would then be able to create the following simple feature WFS response fragment:
 
-    <gps:stations gml:id="stations.27">
-        <gps:code>ALIC</gps:code>
-        <gps:name>Alice Springs</gps:name>
-        <gps:location>
-            <gml:Point srsName="urn:x-ogc:def:crs:EPSG:4326">
-                <gml:pos>-23.6701 133.8855</gml:pos>
-            </gml:Point>
-        </gps:location>
-    </gps:stations>
+```xml
+<gps:stations gml:id="stations.27">
+    <gps:code>ALIC</gps:code>
+    <gps:name>Alice Springs</gps:name>
+    <gps:location>
+        <gml:Point srsName="urn:x-ogc:def:crs:EPSG:4326">
+            <gml:pos>-23.6701 133.8855</gml:pos>
+        </gml:Point>
+    </gps:location>
+</gps:stations>
+```
 
 - Every row in the table is converted into a feature.
 - Every column in the table is converted into an element, which contains the value for that row.
@@ -106,22 +108,24 @@ For example, we could map the GPS station to a `sa:SamplingPoint` with a `gsml:G
 
 The complex feature WFS response fragment could then be encoded as:
 
-    <sa:SamplingPoint gml:id="stations.27>
-      <gml:name codeSpace="urn:x-demo:SimpleName">Alice Springs</gml:name>
-      <gml:name codeSpace="urn:x-demo:IGS:ID">ALIC</gml:name>
-      <sa:sampledFeature>
-         <gsml:GeologicUnit gml:id="geologicunit.32785">
-             <gml:description>Metamorphic bedrock</gml:description>
-             <gml:name codeSpace="urn:x-demo:Feature">urn:x-demo:feature:GeologicUnit:32785</gml:name>
-         </gsml:GeologicUnit>
-      </sa:sampledFeature>
-      <sa:relatedObservation xlink:href="urn:x-demo:feature:GeologicUnit:32785" />
-      <sa:position>
-          <gml:Point srsName="urn:x-ogc:def:crs:EPSG:4326">
-              <gml:pos>-23.6701 133.8855</gml:pos>
-          </gml:Point>
-      </sa:position>
-    </sa:SamplingPoint>
+```xml
+<sa:SamplingPoint gml:id="stations.27>
+  <gml:name codeSpace="urn:x-demo:SimpleName">Alice Springs</gml:name>
+  <gml:name codeSpace="urn:x-demo:IGS:ID">ALIC</gml:name>
+  <sa:sampledFeature>
+     <gsml:GeologicUnit gml:id="geologicunit.32785">
+         <gml:description>Metamorphic bedrock</gml:description>
+         <gml:name codeSpace="urn:x-demo:Feature">urn:x-demo:feature:GeologicUnit:32785</gml:name>
+     </gsml:GeologicUnit>
+  </sa:sampledFeature>
+  <sa:relatedObservation xlink:href="urn:x-demo:feature:GeologicUnit:32785" />
+  <sa:position>
+      <gml:Point srsName="urn:x-ogc:def:crs:EPSG:4326">
+          <gml:pos>-23.6701 133.8855</gml:pos>
+      </gml:Point>
+  </sa:position>
+</sa:SamplingPoint>
+```
 
 - The property `sa:sampledFeature` can reference any other feature type, inline (included in the response) or by reference (an `xlink:href` URL or URN). This is an example of the use of polymorphism.
 - The property `sa:relatedObservation` refers to the same GeologicUnit as `sa:sampledFeature`, but by reference.

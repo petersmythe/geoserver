@@ -21,18 +21,22 @@ GML 3.2.1 WFS responses are delivered in a WFS 2.0.0 `FeatureCollection`. Unlike
 
 For example, to use the prefix `gml` for GML 3.2, create `workspaces/gml/namespace.xml` containing:
 
-    <namespace>
-        <id>gml_namespace</id>
-        <prefix>gml</prefix>
-        <uri>http://www.opengis.net/gml/3.2</uri>
-    </namespace>
+```xml
+<namespace>
+    <id>gml_namespace</id>
+    <prefix>gml</prefix>
+    <uri>http://www.opengis.net/gml/3.2</uri>
+</namespace>
+```
 
 and `workspaces/gml/workspace.xml` containing:
 
-    <workspace>
-        <id>gml_workspace</id>
-        <name>gml</name>
-    </workspace>
+```xml
+<workspace>
+    <id>gml_workspace</id>
+    <name>gml</name>
+</workspace>
+```
 
 Failure to define the `gml` namespace prefix with a secondary namespace will result in errors like:
 
@@ -44,15 +48,17 @@ while encoding a response (in this case one containing `gml:name`), even if the 
 
 GML 3.2.1 requires that all geometries have a `gml:id`. While GeoServer will happily encode WFS responses without `gml:id` on geometries, these will be schema-invalid. Encoding a `gml:id` on a geometry can be achieved by setting an `idExpression` in the mapping for the geometry property. For example, `gsml:shape` is a geometry property and its `gml:id` might be generated with:
 
-    <AttributeMapping>
-        <targetAttribute>gsml:shape</targetAttribute>
-        <idExpression>
-            <OCQL>strConcat('shape.', getId())</OCQL>
-        </idExpression>
-        <sourceExpression>
-            <OCQL>SHAPE</OCQL>
-        </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>gsml:shape</targetAttribute>
+    <idExpression>
+        <OCQL>strConcat('shape.', getId())</OCQL>
+    </idExpression>
+    <sourceExpression>
+        <OCQL>SHAPE</OCQL>
+    </sourceExpression>
+</AttributeMapping>
+```
 
 In this example, `getId()` returns the `gml:id` of the containing feature, so each geometry will have a unique `gml:id` formed by appending the `gml:id` of the containing feature to the string `"shape."`.
 

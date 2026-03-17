@@ -93,11 +93,13 @@ The `mapml-feature-head.ftl` is a file that can be used to insert map-style elem
 
 The `mapml-feature-head.ftl` file would look like:
 
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-        <map-style>.desired {stroke-dashoffset:3}</map-style>
-      </map-head>
-    </mapml->  
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+    <map-style>.desired {stroke-dashoffset:3}</map-style>
+  </map-head>
+</mapml->  
+```
 
 This would result in a MapML feature output header that would resemble:
 
@@ -120,317 +122,335 @@ The `mapml-feature.ftl` is a file can be used to insert map-style elements with 
 
 An example `mapml-feature.ftl` file to modify a point layer would look like:
 
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-      </map-head>
-      <map-body>
-        <map-feature>
-          <#list attributes as attribute>
-            <#if attribute.name == "MAINPAGE">
-              <map-properties name="UPDATED ${attribute.name}" value="CHANGED ${attribute.value}"/>
-            <#else>
-              <map-properties name="${attribute.name}" value="${attribute.value}"/>
-            </#if>
-          </#list>
-          <#list attributes as gattribute>
-            <#if gattribute.isGeometry>
-              <map-geometry>
-                <!-- by default (if unspecified), map-a type attribute <map-a type="text/mapml"...> -->
-                <!-- is taken to mean that the link is to this or another MapML map layer, based on the -->
-                <!-- value of the <map-a target="_self" ...> "_self" is the default if unspecified -->
-                <!-- so, to link to another location in the current map, use href="#zoom,longitude,latitude -->
-                <!-- shown below. For further information on how to create links of different behaviours, -->
-                <!-- please refer to https://maps4html.org/web-map-doc/docs/other-elements/map-a/#target -->
-                <#if attributes.NAME.value == "museam"><map-a href="#16,-74.01046109936,40.70758762626"></#if>
-                <map-point>
-                  <map-coordinates>
-                    <#list gattribute.rawValue.coordinates as coord>${coord.x} ${coord.y}</#list>
-                  </map-coordinates>
-                </map-point>
-                <!-- DO NOT FORGET to close your tags, else look for errors in your log files -->
-                <#if attributes.NAME.value == "museam"></map-a></#if>
-              </map-geometry>
-             </#if>
-           </#list>
-          </map-feature>
-      </map-body>
-    </mapml->
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+  </map-head>
+  <map-body>
+    <map-feature>
+      <#list attributes as attribute>
+        <#if attribute.name == "MAINPAGE">
+          <map-properties name="UPDATED ${attribute.name}" value="CHANGED ${attribute.value}"/>
+        <#else>
+          <map-properties name="${attribute.name}" value="${attribute.value}"/>
+        </#if>
+      </#list>
+      <#list attributes as gattribute>
+        <#if gattribute.isGeometry>
+          <map-geometry>
+            <!-- by default (if unspecified), map-a type attribute <map-a type="text/mapml"...> -->
+            <!-- is taken to mean that the link is to this or another MapML map layer, based on the -->
+            <!-- value of the <map-a target="_self" ...> "_self" is the default if unspecified -->
+            <!-- so, to link to another location in the current map, use href="#zoom,longitude,latitude -->
+            <!-- shown below. For further information on how to create links of different behaviours, -->
+            <!-- please refer to https://maps4html.org/web-map-doc/docs/other-elements/map-a/#target -->
+            <#if attributes.NAME.value == "museam"><map-a href="#16,-74.01046109936,40.70758762626"></#if>
+            <map-point>
+              <map-coordinates>
+                <#list gattribute.rawValue.coordinates as coord>${coord.x} ${coord.y}</#list>
+              </map-coordinates>
+            </map-point>
+            <!-- DO NOT FORGET to close your tags, else look for errors in your log files -->
+            <#if attributes.NAME.value == "museam"></map-a></#if>
+          </map-geometry>
+         </#if>
+       </#list>
+      </map-feature>
+  </map-body>
+</mapml->
+```
 
 This would result in a MapML feature output body that would resemble this fragment:
 
-    <mapml-
-      xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-        <map-title>poi</map-title>
-        <map-meta charset="UTF-8"/>
-        <map-meta content="text/mapml" http-equiv="Content-Type"/>
-        <map-meta name="cs" content="gcrs"/>
-        <map-meta name="projection" content="WGS84"/>
-        <map-meta name="extent" content="top-left-longitude=-74.011832,top-left-latitude=40.711946,bottom-right-longitude=-74.008573,bottom-right-latitude=40.707547"/>
-        <map-style>.bbox {display:none} .poi-r1-s1{r:88.0; well-known-name:circle; opacity:1.0; fill:#FF0000; fill-opacity:1.0} .poi-r1-s2{r:56.0; well-known-name:circle; opacity:1.0; fill:#FFFFFF; fill-opacity:1.0}</map-style>
-      </map-head>
-      <map-body>
-        <map-feature id="poi.1" class="poi-r1-s1 poi-r1-s2">
-          <map-geometry>
-            <map-a href="#16,-74.01046109936,40.70758762626">
-              <map-point>
-                <map-coordinates>-74.01046109936 40.70758762626</map-coordinates>
-              </map-point>
-            </map-a>
-          </map-geometry>
-          <map-properties>
-            <table
-              xmlns="http://www.w3.org/1999/xhtml">
-              <thead>
-                <tr>
-                  <th role="columnheader" scope="col">Property name</th>
-                  <th role="columnheader" scope="col">Property value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">CHANGED MAINPAGE</th>
-                  <td itemprop="MAINPAGE">UPDATED pics/22037827-L.jpg</td>
-                </tr>
-              </tbody>
-            </table>
-          </map-properties>
-        </map-feature>
+```xml
+<mapml-
+  xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+    <map-title>poi</map-title>
+    <map-meta charset="UTF-8"/>
+    <map-meta content="text/mapml" http-equiv="Content-Type"/>
+    <map-meta name="cs" content="gcrs"/>
+    <map-meta name="projection" content="WGS84"/>
+    <map-meta name="extent" content="top-left-longitude=-74.011832,top-left-latitude=40.711946,bottom-right-longitude=-74.008573,bottom-right-latitude=40.707547"/>
+    <map-style>.bbox {display:none} .poi-r1-s1{r:88.0; well-known-name:circle; opacity:1.0; fill:#FF0000; fill-opacity:1.0} .poi-r1-s2{r:56.0; well-known-name:circle; opacity:1.0; fill:#FFFFFF; fill-opacity:1.0}</map-style>
+  </map-head>
+  <map-body>
+    <map-feature id="poi.1" class="poi-r1-s1 poi-r1-s2">
+      <map-geometry>
+        <map-a href="#16,-74.01046109936,40.70758762626">
+          <map-point>
+            <map-coordinates>-74.01046109936 40.70758762626</map-coordinates>
+          </map-point>
+        </map-a>
+      </map-geometry>
+      <map-properties>
+        <table
+          xmlns="http://www.w3.org/1999/xhtml">
+          <thead>
+            <tr>
+              <th role="columnheader" scope="col">Property name</th>
+              <th role="columnheader" scope="col">Property value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">CHANGED MAINPAGE</th>
+              <td itemprop="MAINPAGE">UPDATED pics/22037827-L.jpg</td>
+            </tr>
+          </tbody>
+        </table>
+      </map-properties>
+    </map-feature>
+```
 
 Note that in addition to tagging the coordinates with a style class, the template also changes the name of the MAINPAGE property to "UPDATED MAINPAGE" and the value to "CHANGED pics/22037827-L.jpg".
 
 For linestring features the template would look like:
 
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-      </map-head>
-      <map-body>
-        <map-feature>
-          <#list attributes as attribute>
-            <#if attribute.isGeometry>
-              <map-geometry>
-                <#if attributes.NAME.value == "Washington Sq W"><map-a href="#16,-73.999559,40.73158"></#if>
-                  <map-linestring>
-                    <map-coordinates>
-                      <#list attribute.rawValue.coordinates as coord> ${coord.x} ${coord.y}</#list>
-                    </map-coordinates></map-linestring>
-                <#if attributes.NAME.value == "Washington Sq W"></map-a></#if></map-geometry>
-            </#if>
-          </#list>
-        </map-feature>
-      </map-body>
-    </mapml->
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+  </map-head>
+  <map-body>
+    <map-feature>
+      <#list attributes as attribute>
+        <#if attribute.isGeometry>
+          <map-geometry>
+            <#if attributes.NAME.value == "Washington Sq W"><map-a href="#16,-73.999559,40.73158"></#if>
+              <map-linestring>
+                <map-coordinates>
+                  <#list attribute.rawValue.coordinates as coord> ${coord.x} ${coord.y}</#list>
+                </map-coordinates></map-linestring>
+            <#if attributes.NAME.value == "Washington Sq W"></map-a></#if></map-geometry>
+        </#if>
+      </#list>
+    </map-feature>
+  </map-body>
+</mapml->
+```
 
 For polygon features the template would look like:
 
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-      </map-head>
-      <map-body>
-        <map-feature>
-          <#list attributes as attribute>
-            <#if attribute.isGeometry>
-              <map-geometry>
-                <map-a href="#16,-1,0">
-                  <map-polygon>
-                    <#assign shell = attribute.rawValue.getExteriorRing()>
-                    <map-coordinates>
-                      <#list shell.coordinates as coord> ${coord.x} ${coord.y}</#list>
-                    </map-coordinates>
-                    <#list 0 ..< attribute.rawValue.getNumInteriorRing() as index>
-                      <#assign hole = attribute.rawValue.getInteriorRingN(index)><map-coordinates><#list hole.coordinates as coord> ${coord.x} ${coord.y} </#list></map-coordinates></#list>
-                  </map-polygon>
-                </map-a>
-              </map-geometry>
-            </#if>
-          </#list>
-        </map-feature>
-      </map-body>
-    </mapml- >
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+  </map-head>
+  <map-body>
+    <map-feature>
+      <#list attributes as attribute>
+        <#if attribute.isGeometry>
+          <map-geometry>
+            <map-a href="#16,-1,0">
+              <map-polygon>
+                <#assign shell = attribute.rawValue.getExteriorRing()>
+                <map-coordinates>
+                  <#list shell.coordinates as coord> ${coord.x} ${coord.y}</#list>
+                </map-coordinates>
+                <#list 0 ..< attribute.rawValue.getNumInteriorRing() as index>
+                  <#assign hole = attribute.rawValue.getInteriorRingN(index)><map-coordinates><#list hole.coordinates as coord> ${coord.x} ${coord.y} </#list></map-coordinates></#list>
+              </map-polygon>
+            </map-a>
+          </map-geometry>
+        </#if>
+      </#list>
+    </map-feature>
+  </map-body>
+</mapml- >
+```
 
 For multipoint features the template would look like:
 
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-      </map-head>
-      <map-body>
-        <map-feature>
-          <#list attributes as gattribute>
-            <#if gattribute.isGeometry>
-              <map-geometry>
-                <map-a href="#16,-74.01046109936,40.70758762626">
-                <map-multipoint>
-                  <#list 0 ..< gattribute.rawValue.getNumGeometries() as index>
-                    <#assign point = gattribute.rawValue.getGeometryN(index)>
-                        <map-coordinates><#list point.coordinates as coord>
-                          ${coord.x} ${coord.y}</#list></map-coordinates>
-                  </#list>
-                </map-multipoint>
-                </map-a>
-              </map-geometry>
-             </#if>
-           </#list>
-          </map-feature>
-        </map-body>
-        </mapml->
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+  </map-head>
+  <map-body>
+    <map-feature>
+      <#list attributes as gattribute>
+        <#if gattribute.isGeometry>
+          <map-geometry>
+            <map-a href="#16,-74.01046109936,40.70758762626">
+            <map-multipoint>
+              <#list 0 ..< gattribute.rawValue.getNumGeometries() as index>
+                <#assign point = gattribute.rawValue.getGeometryN(index)>
+                    <map-coordinates><#list point.coordinates as coord>
+                      ${coord.x} ${coord.y}</#list></map-coordinates>
+              </#list>
+            </map-multipoint>
+            </map-a>
+          </map-geometry>
+         </#if>
+       </#list>
+      </map-feature>
+    </map-body>
+    </mapml->
+```
 
 For multiline features the template would like:
 
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-      </map-head>
-      <map-body>
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+  </map-head>
+  <map-body>
+  <map-feature>
+    <#list attributes as attribute>
+      <#if attribute.isGeometry>
+        <map-geometry>
+          <map-a href="#16,-0.0042,-0.0006">
+          <map-multilinestring>
+            <#list 0 ..< attribute.rawValue.getNumGeometries() as index>
+              <#assign line = attribute.rawValue.getGeometryN(index)>
+              <map-coordinates><#list line.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
+            </#list>
+          </map-multilinestring>
+          </map-a>                                    
+        </map-geometry>
+      </#if>
+    </#list>
+  </map-feature>
+  </map-body>
+  </mapml->
+```
+
+For multipolygon features the template would like:
+
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+    <map-head>
+    </map-head>
+    <map-body>
       <map-feature>
+      <#if attributes.LAND.value == "72.0">
         <#list attributes as attribute>
           <#if attribute.isGeometry>
             <map-geometry>
               <map-a href="#16,-0.0042,-0.0006">
-              <map-multilinestring>
-                <#list 0 ..< attribute.rawValue.getNumGeometries() as index>
-                  <#assign line = attribute.rawValue.getGeometryN(index)>
-                  <map-coordinates><#list line.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
-                </#list>
-              </map-multilinestring>
-              </map-a>                                    
+              <map-multipolygon>
+            <#list 0 ..< attribute.rawValue.getNumGeometries() as index>
+              <#assign polygon = attribute.rawValue.getGeometryN(index)>
+            <map-polygon>
+              <#assign shell = polygon.getExteriorRing()>
+              <map-coordinates><#list shell.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
+              <#list 0 ..< polygon.getNumInteriorRing() as index>
+              <#assign hole = polygon.getInteriorRingN(index)>
+              <map-coordinates><#list hole.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates></#list>
+            </map-polygon>
+              </#list>
+            </map-multipolygon>
+            </map-a>
             </map-geometry>
           </#if>
         </#list>
-      </map-feature>
-      </map-body>
-      </mapml->
-
-For multipolygon features the template would like:
-
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-        <map-head>
-        </map-head>
-        <map-body>
-          <map-feature>
-          <#if attributes.LAND.value == "72.0">
-            <#list attributes as attribute>
-              <#if attribute.isGeometry>
-                <map-geometry>
-                  <map-a href="#16,-0.0042,-0.0006">
-                  <map-multipolygon>
-                <#list 0 ..< attribute.rawValue.getNumGeometries() as index>
-                  <#assign polygon = attribute.rawValue.getGeometryN(index)>
-                <map-polygon>
-                  <#assign shell = polygon.getExteriorRing()>
-                  <map-coordinates><#list shell.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
-                  <#list 0 ..< polygon.getNumInteriorRing() as index>
-                  <#assign hole = polygon.getInteriorRingN(index)>
-                  <map-coordinates><#list hole.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates></#list>
-                </map-polygon>
-                  </#list>
-                </map-multipolygon>
-                </map-a>
-                </map-geometry>
-              </#if>
-            </#list>
-          <#else>
-            <#list attributes as attribute>
-              <#if attribute.isGeometry>
-                <map-geometry>
-                  <map-multipolygon>
-                <#list 0 ..< attribute.rawValue.getNumGeometries() as index>
-                  <#assign polygon = attribute.rawValue.getGeometryN(index)>
-                <map-polygon>
-                <#assign shell = polygon.getExteriorRing()>
-                <map-coordinates><#list shell.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
-                <#list 0 ..< polygon.getNumInteriorRing() as index>
-                  <#assign hole = polygon.getInteriorRingN(index)><map-coordinates>
-                  <#list hole.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
-                </#list>
-                </map-polygon>
-                  </#list>
-                </map-multipolygon>
-                </map-geometry>
-              </#if>
-            </#list>
-          </#if>
-          </map-feature>
-        </map-body>
-        </mapml->
-
-Templates can also be used to create MapML GeometryCollections that consist of multiple geometry types. For example, a template that creates a GeometryCollection that contains points and linestring representations of the NYC TIGER POI sample data would look like:
-
-    <mapml- xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-      </map-head>
-      <map-body>
-      <map-feature>
+      <#else>
         <#list attributes as attribute>
           <#if attribute.isGeometry>
             <map-geometry>
-              <map-a href="#16,-1,0">
-              <map-geometrycollection>
-                <map-linestring>
-                  <map-coordinates><#list attribute.rawValue.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
-                </map-linestring>
-                <map-point>
-                  <map-coordinates><#list attribute.rawValue.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
-                </map-point>
-              </map-geometrycollection>
-              </map-a>
+              <map-multipolygon>
+            <#list 0 ..< attribute.rawValue.getNumGeometries() as index>
+              <#assign polygon = attribute.rawValue.getGeometryN(index)>
+            <map-polygon>
+            <#assign shell = polygon.getExteriorRing()>
+            <map-coordinates><#list shell.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
+            <#list 0 ..< polygon.getNumInteriorRing() as index>
+              <#assign hole = polygon.getInteriorRingN(index)><map-coordinates>
+              <#list hole.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
+            </#list>
+            </map-polygon>
+              </#list>
+            </map-multipolygon>
             </map-geometry>
           </#if>
         </#list>
+      </#if>
       </map-feature>
-      </map-body>
+    </map-body>
     </mapml->
+```
+
+Templates can also be used to create MapML GeometryCollections that consist of multiple geometry types. For example, a template that creates a GeometryCollection that contains points and linestring representations of the NYC TIGER POI sample data would look like:
+
+```xml
+<mapml- xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+  </map-head>
+  <map-body>
+  <map-feature>
+    <#list attributes as attribute>
+      <#if attribute.isGeometry>
+        <map-geometry>
+          <map-a href="#16,-1,0">
+          <map-geometrycollection>
+            <map-linestring>
+              <map-coordinates><#list attribute.rawValue.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
+            </map-linestring>
+            <map-point>
+              <map-coordinates><#list attribute.rawValue.coordinates as coord> ${coord.x} ${coord.y}</#list></map-coordinates>
+            </map-point>
+          </map-geometrycollection>
+          </map-a>
+        </map-geometry>
+      </#if>
+    </#list>
+  </map-feature>
+  </map-body>
+</mapml->
+```
 
 This would result in a MapML feature output body that would resemble:
 
-    <mapml-
-      xmlns="http://www.w3.org/1999/xhtml">
-      <map-head>
-        <map-title>poi</map-title>
-        <map-meta charset="UTF-8"/>
-        <map-meta content="text/mapml" http-equiv="Content-Type"/>
-        <map-meta name="cs" content="gcrs"/>
-        <map-meta name="projection" content="WGS84"/>
-        <map-meta name="extent" content="top-left-longitude=-74.011832,top-left-latitude=40.711946,bottom-right-longitude=-74.008573,bottom-right-latitude=40.707547"/>
-        <map-style>.bbox {display:none} .poi-r1-s1{r:88.0; well-known-name:circle; opacity:1.0; fill:#FF0000; fill-opacity:1.0} .poi-r1-s2{r:56.0; well-known-name:circle; opacity:1.0; fill:#FFFFFF; fill-opacity:1.0}</map-style>
-      </map-head>
-      <map-body>
-        <map-feature id="poi.4" class="poi-r1-s1 poi-r1-s2">
-          <map-geometry>
-            <map-a href="#16,-1,0">
-              <map-geometrycollection>
-                <map-linestring>
-                  <map-coordinates> -74.00857344353 40.71194564907</map-coordinates>
-                </map-linestring>
-                <map-point>
-                  <map-coordinates> -74.00857344353 40.71194564907</map-coordinates>
-                </map-point>
-              </map-geometrycollection>
-            </map-a>
-          </map-geometry>
-          <map-properties>
-            <table
-              xmlns="http://www.w3.org/1999/xhtml">
-              <thead>
-                <tr>
-                  <th role="columnheader" scope="col">Property name</th>
-                  <th role="columnheader" scope="col">Property value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">NAME</th>
-                  <td itemprop="NAME">lox</td>
-                </tr>
-                <tr>
-                  <th scope="row">THUMBNAIL</th>
-                  <td itemprop="THUMBNAIL">pics/22037884-Ti.jpg</td>
-                </tr>
-                <tr>
-                  <th scope="row">MAINPAGE</th>
-                  <td itemprop="MAINPAGE">pics/22037884-L.jpg</td>
-                </tr>
-              </tbody>
-            </table>
-          </map-properties>
-        </map-feature>
-      </map-body>
-    </mapml->
+```xml
+<mapml-
+  xmlns="http://www.w3.org/1999/xhtml">
+  <map-head>
+    <map-title>poi</map-title>
+    <map-meta charset="UTF-8"/>
+    <map-meta content="text/mapml" http-equiv="Content-Type"/>
+    <map-meta name="cs" content="gcrs"/>
+    <map-meta name="projection" content="WGS84"/>
+    <map-meta name="extent" content="top-left-longitude=-74.011832,top-left-latitude=40.711946,bottom-right-longitude=-74.008573,bottom-right-latitude=40.707547"/>
+    <map-style>.bbox {display:none} .poi-r1-s1{r:88.0; well-known-name:circle; opacity:1.0; fill:#FF0000; fill-opacity:1.0} .poi-r1-s2{r:56.0; well-known-name:circle; opacity:1.0; fill:#FFFFFF; fill-opacity:1.0}</map-style>
+  </map-head>
+  <map-body>
+    <map-feature id="poi.4" class="poi-r1-s1 poi-r1-s2">
+      <map-geometry>
+        <map-a href="#16,-1,0">
+          <map-geometrycollection>
+            <map-linestring>
+              <map-coordinates> -74.00857344353 40.71194564907</map-coordinates>
+            </map-linestring>
+            <map-point>
+              <map-coordinates> -74.00857344353 40.71194564907</map-coordinates>
+            </map-point>
+          </map-geometrycollection>
+        </map-a>
+      </map-geometry>
+      <map-properties>
+        <table
+          xmlns="http://www.w3.org/1999/xhtml">
+          <thead>
+            <tr>
+              <th role="columnheader" scope="col">Property name</th>
+              <th role="columnheader" scope="col">Property value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">NAME</th>
+              <td itemprop="NAME">lox</td>
+            </tr>
+            <tr>
+              <th scope="row">THUMBNAIL</th>
+              <td itemprop="THUMBNAIL">pics/22037884-Ti.jpg</td>
+            </tr>
+            <tr>
+              <th scope="row">MAINPAGE</th>
+              <td itemprop="MAINPAGE">pics/22037884-L.jpg</td>
+            </tr>
+          </tbody>
+        </table>
+      </map-properties>
+    </map-feature>
+  </map-body>
+</mapml->
+```

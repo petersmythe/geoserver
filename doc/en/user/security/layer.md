@@ -76,7 +76,9 @@ The `layers.properties` file may contain a further directive that specifies how 
 
 The syntax is:
 
-    mode=option
+```properties
+mode=option
+```
 
 `option` may be one of three values:
 

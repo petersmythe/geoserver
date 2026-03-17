@@ -10,7 +10,9 @@ Though not specific to Google Earth, GeoServer has the ability to filter data re
 
 There simplest filter is very easy to include. It is called the `featureid` filter, and it lets you filter to a single feature by its ID. The syntax is:
 
-    featureid=<feature>
+```properties
+featureid=<feature>
+```
 
 where <feature> is the feature and its ID. An example would be:
 

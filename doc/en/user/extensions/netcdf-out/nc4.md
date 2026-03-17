@@ -55,11 +55,11 @@ In order to write NetCDF-4 files, you must have the NetCDF-4 C library (version 
 
 4.  Build the NetCDF C Library.
 
-    > ``` bash
-    > CPPFLAGS=-I/work/libs/nc4libs/include LDFLAGS=-L/work/libs/nc4libs/lib ./configure --prefix=/work/libs/nc4libs
-    >
-    > make check install
-    > ```
+    ``` bash
+    CPPFLAGS=-I/work/libs/nc4libs/include LDFLAGS=-L/work/libs/nc4libs/lib ./configure --prefix=/work/libs/nc4libs
+    
+    make check install
+    ```
 
 5.  Make sure to add the *lib* folder of the package you have extracted, to the `PATH` environment variable.
 

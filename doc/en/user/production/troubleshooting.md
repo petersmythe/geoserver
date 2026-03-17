@@ -38,9 +38,11 @@ Assessment: For this specific example the error occurred when setting up the `se
 
 Check the browser "Developer Tools" console for Content Security Policy errors:
 
-    Refused to send form data to 'https://gs-main.geosolutionsgroup.com/geoserver/j_spring_security_check' because it violates the following Content Security Policy directive: "form-action 'self'".
+```
+Refused to send form data to 'https://gs-main.geosolutionsgroup.com/geoserver/j_spring_security_check' because it violates the following Content Security Policy directive: "form-action 'self'".
 
-    Content-Security-Policy: The page’s settings blocked a style (style-src-elem) at http://localhost:8080/geoserver/web/wicket/resource/org.geoserver.web.GeoServerBasePage/css/blueprint/screen-ver-5E7BA86A4C3BEA6B457AC3C7F9ADF9B4.css from being applied because it violates the following directive: “style-src 'nonce-_BrhuCNPcn8dWJbyQ1IqkS3R'” 3 NetUtil.sys.mjs:144:15
+Content-Security-Policy: The page’s settings blocked a style (style-src-elem) at http://localhost:8080/geoserver/web/wicket/resource/org.geoserver.web.GeoServerBasePage/css/blueprint/screen-ver-5E7BA86A4C3BEA6B457AC3C7F9ADF9B4.css from being applied because it violates the following directive: “style-src 'nonce-_BrhuCNPcn8dWJbyQ1IqkS3R'” 3 NetUtil.sys.mjs:144:15
+```
 
 The use of Content Security Policy headers is an additional safety precaution introduced by your browser to mitigate cross-site scripting and clickjacking attacks:
 
@@ -236,86 +238,90 @@ By running it without arguments (other than the process id of the JVM) it will p
 
 It's also possible to get a **quick summary of the JVM heap status**:
 
-    > jmap -heap 17251
+```
+> jmap -heap 17251
 
-    Attaching to process ID 17251, please wait...
-    Debugger attached successfully.
-    Server compiler detected.
-    JVM version is 14.2-b01
+Attaching to process ID 17251, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 14.2-b01
 
-    using thread-local object allocation.
-    Parallel GC with 2 thread(s)
+using thread-local object allocation.
+Parallel GC with 2 thread(s)
 
-    Heap Configuration:
-       MinHeapFreeRatio = 40
-       MaxHeapFreeRatio = 70
-       MaxHeapSize      = 778043392 (742.0MB)
-       NewSize          = 1048576 (1.0MB)
-       MaxNewSize       = 4294901760 (4095.9375MB)
-       OldSize          = 4194304 (4.0MB)
-       NewRatio         = 8
-       SurvivorRatio    = 8
-       PermSize         = 16777216 (16.0MB)
-       MaxPermSize      = 67108864 (64.0MB)
+Heap Configuration:
+   MinHeapFreeRatio = 40
+   MaxHeapFreeRatio = 70
+   MaxHeapSize      = 778043392 (742.0MB)
+   NewSize          = 1048576 (1.0MB)
+   MaxNewSize       = 4294901760 (4095.9375MB)
+   OldSize          = 4194304 (4.0MB)
+   NewRatio         = 8
+   SurvivorRatio    = 8
+   PermSize         = 16777216 (16.0MB)
+   MaxPermSize      = 67108864 (64.0MB)
 
-    Heap Usage:
-    PS Young Generation
-    Eden Space:
-       capacity = 42401792 (40.4375MB)
-       used     = 14401328 (13.734176635742188MB)
-       free     = 28000464 (26.703323364257812MB)
-       33.96396076845054% used
-    From Space:
-       capacity = 4718592 (4.5MB)
-       used     = 2340640 (2.232208251953125MB)
-       free     = 2377952 (2.267791748046875MB)
-       49.60462782118056% used
-    To Space:
-       capacity = 4587520 (4.375MB)
-       used     = 0 (0.0MB)
-       free     = 4587520 (4.375MB)
-       0.0% used
-    PS Old Generation
-       capacity = 43188224 (41.1875MB)
-       used     = 27294848 (26.0303955078125MB)
-       free     = 15893376 (15.1571044921875MB)
-       63.19974630121396% used
-    PS Perm Generation
-       capacity = 38404096 (36.625MB)
-       used     = 38378640 (36.60072326660156MB)
-       free     = 25456 (0.0242767333984375MB)
-       99.93371540369027% used
+Heap Usage:
+PS Young Generation
+Eden Space:
+   capacity = 42401792 (40.4375MB)
+   used     = 14401328 (13.734176635742188MB)
+   free     = 28000464 (26.703323364257812MB)
+   33.96396076845054% used
+From Space:
+   capacity = 4718592 (4.5MB)
+   used     = 2340640 (2.232208251953125MB)
+   free     = 2377952 (2.267791748046875MB)
+   49.60462782118056% used
+To Space:
+   capacity = 4587520 (4.375MB)
+   used     = 0 (0.0MB)
+   free     = 4587520 (4.375MB)
+   0.0% used
+PS Old Generation
+   capacity = 43188224 (41.1875MB)
+   used     = 27294848 (26.0303955078125MB)
+   free     = 15893376 (15.1571044921875MB)
+   63.19974630121396% used
+PS Perm Generation
+   capacity = 38404096 (36.625MB)
+   used     = 38378640 (36.60072326660156MB)
+   free     = 25456 (0.0242767333984375MB)
+   99.93371540369027% used
+```
 
 In the result it can be seen that the JVM is allowed to use up to 742MB of memory, and that at the moment the JVM is using 130MB (rough sum of the capacities of each heap section). In case of a persistent memory leak the JVM will end up using whatever is allowed to and each section of the heap will be almost 100% used.
 
 To see **how the memory is actually being used in a succinct way** the following command can be used (on Windows, replace `head -25` with `more`):
 
-    > jmap -histo:live 17251 | head -25
+```http
+> jmap -histo:live 17251 | head -25
 
-     num     #instances         #bytes  class name
-    ----------------------------------------------
-       1:         81668       10083280  <constMethodKlass>
-       2:         81668        6539632  <methodKlass>
-       3:         79795        5904728  [C
-       4:        123511        5272448  <symbolKlass>
-       5:          7974        4538688  <constantPoolKlass>
-       6:         98726        3949040  org.hsqldb.DiskNode
-       7:          7974        3612808  <instanceKlassKlass>
-       8:          9676        2517160  [B
-       9:          6235        2465488  <constantPoolCacheKlass>
-      10:         10054        2303368  [I
-      11:         83121        1994904  java.lang.String
-      12:         27794        1754360  [Ljava.lang.Object;
-      13:          9227         868000  [Ljava.util.HashMap$Entry;
-      14:          8492         815232  java.lang.Class
-      15:         10645         710208  [S
-      16:         14420         576800  org.hsqldb.CachedRow
-      17:          1927         574480  <methodDataKlass>
-      18:          8937         571968  org.apache.xerces.dom.ElementNSImpl
-      19:         12898         561776  [[I
-      20:         23122         554928  java.util.HashMap$Entry
-      21:         16910         541120  org.apache.xerces.dom.TextImpl
-      22:          9898         395920  org.apache.xerces.dom.AttrNSImpl
+ num     #instances         #bytes  class name
+----------------------------------------------
+   1:         81668       10083280  <constMethodKlass>
+   2:         81668        6539632  <methodKlass>
+   3:         79795        5904728  [C
+   4:        123511        5272448  <symbolKlass>
+   5:          7974        4538688  <constantPoolKlass>
+   6:         98726        3949040  org.hsqldb.DiskNode
+   7:          7974        3612808  <instanceKlassKlass>
+   8:          9676        2517160  [B
+   9:          6235        2465488  <constantPoolCacheKlass>
+  10:         10054        2303368  [I
+  11:         83121        1994904  java.lang.String
+  12:         27794        1754360  [Ljava.lang.Object;
+  13:          9227         868000  [Ljava.util.HashMap$Entry;
+  14:          8492         815232  java.lang.Class
+  15:         10645         710208  [S
+  16:         14420         576800  org.hsqldb.CachedRow
+  17:          1927         574480  <methodDataKlass>
+  18:          8937         571968  org.apache.xerces.dom.ElementNSImpl
+  19:         12898         561776  [[I
+  20:         23122         554928  java.util.HashMap$Entry
+  21:         16910         541120  org.apache.xerces.dom.TextImpl
+  22:          9898         395920  org.apache.xerces.dom.AttrNSImpl
+```
 
 By the dump we can see most of the memory is used by the GeoServer code itself (first 5 items) followed by the HSQL cache holding a few rows of the EPSG database. In case of a memory leak a few object types will hold the vast majority of the live heap. Mind, to look for a leak the dump should be gathered with the server almost idle. If, for example, the server is under a load of GetMap requests the main memory usage will be the byte[] holding the images while they are rendered, but that is not a leak, it's legitimate and temporary usage.
 

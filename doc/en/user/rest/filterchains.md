@@ -170,15 +170,19 @@ The configured values are **merged** with the built-in allow-list.
 
 **System property**
 
-    -Dgeoserver.security.allowedAuthFilterChainClasses=\
-    com.example.geoserver.security.CustomChain,\
-    com.example.geoserver.security.*
+```
+-Dgeoserver.security.allowedAuthFilterChainClasses=\
+com.example.geoserver.security.CustomChain,\
+com.example.geoserver.security.*
+```
 
 **Environment variable**
 
-    GEOSERVER_SECURITY_ALLOWED_AUTH_FILTERCHAIN_CLASSES=\
-    com.example.geoserver.security.CustomChain,\
-    com.example.geoserver.security.*
+```
+GEOSERVER_SECURITY_ALLOWED_AUTH_FILTERCHAIN_CLASSES=\
+com.example.geoserver.security.CustomChain,\
+com.example.geoserver.security.*
+```
 
 The value is a comma-separated list of:
 

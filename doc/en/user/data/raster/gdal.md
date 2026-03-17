@@ -91,8 +91,10 @@ There are a few optional drivers that you can find in [file:`C:](file:%60C:\)<un
 
 Deploying the GDAL ImageI/O-Ext native libraries in a location referred by the `PATH` environment variable (like, as an instance, the JDK/bin folder) will not allow the GeoServer service to use GDAL. As a result, during the service startup, GeoServer log will likely report the following message:
 
-    it.geosolutions.imageio.gdalframework.GDALUtilities loadGDAL
-    WARNING: Native library load failed.java.lang.UnsatisfiedLinkError: no gdaljni in java.library.path
+```
+it.geosolutions.imageio.gdalframework.GDALUtilities loadGDAL
+WARNING: Native library load failed.java.lang.UnsatisfiedLinkError: no gdaljni in java.library.path
+```
 
 Taking a look at the `jsl74.ini` configuration file available inside the GeoServer installation , there is this useful entry:
 
@@ -117,7 +119,9 @@ For common LTS Linux distribution there are packages for GDAL and the associated
 
 The libraries as installed above are already in the search path, so no extra setup is normally needed. In case setting up the `GDAL_DATA` is required to handle certain projections, it's normally found in `/usr/share/gdal/<version>`, so you can execute the following prior to start GeoServer, e.g:
 
-    export GDAL_DATA=/usr/share/gdal/<version>
+```bash
+export GDAL_DATA=/usr/share/gdal/<version>
+```
 
 In case you decide to build from sources instead, remember to run `configure` with `--with-java`, and after the main build and install, get into the `swig/java` and run a build and install there. For more information about building GDAL see:
 
@@ -126,8 +130,10 @@ In case you decide to build from sources instead, remember to run `configure` wi
 
 After the build and installation, export the following variables to make GeoServer use the GDAL custom build:
 
-    export LD_LIBRARY_PATH=/<path_to_gdal_install>/lib
-    export GDAL_DATA=/<path_to_gdal_install>/share/gdal
+```xml
+export LD_LIBRARY_PATH=/<path_to_gdal_install>/lib
+export GDAL_DATA=/<path_to_gdal_install>/share/gdal
+```
 
 ## Testing the installation
 
@@ -147,9 +153,11 @@ If all the steps have been performed correctly, new data formats will be in the 
 
 If new formats do not appear in the GUI and you see the following message in the log file:
 
-    *it.geosolutions.imageio.gdalframework.GDALUtilities loadGDAL
-    WARNING: Native library load failed.java.lang.UnsatisfiedLinkError: no gdaljni in java.library.path*
-    WARNING: Native library load failed.java.lang.UnsatisfiedLinkError: no gdalalljni in java.library.path*
+```http
+*it.geosolutions.imageio.gdalframework.GDALUtilities loadGDAL
+WARNING: Native library load failed.java.lang.UnsatisfiedLinkError: no gdaljni in java.library.path*
+WARNING: Native library load failed.java.lang.UnsatisfiedLinkError: no gdalalljni in java.library.path*
+```
 
 This means that the extension was installed, bu twas not able to access your gdal library for some reason.
 

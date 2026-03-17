@@ -86,22 +86,24 @@ Hide the Tomcat version in error responses and its error details.
 
 2.  Additionally add to **`server.xml`** the ErrorReportValve to disable showReport and showServerInfo. This is used to hide errors handled globally by tomcat in the host section.
 
-    `vi ./conf/server.xml`
+   ```xml
+`vi ./conf/server.xml`
 
-    Add to `<Host name=...` section this new ErrorReportValve entry: :
+Add to `<Host name=...` section this new ErrorReportValve entry: :
 
-        ...
-             <Host name="localhost"  appBase="webapps"
-                   unpackWARs="true" autoDeploy="true">
+    ...
+         <Host name="localhost"  appBase="webapps"
+               unpackWARs="true" autoDeploy="true">
 
-               ...
+           ...
 
-               <Valve className="org.apache.catalina.valves.ErrorReportValve" showReport="false" showServerInfo="false" />
+           <Valve className="org.apache.catalina.valves.ErrorReportValve" showReport="false" showServerInfo="false" />
 
-             </Host>
-           </Engine>
-         </Service>
-        </Server>
+         </Host>
+       </Engine>
+     </Service>
+    </Server>
+   ```
 
 3.  Why, if security by obscurity does not work?
 

@@ -22,11 +22,13 @@ This section documents the REST endpoints for managing authentication filters in
 
 - **JSON**: The payload is **wrapped** under a single key named after the fully qualified class, for example:
 
-      {
-        "org.geoserver.security.oauth2.OpenIdConnectFilterConfig": {
-          "...": "..."
-        }
-      }
+  ```json
+{
+  "org.geoserver.security.oauth2.OpenIdConnectFilterConfig": {
+    "...": "..."
+  }
+}
+  ```
 
 Fields are specific to each filter type (OpenId Connect, Anonymous, Security Interceptor, etc.).
 

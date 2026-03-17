@@ -483,72 +483,72 @@ public void testBasicActions() {
 
 Making a WFS request to a test data set:
 
-> ``` java
-> public class GetFeatureBboxTest extends WFSTestSupport {
->
-> @Test
-> public void testFeatureBoudingOn() throws Exception {
->     WFSInfo wfs = getWFS();
->     wfs.setFeatureBounding(true);
->     getGeoServer().save(wfs);
->
->     Document doc = getAsDOM("wfs?request=GetFeature&typeName="
->             + getLayerId(SystemTestData.BUILDINGS)
->             + "&version=1.0.0&service=wfs&propertyName=ADDRESS");
->
->     // check it's a feature collection
->     assertXpathEvaluatesTo("1", "count(//wfs:FeatureCollection)", doc);
->     // check the collection has non null bounds
->     assertXpathEvaluatesTo("1", "count(//wfs:FeatureCollection/gml:boundedBy/gml:Box)", doc);
->     // check that each feature has non null bounds
->     XpathEngine xpath = XMLUnit.newXpathEngine();
->     assertTrue(xpath.getMatchingNodes("//cite:Buildings/gml:boundedBy/gml:Box", doc)
->                     .getLength()
->             > 0);
-> }
-> ```
+``` java
+public class GetFeatureBboxTest extends WFSTestSupport {
+
+@Test
+public void testFeatureBoudingOn() throws Exception {
+    WFSInfo wfs = getWFS();
+    wfs.setFeatureBounding(true);
+    getGeoServer().save(wfs);
+
+    Document doc = getAsDOM("wfs?request=GetFeature&typeName="
+            + getLayerId(SystemTestData.BUILDINGS)
+            + "&version=1.0.0&service=wfs&propertyName=ADDRESS");
+
+    // check it's a feature collection
+    assertXpathEvaluatesTo("1", "count(//wfs:FeatureCollection)", doc);
+    // check the collection has non null bounds
+    assertXpathEvaluatesTo("1", "count(//wfs:FeatureCollection/gml:boundedBy/gml:Box)", doc);
+    // check that each feature has non null bounds
+    XpathEngine xpath = XMLUnit.newXpathEngine();
+    assertTrue(xpath.getMatchingNodes("//cite:Buildings/gml:boundedBy/gml:Box", doc)
+                    .getLength()
+            > 0);
+}
+```
 
 ### WMSTestSupport
 
 making a request and checking output against reference image
 
-> ``` java
-> public class GetMapIntegrationTest extends WMSTestSupport {
->   ...
->   @Override
->   protected void setUpTestData(SystemTestData testData) throws Exception {
->       super.setUpTestData(testData);
->       testData.setUpWcs11RasterLayers();
->   }
->
->   @Override
->   protected void onSetUp(SystemTestData testData) throws Exception {
->       super.onSetUp(testData);
->       Catalog catalog = getCatalog();
->       testData.addStyle("Population", "Population.sld", GetMapIntegrationTest.class, catalog);
->       testData.addStyle("jiffleBandSelect", "jiffleBandSelect.sld", GetMapIntegrationTest.class, catalog);
->       testData.addVectorLayer(
->               new QName(MockData.SF_URI, "states", MockData.SF_PREFIX),
->               Collections.emptyMap(),
->               "states.properties",
->               getClass(),
->               catalog);
->         ...
->
->   }
->   ...
->   @Test
->   public void testGetMapOpaqueGroup() throws Exception {
->       String url = "wms?LAYERS="
->               + OPAQUE_GROUP
->               + "&STYLES=&FORMAT=image%2Fpng"
->               + "&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG%3A4326&WIDTH=256&HEIGHT=256&BBOX=-0.0043,-0.0025,0.0043,0.0025";
->       BufferedImage imageGroup = getAsImage(url, "image/png");
->
->       ImageAssert.assertEquals(
->               new File("./src/test/resources/org/geoserver/wms/wms_1_1_1/opaqueGroup.png"), imageGroup, 300);
->   }
-> ```
+``` java
+public class GetMapIntegrationTest extends WMSTestSupport {
+  ...
+  @Override
+  protected void setUpTestData(SystemTestData testData) throws Exception {
+      super.setUpTestData(testData);
+      testData.setUpWcs11RasterLayers();
+  }
+
+  @Override
+  protected void onSetUp(SystemTestData testData) throws Exception {
+      super.onSetUp(testData);
+      Catalog catalog = getCatalog();
+      testData.addStyle("Population", "Population.sld", GetMapIntegrationTest.class, catalog);
+      testData.addStyle("jiffleBandSelect", "jiffleBandSelect.sld", GetMapIntegrationTest.class, catalog);
+      testData.addVectorLayer(
+              new QName(MockData.SF_URI, "states", MockData.SF_PREFIX),
+              Collections.emptyMap(),
+              "states.properties",
+              getClass(),
+              catalog);
+        ...
+
+  }
+  ...
+  @Test
+  public void testGetMapOpaqueGroup() throws Exception {
+      String url = "wms?LAYERS="
+              + OPAQUE_GROUP
+              + "&STYLES=&FORMAT=image%2Fpng"
+              + "&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG%3A4326&WIDTH=256&HEIGHT=256&BBOX=-0.0043,-0.0025,0.0043,0.0025";
+      BufferedImage imageGroup = getAsImage(url, "image/png");
+
+      ImageAssert.assertEquals(
+              new File("./src/test/resources/org/geoserver/wms/wms_1_1_1/opaqueGroup.png"), imageGroup, 300);
+  }
+```
 
 ## Handling Logging
 

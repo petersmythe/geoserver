@@ -81,13 +81,17 @@ There are two mechanisms to identify user requests. The first one is cookie base
 
 This avoids a single user (as identified by a cookie) to make too many requests in parallel:
 
-    user=<count>
+```properties
+user=<count>
+```
 
 Where `<count>` is the maximum number of requests a single user can execute in parallel.
 
 The following avoids a single ip address from making too many requests in parallel:
 
-    ip=<count>
+```properties
+ip=<count>
+```
 
 Where `<count>` is the maximum number of requests a single ip address can execute in parallel.
 
@@ -134,11 +138,13 @@ The following rule will instead allow up to 30 GetMap requests a second, but wil
 
 In both cases headers informing the user of the request rate control will be added to the HTTP response. For example:
 
-    X-Rate-Limit-Context: Any OGC request
-    X-Rate-Limit-Limit: 10
-    X-Rate-Limit-Remaining: 9
-    X-Rate-Limit-Reset: 1103919616
-    X-Rate-Limit-Action: Delay excess requests 1000ms
+```http
+X-Rate-Limit-Context: Any OGC request
+X-Rate-Limit-Limit: 10
+X-Rate-Limit-Remaining: 9
+X-Rate-Limit-Reset: 1103919616
+X-Rate-Limit-Action: Delay excess requests 1000ms
+```
 
 In case several rate control rules apply to a single request, a batch of headers will be added to the response for each of them, it is thus advised to avoid adding too many of these rules in parallel
 
@@ -154,7 +160,9 @@ Where:
 
 A request timeout is specified with the following syntax:
 
-    timeout=<seconds>
+```properties
+timeout=<seconds>
+```
 
 where `<seconds>` is the number of seconds a request can stay queued waiting for execution. If the request does not enter execution before the timeout expires it will be rejected.
 

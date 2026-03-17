@@ -268,7 +268,9 @@ Custom Coordinate Operations are defined in **`epsg_operations.properties`** fil
 
 Each line in **`epsg_operations.properties`** will describe a coordinate operation consisting of a ``source CRS``, a ``target CRS``, and a math transform with its parameter values. Use the following syntax:
 
-    <source crs code>,<target crs code>=<WKT math transform>
+```xml
+<source crs code>,<target crs code>=<WKT math transform>
+```
 
 Math transform is described in [Well-Known Text](http://www.geoapi.org/3.0/javadoc/org/opengis/referencing/doc-files/WKT.md) syntax. Parameter names and value ranges are described in the [EPSG Geodetic Parameter Registry](http://www.epsg-registry.org/).
 
@@ -337,7 +339,9 @@ Each operation can be described in a single line, or can be split in several lin
 
 In case you have defined a custom authority, you might want to define custom coordinate operations either between CRS in that same authority, or across different authorities. In that case, use the following syntax in the **`epsg_operations.properties`** file:
 
-    <authority>\:<source crs code>,<authority>\:<target crs code>=<WKT math transform>
+```xml
+<authority>\:<source crs code>,<authority>\:<target crs code>=<WKT math transform>
+```
 
 !!! note
 

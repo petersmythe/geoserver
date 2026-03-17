@@ -26,15 +26,17 @@ This is similar to *if_then_else* function, except that there is no default clau
 
 **Example**:
 
-    <AttributeMapping>
-      <targetAttribute>gml:name</targetAttribute>
-      <sourceExpression>
-          <OCQL>Recode(ABBREVIATION, '1GRAV', 'urn:cgi:classifier:CGI:SimpleLithology:2008:gravel',
-                                     '1TILL', 'urn:cgi:classifier:CGI:SimpleLithology:2008:diamictite',
-                                     '6ALLU', 'urn:cgi:classifier:CGI:SimpleLithology:2008:sediment')
-          </OCQL>
-      </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gml:name</targetAttribute>
+  <sourceExpression>
+      <OCQL>Recode(ABBREVIATION, '1GRAV', 'urn:cgi:classifier:CGI:SimpleLithology:2008:gravel',
+                                 '1TILL', 'urn:cgi:classifier:CGI:SimpleLithology:2008:diamictite',
+                                 '6ALLU', 'urn:cgi:classifier:CGI:SimpleLithology:2008:sediment')
+      </OCQL>
+  </sourceExpression>
+</AttributeMapping>
+```
 
 The above example will map **gml:name** value to *urn:cgi:classifier:CGI:SimpleLithology:2008:gravel* if the ABBREVIATION column value is *1GRAV*.
 
@@ -65,12 +67,14 @@ This is more suitable for numeric keys, where the translation value is determine
 
 **Example**:
 
-    <AttributeMapping>
-      <targetAttribute>gml:description</targetAttribute>
-      <sourceExpression>
-          <OCQL>Categorize(CGI_LOWER_RANGE, 'missing_value', 1000, 'minor', 5000, 'significant')</OCQL>
-      </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gml:description</targetAttribute>
+  <sourceExpression>
+      <OCQL>Categorize(CGI_LOWER_RANGE, 'missing_value', 1000, 'minor', 5000, 'significant')</OCQL>
+  </sourceExpression>
+</AttributeMapping>
+```
 
 The above example means **gml:description** value would be *significant* if CGI_LOWER_RANGE column value is >= *5000*.
 
@@ -95,12 +99,14 @@ Properties file:
 
 Mapping file:
 
-    <AttributeMapping>
-      <targetAttribute>gml:name</targetAttribute>
-      <sourceExpression>
-          <OCQL>Vocab(ABBREVIATION, strconcat('${config.parent}', '/mapping.properties'))</OCQL>
-      </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gml:name</targetAttribute>
+  <sourceExpression>
+      <OCQL>Vocab(ABBREVIATION, strconcat('${config.parent}', '/mapping.properties'))</OCQL>
+  </sourceExpression>
+</AttributeMapping>
+```
 
 The above example will map **gml:name** to *urn:cgi:classifier:CGI:SimpleLithology:2008:gravel* if ABBREVIATION value is *1GRAV*.
 
@@ -224,10 +230,12 @@ This function returns null if any parameter is null.
 
 This example formats date/times from a column `POSITION` in UTC for inclusion in a `csml:TimeSeries`:
 
-    <AttributeMapping>
-        <targetAttribute>csml:timePositionList</targetAttribute>                    
-        <sourceExpression>
-            <OCQL>FormatDateTimezone('yyyy-MM-dd''T''HH:mm:ss''Z''', POSITION, 'UTC')</OCQL>
-        </sourceExpression>
-        <isList>true</isList>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>csml:timePositionList</targetAttribute>                    
+    <sourceExpression>
+        <OCQL>FormatDateTimezone('yyyy-MM-dd''T''HH:mm:ss''Z''', POSITION, 'UTC')</OCQL>
+    </sourceExpression>
+    <isList>true</isList>
+</AttributeMapping>
+```

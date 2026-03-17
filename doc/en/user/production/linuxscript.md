@@ -6,11 +6,13 @@ To set different values for environment variables, create a file **`/etc/default
 
 Example settings in **`/etc/default/geoserver`** for your environment:
 
-    USER=geoserver
-    GEOSERVER_DATA_DIR=/home/$USER/data_dir
-    GEOSERVER_HOME=/home/$USER/geoserver
-    JAVA_HOME=/usr/lib/jvm/java-6-sun
-    JAVA_OPTS="-Xms128m -Xmx512m"
+```properties
+USER=geoserver
+GEOSERVER_DATA_DIR=/home/$USER/data_dir
+GEOSERVER_HOME=/home/$USER/geoserver
+JAVA_HOME=/usr/lib/jvm/java-6-sun
+JAVA_OPTS="-Xms128m -Xmx512m"
+```
 
 ## Debian/Ubuntu
 

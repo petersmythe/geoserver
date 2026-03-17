@@ -137,95 +137,95 @@ A brief listing of UI design guidelines for Wicket pages in GeoServer follows.
 > Forms
 > :   In forms, group each field as a `<div>` with a label and a form field, try to avoid using lists for the layout, as they are only intended for listing items. For radio buttons and checkboxes, the label should come after the field; for all others the label should precede the field. For example:
 >
->     ``` html
->     <div>
->       <label for="foo"><wicket:message key="foo"> Foo </wicket:message></label>
->       <input wicket:id="foo" type="text"></input>
->     </div>
->     ```
+    ``` html
+    <div>
+      <label for="foo"><wicket:message key="foo"> Foo </wicket:message></label>
+      <input wicket:id="foo" type="text"></input>
+    </div>
+    ```
 >
 >     Similar fields can be grouped within a `<fieldset>`, the title of this group can be added with a `<legend>`
 >
->     ``` html
->     <fieldset>
->        <legend>
->          <span>
->            <wicket:message key="foo"> Foo </wicket:message>
->          </span>
->        </legend>
->        ...
->     </fieldset>
->     ```
+    ``` html
+    <fieldset>
+       <legend>
+         <span>
+           <wicket:message key="foo"> Foo </wicket:message>
+         </span>
+       </legend>
+       ...
+    </fieldset>
+    ```
 >
 > Spacing
 > :   Spacing elements in GeoServer is done with the Bootstrap Utilities (<https://getbootstrap.com/docs/5.2/utilities/spacing/>). For both `padding` and `margin` a special notation is used as described in the Bootstrap documentation.
 >
 >     For example extra padding at the top of a `form` can be achieved as follows:
 >
->     ``` html
->     <form wicket:id="form" class="pt-3">
->         ...
->     </form>
->     ```
+    ``` html
+    <form wicket:id="form" class="pt-3">
+        ...
+    </form>
+    ```
 >
 > Sizing
 > :   As with Spacing, for Sizing Bootstrap Utilities are used (<https://getbootstrap.com/docs/5.2/utilities/sizing/>). Besides the available Bootstrap classes, GeoServer styling needs more classes, however in most cases these extra classes are not needed.
 >
 >     The extra GeoServer sizing classes are:
 >
->     ``` css
->     /* widths */
->     .w-10-em {
->       width: 10em !important;
->     }
->     .w-15-em {
->       width: 15em !important;
->     }
->     .w-25-em {
->       width: 25em !important;
->     }
->     .w-30-em {
->       width: 30em !important;
->     }
->     .w-50-em {
->       width: 50em !important;
->     }
->     .w-100-em {
->       width: 100em !important;
->     }
->     .w-20-ex {
->       width: 20ex !important;
->     }
->     .w-60-ex {
->       width: 60ex !important;
->     }
->     /* add to Bootstrap utilities */
->     .w-10 {
->       width: 10% !important;
->     }
->     .w-95 {
->       width: 95% !important;
->     }
->     /* heights */
->     .h-5-em {
->       height: 5em !important;
->     }
->     .h-10-em {
->       height: 10em !important;
->     }
->     .h-20-em {
->       height: 20em !important;
->     }
->     .h-25-em {
->       height: 25em !important;
->     }
->     .h-50-em {
->       height: 50em !important;
->     }
->     .h-100-em {
->       height: 100em !important;
->     }
->     ```
+    ``` css
+    /* widths */
+    .w-10-em {
+      width: 10em !important;
+    }
+    .w-15-em {
+      width: 15em !important;
+    }
+    .w-25-em {
+      width: 25em !important;
+    }
+    .w-30-em {
+      width: 30em !important;
+    }
+    .w-50-em {
+      width: 50em !important;
+    }
+    .w-100-em {
+      width: 100em !important;
+    }
+    .w-20-ex {
+      width: 20ex !important;
+    }
+    .w-60-ex {
+      width: 60ex !important;
+    }
+    /* add to Bootstrap utilities */
+    .w-10 {
+      width: 10% !important;
+    }
+    .w-95 {
+      width: 95% !important;
+    }
+    /* heights */
+    .h-5-em {
+      height: 5em !important;
+    }
+    .h-10-em {
+      height: 10em !important;
+    }
+    .h-20-em {
+      height: 20em !important;
+    }
+    .h-25-em {
+      height: 25em !important;
+    }
+    .h-50-em {
+      height: 50em !important;
+    }
+    .h-100-em {
+      height: 100em !important;
+    }
+    ```
 >
 >     The suffix in the class name corresponds with the sizing unit used.
 >

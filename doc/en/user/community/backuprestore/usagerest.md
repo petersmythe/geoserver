@@ -67,12 +67,14 @@ Backup procedure will be initiated.
 
 Here is a sample response:
 
-    HTTP/1.1 201 Created
-    Date: Mon, 01 Aug 2016 14:35:44 GMT
-    Location: http://mygeoserver/geoserver/rest/br/backup/1
-    Server: Noelios-Restlet-Engine/1.0..8
-    Content-Type: application/json
-    Transfer-Encoding: chunked
+```http
+HTTP/1.1 201 Created
+Date: Mon, 01 Aug 2016 14:35:44 GMT
+Location: http://mygeoserver/geoserver/rest/br/backup/1
+Server: Noelios-Restlet-Engine/1.0..8
+Content-Type: application/json
+Transfer-Encoding: chunked
+```
 
 ``` json
 {
@@ -230,12 +232,14 @@ Restore procedure will be initiated.
 
 Here is a sample response:
 
-    HTTP/1.1 201 Created
-    Date: Mon, 01 Aug 2016 15:07:29 GMT
-    Location: http://mygeoserver/geoserver/rest/br/restore/2
-    Server: Noelios-Restlet-Engine/1.0..8
-    Content-Type: application/json
-    Transfer-Encoding: chunked
+```http
+HTTP/1.1 201 Created
+Date: Mon, 01 Aug 2016 15:07:29 GMT
+Location: http://mygeoserver/geoserver/rest/br/restore/2
+Server: Noelios-Restlet-Engine/1.0..8
+Content-Type: application/json
+Transfer-Encoding: chunked
+```
 
 ``` json
 {

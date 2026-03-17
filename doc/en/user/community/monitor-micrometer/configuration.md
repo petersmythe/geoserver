@@ -2,9 +2,11 @@
 
 Many aspects of the monitor extension are configurable. The configuration files are stored in the data directory under the `monitoring` directory:
 
-    <data_directory>
-        monitoring/
-            monitor.properties
+```xml
+<data_directory>
+    monitoring/
+        monitor.properties
+```
 
 In particular:
 

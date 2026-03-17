@@ -20,13 +20,13 @@ This will setup a Docker container running Keycloak and setup a [Keycloak Realm]
 
 1.  Run Keycloak v26.1 as a Docker Container running on port 7777 with the admin login user "geoserver" and admin password "geoserver". This assumes your GeoServer is running on <http://localhost:8080>.
 
-> ``` bash
-> docker run --name geoserver_keycloak -p 7777:8080 \
->    -e KC_BOOTSTRAP_ADMIN_USERNAME=geoserver \
->    -e KC_BOOTSTRAP_ADMIN_PASSWORD=geoserver \
->    quay.io/keycloak/keycloak:26.1 \
->    start-dev
-> ```
+``` bash
+docker run --name geoserver_keycloak -p 7777:8080 \
+   -e KC_BOOTSTRAP_ADMIN_USERNAME=geoserver \
+   -e KC_BOOTSTRAP_ADMIN_PASSWORD=geoserver \
+   quay.io/keycloak/keycloak:26.1 \
+   start-dev
+```
 
 1.  Access the Keycloak administration interface at <http://localhost:7777/> and login as "geoserver/geoserver".
 
@@ -193,116 +193,116 @@ This is for technical people wanting to see the Access Token, ID Token, and User
 
 Sample Access Token (yours will be slightly different):
 
-> ``` json
-> {
->     "exp": 1759435301,
->     "iat": 1759435001,
->     "jti": "73171fc2-3827-414f-a03e-f862a550caf4",
->     "iss": "http://localhost:7777/realms/gs-realm",
->     "aud": "gs-client",
->     "sub": "d28f1cb8-704b-4f5e-b24e-0385af136739",
->     "typ": "ID",
->     "azp": "gs-client",
->     "sid": "1b897b54-e4d7-4a3f-9204-7b3e045d8900",
->     "acr": "1",
->     "resource_access": {
->         "gs-client": {
->         "roles": [
->             "geoserverAdmin"
->         ]
->         },
->         "account": {
->         "roles": [
->             "manage-account",
->             "manage-account-links",
->             "view-profile"
->         ]
->         }
->     },
->     "email_verified": true,
->     "name": "david blasby",
->     "preferred_username": "admin",
->     "given_name": "david",
->     "family_name": "blasby",
->     "email": "admin@example.com"
-> }
-> ```
+``` json
+{
+    "exp": 1759435301,
+    "iat": 1759435001,
+    "jti": "73171fc2-3827-414f-a03e-f862a550caf4",
+    "iss": "http://localhost:7777/realms/gs-realm",
+    "aud": "gs-client",
+    "sub": "d28f1cb8-704b-4f5e-b24e-0385af136739",
+    "typ": "ID",
+    "azp": "gs-client",
+    "sid": "1b897b54-e4d7-4a3f-9204-7b3e045d8900",
+    "acr": "1",
+    "resource_access": {
+        "gs-client": {
+        "roles": [
+            "geoserverAdmin"
+        ]
+        },
+        "account": {
+        "roles": [
+            "manage-account",
+            "manage-account-links",
+            "view-profile"
+        ]
+        }
+    },
+    "email_verified": true,
+    "name": "david blasby",
+    "preferred_username": "admin",
+    "given_name": "david",
+    "family_name": "blasby",
+    "email": "admin@example.com"
+}
+```
 
 Sample ID Token (yours will be slightly different):
 
-> ``` json
-> {
->     "exp": 1759435301,
->     "iat": 1759435001,
->     "jti": "e5366c1b-f669-44d4-a6c2-465a06f15997",
->     "iss": "http://localhost:7777/realms/gs-realm",
->     "aud": "account",
->     "sub": "d28f1cb8-704b-4f5e-b24e-0385af136739",
->     "typ": "Bearer",
->     "azp": "gs-client",
->     "sid": "27490dc0-05ef-4979-bafc-6d8f854cf6ad",
->     "acr": "1",
->     "allowed-origins": [
->         "http://localhost:8080"
->     ],
->     "realm_access": {
->         "roles": [
->         "default-roles-gs-realm",
->         "offline_access",
->         "uma_authorization"
->         ]
->     },
->     "resource_access": {
->         "gs-client": {
->         "roles": [
->             "geoserverAdmin"
->         ]
->         },
->         "account": {
->         "roles": [
->             "manage-account",
->             "manage-account-links",
->             "view-profile"
->         ]
->         }
->     },
->     "scope": "openid profile email",
->     "email_verified": true,
->     "name": "david blasby",
->     "preferred_username": "admin",
->     "given_name": "david",
->     "family_name": "blasby",
->     "email": "admin@example.com"
-> }
-> ```
+``` json
+{
+    "exp": 1759435301,
+    "iat": 1759435001,
+    "jti": "e5366c1b-f669-44d4-a6c2-465a06f15997",
+    "iss": "http://localhost:7777/realms/gs-realm",
+    "aud": "account",
+    "sub": "d28f1cb8-704b-4f5e-b24e-0385af136739",
+    "typ": "Bearer",
+    "azp": "gs-client",
+    "sid": "27490dc0-05ef-4979-bafc-6d8f854cf6ad",
+    "acr": "1",
+    "allowed-origins": [
+        "http://localhost:8080"
+    ],
+    "realm_access": {
+        "roles": [
+        "default-roles-gs-realm",
+        "offline_access",
+        "uma_authorization"
+        ]
+    },
+    "resource_access": {
+        "gs-client": {
+        "roles": [
+            "geoserverAdmin"
+        ]
+        },
+        "account": {
+        "roles": [
+            "manage-account",
+            "manage-account-links",
+            "view-profile"
+        ]
+        }
+    },
+    "scope": "openid profile email",
+    "email_verified": true,
+    "name": "david blasby",
+    "preferred_username": "admin",
+    "given_name": "david",
+    "family_name": "blasby",
+    "email": "admin@example.com"
+}
+```
 
 Sample userinfo (yours will be slightly different):
 
-> ``` json
-> {
-> "sub": "d28f1cb8-704b-4f5e-b24e-0385af136739",
-> "resource_access": {
->     "gs-client": {
->     "roles": [
->         "geoserverAdmin"
->     ]
->     },
->     "account": {
->     "roles": [
->         "manage-account",
->         "manage-account-links",
->         "view-profile"
->     ]
->     }
-> },
-> "email_verified": true,
-> "name": "david blasby",
-> "preferred_username": "admin",
-> "given_name": "david",
-> "family_name": "blasby",
-> "email": "admin@example.com"
-> }
-> ```
+``` json
+{
+"sub": "d28f1cb8-704b-4f5e-b24e-0385af136739",
+"resource_access": {
+    "gs-client": {
+    "roles": [
+        "geoserverAdmin"
+    ]
+    },
+    "account": {
+    "roles": [
+        "manage-account",
+        "manage-account-links",
+        "view-profile"
+    ]
+    }
+},
+"email_verified": true,
+"name": "david blasby",
+"preferred_username": "admin",
+"given_name": "david",
+"family_name": "blasby",
+"email": "admin@example.com"
+}
+```
 
 ## Configure GeoServer
 

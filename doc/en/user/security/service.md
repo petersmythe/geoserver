@@ -16,7 +16,9 @@ OWS services support setting security access constraints globally for a particul
 
 OWS service security access rules are specified in a file named **`services.properties`**, located in the `security` directory in the GeoServer data directory. The file contains a list of rules that map service operations to defined roles. The syntax for specifying rules is as follows:
 
-    <service>.<operation|*>=<role>[,<role2>,...]
+```xml
+<service>.<operation|*>=<role>[,<role2>,...]
+```
 
 The parameters include:
 
@@ -59,7 +61,9 @@ In addition to providing the ability to secure OWS services, GeoServer also allo
 
 REST service security access rules are specified in a file named **`rest.properties`**, located in the `security` directory of the GeoServer data directory. This file contains a list of rules mapping request URIs to defined roles. The rule syntax is as follows:
 
-    <uriPattern>;<method>[,<method>,...]=<role>[,<role>,...]
+```xml
+<uriPattern>;<method>[,<method>,...]=<role>[,<role>,...]
+```
 
 The parameters include:
 
@@ -93,8 +97,10 @@ A less restricting configuration locks down access to operations under the path 
 
 The following configuration grants anonymous access when the `GET` method is used, but forces authentication for a `POST`, `PUT`, or `DELETE` method:
 
-    /**;GET=IS_AUTHENTICATED_ANONYMOUSLY
-    /**;POST,PUT,DELETE=TRUSTED_ROLE
+```
+/**;GET=IS_AUTHENTICATED_ANONYMOUSLY
+/**;POST,PUT,DELETE=TRUSTED_ROLE
+```
 
 ### Securing a specific resource
 

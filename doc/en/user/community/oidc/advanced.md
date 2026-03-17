@@ -210,17 +210,17 @@ In order to do this you can follow the next steps:
 
     For `https://accounts.google.com`
 
-    > ``` shell
-    > openssl s_client -connect accounts.google.com:443
-    > ```
+    ``` shell
+    openssl s_client -connect accounts.google.com:443
+    ```
     >
     > ![](images/google_ssl_001.png)
 
     And for `https://www.googleapis.com`
 
-    > ``` shell
-    > openssl s_client -connect www.googleapis.com:443
-    > ```
+    ``` shell
+    openssl s_client -connect www.googleapis.com:443
+    ```
     >
     > ![](images/google_ssl_002.png)
 

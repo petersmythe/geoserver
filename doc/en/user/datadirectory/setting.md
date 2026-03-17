@@ -112,7 +112,9 @@ The method of setting the Java system property is dependent on the servlet conta
 
 - For **Tomcat** on Windows use Apache Tomcat Properties application, navigating to the **Java** tab to edit **Java Options**:
 
-      -DGEOSERVER_DATA_DIR=C:\ProgramData\GeoServer\data
+  ```
+-DGEOSERVER_DATA_DIR=C:\ProgramData\GeoServer\data
+  ```
 
 - For **Glassfish**, edit the file **`domains/<<domain>>/config/domain.xml`** under the root of the Glassfish installation, where `<<domain>>` refers to the domain that the GeoServer web application is deployed under. Add a `<jvm-options>` element inside the `<java-config>` element:
 

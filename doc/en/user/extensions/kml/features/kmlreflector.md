@@ -47,7 +47,9 @@ The KML reflector can operate in one of three modes: **refresh**, **superoverlay
 
 The mode is set by appending the following parameter to the URL:
 
-    mode=<mode>
+```properties
+mode=<mode>
+```
 
 where `<mode>` is one of the three reflector modes. The details for each mode are as follows:
 
@@ -61,7 +63,9 @@ where `<mode>` is one of the three reflector modes. The details for each mode ar
 
 When requesting KML using the `superoverlay` mode, there are four additional submodes available regarding how and when data is requested. These options are set by appending the following parameter to the KML reflector request:
 
-    superoverlay_mode=<submode>
+```properties
+superoverlay_mode=<submode>
+```
 
 where `<submode>` is one of the following options:
 

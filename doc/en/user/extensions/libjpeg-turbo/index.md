@@ -74,8 +74,10 @@ To perform the installation of the libjpeg-turbo binaries (or native library) yo
 
 Once the extension is installed, the following lines should appear in the GeoServer log:
 
-    10-mar-2013 19.16.28 it.geosolutions.imageio.plugins.turbojpeg.TurboJpegUtilities load
-    INFO: TurboJPEG library loaded (turbojpeg)
+```
+10-mar-2013 19.16.28 it.geosolutions.imageio.plugins.turbojpeg.TurboJpegUtilities load
+INFO: TurboJPEG library loaded (turbojpeg)
+```
 
 or:
 

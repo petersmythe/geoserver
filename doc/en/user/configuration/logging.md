@@ -175,7 +175,9 @@ In this case it is convenient to set a separate log location for each GeoServer 
 
 - The `GEOSERVER_LOG_LOCATION` parameter can be set as system property, environment variables, or servlet context parameters:
 
-      GEOSERVER_LOG_LOCATION=<the location of the file>
+  ```properties
+  GEOSERVER_LOG_LOCATION=<the location of the file>
+  ```
 
   This setting overrides global setting, and is applied to `geoserverlogfile` appender as a template for filename and filePattern.
 
@@ -203,11 +205,15 @@ GeoServer internally overrides the Log4J configuration by using the current logg
 
 If you wish GeoServer not to override the normal Log4J behavior you can set the following parameter among the JVM system variables, environment variables, or servlet context parameters:
 
-    RELINQUISH_LOG4J_CONTROL=true
+```properties
+RELINQUISH_LOG4J_CONTROL=true
+```
 
 This can be combined with `log4j2.configurationFile` system property to [configure Log4J externally](https://logging.apache.org/log4j/2.x/manual/configuration.md#AutomaticConfiguration) :
 
-    -DRELINQUISH_LOG4J_CONTROL=true -Dlog4j2.configurationFile=logging_configuration.xml
+```
+-DRELINQUISH_LOG4J_CONTROL=true -Dlog4j2.configurationFile=logging_configuration.xml
+```
 
 ## Forcing GeoServer to use an alternate logging redirection
 
@@ -217,8 +223,10 @@ By default GeoServer setups a Log4J redirection, but it is possible to configure
 
 If you wish to force GeoServer to use a different logging mechanism set the following parameters among the JVM system variables, environment variables, or servlet context parameters:
 
-    GT2_LOGGING_REDIRECTION=[CommonsLogging,JavaLogging,Log4J,Log4J2,LogBack]
-    RELINQUISH_LOG4J_CONTROL=true
+```properties
+GT2_LOGGING_REDIRECTION=[CommonsLogging,JavaLogging,Log4J,Log4J2,LogBack]
+RELINQUISH_LOG4J_CONTROL=true
+```
 
 As noted in the example you'll also have to demand that GeoServer does not exert control over the Log4J configuration.
 
@@ -226,7 +234,9 @@ As noted in the example you'll also have to demand that GeoServer does not exert
 
 As an example to configure java logging:
 
-    -DRELINQUISH_LOG4J_CONTROL=true -DGT2_LOGGING_REDIRECTION=JavaLogging -Djava.util.logging.config.file=logging.properties
+```
+-DRELINQUISH_LOG4J_CONTROL=true -DGT2_LOGGING_REDIRECTION=JavaLogging -Djava.util.logging.config.file=logging.properties
+```
 
 With java util logging configuration provided by **`logging.properties`**:
 

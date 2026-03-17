@@ -225,11 +225,11 @@ The files can also be downloaded from the GitHub source repository.
 
 To clone the RemoteWPS Python Framework into a working folder, e.g.:
 
-> ``` bash
-> $> cd C:\work
->
-> $> git clone https://github.com/geoserver/wps-remote RemoteWPS
-> ```
+``` bash
+$> cd C:\work
+
+$> git clone https://github.com/geoserver/wps-remote RemoteWPS
+```
 
 **Setting Up The** `remote.config`
 
@@ -518,23 +518,23 @@ The requisites for this configuration to work properly are:
 >
 > 6.  Make sure the inputs have been configured correctly for the command line execution
 >
->     ``` bash
->     [Input1]
->     class = param
->     name = interval
->     title = Elevation Interval
->     type = int
->     description = Elevation interval between contours.
->     min = 1
->     max = 1
->     default = 200
->
->     [Action1]
->     class = cmdline
->     input_ref = interval
->     alias = i
->     template = -name value
->     ```
+    ``` bash
+    [Input1]
+    class = param
+    name = interval
+    title = Elevation Interval
+    type = int
+    description = Elevation interval between contours.
+    min = 1
+    max = 1
+    default = 200
+
+    [Action1]
+    class = cmdline
+    input_ref = interval
+    alias = i
+    template = -name value
+    ```
 >
 >     The configuration above sets an input of type `int` (the expected value will be interpreted as text and declared as Literal to the WPS), which is mandatory (**min = 1**) and can have a single value (**max = 1**).
 >
@@ -592,18 +592,18 @@ The requisites for this configuration to work properly are:
 >
 > 7.  Make sure the outputs have been configured correctly for the command line execution
 >
->     ``` bash
->     [Output1]
->     name = result1
->     type = application/zip
->     description = WPS Resource Binary File
->     title = SRTM
->     filepath = %(workdir)s/contour.zip
->     publish_as_layer = true
->     publish_default_style = polygon
->     publish_target_workspace = it.geosolutions
->     publish_layer_name = contour
->     ```
+    ``` bash
+    [Output1]
+    name = result1
+    type = application/zip
+    description = WPS Resource Binary File
+    title = SRTM
+    filepath = %(workdir)s/contour.zip
+    publish_as_layer = true
+    publish_default_style = polygon
+    publish_target_workspace = it.geosolutions
+    publish_layer_name = contour
+    ```
 >
 >     In the example above we declare to the WPS only **one** output of type `application/zip`.
 >
@@ -615,11 +615,11 @@ The requisites for this configuration to work properly are:
 >
 > 8.  Make sure the regular expressions of the "stdout_parser" are correct and valid accordingly to the output of the executable
 >
->     ``` bash
->     [Logging]
->     stdout_parser = [.*\[DEBUG\](.*), .*\[INFO\] ProgressInfo\:([-+]?[0-9]*\.?[0-9]*)\%, .*\[(INFO)\](.*), .*\[(WARN)\](.*), .*\[(ERROR)\](.*), .*\[(CRITICAL)\](.*)]
->     stdout_action = [ignore,          progress,                                          log,              log,              log,               abort]
->     ```
+    ``` bash
+    [Logging]
+    stdout_parser = [.*\[DEBUG\](.*), .*\[INFO\] ProgressInfo\:([-+]?[0-9]*\.?[0-9]*)\%, .*\[(INFO)\](.*), .*\[(WARN)\](.*), .*\[(ERROR)\](.*), .*\[(CRITICAL)\](.*)]
+    stdout_action = [ignore,          progress,                                          log,              log,              log,               abort]
+    ```
 >
 >     The example configuration above:
 >
@@ -1159,9 +1159,9 @@ stdout_action = [ignore,          progress,                                     
   >
   > As an instance
   >
-  > ``` text
-  > .*\[DEBUG\](.*)
-  > ```
+  ``` text
+  .*\[DEBUG\](.*)
+  ```
   >
   > Matches all the messages containing the keyword `[DEBUG]` and forwards to the corresponding **stdout_action** (*see below*) the content of the first matching group `(.*)`
   >
@@ -1169,9 +1169,9 @@ stdout_action = [ignore,          progress,                                     
   >
   > Another example
   >
-  > ``` text
-  > .*\[INFO\] ProgressInfo\:([-+]?[0-9]*\.?[0-9]*)\%
-  > ```
+  ``` text
+  .*\[INFO\] ProgressInfo\:([-+]?[0-9]*\.?[0-9]*)\%
+  ```
   >
   > Matches all the messages containing the keyword `[INFO] ProgressInfo:<any_number>%` and forwards to the corresponding **stdout_action** (*see below*) the content of the first matching group `([-+]?[0-9]*\.?[0-9]*)`
   >

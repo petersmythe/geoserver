@@ -38,35 +38,39 @@ Each data store configuration file `datastore.xml` specifies the location of a m
 
 For `gsml_GeologicUnit` the file is `workspaces/gsml/gsml_GeologicUnit/datastore.xml`:
 
-    <dataStore>
-        <id>gsml_GeologicUnit_datastore</id>
-        <name>gsml_GeologicUnit</name>
-        <enabled>true</enabled>
-        <workspace>
-            <id>gsml_workspace</id>
-        </workspace>
-        <connectionParameters>
-            <entry key="namespace">urn:cgi:xmlns:CGI:GeoSciML:2.0</entry>
-            <entry key="url">file:workspaces/gsml/gsml_GeologicUnit/gsml_GeologicUnit.xml</entry>
-            <entry key="dbtype">app-schema</entry>
-        </connectionParameters>
-    </dataStore>
+```xml
+<dataStore>
+    <id>gsml_GeologicUnit_datastore</id>
+    <name>gsml_GeologicUnit</name>
+    <enabled>true</enabled>
+    <workspace>
+        <id>gsml_workspace</id>
+    </workspace>
+    <connectionParameters>
+        <entry key="namespace">urn:cgi:xmlns:CGI:GeoSciML:2.0</entry>
+        <entry key="url">file:workspaces/gsml/gsml_GeologicUnit/gsml_GeologicUnit.xml</entry>
+        <entry key="dbtype">app-schema</entry>
+    </connectionParameters>
+</dataStore>
+```
 
 For `gsml:MappedFeature` the file is `workspaces/gsml/gsml_MappedFeature/datastore.xml`:
 
-    <dataStore>
-        <id>gsml_MappedFeature_datastore</id>
-        <name>gsml_MappedFeature</name>
-        <enabled>true</enabled>
-        <workspace>
-            <id>gsml_workspace</id>
-        </workspace>
-        <connectionParameters>
-            <entry key="namespace">urn:cgi:xmlns:CGI:GeoSciML:2.0</entry>
-            <entry key="url">file:workspaces/gsml/gsml_MappedFeature/gsml_MappedFeature.xml</entry>
-            <entry key="dbtype">app-schema</entry>
-        </connectionParameters>
-    </dataStore>
+```xml
+<dataStore>
+    <id>gsml_MappedFeature_datastore</id>
+    <name>gsml_MappedFeature</name>
+    <enabled>true</enabled>
+    <workspace>
+        <id>gsml_workspace</id>
+    </workspace>
+    <connectionParameters>
+        <entry key="namespace">urn:cgi:xmlns:CGI:GeoSciML:2.0</entry>
+        <entry key="url">file:workspaces/gsml/gsml_MappedFeature/gsml_MappedFeature.xml</entry>
+        <entry key="dbtype">app-schema</entry>
+    </connectionParameters>
+</dataStore>
+```
 
 !!! note
 
@@ -83,18 +87,20 @@ Configuration of app-schema feature types is performed in mapping files:
 
 Each mapping file contains namespace prefix definitions:
 
-    <Namespace>
-        <prefix>gml</prefix>
-        <uri>http://www.opengis.net/gml</uri>
-    </Namespace>
-    <Namespace>
-        <prefix>gsml</prefix>
-        <uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
-    </Namespace>
-    <Namespace>
-        <prefix>xlink</prefix>
-        <uri>http://www.w3.org/1999/xlink</uri>
-    </Namespace>
+```xml
+<Namespace>
+    <prefix>gml</prefix>
+    <uri>http://www.opengis.net/gml</uri>
+</Namespace>
+<Namespace>
+    <prefix>gsml</prefix>
+    <uri>urn:cgi:xmlns:CGI:GeoSciML:2.0</uri>
+</Namespace>
+<Namespace>
+    <prefix>xlink</prefix>
+    <uri>http://www.w3.org/1999/xlink</uri>
+</Namespace>
+```
 
 Only those namespace prefixes used in the mapping file need to be declared, so the mapping file for `gsml:GeologicUnit` has less.
 
@@ -109,17 +115,19 @@ The data for this tutorial is contained in two property files:
 
 For this example, each feature type uses an identical source data store configuration. This `directory` parameter indicates that the source data is contained in property files named by their feature type, in the same directory as the corresponding mapping file:
 
-    <sourceDataStores>
-         <DataStore>
-             <id>datastore</id>
-             <parameters>
-                 <Parameter>
-                     <name>directory</name>
-                     <value>file:./</value>
-                 </Parameter>
-             </parameters>
-         </DataStore>
-     </sourceDataStores>
+```xml
+<sourceDataStores>
+     <DataStore>
+         <id>datastore</id>
+         <parameters>
+             <Parameter>
+                 <name>directory</name>
+                 <value>file:./</value>
+             </Parameter>
+         </parameters>
+     </DataStore>
+ </sourceDataStores>
+```
 
 See [app-schema.data-stores](#app-schema.data-stores) for a description of how to use other types of data stores such as databases.
 
@@ -127,11 +135,13 @@ See [app-schema.data-stores](#app-schema.data-stores) for a description of how t
 
 Both feature types are defined by the same XML Schema, the top-level schema for GeoSciML 2.0. This is specified in the `targetTypes` section. The type of the output feature is defined in `targetElement` in the `typeMapping` section below:
 
-    <targetTypes>
-        <FeatureType>
-            <schemaUri>http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd</schemaUri>
-        </FeatureType>
-    </targetTypes>
+```xml
+<targetTypes>
+    <FeatureType>
+        <schemaUri>http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd</schemaUri>
+    </FeatureType>
+</targetTypes>
+```
 
 In this case the schema is published, but because the OASIS XML Catalog is used for schema resolution, a private or modified schema in the catalog can be used if desired.
 
@@ -139,11 +149,13 @@ In this case the schema is published, but because the OASIS XML Catalog is used 
 
 The `typeMappings` element begins with configuration elements. From the mapping file for `gsml:GeologicUnit`:
 
-    <typeMappings>
-        <FeatureTypeMapping>
-            <sourceDataStore>datastore</sourceDataStore>
-            <sourceType>gsml_GeologicUnit</sourceType>
-            <targetElement>gsml:GeologicUnit</targetElement>
+```xml
+<typeMappings>
+    <FeatureTypeMapping>
+        <sourceDataStore>datastore</sourceDataStore>
+        <sourceType>gsml_GeologicUnit</sourceType>
+        <targetElement>gsml:GeologicUnit</targetElement>
+```
 
 - The mapping starts with `sourceDataStore`, which gives the arbitrary identifier used above to name the source of the input data in the `sourceDataStores` section.
 - `sourceType` gives the name of the source simple feature type. In this case it is the simple feature type `gsml_GeologicUnit`, sourced from the rows of the file `gsml_GeologicUnit.properties` in the same directory as the mapping file.
@@ -154,14 +166,16 @@ The `typeMappings` element begins with configuration elements. From the mapping 
 
 The first mapping sets the `gml:id` to be the feature id specified in the source property file:
 
-    <AttributeMapping>
-        <targetAttribute>
-            gsml:GeologicUnit
-        </targetAttribute>
-        <idExpression>
-            <OCQL>ID</OCQL>
-        </idExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>
+        gsml:GeologicUnit
+    </targetAttribute>
+    <idExpression>
+        <OCQL>ID</OCQL>
+    </idExpression>
+</AttributeMapping>
+```
 
 - `targetAttribute` is the XPath to the element for which the mapping applies, in this case, the top-level feature type.
 - `idExpression` is a special form that can only be used to set the `gml:id` on a feature. Any field or CQL expression can be used, if it evaluates to an [NCName](http://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-NCName).
@@ -170,14 +184,16 @@ The first mapping sets the `gml:id` to be the feature id specified in the source
 
 Most mappings consist of a target and source. Here is one from `gsml:GeologicUnit`:
 
-    <AttributeMapping>
-        <targetAttribute>
-            gml:description
-            </targetAttribute>
-        <sourceExpression>
-            <OCQL>DESCRIPTION</OCQL>
-        </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>
+        gml:description
+        </targetAttribute>
+    <sourceExpression>
+        <OCQL>DESCRIPTION</OCQL>
+    </sourceExpression>
+</AttributeMapping>
+```
 
 - In this case, the value of `gml:description` is just the value of the `DESCRIPTION` field in the property file.
 - For a database, the field name is the name of the column (the table/view is set in `sourceType` above). Database identifiers must be lowercase for PostGIS or uppercase for Oracle Spatial.
@@ -188,33 +204,37 @@ Most mappings consist of a target and source. Here is one from `gsml:GeologicUni
 
 In addition to the element content, a mapping can set one or more "client properties" (XML attributes). Here is one from `gsml:MappedFeature`:
 
-    <AttributeMapping>
-        <targetAttribute>
-            gsml:specification
-        </targetAttribute>
-        <ClientProperty>
-            <name>xlink:href</name>
-            <value>GU_URN</value>
-        </ClientProperty>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>
+        gsml:specification
+    </targetAttribute>
+    <ClientProperty>
+        <name>xlink:href</name>
+        <value>GU_URN</value>
+    </ClientProperty>
+</AttributeMapping>
+```
 
 - This mapping leaves the content of the `gsml:specification` element empty but sets an `xlink:href` attribute to the value of the `GU_URN` field.
 - Multiple `ClientProperty` mappings can be set.
 
 In this example from the mapping for `gsml:GeologicUnit` both element content and an XML attribute are provided:
 
-    <AttributeMapping>
-        <targetAttribute>
-            gml:name[1]
-            </targetAttribute>
-        <sourceExpression>
-            <OCQL>NAME</OCQL>
-        </sourceExpression>
-        <ClientProperty>
-            <name>codeSpace</name>
-            <value>'urn:x-test:classifierScheme:TestAuthority:GeologicUnitName'</value>
-        </ClientProperty>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>
+        gml:name[1]
+        </targetAttribute>
+    <sourceExpression>
+        <OCQL>NAME</OCQL>
+    </sourceExpression>
+    <ClientProperty>
+        <name>codeSpace</name>
+        <value>'urn:x-test:classifierScheme:TestAuthority:GeologicUnitName'</value>
+    </ClientProperty>
+</AttributeMapping>
+```
 
 - The `codespace` XML attribute is set to a fixed value by providing a CQL literal.
 - There are multiple mappings for `gml:name`, and the index `[1]` means that this mapping targets the first.
@@ -225,20 +245,22 @@ If the type of a property is abstract, a `targetAttributeNode` mapping must be u
 
 Here is an example from the mapping file for `gsml:MappedFeature`:
 
-    <AttributeMapping>
-        <targetAttribute>gsml:positionalAccuracy</targetAttribute>
-        <targetAttributeNode>gsml:CGI_TermValuePropertyType</targetAttributeNode>
-    </AttributeMapping>
-    <AttributeMapping>
-        <targetAttribute>gsml:positionalAccuracy/gsml:CGI_TermValue/gsml:value</targetAttribute>
-        <sourceExpression>
-            <OCQL>'urn:ogc:def:nil:OGC:missing'</OCQL>
-        </sourceExpression>
-        <ClientProperty>
-            <name>codeSpace</name>
-            <value>'urn:ietf:rfc:2141'</value>
-        </ClientProperty>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>gsml:positionalAccuracy</targetAttribute>
+    <targetAttributeNode>gsml:CGI_TermValuePropertyType</targetAttributeNode>
+</AttributeMapping>
+<AttributeMapping>
+    <targetAttribute>gsml:positionalAccuracy/gsml:CGI_TermValue/gsml:value</targetAttribute>
+    <sourceExpression>
+        <OCQL>'urn:ogc:def:nil:OGC:missing'</OCQL>
+    </sourceExpression>
+    <ClientProperty>
+        <name>codeSpace</name>
+        <value>'urn:ietf:rfc:2141'</value>
+    </ClientProperty>
+</AttributeMapping>
+```
 
 - `gsml:positionalAccuracy` is of type `gsml:CGI_TermValuePropertyType`, which is abstract, so must be mapped to its concrete subtype `gsml:CGI_TermValuePropertyType` with a `targetAttributeNode` mapping before its contents can be mapped.
 - This example also demonstrates that mapping can be applied to nested properties to arbitrary depth. This becomes unmanageable for deep nesting, where feature chaining is preferred.
@@ -247,17 +269,19 @@ Here is an example from the mapping file for `gsml:MappedFeature`:
 
 In feature chaining, one feature type is used as a property of an enclosing feature type, by value or by reference:
 
-    <AttributeMapping>
-        <targetAttribute>
-            gsml:occurrence
-        </targetAttribute>
-        <sourceExpression>
-            <OCQL>URN</OCQL>
-            <linkElement>gsml:MappedFeature</linkElement>
-            <linkField>gml:name[2]</linkField>
-        </sourceExpression>
-        <isMultiple>true</isMultiple>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>
+        gsml:occurrence
+    </targetAttribute>
+    <sourceExpression>
+        <OCQL>URN</OCQL>
+        <linkElement>gsml:MappedFeature</linkElement>
+        <linkField>gml:name[2]</linkField>
+    </sourceExpression>
+    <isMultiple>true</isMultiple>
+</AttributeMapping>
+```
 
 - In this case from the mapping for `gsml:GeologicUnit`, we specify a mapping for its `gsml:occurrence`.
 - The `URN` field of the source `gsml_GeologicUnit` simple feature is use as the "foreign key", which maps to the second `gml:name` in each `gsml:MappedFeature`.

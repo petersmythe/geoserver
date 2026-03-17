@@ -14,24 +14,26 @@ Configure the data store connection in "sourceDataStores" tag as usual, but also
 
 **Example**:
 
-    <sourceDataStores>
-      <DataStore>
-      <id>EarthResource</id>
-      <parameters>
-         <Parameter>
-           <name>directory</name>
-           <value>file:./</value>
-         </Parameter>
-      </parameters>
-      <isDataAccess>true</isDataAccess>
-      </DataStore>
-    </sourceDataStores>
-    ...
-    <typeMappings>
-      <FeatureTypeMapping>
-        <sourceDataStore>EarthResource</sourceDataStore>
-      <sourceType>EarthResource</sourceType>
-    ...
+```xml
+<sourceDataStores>
+  <DataStore>
+  <id>EarthResource</id>
+  <parameters>
+     <Parameter>
+       <name>directory</name>
+       <value>file:./</value>
+     </Parameter>
+  </parameters>
+  <isDataAccess>true</isDataAccess>
+  </DataStore>
+</sourceDataStores>
+...
+<typeMappings>
+  <FeatureTypeMapping>
+    <sourceDataStore>EarthResource</sourceDataStore>
+  <sourceType>EarthResource</sourceType>
+...
+```
 
 ## How to configure the mapping
 
@@ -39,12 +41,14 @@ Use "inputAttribute" in place of "OCQL" tag inside "sourceExpression", to specif
 
 **Example**:
 
-    <AttributeMapping>
-      <targetAttribute>gsml:classifier/gsml:ControlledConcept/gsml:preferredName</targetAttribute>
-      <sourceExpression>
-          <inputAttribute>mo:classification/mo:MineralDepositModel/mo:mineralDepositGroup</inputAttribute>
-      </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gsml:classifier/gsml:ControlledConcept/gsml:preferredName</targetAttribute>
+  <sourceExpression>
+      <inputAttribute>mo:classification/mo:MineralDepositModel/mo:mineralDepositGroup</inputAttribute>
+  </sourceExpression>
+</AttributeMapping>
+```
 
 ## How to chain features
 
@@ -52,15 +56,17 @@ Feature chaining works both ways for the re-mapped complex features. You can cha
 
 **Example**:
 
-    <AttributeMapping>
-      <targetAttribute>gsml:occurence</targetAttribute>
-      <sourceExpression>
-          <inputAttribute>mo:commodityDescription</inputAttribute>
-          <linkElement>gsml:MappedFeature</linkElement>
-          <linkField>gml:name[2]</linkField>
-      </sourceExpression>
-      <isMultiple>true</isMultiple>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>gsml:occurence</targetAttribute>
+  <sourceExpression>
+      <inputAttribute>mo:commodityDescription</inputAttribute>
+      <linkElement>gsml:MappedFeature</linkElement>
+      <linkField>gml:name[2]</linkField>
+  </sourceExpression>
+  <isMultiple>true</isMultiple>
+</AttributeMapping>
+```
 
 ## How to use filters
 
@@ -70,12 +76,14 @@ From the user point of view, filters are configured as per normal, using the map
 
 Composition is a multi-valued property:
 
-    <ogc:Filter>
-      <ogc:PropertyIsEqualTo>
-        <ogc:Function name="contains_text">
-            <ogc:PropertyName>gsml:composition/gsml:CompositionPart/gsml:proportion/gsml:CGI_TermValue/gsml:value</ogc:PropertyName>
-            <ogc:Literal>Olivine basalt, tuff, microgabbro, minor sedimentary rocks</ogc:Literal>
-        </ogc:Function>
-        <ogc:Literal>1</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
-    </ogc:Filter>
+```xml
+<ogc:Filter>
+  <ogc:PropertyIsEqualTo>
+    <ogc:Function name="contains_text">
+        <ogc:PropertyName>gsml:composition/gsml:CompositionPart/gsml:proportion/gsml:CGI_TermValue/gsml:value</ogc:PropertyName>
+        <ogc:Literal>Olivine basalt, tuff, microgabbro, minor sedimentary rocks</ogc:Literal>
+    </ogc:Function>
+    <ogc:Literal>1</ogc:Literal>
+  </ogc:PropertyIsEqualTo>
+</ogc:Filter>
+```

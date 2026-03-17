@@ -20,14 +20,16 @@ The REST API allows you to list, create, update, and delete **user/group service
 
 *Response (XML)* :
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <org.geoserver.security.xml.XMLUserGroupServiceConfig>
-      <name>default</name>
-      <className>org.geoserver.security.xml.XMLUserGroupService</className>
-      <fileName>default.xml</fileName>
-      <passwordEncoderName>plainTextPasswordEncoder</passwordEncoderName>
-      <passwordPolicyName>default</passwordPolicyName>
-    </org.geoserver.security.xml.XMLUserGroupServiceConfig>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<org.geoserver.security.xml.XMLUserGroupServiceConfig>
+  <name>default</name>
+  <className>org.geoserver.security.xml.XMLUserGroupService</className>
+  <fileName>default.xml</fileName>
+  <passwordEncoderName>plainTextPasswordEncoder</passwordEncoderName>
+  <passwordPolicyName>default</passwordPolicyName>
+</org.geoserver.security.xml.XMLUserGroupServiceConfig>
+```
 
 *Request*
 
@@ -37,15 +39,17 @@ The REST API allows you to list, create, update, and delete **user/group service
 
 *Response (JSON)* :
 
-    {
-      "org.geoserver.security.xml.XMLUserGroupServiceConfig": {
-        "name": "default",
-        "className": "org.geoserver.security.xml.XMLUserGroupService",
-        "fileName": "default.xml",
-        "passwordEncoderName": "plainTextPasswordEncoder",
-        "passwordPolicyName": "default"
-      }
-    }
+```json
+{
+  "org.geoserver.security.xml.XMLUserGroupServiceConfig": {
+    "name": "default",
+    "className": "org.geoserver.security.xml.XMLUserGroupService",
+    "fileName": "default.xml",
+    "passwordEncoderName": "plainTextPasswordEncoder",
+    "passwordPolicyName": "default"
+  }
+}
+```
 
 ## List User/Group Services
 
@@ -57,14 +61,16 @@ The REST API allows you to list, create, update, and delete **user/group service
 
 *Response (XML)* :
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <userGroupService>
-      <userGroupService>
-        <name>default</name>
-        <className>org.geoserver.security.xml.XMLUserGroupService</className>
-      </userGroupService>
-      <!-- ... possibly more entries ... -->
-    </userGroupService>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<userGroupService>
+  <userGroupService>
+    <name>default</name>
+    <className>org.geoserver.security.xml.XMLUserGroupService</className>
+  </userGroupService>
+  <!-- ... possibly more entries ... -->
+</userGroupService>
+```
 
 *Request*
 
@@ -74,11 +80,13 @@ The REST API allows you to list, create, update, and delete **user/group service
 
 *Response (JSON)* :
 
-    {
-      "userGroupService": [
-        { "name": "default", "className": "org.geoserver.security.xml.XMLUserGroupService" }
-      ]
-    }
+```json
+{
+  "userGroupService": [
+    { "name": "default", "className": "org.geoserver.security.xml.XMLUserGroupService" }
+  ]
+}
+```
 
 ## Create a User/Group Service
 

@@ -305,12 +305,12 @@ Creating and exposing a shared folder is possible by following the next steps:
 1.  as root
 2.  Create the physical folder structure to be exposed via the Network Filesystem
 
-> ``` bash
-> $> mkdir /share
-> $> mkdir /share/xmpp_data
-> $> mkdir /share/xmpp_data/output
-> $> mkdir /share/xmpp_data/resource_dir
-> ```
+``` bash
+$> mkdir /share
+$> mkdir /share/xmpp_data
+$> mkdir /share/xmpp_data/output
+$> mkdir /share/xmpp_data/resource_dir
+```
 
 3.  Modify the rights in order to allow
 
@@ -320,23 +320,23 @@ Creating and exposing a shared folder is possible by following the next steps:
 
 4.  Once the physical folder is ready it must be exposed via the `exports`
 
-> ``` bash
-> $> vi /etc/exports
-> ```
+``` bash
+$> vi /etc/exports
+```
 
 4.  write settings for NFS exports
 
-> ``` bash
-> /share host_ip/24(rw,no_root_squash)
-> ```
+``` bash
+/share host_ip/24(rw,no_root_squash)
+```
 
 4.  Restart the NFS services
 
-> ``` bash
-> $> systemctl start rpcbind nfs-server
->
-> $> systemctl enable rpcbind nfs-server
-> ```
+``` bash
+$> systemctl start rpcbind nfs-server
+
+$> systemctl enable rpcbind nfs-server
+```
 
 !!! note
 

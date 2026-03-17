@@ -39,47 +39,49 @@ The following outlines the steps to be taken in order to add a new community mod
 
     For example, from the root of the GeoServer source tree:
 
-        [geoserver]% cd src/community
-        [geoserver/src/community]% mkdir myCommunityModule
-        [geoserver/src/community]% git add myCommunityModule
-        [geoserver/src/community]% git commit -m "adding my community module"
+    ```json
+[geoserver]% cd src/community
+[geoserver/src/community]% mkdir myCommunityModule
+[geoserver/src/community]% git add myCommunityModule
+[geoserver/src/community]% git commit -m "adding my community module"
+    ```
 
 4.  **Add a Maven POM**
 
     Every module in the build requires a maven pom file, `pom.xml`. Use the following as a template:
 
-    > ``` xml
-    > <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    > <modelVersion>4.0.0</modelVersion>
-    >
-    > <parent>
-    >   <groupId>org.geoserver</groupId>
-    >   <artifactId>geoserver</artifactId>
-    >   <version>2.8-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
-    > </parent>
-    >
-    > <groupId>org.geoserver</groupId>
-    > <artifactId>myCommunityModule</artifactId>
-    > <version>1.0-SNAPSHOT</version>
-    > <packaging>jar</packaging>
-    > <name>My Community Module</name>
-    >
-    > <dependencies>
-    >   <!-- add any dependencies your module has here -->
-    >
-    >   <!-- Spring Framework dependencies - DO NOT specify version (managed by BOM) -->
-    >   <dependency>
-    >     <groupId>org.springframework</groupId>
-    >     <artifactId>spring-context</artifactId>
-    >   </dependency>
-    >   <!-- Spring Security dependencies - DO NOT specify version (managed by BOM) -->
-    >   <dependency>
-    >     <groupId>org.springframework.security</groupId>
-    >     <artifactId>spring-security-core</artifactId>
-    >   </dependency>
-    > </dependencies>
-    >    </project>
-    > ```
+    ``` xml
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+      <groupId>org.geoserver</groupId>
+      <artifactId>geoserver</artifactId>
+      <version>2.8-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
+    </parent>
+    
+    <groupId>org.geoserver</groupId>
+    <artifactId>myCommunityModule</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>My Community Module</name>
+    
+    <dependencies>
+      <!-- add any dependencies your module has here -->
+    
+      <!-- Spring Framework dependencies - DO NOT specify version (managed by BOM) -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+      </dependency>
+      <!-- Spring Security dependencies - DO NOT specify version (managed by BOM) -->
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+      </dependency>
+    </dependencies>
+       </project>
+    ```
 
     Add the file to the root of the new community module, `myCommunityModule/pom.xml`
 
@@ -248,19 +250,23 @@ The following properties must hold true in order to promote a community module:
 
     Core modules live under the root of the source tree:
 
-        [geoserver]% mv src/community/myCommunityModule src/
-        [geoserver]% git add src/myCommunityModule
-        [geoserver]% git add --all src/community/myCommunityModule
-        [geoserver]% git commit -m "promoting my community module to a core module"
+    ```json
+[geoserver]% mv src/community/myCommunityModule src/
+[geoserver]% git add src/myCommunityModule
+[geoserver]% git add --all src/community/myCommunityModule
+[geoserver]% git commit -m "promoting my community module to a core module"
+    ```
 
     *Extensions*
 
     Extension modules live under the extension directory, under the root of the source tree:
 
-        [geoserver]% mv src/community/myCommunityModule src/extension
-        [geoserver]% git add src/extension/myCommunityModule
-        [geoserver]% git add --all src/community/myCommunityModule
-        [geoserver]% git commit -m "promoting my community module to an extension"
+    ```json
+[geoserver]% mv src/community/myCommunityModule src/extension
+[geoserver]% git add src/extension/myCommunityModule
+[geoserver]% git add --all src/community/myCommunityModule
+[geoserver]% git commit -m "promoting my community module to an extension"
+    ```
 
 3.  **Update the build**
 
@@ -272,10 +278,12 @@ The following properties must hold true in order to promote a community module:
 
     2.  Edit `pom.xml` under the root of the source tree and add a module entry:
 
-            <modules>
-              ...
-              <module>myCommunityModule</module>
-            </modules>
+        ```xml
+<modules>
+  ...
+  <module>myCommunityModule</module>
+</modules>
+        ```
 
     3.  
 
@@ -346,9 +354,11 @@ The following properties must hold true in order to promote a community module:
         <dependencies>
            ...
            <dependency>
-             <groupId>org.geoserver.extension</groupId>
-             <artifactId>%module%</artifactId>
-             <version>%version%</version>
+        ```xml
+ <groupId>org.geoserver.extension</groupId>
+ <artifactId>%module%</artifactId>
+ <version>%version%</version>
+        ```
            </dependency>
            ...
          </dependencies>
@@ -362,14 +372,16 @@ The following properties must hold true in order to promote a community module:
           <artifactId>maven-assembly-plugin</artifactId>
           <version>2.1</version>
           <configuration>
-            <descriptors>
-             <descriptor>release/war.xml</descriptor>
-             <descriptor>release/javadoc.xml</descriptor>
-             <descriptor>release/bin.xml</descriptor>
-             <descriptor>release/doc.xml</descriptor>
-             ...
-             <descriptor>release/ext-%module%.xml</descriptor>
-            </descriptors>
+        ```xml
+<descriptors>
+ <descriptor>release/war.xml</descriptor>
+ <descriptor>release/javadoc.xml</descriptor>
+ <descriptor>release/bin.xml</descriptor>
+ <descriptor>release/doc.xml</descriptor>
+ ...
+ <descriptor>release/ext-%module%.xml</descriptor>
+</descriptors>
+        ```
           </configuration>
         </plugin>
         ```
@@ -401,11 +413,11 @@ The following properties must hold true in order to promote a community module:
     >
     >     - When writing ``installing.rst`` use the sphinx external link ``download_community`` to generate a download link for the current release.
     >
-    >       ``` rst
-    >       To install the JDBCConfig module:
-    >
-    >       #. Visit the :website:`website download <download>` page and download :download_community:`jdbcconfig`.
-    >       ```
+          ``` rst
+          To install the JDBCConfig module:
+    
+          #. Visit the :website:`website download <download>` page and download :download_community:`jdbcconfig`.
+          ```
     >
     >     For more information see [documentation guide <>](../docguide/documentation guide <>).
     >

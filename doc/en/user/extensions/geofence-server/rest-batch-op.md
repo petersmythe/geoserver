@@ -21,66 +21,70 @@ A `Batch` data object transfer must declare a list of `operations`. Each operati
 
 Encoding of a Batch in XML:
 
-    <Batch>
-    <operations service="rules" id="2" type="update">
-      <Rule id="2">
-         <access>ALLOW</access>
-         <layer>layer</layer>
-         <priority>5</priority>
-         <request>GETMAP</request>
-         <roleName>ROLE_AUTHENTICATED</roleName>
-         <service>WMS</service>
-         <workspace>ws</workspace>
-      </Rule>
-    </operations>
-    <operations service="rules" id="5" type="delete" />
-    <operations service="adminrules" type="insert">
-      <RuleAdmin>
-         <priority>2</priority>
-         <roleName>ROLE_USER</roleName>
-         <workspace>ws</workspace>
-         <access>ADMIN</access>
-      </RuleAdmin>
-    </operations>
-    </Batch>
+```xml
+<Batch>
+<operations service="rules" id="2" type="update">
+  <Rule id="2">
+     <access>ALLOW</access>
+     <layer>layer</layer>
+     <priority>5</priority>
+     <request>GETMAP</request>
+     <roleName>ROLE_AUTHENTICATED</roleName>
+     <service>WMS</service>
+     <workspace>ws</workspace>
+  </Rule>
+</operations>
+<operations service="rules" id="5" type="delete" />
+<operations service="adminrules" type="insert">
+  <RuleAdmin>
+     <priority>2</priority>
+     <roleName>ROLE_USER</roleName>
+     <workspace>ws</workspace>
+     <access>ADMIN</access>
+  </RuleAdmin>
+</operations>
+</Batch>
+```
 
 Encoding of a Batch in JSON:
 
-    {
-    "Batch":{
-      "operations":[
-         {
-            "@service":"adminrules",
-            "@type":"update",
-            "@id":"3",
-            "Rule":{
-               "access":"ALLOW",
-               "layer":"layer",
-               "priority":5,
-               "request":"GETMAP",
-               "service":"WMS",
-               "roleName":"ROLE_AUTHENTICATED",
-               "workspace":"ws"
-            }
-         },
-         {
-            "@service":"rules",
-            "@type":"delete",
-            "@id":5
-         },
-         {
-            "@service":"adminrules",
-            "@type":"insert",
-            "AdminRule":{
-               "priority":2,
-               "roleName":"ROLE_USER",
-               "workspace":"ws",
-               "access":"ADMIN"
-            }
-         }
-      ]
-    }
-    }
+```json
+{
+"Batch":{
+  "operations":[
+     {
+        "@service":"adminrules",
+        "@type":"update",
+        "@id":"3",
+        "Rule":{
+           "access":"ALLOW",
+           "layer":"layer",
+           "priority":5,
+           "request":"GETMAP",
+           "service":"WMS",
+           "roleName":"ROLE_AUTHENTICATED",
+           "workspace":"ws"
+        }
+     },
+     {
+        "@service":"rules",
+        "@type":"delete",
+        "@id":5
+     },
+     {
+        "@service":"adminrules",
+        "@type":"insert",
+        "AdminRule":{
+           "priority":2,
+           "roleName":"ROLE_USER",
+           "workspace":"ws",
+           "access":"ADMIN"
+        }
+     }
+  ]
+}
+}
+```
 
 ## Requests
 

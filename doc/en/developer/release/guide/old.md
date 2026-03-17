@@ -36,12 +36,14 @@ To obtain the GeoServer and Geotools revisions that have passed the [CITE test](
 
 Perform a search on the log for 'Git revision' and you should obtain the following.:
 
-    version = 2.4-SNAPSHOT
-    Git revision = 68cbe445ca378e0dd04405870ef95c852189c1b0
-    Git branch = 68cbe445ca378e0dd04405870ef95c852189c1b0
-    build date = 08-Jul-2012 03:36
-    geotools version = 9-SNAPSHOT
-    geotools revision = 9517eebf412ce5cda354e7945672293c37cddcc4
+```
+version = 2.4-SNAPSHOT
+Git revision = 68cbe445ca378e0dd04405870ef95c852189c1b0
+Git branch = 68cbe445ca378e0dd04405870ef95c852189c1b0
+build date = 08-Jul-2012 03:36
+geotools version = 9-SNAPSHOT
+geotools revision = 9517eebf412ce5cda354e7945672293c37cddcc4
+```
 
 Since most GeoServer releases require an official GeoTools release the GEoTools revision is usually not needed. But if performing a beta release it is allowed to release directly from a specific GeoTools revision.
 
@@ -137,34 +139,36 @@ to the SourceForge FRS server. Navigate to [Sourceforge](http://sourceforge.net/
 
 Send an email to both the developers list and users list announcing the release. The message should be relatively short. The following is an example:
 
-    Subject: GeoServer 1.7.1 Released
+```
+Subject: GeoServer 1.7.1 Released
 
-    The GeoServer team is happy to announce the release of GeoServer 1.7.1.
-    The release is available for download from http://geoserver.org/release/1.7.1/
+The GeoServer team is happy to announce the release of GeoServer 1.7.1.
+The release is available for download from http://geoserver.org/release/1.7.1/
 
-    This release comes with some exciting new features. The new and
-    noteworthy include:
+This release comes with some exciting new features. The new and
+noteworthy include:
 
-       * KML Super Overlay and Regionating Support
-       * KML Extrude Support
-       * KML Reflector Improvements
-       * Mac OS X Installer
-       * Dutch Translation
-       * Improved Style for Web Admin Interface
-       * New SQL Server DataStore Extension
-       * Improved Oracle DataStore Extension
-       * Default Templates per Namespace
+   * KML Super Overlay and Regionating Support
+   * KML Extrude Support
+   * KML Reflector Improvements
+   * Mac OS X Installer
+   * Dutch Translation
+   * Improved Style for Web Admin Interface
+   * New SQL Server DataStore Extension
+   * Improved Oracle DataStore Extension
+   * Default Templates per Namespace
 
-    Along with many other improvements and bug fixes. The entire change log
-    for the 1.7.1 series is available in GitHub:
+Along with many other improvements and bug fixes. The entire change log
+for the 1.7.1 series is available in GitHub:
 
-    https://github.com/geoserver/geoserver/releases/tag/1.7.1
+https://github.com/geoserver/geoserver/releases/tag/1.7.1
 
-    A very special thanks to all those who contributed bug fixes, new
-    features, bug reports, and testing to this release.
+A very special thanks to all those who contributed bug fixes, new
+features, bug reports, and testing to this release.
 
-    --
-    The GeoServer Team
+--
+The GeoServer Team
+```
 
 ### SourceForge
 
@@ -221,26 +225,28 @@ Send an email to both the developers list and users list announcing the release.
 
 Send an email to `bjoern dot broscheit at uni-osnabrueck dot de`. Example:
 
-    Subject: GeoServer update for freegis
+```
+Subject: GeoServer update for freegis
 
-    GeoServer 1.7.1 has been released with some exciting new features. The big
-    push for this release has been improved KML support. The new and noteworthy
-    include:
+GeoServer 1.7.1 has been released with some exciting new features. The big
+push for this release has been improved KML support. The new and noteworthy
+include:
 
-      * KML Super Overlay and Regionating Support
-      * KML Extrude Support
-      * KML Reflector Improvements
-      * Mac OS X Installer
-      * Dutch Translation
-      * Improved Style for Web Admin Interface
-      * New SQL Server DataStore Extension
-      * Improved Oracle DataStore Extension
-      * Default Templates per Namespace
+  * KML Super Overlay and Regionating Support
+  * KML Extrude Support
+  * KML Reflector Improvements
+  * Mac OS X Installer
+  * Dutch Translation
+  * Improved Style for Web Admin Interface
+  * New SQL Server DataStore Extension
+  * Improved Oracle DataStore Extension
+  * Default Templates per Namespace
 
-    Along with many other improvements and bug fixes. The entire change log for
-    the 1.7.1 series is available in the issue tracker:
+Along with many other improvements and bug fixes. The entire change log for
+the 1.7.1 series is available in the issue tracker:
 
-    http://jira.codehaus.org/browse/GEOS/fixforversion/14502
+http://jira.codehaus.org/browse/GEOS/fixforversion/14502
+```
 
 ### FreshMeat
 

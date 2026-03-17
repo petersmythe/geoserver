@@ -65,11 +65,13 @@ The interfaces provide access to users and groups:
 
 The service interface advertises whether it is read only:
 
-    if (ugService.canCreateStore()) {
-      GeoServerUserGroupStore store = ugService.createStore();
-      store.addUser(new GeoServerUser("bob"));
-      store.store();
-    }
+```
+if (ugService.canCreateStore()) {
+  GeoServerUserGroupStore store = ugService.createStore();
+  store.addUser(new GeoServerUser("bob"));
+  store.store();
+}
+```
 
 The `GeoServerUserGroupService` implements the spring security `UserDetailsService` interface in order to integrate with existing facilities such as remember me services which require a user details service for loading user information at runtime.
 
@@ -77,19 +79,21 @@ The `GeoServerUserGroupService` implements the spring security `UserDetailsServi
 
 `GeoServerRoleService` and `GeoServerRoleStore` provide a database for roles and role associations for users and groups. Like user group services a `GeoServerRoleService` may be read only:
 
-    GeoServerRoleService roleService = mgr.loadRoleService("default");
-    roleService.getRoles();
-    roleService.getRolesForUser("admin");
-    roleService.getRolesForGroup("users");
+```
+GeoServerRoleService roleService = mgr.loadRoleService("default");
+roleService.getRoles();
+roleService.getRolesForUser("admin");
+roleService.getRolesForGroup("users");
 
-    if (roleService.canCreateStore()) {
-      GeoServerRoleStore store = roleService.createStore();
-      GeoServerRole role = new GeoServerRole("ROLE_FOO");
+if (roleService.canCreateStore()) {
+  GeoServerRoleStore store = roleService.createStore();
+  GeoServerRole role = new GeoServerRole("ROLE_FOO");
 
-      store.addRole(role);
-      store.associateRoleToGroup(role, "users");
-      store.store();
-    }
+  store.addRole(role);
+  store.associateRoleToGroup(role, "users");
+  store.store();
+}
+```
 
 ### Authentication Provider {: #auth_provider }
 
@@ -97,18 +101,20 @@ The `GeoServerUserGroupService` implements the spring security `UserDetailsServi
 
 The class extends the `AuthenticationProvider` contract and provides methods for authentication that provide access to the current request to make it easier for providers that require request information to perform authentication:
 
-    @Override
-    public final Authentication authenticate(Authentication authentication)
-        throws AuthenticationException {
-        return authenticate(authentication, request());
-    }
+```
+@Override
+public final Authentication authenticate(Authentication authentication)
+    throws AuthenticationException {
+    return authenticate(authentication, request());
+}
 
-    /**
-     * Same function as {@link #authenticate(Authentication)} but is provided with
-     * the current request object.
-     */
-    public abstract Authentication authenticate(Authentication authentication,
-        HttpServletRequest request) throws AuthenticationException;
+/**
+ * Same function as {@link #authenticate(Authentication)} but is provided with
+ * the current request object.
+ */
+public abstract Authentication authenticate(Authentication authentication,
+    HttpServletRequest request) throws AuthenticationException;
+```
 
 The list of active authentication providers is maintained by the GeoServerSecurityManager which extends the spring security `AuthenticationProviderManager` interface.
 
@@ -139,22 +145,26 @@ The `GeoServerSecurityProvider` is the actual extension point that allows for th
 
 For each type of security service the provider has two methods to implement. For example with a user group service:
 
-    public Class<? extends GeoServerUserGroupService> getUserGroupServiceClass() {
-        return null;
-    }
+```
+public Class<? extends GeoServerUserGroupService> getUserGroupServiceClass() {
+    return null;
+}
 
-    public GeoServerUserGroupService createUserGroupService(SecurityNamedServiceConfig config)
-        throws IOException {
-        return null;
-    }
+public GeoServerUserGroupService createUserGroupService(SecurityNamedServiceConfig config)
+    throws IOException {
+    return null;
+}
+```
 
 The first method reports on the specific class of user group service it implements. This is how a specific security provider is chosen from a specific configuration object. `SecurityNamedServiceConfig.getClassName()` is used to locate the provider.
 
 The second method creates an instance of the security service from a specified configuration object. Providers are registered via spring, for example:
 
-    <bean id="ldapSecurityProvider" class="org.geoserver.security.ldap.LDAPSecurityProvider">
-      <constructor-arg ref="geoServerSecurityManager"/>
-    </bean>
+```xml
+<bean id="ldapSecurityProvider" class="org.geoserver.security.ldap.LDAPSecurityProvider">
+  <constructor-arg ref="geoServerSecurityManager"/>
+</bean>
+```
 
 ## Security Configuration
 
@@ -162,10 +172,12 @@ The second method creates an instance of the security service from a specified c
 
 As mentioned above each type of security service corresponds to a configuration class. The `SecurityNamedServiceConfig` is the base class for all such configuration classes and maintains three properties that all classes inherit. The first is name for the configuration:
 
-    /**
-     * The name of the service.
-     */
-    String getName();
+```
+/**
+ * The name of the service.
+ */
+String getName();
+```
 
 This name is used to reference both the configuration directly, or to the corresponding service implementation. For example consider a user group service named "foo":
 
@@ -174,10 +186,12 @@ This name is used to reference both the configuration directly, or to the corres
 
 The second property is the fully qualified class name of the service implementation that the config object corresponds to:
 
-    /**
-     * Name of class for implementation of the service.
-     */
-    String getClassName();
+```
+/**
+ * Name of class for implementation of the service.
+ */
+String getClassName();
+```
 
 For instance consider creating an XML user group service:
 
@@ -186,13 +200,15 @@ For instance consider creating an XML user group service:
 
 The third property is an internal identifier, similar to how catalog and configuration objects have an id:
 
-    /**
-     * Internal id of the config object.
-     * <p>
-     * This method should be used by client code.
-     * </p>
-     */
-    String getId();
+```
+/**
+ * Internal id of the config object.
+ * <p>
+ * This method should be used by client code.
+ * </p>
+ */
+String getId();
+```
 
 The main purpose of this id is to detect if the security service config has been persisted or not.
 
@@ -234,16 +250,18 @@ Let's say an additional authentication provider named "ldap" was added. The tree
 
 Inside each named configuration directory is a file named `config.xml` that contains the direct xstream serialization of the configuration object. For example the default user group service configuration is persisted in the file `security/usergroup/default/config.xml` and looks like:
 
-    <userGroupService>
-      <id>7aacccc3:13660a38ccb:-7ffd</id>
-      <name>default</name>
-      <className>org.geoserver.security.xml.XMLUserGroupService</className>
-      <fileName>users.xml</fileName>
-      <checkInterval>10000</checkInterval>
-      <validating>true</validating>
-      <passwordEncoderName>pbePasswordEncoder</passwordEncoderName>
-      <passwordPolicyName>default</passwordPolicyName>
-    </userGroupService>
+```xml
+<userGroupService>
+  <id>7aacccc3:13660a38ccb:-7ffd</id>
+  <name>default</name>
+  <className>org.geoserver.security.xml.XMLUserGroupService</className>
+  <fileName>users.xml</fileName>
+  <checkInterval>10000</checkInterval>
+  <validating>true</validating>
+  <passwordEncoderName>pbePasswordEncoder</passwordEncoderName>
+  <passwordPolicyName>default</passwordPolicyName>
+</userGroupService>
+```
 
 ### Global Configuration
 
@@ -270,17 +288,19 @@ The filterChain is essentially a map whose keys are strings corresponding to ant
 
 To enable a new Login button just add lines similar to the following configuration into the `applicationContext.xml`:
 
-    <!-- login button -->
-    <bean id="geoserverFormLoginButton" class="org.geoserver.web.LoginFormInfo">
-        <property name="id" value="geoserverFormLoginButton" />
-        <property name="titleKey" value="login" />
-        <property name="descriptionKey" value="GeoServerBasePage.description" />
-        <property name="componentClass" value="org.geoserver.web.GeoServerBasePage" />
-        <property name="name" value="form" />
-        <property name="icon" value="img/icons/silk/door-in.png" />
-        <property name="include" value="include_login_form.html" />
-        <property name="loginPath" value="j_spring_security_check" />
-    </bean>
+```xml
+<!-- login button -->
+<bean id="geoserverFormLoginButton" class="org.geoserver.web.LoginFormInfo">
+    <property name="id" value="geoserverFormLoginButton" />
+    <property name="titleKey" value="login" />
+    <property name="descriptionKey" value="GeoServerBasePage.description" />
+    <property name="componentClass" value="org.geoserver.web.GeoServerBasePage" />
+    <property name="name" value="form" />
+    <property name="icon" value="img/icons/silk/door-in.png" />
+    <property name="include" value="include_login_form.html" />
+    <property name="loginPath" value="j_spring_security_check" />
+</bean>
+```
 
 The same can be done for any other Security Filter which needs a specific button for a Login Endpoint.
 
@@ -297,9 +317,11 @@ The properties of `LoginFormInfo` are:
 
 Example of **include** HTML can be:
 
-    <label class="noshow" for="username"><wicket:message key="username">Username</wicket:message></label>
-    <input id="username" type="text" name="username" value="" title="username" placeholder="username" wicket:message="title:username,placeholder:username"/>
-    <label class="noshow" for="password"><wicket:message key="password">Password</wicket:message></label>
-    <input id="password" type="password" name="password" value="" title="password" placeholder="password" wicket:message="title:password,placeholder:passwordGeoServer"/>
-    <label class="shown" for="_spring_security_remember_me"><wicket:message key="rememberMe">Remember me</wicket:message></label>
-    <input id="_spring_security_remember_me" type="checkbox" name="_spring_security_remember_me" />
+```xml
+<label class="noshow" for="username"><wicket:message key="username">Username</wicket:message></label>
+<input id="username" type="text" name="username" value="" title="username" placeholder="username" wicket:message="title:username,placeholder:username"/>
+<label class="noshow" for="password"><wicket:message key="password">Password</wicket:message></label>
+<input id="password" type="password" name="password" value="" title="password" placeholder="password" wicket:message="title:password,placeholder:passwordGeoServer"/>
+<label class="shown" for="_spring_security_remember_me"><wicket:message key="rememberMe">Remember me</wicket:message></label>
+<input id="_spring_security_remember_me" type="checkbox" name="_spring_security_remember_me" />
+```

@@ -67,36 +67,42 @@ In order to test the authentication settings configured in the previous section 
 
 1.  Ensure that basic authentication is disabled execute the following curl command:
 
-        curl -v -u admin:geoserver -G "http://localhost:8080/geoserve/wfs?request=getcapabilities"
+    ```bash
+curl -v -u admin:geoserver -G "http://localhost:8080/geoserve/wfs?request=getcapabilities"
+    ```
 
-    The result should be a 401 response signaling that authentication is required. The output should look something like the following:
+```html
+The result should be a 401 response signaling that authentication is required. The output should look something like the following:
 
-        * About to connect() to localhost port 8080 (#0)
-        *   Trying 127.0.0.1... connected
-        * Connected to localhost (127.0.0.1) port 8080 (#0)
-        * Server auth using Basic with user 'admin'
-        > GET /geoserver/wfs?request=getcapabilities HTTP/1.1
-        > Authorization: Basic YWRtaW46Z2Vvc2VydmVy
-        > User-Agent: curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8r zlib/1.2.3
-        > Host: localhost:8080
-        > Accept: */*
-        > 
-        < HTTP/1.1 401 Full authentication is required to access this resource
-        < Set-Cookie: JSESSIONID=1dn2bi8qqu5qc;Path=/geoserver
-        < WWW-Authenticate: Digest realm="GeoServer Realm", qop="auth", nonce="MTMzMzQzMDkxMTU3MjphZGIwMWE4MTc1NmRiMzI3YmFiODhmY2NmZGQ2MzEwZg=="
-        < Content-Type: text/html; charset=iso-8859-1
-        < Content-Length: 1491
-        < Server: Jetty(6.1.8)
-        < 
-        <html>
-        <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-        <title>Error 401 Full authentication is required to access this resource</title>
-        </head>
-        ...
+    * About to connect() to localhost port 8080 (#0)
+    *   Trying 127.0.0.1... connected
+    * Connected to localhost (127.0.0.1) port 8080 (#0)
+    * Server auth using Basic with user 'admin'
+    > GET /geoserver/wfs?request=getcapabilities HTTP/1.1
+    > Authorization: Basic YWRtaW46Z2Vvc2VydmVy
+    > User-Agent: curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8r zlib/1.2.3
+    > Host: localhost:8080
+    > Accept: */*
+    > 
+    < HTTP/1.1 401 Full authentication is required to access this resource
+    < Set-Cookie: JSESSIONID=1dn2bi8qqu5qc;Path=/geoserver
+    < WWW-Authenticate: Digest realm="GeoServer Realm", qop="auth", nonce="MTMzMzQzMDkxMTU3MjphZGIwMWE4MTc1NmRiMzI3YmFiODhmY2NmZGQ2MzEwZg=="
+    < Content-Type: text/html; charset=iso-8859-1
+    < Content-Length: 1491
+    < Server: Jetty(6.1.8)
+    < 
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Error 401 Full authentication is required to access this resource</title>
+    </head>
+    ...
+```
 
 2.  Execute the same command but specify the `--digest` option to tell curl to use digest authentication rather than basic authentication:
 
-        curl --digest -v -u admin:geoserver -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
+    ```bash
+curl --digest -v -u admin:geoserver -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
+    ```
 
     The result should be a successful authentication and contain the normal WFS capabilities response.

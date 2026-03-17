@@ -11,60 +11,60 @@ Before being able to proceed, GeoServer must be built on the local system. See t
 1.  Create a new module named `hello_rest` somewhere on the file system.
 2.  Add the following `pom.xml` to the root of the new module:
 
-> ``` xml
-> <project xmlns="http://maven.apache.org/POM/4.0.0"
->    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
->    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
->   <modelVersion>4.0.0</modelVersion>
->
->   <groupId>org.geoserver</groupId>
->   <artifactId>hello_rest</artifactId>
->   <packaging>jar</packaging>
->   <version>1.0-SNAPSHOT</version>
->   <name>hello_rest</name>
->
->   <dependencies>
->     <dependency>
->       <groupId>org.geoserver</groupId>
->       <artifactId>gs-rest</artifactId>
->       <version>2.8-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
->     </dependency>
->     <dependency>
->       <groupId>org.geoserver</groupId>
->       <artifactId>gs-main</artifactId>
->       <version>2.8-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
->       <classifier>tests</classifier>
->       <scope>test</scope>
->     </dependency>
->     <dependency>
->       <groupId>junit</groupId>
->       <artifactId>junit</artifactId>
->       <version>4.11</version>
->       <scope>test</scope>
->     </dependency>
->     <dependency>
->       <groupId>com.mockrunner</groupId>
->       <artifactId>mockrunner</artifactId>
->       <version>0.3.6</version>
->      <scope>test</scope>
->     </dependency>
->
->   </dependencies>
->
->   <build>
->     <plugins>
->       <plugin>
->         <artifactId>maven-compiler-plugin</artifactId>
->         <configuration>
->           <source>1.8</source>
->           <target>1.8</target>
->         </configuration>
->      </plugin>
->    </plugins>
->   </build>
->
-> </project>
-> ```
+``` xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.geoserver</groupId>
+  <artifactId>hello_rest</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>hello_rest</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.geoserver</groupId>
+      <artifactId>gs-rest</artifactId>
+      <version>2.8-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
+    </dependency>
+    <dependency>
+      <groupId>org.geoserver</groupId>
+      <artifactId>gs-main</artifactId>
+      <version>2.8-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.mockrunner</groupId>
+      <artifactId>mockrunner</artifactId>
+      <version>0.3.6</version>
+     <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+     </plugin>
+   </plugins>
+  </build>
+
+</project>
+```
 
 1.  Create the directory `src/main/java` under the root of the new module:
 

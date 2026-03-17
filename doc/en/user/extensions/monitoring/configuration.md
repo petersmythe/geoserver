@@ -2,10 +2,12 @@
 
 Many aspects of the monitor extension are configurable. All configuration files are stored in the data directory under the `monitoring` directory:
 
-    <data_directory>
-        monitoring/
-            filter.properties
-            monitor.properties
+```xml
+<data_directory>
+    monitoring/
+        filter.properties
+        monitor.properties
+```
 
 The `monitor.properties` file is the main configuration file whose contents are described in the following sections. The `filter.properties` allows for [filtering](#request_filters) out those requests from being monitored.
 
@@ -111,16 +113,18 @@ In general, the path used in filters is comprised of the portion of the URL afte
 
 ### monitor.properties
 
-    # storage and mode
-    storage=memory
-    mode=history
+```
+# storage and mode
+storage=memory
+mode=history
 
-    # request body capture
-    maxBodySize=1024
+# request body capture
+maxBodySize=1024
 
-    # bounding box capture
-    bboxMode=no_wfs
-    bboxCrs=EPSG:4326
+# bounding box capture
+bboxMode=no_wfs
+bboxCrs=EPSG:4326
+```
 
 ### filter.properties
 

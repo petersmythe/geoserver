@@ -136,13 +136,15 @@ The final step is to commit the changes to a branch in *your* repository, using 
 
 You can use any name you like for the branch, often I use the issue number so I can tell my branches apart if I need to find them later. **`{path/file(s)}`** is the path and file(s) you wish to commit to the repository. If you are unclear about which files you have changed you can use `git status -sb` to list the files that you have changed, this will give you a list of changed files, and indicate the ones that still need to be added to this commit:
 
-    $ git status -sb 
-    ## update
-     M docguide/source/background.rst
-     M docguide/source/contributing.rst
-     M docguide/source/install.rst
-     M docguide/source/installlatex.rst
-     M docguide/source/workflow.rst
+```
+$ git status -sb 
+## update
+ M docguide/source/background.rst
+ M docguide/source/contributing.rst
+ M docguide/source/install.rst
+ M docguide/source/installlatex.rst
+ M docguide/source/workflow.rst
+```
 
 Here the `M` indicate these files are modified but not added. Once `git add *.rst` is run the indicator will change to `A`, files that are not under git's control will show a `?` these are new files that you may need to add if you have created them for the documentation.
 

@@ -23,18 +23,20 @@ Selecting **Add** opens a modal dialog where the relationship can be created or 
 
 Virtual relationships are persisted in GeoServer's `datastore.xml` alongside the other connection parameters. They are stored as XML in the `virtual-relationships` entry, for example:
 
-    <entry key="virtual-relationships"><![CDATA[
-      <relationships version="1">
-        <relationship name="stations_to_view" cardinality="1:n">
-          <source schema="smartappschematest" entity="meteo_stations" kind="TABLE">
-            <key column="id"/>
-          </source>
-          <target schema="smartschema2" entity="v_meteo_observations_parameters" kind="VIEW">
-            <key column="station_id"/>
-          </target>
-        </relationship>
-      </relationships>
-    ]]></entry>
+```xml
+<entry key="virtual-relationships"><![CDATA[
+  <relationships version="1">
+    <relationship name="stations_to_view" cardinality="1:n">
+      <source schema="smartappschematest" entity="meteo_stations" kind="TABLE">
+        <key column="id"/>
+      </source>
+      <target schema="smartschema2" entity="v_meteo_observations_parameters" kind="VIEW">
+        <key column="station_id"/>
+      </target>
+    </relationship>
+  </relationships>
+]]></entry>
+```
 
 During metadata loading the helper merges these virtual links with the relationships discovered directly from the database. Any referenced schema or table is automatically added to the in-memory model, allowing Smart Data Loader to build App-Schema mappings that traverse tables and views without requiring database-side constraints.
 
@@ -77,370 +79,374 @@ The generated mappings file for this example are explained below.
 
 GML schema definition:
 
-    <?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:st="http://www.stations.org/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.stations.org/1.0" version="1.0">
-    <xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-    <xs:complexType name="MeteoStationsType">
-      <xs:complexContent>
-        <xs:extension base="gml:AbstractFeatureType">
-          <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="common_name" type="xs:string"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="position" type="gml:GeometryPropertyType"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoObservations" type="st:MeteoObservationsPropertyType"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoStationsMaintainers" type="st:MeteoStationsMaintainersPropertyType"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-    <xs:element name="MeteoStationsFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoStationsType"/>
-    <xs:complexType name="MeteoObservationsType">
-      <xs:complexContent>
-        <xs:extension base="gml:AbstractFeatureType">
-          <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="time" type="xs:dateTime"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:double"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoParameters" type="st:MeteoParametersPropertyType"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-    <xs:element name="MeteoObservationsFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoObservationsType"/>
-    <xs:complexType name="MeteoObservationsPropertyType">
-      <xs:sequence minOccurs="0">
-        <xs:element ref="st:MeteoObservationsFeature"/>
+```xml
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:st="http://www.stations.org/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.stations.org/1.0" version="1.0">
+<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+<xs:complexType name="MeteoStationsType">
+  <xs:complexContent>
+    <xs:extension base="gml:AbstractFeatureType">
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="code" type="xs:string"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="common_name" type="xs:string"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="position" type="gml:GeometryPropertyType"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoObservations" type="st:MeteoObservationsPropertyType"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoStationsMaintainers" type="st:MeteoStationsMaintainersPropertyType"/>
       </xs:sequence>
-      <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
-    </xs:complexType>
-    <xs:complexType name="MeteoParametersType">
-      <xs:complexContent>
-        <xs:extension base="gml:AbstractFeatureType">
-          <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="param_name" type="xs:string"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="param_unit" type="xs:string"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-    <xs:element name="MeteoParametersFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoParametersType"/>
-    <xs:complexType name="MeteoParametersPropertyType">
-      <xs:sequence minOccurs="0">
-        <xs:element ref="st:MeteoParametersFeature"/>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+<xs:element name="MeteoStationsFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoStationsType"/>
+<xs:complexType name="MeteoObservationsType">
+  <xs:complexContent>
+    <xs:extension base="gml:AbstractFeatureType">
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="time" type="xs:dateTime"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="value" type="xs:double"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoParameters" type="st:MeteoParametersPropertyType"/>
       </xs:sequence>
-      <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
-    </xs:complexType>
-    <xs:complexType name="MeteoStationsMaintainersType">
-      <xs:complexContent>
-        <xs:extension base="gml:AbstractFeatureType">
-          <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoMaintainers" type="st:MeteoMaintainersPropertyType"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-    <xs:element name="MeteoStationsMaintainersFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoStationsMaintainersType"/>
-    <xs:complexType name="MeteoStationsMaintainersPropertyType">
-      <xs:sequence minOccurs="0">
-        <xs:element ref="st:MeteoStationsMaintainersFeature"/>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+<xs:element name="MeteoObservationsFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoObservationsType"/>
+<xs:complexType name="MeteoObservationsPropertyType">
+  <xs:sequence minOccurs="0">
+    <xs:element ref="st:MeteoObservationsFeature"/>
+  </xs:sequence>
+  <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+</xs:complexType>
+<xs:complexType name="MeteoParametersType">
+  <xs:complexContent>
+    <xs:extension base="gml:AbstractFeatureType">
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="param_name" type="xs:string"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="param_unit" type="xs:string"/>
       </xs:sequence>
-      <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
-    </xs:complexType>
-    <xs:complexType name="MeteoMaintainersType">
-      <xs:complexContent>
-        <xs:extension base="gml:AbstractFeatureType">
-          <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="surname" type="xs:string"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="company" type="xs:string"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-    <xs:element name="MeteoMaintainersFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoMaintainersType"/>
-    <xs:complexType name="MeteoMaintainersPropertyType">
-      <xs:sequence minOccurs="0">
-        <xs:element ref="st:MeteoMaintainersFeature"/>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+<xs:element name="MeteoParametersFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoParametersType"/>
+<xs:complexType name="MeteoParametersPropertyType">
+  <xs:sequence minOccurs="0">
+    <xs:element ref="st:MeteoParametersFeature"/>
+  </xs:sequence>
+  <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+</xs:complexType>
+<xs:complexType name="MeteoStationsMaintainersType">
+  <xs:complexContent>
+    <xs:extension base="gml:AbstractFeatureType">
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="meteoMaintainers" type="st:MeteoMaintainersPropertyType"/>
       </xs:sequence>
-      <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
-    </xs:complexType>
-    </xs:schema>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+<xs:element name="MeteoStationsMaintainersFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoStationsMaintainersType"/>
+<xs:complexType name="MeteoStationsMaintainersPropertyType">
+  <xs:sequence minOccurs="0">
+    <xs:element ref="st:MeteoStationsMaintainersFeature"/>
+  </xs:sequence>
+  <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+</xs:complexType>
+<xs:complexType name="MeteoMaintainersType">
+  <xs:complexContent>
+    <xs:extension base="gml:AbstractFeatureType">
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" name="id" type="xs:int"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="surname" type="xs:string"/>
+        <xs:element maxOccurs="1" minOccurs="0" name="company" type="xs:string"/>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+<xs:element name="MeteoMaintainersFeature" substitutionGroup="gml:AbstractFeature" type="st:MeteoMaintainersType"/>
+<xs:complexType name="MeteoMaintainersPropertyType">
+  <xs:sequence minOccurs="0">
+    <xs:element ref="st:MeteoMaintainersFeature"/>
+  </xs:sequence>
+  <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+</xs:complexType>
+</xs:schema>
+```
 
 App-Schema mappings file:
 
-    <?xml version="1.0" encoding="UTF-8"?><ns3:AppSchemaDataAccess xmlns:ns2="http://www.opengis.net/ogc" xmlns:ns3="http://www.geotools.org/app-schema">
-    <namespaces>
-      <Namespace>
-        <prefix>gml</prefix>
-        <uri>http://www.opengis.net/gml/3.2</uri>
-      </Namespace>
-      <Namespace>
-        <prefix>st</prefix>
-        <uri>http://www.stations.org/1.0</uri>
-      </Namespace>
-    </namespaces>
-    <includedTypes/>
-    <targetTypes>
-      <FeatureType>
-        <schemaUri>./meteo_stations-gml.xsd</schemaUri>
-      </FeatureType>
-    </targetTypes>
-    <typeMappings>
-      <FeatureTypeMapping>
-        <sourceDataStore>smartappschematest</sourceDataStore>
-        <sourceType>meteo_stations</sourceType>
-        <targetElement>st:MeteoStationsFeature</targetElement>
-        <attributeMappings>
-          <AttributeMapping>
-            <targetAttribute>st:MeteoStationsFeature</targetAttribute>
-            <idExpression>
-              <OCQL>strConcat('MeteoStationsFeature.',id)</OCQL>
-            </idExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:id</targetAttribute>
-            <sourceExpression>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:code</targetAttribute>
-            <sourceExpression>
-              <OCQL>code</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:common_name</targetAttribute>
-            <sourceExpression>
-              <OCQL>common_name</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:position</targetAttribute>
-            <sourceExpression>
-              <OCQL>position</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>meteoObservations</targetAttribute>
-            <sourceExpression>
-              <linkField>FEATURE_LINK[1]</linkField>
-              <linkElement>st:MeteoObservationsFeature</linkElement>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>meteoStationsMaintainers</targetAttribute>
-            <sourceExpression>
-              <linkField>FEATURE_LINK[1]</linkField>
-              <linkElement>st:MeteoStationsMaintainersFeature</linkElement>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-        </attributeMappings>
-      </FeatureTypeMapping>
-      <FeatureTypeMapping>
-        <sourceDataStore>smartappschematest</sourceDataStore>
-        <sourceType>meteo_observations</sourceType>
-        <targetElement>st:MeteoObservationsFeature</targetElement>
-        <attributeMappings>
-          <AttributeMapping>
-            <targetAttribute>FEATURE_LINK[1]</targetAttribute>
-            <sourceExpression>
-              <OCQL>station_id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:MeteoObservationsFeature</targetAttribute>
-            <idExpression>
-              <OCQL>strConcat('MeteoObservationsFeature.',id)</OCQL>
-            </idExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:id</targetAttribute>
-            <sourceExpression>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:time</targetAttribute>
-            <sourceExpression>
-              <OCQL>time</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:value</targetAttribute>
-            <sourceExpression>
-              <OCQL>value</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>meteoParameters</targetAttribute>
-            <sourceExpression>
-              <linkField>FEATURE_LINK[1]</linkField>
-              <linkElement>st:MeteoParametersFeature</linkElement>
-              <OCQL>parameter_id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-        </attributeMappings>
-      </FeatureTypeMapping>
-      <FeatureTypeMapping>
-        <sourceDataStore>smartappschematest</sourceDataStore>
-        <sourceType>meteo_parameters</sourceType>
-        <targetElement>st:MeteoParametersFeature</targetElement>
-        <attributeMappings>
-          <AttributeMapping>
-            <targetAttribute>FEATURE_LINK[1]</targetAttribute>
-            <sourceExpression>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:MeteoParametersFeature</targetAttribute>
-            <idExpression>
-              <OCQL>strConcat('MeteoParametersFeature.',id)</OCQL>
-            </idExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:id</targetAttribute>
-            <sourceExpression>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:param_name</targetAttribute>
-            <sourceExpression>
-              <OCQL>param_name</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:param_unit</targetAttribute>
-            <sourceExpression>
-              <OCQL>param_unit</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-        </attributeMappings>
-      </FeatureTypeMapping>
-      <FeatureTypeMapping>
-        <sourceDataStore>smartappschematest</sourceDataStore>
-        <sourceType>meteo_stations_maintainers</sourceType>
-        <targetElement>st:MeteoStationsMaintainersFeature</targetElement>
-        <attributeMappings>
-          <AttributeMapping>
-            <targetAttribute>FEATURE_LINK[1]</targetAttribute>
-            <sourceExpression>
-              <OCQL>station_id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:MeteoStationsMaintainersFeature</targetAttribute>
-            <idExpression>
-              <OCQL>strConcat('MeteoStationsMaintainersFeature.',id)</OCQL>
-            </idExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:id</targetAttribute>
-            <sourceExpression>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>meteoMaintainers</targetAttribute>
-            <sourceExpression>
-              <linkField>FEATURE_LINK[1]</linkField>
-              <linkElement>st:MeteoMaintainersFeature</linkElement>
-              <OCQL>maintainer_id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-        </attributeMappings>
-      </FeatureTypeMapping>
-      <FeatureTypeMapping>
-        <sourceDataStore>smartappschematest</sourceDataStore>
-        <sourceType>meteo_maintainers</sourceType>
-        <targetElement>st:MeteoMaintainersFeature</targetElement>
-        <attributeMappings>
-          <AttributeMapping>
-            <targetAttribute>FEATURE_LINK[1]</targetAttribute>
-            <sourceExpression>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:MeteoMaintainersFeature</targetAttribute>
-            <idExpression>
-              <OCQL>strConcat('MeteoMaintainersFeature.',id)</OCQL>
-            </idExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:id</targetAttribute>
-            <sourceExpression>
-              <OCQL>id</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:name</targetAttribute>
-            <sourceExpression>
-              <OCQL>name</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:surname</targetAttribute>
-            <sourceExpression>
-              <OCQL>surname</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-          <AttributeMapping>
-            <targetAttribute>st:company</targetAttribute>
-            <sourceExpression>
-              <OCQL>company</OCQL>
-            </sourceExpression>
-          </AttributeMapping>
-        </attributeMappings>
-      </FeatureTypeMapping>
-    </typeMappings>
-    <sourceDataStores>
-      <DataStore>
-        <id>smartappschematest</id>
-        <parameters>
-          <Parameter>
-            <name>schema</name>
-            <value>smartappschematest</value>
-          </Parameter>
-          <Parameter>
-            <name>database</name>
-            <value>mock?sslmode=DISABLE&amp;binaryTransferEnable=bytea</value>
-          </Parameter>
-          <Parameter>
-            <name>port</name>
-            <value>5432</value>
-          </Parameter>
-          <Parameter>
-            <name>passwd</name>
-            <value>postgres</value>
-          </Parameter>
-          <Parameter>
-            <name>Expose primary keys</name>
-            <value>true</value>
-          </Parameter>
-          <Parameter>
-            <name>dbtype</name>
-            <value>postgis</value>
-          </Parameter>
-          <Parameter>
-            <name>host</name>
-            <value>localhost</value>
-          </Parameter>
-          <Parameter>
-            <name>user</name>
-            <value>postgres</value>
-          </Parameter>
-        </parameters>
-      </DataStore>
-    </sourceDataStores>
-    </ns3:AppSchemaDataAccess>
+```xml
+<?xml version="1.0" encoding="UTF-8"?><ns3:AppSchemaDataAccess xmlns:ns2="http://www.opengis.net/ogc" xmlns:ns3="http://www.geotools.org/app-schema">
+<namespaces>
+  <Namespace>
+    <prefix>gml</prefix>
+    <uri>http://www.opengis.net/gml/3.2</uri>
+  </Namespace>
+  <Namespace>
+    <prefix>st</prefix>
+    <uri>http://www.stations.org/1.0</uri>
+  </Namespace>
+</namespaces>
+<includedTypes/>
+<targetTypes>
+  <FeatureType>
+    <schemaUri>./meteo_stations-gml.xsd</schemaUri>
+  </FeatureType>
+</targetTypes>
+<typeMappings>
+  <FeatureTypeMapping>
+    <sourceDataStore>smartappschematest</sourceDataStore>
+    <sourceType>meteo_stations</sourceType>
+    <targetElement>st:MeteoStationsFeature</targetElement>
+    <attributeMappings>
+      <AttributeMapping>
+        <targetAttribute>st:MeteoStationsFeature</targetAttribute>
+        <idExpression>
+          <OCQL>strConcat('MeteoStationsFeature.',id)</OCQL>
+        </idExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:id</targetAttribute>
+        <sourceExpression>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:code</targetAttribute>
+        <sourceExpression>
+          <OCQL>code</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:common_name</targetAttribute>
+        <sourceExpression>
+          <OCQL>common_name</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:position</targetAttribute>
+        <sourceExpression>
+          <OCQL>position</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>meteoObservations</targetAttribute>
+        <sourceExpression>
+          <linkField>FEATURE_LINK[1]</linkField>
+          <linkElement>st:MeteoObservationsFeature</linkElement>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>meteoStationsMaintainers</targetAttribute>
+        <sourceExpression>
+          <linkField>FEATURE_LINK[1]</linkField>
+          <linkElement>st:MeteoStationsMaintainersFeature</linkElement>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+    </attributeMappings>
+  </FeatureTypeMapping>
+  <FeatureTypeMapping>
+    <sourceDataStore>smartappschematest</sourceDataStore>
+    <sourceType>meteo_observations</sourceType>
+    <targetElement>st:MeteoObservationsFeature</targetElement>
+    <attributeMappings>
+      <AttributeMapping>
+        <targetAttribute>FEATURE_LINK[1]</targetAttribute>
+        <sourceExpression>
+          <OCQL>station_id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:MeteoObservationsFeature</targetAttribute>
+        <idExpression>
+          <OCQL>strConcat('MeteoObservationsFeature.',id)</OCQL>
+        </idExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:id</targetAttribute>
+        <sourceExpression>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:time</targetAttribute>
+        <sourceExpression>
+          <OCQL>time</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:value</targetAttribute>
+        <sourceExpression>
+          <OCQL>value</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>meteoParameters</targetAttribute>
+        <sourceExpression>
+          <linkField>FEATURE_LINK[1]</linkField>
+          <linkElement>st:MeteoParametersFeature</linkElement>
+          <OCQL>parameter_id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+    </attributeMappings>
+  </FeatureTypeMapping>
+  <FeatureTypeMapping>
+    <sourceDataStore>smartappschematest</sourceDataStore>
+    <sourceType>meteo_parameters</sourceType>
+    <targetElement>st:MeteoParametersFeature</targetElement>
+    <attributeMappings>
+      <AttributeMapping>
+        <targetAttribute>FEATURE_LINK[1]</targetAttribute>
+        <sourceExpression>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:MeteoParametersFeature</targetAttribute>
+        <idExpression>
+          <OCQL>strConcat('MeteoParametersFeature.',id)</OCQL>
+        </idExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:id</targetAttribute>
+        <sourceExpression>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:param_name</targetAttribute>
+        <sourceExpression>
+          <OCQL>param_name</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:param_unit</targetAttribute>
+        <sourceExpression>
+          <OCQL>param_unit</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+    </attributeMappings>
+  </FeatureTypeMapping>
+  <FeatureTypeMapping>
+    <sourceDataStore>smartappschematest</sourceDataStore>
+    <sourceType>meteo_stations_maintainers</sourceType>
+    <targetElement>st:MeteoStationsMaintainersFeature</targetElement>
+    <attributeMappings>
+      <AttributeMapping>
+        <targetAttribute>FEATURE_LINK[1]</targetAttribute>
+        <sourceExpression>
+          <OCQL>station_id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:MeteoStationsMaintainersFeature</targetAttribute>
+        <idExpression>
+          <OCQL>strConcat('MeteoStationsMaintainersFeature.',id)</OCQL>
+        </idExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:id</targetAttribute>
+        <sourceExpression>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>meteoMaintainers</targetAttribute>
+        <sourceExpression>
+          <linkField>FEATURE_LINK[1]</linkField>
+          <linkElement>st:MeteoMaintainersFeature</linkElement>
+          <OCQL>maintainer_id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+    </attributeMappings>
+  </FeatureTypeMapping>
+  <FeatureTypeMapping>
+    <sourceDataStore>smartappschematest</sourceDataStore>
+    <sourceType>meteo_maintainers</sourceType>
+    <targetElement>st:MeteoMaintainersFeature</targetElement>
+    <attributeMappings>
+      <AttributeMapping>
+        <targetAttribute>FEATURE_LINK[1]</targetAttribute>
+        <sourceExpression>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:MeteoMaintainersFeature</targetAttribute>
+        <idExpression>
+          <OCQL>strConcat('MeteoMaintainersFeature.',id)</OCQL>
+        </idExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:id</targetAttribute>
+        <sourceExpression>
+          <OCQL>id</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:name</targetAttribute>
+        <sourceExpression>
+          <OCQL>name</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:surname</targetAttribute>
+        <sourceExpression>
+          <OCQL>surname</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+      <AttributeMapping>
+        <targetAttribute>st:company</targetAttribute>
+        <sourceExpression>
+          <OCQL>company</OCQL>
+        </sourceExpression>
+      </AttributeMapping>
+    </attributeMappings>
+  </FeatureTypeMapping>
+</typeMappings>
+<sourceDataStores>
+  <DataStore>
+    <id>smartappschematest</id>
+    <parameters>
+      <Parameter>
+        <name>schema</name>
+        <value>smartappschematest</value>
+      </Parameter>
+      <Parameter>
+        <name>database</name>
+        <value>mock?sslmode=DISABLE&amp;binaryTransferEnable=bytea</value>
+      </Parameter>
+      <Parameter>
+        <name>port</name>
+        <value>5432</value>
+      </Parameter>
+      <Parameter>
+        <name>passwd</name>
+        <value>postgres</value>
+      </Parameter>
+      <Parameter>
+        <name>Expose primary keys</name>
+        <value>true</value>
+      </Parameter>
+      <Parameter>
+        <name>dbtype</name>
+        <value>postgis</value>
+      </Parameter>
+      <Parameter>
+        <name>host</name>
+        <value>localhost</value>
+      </Parameter>
+      <Parameter>
+        <name>user</name>
+        <value>postgres</value>
+      </Parameter>
+    </parameters>
+  </DataStore>
+</sourceDataStores>
+</ns3:AppSchemaDataAccess>
+```
 
 ## Customize smart-data-loader generated mappings and xsd definition
 

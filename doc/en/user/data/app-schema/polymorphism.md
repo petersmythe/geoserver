@@ -6,22 +6,24 @@ Polymorphism in this context refers to the ability of an attribute to have diffe
 
 You can use normal feature chaining to get an attribute to be encoded as a certain type. For example:
 
-    <AttributeMapping>                                                                                                                                                                                                                                                                                                                                                                                                    
-        <targetAttribute>ex:someAttribute</targetAttribute>
-        <sourceExpression>
-            <OCQL>VALUE_ID</OCQL>
-          <linkElement>NumericType</linkElement>
-          <linkField>FEATURE_LINK</linkField>
-        </sourceExpression>
-    </AttributeMapping>
-    <AttributeMapping>
-        <targetAttribute>ex:someAttribute</targetAttribute>
-        <sourceExpression>
-          <OCQL>VALUE_ID</OCQL>
-          <linkElement>gsml:CGI_TermValue</linkElement>
-          <linkField>FEATURE_LINK</linkField>
-        </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>                                                                                                                                                                                                                                                                                                                                                                                                    
+    <targetAttribute>ex:someAttribute</targetAttribute>
+    <sourceExpression>
+        <OCQL>VALUE_ID</OCQL>
+      <linkElement>NumericType</linkElement>
+      <linkField>FEATURE_LINK</linkField>
+    </sourceExpression>
+</AttributeMapping>
+<AttributeMapping>
+    <targetAttribute>ex:someAttribute</targetAttribute>
+    <sourceExpression>
+      <OCQL>VALUE_ID</OCQL>
+      <linkElement>gsml:CGI_TermValue</linkElement>
+      <linkField>FEATURE_LINK</linkField>
+    </sourceExpression>
+</AttributeMapping>
+```
 
 Note: NumericType here is a mappingName, whereas gsml:CGI_TermValue is a targetElement.
 
@@ -29,88 +31,108 @@ In the above example, ex:someAttribute would be encoded with the configuration i
 
 Functions can be used for single attribute instances. See [useful functions](#useful-functions) for a list of commonly used functions. Specify the function in the linkElement, and it would map it to the first matching FeatureTypeMapping. For example:
 
-    <AttributeMapping>
-        <targetAttribute>ex:someAttribute</targetAttribute>   
-        <sourceExpression>
-          <OCQL>VALUE_ID</OCQL>   
-          <linkElement>
-            Recode(CLASS_TEXT, 'numeric', 'NumericType', 'literal', 'gsml:CGI_TermValue')
-            </linkElement>
-          <linkField>FEATURE_LINK</linkField>
-        </sourceExpression>                   
-        <isMultiple>true</isMultiple>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>ex:someAttribute</targetAttribute>   
+    <sourceExpression>
+      <OCQL>VALUE_ID</OCQL>   
+      <linkElement>
+        Recode(CLASS_TEXT, 'numeric', 'NumericType', 'literal', 'gsml:CGI_TermValue')
+        </linkElement>
+      <linkField>FEATURE_LINK</linkField>
+    </sourceExpression>                   
+    <isMultiple>true</isMultiple>
+</AttributeMapping>
+```
 
 The above example means, if the CLASS_TEXT value is 'numeric', it would link to 'NumericType' FeatureTypeMapping, with VALUE_ID as foreign key to the linked type. It would require all the potential matching types to have a common attribute that is specified in linkField. In this example, the linkField is FEATURE_LINK, which is a fake attribute used only for feature chaining. You can omit the linkField and OCQL if the FeatureTypeMapping being linked to has the same sourceType with the container type. This would save us from unnecessary extra queries, which would affect performance. For example:
 
 FeatureTypeMapping of the container type:
 
-    <FeatureTypeMapping>
-        <sourceDataStore>PropertyFiles</sourceDataStore>
-        <sourceType>PolymorphicFeature</sourceType>
+```xml
+<FeatureTypeMapping>
+    <sourceDataStore>PropertyFiles</sourceDataStore>
+    <sourceType>PolymorphicFeature</sourceType>
+```
 
 FeatureTypeMapping of NumericType points to the same table:
 
-    <FeatureTypeMapping>
-        <mappingName>NumericType</mappingName>
-        <sourceDataStore>PropertyFiles</sourceDataStore>
-        <sourceType>PolymorphicFeature</sourceType>
+```xml
+<FeatureTypeMapping>
+    <mappingName>NumericType</mappingName>
+    <sourceDataStore>PropertyFiles</sourceDataStore>
+    <sourceType>PolymorphicFeature</sourceType>
+```
 
 FeatureTypeMapping of gsml:CGI_TermValue also points to the same table:
 
-    <FeatureTypeMapping>
-        <sourceDataStore>PropertyFiles</sourceDataStore>
-        <sourceType>PolymorphicFeature</sourceType>
-        <targetElement>gsml:CGI_TermValue</targetElement>     
+```xml
+<FeatureTypeMapping>
+    <sourceDataStore>PropertyFiles</sourceDataStore>
+    <sourceType>PolymorphicFeature</sourceType>
+    <targetElement>gsml:CGI_TermValue</targetElement>     
+```
 
 In this case, we can omit linkField in the polymorphic attribute mapping:
 
-    <AttributeMapping>
-        <targetAttribute>ex:someAttribute</targetAttribute>   
-        <sourceExpression>
-          <linkElement>
-            Recode(CLASS_TEXT, 'numeric', 'NumericType', 'literal', 'gsml:CGI_TermValue')
-            </linkElement>
-        </sourceExpression>                   
-        <isMultiple>true</isMultiple>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>ex:someAttribute</targetAttribute>   
+    <sourceExpression>
+      <linkElement>
+        Recode(CLASS_TEXT, 'numeric', 'NumericType', 'literal', 'gsml:CGI_TermValue')
+        </linkElement>
+    </sourceExpression>                   
+    <isMultiple>true</isMultiple>
+</AttributeMapping>
+```
 
 ## Referential polymorphism
 
 This is when an attribute is set to be encoded as an xlink:href reference on the top level. When the scenario only has reference cases in it, setting a function in Client Property will do the job. E.g.:
 
-    <AttributeMapping>
-      <targetAttribute>ex:someAttribute</targetAttribute>
-      <ClientProperty>
-        <name>xlink:href</name>
-        <value>if_then_else(isNull(NUMERIC_VALUE), 'urn:ogc:def:nil:OGC:1.0:missing', strConcat('#', NUMERIC_VALUE))</value>
-        </ClientProperty>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>ex:someAttribute</targetAttribute>
+  <ClientProperty>
+    <name>xlink:href</name>
+    <value>if_then_else(isNull(NUMERIC_VALUE), 'urn:ogc:def:nil:OGC:1.0:missing', strConcat('#', NUMERIC_VALUE))</value>
+    </ClientProperty>
+</AttributeMapping>
+```
 
 The above example means, if NUMERIC_VALUE is null, the attribute should be encoded as:
 
-    <ex:someAttribute xlink:href="urn:ogc:def:nil:OGC:1.0:missing">
+```xml
+<ex:someAttribute xlink:href="urn:ogc:def:nil:OGC:1.0:missing">
+```
 
 Otherwise, it would be encoded as:
 
-    <ex:someAttribute xlink:href="#123">
-        where NUMERIC_VALUE = '123'
+```xml
+<ex:someAttribute xlink:href="#123">
+    where NUMERIC_VALUE = '123'
+```
 
 However, this is not possible when we have cases where a fully structured attribute is also a possibility. The [toxlinkhref](#toxlinkhref) function can be used for this scenario. E.g.:
 
-    <AttributeMapping>
-        <targetAttribute>ex:someAttribute</targetAttribute> 
-        <sourceExpression>
-          <linkElement>
-            if_then_else(isNull(NUMERIC_VALUE), toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'), 
-                  if_then_else(lessEqualThan(NUMERIC_VALUE, 1000), 'numeric_value', toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'))) 
-            </linkElement>
-        </sourceExpression> 
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+    <targetAttribute>ex:someAttribute</targetAttribute> 
+    <sourceExpression>
+      <linkElement>
+        if_then_else(isNull(NUMERIC_VALUE), toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'), 
+              if_then_else(lessEqualThan(NUMERIC_VALUE, 1000), 'numeric_value', toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'))) 
+        </linkElement>
+    </sourceExpression> 
+</AttributeMapping>
+```
 
 The above example means, if NUMERIC_VALUE is null, the output would be encoded as:
 
-    <ex:someAttribute xlink:href="urn:ogc:def:nil:OGC:1.0:missing">
+```xml
+<ex:someAttribute xlink:href="urn:ogc:def:nil:OGC:1.0:missing">
+```
 
 Otherwise, if NUMERIC_VALUE is less or equal than 1000, it would be encoded with attributes from FeatureTypeMapping with 'numeric_value' mappingName. If NUMERIC_VALUE is greater than 1000, it would be encoded as the first scenario.
 
@@ -235,53 +257,61 @@ Having xs:anyType as the attribute type itself infers that it is polymorphic, si
 
 If the type is pre-determined and would always be the same, we might need to specify [app-schema.mapping-file.targetAttributeNode](#app-schema.mapping-file.targetAttributeNode). E.g.:
 
-    <AttributeMapping>
-          <targetAttribute>om:result</targetAttribute>
-          <targetAttributeNode>gml:MeasureType<targetAttributeNode>
-          <sourceExpression>
-              <OCQL>TOPAGE</OCQL>
-          </sourceExpression>
-          <ClientProperty>
-              <name>xsi:type</name>
-              <value>'gml:MeasureType'</value>
-          </ClientProperty>
-          <ClientProperty>
-              <name>uom</name> 
-              <value>'http://www.opengis.net/def/uom/UCUM/0/Ma'</value>
-          </ClientProperty> 
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+      <targetAttribute>om:result</targetAttribute>
+      <targetAttributeNode>gml:MeasureType<targetAttributeNode>
+      <sourceExpression>
+          <OCQL>TOPAGE</OCQL>
+      </sourceExpression>
+      <ClientProperty>
+          <name>xsi:type</name>
+          <value>'gml:MeasureType'</value>
+      </ClientProperty>
+      <ClientProperty>
+          <name>uom</name> 
+          <value>'http://www.opengis.net/def/uom/UCUM/0/Ma'</value>
+      </ClientProperty> 
+</AttributeMapping>
+```
 
 If the casting type is complex, this is not a requirement as app-schema is able to automatically determine the type from the XPath in targetAttribute. E.g., in this example `om:result` is automatically specialised as a MappedFeatureType:
 
-    <AttributeMapping>
-          <targetAttribute>om:result/gsml:MappedFeature/gml:name</targetAttribute>
-          <sourceExpression>
-              <OCQL>NAME</OCQL>
-          </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+      <targetAttribute>om:result/gsml:MappedFeature/gml:name</targetAttribute>
+      <sourceExpression>
+          <OCQL>NAME</OCQL>
+      </sourceExpression>
+</AttributeMapping>
+```
 
 Alternatively, we can use feature chaining. For the same example above, the mapping would be:
 
-    <AttributeMapping>
-      <targetAttribute>om:result</targetAttribute>
-      <sourceExpression>
-        <OCQL>LEX_D</OCQL>
-        <linkElement>gsml:MappedFeature</linkElement>
-        <linkField>gml:name</linkField>
-      </sourceExpression>
-    </AttributeMapping> 
+```xml
+<AttributeMapping>
+  <targetAttribute>om:result</targetAttribute>
+  <sourceExpression>
+    <OCQL>LEX_D</OCQL>
+    <linkElement>gsml:MappedFeature</linkElement>
+    <linkField>gml:name</linkField>
+  </sourceExpression>
+</AttributeMapping> 
+```
 
 If the type is conditional, the mapping style for such attributes is the same as any other polymorphic attributes. E.g.:
 
-    <AttributeMapping>
-      <targetAttribute>om:result</targetAttribute>
-      <sourceExpression>
-        <linkElement>
-           Recode(NAME, Expression.Nil, toXlinkHref('urn:ogc:def:nil:OGC::missing'),'numeric',
-                   toXlinkHref(strConcat('urn:numeric-value::', NUMERIC_VALUE)), 'literal', 'TermValue2')
-        </linkElement>
-      </sourceExpression>
-    </AttributeMapping>
+```xml
+<AttributeMapping>
+  <targetAttribute>om:result</targetAttribute>
+  <sourceExpression>
+    <linkElement>
+       Recode(NAME, Expression.Nil, toXlinkHref('urn:ogc:def:nil:OGC::missing'),'numeric',
+               toXlinkHref(strConcat('urn:numeric-value::', NUMERIC_VALUE)), 'literal', 'TermValue2')
+    </linkElement>
+  </sourceExpression>
+</AttributeMapping>
+```
 
 ## Filters
 

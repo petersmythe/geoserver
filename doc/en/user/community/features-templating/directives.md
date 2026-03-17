@@ -817,128 +817,130 @@ The content of `<script>` and `<style>` needs to be provided as `<![CDATA[`.
 
 The following is an example of a HTML template that will output the Stations features as a tree view. Also in this example we are using the same filter on `st:meteoObservations` as in the other template examples.:
 
-    <gft:Template>
-      <gft:Options>
-         <style>
-         <![CDATA[ul, #myUL {
-         list-style-type: none;
-         }
-         #myUL {
-         margin: 0;
-         padding: 0;
-         }
-         .caret {
-         cursor: pointer;
-         -webkit-user-select: none; /* Safari 3.1+ */
-         -moz-user-select: none; /* Firefox 2+ */
-         -ms-user-select: none; /* IE 10+ */
-         user-select: none;
-         }
-         .caret::before {
-         content: "\25B6";
-         color: black;
-         display: inline-block;
-         margin-right: 6px;
-         }
-         .caret-down::before {
-         -ms-transform: rotate(90deg); /* IE 9 */
-         -webkit-transform: rotate(90deg); /* Safari */'
-         transform: rotate(90deg);  
-         }
-         .nested {
-         display: none;
-         }
-         .active {
-         display: block;
-         }]]></style>
-         <script><![CDATA[window.onload = function() {
-         var toggler = document.getElementsByClassName("caret");
-         for (let item of toggler){
-         item.addEventListener("click", function() {
-         this.parentElement.querySelector(".nested").classList.toggle("active");
-         this.classList.toggle("caret-down");
-         });
-         }
-         }]]></script>
-         <script type="application/ld+json"/>
-         </gft:Options>
-         <ul id="myUL">
-          <li>
-            <span class="caret">MeteoStations</span>
-            <ul class="nested">
-               <li>
-                  <span class="caret">Code</span>
-                  <ul class="nested">
-                     <li>$${strConcat('Station_',st:code)}</li>
-                  </ul>
-               </li>
-               <li>
-                  <span class="caret">Name</span>
-                  <ul class="nested">
-                     <li>${st:common_name}</li>
-                  </ul>
-               </li>
-               <li>
-                  <span class="caret">Geometry</span>
-                  <ul class="nested">
-                     <li>${st:position}</li>
-                  </ul>
-               </li>
-               <li gft:isCollection="true" gft:source="st:meteoObservations/st:MeteoObservationsFeature" gft:filter="xpath('st:meteoParameters/st:MeteoParametersFeature/st:param_name') = 'temperature'">
-                  <span class="caret">Temperature</span>
-                  <ul class="nested">
-                     <li>
-                        <span class="caret">Time</span>
-                        <ul class="nested">
-                           <li>${st:time}</li>
-                        </ul>
-                     </li>
-                     <li>
-                        <span class="caret">Value</span>
-                        <ul class="nested">
-                           <li>${st:time}</li>
-                        </ul>
-                     </li>
-                  </ul>
-               </li>
-               <li gft:isCollection="true" gft:source="st:meteoObservations/st:MeteoObservationsFeature" gft:filter="xpath('st:meteoParameters/st:MeteoParametersFeature/st:param_name') = 'pressure'">
-                  <span class="caret">Pressure</span>
-                  <ul class="nested">
-                     <li>
-                        <span class="caret">Time</span>
-                        <ul class="nested">
-                           <li>${st:time}</li>
-                        </ul>
-                     </li>
-                     <li>
-                        <span class="caret">Value</span>
-                        <ul class="nested">
-                           <li>${st:time}</li>
-                        </ul>
-                     </li>
-                  </ul>
-               </li>
-               <li gft:isCollection="true" gft:source="st:meteoObservations/st:MeteoObservationsFeature" gft:filter="xpath('st:meteoParameters/st:MeteoParametersFeature/st:param_name') = 'wind speed'">
-                  <span class="caret">Wind Speed</span>
-                  <ul class="nested">
-                     <li>
-                        <span class="caret">Time</span>
-                        <ul class="nested">
-                           <li>${st:time}</li>
-                        </ul>
-                     </li>
-                     <li>
-                        <span class="caret">Value</span>
-                        <ul class="nested">
-                           <li>${st:time}</li>
-                        </ul>
-                     </li>
-                  </ul>
-               </li>
-            </ul>
-         </li>
-      </ul>
-    </gft:Template>
+```html
+<gft:Template>
+  <gft:Options>
+     <style>
+     <![CDATA[ul, #myUL {
+     list-style-type: none;
+     }
+     #myUL {
+     margin: 0;
+     padding: 0;
+     }
+     .caret {
+     cursor: pointer;
+     -webkit-user-select: none; /* Safari 3.1+ */
+     -moz-user-select: none; /* Firefox 2+ */
+     -ms-user-select: none; /* IE 10+ */
+     user-select: none;
+     }
+     .caret::before {
+     content: "\25B6";
+     color: black;
+     display: inline-block;
+     margin-right: 6px;
+     }
+     .caret-down::before {
+     -ms-transform: rotate(90deg); /* IE 9 */
+     -webkit-transform: rotate(90deg); /* Safari */'
+     transform: rotate(90deg);  
+     }
+     .nested {
+     display: none;
+     }
+     .active {
+     display: block;
+     }]]></style>
+     <script><![CDATA[window.onload = function() {
+     var toggler = document.getElementsByClassName("caret");
+     for (let item of toggler){
+     item.addEventListener("click", function() {
+     this.parentElement.querySelector(".nested").classList.toggle("active");
+     this.classList.toggle("caret-down");
+     });
+     }
+     }]]></script>
+     <script type="application/ld+json"/>
+     </gft:Options>
+     <ul id="myUL">
+      <li>
+        <span class="caret">MeteoStations</span>
+        <ul class="nested">
+           <li>
+              <span class="caret">Code</span>
+              <ul class="nested">
+                 <li>$${strConcat('Station_',st:code)}</li>
+              </ul>
+           </li>
+           <li>
+              <span class="caret">Name</span>
+              <ul class="nested">
+                 <li>${st:common_name}</li>
+              </ul>
+           </li>
+           <li>
+              <span class="caret">Geometry</span>
+              <ul class="nested">
+                 <li>${st:position}</li>
+              </ul>
+           </li>
+           <li gft:isCollection="true" gft:source="st:meteoObservations/st:MeteoObservationsFeature" gft:filter="xpath('st:meteoParameters/st:MeteoParametersFeature/st:param_name') = 'temperature'">
+              <span class="caret">Temperature</span>
+              <ul class="nested">
+                 <li>
+                    <span class="caret">Time</span>
+                    <ul class="nested">
+                       <li>${st:time}</li>
+                    </ul>
+                 </li>
+                 <li>
+                    <span class="caret">Value</span>
+                    <ul class="nested">
+                       <li>${st:time}</li>
+                    </ul>
+                 </li>
+              </ul>
+           </li>
+           <li gft:isCollection="true" gft:source="st:meteoObservations/st:MeteoObservationsFeature" gft:filter="xpath('st:meteoParameters/st:MeteoParametersFeature/st:param_name') = 'pressure'">
+              <span class="caret">Pressure</span>
+              <ul class="nested">
+                 <li>
+                    <span class="caret">Time</span>
+                    <ul class="nested">
+                       <li>${st:time}</li>
+                    </ul>
+                 </li>
+                 <li>
+                    <span class="caret">Value</span>
+                    <ul class="nested">
+                       <li>${st:time}</li>
+                    </ul>
+                 </li>
+              </ul>
+           </li>
+           <li gft:isCollection="true" gft:source="st:meteoObservations/st:MeteoObservationsFeature" gft:filter="xpath('st:meteoParameters/st:MeteoParametersFeature/st:param_name') = 'wind speed'">
+              <span class="caret">Wind Speed</span>
+              <ul class="nested">
+                 <li>
+                    <span class="caret">Time</span>
+                    <ul class="nested">
+                       <li>${st:time}</li>
+                    </ul>
+                 </li>
+                 <li>
+                    <span class="caret">Value</span>
+                    <ul class="nested">
+                       <li>${st:time}</li>
+                    </ul>
+                 </li>
+              </ul>
+           </li>
+        </ul>
+     </li>
+  </ul>
+</gft:Template>
+```
 
 The output of the template will be the following:
 

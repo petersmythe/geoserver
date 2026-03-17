@@ -22,9 +22,11 @@ There are two types of lists, bulleted lists and numbered lists. A **bulleted li
 
 This is accomplished with the following code:
 
-    * An item
-    * Another item
-    * Yet another item
+```
+* An item
+* Another item
+* Yet another item
+```
 
 A **numbered list** looks like this:
 
@@ -51,15 +53,17 @@ Bulleted lists can sometimes be cumbersome and hard to follow. When dealing with
 
 This is done with the following code:
 
-    .. list-table::
-       :header-rows: 1
+```
+.. list-table::
+   :header-rows: 1
 
-       * - Shapes
-         - Description
-       * - Square
-         - Four sides of equal length, 90 degree angles
-       * - Rectangle
-         - Four sides, 90 degree angles
+   * - Shapes
+     - Description
+   * - Square
+     - Four sides of equal length, 90 degree angles
+   * - Rectangle
+     - Four sides, 90 degree angles
+```
 
 ## Page labels
 

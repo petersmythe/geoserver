@@ -77,7 +77,9 @@ The `runas_geoserver_user` flag can be used to enable Elasticsearch requests to 
 
 For added security it is recommended to define `proxy_user` and `proxy_passwd` when using the run-as mechanism. The proxy user will be used when submitting requests on behalf of the GeoServer user and can have restricted privileges enabling access only to documents that all users can have access to. The plugin can optionally be deployed to require user credentials and proxy credentials and to force the use of `runas_geoserver_user` by setting the environment variable `org.geoserver.elasticsearch.xpack.force-runas`:
 
-    $ export JAVA_OPTS="-Dorg.geoserver.elasticsearch.xpack.force-runas $JAVA_OPTS"
+```bash
+$ export JAVA_OPTS="-Dorg.geoserver.elasticsearch.xpack.force-runas $JAVA_OPTS"
+```
 
 #### Configuring HTTPS/SSL
 
@@ -92,7 +94,9 @@ See [HttpClientBuilder](https://hc.apache.org/httpcomponents-userClient-ga/httpc
 
 For example, use `javax.net.ssl.trustStore[Password]` to validate server certificate:
 
-    $ export JAVA_OPTS="-Djavax.net.ssl.trustStore=/path/to/truststore.jks -Djavax.net.ssl.trustStorePassword=changeme $JAVA_OPTS "
+```bash
+$ export JAVA_OPTS="-Djavax.net.ssl.trustStore=/path/to/truststore.jks -Djavax.net.ssl.trustStorePassword=changeme $JAVA_OPTS "
+```
 
 ### Configuring layer
 
@@ -153,80 +157,84 @@ Native Elasticsearch queries can be applied in WMS feature requests through a cu
 
 BBOX and CQL filter:
 
-    http://localhost:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap
-         &layers=test:active&styles=&bbox=-1,-1,10,10&width=279&height=512
-         &srs=EPSG:4326&format=application/openlayers&maxFeatures=1000
-         &cql_filter=standard_ss='IEEE 802.11b'
+```
+http://localhost:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap
+     &layers=test:active&styles=&bbox=-1,-1,10,10&width=279&height=512
+     &srs=EPSG:4326&format=application/openlayers&maxFeatures=1000
+     &cql_filter=standard_ss='IEEE 802.11b'
+```
 
 BBOX and native query:
 
-    http://localhost:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap
-         &layers=test:active&styles=NativeQueryStyle&bbox=-1,-1,10,10&width=279&height=512
-         &srs=EPSG:4326&format=application/openlayers&maxFeatures=1000
+```xml
+http://localhost:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap
+     &layers=test:active&styles=NativeQueryStyle&bbox=-1,-1,10,10&width=279&height=512
+     &srs=EPSG:4326&format=application/openlayers&maxFeatures=1000
 
 
-    <StyledLayerDescriptor version="1.0.0"
-       xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
-       xmlns="http://www.opengis.net/sld"
-       xmlns:ogc="http://www.opengis.net/ogc"
-       xmlns:xlink="http://www.w3.org/1999/xlink"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-     <NamedLayer>
-       <Name>test</Name>
-       <UserStyle>
-         <Title>Test</Title>
-         <Abstract>Test Native Query</Abstract>
-         <FeatureTypeStyle>
-           <Transformation>
-             <ogc:Function name="vec:GeoHashGrid">
-               <ogc:Function name="parameter">
-                 <ogc:Literal>data</ogc:Literal>
-               </ogc:Function>
-               <ogc:Function name="parameter">
-                 <ogc:Literal>queryDefinition</ogc:Literal>
-                 <ogc:Literal>{"term":{"standard_ss":"IEEE 802.11b"}}
-               </ogc:Function>
-               <ogc:Function name="parameter">
-                 <ogc:Literal>outputBBOX</ogc:Literal>
-                 <ogc:Function name="env">
-                   <ogc:Literal>wms_bbox</ogc:Literal>
-                 </ogc:Function>
-               </ogc:Function>
-               <ogc:Function name="parameter">
-                 <ogc:Literal>outputWidth</ogc:Literal>
-                 <ogc:Function name="env">
-                   <ogc:Literal>wms_width</ogc:Literal>
-                 </ogc:Function>
-               </ogc:Function>
-               <ogc:Function name="parameter">
-                 <ogc:Literal>outputHeight</ogc:Literal>
-                 <ogc:Function name="env">
-                   <ogc:Literal>wms_height</ogc:Literal>
-                 </ogc:Function>
-               </ogc:Function>
+<StyledLayerDescriptor version="1.0.0"
+   xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+   xmlns="http://www.opengis.net/sld"
+   xmlns:ogc="http://www.opengis.net/ogc"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <NamedLayer>
+   <Name>test</Name>
+   <UserStyle>
+     <Title>Test</Title>
+     <Abstract>Test Native Query</Abstract>
+     <FeatureTypeStyle>
+       <Transformation>
+         <ogc:Function name="vec:GeoHashGrid">
+           <ogc:Function name="parameter">
+             <ogc:Literal>data</ogc:Literal>
+           </ogc:Function>
+           <ogc:Function name="parameter">
+             <ogc:Literal>queryDefinition</ogc:Literal>
+             <ogc:Literal>{"term":{"standard_ss":"IEEE 802.11b"}}
+           </ogc:Function>
+           <ogc:Function name="parameter">
+             <ogc:Literal>outputBBOX</ogc:Literal>
+             <ogc:Function name="env">
+               <ogc:Literal>wms_bbox</ogc:Literal>
              </ogc:Function>
-           </Transformation>
-           <Rule>
-            <RasterSymbolizer>
-              <Geometry>
-                <!-- Actual geometry property name in feature source -->
-                <ogc:PropertyName>geo</ogc:PropertyName></Geometry>
-              <Opacity>0.6</Opacity>
-              <ColorMap type="ramp" >
-                <ColorMapEntry color="#FFFFFF" quantity="0" label="nodata" opacity="0"/>
-                <ColorMapEntry color="#2851CC" quantity="1" label="values"/>
-                <ColorMapEntry color="#211F1F" quantity="2" label="label"/>
-                <ColorMapEntry color="#EE0F0F" quantity="3" label="label"/>
-                <ColorMapEntry color="#AAAAAA" quantity="4" label="label"/>
-                <ColorMapEntry color="#6FEE4F" quantity="5" label="label"/>
-                <ColorMapEntry color="#DDB02C" quantity="10" label="label"/>
-              </ColorMap>
-            </RasterSymbolizer>
-           </Rule>
-         </FeatureTypeStyle>
-       </UserStyle>
-     </NamedLayer>
-    </StyledLayerDescriptor>
+           </ogc:Function>
+           <ogc:Function name="parameter">
+             <ogc:Literal>outputWidth</ogc:Literal>
+             <ogc:Function name="env">
+               <ogc:Literal>wms_width</ogc:Literal>
+             </ogc:Function>
+           </ogc:Function>
+           <ogc:Function name="parameter">
+             <ogc:Literal>outputHeight</ogc:Literal>
+             <ogc:Function name="env">
+               <ogc:Literal>wms_height</ogc:Literal>
+             </ogc:Function>
+           </ogc:Function>
+         </ogc:Function>
+       </Transformation>
+       <Rule>
+        <RasterSymbolizer>
+          <Geometry>
+            <!-- Actual geometry property name in feature source -->
+            <ogc:PropertyName>geo</ogc:PropertyName></Geometry>
+          <Opacity>0.6</Opacity>
+          <ColorMap type="ramp" >
+            <ColorMapEntry color="#FFFFFF" quantity="0" label="nodata" opacity="0"/>
+            <ColorMapEntry color="#2851CC" quantity="1" label="values"/>
+            <ColorMapEntry color="#211F1F" quantity="2" label="label"/>
+            <ColorMapEntry color="#EE0F0F" quantity="3" label="label"/>
+            <ColorMapEntry color="#AAAAAA" quantity="4" label="label"/>
+            <ColorMapEntry color="#6FEE4F" quantity="5" label="label"/>
+            <ColorMapEntry color="#DDB02C" quantity="10" label="label"/>
+          </ColorMap>
+        </RasterSymbolizer>
+       </Rule>
+     </FeatureTypeStyle>
+   </UserStyle>
+ </NamedLayer>
+</StyledLayerDescriptor>
+```
 
 ## Aggregations
 
@@ -240,81 +248,87 @@ Geohash grid aggregation support includes dynamic precision updating and a custo
 
 Geohash grid aggregation visualization is supported in WMS requests through a custom rendering transformation, `vec:GeoHashGrid`, which translates aggregation response data into a raster for display. By default, raster values correspond to the aggregation bucket `doc_count`. The following shows an example GeoServer style that uses the GeoHashGrid rendering transformation:
 
-    <StyledLayerDescriptor version="1.0.0"
-        xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
-        xmlns="http://www.opengis.net/sld"
-        xmlns:ogc="http://www.opengis.net/ogc"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <NamedLayer>
-        <Name>GeoHashGrid</Name>
-        <UserStyle>
-          <Title>GeoHashGrid</Title>
-          <Abstract>GeoHashGrid aggregation</Abstract>
-          <FeatureTypeStyle>
-            <Transformation>
-              <ogc:Function name="vec:GeoHashGrid">
-                <ogc:Function name="parameter">
-                  <ogc:Literal>data</ogc:Literal>
-                </ogc:Function>
-                <ogc:Function name="parameter">
-                  <ogc:Literal>gridStrategy</ogc:Literal>
-                  <ogc:Literal>Basic</ogc:Literal>
-                </ogc:Function>
-                <ogc:Function name="parameter">
-                  <ogc:Literal>outputBBOX</ogc:Literal>
-                  <ogc:Function name="env">
-                    <ogc:Literal>wms_bbox</ogc:Literal>
-                  </ogc:Function>
-                </ogc:Function>
-                <ogc:Function name="parameter">
-                  <ogc:Literal>outputWidth</ogc:Literal>
-                  <ogc:Function name="env">
-                    <ogc:Literal>wms_width</ogc:Literal>
-                  </ogc:Function>
-                </ogc:Function>
-                <ogc:Function name="parameter">
-                  <ogc:Literal>outputHeight</ogc:Literal>
-                  <ogc:Function name="env">
-                    <ogc:Literal>wms_height</ogc:Literal>
-                  </ogc:Function>
-                </ogc:Function>
+```xml
+<StyledLayerDescriptor version="1.0.0"
+    xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+    xmlns="http://www.opengis.net/sld"
+    xmlns:ogc="http://www.opengis.net/ogc"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NamedLayer>
+    <Name>GeoHashGrid</Name>
+    <UserStyle>
+      <Title>GeoHashGrid</Title>
+      <Abstract>GeoHashGrid aggregation</Abstract>
+      <FeatureTypeStyle>
+        <Transformation>
+          <ogc:Function name="vec:GeoHashGrid">
+            <ogc:Function name="parameter">
+              <ogc:Literal>data</ogc:Literal>
+            </ogc:Function>
+            <ogc:Function name="parameter">
+              <ogc:Literal>gridStrategy</ogc:Literal>
+              <ogc:Literal>Basic</ogc:Literal>
+            </ogc:Function>
+            <ogc:Function name="parameter">
+              <ogc:Literal>outputBBOX</ogc:Literal>
+              <ogc:Function name="env">
+                <ogc:Literal>wms_bbox</ogc:Literal>
               </ogc:Function>
-            </Transformation>
-            <Rule>
-             <RasterSymbolizer>
-               <Geometry>
-                 <!-- Actual geometry property name in feature source -->
-                 <ogc:PropertyName>geo</ogc:PropertyName></Geometry>
-               <Opacity>0.6</Opacity>
-               <ColorMap type="ramp" >
-                 <ColorMapEntry color="#FFFFFF" quantity="0" label="nodata" opacity="0"/>
-                 <ColorMapEntry color="#2851CC" quantity="1" label="values"/>
-                 <ColorMapEntry color="#211F1F" quantity="2" label="label"/>
-                 <ColorMapEntry color="#EE0F0F" quantity="3" label="label"/>
-                 <ColorMapEntry color="#AAAAAA" quantity="4" label="label"/>
-                 <ColorMapEntry color="#6FEE4F" quantity="5" label="label"/>
-                 <ColorMapEntry color="#DDB02C" quantity="10" label="label"/>
-               </ColorMap>
-             </RasterSymbolizer>
-            </Rule>
-          </FeatureTypeStyle>
-        </UserStyle>
-      </NamedLayer>
-     </StyledLayerDescriptor>
+            </ogc:Function>
+            <ogc:Function name="parameter">
+              <ogc:Literal>outputWidth</ogc:Literal>
+              <ogc:Function name="env">
+                <ogc:Literal>wms_width</ogc:Literal>
+              </ogc:Function>
+            </ogc:Function>
+            <ogc:Function name="parameter">
+              <ogc:Literal>outputHeight</ogc:Literal>
+              <ogc:Function name="env">
+                <ogc:Literal>wms_height</ogc:Literal>
+              </ogc:Function>
+            </ogc:Function>
+          </ogc:Function>
+        </Transformation>
+        <Rule>
+         <RasterSymbolizer>
+           <Geometry>
+             <!-- Actual geometry property name in feature source -->
+             <ogc:PropertyName>geo</ogc:PropertyName></Geometry>
+           <Opacity>0.6</Opacity>
+           <ColorMap type="ramp" >
+             <ColorMapEntry color="#FFFFFF" quantity="0" label="nodata" opacity="0"/>
+             <ColorMapEntry color="#2851CC" quantity="1" label="values"/>
+             <ColorMapEntry color="#211F1F" quantity="2" label="label"/>
+             <ColorMapEntry color="#EE0F0F" quantity="3" label="label"/>
+             <ColorMapEntry color="#AAAAAA" quantity="4" label="label"/>
+             <ColorMapEntry color="#6FEE4F" quantity="5" label="label"/>
+             <ColorMapEntry color="#DDB02C" quantity="10" label="label"/>
+           </ColorMap>
+         </RasterSymbolizer>
+        </Rule>
+      </FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+ </StyledLayerDescriptor>
+```
 
 Example WMS request including Geohash grid aggregation with the above custom style:
 
-    http://localhost:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap
-         &layers=test:active&styles=geohashgrid&bbox=0.0,0.0,24.0,44.0&srs=EPSG:4326
-         &width=418&height=768&format=application/openlayers
+```
+http://localhost:8080/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap
+     &layers=test:active&styles=geohashgrid&bbox=0.0,0.0,24.0,44.0&srs=EPSG:4326
+     &width=418&height=768&format=application/openlayers
+```
 
 The Elasticsearch aggregation definition can be computed automatically, or provided as an explicit parameter, for example:
 
-    <ogc:Function name="parameter">
-      <ogc:Literal>aggregationDefinition</ogc:Literal>
-      <ogc:Literal>{"agg": {"geohash_grid": {"field": "_ogr_geometry_.coordinates", "precision": 3}}}</ogc:Literal>
-    </ogc:Function>
+```xml
+<ogc:Function name="parameter">
+  <ogc:Literal>aggregationDefinition</ogc:Literal>
+  <ogc:Literal>{"agg": {"geohash_grid": {"field": "_ogr_geometry_.coordinates", "precision": 3}}}</ogc:Literal>
+</ogc:Function>
+```
 
 The store may update the precision to a smaller value, if it finds it goes beyond the aggregation limits setup in its configuration, see `grid_size` and `grid_threshold` above.
 
@@ -342,20 +356,24 @@ Raster value is geohashgrid bucket `doc_count`.
 
 Example Aggregation:
 
-    {
-      "agg": {
-        "geohash_grid": {
-          "field": "geo"
-        }
-      }
+```json
+{
+  "agg": {
+    "geohash_grid": {
+      "field": "geo"
     }
+  }
+}
+```
 
 Example bucket:
 
-    {
-      "key" : "xv",
-      "doc_count" : 1
-    }
+```json
+{
+  "key" : "xv",
+  "doc_count" : 1
+}
+```
 
 Extracted raster value: `1`
 
@@ -370,30 +388,34 @@ Raster value is geohashgrid bucket metric value.
 
 Example Aggregation:
 
-    {
-      "agg": {
-        "geohash_grid": {
-          "field": "geo"
-        },
-        "aggs": {
-          "metric": {
-            "max": {
-              "field": "magnitude"
-            }
-          }
+```json
+{
+  "agg": {
+    "geohash_grid": {
+      "field": "geo"
+    },
+    "aggs": {
+      "metric": {
+        "max": {
+          "field": "magnitude"
         }
       }
     }
+  }
+}
+```
 
 Example bucket:
 
-    {
-      "key" : "xv",
-      "doc_count" : 1,
-      "metric" : {
-        "value" : 4.9
-      }
-    }
+```json
+{
+  "key" : "xv",
+  "doc_count" : 1,
+  "metric" : {
+    "value" : 4.9
+  }
+}
+```
 
 Extracted raster value: `4.9`
 
@@ -412,64 +434,70 @@ Extract raster value from nested aggregation results.
 
 Example Aggregation:
 
-    {
-      "agg": {
-        "geohash_grid": {
-          "field": "geo"
-        },
-        "aggs": {
-          "nested": {
-            "histogram": {
-              "field": "magnitude",
-              "interval": 1,
-              "min_doc_count": 1
-            }
-          }
+```json
+{
+  "agg": {
+    "geohash_grid": {
+      "field": "geo"
+    },
+    "aggs": {
+      "nested": {
+        "histogram": {
+          "field": "magnitude",
+          "interval": 1,
+          "min_doc_count": 1
         }
       }
     }
+  }
+}
+```
 
 Example Parameters:
 
-    <ogc:Function name="parameter">
-      <ogc:Literal>gridStrategyArgs</ogc:Literal>
-      <ogc:Literal>nested</ogc:Literal>
-      <ogc:Literal></ogc:Literal>
-      <ogc:Literal></ogc:Literal>
-      <ogc:Literal>largest</ogc:Literal>
-      <ogc:Literal>key</ogc:Literal>
-    </ogc:Function>
+```xml
+<ogc:Function name="parameter">
+  <ogc:Literal>gridStrategyArgs</ogc:Literal>
+  <ogc:Literal>nested</ogc:Literal>
+  <ogc:Literal></ogc:Literal>
+  <ogc:Literal></ogc:Literal>
+  <ogc:Literal>largest</ogc:Literal>
+  <ogc:Literal>key</ogc:Literal>
+</ogc:Function>
+```
 
 Example bucket:
 
-    {
-      "key" : "xv",
-      "doc_count" : 1729,
-      "nested" : {
-        "buckets" : [
-          {
-            "key" : 2.0,
-            "doc_count" : 5
-          },
-          {
-            "key" : 3.0,
-            "doc_count" : 107
-          },
-          {
-            "key" : 4.0,
-            "doc_count" : 1506
-          },
-          {
-            "key" : 5.0,
-            "doc_count" : 100
-          },
-          {
-            "key" : 6.0,
-            "doc_count" : 11
-          }
-        ]
+```json
+{
+  "key" : "xv",
+  "doc_count" : 1729,
+  "nested" : {
+    "buckets" : [
+      {
+        "key" : 2.0,
+        "doc_count" : 5
+      },
+      {
+        "key" : 3.0,
+        "doc_count" : 107
+      },
+      {
+        "key" : 4.0,
+        "doc_count" : 1506
+      },
+      {
+        "key" : 5.0,
+        "doc_count" : 100
+      },
+      {
+        "key" : 6.0,
+        "doc_count" : 11
       }
-    }
+    ]
+  }
+}
+```
 
 Extracted raster value: `4.0`
 
@@ -479,26 +507,30 @@ By default the raster values computed in the geohash grid aggregation rendering 
 
 First create a custom implementation of `org.geoserver.process.elasticsearch.GeoHashGrid` and provide an implementation of the `computeCellValue` method, which takes the raw bucket data and returns the raster value. For example, the default basic implementation simply returns the doc_count:
 
-    public class BasicGeoHashGrid extends GeoHashGrid {
-        @Override
-        public Number computeCellValue(Map<String,Object> bucket) {
-            return (Number) bucket.get("doc_count");
-        }
+```java
+public class BasicGeoHashGrid extends GeoHashGrid {
+    @Override
+    public Number computeCellValue(Map<String,Object> bucket) {
+        return (Number) bucket.get("doc_count");
     }
+}
+```
 
 Then update `org.geoserver.process.elasticsearch.GeoHashGridProcess` and add a new entry to the Strategy enum to point to the custom implementation.
 
 After deploying the customized plugin, the new geohash grid computer can be used by updating the `gridStrategy` parameter in the GeoServer style:
 
-    <StyledLayerDescriptor version="1.0.0"
-        ...
-            <Transformation>
-              <ogc:Function name="vec:GeoHashGrid">
-                ...
-                <ogc:Function name="parameter">
-                  <ogc:Literal>gridStrategy</ogc:Literal>
-                  <ogc:Literal>NewName</ogc:Literal>
-                </ogc:Function>
+```xml
+<StyledLayerDescriptor version="1.0.0"
+    ...
+        <Transformation>
+          <ogc:Function name="vec:GeoHashGrid">
+            ...
+            <ogc:Function name="parameter">
+              <ogc:Literal>gridStrategy</ogc:Literal>
+              <ogc:Literal>NewName</ogc:Literal>
+            </ogc:Function>
+```
 
 ## FAQ {: #FAQ }
 

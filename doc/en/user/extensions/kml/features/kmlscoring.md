@@ -42,7 +42,9 @@ The following table shows the values of this threshold for various values of the
 
 The syntax for specifying `kmscore` is:
 
-    kmscore=<value>
+```properties
+kmscore=<value>
+```
 
 where `<value>` is an integer between 0 and 100. For example:
 

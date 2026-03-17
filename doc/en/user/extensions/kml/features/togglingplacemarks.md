@@ -8,7 +8,9 @@ If you would like this information not to be shown when a feature is clicked (ei
 
 The syntax for `kmattr` is as follows:
 
-    format_options=kmattr:[true|false]
+```properties
+format_options=kmattr:[true|false]
+```
 
 Note that `kmattr` is a "format option", so the syntax is slightly different from the usual key-value pair. For example:
 
@@ -18,7 +20,9 @@ Note that `kmattr` is a "format option", so the syntax is slightly different fro
 
 Unlike vector features, where the placemark is enabled by default, placemarks are disabled by default with raster images of features. To enable this feature, you can use the `kmplacemark` format option in your KML request. The syntax is similar to the `kmattr` format option specified above:
 
-    format_options=kmplacemark:[true|false]
+```properties
+format_options=kmplacemark:[true|false]
+```
 
 For example, using the KML reflector, the syntax would be:
 

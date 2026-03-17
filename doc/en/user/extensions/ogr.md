@@ -28,63 +28,65 @@ The ogr2ogr utility is usually able to convert more formats than the default set
 
 and you'll get the full set of options usable by the program, along with the supported formats. For example, the above produces the following output using the FWTools 2.2.8 distribution (which includes ogr2ogr among other useful information and conversion tools):
 
-    Usage: ogr2ogr [--help-general] [-skipfailures] [-append] [-update] [-gt n]
-                [-select field_list] [-where restricted_where] 
-                [-sql <sql statement>] 
-                [-spat xmin ymin xmax ymax] [-preserve_fid] [-fid FID]
-                [-a_srs srs_def] [-t_srs srs_def] [-s_srs srs_def]
-                [-f format_name] [-overwrite] [[-dsco NAME=VALUE] ...]
-                [-segmentize max_dist]
-                dst_datasource_name src_datasource_name
-                [-lco NAME=VALUE] [-nln name] [-nlt type] [layer [layer ...]]
+```sql
+Usage: ogr2ogr [--help-general] [-skipfailures] [-append] [-update] [-gt n]
+            [-select field_list] [-where restricted_where] 
+            [-sql <sql statement>] 
+            [-spat xmin ymin xmax ymax] [-preserve_fid] [-fid FID]
+            [-a_srs srs_def] [-t_srs srs_def] [-s_srs srs_def]
+            [-f format_name] [-overwrite] [[-dsco NAME=VALUE] ...]
+            [-segmentize max_dist]
+            dst_datasource_name src_datasource_name
+            [-lco NAME=VALUE] [-nln name] [-nlt type] [layer [layer ...]]
 
-    -f format_name: output file format name, possible values are:
-      -f "ESRI Shapefile"
-      -f "MapInfo File"
-      -f "TIGER"
-      -f "S57"
-      -f "DGN"
-      -f "Memory"
-      -f "BNA"
-      -f "CSV"
-      -f "GML"
-      -f "GPX"
-      -f "KML"
-      -f "GeoJSON"
-      -f "Interlis 1"
-      -f "Interlis 2"
-      -f "GMT"
-      -f "SQLite"
-      -f "ODBC"
-      -f "PostgreSQL"
-      -f "MySQL"
-      -f "Geoconcept"
-    -append: Append to existing layer instead of creating new if it exists
-    -overwrite: delete the output layer and recreate it empty
-    -update: Open existing output datasource in update mode
-    -select field_list: Comma-delimited list of fields from input layer to
-                        copy to the new layer (defaults to all)
-    -where restricted_where: Attribute query (like SQL WHERE)
-    -sql statement: Execute given SQL statement and save result.
-    -skipfailures: skip features or layers that fail to convert
-    -gt n: group n features per transaction (default 200)
-    -spat xmin ymin xmax ymax: spatial query extents
-    -segmentize max_dist: maximum distance between 2 nodes.
-                          Used to create intermediate points
-    -dsco NAME=VALUE: Dataset creation option (format specific)
-    -lco  NAME=VALUE: Layer creation option (format specific)
-    -nln name: Assign an alternate name to the new layer
-    -nlt type: Force a geometry type for new layer.  One of NONE, GEOMETRY,
-         POINT, LINESTRING, POLYGON, GEOMETRYCOLLECTION, MULTIPOINT,
-         MULTIPOLYGON, or MULTILINESTRING.  Add "25D" for 3D layers.
-         Default is type of source layer.
-    -a_srs srs_def: Assign an output SRS
-    -t_srs srs_def: Reproject/transform to this SRS on output
-    -s_srs srs_def: Override source SRS
+-f format_name: output file format name, possible values are:
+  -f "ESRI Shapefile"
+  -f "MapInfo File"
+  -f "TIGER"
+  -f "S57"
+  -f "DGN"
+  -f "Memory"
+  -f "BNA"
+  -f "CSV"
+  -f "GML"
+  -f "GPX"
+  -f "KML"
+  -f "GeoJSON"
+  -f "Interlis 1"
+  -f "Interlis 2"
+  -f "GMT"
+  -f "SQLite"
+  -f "ODBC"
+  -f "PostgreSQL"
+  -f "MySQL"
+  -f "Geoconcept"
+-append: Append to existing layer instead of creating new if it exists
+-overwrite: delete the output layer and recreate it empty
+-update: Open existing output datasource in update mode
+-select field_list: Comma-delimited list of fields from input layer to
+                    copy to the new layer (defaults to all)
+-where restricted_where: Attribute query (like SQL WHERE)
+-sql statement: Execute given SQL statement and save result.
+-skipfailures: skip features or layers that fail to convert
+-gt n: group n features per transaction (default 200)
+-spat xmin ymin xmax ymax: spatial query extents
+-segmentize max_dist: maximum distance between 2 nodes.
+                      Used to create intermediate points
+-dsco NAME=VALUE: Dataset creation option (format specific)
+-lco  NAME=VALUE: Layer creation option (format specific)
+-nln name: Assign an alternate name to the new layer
+-nlt type: Force a geometry type for new layer.  One of NONE, GEOMETRY,
+     POINT, LINESTRING, POLYGON, GEOMETRYCOLLECTION, MULTIPOINT,
+     MULTIPOLYGON, or MULTILINESTRING.  Add "25D" for 3D layers.
+     Default is type of source layer.
+-a_srs srs_def: Assign an output SRS
+-t_srs srs_def: Reproject/transform to this SRS on output
+-s_srs srs_def: Override source SRS
 
-    Srs_def can be a full WKT definition (hard to escape properly),
-    or a well known definition (ie. EPSG:4326) or a file with a WKT
-    definition.
+Srs_def can be a full WKT definition (hard to escape properly),
+or a well known definition (ie. EPSG:4326) or a file with a WKT
+definition.
+```
 
 The full list of formats that ogr2ogr is able to support is available on the [OGR site](http://www.gdal.org/ogr2ogr.md). Mind that this output format can handle only outputs that are file based and that do support creation. So, for example, you won't be able to use the Postgres output (since it's database based) or the ArcInfo binary coverage (creation not supported).
 
@@ -133,11 +135,15 @@ The file showcases all possible usage of the configuration elements:
 
 - `ogr2ogrLocation` can be just ogr2ogr if the command is in the path, otherwise it should be the full path to the executable. For example, on a Windows box with FWTools installed it might be:
 
-      <ogr2ogrLocation>c:\Programmi\FWTools2.2.8\bin\ogr2ogr.exe</ogr2ogrLocation>
+  ```xml
+<ogr2ogrLocation>c:\Programmi\FWTools2.2.8\bin\ogr2ogr.exe</ogr2ogrLocation>
+  ```
 
 - `gdalData` must point to the GDAL data directory. For example, on a Windows box with FWTools installed it might be:
 
-      <gdalData>c:\Programmi\FWTools2.2.8\data</gdalData>
+  ```xml
+<gdalData>c:\Programmi\FWTools2.2.8\data</gdalData>
+  ```
 
 - `Format` defines a single format, which is defined by the following tags:
 

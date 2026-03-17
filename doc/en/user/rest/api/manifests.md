@@ -35,10 +35,12 @@ The model is very simple and is shared between the version and the resource requ
 
 You can customize the results adding a properties file called **`manifest.properties`** into the root of the data directory. Below is the default implementation that is used when no custom properties file is present:
 
-    resourceNameRegex=.+/(.*).(jar|war)
-    resourceAttributeExclusions=Import-Package,Export-Package,Class-Path,Require-Bundle
-    versionAttributeInclusions=Project-Version:Version,Build-Timestamp,Git-Revision,
-      Specification-Version:Version,Implementation-Version:Git-Revision
+```properties
+resourceNameRegex=.+/(.*).(jar|war)
+resourceAttributeExclusions=Import-Package,Export-Package,Class-Path,Require-Bundle
+versionAttributeInclusions=Project-Version:Version,Build-Timestamp,Git-Revision,
+  Specification-Version:Version,Implementation-Version:Git-Revision
+```
 
 where:
 

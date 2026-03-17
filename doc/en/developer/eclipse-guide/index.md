@@ -62,39 +62,43 @@ If unset, Jetty will default to port `8080`. To change this:
 
 JNDI resources such as data sources can be configured by supplying a Jetty server configuration file named in the system property `jetty.config.file`, specified as a line in `VM arguments` in the `Arguments` panel of the launch configuration for `Start` (separate lines are joined when the JVM is launched). The path to the configuration file is relative to the root of the `web-app` module, in which the launch configuration runs. Naming factory system properties must also be configured for Jetty. For example, `VM arguments` could include:
 
-    -Djetty.config.file=../../../../../settings/jetty.xml
-    -Djava.naming.factory.url.pkgs=org.eclipse.jetty.jndi
-    -Djava.naming.factory.initial=org.eclipse.jetty.jndi.InitialContextFactory
+```properties
+-Djetty.config.file=../../../../../settings/jetty.xml
+-Djava.naming.factory.url.pkgs=org.eclipse.jetty.jndi
+-Djava.naming.factory.initial=org.eclipse.jetty.jndi.InitialContextFactory
+```
 
 The following Jetty server configuration file configures a JNDI data source `java:comp/env/jdbc/demo` that is a connection pool for an Oracle database:
 
-    <?xml version="1.0"?>
-    <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
-    <Configure class="org.eclipse.jetty.server.Server">
-        <New class="org.eclipse.jetty.plus.jndi.Resource">
-            <Arg>java:comp/env/jdbc/demo</Arg>
-            <Arg>
-                <New class="org.apache.commons.dbcp.BasicDataSource">
-                    <Set name="driverClassName">oracle.jdbc.OracleDriver</Set>
-                    <Set name="url">jdbc:oracle:thin:@oracle.example.com:1521:demodb</Set>
-                    <Set name="username">claudius</Set>
-                    <Set name="password">s3cr3t</Set>
-                    <Set name="maxActive">20</Set>
-                    <Set name="maxIdle">10</Set>
-                    <Set name="minIdle">0</Set>
-                    <Set name="maxWait">10000</Set>
-                    <Set name="minEvictableIdleTimeMillis">300000</Set>
-                    <Set name="timeBetweenEvictionRunsMillis">300000</Set>
-                    <Set name="numTestsPerEvictionRun">20</Set>
-                    <Set name="poolPreparedStatements">true</Set>
-                    <Set name="maxOpenPreparedStatements">100</Set>
-                    <Set name="testOnBorrow">true</Set>
-                    <Set name="validationQuery">SELECT SYSDATE FROM DUAL</Set>
-                    <Set name="accessToUnderlyingConnectionAllowed">true</Set>
-                </New>
-            </Arg>
-        </New>
-    </Configure>
+```sql
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.server.Server">
+    <New class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>java:comp/env/jdbc/demo</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="driverClassName">oracle.jdbc.OracleDriver</Set>
+                <Set name="url">jdbc:oracle:thin:@oracle.example.com:1521:demodb</Set>
+                <Set name="username">claudius</Set>
+                <Set name="password">s3cr3t</Set>
+                <Set name="maxActive">20</Set>
+                <Set name="maxIdle">10</Set>
+                <Set name="minIdle">0</Set>
+                <Set name="maxWait">10000</Set>
+                <Set name="minEvictableIdleTimeMillis">300000</Set>
+                <Set name="timeBetweenEvictionRunsMillis">300000</Set>
+                <Set name="numTestsPerEvictionRun">20</Set>
+                <Set name="poolPreparedStatements">true</Set>
+                <Set name="maxOpenPreparedStatements">100</Set>
+                <Set name="testOnBorrow">true</Set>
+                <Set name="validationQuery">SELECT SYSDATE FROM DUAL</Set>
+                <Set name="accessToUnderlyingConnectionAllowed">true</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>
+```
 
 Jetty does not mandate a `reference-ref` in GeoServer `WEB-INF/web.xml`, so there is no need to modify that file. No Jetty-specific information is required inside the GeoServer `web-app` module or data directory, so JNDI resources can be tested under Jetty for later deployment under Tomcat. See also the tutorial [Setting up a JNDI connection pool with Tomcat](http://docs.geoserver.org/stable/en/user/tutorials/tomcat-jndi/tomcat-jndi.md) in the GeoServer User Manual.
 

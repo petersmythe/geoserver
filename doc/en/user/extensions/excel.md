@@ -40,18 +40,18 @@ Excel 2007 GET:
 
 **Excel 97-2003 POST**:
 
-> ``` xml
-> <wfs:GetFeature service="WFS" version="1.1.0"
->   outputFormat="excel"
->   xmlns:topp="http://www.openplans.org/topp"
->   xmlns:wfs="http://www.opengis.net/wfs"
->   xmlns:ogc="http://www.opengis.net/ogc"
->   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
->   xsi:schemaLocation="http://www.opengis.net/wfs
->                       http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">
->   <wfs:Query typeName="topp:states" />
-> </wfs:GetFeature>
-> ```
+``` xml
+<wfs:GetFeature service="WFS" version="1.1.0"
+  outputFormat="excel"
+  xmlns:topp="http://www.openplans.org/topp"
+  xmlns:wfs="http://www.opengis.net/wfs"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengis.net/wfs
+                      http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">
+  <wfs:Query typeName="topp:states" />
+</wfs:GetFeature>
+```
 
 ## Limitations
 

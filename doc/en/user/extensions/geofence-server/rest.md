@@ -12,88 +12,96 @@ Both XML and JSON are supported for transfer of data objects. The default is XML
 
 Encoding of a rule in XML:
 
-    <Rule>
-       <id>..</id>
-       <priority>..</priority>
-       <userName>..</userName>
-       <roleName>..</roleName>
-       <addressRange>..</addressRange>
-       <validAfter>..</validAfter>
-       <validBefore>..</validBefore>
-       <service>..</service>
-       <request>..</request>
-       <workspace>..</workspace>
-       <layer>..</layer>
-       <subfield>..</subfield>
-       <access>..</access>
+```xml
+<Rule>
+   <id>..</id>
+   <priority>..</priority>
+   <userName>..</userName>
+   <roleName>..</roleName>
+   <addressRange>..</addressRange>
+   <validAfter>..</validAfter>
+   <validBefore>..</validBefore>
+   <service>..</service>
+   <request>..</request>
+   <workspace>..</workspace>
+   <layer>..</layer>
+   <subfield>..</subfield>
+   <access>..</access>
 
-       <limits> 
-          <allowedArea>..</allowedArea>
-          <catalogMode>..</catalogMode>
-       </limits>
+   <limits> 
+      <allowedArea>..</allowedArea>
+      <catalogMode>..</catalogMode>
+   </limits>
 
-       <layerDetails>
-          <layerType> VECTOR | RASTER | LAYERGROUP </layerType>
-          <defaultStyle>..</defaultStyle>
-          <cqlFilterRead>..</cqlFilterRead>
-          <cqlFilterWrite>..</cqlFilterWrite>
-          <allowedArea>..</allowedArea>
-          <catalogMode>..</catalogMode>
+   <layerDetails>
+      <layerType> VECTOR | RASTER | LAYERGROUP </layerType>
+      <defaultStyle>..</defaultStyle>
+      <cqlFilterRead>..</cqlFilterRead>
+      <cqlFilterWrite>..</cqlFilterWrite>
+      <allowedArea>..</allowedArea>
+      <catalogMode>..</catalogMode>
 
-          <allowedStyle>..</allowedStyle>
-          ..
+      <allowedStyle>..</allowedStyle>
+      ..
 
-          <attribute>
-             <name>..</name>
-             <datatype>..</datatype>
-             <accessType> NONE | READONLY | READWRITE </accessType>
-          </attribute>
-          ..
+      <attribute>
+         <name>..</name>
+         <datatype>..</datatype>
+         <accessType> NONE | READONLY | READWRITE </accessType>
+      </attribute>
+      ..
 
-       </layerDetails>
-    </Rule>
+   </layerDetails>
+</Rule>
+```
 
 Encoding of a rule in JSON:
 
-    {
-      "Rule": {
-        "id":..,
-        "priority":..,
-        "userName":"..",
-        "roleName":"..",
-        "addressRange",
-        "validAfter",
-        "validBefore",
-        "service":"..",
-        "request":"..",
-        "subfield":"..",
-        "workspace":"..",
-        "layer":"..",
-        "access":".."
-      }
-    }
+```json
+{
+  "Rule": {
+    "id":..,
+    "priority":..,
+    "userName":"..",
+    "roleName":"..",
+    "addressRange",
+    "validAfter",
+    "validBefore",
+    "service":"..",
+    "request":"..",
+    "subfield":"..",
+    "workspace":"..",
+    "layer":"..",
+    "access":".."
+  }
+}
+```
 
 In case a rule that has "any" ("*") for a particular field the field is either not included (default), left empty or specified with a single asterisk (the latter two may be used for updates to distinguish from "do not change this field").
 
 Encoding of a list of rules in XML:
 
-    <Rules count="n">
-      <Rule> ... </Rule>
-      <Rule> ... </Rule>
-      ...     
-    </Rules>
+```xml
+<Rules count="n">
+  <Rule> ... </Rule>
+  <Rule> ... </Rule>
+  ...     
+</Rules>
+```
 
 The result of a count would not include the actual <Rule> tags.
 
 Encoding of a list of rules in JSON:
 
-    {
-      "count":n,
-      "rules":[
-        {..},
-        ..
-      ]
-    } 
+```json
+{
+  "count":n,
+  "rules":[
+    {..},
+    ..
+  ]
+} 
+```
 
 ### Rule content
 

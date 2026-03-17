@@ -4,7 +4,9 @@ This section discusses the GeoWebCache REST API, an interface for working progra
 
 The GeoWebCache REST endpoint when integrated with GeoServer is available at:
 
-    <GEOSERVER_HOME>/gwc/rest/
+```xml
+<GEOSERVER_HOME>/gwc/rest/
+```
 
 For example:
 

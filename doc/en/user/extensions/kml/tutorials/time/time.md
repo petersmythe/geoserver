@@ -124,7 +124,9 @@ The set of **date time** formats which GeoServer can be understand is formed by 
 
 In the above example a single time stamp is output for the dataset. GeoServer also supports specifying date ranges via a template. The syntax for ranges is:
 
-    <begin>||<end>
+```xml
+<begin>||<end>
+```
 
 Where begin is the first date in the range, end is the last date in the range, and || is the delimiter between the two. As an example:
 

@@ -44,15 +44,21 @@ Compared to ImageMosaic, which stores specific collector definitions in dedicate
 
 ImageMosaic example: the `indexer.properties` contains a line:
 
-    PropertyCollectors=TimestampFileNameExtractorSPI[timeregex](time)
+```properties
+PropertyCollectors=TimestampFileNameExtractorSPI[timeregex](time)
+```
 
 Referring a `timeregex.properties` sidecar file containing:
 
-    regex=(\\d{4})/(\\d{2})/(\\d{2}),format=yyyyMMdd,fullPath=true
+```properties
+regex=(\\d{4})/(\\d{2})/(\\d{2}),format=yyyyMMdd,fullPath=true
+```
 
 VectorMosaic: the commonParameters contains the specific collector configuration with inline definition within square brackets:
 
-    PropertyCollectors=TimestampFileNameExtractorSPI[regex=(\\d{4})/(\\d{2})/(\\d{2}),format=yyyyMMdd,fullPath=true](time)
+```properties
+PropertyCollectors=TimestampFileNameExtractorSPI[regex=(\\d{4})/(\\d{2})/(\\d{2}),format=yyyyMMdd,fullPath=true](time)
+```
 
 See ImageMosaic's [Propertycollectors](../../data/raster/imagemosaic/configuration.md#property-collectors) for further details on the available property collectors.
 
@@ -71,10 +77,12 @@ An example of commonParameters section for a VectorMosaic of DGGS GeoParquets lo
 
 With the following properties:
 
-    dggs_id=H3
-    zoneIdColumnName=h3indexstr
-    resolution=10
-    PropertyCollectors=TimestampFileNameExtractorSPI[regex=.*?(\\d{4})/(\\d{2})/(\\d{2}).*,format=yyyyMMdd,fullPath=true](time)
-    delegate.dbtype=geoparquet
+```properties
+dggs_id=H3
+zoneIdColumnName=h3indexstr
+resolution=10
+PropertyCollectors=TimestampFileNameExtractorSPI[regex=.*?(\\d{4})/(\\d{2})/(\\d{2}).*,format=yyyyMMdd,fullPath=true](time)
+delegate.dbtype=geoparquet
+```
 
 See [Vector Mosaic Datastore REST ingestion](restingestion.md) for an example of ingesting DGGS Parquet into a VectorMosaic.

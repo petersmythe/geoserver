@@ -36,8 +36,10 @@ The WPS PPIO adds dxf as an on output format option for WPS processes. The WPS P
 
 Request Example:
 
-    http://localhost:8080/geoserver/wfs?request=GetFeature&typeName=Polygons&
-    outputFormat=dxf
+```
+http://localhost:8080/geoserver/wfs?request=GetFeature&typeName=Polygons&
+outputFormat=dxf
+```
 
 Output Example (portion):
 

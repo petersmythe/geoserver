@@ -147,23 +147,23 @@ To create a new WPS process plug-in module the first step is to create a Maven p
 
     Create a Java class called `HelloWPS.java` inside the created package (make sure you are in the 'src/main/java' folder and not in the 'src/test/java' folder):
 
-> ``` java
-> package org.geoserver.hello.wps;
->
-> import org.geotools.process.factory.DescribeParameter;
-> import org.geotools.process.factory.DescribeProcess;
-> import org.geotools.process.factory.DescribeResult;
-> import org.geoserver.wps.gs.GeoServerProcess;
->
-> @DescribeProcess(title="helloWPS", description="Hello WPS Sample")
-> public class HelloWPS implements GeoServerProcess {
->
->    @DescribeResult(name="result", description="output result")
->    public String execute(@DescribeParameter(name="name", description="name to return") String name) {
->         return "Hello, " + name;
->    }
-> }
-> ```
+``` java
+package org.geoserver.hello.wps;
+
+import org.geotools.process.factory.DescribeParameter;
+import org.geotools.process.factory.DescribeProcess;
+import org.geotools.process.factory.DescribeResult;
+import org.geoserver.wps.gs.GeoServerProcess;
+
+@DescribeProcess(title="helloWPS", description="Hello WPS Sample")
+public class HelloWPS implements GeoServerProcess {
+
+   @DescribeResult(name="result", description="output result")
+   public String execute(@DescribeParameter(name="name", description="name to return") String name) {
+        return "Hello, " + name;
+   }
+}
+```
 
 ## Register the process in GeoServer
 
@@ -184,13 +184,13 @@ GeoServer uses the [Spring Framework](http://www.springsource.org/spring-framewo
 
 2.  Create an `applicationContext.xml` in the `src/main/resources` directory with the following contents:
 
-    > ``` xml
-    > <?xml version="1.0" encoding="UTF-8"?>
-    >   <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-    >   <beans>
-    >     <bean id="helloWPS" class="org.geoserver.hello.wps.HelloWPS"/>
-    >   </beans>
-    > ```
+    ``` xml
+    <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+      <beans>
+        <bean id="helloWPS" class="org.geoserver.hello.wps.HelloWPS"/>
+      </beans>
+    ```
 
 !!! note
 
@@ -200,9 +200,9 @@ GeoServer uses the [Spring Framework](http://www.springsource.org/spring-framewo
 
 To build the custom process, run the following command from the root of the project:
 
-> ``` console
-> mvn clean install
-> ```
+``` console
+mvn clean install
+```
 
 This cleans the build area, compiles the code, and creates a JAR file in the `target` directory. The JAR file name is determined by the name and version given to the project in the `pom.xml` file. (for this example it is `hello_wps-2.6-SNAPSHOT.jar`).
 
@@ -231,33 +231,33 @@ It is however also possible to leave the process to accept both raw inputs and o
 
 Raw inputs and outputs are represented by the RawData interface:
 
-> ``` java
-> public interface RawData {
->
->     /**
->      * Returns the mime type of the stream's contents
->      * 
->      * @return
->      */
->     public String getMimeType();
->
->     /**
->      * Gives access to the raw data contents. 
->      * 
->      * @return
->      * @throws FileNotFoundException
->      */
->     public InputStream getInputStream() throws IOException;
->
->     /**
->      * Optional field for output raw data, used by 
->      * WPS to generate a file extension
->      * 
->      * @return
->      */
->     public String getFileExtension();
-> }
-> ```
+``` java
+public interface RawData {
+
+    /**
+     * Returns the mime type of the stream's contents
+     * 
+     * @return
+     */
+    public String getMimeType();
+
+    /**
+     * Gives access to the raw data contents. 
+     * 
+     * @return
+     * @throws FileNotFoundException
+     */
+    public InputStream getInputStream() throws IOException;
+
+    /**
+     * Optional field for output raw data, used by 
+     * WPS to generate a file extension
+     * 
+     * @return
+     */
+    public String getFileExtension();
+}
+```
 >
 > As an input, the RawData will be provided to the process, that will discover the mimeType chosen by the user, and will get access to the raw input stream of the data. As an output, the process will return a RawData and the WPS will see what mimeType the result will be in, get access to the raw contents, and grab a file extension to build file names for the user file downloads.
 >

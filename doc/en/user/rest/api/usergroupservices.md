@@ -41,13 +41,15 @@ This resource lets administrators list, retrieve, create, update, and delete *us
 
 Minimal XML configuration for the built‑in file‑based service:
 
-    <org.geoserver.security.xml.XMLUserGroupServiceConfig>
-      <name>users1</name>
-      <className>org.geoserver.security.xml.XMLUserGroupService</className>
-      <fileName>users1.xml</fileName>
-      <passwordEncoderName>plainTextPasswordEncoder</passwordEncoderName>
-      <passwordPolicyName>default</passwordPolicyName>
-    </org.geoserver.security.xml.XMLUserGroupServiceConfig>
+```xml
+<org.geoserver.security.xml.XMLUserGroupServiceConfig>
+  <name>users1</name>
+  <className>org.geoserver.security.xml.XMLUserGroupService</className>
+  <fileName>users1.xml</fileName>
+  <passwordEncoderName>plainTextPasswordEncoder</passwordEncoderName>
+  <passwordPolicyName>default</passwordPolicyName>
+</org.geoserver.security.xml.XMLUserGroupServiceConfig>
+```
 
 !!! info "Important"
 
@@ -57,69 +59,75 @@ Minimal XML configuration for the built‑in file‑based service:
 
 The equivalent JSON payload:
 
-    {
-      "org.geoserver.security.xml.XMLUserGroupServiceConfig": {
-        "name": "users1",
-        "className": "org.geoserver.security.xml.XMLUserGroupService",
-        "fileName": "users1.xml",
-        "passwordEncoderName": "plainTextPasswordEncoder",
-        "passwordPolicyName": "default"
-      }
-    }
+```json
+{
+  "org.geoserver.security.xml.XMLUserGroupServiceConfig": {
+    "name": "users1",
+    "className": "org.geoserver.security.xml.XMLUserGroupService",
+    "fileName": "users1.xml",
+    "passwordEncoderName": "plainTextPasswordEncoder",
+    "passwordPolicyName": "default"
+  }
+}
+```
 
 ### XML (LDAPUserGroupService)
 
 Example configuration for an LDAP‑backed service:
 
-    <org.geoserver.security.ldap.LDAPUserGroupServiceConfig>
-      <name>ldapUsers</name>
-      <className>org.geoserver.security.ldap.LDAPUserGroupService</className>
-      <serverURL>ldap://localhost:10389/dc=acme,dc=org</serverURL>
-      <groupSearchBase>ou=groups</groupSearchBase>
-      <allGroupsSearchFilter>cn=*</allGroupsSearchFilter>
-      <groupSearchFilter>member=uid={0},ou=people,dc=acme,dc=org</groupSearchFilter>
-      <userSearchBase>ou=people</userSearchBase>
-      <allUsersSearchFilter>uid=*</allUsersSearchFilter>
-      <useTLS>true</useTLS>
-      <useNestedParentGroups>true</useNestedParentGroups>
-      <maxGroupSearchLevel>10</maxGroupSearchLevel>
-      <nestedGroupSearchFilter>(member={0})</nestedGroupSearchFilter>
-      <bindBeforeGroupSearch>true</bindBeforeGroupSearch>
-      <rolePrefix>ROLE_</rolePrefix>
-      <convertToUpperCase>true</convertToUpperCase>
-      <user>admin</user>
-      <password>geoserver</password>
-      <passwordEncoderName>digestPasswordEncoder</passwordEncoderName>
-      <passwordPolicyName>default</passwordPolicyName>
-    </org.geoserver.security.ldap.LDAPUserGroupServiceConfig>
+```xml
+<org.geoserver.security.ldap.LDAPUserGroupServiceConfig>
+  <name>ldapUsers</name>
+  <className>org.geoserver.security.ldap.LDAPUserGroupService</className>
+  <serverURL>ldap://localhost:10389/dc=acme,dc=org</serverURL>
+  <groupSearchBase>ou=groups</groupSearchBase>
+  <allGroupsSearchFilter>cn=*</allGroupsSearchFilter>
+  <groupSearchFilter>member=uid={0},ou=people,dc=acme,dc=org</groupSearchFilter>
+  <userSearchBase>ou=people</userSearchBase>
+  <allUsersSearchFilter>uid=*</allUsersSearchFilter>
+  <useTLS>true</useTLS>
+  <useNestedParentGroups>true</useNestedParentGroups>
+  <maxGroupSearchLevel>10</maxGroupSearchLevel>
+  <nestedGroupSearchFilter>(member={0})</nestedGroupSearchFilter>
+  <bindBeforeGroupSearch>true</bindBeforeGroupSearch>
+  <rolePrefix>ROLE_</rolePrefix>
+  <convertToUpperCase>true</convertToUpperCase>
+  <user>admin</user>
+  <password>geoserver</password>
+  <passwordEncoderName>digestPasswordEncoder</passwordEncoderName>
+  <passwordPolicyName>default</passwordPolicyName>
+</org.geoserver.security.ldap.LDAPUserGroupServiceConfig>
+```
 
 ### JSON (LDAPUserGroupService)
 
 The equivalent JSON payload:
 
-    {
-      "org.geoserver.security.ldap.LDAPUserGroupServiceConfig": {
-        "name": "ldapUsers",
-        "className": "org.geoserver.security.ldap.LDAPUserGroupService",
-        "serverURL": "ldap://localhost:10389/dc=acme,dc=org",
-        "groupSearchBase": "ou=groups",
-        "allGroupsSearchFilter": "cn=*",
-        "groupSearchFilter": "member=uid={0},ou=people,dc=acme,dc=org",
-        "userSearchBase": "ou=people",
-        "allUsersSearchFilter": "uid=*",
-        "useTLS": true,
-        "useNestedParentGroups": true,
-        "maxGroupSearchLevel": 10,
-        "nestedGroupSearchFilter": "(member={0})",
-        "bindBeforeGroupSearch": true,
-        "rolePrefix": "ROLE_",
-        "convertToUpperCase": true,
-        "user": "admin",
-        "password": "geoserver",
-        "passwordEncoderName": "digestPasswordEncoder",
-        "passwordPolicyName": "default"
-      }
-    }
+```json
+{
+  "org.geoserver.security.ldap.LDAPUserGroupServiceConfig": {
+    "name": "ldapUsers",
+    "className": "org.geoserver.security.ldap.LDAPUserGroupService",
+    "serverURL": "ldap://localhost:10389/dc=acme,dc=org",
+    "groupSearchBase": "ou=groups",
+    "allGroupsSearchFilter": "cn=*",
+    "groupSearchFilter": "member=uid={0},ou=people,dc=acme,dc=org",
+    "userSearchBase": "ou=people",
+    "allUsersSearchFilter": "uid=*",
+    "useTLS": true,
+    "useNestedParentGroups": true,
+    "maxGroupSearchLevel": 10,
+    "nestedGroupSearchFilter": "(member={0})",
+    "bindBeforeGroupSearch": true,
+    "rolePrefix": "ROLE_",
+    "convertToUpperCase": true,
+    "user": "admin",
+    "password": "geoserver",
+    "passwordEncoderName": "digestPasswordEncoder",
+    "passwordPolicyName": "default"
+  }
+}
+```
 
 ## Operations
 
@@ -133,8 +141,10 @@ The equivalent JSON payload:
 
 **cURL**:
 
-    curl -u admin:geoserver -H "Accept: application/xml" \
-      "http://localhost:8080/geoserver/rest/security/usergroupservices"
+```bash
+curl -u admin:geoserver -H "Accept: application/xml" \
+  "http://localhost:8080/geoserver/rest/security/usergroupservices"
+```
 
 ### Retrieve
 
@@ -147,8 +157,10 @@ The equivalent JSON payload:
 
 **cURL**:
 
-    curl -u admin:geoserver -H "Accept: application/json" \
-      "http://localhost:8080/geoserver/rest/security/usergroupservices/users1"
+```bash
+curl -u admin:geoserver -H "Accept: application/json" \
+  "http://localhost:8080/geoserver/rest/security/usergroupservices/users1"
+```
 
 ### Create
 
@@ -165,9 +177,11 @@ The equivalent JSON payload:
 
 **cURL**:
 
-    curl -u admin:geoserver -H "Content-Type: application/xml" -H "Accept: application/xml" \
-      -d @xml-usergroup-service.xml \
-      "http://localhost:8080/geoserver/rest/security/usergroupservices"
+```bash
+curl -u admin:geoserver -H "Content-Type: application/xml" -H "Accept: application/xml" \
+  -d @xml-usergroup-service.xml \
+  "http://localhost:8080/geoserver/rest/security/usergroupservices"
+```
 
 ### Update / Replace
 
@@ -184,9 +198,11 @@ The equivalent JSON payload:
 
 **cURL**:
 
-    curl -u admin:geoserver -X PUT -H "Content-Type: application/json" -H "Accept: application/json" \
-      -d @xml-usergroup-service.json \
-      "http://localhost:8080/geoserver/rest/security/usergroupservices/users1"
+```bash
+curl -u admin:geoserver -X PUT -H "Content-Type: application/json" -H "Accept: application/json" \
+  -d @xml-usergroup-service.json \
+  "http://localhost:8080/geoserver/rest/security/usergroupservices/users1"
+```
 
 ### Delete
 
@@ -200,8 +216,10 @@ The equivalent JSON payload:
 
 **cURL**:
 
-    curl -u admin:geoserver -X DELETE \
-      "http://localhost:8080/geoserver/rest/security/usergroupservices/users1"
+```bash
+curl -u admin:geoserver -X DELETE \
+  "http://localhost:8080/geoserver/rest/security/usergroupservices/users1"
+```
 
 ## Content Negotiation
 

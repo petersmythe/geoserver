@@ -237,7 +237,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 - [ ] 13. Fix code formatting and syntax highlighting issues
 
-  - [ ] 13.1 Create detection script for code formatting issues
+  - [x] 13.1 Create detection script for code formatting issues
     - Scan for code blocks without syntax highlighting
     - Identify inline code in nested lists without backticks
     - Detect YAML/JSON blocks without highlighting
@@ -245,7 +245,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - Generate report with file locations and line numbers
     - _Requirements: 1.5, 1.6, 1.7, 1.8_
 
-  - [ ] 13.2 Implement automated fix for missing syntax highlighting
+  - [x] 13.2 Implement automated fix for missing syntax highlighting
     - Add language identifiers to code fence blocks (```python, ```yaml, etc.)
     - Detect language from context or file extension references
     - Apply consistent highlighting across similar code blocks
@@ -254,7 +254,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly highlighted code remains unchanged_
     - _Requirements: 1.5, 2.5, 3.2_
 
-  - [ ] 13.3 Implement automated fix for inline code in nested lists
+  - [x] 13.3 Implement automated fix for inline code in nested lists
     - Wrap inline code references with backticks in list items
     - Preserve list indentation and structure
     - Handle multiple inline code references per list item
@@ -263,7 +263,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted inline code remains unchanged_
     - _Requirements: 1.6, 2.6, 3.4_
 
-  - [ ] 13.4 Implement automated fix for YAML/JSON highlighting
+  - [x] 13.4 Implement automated fix for YAML/JSON highlighting
     - Add ```yaml or ```json language identifiers
     - Detect YAML vs JSON from content structure
     - Ensure proper code fence formatting
@@ -272,7 +272,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly highlighted YAML/JSON remains unchanged_
     - _Requirements: 1.7, 2.7, 3.2_
 
-  - [ ] 13.5 Implement automated fix for code sections as plain text
+  - [x] 13.5 Implement automated fix for code sections as plain text
     - Convert plain text paragraphs back to code blocks where appropriate
     - Detect code patterns (indentation, syntax markers, etc.)
     - Add proper code fence markers
@@ -281,14 +281,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Non-code text remains as paragraphs_
     - _Requirements: 1.8, 2.8, 3.2_
 
-  - [ ] 13.6 Verify code formatting exploration test now passes
+  - [x] 13.6 Verify code formatting exploration test now passes
     - **Property 1: Expected Behavior** - Code Formatting Fixed
     - **IMPORTANT**: Re-run the SAME test from task 2
     - Run code formatting exploration test from step 2
     - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
     - _Requirements: 2.5, 2.6, 2.7, 2.8_
 
-  - [ ] 13.7 Verify preservation tests still pass
+  - [x] 13.7 Verify preservation tests still pass
     - **Property 2: Preservation** - No Regressions in Code Formatting
     - **IMPORTANT**: Re-run preservation tests from tasks 10-11
     - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)

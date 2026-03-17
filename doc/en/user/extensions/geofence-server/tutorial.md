@@ -51,62 +51,70 @@ You now have a working, basic security configuration.
 
 1\. Open a new tab with your browser and go to the following URL: <http://localhost:8080/geoserver/geofence/rest/rules>. You should get an XML representation of your rules:
 
-    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <Rules count="2">
-      <Rule id="2">
-          <access>ALLOW</access>
-          <priority>0</priority>
-          <roleName>ADMIN</roleName>
-      </Rule>
-      <Rule id="1">
-          <access>DENY</access>
-          <priority>1</priority>
-      </Rule>
-    </Rules>
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Rules count="2">
+  <Rule id="2">
+      <access>ALLOW</access>
+      <priority>0</priority>
+      <roleName>ADMIN</roleName>
+  </Rule>
+  <Rule id="1">
+      <access>DENY</access>
+      <priority>1</priority>
+  </Rule>
+</Rules>
+```
 
 2\. Let us first create a new user. Do this by sending a POST request to the following URL <http://localhost:8080/geoserver/rest/security/usergroup/users> with the following content:
 
-    <user>
-          <userName>michaeljfox</userName>
-          <password>back2$future</password>
-          <enabled>true</enabled>
-    </user>
+```xml
+<user>
+      <userName>michaeljfox</userName>
+      <password>back2$future</password>
+      <enabled>true</enabled>
+</user>
+```
 
 You should receive a `201 Created` HTTP Response.
 
 3\. Now we will create an access rule for this user. Do this by sending a POST request to the following URL: <http://localhost:8080/geoserver/geofence/rest/rules> with the following content:
 
-    <Rule>
-          <userName>michaeljfox</userName>
-          <workspace>topp</workspace>
-          <layer>states</layer>
-          <service>WMS</service>
-          <request>GetMap</request>
-          <access>ALLOW</access>
-    </Rule>
+```xml
+<Rule>
+      <userName>michaeljfox</userName>
+      <workspace>topp</workspace>
+      <layer>states</layer>
+      <service>WMS</service>
+      <request>GetMap</request>
+      <access>ALLOW</access>
+</Rule>
+```
 
 Again, you should receive a `201 Created` HTTP Response. When browsing to the URL <http://localhost:8080/geoserver/geofence/rest/rules> we should now see the following information:
 
-    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <Rules count="2">
-      <Rule id="3">
-          <access>ALLOW</access>
-          <layer>states</layer
-          <priority>0</priority>
-          <request>GETMAP</request>
-          <service>WMS</service>
-          <userName>michaeljfox</userName>
-          <workspace>topp</workspace>
-      </Rule>
-      <Rule id="2">
-          <access>ALLOW</access>
-          <priority>0</priority>
-          <roleName>ADMIN</roleName>
-      </Rule>
-      <Rule id="1">
-          <access>DENY</access>
-          <priority>1</priority>
-      </Rule>
-    </Rules>
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Rules count="2">
+  <Rule id="3">
+      <access>ALLOW</access>
+      <layer>states</layer
+      <priority>0</priority>
+      <request>GETMAP</request>
+      <service>WMS</service>
+      <userName>michaeljfox</userName>
+      <workspace>topp</workspace>
+  </Rule>
+  <Rule id="2">
+      <access>ALLOW</access>
+      <priority>0</priority>
+      <roleName>ADMIN</roleName>
+  </Rule>
+  <Rule id="1">
+      <access>DENY</access>
+      <priority>1</priority>
+  </Rule>
+</Rules>
+```
 
 4.  It should now be possible to log on with username `michaeljfox` and password `back2$future` and perform a `GetMap` on the layer `topp:states`, but nothing else.

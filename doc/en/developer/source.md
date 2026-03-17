@@ -8,10 +8,12 @@ To clone the repository:
 
 To list available branches in the repository:
 
-    % git branch
-       2.15.x
-       2.16.x
-     * main
+```
+% git branch
+   2.15.x
+   2.16.x
+ * main
+```
 
 To switch to the 2.16.x branch above:
 

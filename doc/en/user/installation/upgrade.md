@@ -431,7 +431,8 @@ As of GeoServer 2.14, the output produced by [REST](../rest/index.md) featuretyp
 
 Before:
 
-    ...
+```xml
+...
 <attribute>
       <name>geom</name>
       <minOccurs>0</minOccurs>
@@ -439,11 +440,13 @@ Before:
       <nillable>true</nillable>
       <binding>com.vividsolutions.jts.geom.Point</binding>
 </attribute>
-    ...
+...
+```
 
 After:
 
-    ...
+```xml
+...
 <attribute>
       <name>geom</name>
       <minOccurs>0</minOccurs>
@@ -451,7 +454,8 @@ After:
       <nillable>true</nillable>
       <binding>org.locationtech.jts.geom.Point</binding>
 </attribute>
-    ...
+...
+```
 
 Any REST clients which rely on this binding information should be updated to support the new names.
 

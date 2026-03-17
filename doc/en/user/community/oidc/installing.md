@@ -66,9 +66,9 @@ If your OIDC IDP server (i.e. keycloak) is running on ``localhost``, then you sh
 
 > 1.  Add this to your `/etc/hosts`:
 >
->     ``` bash
->     127.0.0.1       host.docker.internal
->     ```
+    ``` bash
+    127.0.0.1       host.docker.internal
+    ```
 >
 > 2.  In your GeoServer OIDC configuration, use ``host.docker.internal`` instead of ``localhost``
 >

@@ -85,11 +85,13 @@ Go to the sample request page, <http://localhost:8080/geoserver/web/?wicket:book
 
 14. Edit the description template for the states layer as follows:
 
-        This is the state of ${STATE_NAME.value}.
+    ```xml
+This is the state of ${STATE_NAME.value}.
 
-        <img src="http://www.netstate.com/states/symb/flags/images/${STATE_ABBR.value?lower_case}_fi.gif"/>
-        <br>
-        For more information visit <a href="http://en.wikipedia.org/wiki/${STATE_NAME.value}">Wikipedia</a>
+<img src="http://www.netstate.com/states/symb/flags/images/${STATE_ABBR.value?lower_case}_fi.gif"/>
+<br>
+For more information visit <a href="http://en.wikipedia.org/wiki/${STATE_NAME.value}">Wikipedia</a>
+    ```
 
 15. Refresh the KML by moving the camera and click on a placemark
 
