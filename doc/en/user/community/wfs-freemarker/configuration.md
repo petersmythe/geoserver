@@ -26,21 +26,11 @@ Assume we have a Vectorial layer named **geosolutions:bplandmarks**
     - footer.ftl
     ```
     >
-    > :::: note
-    > ::: title
-    > Note
-    > :::
+    !!! note
+        The Template is managed using Freemarker. This is a simple yet powerful template engine that GeoServer uses whenever developers allowed user customization of textual outputs. In particular, at the time of writing, it's used to allow customization of GetFeatureInfo, GeoRSS and KML outputs.
     >
-    > The Template is managed using Freemarker. This is a simple yet powerful template engine that GeoServer uses whenever developers allowed user customization of textual outputs. In particular, at the time of writing, it's used to allow customization of GetFeatureInfo, GeoRSS and KML outputs.
-    > ::::
-    >
-    > :::: note
-    > ::: title
-    > Note
-    > :::
-    >
-    > Splitting the template in three files allows the administrator to keep a consistent styling for the GetFeatureInfo result, but use different templates for different workspaces or different layers. This is done by providing a master header.ftl and footer.ftl file, but specify a different content.ftl for each layer.
-    > ::::
+    !!! note
+        Splitting the template in three files allows the administrator to keep a consistent styling for the GetFeatureInfo result, but use different templates for different workspaces or different layers. This is done by providing a master header.ftl and footer.ftl file, but specify a different content.ftl for each layer.
 
 4.  In header.ftl file enter the following HTML:
 

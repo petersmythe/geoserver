@@ -3,7 +3,6 @@
 A `coverage` is a raster data set which originates from a coverage store.
 
 !!! info "Todo"
-
     JC: "The second level headings [don't] work so well for the longer paths - maybe another heading format?"
 
 ## `/workspaces/<ws>/coveragestores/<cs>/coverages[.<format>]`

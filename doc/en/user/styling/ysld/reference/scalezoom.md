@@ -5,13 +5,11 @@ It is common for different [rules](rules.md) to be applied at different zoom lev
 For example, on a roads layer, you would not want to display every single road when viewing the whole world. Or perhaps you may wish to styles the same features differently depending on the zoom level. For example: a cities layer styled using points at low zoom levels (when "zoomed out") and with polygon borders at higher zoom levels ("zoomed in").
 
 !!! info "Todo"
-
     ADD FIGURE
 
 YSLD allows rules to be applied depending on the scale or zoom level. You can specify by scale, or you can define zoom levels in terms of scales and specify by zoom level.
 
 !!! warning
-
     Be aware that scales for a layer (where a style is applied) may interact differently when the layer is contained in a map, if the map has a different coordinate reference system from the layer.
 
 ## Scale syntax
@@ -32,8 +30,12 @@ where:
 | `min` | Yes | The minimum scale (inclusive) for which the rule will be applied. Value is a number, either decimal or integer. | N/A |
 | `max` | Yes | The maximum scale (exclusive) for which the rule will be applied. Value is a number, either decimal or integer. | N/A |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     It is not possible to use an expression for any of these values.
 
 Use the literal strings `min` and `max` to denote where there are no lower or upper scale boundaries. For example, to denote that the scale is anything less than some `<max>` value:
@@ -45,7 +47,6 @@ To denote that the scale is anything greater than or equal to some `<min>` value
     scale: [<min>,max]
 
 !!! note
-
     In the above examples, `min` and `max` are always literals, entered exactly like that, while `<min>` and `<max>` would be replaced by actual scalar values.
 
 If the scale parameter is omitted entirely, then the rule will apply at all scales.
@@ -138,8 +139,12 @@ where:
 | `min` | Yes | The minimum zoom level for which the rule will be applied. Value is an integer. | N/A |
 | `max` | Yes | The maximum zoom level for which the rule will be applied. Value is an integer. | N/A |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     It is not possible to use an expression for any of these values.
 
 As with scales, use the literal strings `min` and `max` to denote where there are no lower or upper scale boundaries. For example, to denote that the zoom level is anything less than some `<max>` value:
@@ -151,7 +156,6 @@ To denote that the zoom level is anything greater than or equal to some `<min>` 
     zoom: [<min>,max]
 
 !!! note
-
     In the above examples, `min` and `max` are always literals, entered exactly like that, while `<min>` and `<max>` would be replaced by actual scalar values.
 
 The `scale` and `zoom` parameters should not be used together in a rule (but if used, `scale` takes priority over `zoom`).
@@ -175,12 +179,15 @@ where:
 |----|----|----|----|
 | `name` | No | `WGS84`, `WebMercator`, or a name of a predefined gridset in GeoServer. | `WebMercator` |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     As many web maps use "web mercator" (also known as EPSG:3857 or EPSG:900913), this is assumed to be the default if no `grid` is specified.
 
 !!! warning
-
     As multiple gridsets can contain the same SRS, we recommend naming custom gridsets by something other than the EPSG code.
 
 ## Zoom examples
@@ -248,8 +255,12 @@ This defines zoom levels as the following (rounded to the nearest whole number b
 | `17117`                | `8`                   |
 | `<previous_scale> / 2` | `<previous_zoom> + 1` |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     These scale values can be verified in GeoServer on the **Gridsets** page under the definition for the gridset:
     
     ![](img/scalezoom_customgridset.png)

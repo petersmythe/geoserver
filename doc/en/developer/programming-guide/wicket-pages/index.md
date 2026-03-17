@@ -121,7 +121,6 @@ The `<wicket:message>` element makes it quite easy to make text internationaliza
 In Wicket, **i18n (Internationalization)** value strings can define parameters which provide the ability to place dynamic values into internationalized strings.
 
 !!! info "See Also"
-
     <http://wicket.apache.org/docs/wicket-1.3.2/wicket/apidocs/org/apache/wicket/model/StringResourceModel.html> for details.
 
 ## Adding Resources

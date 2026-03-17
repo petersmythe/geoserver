@@ -174,7 +174,6 @@ The `Content-Security-Policy` header will block unsafe JavaScript by default. In
 See [Content Security Policy](../../security/csp.md) for instructions to modify the CSP header if it is continuing to block certain functionality of custom HTML templates even with the `UNSAFE` property.
 
 !!! warning
-
     Allowing unsafe scripts could allow cross-site scripting attacks and should only be done if you can fully trust your template authors.
 
 ## Accessing Instance Methods {: #tutorials_getfeatureinfo_html_access }
@@ -206,7 +205,6 @@ The allow list contains a list of classes and packages and allows access to a me
 - `org.locationtech.jts.geom.`
 
 !!! note
-
     A class must be both in the allow list and not in the block list to be allowed and it is not possible to use the system properties to allow a class that is in the default block list.
 
 The `GEOSERVER_FREEMARKER_BLOCK_LIST` and `GEOSERVER_FREEMARKER_ALLOW_LIST` properties allow a comma-separated list of class names and package name prefixes. For example, when specifying `-DGEOSERVER_FREEMARKER_BLOCK_LIST=org.geoserver.catalog.MetadataMap,org.geotools.api.util.`, the class `org.geoserver.catalog.MetadataMap` and all classes in the package `org.geotools.api.util` will be blocked for use in templates.
@@ -214,7 +212,6 @@ The `GEOSERVER_FREEMARKER_BLOCK_LIST` and `GEOSERVER_FREEMARKER_ALLOW_LIST` prop
 An additional security precaution, that is enabled by default, restricts access to only getter methods (e.g., `getTitle`, `isEnabled`). Templates should be accessing these as Java Bean properties (e.g., `object.title`) rather than calling the method directly even though that is allowed. The `GEOSERVER_FREEMARKER_API_EXPOSED` system property can be set to `true` to allow access to all instance methods that pass the allow and block list checks. While the default allow and block lists should be sufficient to prevent malicious templates from causing any significant impact to GeoServer, this feature will help protect against future GeoServer enhancements exposing sensitive functionality to templates.
 
 !!! note
-
     The MapML, OGC API and OpenSearch for EO extension and community modules require access to non-getter methods in their FreeMarker templates for backwards-compatibility and are not affected by that setting but the class restrictions apply to all templates.
 
 ## Accessing static methods
@@ -257,5 +254,4 @@ In this case GeoServer exposes a `statics` variable you can use in templates to 
 </ul>
 
 !!! warning
-
     Unrestricted access as shown above is only recommended if you can fully trust your template authors.

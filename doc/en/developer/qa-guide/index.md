@@ -194,7 +194,6 @@ mvn clean install -Dqa -Dspotless.apply.skip=true
 ```
 
 !!! note
-
     IDE Plugins are available for [IntelliJ](https://plugins.jetbrains.com/plugin/13180-palantir-java-format) and [Eclipse](https://github.com/palantir/palantir-java-format/tree/develop/eclipse_plugin) IDEs.
 
 ## Sortpom

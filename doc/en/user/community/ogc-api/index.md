@@ -28,11 +28,9 @@ Community modules:
 </div>
 
 !!! warning
-
     The OGC API services are still in heavy development, most of the specs and extensions are still in draft form and their behavior are subject to change in the coming months/years.
 
 !!! abstract "How to help"
-
     The modules are still in their infancy, there is a set of activities that could help their development:
     
     - Implementation of additional draft API services, such as the [Maps API](https://github.com/opengeospatial/OGC-API-Maps), the [Coverages API](https://github.com/opengeospatial/ogc_api_coverages), the [Records API](https://github.com/opengeospatial/ogcapi-records) and the [Process API](https://github.com/opengeospatial/wps-rest-binding).

@@ -6,7 +6,6 @@ render_macros: true
 # WorldImage
 
 !!! note
-
     GeoServer does not come built-in with support for WorldImage; it must be installed through an extension. Proceed to [Installing the WorldImage extension](#image_install) for installation details.
 
 A world file is a plain text file used to georeference raster map images. This file (often with an extension of `.jgw` or `.tfw`) accompanies an associated image file (`.jpg` or `.tif`). Together, the world file and the corresponding image file is known as a WorldImage in GeoServer.
@@ -19,7 +18,6 @@ A world file is a plain text file used to georeference raster map images. This f
     - {{ snapshot }} [geoserver-{{ snapshot }}-image-plugin.zip](https://build.geoserver.org/geoserver/main/ext-latest/geoserver-{{ snapshot }}-image-plugin.zip)
 
     !!! warning
-
         Ensure to match plugin (example {{ release }} above) version to the version of the GeoServer instance.
 
 2.  Extract the contents of the archive into the **`WEB-INF/lib`** directory of the GeoServer installation.

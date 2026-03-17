@@ -179,7 +179,6 @@ That MODIS data has 2 bands representing (Normalized Difference Vegetation Index
         curl -v -u admin:geoserver -XPOST -H "Content-type: application/vnd.ogc.sld+xml" -d @ndvi.sld http://localhost:8080/geoserver/rest/styles
 
 !!! abstract "curl request to set the style as default style of the layer"
-
     :
     
         curl -v -u admin:geoserver -XPUT -H "Content-type: text/xml" -d "<layer><defaultStyle><name>ndvi</name></defaultStyle></layer>" http://localhost:8080/geoserver/rest/layers/modisvi.xml

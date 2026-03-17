@@ -1,7 +1,6 @@
 # Upgrading GeoServer
 
 !!! warning
-
     Be aware that some upgrades are not reversible, meaning that the data directory may be changed so that it is no longer compatible with older versions of GeoServer. See [Migrating a data directory between versions](../datadirectory/migrating.md) for more details.
 
 ## Upgrade Process
@@ -56,11 +55,9 @@ GeoServer operates with a time boxed release cycle, maintaining "stable" and "ma
   It is always advisable to stay up to date with security patches. The blog post will indicate when the update is urgent, and several releases will be made concurrently (for both stable and maintenance) when urgent action is required.
 
   !!! note
-
       Do not wait for a release to fall out of support before upgrading. Doing so places you in a position of having to perform an upgrade quickly with a lot of pressure in the event a security vulnerability is announced.
 
   !!! note
-
       If you do see several releases being made concurrently, in response to an urgent vulnerability, the developers will not be in a position to tell you what is going on. Their goal is to provide you an opportunity to upgrade prior to public disclosure.
     
       Those seeking more information, or with a legal obligation to be informed, are welcome to volunteer on the geoserver-security email list. See [Security Process](https://docs.geoserver.org/latest/en/developer/policies/security.md) for details on how to participate.
@@ -79,7 +76,6 @@ The most common difficulty when updating GeoServer is forgetting to include an e
 If it has been a while since you have upgraded GeoServer be cautious when upgrading from an unsupported release of GeoServer all the way to the latest release. Consider **first trying a quick update** in one go, but be prepared to perform a sequential **update to each major release in turn**, applying the guidance in the section below at each stage.
 
 !!! note
-
     Trying a quick update GeoServer 2.26.0 to GeoServer 2.28.0
     
     1.  Back up the current data directory
@@ -109,7 +105,6 @@ If it has been a while since you have upgraded GeoServer be cautious when upgrad
         If you encounter problems consider planning a sequential update as in the next example.
 
 !!! note
-
     Planning a sequential update from GeoServer 2.26.0 to GeoServer 2.28.0
     
     1.  Check the [Download](https://geoserver.org/download) page and download the releases needed to make the transition:
@@ -206,7 +201,6 @@ It is anticipated that future work may further restrict the default policy in th
 2.  Before starting double check that your [proxy base url](../configuration/globalsettings.md#proxy_base) setting is correct (including HTTP/HTTPS differences).
 
     !!! warning
-
         CSP restrictions will detect if this information is inconsistent, preventing the user interface from functioning.
 
 3.  If you have problems with the administration console being frozen or not working, please see [User interface non-responsive](../production/troubleshooting.md#csp_strict) for details on how to restore access during troubleshooting.
@@ -223,7 +217,6 @@ It is anticipated that future work may further restrict the default policy in th
       For more information, see [Content-Security-Policy](../production/config.md#production_config_csp).
 
       !!! note
-
           It is recommended that static web files be disabled if they are not necessary in order to mitigate cross-site scripting attacks. For more information, see [Serving Static Files](../tutorials/staticfiles.md).
 
     - GeoServer provides tools for administrators to control content security policy headers, see GeoServer Security section on [Content Security Policy Reference](../security/csp.md) for very detailed information.
@@ -325,7 +318,6 @@ When using the JDBC Disk Quota:
 - Validation query for other JDBC formats receive a warning in the logs if it is not one of the common examples above.
 
 !!! note
-
     If you find your JDBC Disk Quota is no longer loaded on startup: check the logs for message about validation query, edit the configuration, and restart.
 
 ### External Entity Allow List default (GeoServer 2.25 and newer)
@@ -341,11 +333,9 @@ The external entity allow list has changed to the following default locations:
 The external entity allow list is an important setting from a security standpoint. This update changes its use from a recommended best practice to a default covering the most common locations used for OGC web services.
 
 !!! note
-
     In general only application schema extension users need to update this setting.
 
 !!! note
-
     To restore the previous behavour use system property `ENTITY_RESOLUTION_ALLOWLIST=*` to allow external entity resolution from any ``http`` or ``https`` location.
 
 For more information, including how to add additional allowed locations see [External Entities Resolution](../production/config.md#production_config_external_entities).

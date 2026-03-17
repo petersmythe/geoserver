@@ -5,7 +5,6 @@ Manage **User/Group Services** through the REST API.
 This resource lets administrators list, retrieve, create, update, and delete *user/group service* configurations (e.g. the default XML file‑based service, or an LDAP service).
 
 !!! note
-
     You must be authenticated as a user with administrative privileges. Content negotiation is supported via the `Accept` and `Content-Type` headers (`application/xml` and `application/json`).
 
 ## Collection
@@ -32,7 +31,6 @@ This resource lets administrators list, retrieve, create, update, and delete *us
 - **DELETE** --- Remove the service *{name}*.
 
 !!! warning
-
     The `default` user/group service (or any service marked as required by the installation) cannot be deleted.
 
 ## Representations
@@ -52,7 +50,6 @@ Minimal XML configuration for the built‑in file‑based service:
 ```
 
 !!! info "Important"
-
     `fileName` is **required** for `XMLUserGroupService`.
 
 ### JSON (XMLUserGroupService)

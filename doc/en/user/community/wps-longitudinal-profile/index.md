@@ -13,13 +13,8 @@ WPS longitudinal profile process provides the ability to calculate an altitude p
 
 2.  Download the WPS longitudinal profile process extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
 
-    :::: warning
-    ::: title
-    Warning
-    :::
-
-    Make sure to match the version of the extension to the version of the GeoServer instance!
-    ::::
+    !!! warning
+        Make sure to match the version of the extension to the version of the GeoServer instance!
 
 3.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 
@@ -72,7 +67,6 @@ The profile object contains an array of points.
 10. executedtime - duration of process execution in milliseconds
 
 !!! note
-
     It's possible to set wpsLongitudinalMaxThreadPoolSize (integer value) environment variable to limit the size of the extension's thread pool. It's possible to set wpsLongitudinalVerticesChunkSize (integer value) environment variable to define number of vertices processed in a chunk.
 
 ## Tunables and safeguards

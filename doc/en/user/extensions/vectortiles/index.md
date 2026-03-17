@@ -3,11 +3,9 @@
 GeoServer supports "vector tile" output in addition to the more standard image tile output. While the standard WMS output will generate a georeferenced map image, a vector tile contains georeferenced vector data, clipped into tiles for easy retrieval.
 
 !!! note
-
     This is an output format, not a data source.
 
 !!! note
-
     Here are two background video talks about "Vector Tiles with GeoServer and OpenLayers":
     
     - [FOSS4G.NA 2016](https://www.youtube.com/watch?v=xdc67aZVO7E)

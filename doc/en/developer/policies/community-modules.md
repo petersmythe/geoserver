@@ -86,7 +86,6 @@ The following outlines the steps to be taken in order to add a new community mod
     Add the file to the root of the new community module, `myCommunityModule/pom.xml`
 
     !!! note
-
         When adding Spring Framework or Spring Security dependencies, **never specify the version**. GeoServer uses Bill of Materials (BOM) to manage these versions centrally. See the [Maven Guide](../maven-guide/index.md) for more details on dependency management.
 
 5.  **Add a build profile**
@@ -126,11 +125,9 @@ The following outlines the steps to be taken in order to add a new community mod
         ```
 
     !!! warning
-
         If the community module depends on any other community modules, they too should be included in the profile definition.
 
     !!! warning
-
         Ensure that the name of the profile matches the name of the community module
 
 ## Pending Release Profile
@@ -327,7 +324,6 @@ The following properties must hold true in order to promote a community module:
             ```
 
             !!! warning
-
                 Don't skip this step.
 
         3.  Any "static" files that are required by the extension.

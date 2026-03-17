@@ -1,7 +1,6 @@
 # Time
 
 !!! warning
-
     The screenshots on this tutorial have not yet been updated for the 2.0.x user interface. But most all the rest of the information should be valid, and the user interface is roughly the same, but a bit more easy to use.
 
 ## Getting Started
@@ -107,8 +106,12 @@ The set of **date time** formats which GeoServer can be understand is formed by 
 | yyyy-MM-dd hh:mm:ss  | 2007-06-20 12:30:00  |
 | yyyy-MMM-dd hh:mm:ss | 2007-Jun-20 12:30:00 |
 
-!!! warning
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! warning
     **Setting the Timezone**
     
     Be aware that the KML output for **date time** formats will reflect the timezone of the java virtual machine, which can be set using the user.timezone parameter in the startup script. For example, the following command starts GeoServer using the Coordinated Universal Time (UTC) timezone.

@@ -21,7 +21,6 @@ feature-styles:
 This would style every polygon feature in a given layer with the given RGB color codes (a medium gray for a fill and black for the outline), with the given opacities for both fill and stroke being given in decimals indicating percentage (so 0.5 is 50% opaque).
 
 !!! note
-
     For more details on syntax, please see the section on [symbolizers](symbolizers/index.md).
 
 The structure of a typical YSLD file is as follows:
@@ -83,7 +82,6 @@ If using a function, it must evaluate to match the type expected by the property
 ## Mappings and lists
 
 !!! note
-
     The following discussion is taken from basic YAML syntax. Please refer to the [YAML specification](http://yaml.org/spec/1.2/spec.md) if necessary.
 
 There are three types of objects in a YSLD document:
@@ -154,7 +152,6 @@ Compare to the following **incorrect** markup:
 The parameters that are relevant to the polygon block here need to be contained inside that block. Without the parameters being indented, they are at the same "level" as the polygon block, and so will not be interpreted correctly.
 
 !!! note
-
     For more details on symbolizer syntax, please see the section on [symbolizers](symbolizers/index.md).
 
 ## Wrapped lines
@@ -218,5 +215,4 @@ Comment blocks do not exist, so each line of a comment will need to be indicated
 ```
 
 !!! note
-
     Comments are not preserved when converting to SLD.

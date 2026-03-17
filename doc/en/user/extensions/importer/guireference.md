@@ -44,7 +44,6 @@ There are also advanced connection options, which are common to the standard Pos
 The parameter fields for the Oracle import are identical to that of PostGIS. The fields aren't populated with default credentials with the exception of the port, which is set to **1521** by default.
 
 !!! note
-
     This option is only enabled if the [Oracle](../../data/database/oracle.md) extension is installed.
 
 ![](images/sources_oracle.png)
@@ -55,7 +54,6 @@ The parameter fields for the Oracle import are identical to that of PostGIS. The
 The parameter fields for the SQL Server import are identical to that of PostGIS. The fields aren't populated with default credentials with the exception of the port, which is set to **4866** by default.
 
 !!! note
-
     This option is only enabled if the [SQL Server](../../data/database/sqlserver.md) extension is installed.
 
 ![](images/sources_sqlserver.png)

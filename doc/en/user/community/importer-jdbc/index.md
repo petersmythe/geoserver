@@ -39,9 +39,7 @@ CREATE INDEX import_context_user ON import_context("user");
 ```
 
 !!! note
-
     The store has been tested with H2 and Postgresql with PostGIS extensions, it may work with other relational databases too assuming that they have a corresponding GeoTools data store plugin installed and the database is not changing the name of the columns (Oracle will most likely not work).
 
 !!! note
-
     With some light extra development and testing the code could be extended to save the status of imports in any GeoTools supported store, e.g., SOLR, MongoDB.

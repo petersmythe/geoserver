@@ -6,13 +6,8 @@ This plugin supports the use of the [Azure BLOB storage](https://azure.microsoft
 
 1.  Download the extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
 
-    :::: warning
-    ::: title
-    Warning
-    :::
-
-    Make sure to match the version of the extension to the version of the GeoServer instance!
-    ::::
+    !!! warning
+        Make sure to match the version of the extension to the version of the GeoServer instance!
 
 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 
@@ -63,5 +58,4 @@ User name the client will use if connecting through a proxy (optional).
 Password the client will use if connecting through a proxy (optional).
 
 !!! note
-
     Unlike AWS, Azure storage controls whether tiles can be accessed by the public at the container level. If you desire to build a public tile cache that can be directly accessed by clients as static files, set the container access level to "public" or "BLOB" and fully seed the cache.

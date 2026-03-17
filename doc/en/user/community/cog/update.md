@@ -66,7 +66,6 @@ To give you an example, an ImageMosaic stored at **`/var/data/imageMosaic/mosaic
 The type of path affects the query to be executed to update the index.
 
 !!! note
-
     Make sure to backup your table for a quick recovery in case of messes with the updating query.
 
 For this example, we are going to use the same public datasets from S3 Urls being used in the previous [ImageMosaic example with Modis COG datasets](mosaic.md) section.

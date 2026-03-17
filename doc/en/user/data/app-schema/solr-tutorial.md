@@ -103,7 +103,6 @@ The only requirement to use it is having Geoserver App-Schema extension and Solr
 When App-Schema detects the index layer is activated for a FeatureType, it will use Solr configured fields for every query incoming from Geoserver OWS requests. If the incoming query uses only indexed fields App-Schema will query only on Solr data source for retrieving matching features IDs and will connect to normal data source to get all in depth data but exclusively for matching IDs.
 
 !!! warning
-
     note that both Primary Keys (solr index core and data source) should match to get Index layer working.
 
 ### Linking an index only store

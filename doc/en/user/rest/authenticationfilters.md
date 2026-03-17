@@ -7,7 +7,6 @@ render_macros: true
 The REST API allows you to list, create, upload, update, and delete authFilters in GeoServer.
 
 !!! note
-
     Read the [API reference for security/authFilters]({{ api_url }}/authenticationfilters.yaml).
 
 ## View an Authentication Filter
@@ -15,7 +14,6 @@ The REST API allows you to list, create, upload, update, and delete authFilters 
 *Request*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/authFilters/restInterceptor' --header 'Accept: application/xml' --header 'Authorization: Basic XXXXXXX'
 
 *Response*
@@ -38,7 +36,6 @@ The REST API allows you to list, create, upload, update, and delete authFilters 
 ## Update an Authentication Filter
 
 !!! abstract "curl"
-
     curl --location --request PUT 'http://localhost:8080/geoserver/rest/security/authFilters/restInterceptor' --header 'Content-Type: application/xml' --header 'Authorization: ••••••' --data ' <authFilter> <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="securityInterceptorFilterConfig"> <className>org.geoserver.security.filter.GeoServerSecurityInterceptorFilter</className> <allowIfAllAbstainDecisions>true</allowIfAllAbstainDecisions> <securityMetadataSource>restFilterDefinitionMap</securityMetadataSource> </config> <id>-3737ce2b:196b56d5575:-7fea</id> <name>restInterceptor</name> </authFilter>'
 
 *Response*
@@ -50,7 +47,6 @@ The REST API allows you to list, create, upload, update, and delete authFilters 
 *Response*
 
 !!! abstract "curl"
-
     curl --location --request DELETE 'http://localhost:8080/geoserver/rest/security/authFilters/restInterceptor7' --header 'Authorization: ••••••'
 
 *Response*
@@ -62,7 +58,6 @@ The REST API allows you to list, create, upload, update, and delete authFilters 
 *Response*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/authFilters.xml' --header 'content-type: application/xml' --header 'Authorization: ••••••' --data '<?xml version="1.0" encoding="UTF-8" standalone="yes"?> <authFilter> <name>restInterceptor17</name> <className>org.geoserver.security.config.SecurityInterceptorFilterConfig</className> <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="securityInterceptorFilterConfig"> <className>org.geoserver.security.filter.GeoServerSecurityInterceptorFilter</className> <allowIfAllAbstainDecisions>false</allowIfAllAbstainDecisions> <securityMetadataSource>restFilterDefinitionMap</securityMetadataSource> </config> </authFilter>'
 
 201 Created
@@ -70,7 +65,6 @@ The REST API allows you to list, create, upload, update, and delete authFilters 
 ## List all Authentication Filters
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/authFilters' --header 'Accept: application/xml' --header 'Authorization: ••••••'
 
 200 OK

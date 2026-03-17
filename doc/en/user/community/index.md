@@ -7,7 +7,6 @@ This section is devoted to GeoServer community modules that are not officially p
 The following community modules have indicated a wish to graduate. In each case they are in need of resources, funding, and feedback to be completed. Please see the individual pages below for opportunities to help out.
 
 !!! note
-
     Pending community modules are included in the community folder of each release, as they seek greater production experience.
 
 <div class="grid cards" markdown>
@@ -23,7 +22,6 @@ Community modules are considered experimental in nature and are considered under
 Community modules are provided "as is" alongside the [nightly builds](https://build.geoserver.org/geoserver/), so you can download and play with them.
 
 !!! warning
-
     Unlike official extensions, community modules are not released to SourceForge alongside each official GeoServer release. As a consequence, using a module built against the nightly build of GeoServer with an official release, risks incompatibility and often will not work.
     
     *If you need a community module to exactly match an official release, the only way is to build it with the sources of the GitHub tag matching the release.*

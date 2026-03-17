@@ -17,7 +17,6 @@ The parameters are:
 - **role**---Name of a predefined role. The wildcard '* is used to indicate the permission is applied to all users, including anonymous users.
 
 !!! note
-
     - URI patterns should account for the first component of the rest path, usually `rest` or `api`
     - Method and role lists should **not** contain any spaces
 

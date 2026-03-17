@@ -33,7 +33,6 @@ We'll be publishing our vector tiles through GeoWebCache and publishing the laye
 For this tutorial, we'll be using the layer `opengeo:countries` to show off the capabilities, though with slight modifications, any layer will do.
 
 !!! note
-
     Download the [Admin 0 - Countries](http://www.naturalearthdata.com/downloads/110m-cultural-vectors) shapefile and publish the layer as `opengeo:countries`.
 
 1.  In the GeoServer admin interface, click `Tile Layers` under `Tile Caching`.
@@ -188,7 +187,6 @@ This guarantees that vector tile metatiling cannot exhaust heap memory or destab
 6.  Navigate to `http://localhost:8080/geoserver/www/tms-vectortiles/index.html` and verify that the output shows without any errors.
 
     !!! note
-
         If your GeoServer is deployed at a server other than `http://localhost:8080/geoserver/`, then please adjust the above URL.
 
     ![](img/vectortileoutput.png)
@@ -199,7 +197,6 @@ These tiles are being rendered by the OpenLayers client.
 ## Create OpenLayers application - WMS Vector Tiles
 
 !!! note
-
     Vector tiles requested with WMS allows retrieving non-cached vector tiles (server side) by setting the `tiled=false` parameter on the `getMap` request. This setting could be particularly useful when serving fast changing source data that should constantly be kept up-to-date for display. However, in terms of rendering performances, vector tiles can be faster than a PNG provided there are few features per tile and a limited amount of attributes in the source vector data. Vice versa, for tiles containing a large number of features with a long list of attributes the PNG may still be the preferred option since it is orders of magnitude smaller in size.
 
 1.  Create a `www/wms-vectortiles` directory inside your GeoServer Data Directory.
@@ -303,7 +300,6 @@ These tiles are being rendered by the OpenLayers client.
 6.  Navigate to `http://localhost:8080/geoserver/www/wms-vectortiles/index.html` and verify that the output shows without any errors.
 
     !!! note
-
         If your GeoServer is deployed at a server other than `http://localhost:8080/geoserver/`, then please adjust the above URL.
 
 ## Styling vector tiles

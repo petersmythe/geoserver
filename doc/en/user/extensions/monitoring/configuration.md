@@ -61,7 +61,6 @@ A value of `0` indicates that no data from the request body should be captured. 
 This limit is configurable with the `maxBodySize` property of the `monitor.properties` file.
 
 !!! note
-
     When using database persistence it is important to ensure that the size of the body field in the database can accommodate the `maxBodySize` property.
 
 ## Ignore Post Processors
@@ -106,7 +105,6 @@ In general, the path used in filters is comprised of the portion of the URL afte
     http://<host>:<port>/geoserver/<path>?<queryString>
 
 !!! note
-
     For more information about ant-style pattern matching, see the [Apache Ant manual](http://ant.apache.org/manual/dirtasks.md).
 
 ## Samples

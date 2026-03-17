@@ -31,7 +31,6 @@ From GeoServer version 2.2.x, GDAL must be installed as an extension. To install
     - {{ snapshot }} [geoserver-{{ snapshot }}-gdal-plugin.zip](https://build.geoserver.org/geoserver/main/ext-latest/geoserver-{{ snapshot }}-gdal-plugin.zip)
 
     !!! warning
-
         Ensure to match plugin (example {{ release }} above) version to the version of the GeoServer instance.
 
 - The download link for **GDAL** will be in the **Extensions** section under **Coverage Format**.
@@ -80,11 +79,9 @@ set GDAL_DATA=C:\<unzipped_package>\bin\gdal-data
 There are a few optional drivers that you can find in [file:`C:](file:%60C:\)<unzipped_package>bingdalplugins-extra` and **`C:<unzipped_package>bingdalplugins-optional`**. Include these paths in `` `GDAL_DRIVER_PATH `` enables the additional formats.
 
 !!! warning
-
     Before adding the extra formats please make sure that you are within your rights to use them in a server environment (some packages are specifically forbidden from free usage on the server side and require a commercial licence, e.g., ECW).
 
 !!! note
-
     Depending on the version of the underlying operating system you will have to pick up the right one. You can google around for the one you need. Also make sure you download the 32 bit version if you are using a 32 bit version of Windows or the 64 bit version (has a "-x64" suffix in the name of the zip file) if you are running a 64 bit version of Windows. Again, pick the one that matches your infrastructure.
 
 #### Note on running GeoServer as a Service on Windows
@@ -191,7 +188,6 @@ This means that the extension was installed, bu twas not able to access your gda
 Starting with version 2.9.0, GeoServer supports vector footprints. A footprint is a shape used as a mask to hide those pixels that are outside of the mask, hence making that part of the parent image transparent. The currently supported footprint formats are WKB, WKT and Shapefile. By convention, the footprint file should be located in the same directory as the raster data that the footprint applies to.
 
 !!! note
-
     In the examples of this section and related subsections, we will always use .wkt as extension, representing a WKT footprint, although both .wkb and .shp are supported too.
 
 For example, supposing you have a MrSID file located at **`/mnt/storage/data/landsat/N-32-40_2000.sid`** to be masked, you just need to place a WKT file on the same folder, as **`/mnt/storage/data/landsat/N-32-40_2000.wkt`** Note that the footprint needs to have same path and name of the original data file, with .wkt extension.

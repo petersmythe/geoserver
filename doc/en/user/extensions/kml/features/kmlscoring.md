@@ -1,7 +1,6 @@
 # KML Scoring
 
 !!! note
-
     KML scoring only applies when using the super-overlay mode `refresh`. See [KML Super-Overlays](kmlsuperoverlays.md) for more information.
 
 GeoServer can return KML in one of two forms. The first is as a number of placemark elements (vectors). Each placemark corresponds to a feature in the underlying dataset. This form only applies to vector datasets.

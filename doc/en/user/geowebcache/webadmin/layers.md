@@ -5,7 +5,6 @@ This page shows a listing of all of the layers known to the integrated GeoWebCac
 ![](img/tilelayers.png)
 
 !!! note
-
     There is also a link to the [GeoWebCache standalone demo page](demopage.md).
 
 ## Layer information
@@ -21,7 +20,6 @@ The maximum amount of disk space that can be used for this layer. By default, th
 The current disk space being used by tiles for this particular layer.
 
 !!! note
-
     **This counter will only be updated if disk quotas are enabled.** If disk quotas are not enabled, tiles will still be saved to disk, but the counter will remain as `0.0 B`.
 
 ### Enabled
@@ -45,7 +43,6 @@ Will remove all saved tiles from the cache. This is identical to a full truncate
 The list of layers displayed on this page is typically the same as, or similar to, the full list of layers known to GeoServer. However, it may not be desirable to have every layer published in GeoServer have a cached layer component. In this case, simply select the box next to the layer to remove, and click **Remove selected cached layers**. The layer will be removed from GeoWebCache, and the disk cache for this layer will be entirely removed.
 
 !!! warning
-
     Deleting the tile cache cannot be undone.
 
 ![](img/removecachedlayers.png)
@@ -61,7 +58,6 @@ To add in a layer from GeoServer (if it wasn't set up to be added automatically)
 The `Empty all` link allows to clear the entire cache, for all layers, grid sets and filter parameters combination.
 
 !!! warning
-
     This will truncate all layers in GeoWebCache
 
 ![](img/gwc_confirm.png)

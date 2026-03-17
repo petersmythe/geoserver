@@ -35,7 +35,6 @@ It is also possible to choose the tile file layout:
 - XYZ uses a "slippy map", or "Google Maps like" layout, that is, `z/y/x.ext` where the Y coordinates originate top left and grow southwards (opposite of TMS and GWC default order).
 
 !!! note
-
     When switching file layout type, the tile directories won't be deleted, it's up to the admin to clean up the tiles on the file system, GeoServer/GWC won't do it automatically.
 
 ### Base Directory

@@ -3,7 +3,6 @@
 A shapefile is a popular geospatial vector data format.
 
 !!! note
-
     While GeoServer has robust support for the shapefile format, it is not the recommended format of choice in a production environment. Databases such as PostGIS are more suitable in production and offer better performance and scalability. See the section on [Running in a production environment](../../production/index.md) for more information.
 
 ## Adding a shapefile
@@ -11,7 +10,6 @@ A shapefile is a popular geospatial vector data format.
 A shapefile is actually a collection of files (with the extensions: `.shp`, `.dbf`, `.shx`, `.prj`, and sometimes others). All of these files need to be present in the same directory in order for GeoServer to accurately read them. As with all formats, adding a shapefile to GeoServer involves adding a new store to the existing [Stores](../webadmin/stores.md) through the [Web administration interface](../../webadmin/index.md).
 
 !!! warning
-
     The `.prj` file, while not mandatory, is strongly recommended when working with GeoServer as it contains valuable projection info. GeoServer may not be able to load your shapefile without it!
 
 To begin, navigate to **Stores --> Add a new store --> Shapefile**.

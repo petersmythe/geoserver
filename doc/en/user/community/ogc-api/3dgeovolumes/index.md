@@ -16,7 +16,6 @@ The 3D GeoVolumes implementation is based on August 2024 draft of the specificat
 1.  Download the OGC API nightly GeoServer community module from [ogcapi-3d-geovolumes](https://build.geoserver.org/geoserver/main/community-latest/geoserver-{{ snapshot }}-ogcapi-3d-geovolumes-plugin.zip).
 
     !!! warning
-
         Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example geoserver-{{ release }}-ogcapi-3dgeovolumes-plugin.zip above).
 
 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
@@ -94,7 +93,6 @@ Here is an example of collection HTML rendering and its associated Cesium view:
 > ![](img/newYork.png)
 
 !!! note
-
     The Cesium viewer needs a Cesium access token to use the terrain layer. By default it's missing, which may result rendering "flying buildings" in mountain areas. See templates customization below on how to add your token.
 
 ### Quick start

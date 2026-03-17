@@ -39,7 +39,6 @@ Each layer directory contains a **`layer.xml`** file, and either a **`coverage.x
 The `data` directory can be used to store file-based geospatial datasets being served as layers.
 
 !!! note
-
     This should not be confused with the main GeoServer data directory, which is the parent to this directory.
 
 This directory is commonly used to store shapefiles and raster files, but can be used for any data that is file-based.
@@ -87,7 +86,6 @@ The `layergroups` directory contains configuration information for the defined l
 The `logs` directory contains configuration information for the various defined logging profiles, and the default **`geoserver.log`** log file.
 
 !!! note
-
     See also the [Logging](../configuration/logging.md) section for more details.
 
 ## `palettes`
@@ -95,7 +93,6 @@ The `logs` directory contains configuration information for the various defined 
 The `palettes` directory is used to store pre-computed **Image Palettes**. Image palettes are used by the GeoServer WMS as way to reduce the size of produced images while maintaining image quality.
 
 !!! note
-
     See also the [Paletted Images](../tutorials/palettedimage/palettedimage.md) tutorial for more information.
 
 ## `security`
@@ -103,7 +100,6 @@ The `palettes` directory is used to store pre-computed **Image Palettes**. Image
 The `security` directory contains the files used to configure the GeoServer security subsystem. This includes a set of property files which define access roles, along with the services and data each role is authorized to access.
 
 !!! note
-
     See also the [Security](../security/index.md) section for more information.
 
 ## `styles`
@@ -111,7 +107,6 @@ The `security` directory contains the files used to configure the GeoServer secu
 The `styles` directory contains files which contain styling information used by the GeoServer WMS.
 
 !!! note
-
     See also the [Styling](../styling/index.md) section for more information.
 
 For each SLD file in this directory there is a corresponding XML file:
@@ -143,7 +138,6 @@ The `styles` directory can also be used to host support files referenced during 
 The `templates` directory contains files used by the GeoServer templating subsystem. Templates are used to customize the output of various GeoServer operations.
 
 !!! note
-
     See also [Freemarker Templates](../tutorials/freemarker.md) for more information..
 
 ## `user_projections`
@@ -151,7 +145,6 @@ The `templates` directory contains files used by the GeoServer templating subsys
 The `user_projections` directory contains a file called **`epsg.properties`** which is used to define custom spatial reference systems that are not part of the official [EPSG database](http://www.epsg.org/CurrentDB.md).
 
 !!! note
-
     See also [Custom CRS Definitions](../configuration/crshandling/customcrs.md) for more information.
 
 ## `www`
@@ -159,5 +152,4 @@ The `user_projections` directory contains a file called **`epsg.properties`** wh
 The `www` directory is used to allow GeoServer to serve files like a regular web server. While not a replacement for a full web server, this can be useful for serving client-side mapping applications. The contents of this directory are served at `http:/<host:port>/geoserver/www`.
 
 !!! note
-
     See also [Serving Static Files](../tutorials/staticfiles.md) for more information.

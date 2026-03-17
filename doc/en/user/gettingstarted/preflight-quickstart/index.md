@@ -3,7 +3,6 @@
 This quickstart walks through common configuration steps before sharing your GeoServer publicly.
 
 !!! note
-
     This tutorial assumes that GeoServer is running at `http://localhost:8080/geoserver`.
 
 Reference:
@@ -56,16 +55,11 @@ If you do not know the current password, navigate to **Security > Passwords** an
 
 For more information see [Keystore password](../../security/passwd.md#security_master_passwd).
 
-:::: note
-::: title
-Note
-:::
+!!! note
+    What is the keystore password or master password?
 
-What is the keystore password or master password?
-
-- The keystore password used to [store security credentials and encryption keys](../../security/passwd.md#security_passwd_keystore).
-- Optional: When experimenting with security configuration, you can enable use of the [root account](../../security/passwd.md#security_master_passwd).
-::::
+    - The keystore password used to [store security credentials and encryption keys](../../security/passwd.md#security_passwd_keystore).
+    - Optional: When experimenting with security configuration, you can enable use of the [root account](../../security/passwd.md#security_master_passwd).
 
 ## Global Settings
 

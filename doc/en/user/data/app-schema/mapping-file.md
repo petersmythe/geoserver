@@ -171,7 +171,6 @@ The reserved name `FEATURE_LINK` is used to map data that is not encoded in XML 
 A CQL expression that is used to set the custom `gml:id` of the output feature type. This should be the name of a database column on its own. Using functions would cause an exception because it is not supported with the default joining implementation.
 
 !!! note
-
     Every feature must have a `gml:id`. This requirement is an implementation limitation (strictly, `gml:id` is optional in GML).
     
     - If idExpression is unspecified, `gml:id` will be `<the table name>.<primary key>`, e.g. `MAPPEDFEATURE.1`.
@@ -179,7 +178,6 @@ A CQL expression that is used to set the custom `gml:id` of the output feature t
     - If using property files instead of database tables, the default `gml:id` will be the row key found before the equals ("=") in the property file, e.g. the feature with row `mf1=Mudstone|POINT(1 2)|...` will have `gml:id` `mf1`.
 
 !!! note
-
     `gml:id` must be an [NCName](http://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-NCName).
 
 ### sourceExpression (optional)
@@ -203,7 +201,6 @@ You can use CQL expressions to calculate the content of the element. This exampl
 You can also use [app-schema.cql-functions](#app-schema.cql-functions) for vocabulary translations.
 
 !!! warning
-
     Avoid use of CQL expressions for properties that users will want to query, because the current implementation cannot reverse these expressions to generate efficient SQL, and will instead read all features to calculate the property to find the features that match the filter query. Falling back to brute force search makes queries on CQL-calculated expressions very slow. If you must concatenate strings to generate content, you may find that doing this in your database is much faster.
 
 ### linkElement and linkField (optional)
@@ -415,7 +412,6 @@ When referring to database table/view names or column names, use:
 Multivalued properties from denormalised sources (the same source feature ID appears more than once) are automatically encoded. For example, a view might have a repeated `id` column with varying `name` so that an arbitrarily large number of `gml:name` properties can be encoded for the output feature.
 
 !!! warning
-
     Denormalised sources must grouped so that features with duplicate IDs are provided without any intervening features. This can be achieved by ensuring that denormalised source features are sorted by ID. Failure to observe this restriction will result in data corruption. This restriction is however not necessary when using [app-schema.joining](#app-schema.joining) because then ordering will happen automatically.
 
 ## Attributes with cardinality 1..N

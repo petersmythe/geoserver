@@ -6,7 +6,6 @@ render_macros: true
 # Pregeneralized Features
 
 !!! note
-
     GeoServer does not come built-in with support for Pregeneralized Features; it must be installed through an extension.
 
 ## Installing the Pregeneralized Features extension
@@ -17,7 +16,6 @@ render_macros: true
     - {{ snapshot }} [geoserver-{{ snapshot }}-feature-pregeneralized-plugin.zip](https://build.geoserver.org/geoserver/main/ext-latest/geoserver-{{ snapshot }}-feature-pregeneralized-plugin.zip)
 
     !!! warning
-
         Ensure to match plugin (example {{ release }} above) version to the version of the GeoServer instance.
 
 2.  Extract the contents of the archive into the **`WEB-INF/lib`** directory of the GeoServer installation.

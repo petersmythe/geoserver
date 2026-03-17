@@ -109,7 +109,6 @@ By default Tomcat does not require authentication for web applications. In this 
 4.  Save `web.xml` and restart Tomcat.
 
 !!! note
-
     It is necessary to add all the role names specified in the `web.xml` to the configured role service. This is duplicate work but there is currently no other solution.
 
 ## Test J2EE login

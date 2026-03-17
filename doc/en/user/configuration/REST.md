@@ -1,7 +1,6 @@
 # REST Configuration
 
 !!! note
-
     For more information, please see the section on [REST](../rest/index.md).
 
 The RESTful API allows to create new stores and append new granules to mosaics via file uploads. By default the new stores and granules are saved with the following directory structure:

@@ -18,7 +18,6 @@ The REST API can be used to convert any of your existing CSS or SLD styles to YS
     - <view-source:http://localhost:8080/geoserver/rest/styles>
 
     !!! note
-
         Using `view-source:` in chrome or firefox allows us to focus on page content.
 
 2.  Click on one of the styles (for example `states.html`)

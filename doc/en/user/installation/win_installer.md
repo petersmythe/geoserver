@@ -12,7 +12,6 @@ The Windows installer provides an easy way to set up GeoServer on your system, a
     {%raw%}{% include-markdown "./jdk-windows-guidance.txt" %}{%endraw%}
 
     !!! note
-
         For more information about Java and GeoServer, please see the section on [Java Considerations](../production/java.md).
 
 2.  Navigate to the [GeoServer Download page](https://geoserver.org/download).
@@ -57,15 +56,12 @@ The Windows installer provides an easy way to set up GeoServer on your system, a
 10. Enter the path to a **valid Java Runtime Environment (JRE)**. GeoServer requires a valid JRE in order to run, so this step is required. The installer will inspect your system and attempt to automatically populate this box with a JRE if it is found, but otherwise you will have to enter this path manually. When finished, click **Next**.
 
     !!! note
-
         A typical path on Windows would be **`C:\Program Files\Java\jre8`**.
 
     !!! note
-
         Don't include the **`\bin`** in the JRE path. So if **`java.exe`** is located at **`C:\Program Files (x86)\Java\jre8\bin\java.exe`**, set the path to be **`C:\Program Files (x86)\Java\jre8`**.
 
     !!! note
-
         For more information about Java and GeoServer, please see the section on [Java Considerations](../production/java.md).
 
     ![](images/win_jre.png)

@@ -66,7 +66,6 @@ As there are many configuration options for a gridset, it is often more convenie
 To remove a gridset, select the check box next to the gridset or gridsets, and click **Remove selected gridsets**.
 
 !!! warning
-
     Removing a gridset definition will remove not only the gridset definition, but also any tiles on any layers generated with this gridset.
 
 ![](img/removegridset.png)

@@ -17,8 +17,12 @@ where `<format>` is one of the following options:
 | JSONP | `outputFormat=text/javascript` | Returns a [JSONP](http://en.wikipedia.org/wiki/JSONP) in the form: `parseResponse(...json...)`. See [WMS vendor parameters](../wms/vendor.md) to change the callback name. Note that this format is disabled by default (See [Global variables affecting WMS](../wms/global.md)). |
 | CSV | `outputFormat=csv` | Returns a CSV (comma-separated values) file |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     Some additional output formats (such as [Excel](../../extensions/excel.md)) are available with the use of an extension. The full list of output formats supported by a particular GeoServer instance can be found by performing a WFS [GetCapabilities](reference.md#wfs_getcap) request.
 
 GeoServer provides the `format_options` vendor-specific parameter to specify parameters that are specific to each format. The syntax is:
@@ -113,7 +117,6 @@ JSON output `system properties`:
 - `json.maxDepth=<max_value>` is used to determine the max number of allowed JSON nested objects on encoding phase. By default the value is 100.
 
 !!! note
-
     Coordinates with a value equal to $\pm \infty$ will be encoded with their string representation `"Infinity"` or `"-Infinity"`
 
 ## CSV output

@@ -26,7 +26,6 @@ To install this module:
 3.  Extract the contents of the archive into the **`WEB-INF/lib`** directory in GeoServer.
 
     !!! warning
-
         Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example geoserver-{{ snapshot }}-loader-plugin.zip above).
 
 4.  Restart GeoServer.
@@ -54,7 +53,6 @@ To install these modules:
 3.  Extract the contents of the archive into the **`WEB-INF/lib`** directory in GeoServer.
 
     !!! warning
-
         Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example geoserver-{{ snapshot }}-ogcapi-dggs-plugin.zip above).
 
 4.  Restart GeoServer.

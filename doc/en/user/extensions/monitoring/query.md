@@ -72,7 +72,6 @@ where `id` is the numeric identifier of a single request, and `format` specifies
 - `xls` - Microsoft Excel spreadsheet.
 
 !!! note
-
     An alternative to specifying the returned representation with the `format` extension is to use the http `Accept` header and specify the MIME type as one of:
     
 - `text/html`

@@ -350,5 +350,4 @@ In addition the MapML viewer is also available as output of a WFS GetFeature req
 ![](images/mapml_wfs_format_dropdown.png)
 
 !!! warning
-
     Note that the MapML WFS output will automatically set a default max feature limit. Removing that limit can lead to browser issues.

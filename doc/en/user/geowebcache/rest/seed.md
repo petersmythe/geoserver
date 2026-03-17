@@ -192,7 +192,6 @@ A POST request to the `/gwc/rest/seed` resource terminates pending and/or runnin
 It is possible to terminate individual or all pending and/or running tasks. Use the parameter `kill_all` with one of the following values: `running`, `pending`, or `all`.
 
 !!! note
-
     For backward compatibility, the `kill_all` parameter value `1` is also accepted and is equivalent to `running`.
 
 The following request terminates all running seed and truncate tasks.

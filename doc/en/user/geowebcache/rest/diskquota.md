@@ -71,7 +71,6 @@ curl -u admin:geoserver -v -XGET http://localhost:8080/geoserver/gwc/rest/diskqu
 ### Changing configuration
 
 !!! note
-
     The request body for PUT should contain only the desired properties to be modified. For example, the following will only change the maxConcurrentCleanups property in XML format:
     
     ``` xml

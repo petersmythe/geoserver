@@ -3,7 +3,6 @@
 The REST API allows you to set and retrieve information about the server itself.
 
 !!! note
-
     Read the ``API reference for /about/manifests <manifests.yaml>__``.
 
 ## Retrieving component versions
@@ -50,13 +49,11 @@ The REST API allows you to set and retrieve information about the server itself.
           http://localhost:8080/geoserver/rest/about/manifest.xml
 
 !!! note
-
     The result will be a very long list of manifest information. While this can be useful, it is often desirable to filter this list.
 
 **Retrieve manifests, filtered by resource name**
 
 !!! note
-
     This example will retrieve only resources where the `name` attribute matches `gwc-.*`.
 
 *Request*
@@ -112,7 +109,6 @@ The REST API allows you to set and retrieve information about the server itself.
 **Retrieve manifests, filtered by resource property**
 
 !!! note
-
     This example will retrieve only resources with a property equal to `GeoServerModule`.
 
 *Request*
@@ -141,7 +137,6 @@ The REST API allows you to set and retrieve information about the server itself.
 **Retrieve manifests, filtered by both resource name and property**
 
 !!! note
-
     This example will retrieve only resources where a property with named `GeoServerModule` has a value equal to `extension`.
 
 *Request*

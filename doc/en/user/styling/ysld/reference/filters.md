@@ -5,11 +5,9 @@ Filters are predicates that allow rules to be applied selectively.
 A filter can take a great many different forms.
 
 !!! note
-
     A scale is a type of filter, but is [discussed separately](scalezoom.md).
 
 !!! note
-
     For more information, please see the [GeoTools CQL documentation](https://docs.geotools.org/latest/userguide/library/cql/ecql.md) and [GeoServer CQL tutorial](../../../tutorials/cql/cql_tutorial.md).
 
 ## Syntax
@@ -26,7 +24,6 @@ rules:
 where `<expression>` is any valid CQL/ECQL filter.
 
 !!! note
-
     Be aware that filters are applied to [rules](rules.md) and so appear inside them, but outside of any [symbolizers](symbolizers/index.md).
 
 ## Types of filters
@@ -68,8 +65,12 @@ The following is a description of all available operators:
 | `NOT` | Negates a boolean (true/false) condition. Can be used with an additional operator such as `NOT LIKE` or `NOT BETWEEN`. |
 | `<>` | Not equal (used when comparing a string or numeric value only) |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     These operators are not case sensitive, but are shown here in all caps for legibility and consistency.
 
 ### Spatial filters
@@ -134,7 +135,6 @@ feature-styles:
 Filters can also be used to color a map based on attributes of the data. The following example uses the `YEARBLT` attribute to color different lots based on the year they were built. The `else` rule applies only if no other filter rule applies
 
 !!! note
-
     The Recode [function](functions.md) can perform the same functionality in a more compact syntax.
 
     name: Year Built Filter

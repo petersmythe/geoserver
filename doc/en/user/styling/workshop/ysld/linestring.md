@@ -59,7 +59,6 @@ line:
     ```
 
 !!! note
-
     The title and value for **stroke-color** may be different.
 
 1.  Click **Apply**
@@ -128,7 +127,6 @@ We only specified the line symbolizer, so all of the boilerplate around was gene
     ![image](../style/img/line_stroke.png)
 
 !!! note
-
     The GeoServer rendering engine is quite sophisticated and allows the use of units of measure (such as ``m`` or ``ft``). While we are using pixels in this example, real world units will be converted using the current scale, allowing for lines that change width with the scale.
 
 ## Multiple Symbolizers

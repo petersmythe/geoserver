@@ -11,7 +11,6 @@ This tutorial walks through the process of setting up digest authentication.
 This tutorial uses the [curl](http://curl.haxx.se/) utility to issue HTTP request that test authentication. Install curl before proceeding.
 
 !!! note
-
     Any utility that supports both basic and digest authentication can be used in place of curl. Most modern web browsers support both types of authentication.
 
 ## Configure the Digest authentication filter

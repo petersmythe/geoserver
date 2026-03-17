@@ -14,7 +14,6 @@ curl "http://localhost:8080/geoserver/wfs?service=wfs&version=2.0.0&request=GetF
 You can use ``geopkg``, ``geopackage``, or ``gpkg`` as the output format in the request. Use ``1.0.0``, ``1.1.0``, or ``2.0.0`` as `version=` to specify which WFS version to use.
 
 !!! note
-
     GeoPackages always have the ordinates in X,Y (`EAST_NORTH`) format.
 
 ## WFS Output Configuration
@@ -56,7 +55,6 @@ curl "http://localhost:8080/geoserver/wms?service=WMS&version=1.3.0&request=GetM
 You can use `format=geopkg`, `format=geopackage`, or `format=gpkg` as the output format in the request. Use WMS `version=1.1.0`, or `version=1.3.0` to specify which WMS version to use, keeping in mind axis order for `bbox` differences.
 
 !!! note
-
     Regardless of WMS axis order used for `bbox` the resulting GeoPackages always have the ordinates in X,Y (`EAST_NORTH`) order as required by the specification.
 
 ### WMS Format options

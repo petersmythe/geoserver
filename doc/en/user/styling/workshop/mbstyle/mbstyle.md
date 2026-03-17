@@ -110,7 +110,6 @@ Here is the same example as [MBStyle](../files/airports0.json):
 We use a point symbolizer to indicate we want this content drawn as a **Point** (line 16 in the SLD, line 8 in the MBStyle). The point symbolizer declares an external graphic, which contains the URL ``airports.svg`` indicating the image that should be drawn (line 20 in the SLD, line 10 in the MBStyle).
 
 !!! note
-
     Rather than refer to many different icons separately, MBStyles use a single sprite-sheet containing all the necessary icons for the style. This is defined by the `sprite` property at the top-level of the style.
 
 ## Tour
@@ -161,7 +160,6 @@ If you are really stuck please consider the following challenge rather than skip
 1.  Return to the **Data** tab and use the **Compute** link to determine the minimum and maximum for the **scalerank** attribute.
 
     !!! abstract "Instructor Notes"
-
         Should be 2 and 9 respectively.
 
 ### Challenge Compare SLD Generation
@@ -191,7 +189,6 @@ If you are really stuck please consider the following challenge rather than skip
     **Challenge:** What differences can you spot?
 
     !!! abstract "Instructor Notes"
-
         Generated SLD does not include name or title information; this can of course be added. Please check the MBStyle reference for details.
     
         The second difference is with the use of a fallback Mark when defining a PointSymbolizer.

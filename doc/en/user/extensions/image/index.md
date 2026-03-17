@@ -18,7 +18,6 @@ To install the Image extension:
 2.  Find the page that matches the exact version of GeoServer you are running.
 
     !!! warning
-
         Be sure to match the version of the extension with that of GeoServer, otherwise errors will occur.
 
 3.  Download the Image extension:
@@ -33,7 +32,6 @@ To install the Image extension:
 5.  Extract the contents of the archive into the **`WEB-INF/lib`** directory of your GeoServer installation.
 
     !!! note
-
         Ensure the JAR files are placed directly in the **`WEB-INF/lib`** directory and not in a subdirectory.
 
 6.  Restart GeoServer.

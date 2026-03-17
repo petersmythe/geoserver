@@ -11,7 +11,6 @@ This tutorial shows how to configure GeoServer to accept authentication informat
 This tutorial uses the [curl](https://curl.haxx.se/) utility to issue HTTP request that test authentication. Install curl before proceeding.
 
 !!! note
-
     Any utility that supports setting HTTP header attributes can be used in place of curl.
 
 ## Configure the HTTP header filter
@@ -41,17 +40,12 @@ Additional information about role services is here [Role source and role calcula
 
 > ![](images/digest4.jpg)
 >
-> :::: warning
-> ::: title
-> Warning
-> :::
->
-> The tutorial uses the obscure "sdf09rt2s" name for the header attribute. Why not use "user" or "username" ?. In a proxy scenario a relationship of trust is needed between the proxy and GeoServer. An attacker could easily send an HTTP request with an HTTP header attribute "user" and value "admin" and operate as an administrator.
->
-> One possibility is to configure the network infrastructure preventing such requests from all IP addresses except the IP of the proxy.
->
-> This tutorial uses a obscure header attribute name which should be a shared secret between the proxy and GeoServer. Additionally, the use of SSL is recommended, otherwise the shared secret is transported in plain text.
-> ::::
+!!! warning
+    The tutorial uses the obscure "sdf09rt2s" name for the header attribute. Why not use "user" or "username" ?. In a proxy scenario a relationship of trust is needed between the proxy and GeoServer. An attacker could easily send an HTTP request with an HTTP header attribute "user" and value "admin" and operate as an administrator.
+
+    One possibility is to configure the network infrastructure preventing such requests from all IP addresses except the IP of the proxy.
+
+    This tutorial uses a obscure header attribute name which should be a shared secret between the proxy and GeoServer. Additionally, the use of SSL is recommended, otherwise the shared secret is transported in plain text.
 
 1.  Save.
 
@@ -121,7 +115,6 @@ curl -v --header "sdf09rt2s: admin" -G "http://localhost:8080/geoserver/wfs?requ
     The result should be a successful authentication and contain the normal WFS capabilities response.
 
     !!! note
-
         When setting the header `name: value` pair, the header `name` should match the `Request Header Attribute` that was set when creating the new Authentication Filter, and the `value` must match the username for a user who has the correct Role set. The username value is case sensitive.
     
         In the above example, the `admin` user is assigned to the `ADMIN` role which is the role that was selected in the service rule we created. If you had a diferent user that was assigned to the `ADMIN` role, you could instead use the username for that user as the `value` in the header and you should get the correct capabilities response.

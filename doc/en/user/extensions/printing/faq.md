@@ -1,7 +1,6 @@
 # Printing FAQ
 
 !!! note
-
     Warranty disclaimer and license
     
     The authors provide these documents "AS-IS", without warranty of any kind either expressed or implied.

@@ -128,7 +128,6 @@ The approach of mapping a data channel directly to a color channel is only suita
 For qualitative data (such as land use) or simply to use color, we need a different approach:
 
 !!! note
-
     We can use a color map to artificially color a single band raster introducing smooth graduations for elevation or temperature models or clear differentiation for qualitative data.
 
 1.  Apply the following YAML to our ``usgs:DEM`` layer:
@@ -170,7 +169,6 @@ For qualitative data (such as land use) or simply to use color, we need a differ
     ![image](../style/img/raster_dem_4.png)
 
 !!! note
-
     Raster format for GIS work often supply a "no data" value, or contain a mask, limiting the dataset to only the locations with valid information.
 
 ### Custom
@@ -283,7 +281,6 @@ symbolizers:
     ![image](../style/img/raster_contrast_1.png)
 
     !!! note
-
         Discussion [provided](#ysld.raster.a1) at the end of the workbook.
 
 ## Challenge Intervals {: #ysld.raster.q2 }
@@ -297,7 +294,6 @@ symbolizers:
 2.  **Challenge:** Update your DEM example to use **intervals** for presentation. What are the advantages of using this approach for elevation data?
 
     !!! note
-
         Answer [provided](#ysld.raster.a2) at the end of the workbook.
 
 ## Explore Image Processing
@@ -305,7 +301,6 @@ symbolizers:
 Additional properties are available to provide slight image processing during visualization.
 
 !!! note
-
     In this section are we going to be working around a preview issue where only the top left corner of the raster remains visible during image processing. This issue has been reported as [6213](https://osgeo-org.atlassian.net/browse/GEOS-6213).
 
 Image processing can be used to enhance the output to highlight small details or to balance images from different sensors allowing them to be compared.
@@ -345,7 +340,6 @@ symbolizers:
 2.  **Challenge:** Use what you have learned to present the `usgs:dem` clearly.
 
     !!! note
-
         Answer [provided](#ysld.raster.a3) at the end of the workbook.
 
 ## Challenge Raster Opacity {: #ysld.raster.q4 }
@@ -355,5 +349,4 @@ symbolizers:
 2.  **Challenge:** Can you think of an example where this would be useful?
 
     !!! note
-
         Discussion [provided](#ysld.raster.a4) at the end of the workbook.

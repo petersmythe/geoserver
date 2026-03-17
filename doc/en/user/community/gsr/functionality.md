@@ -5,7 +5,6 @@
 While the ArcGIS® implementation of GeoServices supports multiple file formats, all responses from the GeoServer plugin use JSON (for example, browser-friendly HTML is not provided). The `?f=json` parameter specifying JSON is still required. Moreover, since at the moment there is no support for `pjson` output format, if client specifies a `f=pjson` parameter a normal JSON will be returned.
 
 !!! note
-
     Esri®, ArcGIS® and ArcGIS Online® are trademarks, registered trademarks, or service marks of Esri in the United States, the European Community, or certain other jurisdictions. Other companies and products mentioned may be trademarks of their respective owners.
 
 ## Capabilities

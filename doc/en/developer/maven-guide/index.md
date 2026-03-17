@@ -130,7 +130,6 @@ The maven jetty plugin can be used to run modules which are web based in an embe
     mvn jetty:run
 
 !!! note
-
     This command must be run from the web/app module, it will fail if run from elsewhere.
 
 The above command will run GeoServer with the built in data directory. To specify a different data directory the `GEOSERVER_DATA_DIR` flag is used:
@@ -239,7 +238,6 @@ For GeoTools test JARs, use the `<classifier>tests</classifier>` approach instea
 ```
 
 !!! warning
-
     Never specify explicit versions for GeoTools, Spring Framework, or Spring Security dependencies. This can lead to version conflicts and inconsistent behavior across modules.
 
 ### GeoTools BOM Structure

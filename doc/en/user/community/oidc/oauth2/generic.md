@@ -31,7 +31,6 @@ When registering GeoServer as a client or application with your IDP, you will ne
 - **Post-Logout Redirect URI:** If your IDP supports single logout, also register the **After-Logout Redirect URI** shown in the GeoServer configuration. See [Logout Behavior](../configuring.md#community_oidc_logout_behavior).
 
 !!! tip
-
     Create the GeoServer OIDC filter first (even with placeholder values), so that the computed Redirect URI is visible. Then copy it into your IDP's configuration.
 
 ## Configuring GeoServer
@@ -92,7 +91,6 @@ To configure manually:
 8.  Save
 
 !!! tip
-
     If you only have the issuer URL (e.g. `https://idp.example.com`), try appending `/.well-known/openid-configuration` to it in your browser. Many providers support Discovery even if it is not prominently documented.
 
 ### Common Issues with Generic Providers

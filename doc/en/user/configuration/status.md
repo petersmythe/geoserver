@@ -120,7 +120,6 @@ If some information is not available the special term `NOT AVAILABLE` will appea
 For information on the live Java Runtime Environment the **JVM Console** tab provides access to two useful troubleshooting tools.
 
 !!! note
-
     For more information on effective use see [Troubleshooting](../production/troubleshooting.md).
 
 ### Java Threads

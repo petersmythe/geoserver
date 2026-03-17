@@ -5,7 +5,6 @@ The OGC Filter Encoding specification provides a generic concept of a *filter fu
 GeoServer provides many different kinds of filter functions, covering a wide range of functionality including mathematics, string formatting, and geometric operations. A complete list is provided in the [Filter Function Reference](function_reference.md).
 
 !!! note
-
     The Filter Encoding specification provides a standard syntax for filter functions, but does not mandate a specific set of functions. Servers are free to provide whatever functions they want, so some function expressions may work only in specific software.
 
 ## Examples

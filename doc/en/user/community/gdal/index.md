@@ -39,7 +39,6 @@ The full list of formats that gdal_translate is able to support is available on 
 If gdal_translate is not available in the default path, the GDAL_DATA environment variable is not set, or if the output formats needs tweaking, a `gdal_translate.xml` configuration file can be created to customize the output format. The file should be put inside a `gdal` folder in the root of the GeoServer data directory.
 
 !!! note
-
     GeoServer will automatically detect any change to the file and reload the configuration, without a need to restart.
 
 The default configuration is equivalent to the following xml file:

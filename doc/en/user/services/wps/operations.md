@@ -32,7 +32,6 @@ The **DescribeProcess** operation requests a description of a WPS process availa
 The parameter `identifier` specifies the process to describe. Multiple processes can be requested, separated by commas (for example, `identifier=JTS:buffer,gs:Clip`). At least one process must be specified.
 
 !!! note
-
     As with all OGC parameters, the keys (`request`, `version`, etc) are case-insensitive, and the values (`GetCapabilities`, `JTS:buffer`, etc.) are case-sensitive. GeoServer is generally more relaxed about case, but it is best to follow the specification.
 
 The response is an XML document containing metadata about each requested process, including the following:
@@ -150,7 +149,6 @@ For help in generating WPS requests you can use the built-in interactive [WPS Re
 ## Dismiss
 
 !!! note
-
     This is a vendor extension of the GeoServer WPS Service. This operation is specific to GeoServer.
 
 According to the WPS specification, an asynchronous process execution returns a back link to a status location that the client can ping to get progress report about the process, and eventually retrieve its final results.
@@ -174,7 +172,6 @@ For example, let's consider the "geo:Buffer" process, possibly working against a
 ## GetExecutions
 
 !!! note
-
     This is a vendor extension of the GeoServer WPS Service. This operation is specific to GeoServer.
 
 This operation allows a client to recognize the list of WPS Executions.

@@ -17,7 +17,6 @@ The following databases are supported:
 - Microsoft SQL Server
 
 !!! note
-
     Oracle and SQL Server require extra drivers to be installed.
     
     - [Install instructions for Oracle](../../data/database/oracle.md)

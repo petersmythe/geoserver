@@ -59,7 +59,6 @@ To optionally make PDF documentation you will need the following:
 ## Ubuntu
 
 !!! note
-
     These instructions may work on other Linux distributions as well, but have not been tested.
 
 1.  Open a terminal and type the following command:

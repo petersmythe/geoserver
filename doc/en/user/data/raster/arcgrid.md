@@ -6,7 +6,6 @@ render_macros: true
 # ArcGrid
 
 !!! note
-
     GeoServer does not come built-in with support for ArcGrid; it must be installed through an extension. Proceed to [Installing the ArcGrid extension](#arcgrid_install) for installation details.
 
 ArcGrid is a coverage file format created by ESRI.
@@ -19,7 +18,6 @@ ArcGrid is a coverage file format created by ESRI.
     - {{ snapshot }} [geoserver-{{ snapshot }}-arcgrid-plugin.zip](https://build.geoserver.org/geoserver/main/ext-latest/geoserver-{{ snapshot }}-arcgrid-plugin.zip)
 
     !!! warning
-
         Ensure to match plugin (example {{ release }} above) version to the version of the GeoServer instance.
 
 2.  Extract the contents of the archive into the **`WEB-INF/lib`** directory of the GeoServer installation.

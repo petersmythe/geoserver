@@ -112,11 +112,9 @@ You should install Sphinx on your local system (see the next page on [Installing
     This will create a PDF file called **`{GeoServerProject}.pdf`** in the same directory
 
     !!! note
-
         The exact name of **`{GeoServerProject}`** depends on which project is being built. However, there will only be one file with the extension `.tex` in the **`doc/en/user/build/latex`** directory, so there should hopefully be little confusion.
 
     !!! warning
-
         This command requires [LaTeX](http://www.latex-project.org/) to be installed, and ***pdflatex*** to be added to your Path.
 
 3.  Watch the output of the above command for any errors and warnings. These could be indicative of problems with your markup. Please fix any errors and warnings before continuing.
@@ -124,7 +122,6 @@ You should install Sphinx on your local system (see the next page on [Installing
 ## Commit changes
 
 !!! warning
-
     If you have any errors or warnings in your project, please fix them before committing!
 
 The final step is to commit the changes to a branch in *your* repository, using these commands:

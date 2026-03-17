@@ -6,7 +6,6 @@ render_macros: true
 # Installing the GeoServer MBTiles extension
 
 !!! warning
-
     Make sure to match the version of the extension to the version of the GeoServer instance!
 
 1.  Login, and navigate to **About & Status > About GeoServer** and check **Build Information** to determine the exact version of GeoServer you are running.

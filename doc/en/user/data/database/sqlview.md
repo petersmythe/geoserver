@@ -5,7 +5,6 @@ The traditional way to access database data is to configure layers against eithe
 Even more usefuly, SQL View queries can be parameterized via string substitution. Parameter values can be supplied in both WMS and WFS requests. Default values can be supplied for parameters, and input values can be validated by Regular Expressions to eliminate the risk of SQL injection attacks.
 
 !!! note
-
     SQL Views are read-only, and thus cannot be updated by WFS-T transactions.
 
 ## Creating a SQL View
@@ -19,7 +18,6 @@ Selecting the **Configure new SQL view\...** link opens a new page where the SQL
 ![](images/createsql.png)
 
 !!! note
-
     The query can be any SQL statement that is valid as a subquery in a FROM clause (that is, `select * from (<the sql view>) [as] vtable`). This is the case for most SQL statements, but in some databases special syntax may be needed to call stored procedures. Also, all the columns returned by the SQL statement must have names. In some databases alias names are required for function calls.
 
 When a valid SQL query has been entered, press the **Refresh** link in the **Attributes** table to get the list of the attribute columns determined from the query:
@@ -29,7 +27,6 @@ When a valid SQL query has been entered, press the **Refresh** link in the **Att
 GeoServer attempts to determine the geometry column type and the native SRID, but these should be verified and corrected if necessary.
 
 !!! note
-
     Having a correct SRID (spatial reference id) is essential for spatial queries to work. In many spatial databases the SRID is equal to the EPSG code for the specific spatial reference system, but this is not always the case (for instance, Oracle has a number of non-EPSG SRID codes).
 
 If stable feature ids are desired for the view's features, one or more columns providing a unique id for the features should be checked in the **Identifier** column. Always ensure these attributes generate a unique key, or filtering and WFS requests will not work correctly.
@@ -41,7 +38,6 @@ Once the query and the attribute details are defined, press **Save**. The usual 
 Once created, the SQL view layer is used in the same way as a conventional table-backed layer, with the one limitation of being read-only.
 
 !!! warning
-
     Saving the SQL view definition here is not sufficient, the layer containing it must be saved as well for the change to have any effect. This is because the SQL view definition is actually just one component of the layer/featuretype/coverage attributes.
 
 ## Parameterizing SQL Views
@@ -49,7 +45,6 @@ Once created, the SQL view layer is used in the same way as a conventional table
 A parametric SQL view is based on a SQL query containing named parameters. The values for the parameters can be provided dynamically in WMS and WFS requests using the `viewparams` request parameter. Parameters can have default values specified, to handle the situation where they are not supplied in a request. Validation of supplied parameter values is supported by specifying validation regular expressions. Parameter values are only accepted if they match the regular expression defined for them. Appropriate parameter validation should always be used to avoid the risk of [SQL injection attacks](http://en.wikipedia.org/wiki/SQL_injection).
 
 !!! warning
-
     SQL View parameter substitution should be used with caution, since improperly validated parameters open the risk of SQL injection attack. Where possible, consider using safer methods such as [dynamic filtering](../../filter/index.md) in the request, or [Variable substitution in SLD](../../styling/sld/extensions/substitution.md).
 
 ### Defining parameters

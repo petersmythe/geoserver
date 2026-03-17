@@ -560,7 +560,6 @@ In the `Temperatures` array a `StillCode` attribute has been defined that throug
 The same can be achieved with the property interpolation directive if a cql function evaluation is not needed: `"StillCode":"$${strConcat('STATION-', xpath('../st:code'))}"`.
 
 !!! warning
-
     the `xpath('some xpath)` cql function is meant to be used in the scope of this plugin. For general usage please refer to the [property function](https://docs.geotools.org/latest/userguide/library/main/function_list.md#property-propertyname-returns-propertyvalue).
 
 ### Template Options
@@ -1294,7 +1293,6 @@ As it is possible to see this template has some differences comparing to the one
 - When a `column/property` in a `table/source` is referenced from the context of the upper `table/source`, as in all the filters in the template, the table name needs to be prefixed with a `->` symbol, and column name can come next separated by a `.` dot. Putting it in another way: the `->` signals that the next path part is a table joined to the last source defined.
 
 !!! warning
-
     the `propertyPath('propertyPath')` cql function is meant to be used only in the scope of this plugin. It is not currently possible to reference domain property outside the context of a template file.
 
 This functionality is particularly useful when defining templates on top of Smart Data Loader based Complex Features.

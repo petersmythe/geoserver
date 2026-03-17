@@ -77,7 +77,6 @@ Users authenticated via a X.509 certificate must be configured in GeoServer. For
 18. You will be returned to the previous page. Click **Save**.
 
     !!! warning
-
         This last change requires both **Close** and then **Save** to be clicked. You may wish to return to the **web** dialog to verify that the change was made.
 
 ## Download sample certificate files
@@ -148,7 +147,6 @@ The result is that the user `rod` is now logged into the GeoServer admin interfa
 > ![](images/cert14.jpg)
 
 !!! note
-
     Starting with version 31, Firefox implements a new mechanism for using certificates, which will cause a *Issuer certificate is invalid error (sec_error_ca_cert_invalid)* error when trying to use a self-signed repository such as the one proposed. To avoid that, you can disable this mechanism by browsing to **about:config** and setting the **security.use_mozillapkix_verification** parameter to **false**.
     
     > ![](images/mozilla_pki.jpg)

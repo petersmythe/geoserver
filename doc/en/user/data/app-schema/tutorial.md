@@ -73,7 +73,6 @@ For `gsml:MappedFeature` the file is `workspaces/gsml/gsml_MappedFeature/datasto
 ```
 
 !!! note
-
     Ensure that there is no blank-space inside an `entry` element.
 
 ## Mapping files
@@ -301,11 +300,9 @@ Feature chaining has been used to construct the multivalued property `gsml:occur
 Because the mapping files in the tutorial configuration do not contain attribute mappings for all mandatory properties of these feature types, the WFS response is not *schema-valid* against the GeoSciML 2.0 schemas. Schema-validity can be achieved by adding more attribute mappings to the mapping files.
 
 !!! note
-
     These feature types are defined in terms of GML 3.1 (the default for WFS 1.1.0); other GML versions will not work.
 
 !!! warning
-
     The web interface does not yet support app-schema store or layer administration.
 
 ## Acknowledgements

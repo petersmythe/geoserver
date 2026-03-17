@@ -7,11 +7,9 @@ render_macros: true
 The REST API allows you to create and modify layer groups in GeoServer.
 
 !!! note
-
     The examples below specify global layer groups, but the examples will work in a workspace-specific construction as well.
 
 !!! note
-
     Read the [API reference for /layergroups]({{ api_url }}/layergroups.yaml).
 
 ## Creating a layer group
@@ -48,7 +46,6 @@ Given the following content saved as **`nycLayerGroup.xml`**:
     201 Created
 
 !!! note
-
     This layer group can be viewed with a WMS GetMap request:
     
         http://localhost:8080/geoserver/wms/reflect?layers=nyc

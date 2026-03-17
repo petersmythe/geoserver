@@ -98,7 +98,6 @@ The `configure` parameter controls how the data store is configured upon file up
 - `all`---Configure all feature types.
 
 !!! note
-
     When uploading an app-schema mapping configuration, only the feature types mapped in the main mapping file are considered to be top level features and will be automatically configured when `configure=all` or `configure=first` is specified.
 
 #### `target` {: #rest_api_datastores_target }

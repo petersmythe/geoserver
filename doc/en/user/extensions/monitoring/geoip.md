@@ -3,7 +3,6 @@
 The monitor extension has the capability to integrate with the [MaxMind GeoIP](http://www.maxmind.com/en/geolocation_landing) database in order to provide geolocation information about the origin of a request. This functionality is not enabled by default.
 
 !!! note
-
     At this time only the freely available GeoLite City database is supported.
 
 ## Enabling GeoIP Lookup

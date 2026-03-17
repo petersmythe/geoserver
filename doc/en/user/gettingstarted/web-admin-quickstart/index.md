@@ -20,7 +20,6 @@ GeoServer has a browser-based web administration interface application used to c
     To use copy and paste these links into a Desktop GIS, mobile or web mapping application.
 
 !!! note
-
     For more information, please see the [Welcome](../../webadmin/welcome.md) section.
 
 ## Logging In {: #logging_in }
@@ -33,7 +32,6 @@ In order to change any server settings or configure data, a user must first be a
     - Password: `geoserver`
 
     !!! note
-
         These can be changed in the [Security](../../security/index.md) section.
 
     ![](login-page.png)
@@ -65,13 +63,10 @@ The [Layer Preview](../../data/webadmin/layerpreview.md) page allows you to quic
     *Search results for the query "top" on the Workspace page*
 
     !!! tip "Hint"
-
         Perform an exact term search by enclosing the search term in quotes or double-quotes, e.g. normally `ads` would also match `roads`, but `"ads"` wouldn't.
 
     !!! note
-
         Sorting and searching apply to all data configuration pages.
 
 !!! note
-
     For more information, please see the [Layer Preview](../../data/webadmin/layerpreview.md) section.

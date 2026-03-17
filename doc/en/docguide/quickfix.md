@@ -26,7 +26,6 @@ For really quick fixes:
     - Immediately make the change for those with commit access
 
 !!! warning
-
     This technique is great for fixing small typos - but has the danger of introducing formatting mistakes preventing the documentation from being generated.
     
     To make extensive changes see [Workflow](workflow.md).

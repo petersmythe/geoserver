@@ -3,7 +3,6 @@
 This tutorial walks through the steps of publishing a layer group combining several layers into a basemap.
 
 !!! note
-
     This tutorial assumes that GeoServer is running at `http://localhost:8080/geoserver`.
 
 ## Data preparation
@@ -24,7 +23,6 @@ First let's gather the data that we'll be publishing.
 2.  This page displays a list of layer groups and the workspace the group belongs to.
 
     !!! note
-
         Layer groups are allowed to be "global", allowing a map to be created combining layers from several workspaces into a single visual.
 
 3.  At the top of the list **Layer Groups** locate and click the **Add new layer group** link.
@@ -82,7 +80,6 @@ In order to verify that the `tutorial:basemap` layer is published correctly, we 
 1.  Navigate to the **Data > Layer Preview** page and find the `tutorial:basemap` layer.
 
     !!! note
-
         Use the **Search** field with ``tutorial`` as shown to limit the number of layers to page through.
 
 2.  Click the **OpenLayers** link in the **Common Formats** column.

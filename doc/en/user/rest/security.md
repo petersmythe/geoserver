@@ -7,7 +7,6 @@ render_macros: true
 The REST API allows you to adjust GeoServer security settings.
 
 !!! note
-
     Read the [API reference for /security]({{ api_url }}/security.yaml).
 
 ## Listing the keystore password {: #rest_security_keystore }
@@ -33,7 +32,6 @@ The REST API allows you to adjust GeoServer security settings.
 **Change to a new keystore password**
 
 !!! note
-
     Requires knowledge of the current keystore password.
 
 Given a `changes.xml` file:
@@ -111,7 +109,6 @@ Given a `newMode.xml` file:
 ```
 
 !!! note
-
     The above response shows no rules specified.
 
 ## Changing access control rules

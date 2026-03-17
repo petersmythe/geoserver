@@ -22,7 +22,6 @@ The first thing to do is to configure the OAuth2 Provider and obtain `Client ID`
     - Press "Register application"
 
     !!! tip
-
         The exact callback URL that GeoServer will use is shown as the read-only **Redirect URI** field in the filter configuration form. In production, use that value instead of `localhost`. See [Redirect Base URI](../configuring.md#community_oidc_redirect_base_uri).
     
         ![](../img/github-oauth2-app.png)

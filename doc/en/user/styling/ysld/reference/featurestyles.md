@@ -108,7 +108,6 @@ By default, multiple feature styles are drawn with one buffer on top of the othe
 The following two tables show the possible alpha compositing and color blending values for the `x-composite` option. Note that in the tables below, **source** refers to the buffer that is drawn on top, while **destination** refers to the buffer that the source is drawn on top of.
 
 !!! info "Todo"
-
     Add image showing source and destination
 
 **Alpha compositing**
@@ -191,8 +190,12 @@ Color blending allows buffers to be mixed during composition.
 |               |                                                                                                                                                                                                                                                                                                        |
 |               | ![image](img/blend-difference.png)                                                                                                                                                                                                                                                                     |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     For more details about the compositing and blending options, please see [Composite and blending modes](../../sld/extensions/composite-blend/modes.md).
 
 ## Short syntax
@@ -282,7 +285,6 @@ Given a style that has many rules with distinct outcomes, it may be advantageous
 This first example shows the standard way of creating rules for a dataset. There are villages, towns, and cities (`type = 'village'`, `type = 'town'` or `type = 'city'`) and they have an `industry` which could be either `fishing` or other values.
 
 !!! note
-
     In order to simplify this example, the specifics of the point symbolizers have been replaced by [Define and reuse YAML Variables](variables.md). In a real-world example, these would need to be defined in the YSLD as well.
 
 ```yaml hl_lines="15"
@@ -353,7 +355,6 @@ Given two layers (in this case, two three-band rasters), one can mask or "knock 
 *Bottom/destination layer*
 
 !!! note
-
     Screenshots show data provided by [Natural Earth](http://naturalearthdata.com).
 
 Layer 1 (top/source):

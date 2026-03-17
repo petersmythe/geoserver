@@ -22,5 +22,4 @@ This guide covers creating and maintaining the GeoServer {{ release }} User Manu
 </div>
 
 !!! note
-
     GeoServer {{ version }} documentation is distributed under [CCbyA 3.0](http://creativecommons.org/licenses/by/3.0/) by the Open Source Geospatial Foundation (OSGeo). To provide documentation changes to the GeoServer team, we need some OSGeo paperwork filled in (see [CONTRIBUTING.md](https://github.com/geoserver/geoserver/blob/main/CONTRIBUTING.md) for details.)

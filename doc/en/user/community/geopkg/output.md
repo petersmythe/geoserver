@@ -3,7 +3,6 @@
 A custom GeoPackage can be created with any number of tiles and features layers using the `GeoPackage` WPS Process (see [Process Cookbook](../../services/wps/processes/index.md)).
 
 !!! warning
-
     While the process generates a compliant GeoPackage, some abilities like generalization, style and part of the metadata export are based on unofficial extensions discussed in the [Testbed 16 GeoPackage engineering report](http://docs.opengeospatial.org/per/20-019r1.md).
 
 The WPS process takes in one parameter: `contents` which is an XML schema that represents the desired output.

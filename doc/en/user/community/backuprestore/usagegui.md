@@ -33,7 +33,6 @@ Here you'll be able to specify various parameters for the Backup / Restore proce
 In order to perform a full backup, provide the full path of the target `.zip` archive where to store the configuration data.
 
 !!! note
-
     Please notice that the backup will store just the configuration files and **not** the original data.
 
 It is also possible to use the `Browse` instrument to navigate the server folders. In any case the backup procedure won't start until it find a valid `.zip` path archive.
@@ -43,7 +42,6 @@ It is also possible to use the `Browse` instrument to navigate the server folder
 It is possible to select the backup options by enabling the appropriate checkboxes before starting the backup procedure.
 
 !!! note
-
     Please notice that while performing a backup or restore task, GeoServer won't allow users to access other sections by locking the catalog and configuration until the process has finished. Although it is always possible to stop or abandon a backup or restore procedure.
 
 At the end of the backup, the user will be redirected to an `Execution Summary` page
@@ -53,7 +51,6 @@ At the end of the backup, the user will be redirected to an `Execution Summary` 
 The same page can be accessed also later by clicking an execution link from the main page.
 
 !!! note
-
     Please notice that the list of executions is not persisted and therefore it will be reset after a GeoServer container **restart**.
 
 At the bottom of the `Execution Details` page, it's possible to download the `.zip` archive directly by clicking on the `Download Archive File` link.
@@ -67,7 +64,6 @@ In case some running exceptions or warning have been catched by the process, the
 The steps are almost the same of the backup. Just select the `.zip` archive full path before launching the restore process.
 
 !!! warning
-
     Please notice that a **non-dry-run restore** will lose all your current GeoServer configuration by replacing it with the new one, so be careful and be sure to backup everything before starting a restore.
 
 **DRY-RUN RESTORE**
@@ -96,5 +92,4 @@ Through the REST APIs it is possible to filter out also more than one workspaces
 ![](images/usagegui009.png)
 
 !!! note
-
     Please notice that from a backup archive containing filtered workspaces won't be possible to restore also the missing ones. In order to do that it is advisable to backup the whole catalog and then restore only the workspaces needed.

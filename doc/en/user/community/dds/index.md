@@ -10,7 +10,6 @@ This output module allows GeoServer to output imagery and terrain in formats und
 1.  Download the DDS/BIL extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/). A prebuilt version for GeoServer 2.0.x can be found on Jira - [3586](https://osgeo-org.atlassian.net/browse/GEOS-3586).
 
     !!! warning
-
         Make sure to match the version of the extension to the version of the GeoServer instance!
 
 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.

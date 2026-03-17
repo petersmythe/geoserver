@@ -49,7 +49,6 @@ Good
 ## Naming conventions
 
 !!! note
-
     Many of the guidelines in this section are taken from the [Wikipedia naming conventions](http://en.wikipedia.org/wiki/Wikipedia:Naming_conventions).
 
 ### Capitalization of page names

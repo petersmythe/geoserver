@@ -51,7 +51,6 @@ The main window shows the received XMPP messages and the actions taken according
 ![](images/run_example009.jpg)
 
 !!! note
-
     The same information can be found into the log file specified into the "logger.properties" file (see above).
 
 On GeoServer side, it is possible to follow the process execution by following the messages sent via XMPP to the GeoServer logs

@@ -50,7 +50,6 @@ The resource browser is used to manage configuration resources in environments t
 - Folders are visual only, when creating or uploading a resource you can type a path and folders will be created as needed.
 
 !!! warning
-
     Please use this tool with caution:
     
     - Configuration files managed by the web administration application can be reviewed and even modified using this tool.

@@ -6,7 +6,6 @@ A rule is a **collection of styling directives**, primarily consisting of [symbo
 - **If no conditional statement exists** in a rule, then the styling directive will **always be carried out**.
 
 !!! info "Todo"
-
     FIGURE NEEDED
 
 The types of conditional statements available to rules are:

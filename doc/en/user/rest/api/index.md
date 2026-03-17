@@ -3,7 +3,6 @@
 This section describes the GeoServer REST configuration API.
 
 !!! note
-
     You may also wish to review the hand-written Open API [REST](../index.md) documentation. This documentation is not auto-generated and may not exactly match the latest GeoServer. Please treat this resource as documentation only as this is not suitable for client generation.
 
 <div class="grid cards" markdown>

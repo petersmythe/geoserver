@@ -223,7 +223,6 @@ If this is the "one" side of a one-to-many or many-to-one database relationship,
 If we have a many-to-many relationship, we have to use one denormalized view for either side of the nesting. This means we can either use the feature id as the referenced field, or assign a column to serve this purpose. See [many_to_many_relationship.JPG](many_to_many_relationship.JPG) as an illustration.
 
 !!! note
-
     - For many-to-many relationships, we can't use the same denormalized view for both sides of the nesting.
 
 Test this configuration by running a getFeature request for the nested feature type on its own.
@@ -292,7 +291,6 @@ At times, you may find the need to have different FeatureTypeMapping instances f
 This is when the optional mappingName tag mentioned in [app-schema.mapping-file](#app-schema.mapping-file) comes in. Instead of passing in the nested feature type's targetElement in the containing type's linkElement, specify the corresponding mappingName.
 
 !!! note
-
     * The mappingName is namespace aware and case sensitive. * When the referred mappingName contains special characters such as '-', it must be enclosed with single quotes in the linkElement. E.g. <linkElement>'observation-method'</linkElement>. * Each mappingName must be unique against other mappingName and targetElement tags across the application. * The mappingName is only to be used to identify the chained type from the nesting type. It is not a solution for multiple FeatureTypeMapping instances where > 1 of them can be queried as top level features. * When queried as a top level feature, the normal targetElement is to be used. Filters involving the nested type should still use the targetElement in the PropertyName part of the query. * You can't have more than 1 FeatureTypeMapping of the same type in the same mapping file if one of them is a top level feature. This is because featuretype.xml would look for the targetElement and wouldn't know which one to get.
 
 The solution for the last point above is to break them up into separate files and locations with only 1 featuretype.xml in the intended top level feature location. E.g.
@@ -369,5 +367,4 @@ This would be the encoded result for gsml:GeologicUnit:
 ```
 
 !!! note
-
     * Don't forget to add *XLink* in your mapping file namespaces section, or you could end up with a StackOverflowException as the *xlink:href* client property won't be recognized and the mappings would chain endlessly. * [app-schema.resolve](#app-schema.resolve) may be used to force app-schema to do full feature chaining up to a certain level, even if an xlink reference is specified.

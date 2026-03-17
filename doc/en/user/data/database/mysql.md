@@ -6,11 +6,9 @@ render_macros: true
 # MySQL
 
 !!! note
-
     GeoServer does not come built-in with support for MySQL; it must be installed through an extension. Proceed to [Installing the MySQL extension](#mysql_install) for installation details.
 
 !!! warning
-
     Currently the MySQL extension is unmaintained and carries unsupported status. While still usable, do not expect the same reliability as with other extensions.
 
 [MySQL](http://www.mysql.com) is an open source relational database with some limited spatial functionality.
@@ -23,7 +21,6 @@ render_macros: true
     - {{ snapshot }} [geoserver-{{ snapshot }}-mysql-plugin.zip](https://build.geoserver.org/geoserver/main/ext-latest/geoserver-{{ snapshot }}-mysql-plugin.zip)
 
     !!! warning
-
         Ensure to match plugin (example {{ release }} above) version to the version of the GeoServer instance.
 
 2.  Extract the contents of the archive into the **`WEB-INF/lib`** directory of the GeoServer installation.

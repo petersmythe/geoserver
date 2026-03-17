@@ -56,7 +56,6 @@ Styling a built-in symbol is similar to styling a polygon feature. However, the 
 - Additional `size` (as a length) and `rotation` (as an angle) properties are available. These are analogous to the `(mark|stroke|fill)-size` and `(mark|stroke|fill)-rotation` properties available for true geometry styling.
 
 !!! note
-
     The various prefixed '-size' and '-rotation' properties on the containing style override those for the symbol if they are present.
 
 ## Example styled symbol

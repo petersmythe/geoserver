@@ -32,7 +32,6 @@ Before you start:
 The following checks can be performed quickly and represent common mistakes or oversites. These quick checks can be performed by anyone as an initial inspection.
 
 !!! note
-
     Providing an initial check, while better than no follow up at all, may seem petty and discouraging to the contributor. It is a good idea to state that this is only quick feedback - while either more time or an appropriate expert is found.
 
 - *Contribution agreement* on file. Check if the contribution requires a contribution agreement, and if it matches the requisites, verify that a contribution agreement has been provided to OSGeo, if not, demand for one.
@@ -62,7 +61,6 @@ The following checks can be performed quickly and represent common mistakes or o
 The key point of a review is to make sure that GeoServer remains stable (does not regress in behaviour) and that the codebase remains flexible and maintainable into the future.
 
 !!! note
-
     This review often requires some experience with the code being modified, and will require more time and focus than the initial check described in the previous section.
 
 - *Backwards compatibility*. The change being proposed should not hamper backwards compatibility, every change must be performed ensuring that users can keep on upgrading the GeoServer behind their services and application without functional regressions.

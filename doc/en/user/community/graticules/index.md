@@ -6,13 +6,8 @@ This module allows GeoServer to add graticules or grids to a WMS (or to allow th
 
 1.  Download the graticule extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
 
-    :::: warning
-    ::: title
-    Warning
-    :::
-
-    Make sure to match the version of the extension to the version of the GeoServer instance!
-    ::::
+    !!! warning
+        Make sure to match the version of the extension to the version of the GeoServer instance!
 
 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 

@@ -63,7 +63,6 @@ The specified rule has to be the last part in the URI:
     /security/acl/layers/*.*.r
 
 !!! note
-
     Slashes ("/") in a rule name must be encoded with **%2F**. The REST rule **/**;GET** must be encoded to /security/acl/rest/**%2F**;GET**
 
 Formats for GET,POST and PUT:
@@ -110,6 +109,10 @@ The content of a rule element is a comma separated list of roles or the asterisk
 | DELETE, Deleting a non existing rule  | 409         |
 | Invalid rule specification            | 422         |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     When adding a set of rules and only one role does already exist, the whole request is aborted. When modifying a set of rules and only one role does not exist, the whole request is aborted too.

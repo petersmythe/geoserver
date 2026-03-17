@@ -26,7 +26,6 @@ An example request:
 ```
 
 !!! note
-
     Currently this parameter can only be used to request WMS 1.1.1 capabilities documents encoded in `text/xml`, if used with other WMS versions or other formats it will have no effect. `application/json` is not supported.
 
 ### namespace
@@ -40,11 +39,9 @@ namespace=<namespace>
 where `<namespace>` is the namespace prefix.
 
 !!! warning
-
     Using an invalid namespace prefix will not cause an error, but the capabilities document returned will contain no layers, only layer groups.
 
 !!! note
-
     This affects the capabilities document only, not other requests. Other WMS operations will still process all layers, even when a namespace is specified.
 
 ### rootLayer
@@ -279,7 +276,6 @@ where `x` and `y` are the coordinates of the lower left corner (the "origin") of
 In OpenLayers, a good way to specify the `tilesorigin` is to reference the map extents directly.
 
 !!! warning
-
     If the map extents are modified dynamically, the `tilesorigin` of each meta-tiled layer must be updated accordingly.
 
 The following code shows how to specify the meta-tiling parameters:
@@ -356,5 +352,4 @@ clip=srid=900913;POLYGON ((-1615028.3514525702 7475148.401208023, 3844409.956787
 When the WKT syntax is used, the default SRS matches the GetMap SRS/CRS parameter.
 
 !!! note
-
     The Axis order of WKT must be East/North regardless of WMS version. Currently this parameter is ignored for layers with Complex features.

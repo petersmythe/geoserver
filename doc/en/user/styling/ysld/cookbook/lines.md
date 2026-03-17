@@ -353,7 +353,6 @@ As the [Alternating symbols with dash offsets](#ysld_cookbook_lines_defaultlabel
 This example is similar to the [Alternating symbols with dash offsets](#ysld_cookbook_lines_defaultlabel) example with the exception of **lines 12-14**. **Line 14** sets the option to have the label follow the line, while **lines 12-13** specify that the label is placed along a line. If `placement: line` is not specified in an YSLD, then `placement: point` is assumed, which isn't compatible with line-specific rendering options.
 
 !!! note
-
     Not all labels are shown due to label conflict resolution. See the next section on [Optimized label placement](#ysld_cookbook_lines_optimizedlabel) for an example of how to maximize label display.
 
 ## Optimized label placement {: #ysld_cookbook_lines_optimizedlabel }
@@ -475,7 +474,6 @@ feature-styles:
 ### Details
 
 !!! note
-
     Refer to the [Example lines layer](#ysld_cookbook_lines_attributes) to see the attributes for the layer. This example has eschewed labels in order to simplify the style, but you can refer to the example [Optimized and styled label](#ysld_cookbook_lines_optimizedstyledlabel) to see which attributes correspond to which points.
 
 There are three types of road classes in our fictional country, ranging from back roads to high-speed freeways: "highway", "secondary", and "local-road". In order to handle each case separately, there is more than one feature style, each containing a single rule. This ensures that each road type is rendered in order, as each feature style is drawn based on the order in which it appears in the YSLD.
@@ -541,7 +539,6 @@ feature-styles:
 It is often desirable to make shapes larger at higher zoom levels when creating a natural-looking map. This example varies the thickness of the lines according to the zoom level (or more accurately, scale denominator). Scale denominators refer to the scale of the map. A scale denominator of 10,000 means the map has a scale of 1:10,000 in the units of the map projection.
 
 !!! note
-
     Determining the appropriate scale denominators (zoom levels) to use is beyond the scope of this example.
 
 This style contains three rules. The three rules are designed as follows:

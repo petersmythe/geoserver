@@ -31,7 +31,6 @@ curl -v "http://localhost:8090/geoserver/nurc/wms?LAYERS=nurc%3AArc_Sample&STYLE
 ```
 
 !!! note
-
     To omit the raw image output to the terminal, pipe the output to your system's null. On Linux / OS X, append `> /dev/null` to these requests, and on Windows, append `> nul`.
 
 If the request doesn't go through GeoWebCache's WMS, a reason will be given in a custom response header. Look for the following response headers:

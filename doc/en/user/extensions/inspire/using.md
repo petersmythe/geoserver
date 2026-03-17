@@ -5,7 +5,6 @@ When the INSPIRE extension has been properly installed, the [WMS settings](../..
 ![](images/noinspire.png)
 
 !!! note
-
     If you do not see this content in the service configuration pages, the INSPIRE extension may not be installed properly. Reread the section on [Installing the INSPIRE extension](installing.md) and verify that the correct file was saved to the correct directory.
 
 ## Extended WMS and WMTS configuration
@@ -13,7 +12,6 @@ When the INSPIRE extension has been properly installed, the [WMS settings](../..
 INSPIRE-specific configuration is accessed on the main [WMS settings](../../services/wms/webadmin.md) or WMTS settings page in the [Web administration interface](../../webadmin/index.md). This is accessed by clicking on the **WMS** or **WMTS** link on the sidebar.
 
 !!! note
-
     You must be logged in as an administrator to edit WMS or WMTS configuration.
 
 Once on the service configuration page, there will be a block titled **INSPIRE**. If you enable the checkbox shown above this section will have three additional settings:
@@ -29,17 +27,14 @@ Once on the service configuration page, there will be a block titled **INSPIRE**
 After clicking **Submit** on this page, any changes will be immediately reflected in the services (WMS 1.3.0 or WMTS 1.0.0) capabilities document.
 
 !!! note
-
     The **Service Metadata URL** field is mandatory so you will not be allowed to submit a blank value.
 
 !!! note
-
     The **Service Metadata Type** combo box only allows to select the appropriate MIME type for a CSW response or standalone metadata file or to omit a value altogether. If you think other values would be useful you could raise the issue on the [GeoServer mailing list](../../introduction/gettinginvolved.md). In the meantime it is possible to manually edit the created configuration files as a workaround.
 
 ## Extended WMS and WMTS Capabilities
 
 !!! note
-
     The INSPIRE extension only modifies the WMS 1.3.0 response, so please make sure that you are viewing the correct capabilities document.
 
 The WMS 1.3.0 and WMTS 1.0.0 capabilities document will contain two additional entries in the `xsi:schemaLocation` of the root `<WMS_Capabilities>` tag once the INSPIRE extension is installed:
@@ -84,7 +79,6 @@ INSPIRE recommends that every layer offered by an INSPIRE WMTS should use the In
 INSPIRE-specific configuration is accessed on the main [WFS settings](../../services/wfs/webadmin.md) and [WCS settings](../../services/wcs/webadmin.md) pages in the [Web administration interface](../../webadmin/index.md). These are accessed by clicking on the **WFS** and **WCS** links on the sidebar respectively.
 
 !!! note
-
     You must be logged in as an administrator to edit WFS configuration.
 
 Once on the WFS or WCS configuration page, there will be a block titled **INSPIRE**. If you enable the checkbox shown above this section will have the following additional settings:
@@ -101,17 +95,14 @@ Once on the WFS or WCS configuration page, there will be a block titled **INSPIR
 After clicking **Submit** on this page, any changes will be immediately reflected in the WFS 1.1 and WFS 2.0 or WCS 2.0 capabilities documents as appropriate.
 
 !!! note
-
     The **Service Metadata URL** field and at least one **Spatial dataset identifiers** entry are mandatory so you will not be allowed to submit the page without these.
 
 !!! note
-
     The **Service Metadata Type** combo box only allows to select the appropriate MIME type for a CSW response or standalone metadata file or to omit a value altogether. If you think other values would be useful you could raise the issue on the [GeoServer mailing list](../../introduction/gettinginvolved.md). In the meantime it is possible to manually edit the created configuration files as a workaround.
 
 ## Extended WFS and WCS Capabilities
 
 !!! note
-
     The INSPIRE directive is relevant to WFS 1.1 and 2.0 and WCS 2.0 only, so please make sure that you are viewing the correct capabilities document.
 
 The WFS and WCS capabilities documents will contain two additional entries in the `xsi:schemaLocation` of the root element tag once the INSPIRE extension is installed:

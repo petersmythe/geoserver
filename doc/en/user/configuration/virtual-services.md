@@ -22,7 +22,6 @@ If you would like to have smaller web services, that only publish a few layers, 
 When a client accesses a virtual service that client only has access to those layers published by that virtual service. Access to layers in the global service via the virtual service will result in an exception. This makes virtual services ideal for compartmentalizing access to layers. A service provider may wish to create multiple services for different clients handing one web service URL to one client, and a different web service URL to another client. Virtual services allow the service provider to achieve this with a single GeoServer instance.
 
 !!! note
-
     Virtual services only apply to the geospatial web services. It also does not apply to other subsystems such as REST API used for configuration.
 
 ## Workspace services {: #virtual_workspace_services }

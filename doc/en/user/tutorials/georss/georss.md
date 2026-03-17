@@ -24,7 +24,6 @@ Each of these files may be used to customize the associated field in the GeoRSS 
 ## Ajax Map Mashups
 
 !!! note
-
     For Ajax map mashups to work, the GeoServer instance must be visible to the Internet (i.e. using the address `localhost` will not work).
 
 ## Google Maps
@@ -67,7 +66,6 @@ How to create a Google Maps mashup with a GeoRSS overlay produced by GeoServer.
 3.  Visit `gmaps.html` in your web browser.
 
 !!! note
-
     The version of the google maps api must be **2.x**, and not just **2** You must insert your specific maps api key, and geoserver base url
 
 ## Yahoo Maps
@@ -123,19 +121,16 @@ How to create a Yahoo! Maps mashup with a GeoRSS overlay produced by GeoServer.
 3.  Visit `ymaps.html` in your web browser.
 
 !!! note
-
     The version of the yahoo maps api must be **3.0** You must insert your specific application id, and geoserver base url
 
 ## Microsoft Virtual Earth
 
 !!! note
-
     Non Internet Explorer Users*: GeoRSS overlays are only supported in Internet Explorer, versions greater than 5.5.
 
 How to create a Microsoft Virtual Earth mashup with a GeoRSS overlay produced by GeoServer.
 
 !!! note
-
     To access a GeoRSS feed from Microsoft Virtual Earth the file (ve.html) must be accessed from a Web Server, IE. It will not work if run from local disk.
 
 1.  Create an html file called `ve.html`. **Note**: You must insert your specific maps api key, and geoserver base url:

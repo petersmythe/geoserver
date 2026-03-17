@@ -15,5 +15,4 @@ It describes the core configuration data types that GeoServer uses to access and
 </div>
 
 !!! note
-
     Information on the Styles pages can be found on the [Styles](../../styling/webadmin/index.md) page.

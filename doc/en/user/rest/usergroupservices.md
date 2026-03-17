@@ -7,7 +7,6 @@ render_macros: true
 The REST API allows you to list, create, update, and delete **user/group services** in GeoServer. These endpoints manage the *configuration* objects (e.g., XMLUserGroupService, JDBC, LDAP), not the users/groups themselves.
 
 !!! note
-
     Read the [API reference for security/userGroupServices]({{ api_url }}/usergroupservices.yaml).
 
 ## View a User/Group Service
@@ -15,7 +14,6 @@ The REST API allows you to list, create, update, and delete **user/group service
 *Request*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/usergroupservices/default' --header 'Accept: application/xml'
 
 *Response (XML)* :
@@ -34,7 +32,6 @@ The REST API allows you to list, create, update, and delete **user/group service
 *Request*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/usergroupservices/default' --header 'Accept: application/json'
 
 *Response (JSON)* :
@@ -56,7 +53,6 @@ The REST API allows you to list, create, update, and delete **user/group service
 *Request*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/usergroupservices' --header 'Accept: application/xml'
 
 *Response (XML)* :
@@ -75,7 +71,6 @@ The REST API allows you to list, create, update, and delete **user/group service
 *Request*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/usergroupservices' --header 'Accept: application/json'
 
 *Response (JSON)* :
@@ -95,7 +90,6 @@ To create an **XML-backed** user/group service you must provide a ``fileName`` a
 *Request (XML)*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/usergroupservices' --header 'Content-Type: application/xml' --header 'Accept: application/xml' --data-binary @- <<'XML' <org.geoserver.security.xml.XMLUserGroupServiceConfig> <name>users1</name> <className>org.geoserver.security.xml.XMLUserGroupService</className> <fileName>users1.xml</fileName> <passwordEncoderName>plainTextPasswordEncoder</passwordEncoderName> <passwordPolicyName>default</passwordPolicyName> </org.geoserver.security.xml.XMLUserGroupServiceConfig> XML
 
 *Response*
@@ -105,7 +99,6 @@ To create an **XML-backed** user/group service you must provide a ``fileName`` a
 *Request (JSON)*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:8080/geoserver/rest/security/usergroupservices' --header 'Content-Type: application/json' --header 'Accept: application/json' --data-raw '{ "org.geoserver.security.xml.XMLUserGroupServiceConfig": { "name": "users2", "className": "org.geoserver.security.xml.XMLUserGroupService", "fileName": "users2.xml", "passwordEncoderName": "plainTextPasswordEncoder", "passwordPolicyName": "default" } }'
 
 *Response*
@@ -119,7 +112,6 @@ The payload **name** must match the path parameter. A mismatch is a **400 Bad Re
 *Request (XML)*
 
 !!! abstract "curl"
-
     curl --location --request PUT 'http://localhost:8080/geoserver/rest/security/usergroupservices/users1' --header 'Content-Type: application/xml' --header 'Accept: application/xml' --data-binary @- <<'XML' <org.geoserver.security.xml.XMLUserGroupServiceConfig> <name>users1</name> <className>org.geoserver.security.xml.XMLUserGroupService</className> <fileName>users1.xml</fileName> <passwordEncoderName>digestPasswordEncoder</passwordEncoderName> <passwordPolicyName>default</passwordPolicyName> </org.geoserver.security.xml.XMLUserGroupServiceConfig> XML
 
 *Response*
@@ -129,7 +121,6 @@ The payload **name** must match the path parameter. A mismatch is a **400 Bad Re
 *Request (JSON)*
 
 !!! abstract "curl"
-
     curl --location --request PUT 'http://localhost:8080/geoserver/rest/security/usergroupservices/users2' --header 'Content-Type: application/json' --header 'Accept: application/json' --data-raw '{ "org.geoserver.security.xml.XMLUserGroupServiceConfig": { "name": "users2", "className": "org.geoserver.security.xml.XMLUserGroupService", "fileName": "users2.xml", "passwordEncoderName": "plainTextPasswordEncoder", "passwordPolicyName": "default" } }'
 
 *Response*
@@ -141,7 +132,6 @@ The payload **name** must match the path parameter. A mismatch is a **400 Bad Re
 *Request*
 
 !!! abstract "curl"
-
     curl --location --request DELETE 'http://localhost:8080/geoserver/rest/security/usergroupservices/users1' --header 'Accept: application/xml'
 
 *Response*

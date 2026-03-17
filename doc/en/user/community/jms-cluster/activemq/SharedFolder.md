@@ -53,7 +53,6 @@ At any time you can restart other brokers which join the cluster and start as re
 ![](images/MasterRestarted.png)
 
 !!! note
-
     If you have a SAN or shared file system it can be used to provide high availability such that if a broker is killed, another broker can take over immediately.
     
     > Ensure your shared file locks work

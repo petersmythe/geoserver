@@ -264,8 +264,12 @@ The GeoServer system test will create a data directory with a standard set of ve
 | sf        | sf    | GenericEntity       | Default       |
 | sf        | sf    | PrimitiveGeoFeature | Default       |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     The `gs` workspace contains no layers. It is typically used as the workspace for layers that are added by test cases.
 
 #### Adding custom layers from a datastore

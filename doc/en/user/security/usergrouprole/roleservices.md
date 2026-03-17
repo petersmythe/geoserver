@@ -38,7 +38,6 @@ In this example, a user or a group assigned to the role `ADMIN` is also assigned
 The XML role service persists the role database in an XML file. This is the default role service for GeoServer. This service represents the user database as XML, and corresponds to this [XML schema](schemas/roles.xsd).
 
 !!! note
-
     The XML role file, **`roles.xml`**, is located in the GeoServer data directory, `security/role/<name>/roles.xml`, where `<name>` is the name of the role service.
 
 The service is configured to map the local role `ADMIN` to the system role `ROLE_ADMINISTRATOR`. Additionally, `GROUP_ADMIN` is mapped to `ROLE_GROUP_ADMIN`. The mapping is stored the `config.xml` file of each role service.

@@ -5,7 +5,6 @@ As with most open source project GeoServer is very happy to accept pull requests
 This document is a guide designed to help contributors in successfully submitting a pull request:
 
 !!! note
-
     We ask that all fixes applied to the main development branch first, and then backported to the stable and maintenance branches.
     
     We require the following for fixes submitted via pull requests:

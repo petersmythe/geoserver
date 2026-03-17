@@ -11,7 +11,6 @@ The following additional parameters can be passed on using [format_options](../.
     - `gridset`: name of gridset to use (otherwise default for CRS is used)
 
 !!! warning
-
     The GetMap request won't be subject to any execution time limit, a client can thus make request that will takes very long times to execute by providing a high max_zoom value.
 
 ## MBTiles WPS Process
@@ -30,5 +29,4 @@ It is possible to generate an `mbtiles` file by calling the WPS process `gs:MBTi
 The process returns an URL containing the path of the generated file.
 
 !!! warning
-
     The process implementation does not currently support cancellation, a client can thus make request that will takes very long times to execute by providing a high max_zoom value.

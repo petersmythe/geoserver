@@ -19,7 +19,6 @@ The following elements can be used inside the `<RasterSymbolizer>` element.
 - `<ImageOutline>` *
 
 !!! warning
-
     The starred (*) elements are not yet implemented in GeoServer.
 
 ### Opacity
@@ -351,7 +350,6 @@ Supported algorithms are:
 - **ClipToZero** is similar to ClipToMinimumMaximum. However, values outside the [MIN_VALUE, MAX_VALUE] range will be forced to be 0.
 
 !!! note
-
     The target data type for the stretch algorithm is **always** byte (this might change in the future). This means that if the MAX_VALUE for the Clip oriented algorithms is greater than 255 an implicit clamp will apply anyway to clamp to 255.
 
 Here below some examples
@@ -420,7 +418,6 @@ Here below a more complex example that shows the possibility to control the valu
 ### ShadedRelief
 
 !!! warning
-
     Support for this element has not been implemented yet.
 
 The `<ShadedRelief>` element can be used to create a 3-D effect, by selectively adjusting brightness. This is a nice effect to use on an elevation dataset. There are two types of shaded relief possible.
@@ -442,7 +439,6 @@ The above example turns on Relief shading in WHAT WAY?
 ### OverlapBehavior
 
 !!! warning
-
     Support for this element has not been implemented yet.
 
 Sometimes raster data is comprised of multiple image sets. Take, for example, a [satellite view of the Earth at night](http://apod.nasa.gov/apod/ap001127.md) . As all of the Earth can't be in nighttime at once, a composite of multiple images are taken. These images are georeferenced, and pieced together to make the finished product. That said, it is possible that two images from the same dataset could overlap slightly, and the OverlapBehavior element is designed to determine how this is handled. There are four types of OverlapBehavior:
@@ -465,7 +461,6 @@ The above sets the OverlapBehavior to AVERAGE.
 ### ImageOutline
 
 !!! warning
-
     Support for this element has not been implemented yet.
 
 Given the situation mentioned previously of the image composite, it is possible to style each image so as to have an outline. One can even set a fill color and opacity of each image; a reason to do this would be to "gray-out" an image. To use ImageOutline, you would define a <LineSymbolizer> or <PolygonSymbolizer> inside of the element:

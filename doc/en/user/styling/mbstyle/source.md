@@ -27,13 +27,10 @@ The source syntax to use these GeoServer layers in your MapBox Style is:
 ```
 
 !!! note
-
     `<workspace>` and `<layer>` should be replaced by the workspace and name of the layer in question. `{x}`, `{y}`, and `{z}` are placeholder values for the tile indices and should be preserved as written.
 
 !!! note
-
     `<source-name>` should be replaced by a source name of your choice. It will be used to refer to the source when defining a layer in the Mapbox Style.
 
 !!! note
-
     If geoserver is not being served from `localhost:8080`, update the domain accordingly.

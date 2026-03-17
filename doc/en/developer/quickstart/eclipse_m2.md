@@ -81,7 +81,6 @@ Parser generated successfully.
 4.  After running the first time you can return to the `Run Configurations` dialog to fine tune your launch environment (including setting a GEOSERVER_DATA_DIR).
 
 !!! note
-
     If you already have a server running on localhost:8080 see the [Eclipse Guide](../eclipse-guide/index.md) for instructions on changing to a different port.
 
 ## Access GeoServer front page

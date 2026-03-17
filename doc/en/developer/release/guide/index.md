@@ -55,7 +55,6 @@ Since most GeoServer releases require official GeoTools and GeoWebCache releases
 ## GeoServer release announcement
 
 !!! note
-
     Start this activity early to work on while release jobs are running. This will also serve to review resolved Jira issues before release notes are created.
 
 The [GeoServer website](https://geoserver.org/) is managed as a [GitHub Pages repository](https://github.com/geoserver/geoserver.github.io).
@@ -394,7 +393,6 @@ Publish Jira markdown release notes to GitHub tag:
 ### Mailing lists
 
 !!! note
-
     This announcement should be made for all releases, including release candidates.
 
 Post an announcement on both the Discourse User and Developer groups announcing the release. The message should be relatively short. You can base it on the blog post headings which often indicate new features to highlight.

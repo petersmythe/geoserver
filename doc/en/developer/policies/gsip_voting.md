@@ -1,5 +1,4 @@
 !!! note "Voting on GeoServer Improvement Proposal (GSIP)"
-
     1. Proposals may be made by any interested party (PSC, Non-PSC, committer, user, etc...).
     
         All community members are encouraged to review proposals, and provide their support and feedback.

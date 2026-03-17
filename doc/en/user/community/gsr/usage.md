@@ -7,7 +7,6 @@ Currently basic FeatureServer and MapServer functionality work. Each GeoServer w
 Where topp is the workspace name.
 
 !!! note
-
     Esri®, ArcGIS® and ArcGIS Online® are trademarks, registered trademarks, or service marks of Esri in the United States, the European Community, or certain other jurisdictions. Other companies and products mentioned may be trademarks of their respective owners.
 
 ## CORS

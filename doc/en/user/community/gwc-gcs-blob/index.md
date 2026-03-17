@@ -6,13 +6,8 @@ This plugin supports the use of [Google Cloud Storage](https://cloud.google.com/
 
 1.  Download the extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
 
-    :::: warning
-    ::: title
-    Warning
-    :::
-
-    Make sure to match the version of the extension to the version of the GeoServer instance!
-    ::::
+    !!! warning
+        Make sure to match the version of the extension to the version of the GeoServer instance!
 
 2.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 
@@ -48,7 +43,6 @@ This parameter is only needed when:
 - The accessing principal needs to specify which project should be billed for data access charges
 
 !!! note
-
     In this context, "Requester Pays" refers to GeoServer itself being charged for accessing the GCS bucket. End users fetching tiles from GeoServer do not interact directly with GCS and are not subject to any Google Cloud charges.
 
 ### Alternative Endpoint URL
@@ -66,7 +60,6 @@ The plugin supports three authentication methods, applied in the following prior
 **Optional.** A Google Cloud API key for authentication. When provided, this method takes precedence over all others.
 
 !!! note
-
     API keys have limited capabilities with Google Cloud Storage and may only work for public buckets or with specific API restrictions. For production use, Application Default Credentials with service accounts is the recommended approach.
 
 ### Use Default Google Cloud Credentials Chain
@@ -122,5 +115,4 @@ When running GeoServer on Google Cloud (GCE, GKE, Cloud Run, etc.):
 - All configuration properties support environment variable expansion using the `${VARIABLE_NAME}` syntax
 
 !!! note
-
     Unlike AWS S3, Google Cloud Storage access control is managed at the bucket or object level through IAM policies. If you want to build a public tile cache that can be directly accessed by clients as static files, configure the bucket with public read access and fully seed the cache.

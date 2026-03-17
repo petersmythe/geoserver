@@ -6,7 +6,6 @@ The following commands will prepare a CentOS 7 Minimal ISO machine for the deplo
 - NFS shared file-system
 
 !!! note
-
     Prerequisite to this section, is the basic preparation of the CentOS machine as described on the section [Deployment And Setup Of GeoServer With WPS Remote Plugin](install_geoserver.md).
 
 ## Setup and configuration of Openfire XMPP Server
@@ -146,7 +145,6 @@ The password for the user `openfire` is the same provided in the PostgreSQL DB s
 > ![](images/openfire004.jpg)
 
 !!! note
-
     Be sure the `openfire` database and user have been correctly created on PostgreSQL and the passwords provided (see above for instructions).
 
 If there are no connection issues, choose `Default` value on the users profile settings section.
@@ -170,7 +168,6 @@ The initial setup is now complete. Log into the system using the newly created *
 Move to the `Server Certificates` section of the `Server Settings` tab panel.
 
 !!! warning
-
     This passage is not needed anymnore on Openfire 4.0+. At least the management of the certificates is a bit different. Please refer to the specific Openfire documentation for more information.
     
     ![](images/openfire009.jpg)
@@ -178,7 +175,6 @@ Move to the `Server Certificates` section of the `Server Settings` tab panel.
 Make sure that the self-signed certificates have been correctly generated and click on `here` in order to restart the server
 
 !!! warning
-
     This passage is not needed anymnore on Openfire 4.0+. At least the management of the certificates is a bit different. Please refer to the specific Openfire documentation for more information.
     
     ![](images/openfire010.jpg)
@@ -188,7 +184,6 @@ The same section now shows the server certificates and won't ask for another res
 Update the `Security Settings` in order to allow the server accepting self-signed certificates on secured connections.
 
 !!! warning
-
     This passage is not needed anymnore on Openfire 4.0+. At least the management of the certificates is a bit different. Please refer to the specific Openfire documentation for more information.
     
     ![](images/openfire011.jpg)
@@ -297,7 +292,6 @@ $> vi /etc/idmapd.conf
 ```
 
 !!! note
-
     The domain specified above maybe different depending on the final system deployment and the production environment setup.
 
 Creating and exposing a shared folder is possible by following the next steps:
@@ -339,7 +333,6 @@ $> systemctl enable rpcbind nfs-server
 ```
 
 !!! note
-
     The **host_ip** must be the one of the host exposing the shared folder.
 
 *Selinux*, enabled by default, needs to be instructed to allow NFS connections. This can be done by running the following commands:

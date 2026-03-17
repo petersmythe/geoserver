@@ -201,7 +201,6 @@ Given a [empty.zip](artifacts/empty.zip) file containing:
 - `polyphemus-test.xml` (Auxiliary file used by the NetCDF reader to parse schemas and tables)
 
 !!! warning
-
     Make sure to update the `datastore.properties` file with your connection parameters and refresh the ZIP before uploading it.
 
 *Request*
@@ -212,7 +211,6 @@ Given a [empty.zip](artifacts/empty.zip) file containing:
            http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores/empty/file.imagemosaic?configure=none
 
 !!! note
-
     The `configure=none` parameter allows for future configuration after harvesting.
 
 *Response*
@@ -237,7 +235,6 @@ Given a `coverageconfig.xml`:
         curl -v -u admin:geoserver -XPOST -H "Content-type: text/xml" -d @"/path/to/coverageconfig.xml" "http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores/empty/coverages"
 
 !!! note
-
     When specifying only the coverage name, the coverage will be automatically configured.
 
 *Response*

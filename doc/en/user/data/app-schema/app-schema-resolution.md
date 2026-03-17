@@ -10,7 +10,6 @@ GeoServer will automatically download and cache (see [Cache](#app-schema-cache) 
 2.  Your GeoServer instance is deployed on a network that permits it to download them.
 
 !!! note
-
     This is the recommended way of using GeoServer app-schema for most users.
 
 If cached downloading is used, no manual handling of schemas will be required. The rest of this page is for those with more complicated arrangements, or who wish to clear the cache.
@@ -66,5 +65,4 @@ If your GeoServer instance is deployed on a network whose firewall rules prevent
 3.  Or: Use a catalog (see [OASIS Catalog](#oasis-catalog) above).
 
 !!! warning
-
     System property "schema.cache.dir" with a cache directory location is required for using a mapping file from a remote URL with 'http://' or 'https://' protocol.

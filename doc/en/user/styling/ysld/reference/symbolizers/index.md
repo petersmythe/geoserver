@@ -5,7 +5,6 @@ The basic unit of visualization is the symbolizer. There are five types of symbo
 Symbolizers are contained inside [rules](../rules.md). A rule can contain one or many symbolizers.
 
 !!! note
-
     The most common use case for multiple symbolizers is a geometry (point/line/polygon) symbolizer to draw the features plus a text symbolizer for labeling these features.
     
     ![](img/symbolizers.svg)
@@ -51,7 +50,6 @@ When drawing three points these symbolizers will be applied in order on each fea
     *Feature 3 buffer rendering*
 
 !!! note
-
     In the final image, Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the [Feature Styles](../featurestyles.md) section on managing "z-order".
     
     ![](img/symbolizer-order4.svg)

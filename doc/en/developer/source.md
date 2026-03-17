@@ -64,7 +64,6 @@ $ git config --global core.autocrlf input
 The value "input" respects the line ending form as present in the git repository.
 
 !!! note
-
     It is also a good idea, especially for Windows users, to set the `core.safecrlf` option to "true":
     
     ``` bash
@@ -94,7 +93,6 @@ $ git mv --cached HttpHandler.java HTTPHandler.java
 ```
 
 !!! note
-
     File paths can use two different representations of select unicode characters:
     
     | Representation          | Example       | Operating System Default |
@@ -156,7 +154,6 @@ In order to commit the following steps must be taken:
 5.  Create a remote reference to the canonical repository using a non-read only URL (`git@github.com:geoserver/geoserver.git`).
 
 !!! note
-
     The next section describes how the git repositories are distributed for the project and how to manage local repository remote references.
 
 ## Repository distribution
@@ -302,7 +299,6 @@ For example, to push a local bug fix up to the canonical `main` branch:
 The example shows the practice of first pulling from canonical before pushing to it. Developers should **always** do this. In fact, if there are commits in canonical that have not been pulled down, by default git will not allow you to push the change until you have pulled those commits.
 
 !!! note
-
     A **merge commit** may occur when one branch is merged with another. A merge commit occurs when two branches are merged and the merge is not a "fast-forward" merge. This happens when the target branch has changed since the commits were created. Fast-forward merges are worth [reading about](http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging).
     
     An easy way to avoid merge commits is to do a "rebase" when pulling down changes:
@@ -325,7 +321,6 @@ To create a new feature branch off the main branch:
 Rinse, wash, repeat. The nice about thing about using a feature branch is that it is easy to switch context to work on something else. Just `git checkout` whatever other branch you need to work on, and then return to the feature branch when ready.
 
 !!! note
-
     When a branch is checked out, all the files in the working area are modified to reflect the current state of the branch. When using development tools which cache the state of the project (such as Eclipse) it may be necessary to refresh their state to match the file system. If the branch is very different it may even be necessary to perform a rebuild so that build artifacts match the modified source code.
 
 ### Merging feature branches
@@ -374,7 +369,6 @@ This is easy with git and you have two options:
 Rebasing allows us to rewrite the commits on a branch, deleting commits we don't want, or merging commits that should really be done. You can read more about interactive rebasing [here](http://git-scm.com/book/en/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages).
 
 !!! warning
-
     Much care should be taken with rebasing. You should **never** rebase commits that are public (that is, commits that have been copied outside your local repository). Rebasing public commits changes branch history and results in the inability to merge with other repositories.
 
 The following example shows an interactive rebase on a feature branch:

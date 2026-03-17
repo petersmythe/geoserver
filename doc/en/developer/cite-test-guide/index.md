@@ -7,7 +7,6 @@ A step by step guide to the GeoServer Compliance Interoperability Test Engine (C
 ## Check out OGC CITE suite tests
 
 !!! note
-
     The CITE suite tests are available at [Open Geospatial Consortium](https://github.com/opengeospatial).
 
 Requirements:
@@ -25,7 +24,6 @@ Requirements:
 - Running the tests requires a Linux system with [Docker](https://www.docker.com), [Docker Compose](https://docs.docker.com/compose/install), and Git installed on it.
 
 !!! note
-
     The CITE tools are available in the build/cite folder of the [GeoServer Git repository](https://github.com/geoserver/geoserver/tree/master/build/cite):
 
 ### Set-up the environment
@@ -103,7 +101,6 @@ There are 2 ways to run the suites. One is running with `make` that will automat
     - Choose which test to run, this is an example:
 
       !!! warning
-
           The first Docker build may take a long time.
 
       ``` SHELL
@@ -111,7 +108,6 @@ There are 2 ways to run the suites. One is running with `make` that will automat
       ```
 
       !!! note
-
           Valid values for the suite parameter are:
     
           :   - wcs10
@@ -170,11 +166,9 @@ There are 2 ways to run the suites. One is running with `make` that will automat
 ### Run CITE Test Suites on a local PC
 
 !!! note
-
     I assume that you have a standalone GeoServer running.
 
 !!! info "Important"
-
     Details to consider when you are running the tests:
     
     - The default username/password for the teamengine webUI are **teamengine/teamengine**.
@@ -232,7 +226,6 @@ Requirements:
 ### Run WFS 1.0 tests
 
 !!! info "Important"
-
     Running WFS 1.0 tests require PostgreSQL with PostGIS extension installed in the system.
 
 Requirements:
@@ -272,7 +265,6 @@ Requirements:
     - Start GeoServer with the citewfs-1.0 data directory. Example:
 
     !!! info "Important"
-
         <path of GeoServer repository>/build/cite/wfs10/citewfs-1.0/workspaces/cgf/cgf/datastore.xml
     ::::::
 
@@ -302,7 +294,6 @@ Requirements:
 ### Run WFS 1.1 tests
 
 !!! info "Important"
-
     Running WFS 1.1 tests requires PostgreSQL with PostGIS extension installed in the system.
 
 Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
@@ -337,7 +328,6 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
     - Start GeoServer with the citewfs-1.1 data directory. Example:
 
     !!! info "Important"
-
         <path of GeoServer repository>/build/cite/wfs11/citewfs-1.1/workspaces/cgf/cgf/datastore.xml
     ::::::
 
@@ -591,7 +581,6 @@ Run `make clean` to shut them down and clean up the `logs/` directory.
 Since teamengine runs as a Docker container, in order to reach out to a GeoServer instance running on the host, it needs a Landing Page URL that points to the host network. In docker there's a special IP address for that purpose, ``172.17.0.1``, as long as the container is running on the default docker bridge network. Check out the docker [docs](Networking with standalone containers) for more info.
 
 !!! info "Attention"
-
     In the following examples, some `make` targets receive an `iut` parameter with the URL of the OGC Features API landing page to test, external to the `teamengine`'s container network. By default, for **Linux** systems, use the **172.17.0.1** IP address. However, if you're running the tests on **MacOS**, replace it with the **host.docker.internal** hostname instead. This difference exists because on Linux, Docker creates a bridge network where the host is accessible via `172.17.0.1`. On MacOS, Docker Desktop for Mac runs containers within a virtualization layer, which changes the networking model. As a result, `host.docker.internal` is used to enable containers to access the host.
 
 For the case of the `ogcapi-features10`, you can simply run
@@ -643,7 +632,6 @@ In order to keep up to date, a [CITE Tests workflow](https://github.com/geoserve
 Shortly before a major (2.xx.0) release, the following process should be followed in order to obtain CITE Certification for the major release.
 
 !!! note
-
     We appreciate OSGeo providing hosting services for this purpose.
 
 1.  Log into cite.geoserver.org via hop, then

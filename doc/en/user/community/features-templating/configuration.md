@@ -33,7 +33,6 @@ The **Template Content** section is where the template is actually defined.
 By clicking on the **Preview** tab the user can specify parameters to test the template and preview the result. The preview will only return a single feature.
 
 !!! warning
-
     When previewing a template the template will be saved/updated in the data directory. This is due the fact that the preview works by issuing a WFS request. This implies that the previous state is lost, but also that any modification is immediately visible to a user that might be accessing the layer.
 
 ![](images/preview-ui.png)

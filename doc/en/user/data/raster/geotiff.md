@@ -22,8 +22,12 @@ By default, **GeoTIFF** will be an option in the **Raster Data Sources** list wh
 | `Enabled` | If checked, it enables the store. If unchecked (disabled), no data in the GeoTIFF will be served from GeoServer. |
 | `URL` | Location of the GeoTIFF file. This can be an absolute path (such as **`file:C:\Data\landbase.tif`**) or a path relative to GeoServer's data directory (such as **`file:data/landbase.tif`**). |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     Notice that the GeoTiff plugin is able to handle internal/external overviews and internal/external masks.
 
 ### Custom CRS definition

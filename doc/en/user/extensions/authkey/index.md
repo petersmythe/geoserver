@@ -192,7 +192,6 @@ Some of the key providers can require additional configuration parameter. These 
 After configuring the filter it is necessary to put this filter on the authentication filter chain(s).
 
 !!! note
-
     The administrator GUI for this filter has button **Synchronize**. Clicking on this button saves the current configuration and triggers a synchronize. If users are added/removed from the backing user/group service, the synchronize logic should be triggered.
 
 ## Challenge Anonymous Session

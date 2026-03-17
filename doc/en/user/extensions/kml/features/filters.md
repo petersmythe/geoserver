@@ -3,7 +3,6 @@
 Though not specific to Google Earth, GeoServer has the ability to filter data returned from the [Web Map Service (WMS)](../../../services/wms/index.md). The KML Reflector will pass through any WMS `filter` or `cql_filter` parameter to GeoServer to constrain the response.
 
 !!! note
-
     Filters are basically a translation of a SQL "WHERE" statement into web form. Though limited to a single table, this allows users to do logical filters like "AND" and "OR" to make very complex queries, leveraging numerical and string comparisons, geometric operations ("bbox", "touches", "intersects", "disjoint"), "LIKE" statements, nulls, and more.
 
 ## Filter

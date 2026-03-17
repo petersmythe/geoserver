@@ -102,5 +102,4 @@ INFO   [org.geoserver.acl.authorization.cache] - evicted 56 cached ACL authoriza
 ```
 
 !!! note
-
     The cache time to live is not a problem when the plugin runs in [GeoServer Cloud](https://github.com/geoserver/geoserver-cloud), because the ACL Service integrates with the *GeoServer Cloud* event bus, and notifies all the running pods when a data access or admin access rule is changed, and the GeoServer microservices react immediately clearing out the authorization cache.

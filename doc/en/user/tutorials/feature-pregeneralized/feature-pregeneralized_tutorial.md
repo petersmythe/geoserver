@@ -1,7 +1,6 @@
 # Using the GeoTools feature-pregeneralized module
 
 !!! warning
-
     The screenshots on this tutorial have not yet been updated for the 2.0.x user interface. But most all the rest of the information should be valid, and the user interface is roughly the same, but a bit more easy to use.
 
 ## Introduction
@@ -9,7 +8,6 @@
 This tutorial shows how to use the geotools feature-pregeneralized module in GeoServer. The feature-pregeneralized module is used to improve performance and lower memory usage and IO traffic.
 
 !!! note
-
     Vector generalization reduces the number of vertices of a geometry for a given purpose. It makes no sense drawing a polygon with 500000 vertices on a screen. A much smaller number of vertices is enough to draw a topological correct picture of the polygon.
 
 This module needs features with already generalized geometries, selecting the best fit geometry on demand.
@@ -47,7 +45,6 @@ You should see the following output:
 Now there are four additional directories **`5.0`** , **`10.0`** , **`20.0`** , **`50.0`** . Look at the size of files with the extension **`shp`** within these directories, increasing the generalization distance reduces the file size.
 
 !!! note
-
     The generalized geometries can be stored in additional properties of a feature or the features can be duplicated. Mixed variations are also possible. Since we are working with shape files we have to duplicate the features.
 
 There are two possibilities how we can deploy our generalized shape files.
@@ -74,7 +71,6 @@ First we need a XML config file
 Save this file as **`geninfo_shapefile.xml`** into **`{GEOSERVER_DATA_DIR}/data/streams`**.
 
 !!! note
-
     The **dataSourceName** attribute in the XML config is not interpreted as a name, it could be the URL for a shape file or for a property file containing properties for data store creation (e. g. jdbc connect parameters). Remember, this is a hidden deployment and no names are needed. The only *official* name is the value of the attribute **featureName** in the **GeneralizationInfo** Element.
 
 Start GeoServer and go to **Config-->Data-->DataStores-->New** and fill in the form
@@ -88,7 +84,6 @@ The next form you see is
 ![image](editdatastore1.png)
 
 !!! note
-
     **RepositoryClassName** and **GeneralizationInfosProviderClassName** have default values which suit for GeoTools, not for GeoServer. Change **GeoTools** to **GeoServer** in the package names to instantiate the correct objects for GeoServer. **GeneralizationInfosProviderParam** could be an URL or a datastore from the GeoServer catalog. A datastore is referenced by using *workspacename:datastorename*. This makes sense if you have your own implementation for the **GeneralizationInfosProvider** interface and this implementation reads the infos from a database.
 
 The configuration should look like this

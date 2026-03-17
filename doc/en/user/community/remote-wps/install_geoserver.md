@@ -255,5 +255,4 @@ $> service geoserver restart
 ```
 
 !!! warning
-
     GeoServer won't connect to XMPP Server until it has been correctly configured and started as explained in the next section [Installation Of OpenFire XMPP Server To Exchange Messages](install_xmpp.md).

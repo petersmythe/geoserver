@@ -31,7 +31,6 @@ A sure sign that calls for secondary namespace configuration is when prefixes fo
     java.io.IOException: The prefix "null" for element "null:something" is not bound.
 
 !!! note
-
     When using secondary namespaces, requests involving complex featuretypes must be made to the **global OWS service** only, not to [Virtual Services](../../configuration/virtual-services.md). This is because virtual services are restricted to a single namespace, and thus are not able to access secondary namespaces.
 
 In order to allow GeoServer App-Schema to support secondary namespaces, please follow the steps outlined below:

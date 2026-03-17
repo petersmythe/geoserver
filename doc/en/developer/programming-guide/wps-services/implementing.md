@@ -5,7 +5,6 @@ This section describes how to implement a WPS process for use in GeoServer. It d
 The example process used is a simple "Hello World" process which accepts a single input parameter and returns a single text output.
 
 !!! note
-
     See also GeoTools [process tutorial](https://docs.geotools.org/latest/userguide/tutorial/process.md)
 
 ## Prerequisites
@@ -193,7 +192,6 @@ GeoServer uses the [Spring Framework](http://www.springsource.org/spring-framewo
     ```
 
 !!! note
-
     A process registered in the GeoServer spring context will be assigned to the "gs" process namespace.
 
 ## Build and Deploy
@@ -209,7 +207,6 @@ This cleans the build area, compiles the code, and creates a JAR file in the `ta
 To deploy the process module, copy this JAR file into the `/WEB-INF/lib` directory of GeoServer and then restart the instance.
 
 !!! note
-
     For alternative deployment options (i.e. running from source), see the *Trying it out* section inside [Implementing a simple OWS service](../ows-services/implementing.md)
 
 ## Test

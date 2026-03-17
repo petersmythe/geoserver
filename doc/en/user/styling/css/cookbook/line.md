@@ -361,7 +361,6 @@ This example styles the lines differently based on the "type" (Road class) attri
 ### Details
 
 !!! note
-
     Refer to the [Example lines layer](#css_cookbook_lines_attributes) to see the attributes for the layer. This example has eschewed labels in order to simplify the style, but you can refer to the example [Optimized and styled label](#css_cookbook_lines_optimizedstyledlabel) to see which attributes correspond to which points.
 
 There are three types of road classes in our fictional country, ranging from back roads to high-speed freeways: "highway", "secondary", and "local-road". In order to make sure the roads are rendered in the proper order of importance, a "z-index" attribute has been placed in each rule.
@@ -418,7 +417,6 @@ This example alters the [Simple line](#css_cookbook_lines_simpleline) style at d
 It is often desirable to make shapes larger at higher zoom levels when creating a natural-looking map. This example varies the thickness of the lines according to the zoom level (or more accurately, scale denominator). Scale denominators refer to the scale of the map. A scale denominator of 10,000 means the map has a scale of 1:10,000 in the units of the map projection.
 
 !!! note
-
     Determining the appropriate scale denominators (zoom levels) to use is beyond the scope of this example.
 
 This style contains three rules. The three rules are designed as follows:

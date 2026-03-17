@@ -8,7 +8,6 @@ render_macros: true
 The platform-independent binary is a GeoServer web application bundled with [Jetty](https://eclipse.org/jetty/), a scalable and memory-efficient web server and Servlet container. Jerry has the advantages of working very similarly across all operating systems and is straightfoward to set up.
 
 !!! note
-
     For installing on Linux with an existing application server such as Tomcat, please see the [Web archive](war.md) section.
 
 ## Installation
@@ -18,7 +17,6 @@ The platform-independent binary is a GeoServer web application bundled with [Jet
     {%raw%}{% include-markdown "./jdk-linux-guidance.txt" %}{%endraw%}
 
     !!! note
-
         For more information about Java and GeoServer compatibility, please see the section on [Java Considerations](../production/java.md).
 
 2.  Navigate to the [GeoServer Download page](https://geoserver.org/download).
@@ -41,7 +39,6 @@ The platform-independent binary is a GeoServer web application bundled with [Jet
 5.  Download the **`zip`** archive and unpack to the directory where you would like the program to be located.
 
     !!! note
-
         A suggested location would be **`/usr/share/geoserver`**.
 
 6.  Add an environment variable to save the location of GeoServer by typing the following command:

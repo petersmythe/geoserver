@@ -45,7 +45,6 @@ That said, the request would still be processed by default. Executing the above 
 WFS [GetCapabilities](reference.md#wfs_getcap) requests may be filtered to return only those layers that correspond to a particular namespace by adding the `<namespace>` parameter to the request.
 
 !!! note
-
     This parameter only affects GetCapabilities requests.
 
 To apply this filter, add the following code to your request:
@@ -57,11 +56,9 @@ namespace=<namespace>
 Although providing an invalid namespace will not result in any errors, the GetCapabilities document returned will not contain any layer information.
 
 !!! warning
-
     Using this parameter may result your GetCapabilities document becoming invalid, as the WFS specification requires the document to return at least one layer.
 
 !!! note
-
     This filter is related to [Virtual Services](../../configuration/virtual-services.md).
 
 ### GetFeature Request

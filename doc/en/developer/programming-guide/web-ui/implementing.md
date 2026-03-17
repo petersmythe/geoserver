@@ -150,7 +150,6 @@ At this point, the `hello_web` module should look like the following:
         [hello_web]% cp target/hello-1.0-SNAPSHOT.jar /home/bob/geoserver-2.0/webapps/geoserver/WEB-INF/lib
 
     !!! note
-
         If running GeoServer from eclipse you can edit the **`web-app/pom.xml`** with the following dependency:
     
         ``` xml

@@ -21,7 +21,6 @@ A useful feature of the plugin is the ability to download associated source code
     mvn -DdownloadSources eclipse:eclipse
 
 !!! warning
-
     The first time you enable the `downloadSources` flag the build will take a long time as it will attempt to download the sources for every single library GeoServer depends on.
 
 ## Running and debugging
@@ -150,7 +149,6 @@ Code formatting is covered by our build [Quality Assurance](../qa-guide/index.md
 5.  Check `Show whitespace characters` (optional)
 
     !!! note
-
         Showing whitespace characters can help ensure that unnecessary whitespace is not unintentionally committed.
 
     ![image](text_editors.png)

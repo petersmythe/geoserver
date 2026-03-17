@@ -15,7 +15,6 @@ You can find the project on [github.com/geoserver <>](https://github.com/geoserv
 To learn more about contributing to the GeoServer codebase, we recommend reading the [Developers Guide <>](../developer/Developers Guide <>) and joining GeoServer Developers (see below).
 
 !!! note
-
     For [commit access](https://docs.geoserver.org/latest/en/developer/policies/committing.md) new developers can request to work on a community module immediately, or make contributions over time to earn a nomination for full commit access.
 
 ## Documentation
@@ -25,11 +24,9 @@ Another crucial way to help out is with documentation. Whether it's adding tutor
 Our official documentation is contained as part of our [official code repository <>](https://github.com/geoserver/geoserver/official code repository <>). Anyone can submit pull requests, which will be evaluated by the team.
 
 !!! info "See Also"
-
     To learn more about contributing to the GeoServer documentation, we recommend reading the [Documentation Guide <>](../developer/Documentation Guide <>) and joining GeoServer Developers (see below).
 
 !!! note
-
     For typos and other small changes you can use the **Edit Page** link on any page. Please see [Quick Fix](https://docs.geoserver.org/latest/en/docguide/quickfix.html) example.
 
 ## GeoServer User
@@ -41,7 +38,6 @@ The GeoServer User forum is for those who have questions relating to the use of 
 These open communication channels are publicly available and are a great resource for those who are new to GeoServer, who need a question answered, or who are interested in contributing code.
 
 !!! note
-
     The forum includes the complete [geoserver-users](https://sourceforge.net/p/geoserver/mailman/geoserver-users/) Source Forge as a searchable archive going back to 2004.
 
 ## GeoServer Developer
@@ -51,7 +47,6 @@ The :`GeoServer Developers <https://discourse.osgeo.org/c/geoserver/developer/63
 The GeoServer Developers forum is for those working directly on the project, with code-specific and roadmap-based discussions.
 
 !!! info "See Also"
-
     The [Community Development](https://geoserver.org/devel/) page provides additional communication options for developers.
 
 ## GeoServer Security
@@ -59,7 +54,6 @@ The GeoServer Developers forum is for those working directly on the project, wit
 The geoserver-security mailing list is for volunteers evaluating incoming security vulnerability reports and carefully working to see they are addressed in a responsible fashion.
 
 !!! info "See Also"
-
     The [Security Procedure](https://docs.geoserver.org/latest/en/developer/policies/security.md) page in the Developers Guide provides additional information on how security vulnerabilities are handled.
 
 ## Reporting a Bug
@@ -73,11 +67,9 @@ Everyone is encouraged to submit pull-requests and, if possible, fix issues as w
 If you are not in position to communicate in public, please consider [commercial support](https://geoserver.org/support), contacting a Project Steering Committee member, or reaching us via the Open Source Geospatial Foundation at <info@osgeo.org>.
 
 !!! note
-
     As a popular program GeoServer often exceeds the number of accounts available to open source projects. So if you cannot get in please let us know and we will review unused accounts.
 
 !!! warning
-
     Coordinated Vulnerability Disclosure
     
     If you encounter a security vulnerability in GeoServer please keep in mind our [Coordinated Vulnerability Disclosure <security/policy>](https://github.com/geoserver/geoserver/Coordinated Vulnerability Disclosure <security/policy>) policy:

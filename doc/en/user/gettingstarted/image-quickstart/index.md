@@ -3,7 +3,6 @@
 This tutorial walks through the steps of publishing a GeoTIFF with GeoServer.
 
 !!! note
-
     This tutorial assumes that GeoServer is running at `http://localhost:8080/geoserver`.
 
 ## Data preparation
@@ -31,7 +30,6 @@ First let's gather the data that we'll be publishing.
 The next step is to create a workspace for the geopackage. A workspace is a folder used to group similar layers together.
 
 !!! note
-
     This step is optional if you'd like to use an existing workspace. Usually, a workspace is created for each project, which can include stores and layers that are related to each other.
 
 1.  In a web browser, navigate to `http://localhost:8080/geoserver`.
@@ -125,7 +123,6 @@ Now that we have located the image, we can publish this information as a layer.
 1.  Check the **Coordinate Reference Systems** information is as listed below.
 
     !!! note
-
         In this case select `Force declared` to prefer the GeoServer internal EPSG database definition of WGS84 over the **`prj`** file provided alongside the same image.
 
 | Native SRS    | ``EPSG:4326`` |
@@ -141,7 +138,6 @@ Now that we have located the image, we can publish this information as a layer.
 1.  Locate **Bounding Boxes** and generate the layer's bounding boxes by clicking the **Compute from SRS bounds** and then **Compute from native bounds** links.
 
     !!! note
-
         In this case we are choosing a slightly larger bounding box that fully contains the image.
 
     ![](images/layer_bbox.png)
@@ -167,7 +163,6 @@ In order to verify that the `tutorial:shaded` layer is published correctly, we c
 1.  Navigate to the **Data > Layer Preview** page and find the `tutorial:shaded` layer.
 
     !!! note
-
         Use the **Search** field with ``tutorial`` as shown to limit the number of layers to page through.
 
 2.  Click the **OpenLayers** link in the **Common Formats** column.

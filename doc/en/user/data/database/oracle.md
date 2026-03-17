@@ -6,7 +6,6 @@ render_macros: true
 # Oracle
 
 !!! note
-
     GeoServer does not come built-in with support for Oracle; it must be installed through an extension. Proceed to [Installing the Oracle extension](#oracle_install) for installation details.
 
 [Oracle Spatial and Locator](https://www.oracle.com/database/spatial/) are the spatial components of Oracle. **Locator** is provided with all Oracle versions, but has limited spatial functions. **Spatial** is Oracle's full-featured spatial offering, but requires a specific license to use.
@@ -19,7 +18,6 @@ render_macros: true
     - {{ snapshot }} [geoserver-{{ snapshot }}-oracle-plugin.zip](https://build.geoserver.org/geoserver/main/ext-latest/geoserver-{{ snapshot }}-oracle-plugin.zip)
 
     !!! warning
-
         Ensure to match plugin (example {{ release }} above) version to the version of the GeoServer instance.
 
 2.  Extract the contents of the archive into the **`WEB-INF/lib`** directory of the GeoServer installation.

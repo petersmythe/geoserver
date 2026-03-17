@@ -101,7 +101,6 @@ Connecting a new executable instance to GeoServer through the Python wrapper req
     :   - The service name and the namespace
 
           !!! note
-
               there must exist an user on the XMPP Server named as `namespace.serviceName` and a communication channel with the same identified of the service namespace.
     
               e.g.:
@@ -168,7 +167,6 @@ $> pip install wps-remote==2.11.0
 Link the shared folder to the `C:/share` through the NFS protocol. This is possible simply by turning on the NFS Services of the MS Windows functionalities and creating a client NFS connection to the NFS server.
 
 !!! warning
-
     "Services for NFS" have been removed on Windows 10. They are available only on Windows 10 Enterprise edition. For older Windows versions you can use the following procedure in order to enable NFS Client
     
     **Installing the client**
@@ -200,7 +198,6 @@ Link the shared folder to the `C:/share` through the NFS protocol. This is possi
         mount \\nas324\exports E:
 
 !!! note
-
     It is important that the shared folder structure is fully replicated on the Windows machine and the folder writable by the Windows processes.
     
     ``` bash
@@ -582,13 +579,8 @@ The requisites for this configuration to work properly are:
 
         $> /work/RemoteWPS/xmpp_data/configs/myservice/code/test.py -i <input_value> -w /share/xmpp_data/output/<exec_id>
 
-    :::: note
-    ::: title
-    Note
-    :::
-
-    The **<exec_id>** is known at runtime only.
-    ::::
+    !!! note
+        The **<exec_id>** is known at runtime only.
 
 7.  Make sure the outputs have been configured correctly for the command line execution
 
@@ -664,7 +656,6 @@ process_blacklist = [resource consuming process name1, resource consuming proces
 - **service**; The name of the WPS service. On GeoServer the WPS Process will be represented as `namespace.service`
 
   !!! note
-
       The XMPP Server *must* have a registered user named like the fully qualified service name `namespace.service`
 
 - **namespace**; The namespace (or prefix) of the service. Along with the *service* parameter, it represents the fully qualified name of the service.
@@ -1125,13 +1116,8 @@ The examples above represents all the possible types of Outputs currently suppor
 
 - **upload_data**; This is a boolean which tells to the Remote WPS to upload first the outcome into the **host** defined into the `[UPLOADER]` section before streaming out to GeoServer. This allows the Remote WPS to preserve the outcomes even when the resources are cleaned out.
 
-    :::: warning
-    ::: title
-    Warning
-    :::
-
-    If both enabled for a certain output, the **backup_on_wps_execution_shared_dir** takes precedence to the **upload_data** one.
-    ::::
+    !!! warning
+        If both enabled for a certain output, the **backup_on_wps_execution_shared_dir** takes precedence to the **upload_data** one.
 
 - **publish_as_layer**; A boolean to instruct GeoServer Remote WPS to *try* to automatically publish the outcome as a new Layer through the GeoServer **Importer** Plugin.
 

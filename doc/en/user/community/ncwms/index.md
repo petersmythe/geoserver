@@ -178,27 +178,22 @@ Since GeoServer 2.17, TIME parameter also supports 2 additional syntax even if n
 2.  A periodic time within a range:
     - Example: ``TIME=2015-01/2019-01/P1Y``
 
-    :::: note
-    ::: title
-    Note
-    :::
+    !!! note
+        - Shortened time specifications in a list are parsed as time ranges by GeoServer. Therefore, a Time like 2014-01 will represent the whole month of January 2014, so a time range: 2014-01-01T00:00:00/2014-01-31T23:59:59.
 
-    - Shortened time specifications in a list are parsed as time ranges by GeoServer. Therefore, a Time like 2014-01 will represent the whole month of January 2014, so a time range: 2014-01-01T00:00:00/2014-01-31T23:59:59.
+        - Months and Years expressed through a Period specification (as an instance P2M, P1Y) are considered made of 30 days and 365.25 days respectively. Therefore a periodic interval like 2000-04/2000-12/P1M will be parsed as the list of time instants starting from April 2000 through December 2000 with a period of 30 days:
 
-    - Months and Years expressed through a Period specification (as an instance P2M, P1Y) are considered made of 30 days and 365.25 days respectively. Therefore a periodic interval like 2000-04/2000-12/P1M will be parsed as the list of time instants starting from April 2000 through December 2000 with a period of 30 days:
-
-        - Apr 01 00:00:00 2000
-        - May 01 00:00:00 2000
-        - May **31** 00:00:00 2000
-        - Jun **30** 00:00:00 2000
-        - Jul **30** 00:00:00 2000
-        - Aug **29** 00:00:00 2000
-        - Sep **28** 00:00:00 2000
-        - Oct **28** 00:00:00 2000
-        - Nov **27** 00:00:00 2000
-        - Dec **27** 00:00:00 2000
-        - Therefore if your original dataset has an entry for the first day of each month, this request will only return 2 values: Apr 01 and May 01. In that case, you might consider enabling nearest match on Layer's time dimension.
-    ::::
+            - Apr 01 00:00:00 2000
+            - May 01 00:00:00 2000
+            - May **31** 00:00:00 2000
+            - Jun **30** 00:00:00 2000
+            - Jul **30** 00:00:00 2000
+            - Aug **29** 00:00:00 2000
+            - Sep **28** 00:00:00 2000
+            - Oct **28** 00:00:00 2000
+            - Nov **27** 00:00:00 2000
+            - Dec **27** 00:00:00 2000
+            - Therefore if your original dataset has an entry for the first day of each month, this request will only return 2 values: Apr 01 and May 01. In that case, you might consider enabling nearest match on Layer's time dimension.
 
 Sample CSV output:
 

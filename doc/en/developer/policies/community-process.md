@@ -53,7 +53,6 @@ The community maintains three active branches:
 For each GeoServer release, we spend six month "prerelease" in a development cycle on the main development branch, followed by six months as the stable release, followed by six months as the maintenance release.
 
 !!! note
-
     The former beta release has been replaced with an earlier release candidate. There is no longer a "feature freeze" on the main development branch after this release. Instead, the new branch is created at this time, freeing up the main development branch for new features.
 
 **Prerelease**

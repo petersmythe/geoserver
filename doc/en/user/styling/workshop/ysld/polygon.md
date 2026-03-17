@@ -90,7 +90,6 @@ The **fill-color** property is used to provide the color used to draw the interi
     ```
 
     !!! note
-
         Technically the boundary of a polygon is a specific case of a LineString where the first and last vertex are the same, forming a closed LinearRing.
 
 4.  The effect of adding **stroke** is shown in the map preview:
@@ -126,7 +125,6 @@ The **fill-color** property is used to provide the color used to draw the interi
     ![image](../style/img/polygon_fill_5.png)
 
 !!! abstract "Instructor Notes"
-
     In this example we want to ensure readers know the key property for polygon data.
     
     It is also our first example of using opacity.
@@ -212,7 +210,6 @@ The fill pattern is defined by repeating one of the built-in symbols, or making 
     ![image](../style/img/polygon_pattern_2.png)
 
     !!! note
-
         Does the above look correct? There is an open request [4642](https://osgeo-org.atlassian.net/browse/GEOT-4642) to rotate the entire pattern, rather than each individual symbol.
 
 7.  The size and rotation properties just affect the size and placement of the symbol, but do not alter the symbol's design. In order to control the color we set the **fill-color** and **stroke-color** properties of the **mark**.
@@ -526,7 +523,6 @@ When working with labels a map can become busy very quickly, and difficult to re
 A thematic map (rather than focusing on representing the shape of the world) uses elements of style to illustrate differences in the data under study. This section is a little more advanced and we will take the time to look at the generated SLD file.
 
 !!! abstract "Instructor Notes"
-
     This instruction section follows our pattern with LineString. Building on the examples and exploring how selectors can be used.
     
     - For LineString we explored the use of @scale, in this section we are going to look at theming by attribute.
@@ -764,13 +760,11 @@ In a classroom setting you are encouraged to team up into groups, with each grou
 3.  **Explore:** Experiment with **fill** and **stroke** settings to eliminate slivers between polygons.
 
     !!! note
-
         Answer [provided](#ysld.polygon.a1) at the end of the workbook.
 
 ### Explore Categorize {: #ysld.polygon.q2 }
 
 !!! abstract "Instructor Notes"
-
     This section reviews use of the Symbology Encoding Categorize function for something else other than color. Goal is to have readers reach for SE Functions as often as selectors when styling.
     
     Additional exercise ideas:
@@ -800,7 +794,6 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_categorize.png)
 
     !!! note
-
         Answer [provided](#ysld.polygon.a2) at the end of the workbook.
 
 ### Challenge Goodness of Fit {: #ysld.polygon.q3 }
@@ -829,7 +822,6 @@ x-maxDisplacement: 130
 2.  **Challenge:** Produce a map that uses a white halo around black text.
 
     !!! note
-
         Answer [provided](#ysld.polygon.a4) at the end of the workbook.
 
 ### Challenge Theming using Multiple Attributes {: #ysld.polygon.q5 }
@@ -841,7 +833,6 @@ x-maxDisplacement: 130
     ![image](../style/img/polygon_multitheme.png)
 
     !!! note
-
         Answer [provided](#ysld.polygon.a5) at the end of the workbook.
 
 ### Challenge Use of Z-Index {: #ysld.polygon.q6 }
@@ -853,5 +844,4 @@ x-maxDisplacement: 130
     ![image](../style/img/polygon_zorder.png)
 
     !!! note
-
         Answer [provided](#ysld.polygon.a6) at the end of the workbook.

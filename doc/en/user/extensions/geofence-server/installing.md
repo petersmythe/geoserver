@@ -6,7 +6,6 @@ render_macros: true
 # Installing the GeoServer GeoFence Server extension
 
 !!! warning
-
     the plugins ``geofence-server`` and ``geofence`` should **not** be both installed at the same time.
     
     Please install either one according to your setup.
@@ -22,7 +21,6 @@ GeoFence Server extension is provided as two mutually exclusive packages, to be 
 - GeoFence Server H2: (Quick demo choice) contains all the libraries to run geofence-server, using as backend an embedded H2 DB.
 
   !!! warning
-
       this plugin will install a version of the [H2](http://www.h2database.com) library that **is not compatible** with other plugins using H2 (e.g. grib/netcdf).
     
       This package is purely for demo purposes, allowing you to run the GeoFence plugin without the need to configure an external DB backend.
@@ -78,11 +76,9 @@ geofenceEntityManagerFactory.jpaPropertyMap[hibernate.validationQuery]=SELECT 1
 ```
 
 !!! note
-
     The ``PostgisDialect`` is deprecated and should be replaced according to the PostgreSQL version used. Please use the proper dialect as reported in the [hibernate summary page](https://docs.jboss.org/hibernate/orm/5.6/javadocs/org/hibernate/spatial/dialect/postgis/package-summary.md)
 
 !!! note
-
     By default GeoFence will create the initial schema or update the DB schema by itself when needed. In case you want to manage the schema by yourself, you may want to use the SQL file located [here](https://github.com/geoserver/geofence/tree/main/doc/setup/sql)
     
     Also, you need to set this property to ``validate`` (default value is ``update``).

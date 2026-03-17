@@ -190,13 +190,8 @@ In this example we are going to
 
     "Access Token URI" = <https://accounts.google.com/o/oauth2/token> therefore we need to trust `https://accounts.google.com` or (`accounts.google.com:443`) "Check Token Endpoint URL" = <https://www.googleapis.com/oauth2/v1/tokeninfo> therefore we need to trust `https://www.googleapis.com` or (`www.googleapis.com:443`)
 
-    :::: note
-    ::: title
-    Note
-    :::
-
-    You will need to get and trust certificates from every different HTTPS URL used on OAuth2 Endpoints.
-    ::::
+    !!! note
+        You will need to get and trust certificates from every different HTTPS URL used on OAuth2 Endpoints.
 
 2.  Store SSL Certificates on local hard disk
 
@@ -229,7 +224,6 @@ In this example we are going to
     Copy-and-paste the two sections `-BEGIN CERTIFICATE-`, `-END CERTIFICATE-` and save them into two different `.cert` files
 
     !!! note
-
         `.cert` file are plain text files containing the ASCII characters included on the `-BEGIN CERTIFICATE-`, `-END CERTIFICATE-` sections
 
     `google.cert` (or whatever name you want with `.cert` extension)
@@ -291,7 +285,6 @@ In this example we are going to
 5.  Restart your server
 
 !!! note
-
     Here below you can find a bash script which simplifies the Keystore SSL Certificates importing. Use it at your convenience.
     
     ``` shell

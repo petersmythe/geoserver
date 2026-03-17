@@ -13,7 +13,6 @@ We will also assume that:
 - a user named `GISUSER` exists, has password `secret`, and does NOT belong to the `GISADMINGROUP` group.
 
 !!! note
-
     ADMINISTRATOR cannot be generally used as the admin group name with ActiveDirectory, because Administrator is the root user name in Windows environment.
 
 ## Configure the LDAP authentication provider

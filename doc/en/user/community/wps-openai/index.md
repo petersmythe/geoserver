@@ -14,13 +14,8 @@ The WPS OpenAI process provides the ability to generate CQL (Common Query Langua
 
 2.  Download the WPS OpenAI process extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
 
-    :::: warning
-    ::: title
-    Warning
-    :::
-
-    Make sure to match the version of the extension to the version of the GeoServer instance!
-    ::::
+    !!! warning
+        Make sure to match the version of the extension to the version of the GeoServer instance!
 
 3.  Extract the contents of the archive into the `WEB-INF/lib` directory of the GeoServer installation.
 
@@ -61,7 +56,6 @@ Each CQL object has the following fields:
 3.  geoJSON -- GeoJSON string of the filtered features
 
 !!! note
-
     The OpenAI API key must be configured in the GeoServer settings under the LLM (Large Language Model) metadata section. Keys are stored encrypted and decrypted at runtime. If the key is missing or invalid, the process will raise a WPSException.
 
 ## Accessing the WPS OpenAI Settings

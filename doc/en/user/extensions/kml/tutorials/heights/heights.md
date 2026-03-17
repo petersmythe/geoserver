@@ -5,7 +5,6 @@
 Height Templates in KML allow you to use an attribute of your data as the 'height' of features in Google Earth.
 
 !!! note
-
     This tutorial assumes that GeoServer is running on <http://localhost:8080>.
 
 ## Getting Started

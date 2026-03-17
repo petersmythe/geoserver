@@ -24,7 +24,6 @@ If the database contains also the OGC cross links, the Atom search outputs will 
 The OpenSearch protocol implementation relies on an extension of GeoTools `DataAccess` called `OpenSearchAccess`. At the time of writing a single implementation of such interface exists, called `JDBCOpenSearchAccess`, built and tested to work against a specific PostGIS database schema.
 
 !!! note
-
     The `JDBCOpenSearchAccess` is written in general enough terms that other databases should be usable as well, but it's likely some code improvements will be required to deal with certain databases naming restrictions (e.g., Oracle).
 
 In the future we hope to see other implementations as well, based on storage that might be more suitable for large scale search engine such as SOLR or ElasticSearch.

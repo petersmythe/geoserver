@@ -3,7 +3,6 @@
 This tutorial walks through the steps of publishing a GeoPackage with GeoServer.
 
 !!! note
-
     This tutorial assumes that GeoServer is running at `http://localhost:8080/geoserver`.
 
 ## Data preparation
@@ -18,7 +17,6 @@ First let's gather the data that we'll be publishing.
     - [populated places](https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-populated-places/)
 
 !!! note
-
     This **`data/ne/natural_earth.gpkg`** file has been processed from <https://www.naturalearthdata.com/downloads/> page, to download the original (much larger) file visit the above page and download [GeoPackage](https://naciscdn.org/naturalearth/packages/natural_earth_vector.gpkg.zip) link.
 
 ## Creating a new workspace
@@ -26,7 +24,6 @@ First let's gather the data that we'll be publishing.
 The next step is to create a workspace for the geopackage. A workspace is a folder used to group similar layers together.
 
 !!! note
-
     This step is optional if you'd like to use an existing workspace. Usually, a workspace is created for each project, which can include stores and layers that are related to each other.
 
 1.  In a web browser, navigate to `http://localhost:8080/geoserver`.
@@ -194,7 +191,6 @@ In order to verify that the `tutorial:countries` layer is published correctly, w
 1.  Navigate to the **Data > Layer Preview** page and find the `tutorial:countries` layer.
 
     !!! note
-
         Use the **Search** field with ``tutorial`` as shown to limit the number of layers to page through.
 
     ![](images/preview.png)

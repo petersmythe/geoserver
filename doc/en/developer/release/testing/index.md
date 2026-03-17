@@ -9,7 +9,6 @@ The binary release of GeoServer should be somehere around 45 - 46 megabytes.
 ## Demos
 
 !!! note
-
     These are no longer available in GeoServer 2.0, we'll probably reinstate them later
 
 To do the demo page, <http://localhost:8080/geoserver/demo.do>, and test all of the demos. This includes:
@@ -56,7 +55,6 @@ Go to the sample request page, <http://localhost:8080/geoserver/web/?wicket:book
 4.  Close Google Earth
 
     !!! warning
-
         If you do not shut down Google Earth it will cache information and throw off the next steps.
 
 5.  Go to the feature type editor page for the `topp:states` feature type

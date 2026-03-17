@@ -292,7 +292,6 @@ GeoServer improves this by allowing [CQL expressions<filter_ecql_reference>](#CQ
     ${<cql expression>}
 
 !!! note
-
     Currently `xlink:href` strings must be valid URLs *before* expression expansion is performed. This means that the URL cannot be completely provided by an expression. The `xlink:href` string must explicitly include at least the prefix `http://`
 
 The simplest form of expression is a single attribute name, such as `${STATE_ABBR}`. For example, suppose we want to display the flags of the US states using symbols whose file names match the state name. The following style specifies the flag symbols using a single rule:

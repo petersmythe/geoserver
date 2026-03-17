@@ -1,7 +1,6 @@
 # Overview
 
 !!! note
-
     The KML functionality described here is provided by the optional **KML extension**. Install the KML plugin before following these instructions.
 
 ## Why use GeoServer with Google Earth?

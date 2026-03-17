@@ -5,7 +5,6 @@ After enabling the Monitor Micrometer extension in the `monitor.properties` file
 The collected metrics are exposed through ``geoserver/rest/monitor/requests/metrics``, which provides an HTTP endpoint compatible with Prometheus's scraper.
 
 !!! note
-
     The metrics page will initially be empty if no requests have been made to GeoServer. To verify whether requests have been recorded by the monitoring system, you can [query the Monitor request data storage via HTTP](https://docs.geoserver.org/latest/en/user/extensions/monitoring/query.md#all-requests-as-html), accessible at ``geoserver/rest/monitor/requests.html``.
 
 ## Metrics Collected

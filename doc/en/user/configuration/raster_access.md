@@ -24,23 +24,18 @@ The imageMosaic reader may load, in parallel, different files that make up the m
 **Queue Type**---The executor service uses a [BlockingQueue](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/BlockingQueue.html/) to manage submitted tasks. Using an ``unbounded`` queue is recommended which allows to queue all the pending requests with no limits (Unbounded). With a ``direct`` type, incoming requests will be rejected when there are already ``maximumPoolSize`` busy threads.
 
 !!! note
-
     If a new task is submitted to the list of tasks to be executed, and less than ``corePoolSize`` threads are running, a new thread is created to handle the request. Incoming tasks are queued in case ``corePoolSize`` or more threads are running.
 
 !!! note
-
     If a request can't be queued or there are less than ``corePoolSize`` threads running, a new thread is created unless this would exceed ``maximumPoolSize``.
 
 !!! note
-
     If the pool currently has more than ``corePoolSize`` threads, excess threads will be terminated if they have been idle for more than the ``keepAliveTime``.
 
 !!! note
-
     If a new task is submitted to the list of tasks to be executed and there are more than ``corePoolSize`` but less than ``maximumPoolSize`` threads running, a new thread will be created only if the queue is full. This means that when using an ``Unbounded`` queue, no more threads than ``corePoolSize`` will be running and ``keepAliveTime`` has no influence.
 
 !!! note
-
     If ``corePoolSize`` and ``maximumPoolSize`` are the same, a fixed-size thread pool is used.
 
 # System Properties Configuration

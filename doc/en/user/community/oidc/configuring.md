@@ -43,7 +43,6 @@ The Redirect Base URI determines the public-facing URL that your IDP will redire
 3.  **Current HTTP request context** --- derived from the incoming request when no proxy base URL is configured.
 
 !!! note
-
     The Redirect Base URI is resolved **dynamically**. If the administrator changes the global Proxy Base URL or the `PROXY_BASE_URL` environment variable, the OIDC filter will pick up the change automatically without requiring a re-save of the filter configuration.
     
     If the Redirect Base URI is manually edited in the filter configuration form, the explicit value takes precedence for that session. After a GeoServer restart (or config reload from XML), dynamic resolution resumes.
@@ -88,5 +87,4 @@ Choose the appropriate behavior for your deployment:
 - **Dedicated IDP or security-sensitive environment** --- global logout is the safer default, ensuring no stale sessions remain.
 
 !!! tip
-
     The After-Logout Redirect URI must be registered with your IDP as a permitted post-logout redirect URI. Check your IDP's client configuration.

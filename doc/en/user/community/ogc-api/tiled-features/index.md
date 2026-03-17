@@ -24,7 +24,6 @@ This module is not required to use vector tiles, it's also possible to use OGC A
 3.  Extract the contents of the archive into the **`WEB-INF/lib`** directory in GeoServer.
 
     !!! warning
-
         Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example geoserver-{{ snapshot }}-ogcapi-tiled-features-plugin.zip above).
 
 4.  Restart GeoServer.

@@ -45,7 +45,6 @@ To add a GRIB data store the user must go to **Stores --> Add New Store --> GRIB
 ## Relationship with NetCDF
 
 !!! note
-
     Note that internally the GRIB extension uses the NetCDF reader, which supports also GRIB data. See also the [NetCDF](../netcdf/netcdf.md) documentation page for further information.
 
 ## Current limitations

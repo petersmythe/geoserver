@@ -5,7 +5,6 @@ GeoWebCache is automatically configured for use with GeoServer using the most co
 By default, all layers served by GeoServer will be known to GeoWebCache. See the [Tile Layers](webadmin/layers.md) page to test the configuration.
 
 !!! note
-
     Version 2.2.0 of GeoServer introduced changes to the configuration of the integrated GeoWebCache.
 
 ## Integrated user interface
@@ -42,7 +41,6 @@ GeoWebCache will automatically store cached tiles in a `gwc` directory inside yo
 Change the path inside `<param-value>` to the desired cache path (such as **`C:\temp`** or **`/tmp`**). Restart GeoServer when done.
 
 !!! note
-
     Make sure GeoServer has write access in this directory.
 
 ## GeoWebCache with multiple GeoServer instances

@@ -6,7 +6,6 @@ This section documents the REST endpoints for managing authentication filters in
 - Item endpoint: [/security/authfilters/{authfilter}](#security_authfilters_authfilter)
 
 !!! note
-
     Admin privileges are required. All examples below use Basic authentication.
 
 ## Content negotiation

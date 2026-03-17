@@ -97,5 +97,4 @@ You have three ways to provide it to GeoServer.
 3.  Put that xml file within the `GEOSERVER_DATA_DIR`.
 
 !!! note
-
     Note that for the 2nd and 3rd case, file name must be **cf-standard-name-table.xml**.

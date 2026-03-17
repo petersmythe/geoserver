@@ -368,16 +368,16 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 ### 3.4 Admonition and Note Fixes
 
-- [ ] 15. Fix admonition and note rendering issues
+- [x] 15. Fix admonition and note rendering issues
 
-  - [ ] 15.1 Create detection script for admonition issues
+  - [x] 15.1 Create detection script for admonition issues
     - Scan for RST note/warning blocks rendered as blockquotes
     - Identify visible admonition syntax markers ("!!! warning", etc.)
     - Detect admonitions in tables that break structure
     - Generate report with affected files and patterns
     - _Requirements: 1.14, 1.15, 1.16_
 
-  - [ ] 15.2 Implement automated fix for admonitions as blockquotes
+  - [x] 15.2 Implement automated fix for admonitions as blockquotes
     - Convert blockquote-rendered notes to MkDocs admonition syntax
     - Detect note/warning/caution patterns in blockquotes
     - Apply proper admonition formatting: !!! note, !!! warning, etc.
@@ -386,7 +386,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Intentional blockquotes remain unchanged_
     - _Requirements: 1.14, 2.14, 3.1_
 
-  - [ ] 15.3 Implement automated fix for visible admonition syntax
+  - [x] 15.3 Implement automated fix for visible admonition syntax
     - Remove or fix malformed admonition syntax markers
     - Ensure proper MkDocs admonition format (correct indentation, spacing)
     - Convert code-rendered admonitions to proper admonition blocks
@@ -395,7 +395,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted admonitions remain unchanged_
     - _Requirements: 1.15, 2.15, 3.1_
 
-  - [ ] 15.4 Implement automated fix for admonitions in tables
+  - [x] 15.4 Implement automated fix for admonitions in tables
     - Simplify admonitions in table cells to plain text or simple formatting
     - OR extract admonitions outside of tables with references
     - Ensure table structure remains intact
@@ -404,14 +404,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Tables without admonitions remain unchanged_
     - _Requirements: 1.16, 2.16, 3.3_
 
-  - [ ] 15.5 Verify admonition exploration test now passes
+  - [x] 15.5 Verify admonition exploration test now passes
     - **Property 1: Expected Behavior** - Admonitions Fixed
     - **IMPORTANT**: Re-run the SAME test from task 4
     - Run admonition exploration test from step 4
     - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
     - _Requirements: 2.14, 2.15, 2.16_
 
-  - [ ] 15.6 Verify preservation tests still pass
+  - [x] 15.6 Verify preservation tests still pass
     - **Property 2: Preservation** - No Regressions in Admonitions
     - **IMPORTANT**: Re-run preservation tests from tasks 10-11
     - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)

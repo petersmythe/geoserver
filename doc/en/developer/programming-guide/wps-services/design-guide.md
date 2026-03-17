@@ -11,7 +11,6 @@ In short, it provides a global vision of how the module fits together, leaving t
 ## General architecture
 
 !!! note
-
     We really need to publish the Javadocs somewhere so that this document can link to them
 
 The module is based on the usual GeoServer OWS framework application:
@@ -94,5 +93,4 @@ At the moment the WPS is pretty much bare bones protocol wise, it implements onl
 The `org.geoserver.wps.transmute` package is an earlier attempt at doing what PPIO is doing. It is attempting to also provide a custom schema for each type of input/output, using subsetted schemas that do only contain one type (e.g., GML Point) but that has to reference the full schema definition anyways.
 
 !!! note
-
     This package is a leftover, should be completely removed and replaced with PPIO usage instead. At the moment only the `DescribeProcess` code is using it.

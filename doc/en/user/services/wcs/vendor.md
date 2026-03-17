@@ -58,5 +58,4 @@ clip=srid=900913;POLYGON ((-1615028.3514525702 7475148.401208023, 3844409.956787
 When the WKT syntax is used, the default SRS matches the output coverage CRS (so it accounts for eventual reprojection in the request).
 
 !!! note
-
     The Axis order of WKT must be East/North regardless of WCS version.

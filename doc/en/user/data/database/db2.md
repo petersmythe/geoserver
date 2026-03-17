@@ -6,7 +6,6 @@ render_macros: true
 # Db2
 
 !!! note
-
     GeoServer does not come built-in with support for Db2; it must be installed through an extension. Proceed to [Installing the Db2 extension](#Db2_install) for installation details.
 
 The Db2 spatial support implements the OGC specification "Simple Features for SQL using types and functions" and the ISO "SQL/MM Part 3 Spatial" standard. When installing Db2 on Linux, Unix and Windows platforms, the "custom" option must be selected and the server spatial support included.
@@ -16,7 +15,6 @@ A free of charge copy of Db2 can be downloaded from <https://www.ibm.com/analyti
 ## Installing the Db2 extension {: #Db2_install }
 
 !!! warning
-
     Due to licensing requirements, not all files are included with the extension. To install Db2 support, it is necessary to download additional files. **Just installing the Db2 extension will have no effect.**
 
 ### GeoServer files
@@ -34,7 +32,6 @@ A free of charge copy of Db2 can be downloaded from <https://www.ibm.com/analyti
 3.  Extract the contents of the archive into the **`WEB-INF/lib`** directory in GeoServer.
 
     !!! warning
-
         Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example geoserver-{{ snapshot }}-db2-plugin.zip above).
 
 4.  Restart GeoServer.

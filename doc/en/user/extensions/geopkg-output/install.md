@@ -47,5 +47,4 @@ To verify that the extension was installed successfully:
     ```
 
 !!! note
-
     You can also verify installation by looking for `GeoPKG Output Extension` on the server's ``Module Status Page``.

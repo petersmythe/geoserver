@@ -20,8 +20,12 @@ WCS can perform the following operations:
 | [DescribeCoverage](#describecoverage) | Retrieves an XML document that fully describes the request coverages. |
 | [GetCoverage](#getcoverage) | Returns a coverage in a well-known format. Like a WMS GetMap request, but with several extensions to support the retrieval of coverages. |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     The following examples show the 1.1 protocol, the full specification for versions 1.0, 1.1 and 2.0 are available on the [OGC website](http://www.opengeospatial.org/standards/wcs)
 
 ### GetCapabilities {: #wCs_getcap }

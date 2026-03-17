@@ -6,7 +6,6 @@ render_macros: true
 # SingleStore
 
 !!! warning
-
     Currently the SingleStore extension is a community module. While still usable, do not expect the same reliability as with supported extensions.
 
 [SingleStore](https://www.singlestore.com) is an open source relational database with some [limited spatial functionality](https://docs.singlestore.com/cloud/developer-resources/functional-extensions/working-with-geospatial-features). In particular, it supports only `GEOGRAPHY` data types, does not support multipart geometries, and has a specialized `GEOGRAPHYPOINT` type that is used to store points with higher performance than the generic GEOGRAPHY type. Spatial functionality is limited to simple search operations, such as intersects, contains, and within distance.

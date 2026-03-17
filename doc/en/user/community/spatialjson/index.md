@@ -5,7 +5,6 @@ This module adds the SpatialJSON WFS output format. The SpatialJSON format is a 
 A service exception is thrown if the result contains complex features as the SpatialJSON format does not handle those.
 
 !!! note
-
     The SpatialJSON format is **not compatible** with GeoJSON. A SpatialJSON enabled reader is required to decode features transferred in SpatialJSON format.
 
 This module adds two additional WFS output formats for requesting simple features in SpatialJSON format:
@@ -14,7 +13,6 @@ This module adds two additional WFS output formats for requesting simple feature
 - `text/javascript; subtype=json/spatial` for requesting SpatialJSON as a JSONP request
 
 !!! warning
-
     At the time of writing, this format is still *work in progress* and changes may be applied in the future.
 
 <div class="grid cards" markdown>

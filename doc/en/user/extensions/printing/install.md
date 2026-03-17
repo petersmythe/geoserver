@@ -43,5 +43,4 @@ render_macros: true
     If you are running at a different host and port, you can download the file and modify it with your HTML editor of choice to use the proper URL.
 
     !!! warning
-
         This sample script points to development version of GeoExt. You can modify it for production use, but if you are going to do so you should also host your own, minified build of GeoExt and OpenLayers. The libraries used in the sample are subject to change without notice, so pages using them may change behavior without warning.

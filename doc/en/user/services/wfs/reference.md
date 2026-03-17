@@ -39,8 +39,12 @@ The following operations are available in **version 1.1.0 only**:
 |----|----|
 | [GetGMLObject](#getgmlobject) | Retrieves features and elements by ID from a WFS |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     In the examples that follow, the fictional URL `http://example.com/geoserver/wfs` is used for illustration. To test the examples, substitute the address of a valid WFS. Also, although the request would normally be defined on one line with no breaks, breaks are added for clarity in the examples provided.
 
 ### GetCapabilities {: #wfs_getcap }
@@ -274,7 +278,6 @@ More information on the syntax of transactions can be found in the [WFS specific
 ### GetGMLObject
 
 !!! note
-
     This operation is valid for **WFS version 1.1.0 only**.
 
 A **GetGMLObject** operation accepts the identifier of a GML object (feature or geometry) and returns that object. This operation is relevant only in situations that require [app-schema.complex-features](#app-schema.complex-features) by allowing clients to extract just a portion of the nested properties of a complex feature. As a result, this operation is not widely used by client applications.
@@ -282,7 +285,6 @@ A **GetGMLObject** operation accepts the identifier of a GML object (feature or 
 ### GetPropertyValue
 
 !!! note
-
     This operation is valid for **WFS version 2.0.0 only**.
 
 A **GetPropertyValue** operation retrieves the value of a feature property, or part of the value of a complex feature property, from a data source for a given set of features identified by a query.
@@ -315,7 +317,6 @@ To retrieve value for a different attribute, alter the `valueReference` paramete
 ### GetFeatureWithLock
 
 !!! note
-
     This operation is valid for **WFS version 2.0.0 only**.
 
 A **GetFeatureWithLock** operation is similar to a **GetFeature** operation, except that when the set of features are returned from the WFS server, the features are also locked in anticipation of a subsequent transaction operation.
@@ -338,7 +339,6 @@ To adjust the lock time, alter the `expiry` parameter.
 ### CreateStoredQuery
 
 !!! note
-
     This operation is valid for **WFS version 2.0.0 only**.
 
 A **CreateStoredQuery** operation creates a stored query on the WFS server. The definition of the stored query is encoded in the `StoredQueryDefinition` parameter and is given an ID for a reference.
@@ -374,7 +374,6 @@ This POST example creates a new stored query (called "myStoredQuery") that filte
 ### DropStoredQuery
 
 !!! note
-
     This operation is valid for **WFS version 2.0.0 only**.
 
 A **DropStoredQuery** operation drops a stored query previous created by a CreateStoredQuery operation. The request accepts the ID of the query to drop.
@@ -398,7 +397,6 @@ The same example in a POST request:
 ### ListStoredQueries
 
 !!! note
-
     This operation is valid for **WFS version 2.0.0 only**.
 
 A **ListStoredQueries** operation returns a list of the stored queries currently maintained by the WFS server.
@@ -423,7 +421,6 @@ The same example in a POST request:
 ### DescribeStoredQueries
 
 !!! note
-
     This operation is valid for **WFS version 2.0.0 only**.
 
 A **DescribeStoredQuery** operation returns detailed metadata about each stored query maintained by the WFS server. A description of an individual query may be requested by providing the ID of the specific query. If no ID is provided, all queries are described.

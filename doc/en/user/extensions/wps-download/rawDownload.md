@@ -504,7 +504,6 @@ Resampling the data to a different VerticalCRS as part of the Raster Download Pr
 ```
 
 !!! note
-
     An exception will be thrown when specifying a targetVerticalCRS but no source VerticalCRS has been assigned to the requested layer through the above setting.
 
 #### Custom VerticalCRS definitions and grid transformations
@@ -544,5 +543,4 @@ Custom Vertical Grid Shift file for the transformation between the above Vertica
     PARAMETER["Interpolation CRS code", 4312]]
 
 !!! note
-
     Only GeoTIFF vertical offset files are supported at the moment. Vertical resampling will access pixels from that GeoTIFF using tiled loading. Therefore, make sure that the grid file is not striped (a gdalinfo call reporting `Band 1 Block = NNN x 1` means a striped file. In that case, consider retiling it for better access before using it as a Vertical Offset File)

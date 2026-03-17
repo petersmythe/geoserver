@@ -1,7 +1,6 @@
 # Manual Release (Deprecated)
 
 !!! warning
-
     This release guide is deprecated and only kept currently for reference resources. See the [official release guide](index.md) for current practices.
 
 ## Before you start
@@ -134,7 +133,6 @@ to the SourceForge FRS server. Navigate to [Sourceforge](http://sourceforge.net/
 ### Mailing lists
 
 !!! note
-
     This announcement should be made for all releases, including betas and release candidates.
 
 Send an email to both the developers list and users list announcing the release. The message should be relatively short. The following is an example:
@@ -173,7 +171,6 @@ The GeoServer Team
 ### SourceForge
 
 !!! note
-
     This announcement should be made for all releases, including betas and release candidates.
 
 1.  Log in to [SourceForge](http://sourceforge.net/account/login.php).
@@ -189,11 +186,9 @@ The GeoServer Team
 ### GeoServer Blog
 
 !!! note
-
     This announcement should be made for all releases, including betas and release candidates.
 
 !!! note
-
     This step requires an account on <http://blog.geoserver.org>
 
 1.  Log into the [GeoServer Blog](http://blog.geoserver.org/wp-login.php).
@@ -205,11 +200,9 @@ The GeoServer Team
 ### SlashGeo
 
 !!! note
-
     This announcement should be made only for official releases. Not betas and release candidates.
 
 !!! note
-
     This step requires an account on <http://slashgeo.org>
 
 1.  Go to <http://slashgeo.org>, and log in, creating an account if necessary.
@@ -220,7 +213,6 @@ The GeoServer Team
 ### FreeGIS
 
 !!! note
-
     This announcement should be made only for official releases. Not betas and release candidates.
 
 Send an email to `bjoern dot broscheit at uni-osnabrueck dot de`. Example:
@@ -251,11 +243,9 @@ http://jira.codehaus.org/browse/GEOS/fixforversion/14502
 ### FreshMeat
 
 !!! note
-
     This announcement should be made only for official rel-eases. Not betas and release candidates.
 
 !!! note
-
     This step requires an account on <http://freshmeat.net/>
 
 1.  Go to <http://freshmeat.net/> and log in.
@@ -269,7 +259,6 @@ http://jira.codehaus.org/browse/GEOS/fixforversion/14502
 5.  Enter the version and choose the appropriate **Release focus**.
 
     !!! note
-
         The release focus is usually 4,5,6, or 7. Choose which ever is appropriate.
 
 6.  Enter a succinct description (less than 600 characters) of the **Changes**.

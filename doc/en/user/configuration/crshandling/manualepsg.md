@@ -1,7 +1,6 @@
 # Manually editing the EPSG database
 
 !!! warning
-
     These instructions are very advanced, and are here mainly for the curious who want to know details about the EPSG database subsystem.
 
 To define a custom projection, edit the EPSG.sql file, which is used to create the cached EPSG database.
@@ -47,7 +46,6 @@ To define a custom projection, edit the EPSG.sql file, which is used to create t
 - **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
 
 !!! note
-
     Observe the commas. If you enter a line that is at the end of an INSERT statement, the comma is omitted (make sure the row before that has a comma at the end). Otherwise, add a comma at the end of your entry.
 
 1.  After all edits, save the file and exit.

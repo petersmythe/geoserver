@@ -34,7 +34,6 @@ As an example, the password `geoserver` is digested to `digest1:YgaweuS60t+mJNob
 [Password-based encryption](http://www.javamex.com/tutorials/cryptography/password_based_encryption.shtml) (PBE) normally employs a user-supplied password to generate an encryption key. This scheme is reversible. A random salt described in the previous section is used.
 
 !!! note
-
     The system never uses passwords specified by users because these passwords tend to be weak. Passwords used for encryption are generated using a secure random generator and stored in the GeoServer key store. The number of possible passwords is 2\^260 .
 
 GeoServer supports two forms of PBE. **Weak PBE** (the GeoServer default) uses a basic encryption method that is relatively easy to crack. The encryption key is derived from the password using [MD5](http://en.wikipedia.org/wiki/Message_Digest_Algorithm_5) 1000 times iteratively. The encryption algorithm itself is [DES](http://en.wikipedia.org/wiki/Data_Encryption_Standard) (Data Encryption Standard). DES has an effective key length of 56 bits, which is not really a challenge for computer systems in these days.
@@ -71,7 +70,6 @@ It is also possible to set a **keystore password** for GeoServer. This password 
 By default, the keystore password is generated and stored in a file named `security/masterpw.info` using plain text. When upgrading from an existing GeoServer data directory (versions 2.1.x and lower), the algorithm attempts to figure out the password of a user with the role `ROLE_ADMINISTRATOR`. If such a password is found and the password length is 8 characters at minimum, GeoServer uses this password as keystore password. Again, the name of the chosen user is found in `security/masterpw.info`.
 
 !!! warning
-
     The file `security/masterpw.info` may be present from a GeoServer 2.27 or earlier update. This file is a security risk and shows up as a warning on the welcome page for administrators to address.
     
     The administrator should read this file, verify the [keystore password](../rest/security.md#rest_security_keystore), and then this file should be removed.
@@ -79,7 +77,6 @@ By default, the keystore password is generated and stored in a file named `secur
 Refer to [Keystore passwords](webadmin/passwords.md#security_webadmin_masterpasswordprovider) for information on how to change the keystore password.
 
 !!! note
-
     By default login to the Admin GUI and REST APIs using the Keystore Password is disabled.
     
     For more information see [Root account](root.md).

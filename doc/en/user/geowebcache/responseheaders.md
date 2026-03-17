@@ -11,7 +11,6 @@ The response headers can be determined via a utility such as [cURL](http://curl.
 ### Example
 
 !!! note
-
     For all cURL commands below, make sure to replace `>/dev/null` with `>nul` if you are running on Windows.
 
 This is a sample request and response using cURL:

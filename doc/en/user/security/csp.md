@@ -22,7 +22,6 @@ The default CSP configuration is intended to support many GeoServer use cases an
 The `'unsafe-inline'` and `'unsafe-eval'` sources will be added to the `script-src` directive only for specific requests that may require unsafe JavaScript.
 
 !!! note
-
     While the `'self'` script source should be sufficient to prevent most reflected cross-site scripting, it does leave the possibility of stored cross-site scripting by administrators with permissions to upload static web files. It is anticipated that future work will further restrict the default policy to completely disable JavaScript for most requests. See the [Serving Static Files](../tutorials/staticfiles.md) page for instructions to disable that feature if it is not needed.
 
 The default configuration may be updated as necessary by the GeoServer developers.
@@ -77,7 +76,6 @@ Use the **Allowed sources for remote web resources** text field to add sources t
 >     frame-ancestors 'self';
 
 !!! note
-
     The `geoserver.csp.remoteResources` system property will override this field if it has been set.
 
 Use the **Allowed form-action directives sources** text field to control the sources of the `form-action` directive. This is intended to make it easier for administrators to allow specific remote hosts to submit forms to. This can be useful for cases where form submissions may redirect the browser to a URL that does not exactly match the submitting page and can also help where GeoServer authentication is handled by an external service. Only trusted hosts should be added here to prevent cross-site scripting attacks from submitting sensitive data to an attacker-controlled site.
@@ -96,11 +94,9 @@ Use the **Allowed form-action directives sources** text field to control the sou
 >     frame-ancestors 'self';
 
 !!! note
-
     The `geoserver.csp.formAction` system property will override this field if it has been set.
 
 !!! warning
-
     The web interface will block setting this field to a value containing `'none'` in order to prevent an administrator from accidentally triggering a denial-of-service. If an administrator wants to disable all form submissions, the full CSP header value can be configured in a rule or the configuration file can be uploaded through the REST Resources API or modified manually in the data directory.
 
 Use the **Allowed frame-ancestors directive sources** text field to control the sources of the `frame-ancestors` directive. This is intended to make it easier for administrators to allow specific remote hosts to load GeoServer content in frames. Only trusted hosts should be added here to prevent clickjacking attacks.
@@ -119,11 +115,9 @@ Use the **Allowed frame-ancestors directive sources** text field to control the 
 >     frame-ancestors 'self' https://geoserver.org;
 
 !!! note
-
     The `geoserver.csp.frameAncestors` system property will override this field if it has been set.
 
 !!! note
-
     For the `form-action` and `frame-ancestors` text fields and system properties, `HIDE` is a special keyword that can be used to hide their respective directive from the CSP header. Also, `'self'` will be automatically added to the directive when a non-empty string is provided that is not `HIDE` and does not contain `'self'` or `'none'` (e.g., setting the value to `https://geoserver.org` will cause `'self' https://geoserver.org` to be used in the CSP).
 
 ### Configuring Policies
@@ -140,7 +134,6 @@ The button for adding policies can be found at the top of the **Policy List** ta
 - The **Enabled** checkbox will enable/disable the policy.
 
 !!! note
-
     After saving a policy, make sure to save/apply the configuration.
 
 ### Configuring Rules
@@ -159,7 +152,6 @@ The button for adding rules can be found at the top of the **Rule List** table a
 - The **Header Directives** text field contains the CSP directives to add to the header value when a request matches this rule's filter. (see [Header Directives](#security_csp_directives) below)
 
 !!! note
-
     After saving a rule, make sure to save the policy and then save/apply the configuration.
 
 ### Request Filters {: #security_csp_filters }
@@ -185,7 +177,6 @@ The filter contains a string of predicates concatenated with the string `AND` an
       PROP(GEOSERVER_CONSOLE_DISABLED,(?i)^(?!true$).*$)
 
   !!! note
-
       The `(?i)` at the beginning of the regular expression will use case-insensitive matching and enclosing the pattern inside of the `^$` characters will match the entire string. See the [Regular Expressions Tutorial](https://docs.oracle.com/javase/tutorial/essential/regex/) for more information about how to use Java regular expressions.
 
 Leaving the filter blank will cause this rule to match all requests and should only be used on the last rule in a policy since any additional rules would never be checked.
@@ -193,7 +184,6 @@ Leaving the filter blank will cause this rule to match all requests and should o
 ### Header Directives {: #security_csp_directives }
 
 !!! warning
-
     GeoServer gives administrators complete control over the CSP header directives and sources and does not attempt to parse or validate them so it is the administrator's responsibility to verify that the header is working as intended when modifying this field. See [System Administrator CSP Settings](#security_csp_references) for detailed information about valid Content Security Policy header directives and sources.
 
 Property keys can be used in the directives in the form `${key}` and they will be replaced with the property's value before being written to the header. Property keys must contain `GeoServer`, `GeoTools`, or `GeoWebCache` (case-insensitive) and property values must not contain special characters that are not allowed in valid CSP sources. Properties can be set either via Java system property, command line argument (-D), environment variable or web.xml init parameter. `geoserver.csp.remoteResources` and `geoserver.csp.frameAncestors` are special property keys that will use the value from their corresponding fields in the CSP configuration if they are not defined as properties.
@@ -201,7 +191,6 @@ Property keys can be used in the directives in the form `${key}` and they will b
 `proxy.base.url` is a special property key that can be used to add the proxy base URL into the header if the request was not sent through the proxy. It will automatically be injected into the form-action and all fetch directives with a `'self'` source when the **Inject proxy base URL into header** feature is enabled. Only the protocol, host and port of the proxy base URL will be added to the header. The `X-Forwarded-Proto`, `X-Forwarded-Host`, `X-Forwarded-Port`, `Forwarded` and `Host` HTTP request headers are used to determine whether or not the original request was sent to the proxy. Ensure that the proxy server is properly setting these headers if the proxy base URL is being included in requests through the proxy and that is not the desired behavior.
 
 !!! note
-
     Because the CSP is set so early in GeoServer's request handling, a current limitation is that it cannot use proxy base URLs that are built from the HTTP request headers.
 
 Leaving the directives blank will cause this rule to use the directives from the first preceding rule with directives. No header value will be assigned if all preceding rules have no directives. It does not matter whether a rule is enabled or disabled when searching preceding rules for directives. The keyword `NONE` can be used to specify that no header value will be assigned to requests that match this rule.
@@ -251,7 +240,6 @@ The [application property](../configuration/properties/index.md) `GEOSERVER_FEAT
 - `UNSAFE`: No restriction
 
   !!! warning
-
       Warning Allowing unsafe scripts could allow cross-site scripting attacks and should only be done if you can fully trust your template authors.
 
 For more information see [GetFeatureInfo Templates](../tutorials/GetFeatureInfo/html.md#tutorials_getfeatureinfo_html_csp) tutorial.

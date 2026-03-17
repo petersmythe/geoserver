@@ -50,6 +50,10 @@ The seeding options page contains various parameters for configuring the way tha
 | `Zoom stop` | Sets the maximum zoom level. Higher values indicate map views that are more zoomed in. When seeding, GeoWebCache will only create tiles for those zoom levels inclusive of this value and `Zoom start`. |
 | `Bounding box` | *(optional)* Allows seeding to occur over a specified extent, instead of the full extent of the layer. This is useful if your layer contains data over a large area, but the application will only request tiles from a subset of that area. The four boxes correspond to **Xmin**, **Ymin**, **Xmax**, and **Ymax**. |
 
-!!! warning
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! warning
     Currently there is no progress bar to inform you of the time required to perform the operation, nor is there any intelligent handling of disk space. In short, the process may take a *very* long time, and the cache may fill up your disk. You may wish to set a [Disk quota](../using.md#gwc_diskquota) before running a seed job.

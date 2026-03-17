@@ -69,7 +69,6 @@ feature-styles:
 ### Railroad pattern
 
 !!! info "Todo"
-
     Fix this example
 
 Many maps use a hatched pattern to represent railroads. This can be accomplished by using two line symbolizers, one solid and one dashed. Specifically, the `stroke-dasharray` property is used to create a dashed line of length 1 every 24 pixels:

@@ -173,7 +173,6 @@ hello/
 ![](firefox_helloworld.png)
 
 !!! note
-
     A common pitfall is to bundle an extension without the **`applicationContext.xml`** file. If you receive the error message "No service: ( hello )" this is potentially the case. To ensure the file is present inspect the contents of the hello jar present in the **`target`** directory of the hello module.
 
 ## Bundling with Web Module
@@ -203,7 +202,6 @@ An alternative to plugging into an existing installation is to build a complete 
 A GeoServer war including the hello extension should now be present in the **`target`** directory.
 
 !!! note
-
     To verify the plugin was bundled properly unpack **`geoserver.war`** and inspect the contents of the **`WEB-INF/lib`** directory and ensure the hello jar is present.
 
 ## Running from Source
@@ -245,5 +243,4 @@ During development the most convenient way to work with the extension is to run 
 2.  In the `web-app` module run the `Start.java` main class to start GeoServer.
 
 !!! note
-
     Ensure that the `web-app` module in eclipse depends on the newly imported `hello` module. This can be done by inspecting the `web-app` module properties and ensuring the `hello` module is a project dependency.

@@ -18,15 +18,12 @@ Set the following performance settings in the Java virtual machine (JVM) for you
 For more information about JVM configuration, see the article [Performance tuning garbage collection in Java](http://www.petefreitag.com/articles/gctuning/) and [The 4 Java Garbage Collectors](http://blog.takipi.com/garbage-collectors-serial-vs-parallel-vs-cms-vs-the-g1-and-whats-new-in-java-8/).
 
 !!! note
-
     You can only use one garbage collector at a time. Please refrain from combining garbage collectors at runtime.
 
 !!! note
-
     If you're serving just vector data, you'll be streaming, so having more memory won't increase performance. If you're serving coverages, however, image processing will use a tile cache and benefit from more memory. As an administrator you can configure the portion of memory available as a tile cache (see the Server Config page in the [Web administration interface](../webadmin/index.md) section) - for example to use `0.75` to allocate `75%` of the heap as a tile cache.
 
 !!! note
-
     You can try out memory settings on the command line to check settings/defaults prior to use.
     
     To check settings use `java -Xms128m -Xmx756m -XX:+PrintFlagsFinal -version | grep HeapSize`:
@@ -82,7 +79,6 @@ GeoServer provides a built-in configuration interface to enable CORS. This is th
 6.  Click **Save** at the bottom of the page.
 
 !!! warning
-
     GeoServer must be restarted for these changes to take effect.
 
 ### Manual Configuration (Tomcat only)

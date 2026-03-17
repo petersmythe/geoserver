@@ -47,7 +47,6 @@ This is a process very similar to creating a featuretype. More specifically, one
 6.  Use the **Layer Preview** to view the mosaic.
 
 !!! warning
-
     If the created layer appears to be all black, it may be that GeoServer has not found any acceptable granules in the provided index. It is also possible that the shapefile index is empty (no granules were found in the provided directory) or it might be that the granules\' paths in the shapefile index are not correct, which could happen if an existing index (using absolute paths) is moved to another place. If the shapefile index paths are not correct, then the DBF file can be opened and fixed with an editor. Alternately, you can delete the index and let GeoServer recreate it from the root directory.
 
 ## Configuration examples
@@ -100,7 +99,6 @@ In this way you have a clear distinction between the different intervals of the 
 ![](images/vito_config_1.png)
 
 !!! note
-
     The \"nodata\" on the sample mosaic is -9999. The default background value is for mosaics is 0.0.
 
 The result is the following:
@@ -164,7 +162,6 @@ The result is the following:
 *Basic configuration*
 
 !!! note
-
     Those ugly black areas are the result of applying the default mosaic parameters to a mosaic that does not entirely cover its bounding box. The areas within the BBOX that are not covered with data will default to a value of 0 on each band. Since this mosaic is RGB we can simply set the `OutputTransparentColor` to `0,0,0` in order to get transparent fills for the BBOX.
 
 The various parameters can be set as follows:
@@ -245,7 +242,6 @@ To update an ImageMosaic through the file system:
 *This mosaic contains 9 granules*
 
 !!! note
-
     Please see the REST section for information on [Uploading a new image mosaic](../../../rest/imagemosaic.md).
 
 ### Multi-resolution imagery with reprojection {%raw%}{#multi-crs-mosaic}{%endraw%}

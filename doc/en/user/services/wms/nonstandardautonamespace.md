@@ -11,11 +11,9 @@ CRS=AUTO:42003,1,-100,45
 ```
 
 !!! note
-
     in GeoServer 2.8.x AUTO and AUTO2 namespaces are treated identically.
 
 !!! note
-
     in GeoServer 2.8.x the factor parameter in the AUTO namespace is ignored. The BBOX parameter to GetMap must therefore be specified in metres.
 
 The WMS standard provide projections with IDs in the range 42001 to 42005.
@@ -35,6 +33,10 @@ GeoServer also supports some non-standard coordinate reference systems. These ar
 | 97001 | Gnomonic      |
 | 97002 | Stereographic |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     the auto stereographic projection uses a sphere. It does this by setting the semi minor axis to the same value as the semi major axis.

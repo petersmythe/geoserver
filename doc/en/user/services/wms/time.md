@@ -7,7 +7,6 @@ For example, you might have a single dataset with weather observations collected
 The attribute to be used in `TIME` requests can be set up through the GeoServer web interface by navigating to **Layers -> [specific layer] -> Dimensions tab**.
 
 !!! note
-
     Read more about how to [use the web interface to configure an attribute for TIME requests](../../data/webadmin/layers.md#data_webadmin_layers_edit_dimensions).
 
 ## Specifying a time
@@ -67,8 +66,12 @@ One end of the interval must be a time value, but the other may be a duration va
 | The entire day preceding December 25, 2010 | `P1D/2010-12-25T00:00:00.0Z` |
 | 36 hours preceding the current time        | `PT36H/PRESENT`              |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     The final example could be paired with the KML service to provide a <!-- BROKEN LINK: Kml Extension --> network link which is always updated with the last 36 hours of data.
 
 ## Reduced accuracy times
@@ -78,7 +81,6 @@ The WMS specification also allows time specifications to be truncated by omittin
 For example, if the time specification omits all fields except year, it identifies a range one year long starting at the beginning of that year.
 
 !!! note
-
     GeoServer implements this by adding the appropriate unit, then subtracting 1 millisecond. This avoids surprising results when using an interval that aligns with the actual sampling frequency of the data - for example, if yearly data is natively stored with dates like 2001-01-01T00:00:00.0Z, 2002-01-01T00:00:00Z, etc. then a request for 2001 would include the samples for both 2001 and 2002, which wouldn't be desired.
 
 | Description | Reduced Accuracy Time | Equivalent Range |
@@ -91,7 +93,6 @@ For example, if the time specification omits all fields except year, it identifi
 Reduced accuracy times are also allowed when specifying ranges. In this case, GeoServer effectively expands the start and end times as described above, and then includes any samples from after the beginning of the start interval and before the end of the end interval.
 
 !!! note
-
     Again, the ranges are inclusive.
 
 | Description | Reduced Accuracy Time | Equivalent Range |
@@ -99,8 +100,12 @@ Reduced accuracy times are also allowed when specifying ranges. In this case, Ge
 | The months of September through December 2002 | `2002-09/2002-12` | `2002-09-01T00:00:00.0Z/2002-12-31T23:59:59.999Z` |
 | 12PM through 6PM, December 25, 2010 | `2010-12-25T12/2010-12-25T18` | `2010-12-25T12:00:00.0Z/2010-12-25T18:59:59.999Z` |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     In the last example, note that the result may not be intuitive, as it includes all times from 6PM to 6:59PM.
 
 ## Specifying a list of times
@@ -110,7 +115,6 @@ GeoServer can also accept a list of discrete time values. This is useful for som
 The elements of a list are separated by commas.
 
 !!! note
-
     GeoServer currently does not support lists of ranges, so all list queries effectively have a resolution of 1 millisecond. If you use reduced accuracy notation when specifying a range, each range will be automatically converted to the instant at the beginning of the range.
 
 If the list is evenly spaced (for example, daily or hourly samples) then the list may be specified as a range, using a start time, end time, and period separated by slashes.
@@ -138,7 +142,6 @@ The Year/Month/Day group of values must be separated from the Hours/Minutes/Seco
 Fractional values are permitted, but only for the most specific value that is included.
 
 !!! note
-
     The period must divide evenly into the interval defined by the start/end times. So if the start/end times denote 12 hours, a period of 1 hour would be allowed, but a period of 5 hours would not.
 
 For example, the multiple representations listed below are all equivalent.
@@ -170,5 +173,4 @@ For example, the multiple representations listed below are all equivalent.
       P18M
 
   !!! note
-
       `P1.25Y3M` would not be acceptable, because fractional values are only permitted in the most specific value given, which in this case would be months.

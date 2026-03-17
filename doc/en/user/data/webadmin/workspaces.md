@@ -115,7 +115,6 @@ Other settings provide additional [Global Settings](../../configuration/globalse
       ${rootDirectory}/workspace/store[/<file>]
 
   !!! note
-
       This parameter is only used when the **Enabled** parameter of the *Settings* section is checked.
 
 ![](img/workspace_settings_other.png)
@@ -128,7 +127,6 @@ If this information is not provided the global settings will be used. For detail
 The Security tab allows to set data access rules at workspace level.
 
 !!! note
-
     For more information on data access rules, please see the section on [Data](../../security/webadmin/data.md).
 
 ![](img/data_workspaces_security_edit.png)
@@ -138,5 +136,4 @@ To create/edit the workspace's data access rules, check/uncheck checkboxes accor
 The configuration of services inside a workspace is normally allowed only to a full administrator. In order to allow a workspace administrator access to the workspace service configuration, one can set the `WORKSPACE_ADMIN_SERVICE_ACCESS` to true. Also See [Settings<application_properties>](#Settings<application_properties>)
 
 !!! note
-
     Some of the settings need to be managed with care as they can affect the performance and operations of the application.

@@ -18,11 +18,9 @@ GeoServer is packaged as a standalone Web Archive (**`geoserver.war`**) file for
 GeoServer is tested using Tomcat 11.0.x, and this is the recommended application server. Other application servers have been known to work, but are not tested regularly by community members.
 
 !!! note
-
     GeoServer 3 is compatible with Tomcat 11.0.x which provides Jakarta EE Servlet API 6.1.x and annotation processing.
 
 !!! note
-
     GeoServer 2 is compatible with Tomcat 9.x which provides the required Java Enterprise Edition Servlet API 4 and annotation processing.
 
 ## Installation
@@ -42,7 +40,6 @@ GeoServer is tested using Tomcat 11.0.x, and this is the recommended application
     {%raw%}{% include-markdown "./jdk-macos-guidance.txt" %}{%endraw%}
 
     !!! note
-
         For more information about Java and GeoServer compatibility, please see the section on [Java Considerations](../production/java.md).
 
 2.  Navigate to the [GeoServer Download page](https://geoserver.org/download).
@@ -67,7 +64,6 @@ GeoServer is tested using Tomcat 11.0.x, and this is the recommended application
 6.  Deploy the web archive as you would normally. Often, all that is necessary is to copy the **`geoserver.war`** file to the application server's **`webapps`** directory, and the application will be deployed by the application server.
 
     !!! note
-
         A restart of your application server may be necessary.
 
 ## Tomcat Hardening

@@ -10,7 +10,6 @@ QGIS style exporting abilities have been evolving over time, as a reference:
 For the export it is advised to use the **Save As** functionality available in the style dialog, as indicated below in this guide. Other plugins exist that streamline the export process, but they may ruin the style trying to adapt it to older GeoServer versions (e.g., translating it down to SLD 1.0 by simple text processing means), or rewrite it entirely.
 
 !!! warning
-
     Despite the progress in the last years, it is known that not all QGIS rendering options are supported by SLD and/or by GeoServer (e.g. shapeburst symbology), and that support for exporting some parts is simply missing (e.g.. expression based symbology is supported in SLD, but QGIS won't export it). If you are interested, both projects would welcome sponsoring to improve the situation.
 
 ## Exporting vector symbology
@@ -70,7 +69,6 @@ This is a step by step guide to style a GeoServer demo layer, `sfdem`.
 The following are a couple of examples on how to export raster layers\' symbology in QGIS and how to use the resulting SLD to style layers in GeoServer.
 
 !!! warning
-
     As mentioned above, this functionality has some limitations:
     
     - **Hillshading** vendor options are not fully supported by GeoServer so you can\'t choose the ``Band`` and the position of the sun (``Altitude`` and ``Azimuth``), the ``Multidirectional`` option is not supported too

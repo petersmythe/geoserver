@@ -69,7 +69,6 @@ s3://my-bucket/data/**/*.parquet
 ```
 
 !!! note
-
     For S3 URIs, it is strongly recommended to use the AWS credential chain authentication method described below rather than embedding credentials in the URI.
 
 ## S3 Authentication
@@ -123,7 +122,6 @@ You can specify which profile to use with the **AWS Profile** parameter. If not 
 ### Legacy URI-Based Authentication (Deprecated)
 
 !!! warning
-
     **Security Risk**: Embedding credentials directly in URIs is deprecated and strongly discouraged. Credentials in URIs can be exposed through:
     
     - GeoServer logs and error messages
@@ -236,7 +234,6 @@ The bucket name often hints at the region (`overturemaps-us-west-2`), but you ca
 - Try common regions: `us-east-1`, `us-west-2`, `eu-west-1`
 
 !!! tip
-
     **Always specify the AWS Region when accessing S3 data**, even if you think it might be auto-detected. This is especially important for:
     
     - Public buckets (like Overture Maps)

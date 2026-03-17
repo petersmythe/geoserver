@@ -23,7 +23,6 @@ Configuration targets three distinct environments:
   See [GeoServer Workspace Admin Guidance](#production_config_workspace_admin)
 
 !!! note
-
     Not all configuration options can be supplied using the Web administration interface. Some settings, such as the location of the [GeoServer Data Directory](../datadirectory/setting.md), may only be setup by a System Administrator.
 
 ## General Guidance
@@ -165,11 +164,9 @@ Module status information is available describing the operational environment.
 3.  In a production system, these should be set to `false` (or leave them undefined).
 
     !!! warning
-
         While this feature can help an administrator debug a GeoServer instance's configuration, environment variables can include sensitive information such as database passwords and API access keys/tokens, particularly when running in a containerised environment (such as Docker or Kubernetes) or with `ALLOW_ENV_PARAMETRIZATION=true`.
 
     !!! note
-
         Linux
     
         Linux administrators can get a list of all environment variables set at GeoServer startup with:
@@ -246,7 +243,6 @@ The above procedure could as well be applied to other pages of the web administr
 - **Demos** -> **WCS request builder** (path: **`/web/wicket/bookmarkable/org.geoserver.wcs.web.demo.WCSRequestBuilder`**)
 
 !!! warning
-
     Although disabling anonymous access to the layer preview page **MAY** prevent some unauthenticated users from accessing data with some simple clicks, this is **NOT** a security feature. In particular, since other more sophisticated users, having the ability to build OGC requests, **MAY** still access critical data through GeoServer's services, this is **NOT** a replacement for a well-designed security concept based on data-level or service-level security.
 
 ### X-Frame-Options Policy
@@ -261,11 +257,9 @@ If you wish to change this behavior you can do so through the following properti
 These properties can be set either via Java system property, command line argument (-D), environment variable or **`web.xml`** init parameter.
 
 !!! note
-
     The WMS GetMap OpenLayers output format uses iframes to display the WMS GetFeatureInfo output and this may not function properly if the policy is set to something other than `SAMEORIGIN`.
 
 !!! warning
-
     The `ALLOW-FROM` option is not supported by modern browsers and should only be used if you know that browsers interacting with your GeoServer will support it. Applying this policy will be treated as if no policy was set by browsers that do not support this (i.e., **NO** protection). The `Content-Security-Policy` header provides more robust support for allowing specific hosts to display frames from GeoServer using the `frame-ancestors` directive.
 
 If the `geoserver.csp.frameAncestors` system property has not been set, the `frame-ancestors` directive of the `Content-Security-Policy` header will default to being set based on the value of the `X-Frame-Options` header.
@@ -330,7 +324,6 @@ By default, FreeMarker's built-in automatic escaping functionality will be enabl
 This setting currently applies to the WMS GetFeatureInfo HTML output format and may be applied to other applicable GeoServer functionality in the future.
 
 !!! warning
-
     While enabling auto-escaping will prevent XSS using the default templates and mitigate many cases where template authors are not considering XSS in their template design, it does **NOT** completely prevent template authors from creating templates that allow XSS (whether this is intentional or not). Additional functionality may be added in the future to mitigate those potential XSS vulnerabilities.
 
 ### External Entities Resolution {: #production_config_external_entities }

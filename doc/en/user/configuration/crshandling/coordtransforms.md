@@ -19,7 +19,6 @@ Read more about the [Reprojection console](../demos/index.md#demos_reprojectionc
 GeoServer supports NTv2 and NADCON grid shift transforms. Grid files are not shipped out with GeoServer. They need to be downloaded, usually from your National Mapping Agency website.
 
 !!! warning
-
     Grid Shift files are only valid in the specific geographic domain for which they where made; trying to transform coordinates outside this domain will result in no trasformation at all. Make sure that the Grid Shift files are valid in the area you want to transform.
 
 1.  Search for the *Grid File Name(s)* int the tables below, which are extracted from EPSG version 11.0.31. If you need to use a Grid Shift transform not declared in EPSG, you will need to [Define a custom Coordinate Operation](#define-a-custom-coordinate-operation).
@@ -275,7 +274,6 @@ Each line in **`epsg_operations.properties`** will describe a coordinate operati
 Math transform is described in [Well-Known Text](http://www.geoapi.org/3.0/javadoc/org/opengis/referencing/doc-files/WKT.md) syntax. Parameter names and value ranges are described in the [EPSG Geodetic Parameter Registry](http://www.epsg-registry.org/).
 
 !!! note
-
     Use the [Reprojection Console](../demos/index.md#demos_reprojectionconsole) to learn from example and to test your custom definitions.
 
 ### Examples
@@ -344,7 +342,6 @@ In case you have defined a custom authority, you might want to define custom coo
 ```
 
 !!! note
-
     It's important to escape the colon ":" with a backslash "", to avoid confusing the property file parser. Failing to do so will make the parser interpret the authority name the key, and whatever is after the first colon as the value (which would make for an invalid WKT specification).
 
 The authority prefix can be omitted in case it's EPSG, allowing to mix custom CRSs and EPSG CRSs in the same configuration file.

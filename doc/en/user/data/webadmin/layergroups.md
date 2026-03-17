@@ -30,7 +30,6 @@ If a layer is included in any non *single* mode group, it will no longer be list
 To view or edit a layer group, click the layer group name. A layer group configuration page will be displayed. The initial fields allow you to configure the name, title, abstract, workspace, bounds, projection and mode of the layer group. To automatically set the bounding box, select the **Generate Bounds** button or the **Generate Bounds From CRS** button to use the bounds defined in the CRS (if available). You may also provide your own custom bounding box extents. To select an appropriate projection click the **Find** button.
 
 !!! note
-
     A layer group can contain layers with dissimilar bounds and projections. GeoServer automatically reprojects all layers to the projection of the layer group.
 
 The new **Enabled** checkbox, if disabled, will cause the layer group to just show up at configuration time (and in REST config), while the new **Advertised** checkbox, if unchecked, will make it to not be available in GetCapabilities request and in the layer preview. The behaviour of layer group regarding both checkboxes will not affect the behaviour of any of the layers being grouped, which will follow respectively that specified in the corresponding edit page.
@@ -72,13 +71,11 @@ You can view layer groups in the [Layer Preview](layerpreview.md) section of the
 *Openlayers preview of the layer group "tasmania"*
 
 !!! note
-
     By default, a layer group is queryable when at least a child layer is queryable. Uncheck "Queryable" box if you want to explicitly indicate that it is not queryable independently of how the child layers are configured.
 
 Security tab allows to set data access rules at layer group level.
 
 !!! note
-
     For more information on data access rules, please see the section on [Data](../../security/webadmin/data.md).
 
 ![](img/data_layergroups_security.png)
@@ -104,7 +101,6 @@ Once a style has been defined it will appear in the `GetCapabilities` document a
 The base configuration will be treated as the default Style of the Layer Group and used when either no style name is provided or the style name matches the default Layer Group Style name.
 
 !!! note
-
     The overall functionality is available only for Layer Group with mode SINGLE or OPAQUE. If a Layer Group is defined with another mode, the style name eventually present in a WMS operation will be ignored if not matching the default style name. Moreover the Layer Group Style section will not be available and the Style will not be advertised in the GetCapabilities response. This is due to the group internal structure appearing in the capabilities layer tree: only one list of sub-layers and sub-groups can be advertised.
 
 ## Add a Layer Group

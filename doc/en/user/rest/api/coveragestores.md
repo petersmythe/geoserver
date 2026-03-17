@@ -100,7 +100,6 @@ The `configure` parameter controls how the coverage store is configured upon fil
 The `coverageName` parameter specifies the name of the coverage within the coverage store. This parameter is only relevant if the `configure` parameter is not equal to "none". If not specified the resulting coverage will receive the same name as its containing coverage store.
 
 !!! note
-
     At present a one-to-one relationship exists between a coverage store and a coverage. However, there are plans to support multidimensional coverages, so this parameter may change.
 
 #### `recalculate` {: #rest_api_coveragestores_recalculate }

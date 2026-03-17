@@ -122,7 +122,6 @@ The **fill-color** property is used to provide the color used to draw the interi
     ```
 
     !!! note
-
         Technically the boundary of a polygon is a specific case of a LineString where the first and last vertex are the same, forming a closed LinearRing.
 
 4.  The effect of adding **fill-outline** is shown in the map preview:
@@ -167,7 +166,6 @@ The **fill-color** property is used to provide the color used to draw the interi
     ![image](../style/img/polygon_fill_5.png)
 
 !!! abstract "Instructor Notes"
-
     In this example we want to ensure readers know the key property for polygon data.
     
     It is also our first example of using opacity.
@@ -534,7 +532,6 @@ When working with labels a map can become busy very quickly, and difficult to re
 A thematic map (rather than focusing on representing the shape of the world) uses elements of style to illustrate differences in the data under study. This section is a little more advanced and we will take the time to look at the generated SLD file.
 
 !!! abstract "Instructor Notes"
-
     This instruction section follows our pattern with LineString. Building on the examples and exploring how selectors can be used.
     
     - For LineString we explored the use of @scale, in this section we are going to look at theming by attribute.
@@ -766,7 +763,6 @@ In a classroom setting you are encouraged to team up into groups, with each grou
 ### Explore Interval {: #mbstyle.polygon.q2 }
 
 !!! abstract "Instructor Notes"
-
     This section reviews use of the Symbology Encoding Categorize function for something else other than color. Goal is to have readers reach for SE Functions as often as selectors when styling.
     
     Additional exercise ideas:
@@ -812,7 +808,6 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_categorize.png)
 
     !!! note
-
         Answer [provided](#mbstyle.polygon.a2) at the end of the workbook.
 
 ### Challenge Halo {: #mbstyle.polygon.q4 }
@@ -824,7 +819,6 @@ In a classroom setting you are encouraged to team up into groups, with each grou
 2.  **Challenge:** Produce a map that uses a white halo around black text.
 
     !!! note
-
         Answer [provided](#mbstyle.polygon.a4) at the end of the workbook.
 
 ### Challenge Theming using Multiple Attributes {: #mbstyle.polygon.q5 }
@@ -836,7 +830,6 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_multitheme.png)
 
     !!! note
-
         Answer [provided](#mbstyle.polygon.a5) at the end of the workbook.
 
 ### Challenge Use of Z-Index {: #mbstyle.polygon.q6 }
@@ -848,5 +841,4 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_zorder.png)
 
     !!! note
-
         Answer [provided](#mbstyle.polygon.a6) at the end of the workbook.

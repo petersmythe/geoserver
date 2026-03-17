@@ -3,7 +3,6 @@
 The `keystore password` is used to encrypt the GeoServer key store and for an emergency login using the user `root`.
 
 !!! warning
-
     The use of HTTPS is recommended, otherwise all password are sent in plain text.
 
 ## `/security/masterpw[.<format>]`

@@ -90,6 +90,10 @@ Controls Web Map Tile Service settings for a given workspace.
 | PUT | Modify WMTS settings for workspace `ws` | 200 | XML,JSON |  |
 | DELETE | Delete WMTS settings for workspace `ws` | 200 |  |  |
 
-!!! info "Todo"
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! info "Todo"
     WPS?

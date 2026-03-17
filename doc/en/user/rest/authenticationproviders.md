@@ -42,7 +42,6 @@ All examples assume:
 Returns providers in the **current active order**.
 
 !!! abstract "curl (XML)"
-
     curl -u admin:•••• -H "Accept: application/xml" <http://localhost:8080/geoserver/rest/security/authproviders>
 
 **Response 200 (XML)**
@@ -59,7 +58,6 @@ Returns providers in the **current active order**.
 ```
 
 !!! abstract "curl (JSON)"
-
     curl -u admin:•••• -H "Accept: application/json" <http://localhost:8080/geoserver/rest/security/authproviders>
 
 **Response 200 (JSON)**
@@ -80,7 +78,6 @@ Returns providers in the **current active order**.
 ### Get a provider --- `GET /security/authproviders/{providerName}`
 
 !!! abstract "curl (XML)"
-
     curl -u admin:•••• -H "Accept: application/xml" <http://localhost:8080/geoserver/rest/security/authproviders/default>
 
 **Response 200 (XML)**
@@ -112,7 +109,6 @@ Status: `200`, `403`, `404`, `500`
 Optional `?position=N` (0-based) inserts the new provider at that index; omit to append.
 
 !!! abstract "curl (XML body)"
-
     ``` bash
     curl -u admin:•••• \
          -X POST \
@@ -129,7 +125,6 @@ Optional `?position=N` (0-based) inserts the new provider at that index; omit to
     ```
 
 !!! abstract "curl (JSON body --- bare)"
-
     ``` bash
     curl -u admin:•••• \
          -X POST \
@@ -140,7 +135,6 @@ Optional `?position=N` (0-based) inserts the new provider at that index; omit to
     ```
 
 !!! abstract "curl (JSON body --- envelope)"
-
     ``` bash
     curl -u admin:•••• \
          -X POST \
@@ -171,7 +165,6 @@ Rules recap:
 - `id` may be omitted (kept as is)
 
 !!! abstract "curl (XML body)"
-
     ``` bash
     curl -u admin:•••• \
          -X PUT \
@@ -188,7 +181,6 @@ Rules recap:
     ```
 
 !!! abstract "curl (JSON)"
-
     ``` bash
     curl -u admin:•••• \
          -X PUT \
@@ -209,7 +201,6 @@ Rules recap:
 Removes the provider **and** drops it from the active order.
 
 !!! abstract "curl"
-
     ``` bash
     curl -u admin:•••• \
          -X DELETE \
@@ -230,7 +221,6 @@ Send the **complete** list of provider names in the desired order:
 Only **PUT** is allowed.
 
 !!! abstract "curl (JSON)"
-
     ``` bash
     curl -u admin:•••• \
          -X PUT \
@@ -240,7 +230,6 @@ Only **PUT** is allowed.
     ```
 
 !!! abstract "curl (XML)"
-
     ``` bash
     curl -u admin:•••• \
          -X PUT \

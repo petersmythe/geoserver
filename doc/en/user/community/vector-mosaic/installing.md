@@ -20,7 +20,6 @@ To install the Vector Mosaic datastore:
 3.  Extract the contents of the archive into the **`WEB-INF/lib`** directory in GeoServer.
 
     !!! warning
-
         Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example geoserver-{{ snapshot }}-vector-mosaic-plugin.zip above).
 
 4.  Perform any configuration required by your servlet container, and then restart.

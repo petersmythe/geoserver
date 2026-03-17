@@ -3,7 +3,6 @@
 GeoServer supports access control at the service level, allowing for the locking down of service operations to only authenticated users who have been granted a particular role. There are two main categories of services in GeoServer. The first is [OWS services](../services/index.md) such as WMS and WFS. The second are RESTful services, such as the GeoServer [REST](../rest/index.md).
 
 !!! note
-
     Service-level security and [Layer security](layer.md) cannot be combined. For example, it is not possible to specify access to a specific OWS service only for one specific layer.
 
 ## OWS services
@@ -29,7 +28,6 @@ The parameters include:
 - `role[,role2,...]`---List of predefined role names
 
 !!! note
-
     It is important that roles specified are actually linked to a user, otherwise the whole service/operation will be accessible to no one except for the [Root account](root.md). However in some cases this may be the desired effect.
 
 The default service security configuration in GeoServer contains no rules and allows any anonymous user to access any operation of any service. The following are some examples of desired security restrictions and the corresponding rules.
@@ -73,7 +71,6 @@ The parameters include:
 - `role`---Name of a predefined role. The wildcard `*` is used to indicate all users, including anonymous users.
 
 !!! note
-
     - URI patterns should account for the first component of the rest path, usually `rest` or `api`
     - `method` and `role` lists should **not** contain any spaces
 

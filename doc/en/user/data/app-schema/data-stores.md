@@ -82,7 +82,6 @@ Example:
 ```
 
 !!! note
-
     PostGIS support is included in the main GeoServer bundle, so a separate plugin is not required.
 
 ## Oracle
@@ -124,7 +123,6 @@ Example:
 ```
 
 !!! note
-
     You must install the Oracle plugin to connect to Oracle Spatial databases.
 
 ## Shapefile
@@ -158,11 +156,9 @@ In this example, only the `url` parameter is required. The others are optional:
 ```
 
 !!! note
-
     The `url` in this case is an example of a Windows filesystem path translated to URL notation.
 
 !!! note
-
     Shapefile support is included in the main GeoServer bundle, so a separate plugin is not required.
 
 ## Property file
@@ -188,7 +184,6 @@ For example, the following data store is used to access property files in the sa
 A property file data store contains *all* the feature types stored in .properties files in the directory. For example, if the directory contained River.properties and station.properties, the data store would be able to serve them as the feature types `River` and `station`. Other file extensions are ignored.
 
 !!! note
-
     Property file support is included in the main GeoServer bundle, so a separate plugin is not required.
 
 ## JNDI
@@ -309,5 +304,4 @@ The data store configuration for a MongoDB data base will look like this:
 Check [MongoDB Tutorial](mongo-tutorial.md) for a more detailed description about how to use MongoDB with app-schema.
 
 !!! note
-
     You must install the MongoDB plugin to connect to MongoDB databases.

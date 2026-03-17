@@ -577,7 +577,6 @@ Finished early? Here are some opportunities to explore what we have learned, and
 In a classroom setting please divide the challenges between teams (this allows us to work through all the material in the time available).
 
 !!! abstract "Instructor Notes"
-
     As usual the Explore section invites readers to reapply the material covered in a slightly different context or dataset.
     
     The use of selectors using the roads **type** attribute provides this opportunity.
@@ -593,11 +592,9 @@ In a classroom setting please divide the challenges between teams (this allows u
     ![image](../style/img/line_type.png)
 
     !!! note
-
         The available values are 'Major Highway','Secondary Highway','Road' and 'Unknown'.
 
     !!! note
-
         Answer [provided](#mbstyle.line.a1) at the end of the workbook.
 
 ### Challenge One Rule Classification {: #mbstyle.line.q2 }
@@ -607,7 +604,6 @@ In a classroom setting please divide the challenges between teams (this allows u
 2.  **Challenge:** Create a new style and classify the roads based on their scale rank using expressions in a single rule instead of multiple rules with filters.
 
     !!! note
-
         Answer [provided](#mbstyle.line.a2) at the end of the workbook.
 
 ### Challenge Label Shields {: #mbstyle.line.q3 }
@@ -619,5 +615,4 @@ In a classroom setting please divide the challenges between teams (this allows u
     ![image](../style/img/line_shield.png)
 
     !!! note
-
         Answer [provided](#mbstyle.line.a3) at the end of the workbook.

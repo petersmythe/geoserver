@@ -65,11 +65,9 @@ The following request uploads an app-schema mapping file called `LandCoverVector
     200 OK
 
 !!! note
-
     This time the `configure` parameter is set to `none`, because we don't want to configure again the feature types, just replace their mapping configuration.
 
 !!! note
-
     If the set of feature types mapped in the new configuration file differs from the set of feature types mapped in the old one (either some are missing, or some are new, or both), the best way to proceed is to delete the data store and create it anew issuing another PUT request, [as shown above](#appschema_upload_create).
 
 ## Uploading multiple app-schema mapping files
@@ -77,11 +75,9 @@ The following request uploads an app-schema mapping file called `LandCoverVector
 **Create a new app-schema data store based on a complex mapping configuration split into multiple files, and show how to upload application schemas (i.e. XSD files) along with the mapping configuration.**
 
 !!! note
-
     In the previous example, we have seen how to create a new app-schema data store by uploading a mapping configuration stored in a single file; this time, things are more complicated, since the mappings have been spread over two configuration files: the main configuration file is called `geosciml.appschema` and contains the mappings for three feature types: `GeologicUnit`, `MappedFeature` and `GeologicEvent`; the second file is called `cgi_termvalue.xml` and contains the mappings for a single non-feature type, `CGI_TermValue`.
 
 !!! note
-
     As explained in the [REST API reference documentation for data stores](api/datastores.md#rest_api_datastores_file_put_appschema), when the mapping configuration is spread over multiple files, the extension of the main configuration file must be `.appschema`.
 
 The main configuration file includes the second file:
@@ -125,7 +121,6 @@ In this case, the main schema depends on several other schemas:
 They don't need to be listed in the `targetTypes` section of the mapping configuration, but they must be included in the ZIP archive that will be uploaded.
 
 !!! note
-
     The GeoSciML schemas listed above, as pretty much any application schema out there, reference the base GML schemas (notably, `http://schemas.opengis.net/gml/3.1.1/base/gml.xsd`) and a few other remotely hosted schemas (e.g. `http://www.geosciml.org/cgiutilities/1.0/xsd/cgiUtilities.xsd`). For the example to work in a completely offline environment, one would have to either replace all remote references with local ones, or pre-populate the app-schema cache with a copy of the remote schemas. [GeoServer's user manual](../data/app-schema/app-schema-resolution.md#app-schema-cache) contains more information on the app-schema cache.
 
 To summarize, we'll upload to GeoServer a ZIP archive with the following contents:
@@ -266,5 +261,4 @@ A new `geosciml` data store will be created with three feature types in it:
     200 OK
 
 !!! note
-
     This endpoins are only available when App-Schema and MongoDB modules are installed on Geoserver, and involved app-schema store have internal MongoDB stores in mappings definition.

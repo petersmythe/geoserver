@@ -28,7 +28,6 @@ This example shows how to add a custom projection in GeoServer.
           AUTHORITY["EPSG","100002"]]
 
     !!! note
-
         This code sample has been formatted for readability. The information will need to be provided on a single line instead, or with backslash characters at the end of every line (except the last one).
 
 2.  Go into the **`user_projections`** directory inside your data directory, and open the **`epsg.properties`** file. If this file doesn't exist, you can create it.
@@ -57,7 +56,6 @@ This example shows how to add a custom projection in GeoServer.
           AUTHORITY["EPSG","100002"]]
 
 !!! note
-
     Note the number that precedes the WKT. This will determine the EPSG code. So in this example, the EPSG code is 100002.
 
 1.  Save the file.
@@ -138,7 +136,6 @@ The process to declare a custom authority requires two steps:
         user_projections/MyCustomAuthority.properties
 
 !!! note
-
     Mind the capitalization of the file name, it must match the authority prefix declared in the `authorities.properties` file.
 
 The WKT definitions are still using a simple `code=WKT` pattern, for example `MyCustomAuthority.properties` will contain something like this:
@@ -147,7 +144,6 @@ The WKT definitions are still using a simple `code=WKT` pattern, for example `My
     2=GEOGCS["My Custom Geographic CRS", ... ]
 
 !!! note
-
     In order to support axis order flipping for different versions of WMS/WFS, the WKT definitions in the above file should be provided in the geographic axis order, e.g., latitude/longitude, and GeoServer will take care of generating the longitude/latitude version automatically.
 
 If the above files are modified at runtime, GeoServer won't notice the changes right away. To force a reload of the custom authority definitions, issue a "reset" of the configuration, e.g., from the UI go into "Server Status" and click on the "Reset" button.

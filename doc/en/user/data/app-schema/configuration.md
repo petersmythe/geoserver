@@ -15,7 +15,6 @@ The GeoServer data directory contains a folder called `workspaces` with the foll
                 - SomeFeatureType-mapping-file.xml
 
 !!! note
-
     The folder inside `workspaces` must have a name (the workspace name) that is the same as the namespace prefix (`gsml` in this example).
 
 ## Datastore

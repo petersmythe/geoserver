@@ -6,7 +6,6 @@ render_macros: true
 # Microsoft SQL Server and SQL Azure
 
 !!! note
-
     GeoServer does not come built-in with support for SQL Server; it must be installed through an extension. Proceed to [Installing the SQL Server extension](#sqlserver_install) for installation details.
 
 Microsoft's [SQL Server](http://www.microsoft.com/sqlserver) is a relational database with spatial functionality. SQL Azure is the database option provided in the Azure cloud solution which is in many respects similar to SQL Server.
@@ -25,7 +24,6 @@ The extension supports SQL Server 2019 - 2022 and SQL Azure, older versions down
     - {{ snapshot }} [geoserver-{{ snapshot }}-sqlserver-plugin.zip](https://build.geoserver.org/geoserver/main/ext-latest/geoserver-{{ snapshot }}-sqlserver-plugin.zip)
 
     !!! warning
-
         Ensure to match plugin (example {{ release }} above) version to the version of the GeoServer instance.
 
 2.  Extract the contents of the archive into the **`WEB-INF/lib`** directory of the GeoServer installation.

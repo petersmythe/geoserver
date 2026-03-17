@@ -8,7 +8,6 @@ This can be limited by setting up a sandbox, which will restrict the access to t
 - **Regular sandbox**: the GeoServer administrator can still access the full file system, but can set up a sandbox for each workspace, where the workspace administrators will be sandboxed into.
 
 !!! warning
-
     The importer extension allows upload of data and is currently unable to respect the file system sandbox, it uses a configurable location inside the data directory instead. Store creation will fail if the importer is used and the sandbox is set.
 
 ## Setting up a system sandbox

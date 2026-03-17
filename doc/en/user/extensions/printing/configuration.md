@@ -3,7 +3,6 @@
 The server side uses a [YAML](http://www.yaml.org/) configuration file that defines the page layouts and allowed values. This file is usually called config.yaml.
 
 !!! note
-
     Warranty disclaimer and license
     
     The authors provide these documents "AS-IS", without warranty of any kind either expressed or implied.

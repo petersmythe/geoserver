@@ -1,7 +1,6 @@
 # Quickstart
 
 !!! note
-
     If you are using GeoServer locally, the GEOSERVER_URL is usually `http://localhost:8080/geoserver`
 
 ## Viewing a layer

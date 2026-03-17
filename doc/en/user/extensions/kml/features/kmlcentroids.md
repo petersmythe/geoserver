@@ -35,5 +35,4 @@ When `KMCENTROID_CONTAIN` set to `true` a point within the polygon is chosen.
 ![](images/centroid_contain1.png)
 
 !!! note
-
     The sampling tequnique may not always be able to find a suitable point. You can try to increase the number of samples but it is still not a guarantee. Care also must be taken when increasing the sample count since it adds overhead to the overall KML rendering process.

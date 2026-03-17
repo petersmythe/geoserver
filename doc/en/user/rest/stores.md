@@ -28,11 +28,9 @@
           http://localhost:8080/geoserver/rest/workspaces/acme/datastores/roads.xml
 
 !!! abstract "python"
-
     TBD
 
 !!! abstract "java"
-
     TBD
 
 *Response*
@@ -63,7 +61,6 @@
 *Request*
 
 !!! note
-
     The XML response only provides details about the store itself, so you can use HTML to see the contents of the store.
 
 ``` console
@@ -74,7 +71,6 @@ curl -v -u admin:geoserver -XGET
 ## Listing featuretype details
 
 !!! note
-
     By default when a shapefile is uploaded, a featuretype is automatically created.
 
 *Request*
@@ -85,11 +81,9 @@ curl -v -u admin:geoserver -XGET
           http://localhost:8080/geoserver/rest/workspaces/acme/datastores/roads/featuretypes/roads.xml
 
 !!! abstract "python"
-
     TBD
 
 !!! abstract "java"
-
     TBD
 
 *Response*
@@ -120,7 +114,6 @@ curl -v -u admin:geoserver -XGET
           http://localhost:8080/geoserver/rest/workspaces/acme/datastores/rivers/external.shp
 
 !!! note
-
     The `external.shp` part of the request URI indicates that the file is coming from outside the catalog.
 
 *Response*
@@ -140,7 +133,6 @@ curl -v -u admin:geoserver -XGET
           "http://localhost:8080/geoserver/rest/workspaces/acme/datastores/shapefiles/external.shp?configure=all"
 
 !!! note
-
     The `configure=all` query string parameter sets each shapefile in the directory to be loaded and published.
 
 *Response*
@@ -152,7 +144,6 @@ curl -v -u admin:geoserver -XGET
 **Add an existing PostGIS database named "nyc" as a new store**
 
 !!! note
-
     This example assumes that a PostGIS database named `nyc` is present on the local system and is accessible by the user `bob`.
 
 Given the following content saved as **`nycDataStore.xml`**:
@@ -226,7 +217,6 @@ Given the following content saved as **`nycDataStore.xml`**:
 **Publish a new featuretype from a PostGIS store table "buildings"**
 
 !!! note
-
     This example assumes the table has already been created.
 
 *Request*
@@ -238,7 +228,6 @@ Given the following content saved as **`nycDataStore.xml`**:
           http://localhost:8080/geoserver/rest/workspaces/acme/datastores/nyc/featuretypes
 
 !!! note
-
     This layer can viewed with a WMS GetMap request:
     
         http://localhost:8080/geoserver/wms/reflect?layers=acme:buildings
@@ -280,7 +269,6 @@ Given the following content saved as **`annotations.xml`**:
           http://localhost:8080/geoserver/rest/workspaces/acme/datastores/nyc/featuretypes
 
 !!! note
-
     The NYC store must be a PostGIS store for this to succeed.
 
 *Response*

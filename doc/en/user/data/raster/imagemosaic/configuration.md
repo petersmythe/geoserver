@@ -24,7 +24,6 @@ If you already have these files generated, GeoServer will respect them and not g
 Within each store there are multiple configuration files that determine how the mosaic is rendered.
 
 !!! note
-
     The property file syntax uses a few reserved chars that need escaping in order to be used for keys or values. For example, the `#` character is used to comment out lines, in order to use it in values it needs to be escaped, like this: `\#`. The same applies to the `=` character, which is used to separate the property name from its value: it should be specified as `\=`. Finally, if there is a need to use the `` itself, it will have to be escaped as well: ``.
 
 ### Primary configuration file
@@ -71,11 +70,9 @@ By default the ImageMosaic index is specified by a shapefile, which is located a
 If needed, different storage can be used for the index - like a spatial DBMS, which is the preferred solution when you wish to share the ImageMosaic itself in a cluster of GeoServer instances. In this case the user must supply GeoServer with the proper connection parameters, which can be specified by using a **`datastore.properties`** file placed at the root of the ImageMosaic directory.
 
 !!! note
-
     A shapefile is created automagically if it does not exist or if there is no **`datastore.properties`** file.
 
 !!! warning
-
     At the time of writing the following spatial DBMS have been tested successfully: Oracle, PostgreSQL, H2, SQLServer.
 
 | ``Parameter``    | Mandatory | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -164,8 +161,12 @@ In addition to the required envelope and location attributes, the schema for the
 | PropertySelection | Optional | Boolean value to enable/disable selection of properties from the mosaic index. Default is `false`. When enabled, the ImageMosaic will try to load in memory only the properties needed to perform mosaicking. A typical use case is using a STAC API as a mosaic index, a STAC item typically contains many complex properties, and the API might be remote, reducing the payload improves both query time and memory usage. |
 | SkipExternalOverviews | Optional | Boolean value to specify whether to skip checks for external overviews. Default is `false`. When enabled, the ImageMosaic will not look for external overview files. |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     ImageMosaic also supports the `-Dit.geosolutions.skip.external.files.lookup` system property (default: false). This property is used as a fallback only when the `SkipExternalOverviews` setting is not specified in the mosaic configuration.
 
 Here is a sample **`indexer.properties`** file:
@@ -188,7 +189,6 @@ CoverageNameCollectorSPI=org.geotools.gce.imagemosaic.namecollector.FileNameRege
 This defines a regex-based name collector which extracts the coverage name from the prefix of the file name, so that an ImageMosaic with temperature_2015.tif, temperature_2016.tif, pressure_2015.tif, pressure_2016.tif will put temperature* granules on a `temperature` coverage and pressure* granules on a `pressure` coverage.
 
 !!! note
-
     The extraction works from the match of the full regular expression, if there are no capturing groups. If there are capturing groups instead, the match will be the concatenation of the text matched by all the capturing groups. This can be used to simplify the regular expression, for example, in order to match a string surrounded by underscores, `regex=.*_(\\w+)_.*` can be used instead of the more complex `regex=(?<\=_)\\w+(?\=_)` (using non capturing groups instead).
 
 ### Property collectors {: #imagemosaic_property_collectors }

@@ -67,7 +67,6 @@ The first thing to do is to configure the OAuth2 Provider and obtain `Client ID`
       ![](../img/google-credentials12.png)
 
     !!! tip
-
         The exact redirect URI that GeoServer will use is shown as the read-only **Redirect URI** field in the filter configuration form. In production, use that value instead of `localhost`. See [Redirect Base URI](../configuring.md#community_oidc_redirect_base_uri).
 
     - Record your Client ID and Client Secret, then press "Ok"

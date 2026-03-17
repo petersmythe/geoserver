@@ -217,7 +217,6 @@ Special function written for referential polymorphism and feature chaining, not 
       - has to be wrapped in single quotes if it's a literal
 
 !!! note
-
     * To get toXlinkHref function working, you need to declare xlink URI in the namespaces.
 
 ### Other functions
@@ -232,7 +231,6 @@ You can combine functions, but it might affect performance. E.g.:
         if_then_else(lessEqualThan(NUMERIC_VALUE, 1000), 'numeric_value', toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'))) 
 
 !!! note
-
     * When specifying a mappingName or targetElement as a value in functions, make sure they're enclosed in single quotes. * Some functions have no null checking, and will fail when they encounter null. * The workaround for this is to wrap the expression with isNull() function if null is known to exist in the data set.
 
 ## Null or missing value

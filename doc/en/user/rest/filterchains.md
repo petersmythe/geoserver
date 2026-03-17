@@ -7,7 +7,6 @@ render_macros: true
 The REST API allows you to list, create, upload, update, and delete filterChains in GeoServer.
 
 !!! note
-
     Read the [API reference for security/filterChains]({{ api_url }}/filterchains.yaml).
 
 ## View a Filter Chain
@@ -15,7 +14,6 @@ The REST API allows you to list, create, upload, update, and delete filterChains
 *Request*
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:9002/geoserver/rest/security/filterChains/web-test-1' --header 'Accept: application/xml' --header 'Authorization: XXXXXX'
 
 *Response*
@@ -49,7 +47,6 @@ The REST API allows you to list, create, upload, update, and delete filterChains
 ## Update a filter chain
 
 !!! abstract "curl"
-
     curl --location --request PUT 'http://localhost:9002/geoserver/rest/security/filterChains/web-test-2' --header 'Content-Type: application/xml' --header 'Authorization: XXXXXX' --data @request.xml
 
 ``` xml
@@ -83,7 +80,6 @@ The REST API allows you to list, create, upload, update, and delete filterChains
 *Response*
 
 !!! abstract "curl"
-
     curl --location --request DELETE 'http://localhost:9002/geoserver/rest/security/filterChains/web-test-2' --header 'Authorization: XXXXXX'
 
 *Response*
@@ -95,7 +91,6 @@ The REST API allows you to list, create, upload, update, and delete filterChains
 *Request*
 
 !!! abstract "curl"
-
     curl --location --request POST 'http://localhost:9002/geoserver/rest/security/filterChains' --header 'Content-Type: application/xml' --header 'Authorization: XXXXXX' --data @request.xml
 
 ``` xml
@@ -127,7 +122,6 @@ The REST API allows you to list, create, upload, update, and delete filterChains
 ## List all Authentication Filters
 
 !!! abstract "curl"
-
     curl --location 'http://localhost:9002/geoserver/rest/security/filterChains' --header 'Accept: application/xml' --header 'Authorization: XXXXXX'
 
 200 OK

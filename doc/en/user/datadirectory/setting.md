@@ -6,7 +6,6 @@ The `GEOSERVER_DATA_DIR` application property are determined using the first val
 - The page on [Application Properties](../configuration/properties/index.md) has instructions for defining `GEOSERVER_DATA_DIR` using a Java System Property or Web Application context parameters.
 
 !!! note
-
     If the location of the GeoServer data directory is not set explicitly, the directory `data_dir` under the root of the GeoServer installation will be chosen by default.
 
 ## Windows
@@ -98,7 +97,6 @@ When running a GeoServer WAR inside a servlet container, the data directory can 
 It is also possible to specify the data directory location with a Java system property. This method can be useful during upgrades, as it avoids the need to set the data directory after every upgrade.
 
 !!! warning
-
     Using a Java system property will typically set the property for all applications running in the servlet container, not just GeoServer.
 
 The method of setting the Java system property is dependent on the servlet container:

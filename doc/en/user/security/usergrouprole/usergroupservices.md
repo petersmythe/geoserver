@@ -23,7 +23,6 @@ Other services can be added to GeoServer, such as that provided by the [AuthKey<
 The XML user/group service persists the user/group database in an XML file. This is the default behavior in GeoServer. This service represents the user database as XML, and corresponds to this [XML schema](schemas/users.xsd).
 
 !!! note
-
     The XML user/group file, **`users.xml`**, is located in the GeoServer data directory, `security/usergroup/<name>/users.xml`, where `<name>` is the name of the user/group service.
 
 The following is the contents of `users.xml` that ships with the default GeoServer configuration:

@@ -79,13 +79,11 @@ The configuration file will be parsed by XStream framework to instantiate the ri
 **notificationConfiguration** -> **notificator** -> **geonodeEncoder** = this is a placeholder tag that must match with the alias used to map the implementation class for encoder. Based on custom implementation, additional attributes or child tags can be provided.
 
 !!! note
-
     is mandatory that one and only one implementation of encoder match with each alias.
 
 **notificationConfiguration** -> **notificator** -> **fanoutSender** = this is a placeholder tag that must match with the alias used to map the implementation class for sender. Based on custom implementation, additional attributes or child tags can be provided.
 
 !!! note
-
     is mandatory that one and only one implementation of sender match with each alias.
 
 For the case of *AMQP Fanout (RabbitMQ)* based sender implementation, the additional parameters are:

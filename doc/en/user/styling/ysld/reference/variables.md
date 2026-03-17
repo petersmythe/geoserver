@@ -51,7 +51,6 @@ define: &varblock
 **Any number of directives or blocks of directives can be inside the definition block.** Moreover, any type of directive that is valid YSLD can be included in the definition, so long as the content block could be substituted for the variable without modification.
 
 !!! note
-
     It is also possible to have nested definitions.
 
 The syntax for using this variable is to prepend the variable name with `<<: *`. For example:

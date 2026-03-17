@@ -67,7 +67,6 @@ The beginning sections---Basic Resource Info, Keywords and Metadata link---are a
   Names are required to be unique within a workspace. If two DataStores have resources with the same name, or when creating a new layer for an already-published resource, the layer name must be changed to avoid conflict.
 
   !!! note
-
       Each protocol has different restrictions on the layer names supported. WFS FeatureType uses the layer name as an XML Element Type: start with a letter or underscore, then continue with letters, digits, hyphens, underscores, and periods.
 
 - **Enabled**---A layer that is not enabled won't be available to any kind of request, it will just show up in the configuration (and in REST config)
@@ -197,7 +196,6 @@ Whenever an attribute has been edited with property values significantly differe
 *Attribute customization showing attribute details*
 
 !!! note
-
     When publishing a layer that will have [WFS capabilities](../../services/wfs/basics.md) enabled, it is essential to ensure any only [supported characters](https://www.w3.org/TR/REC-xml/#charsets) are present in the layer and attribute names.
 
 ### Restricting features showing up in the layer
@@ -208,7 +206,6 @@ By default GeoServer will publish all the features available in the layer. It is
 *Restrict the features on layer by CQL filter*
 
 !!! note
-
     It is recommended to use this setting for layers that are not meant to be edited. The filter is only applied to reads, if a WFS-T insert adds a feature not matching the filter, it will be added to the store anyways, but won't show up in any of the outputs.
 
 ## Edit Layer: Publishing
@@ -255,7 +252,6 @@ For greater control the **Service Settings** allows specific services to be disa
 - **Disabled Services**---Selects disabled services list for this layer.
 
   !!! note
-
       It is also possible to define by-default disabled services to all layers using the `org.geoserver.service.disabled` [application property](../../configuration/properties/index.md).
     
       ![](img/server_layer_defaults.png)
@@ -303,7 +299,6 @@ Sets the WFS specific publishing parameters.
 - **Activate complex to simple features conversion** - If the target output format does not handle complex features natively, this option enables the conversion of complex features to simple features, using only SF-0 (simple) attributes. This means that nested features and multiple-value attributes will be omitted from the final result, instead of throwing errors while generating the output. Output formats capable of handling complex features are not affected.
 
   !!! note
-
       It is also possible to override the `OtherSRS/OtherCRS` list configured in the WFS service, including overriding it with an empty list if need be. The input area will accept a comma separated list of EPSG codes:
     
       ![](img/data_layers_WFS.png)
@@ -363,7 +358,6 @@ For time dimension the value must be in ISO 8601 DateTime format `yyyy-MM-ddThh:
 Only for the "Reference value" strategy, it is also possible to use ranges or times and ranges of elevation, in the form `fromValue/toValue`. Only for the "Reference value" strategy, and limited to times, it's also possible to use relative times like `P1M/PRESENT`, but caution is given that the reference value is copied verbatim into the capabilities document, and as a result, not all clients might recognize that syntax.
 
 !!! note
-
     For more information on specifying times, please see the section on [Time Support in GeoServer WMS](../../services/wms/time.md).
 
 ### Vector Custom Dimensions
@@ -393,7 +387,6 @@ For each enabled dimension the following configuration options are available:
 ### Edit Layer: Security {: #layer_security }
 
 !!! note
-
     For more information on data access rules, please see the section on [Data](../../security/webadmin/data.md).
 
 Sets data access rules at layer level.

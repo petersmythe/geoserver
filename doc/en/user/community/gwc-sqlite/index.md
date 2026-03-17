@@ -16,7 +16,6 @@ When compared to the file blob store this store has two limitations:
 - **This store cannot be shared among several GeoWebCache instances.**
 
 !!! note
-
     If disk quota is activated the stored stats will not make much sense and will not reflect the actual disk usage, the size of the database files cannot be really controlled.
 
 Database files cannot be managed as simple files. When connections to a database are open the associated file should not be deleted, moved or switched or the database file may become corrupted. Databases files can also become fragmented after deleting an huge amount of data or after frequent inserts, updates or delete operations.
@@ -66,7 +65,6 @@ The terms that can be used in the file path template are:
 It is also possible to use parameters values, like *style* for example. If the parameter is not present *null* will be used.
 
 !!! note
-
     Characters `` and `/` can be used as path separator, they will be translated to the operating system specific one (`` for Linux and `/` for Windows). Any special char like ``, `/`, `:` or empty space used in a term value will be substituted with an underscore.
 
 ### MBTiles Metadata
@@ -109,7 +107,6 @@ The *poolSize* property allows to control the max number of open database files,
 Property *eagerDelete* controls how the truncate operation is performed (see section above). The property *useCreateTime* can be used to activate or deactivate the insertion of the tile creation time (see section above). Property *executorConcurrency* controls the parallelism used to perform certain operations, like the truncate operation for example. Property *mbtilesMetadataDirectory* defines the directory where the store will look for user provided MBTiles metadata.
 
 !!! note
-
     Since the connection pool eviction happens at a certain interval, it means that the number of files open concurrently can go above the threshold limit for a certain amount of time.
 
 ### Replace Operation
@@ -119,7 +116,6 @@ As said before, if the cache is running SQLite files cannot be simply switched, 
 A REST entry point for this operation is available, it will be possible to submit a ZIP file or a single file along with the request. The replace operation can also use an already present file or directory. When using a directory the directory structure will be used to find the destination of each file, all the paths will be assumed to be relative to the store root directory. This means that is possible to replace a store content with another store content (a seeded one for example) by zipping the second store root directory and send it as a replacement.
 
 !!! note
-
     When using a local directory or submitting a zip file all the file present in the directory will be considered.
 
 There is four ways to invoke this operation. Follows an example of all those variants invocations using CURL.

@@ -13,7 +13,6 @@ This single layer can be published multiple times, giving each published layer a
 1.  Download the SOLR extension from the [nightly GeoServer community module builds](https://build.geoserver.org/geoserver/main/community-latest/).
 
     !!! warning
-
         Make sure to match the version of the extension to the version of the GeoServer instance.
 
 2.  If GeoServer is running, stop it.
@@ -71,7 +70,6 @@ Once the table is filled with the all the required parameters, press the "Apply"
 The rest of the layer configuration works as normal, once all the fields are provided you'll be able to save and use the layer in WMS and WFS.
 
 !!! warning
-
     In order to compute the bounding box GeoServer will have to fetch all the geometries making up the layer out of SOLR, this operation might take some time, you're advised to manually entered the native bounding box when configuring a layer out of a large document set
 
 ## Custom `q` and `fq` parameters

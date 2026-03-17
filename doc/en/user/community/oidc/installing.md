@@ -20,7 +20,6 @@ To install the OIDC module:
 3.  Extract the contents of the archive into the **`WEB-INF/lib`** directory in GeoServer.
 
     !!! warning
-
         Verify that the version number in the filename corresponds to the version of GeoServer you are running (for example geoserver-{{ snapshot }}-loader-plugin.zip above).
 
 4.  Restart GeoServer.
@@ -59,7 +58,6 @@ docker run -it -p 9999:8080 \
 ```
 
 !!! note
-
     Setting `PROXY_BASE_URL` ensures that the OIDC [Redirect Base URI](configuring.md#community_oidc_redirect_base_uri) is correctly resolved to the external URL that users access. Without it, GeoServer may use an internal Docker hostname for the redirect URI, causing authentication to fail.
 
 If your OIDC IDP server (i.e. keycloak) is running on ``localhost``, then you should ensure that all requests to the IDP occur using the same hostname (this includes the local user's browser and GeoServer directly connecting to the IDP). If you are running your IDP from a real host, then you do NOT have to do this;

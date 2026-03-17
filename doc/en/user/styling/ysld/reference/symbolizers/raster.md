@@ -59,7 +59,6 @@ Additional "vendor options" properties for [Rendering Selection](../../../sld/ex
 ## Examples
 
 !!! info "Todo"
-
     All examples need figures
 
 ### Enhanced contrast

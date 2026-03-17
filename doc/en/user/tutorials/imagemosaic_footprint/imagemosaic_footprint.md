@@ -119,11 +119,9 @@ footprint_inset_type=full
 ```
 
 !!! note
-
     Remember that each modification on **footprints.properties** requires a *Reload* of GeoServer for seeing the results.
 
 !!! note
-
     When configuring this mosaic you must set the *declared CRS* field to "EPSG:4326".
 
 #### Footprint configured with *footprints.shp*
@@ -139,7 +137,6 @@ And now after setting **FootprintBehavior** to *Transparent* (no Inset is used) 
 #### Footprint configured with *footprints.properties*
 
 !!! note
-
     For testing this functionality the user must rename all the *footprints.xxx* files to *mask.xxx*.
 
 The result of setting **FootprintBehavior** to *Transparent*, Inset type to *border* and Inset value to 0.00001 is:
@@ -169,7 +166,6 @@ footprint_source=raster
 ```
 
 !!! note
-
     Raster masks do not support to control inset.
 
 Below you may find an example of configuring a Mosaic with Raster masks:

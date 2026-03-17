@@ -7,7 +7,6 @@ render_macros: true
 The REST API allows you to create and manage workspaces in GeoServer.
 
 !!! note
-
     Read the [API reference for /workspaces]({{ api_url }}/workspaces.yaml).
 
 ## Adding a new workspace
@@ -23,11 +22,9 @@ The REST API allows you to create and manage workspaces in GeoServer.
           http://localhost:8080/geoserver/rest/workspaces
 
 !!! abstract "python"
-
     TBD
 
 !!! abstract "java"
-
     TBD
 
 *Response*
@@ -35,7 +32,6 @@ The REST API allows you to create and manage workspaces in GeoServer.
     201 Created
 
 !!! note
-
     The `Location` response header specifies the location (URI) of the newly created workspace.
 
 ## Listing workspace details
@@ -50,15 +46,12 @@ The REST API allows you to create and manage workspaces in GeoServer.
           http://localhost:8080/geoserver/rest/workspaces/acme
 
 !!! note
-
     The `Accept` header is optional.
 
 !!! abstract "python"
-
     TBD
 
 !!! abstract "java"
-
     TBD
 
 *Response*

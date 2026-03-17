@@ -45,7 +45,6 @@ During metadata loading the helper merges these virtual links with the relations
 This section provides an example of configuring the `DataStore` with weather station information.
 
 !!! note
-
     This example is intended to be illustrative of a general approach, and does not reflect a formally defined schema or information model. Also, more complicated scenarios may require significantly more work.
 
 A diagram of the entities involved is shown below:

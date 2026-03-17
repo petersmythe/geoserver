@@ -91,7 +91,6 @@
     ![image](img/intellij_run_start_error.png){width="300px"}
 
 !!! note
-
     If there's a server running on localhost:8080 please check the [Eclipse Guide](../eclipse-guide/index.md) for instructions on changing to a different port.
 
 ### Run GeoServer with Extensions

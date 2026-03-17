@@ -300,7 +300,6 @@ If you are really stuck please consider the following challenge rather than skip
 1.  Return to the **Data** tab and use the **Compute** link to determine the minimum and maximum for the **scalerank** attribute.
 
     !!! abstract "Instructor Notes"
-
         Should be 2 and 9 respectively.
 
 ### Challenge Compare SLD Generation
@@ -330,7 +329,6 @@ Command line:
     **Challenge:** What differences can you spot?
 
     !!! abstract "Instructor Notes"
-
         Generated SLD does not include name or title information; this can of course be added. Please check the YSLD reference for details.
     
         The second difference is with the use of a fallback Mark when defining a PointSymbolizer.

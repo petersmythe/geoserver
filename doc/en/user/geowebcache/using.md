@@ -1,7 +1,6 @@
 # Using GeoWebCache
 
 !!! note
-
     For an more in-depth discussion of using GeoWebCache, please see the [GeoWebCache documentation](https://geowebcache.osgeo.org/docs/current/index.md).
 
 ## Direct integration with GeoServer WMS {: #gwc_directwms }
@@ -24,11 +23,9 @@ When this feature is enabled, GeoServer WMS will cache and retrieve tiles from G
 In addition, when direct integration is enabled, the WMS capabilities document (via a GetCapabilities request) will only return the WMS-C vendor-specific capabilities elements (such as a `<TileSet>` element for each cached layer/CRS/format combination) if `tiled=true` is appended to the GetCapabilities request.
 
 !!! note
-
     For more information on WMS-C, please see the [WMS Tiling Client Recommendation](http://wiki.osgeo.org/wiki/WMS_Tiling_Client_Recommendation) from OSGeo.
 
 !!! note
-
     GeoWebCache integration is not compatible with the OpenLayers-based [Layer Preview](../data/webadmin/layerpreview.md), as the preview does not usually align with the GeoWebCache layer gridset. This is because the OpenLayers application calculates the `tileorigin` based on the layer's bounding box, which is different from the gridset. It is, possible to create an OpenLayers application that caches tiles; just make sure that the `tileorigin` aligns with the gridset.
 
 ### Virtual services
@@ -64,7 +61,6 @@ If a request is made using any of the above parameters, the request will be pass
 When not using direct integration, you can point your client directly to GeoWebCache.
 
 !!! warning
-
     GeoWebCache is not a true WMS, and so the following is an oversimplification. If you encounter errors, see the [Troubleshooting](troubleshooting.md) page for help.
 
 To direct your client to GeoWebCache (and thus receive cached tiles) you need to change the WMS URL.

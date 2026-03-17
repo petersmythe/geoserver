@@ -139,7 +139,6 @@ File paths can also be checked:
     D:\\data\example.tiff
 
 !!! note
-
     The locations being checked are normalized making it easier to write RegEx patterns:
     
     - URLs paths have been normalized to remove any redundant `\.` or `\..` paths have been removed
@@ -147,7 +146,6 @@ File paths can also be checked:
     - File paths have been normalized using `/` on Linux and `` on Windows
 
 !!! note
-
     Web sites are available to help define a valid Java regular expression pattern. These tools can be used to interpret, explain and test regular expressions. For example:
     
     - <https://regex101.com/> (enable the Java 8 flavor)

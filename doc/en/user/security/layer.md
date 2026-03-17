@@ -3,13 +3,11 @@
 GeoServer allows access to be determined on a per-layer basis.
 
 !!! note
-
     Layer security and [Service Security](service.md) cannot be combined. For example, it is not possible to specify access to a specific OWS service, only for one specific layer.
 
 Providing access to layers is linked to [roles](usergrouprole/roles.md). Layers and roles are linked in a file called `layers.properties`, which is located in the `security` directory in your GeoServer data directory. The file contains the rules that control access to workspaces and layers.
 
 !!! note
-
     The default layers security configuration in GeoServer allows any anonymous user to read data from any layer but only allows admin users to edit data.
 
 ## Rules
@@ -41,7 +39,6 @@ The parameters include:
 - `role[,role2,...]` is the name(s) of predefined roles. The wildcard `*` is used to indicate the permission is applied to all users, including anonymous users.
 
 !!! note
-
     If a workspace or layer name is supposed to contain dots, they can be escaped using double backslashes (``). For example, if a layer is named `layer.with.dots` the following syntax for a rule may be used:
     
         topp.layer\\.with\\.dots.r=role[,role2,...]
@@ -103,7 +100,6 @@ Some notes on the above access modes:
 - As Admin mode only refers to the configuration of the layer, it is not required for any OGC service request.
 
 !!! note
-
     Currently, it is possible to assign Admin permission only to an entire workspace, and not to specific layers.
 
 ## Examples
@@ -129,8 +125,12 @@ The mapping of roles to permissions is as follows:
 | `STATE_LEGISLATORS` | (none) | r | r/w | r |
 | (All other users) | (none) | r | r | r |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     Specific workspace rule `private.*.r=TRUSTED_ROLE` will take precedence over the more generic rule `*.*.r=*`. When a request is made to read a layer `private:vulnerable_infrastructure` the most specific rule available is used to control access. In this case the workspace rule `private.*.r=TRUSTED_ROLE` is the most specific and only users that have TRUSTED_ROLE will be granted `r` access and be able to read the `private:vulnerable_infrastructure` layer. Other users that do not have the TRUSTED_ROLE will not be granted `r` access and will be unable to access the `private:vulnerable_infrastructure` layer.
 
 ### Locking down GeoServer
@@ -182,8 +182,12 @@ The mapping of roles to permissions is as follows:
 | `LAND_MANAGER_ROLE` | r | r/w | (none) | r | (none) |
 | (All other users) | (none) | r | (none) | r | (none) |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     The entry `topp.states.w=NO_ONE` is not required because this permission would be inherited from the global level (the entry `*.*.w=NO_ONE`).
 
 ### Invalid configuration

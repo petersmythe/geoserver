@@ -3,7 +3,6 @@
 The GeoWebCache REST API provides a RESTful interface through which users can add, modify, or remove cached layers.
 
 !!! note
-
     JSON is not recommended for managing layers as the JSON library has a number of issues with multi-valued properties such as "parameterFilters".
 
 ## Layer list
@@ -45,7 +44,6 @@ curl -u admin:geoserver "http://localhost:8080/geoserver/gwc/rest/layers"
 URL: `/gwc/rest/layers/<layer>.xml`
 
 !!! note
-
     JSON is not recommended for managing layers as the JSON library has a number of issues with multi-valued properties such as "parameterFilters".
 
 | Method | Action                                     | Return Code | Formats |
@@ -54,8 +52,12 @@ URL: `/gwc/rest/layers/<layer>.xml`
 | PUT    | Add a new layer, or modify an existing one | 200         | XML     |
 | DELETE | Delete the layer                           | 200         |         |
 
-!!! note
+<!-- admonition follows -->
 
+
+<!-- admonition follows -->
+
+!!! note
     There are two different representations for cached layers, depending on whether the tile layer is created from the GeoServer WMS layer or layer group (`GeoServerLayer`), or is configured in `geowebcache.xml` as a regular GWC layer (`wmsLayer`). A GeoServer layer is referred to as a `GeoServerLayer` and contains no image data source information such as origin WMS URL.
 
 **Representations**:
@@ -96,7 +98,6 @@ The **`layer.xml`** file is defined as the following:
 ```
 
 !!! note
-
     The addressed resource (`newlayer` in this example) must match the name of the layer in the XML representation.
 
 ### Adding a GeoServer layer
@@ -136,7 +137,6 @@ The **`poi.xml`** file is defined as the following:
 ```
 
 !!! note
-
     The addressed resource ( `tiger:poi` in this example) must match the name of the layer in the XML representation, as well as the name of an *existing* GeoServer layer or layer group.
 
 ### Modifying a layer
@@ -210,7 +210,6 @@ curl -v -u admin:geoserver -XDELETE "http://localhost:8080/geoserver/gwc/rest/la
 ```
 
 !!! note
-
     If trying to delete a tile layer that is an integrated `GeoServerLayer`, only the GeoWebCache layer definition will be deleted; the GeoServer definition is left untouched. To delete a layer in GeoServer, use the GeoServer [REST](../../rest/index.md) to manipulate GeoServer resources.
     
     On the other hand, deleting a GeoServer layer via the GeoServer REST API *will* automatically delete the associated tile layer.

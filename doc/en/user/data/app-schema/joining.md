@@ -92,5 +92,4 @@ Or, alternatively, by setting the value of the Java System Property "app-schema.
     java -DGEOSERVER_DATA_DIR=... -Dapp-schema.orUnionReplace=false Start
 
 !!! note
-
     This optimization will only be applied when a PostgresSQL database is being used.

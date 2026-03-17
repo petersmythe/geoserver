@@ -19,7 +19,6 @@ It is possible to modify this default behavior. Much like with featuretype title
 The resulting description will look like this:
 
 !!! warning
-
     Add SS: A custom description
 
 It is also possible to create one description template for all layers in a given namespace. To do this, create a `description.ftl` file as above, and save it here:

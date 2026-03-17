@@ -5,7 +5,6 @@
 The latest versions of SOLR can host most basic types of geometries (points, lines and polygons) as WKT and index them with a spatial index.
 
 !!! note
-
     GeoServer does not come built-in with support for SOLR; it must be installed through this community module.
 
 The GeoServer SOLR extension has been tested with SOLR version 4.8, 4.9, and 4.10.
