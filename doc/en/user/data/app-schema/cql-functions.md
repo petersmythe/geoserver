@@ -12,7 +12,7 @@ CQL functions enable data conversion and conditional behaviour to be specified i
 
 ## Vocabulary translation
 
-This section describes how to serve vocabulary translations using some function expressions in application schema mapping file. If you're not familiar with application schema mapping file, read [app-schema.mapping-file](#app-schema.mapping-file).
+This section describes how to serve vocabulary translations using some function expressions in application schema mapping file. If you're not familiar with application schema mapping file, read [app-schema.mapping-file](mapping-file.md).
 
 ### Recode
 
@@ -108,7 +108,7 @@ Mapping file:
 
 The above example will map **gml:name** to *urn:cgi:classifier:CGI:SimpleLithology:2008:gravel* if ABBREVIATION value is *1GRAV*.
 
-This example uses the `config.parent` predefined interpolation property to specify a vocabulary properties file in the same directory as the mapping file. See [app-schema.property-interpolation](#app-schema.property-interpolation) for details.
+This example uses the `config.parent` predefined interpolation property to specify a vocabulary properties file in the same directory as the mapping file. See [app-schema.property-interpolation](property-interpolation.md) for details.
 
 ## Geometry creation
 

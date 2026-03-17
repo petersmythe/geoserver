@@ -1,6 +1,6 @@
 # Data Access Integration
 
-This page assumes prior knowledge of [Application schemas](index.md) and [app-schema.feature-chaining](#app-schema.feature-chaining). To use feature chaining, the nested features can come from any complex feature data access, as long as:
+This page assumes prior knowledge of [Application schemas](index.md) and [app-schema.feature-chaining](feature-chaining.md). To use feature chaining, the nested features can come from any complex feature data access, as long as:
 
 - it has valid data referred by the "container" feature type,
 - the data access is registered via DataAccessRegistry,

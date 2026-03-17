@@ -2,7 +2,38 @@
 
 WMS vendor parameters are non-standard request parameters that are defined by an implementation to provide enhanced capabilities. GeoServer supports a variety of vendor-specific parameters.
 
-{%raw%}{% include-markdown "./../generic_vendor_options.txt" %}{%endraw%}
+### General Vendor Options
+
+These vendor options are available for all operations.
+
+#### content-disposition
+
+The `content-disposition` parameter directs how a web browser directed to handle returned content. The syntax is:
+
+```
+content-disposition=<disposition>
+```
+
+Where `content-disposition =attachment` to direct the browser to save the content to disk.
+
+Where `content-disposition=inline` asks the browser to display the content. Note this may present performance issues when asked to display very large content.
+
+#### filename
+
+The `filename` parameter provides a suggested filename when a browser saves a file (e.g. to Downloads folder). The syntax is:
+
+```
+filename=<file>
+
+```
+
+An example of filename use is:
+
+```
+filename=features.json
+```
+
+When service output is saved as a file, the vendor-option `filename` is used to provide the file name used.
 
 ## GetCapabilities Request
 
@@ -14,7 +45,7 @@ An example request:
 
 > <http://localhost:8080/geoserver/ows?service=wms&version=1.1.1&request=GetCapabilities&format=text/xml>
 
-``` xml
+`` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <WMT_MS_Capabilities version="1.1.1" updateSequence="247">
    <Capability>
@@ -23,7 +54,7 @@ An example request:
             <Format>application/vnd.ogc.wms_xml</Format>
             <Format>text/xml</Format>
 ...
-```
+``
 
 !!! note
     Currently this parameter can only be used to request WMS 1.1.1 capabilities documents encoded in `text/xml`, if used with other WMS versions or other formats it will have no effect. `application/json` is not supported.
@@ -32,9 +63,9 @@ An example request:
 
 The `namespace` parameter causes WMS [GetCapabilities](reference.md) responses to be filtered to only contain layers in a particular namespace. The syntax is:
 
-```properties
+``properties
 namespace=<namespace>
-```
+``
 
 where `<namespace>` is the namespace prefix.
 
@@ -58,13 +89,13 @@ An example request:
 
 An example with XML POST:
 
-``` xml
+`` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ogc:GetCapabilities xmlns:ogc="http://www.opengis.net/ows"
             xmlns:gml="http://www.opengis.net/gml"
    version="1.1.1" service="WMS" rootLayer="false">
 </ogc:GetCapabilities>
-```
+``
 
 ## GetMap Request
 
@@ -72,9 +103,9 @@ An example with XML POST:
 
 The `angle` parameter rotates the output map clockwise around its center. The syntax is:
 
-```properties
+``properties
 angle=<x>
-```
+``
 
 where `<x>` is the number of degrees to rotate by.
 
@@ -84,9 +115,9 @@ Map rotation is supported in all raster formats, PDF, and SVG when using the Bat
 
 The `buffer` parameter specifies the number of additional border pixels that are used in the `GetMap` and `GetFeatureInfo` operations. The syntax is:
 
-```properties
+``properties
 buffer=<bufferwidth>
-```
+``
 
 where `<bufferwidth>` is the width of the buffer in pixels.
 
@@ -112,15 +143,15 @@ The `cql_filter` parameter is similar to the standard `filter` parameter, but th
 
 If more than one layer is specified in the `layers` parameter, then a separate filter can be specified for each layer, separated by semicolons. The syntax is:
 
-```properties
+``properties
 cql_filter=filter1;filter2...
-```
+``
 
 An example of a simple CQL filter is:
 
-```properties
+``properties
 cql_filter=INTERSECTS(the_geom,%20POINT%20(-74.817265%2040.5296504))
-```
+``
 
 ### sortBy
 
@@ -145,9 +176,9 @@ Care should be taken when using it as it has different behavior for raster layer
 
 The `env` parameter defines the set of substitution values that can be used in SLD variable substitution. The syntax is:
 
-```properties
+``properties
 env=param1:value1;param2:value2;...
-```
+``
 
 See [Variable substitution in SLD](../../styling/sld/extensions/substitution.md) for more information.
 
@@ -155,9 +186,9 @@ See [Variable substitution in SLD](../../styling/sld/extensions/substitution.md)
 
 The `featureid` parameter filters by feature ID, a unique value given to all features. Multiple features can be selected by separating the featureids by comma, as in this example:
 
-```properties
+``properties
 featureid=states.1,states.45  
-```
+``
 
 ### filter
 
@@ -167,29 +198,29 @@ If more than one layer is specified in the `layers` parameter then a separate fi
 
 An example of an OGC filter encoded in a GET request is:
 
-```properties
+``properties
 filter=%3CFilter%20xmlns:gml=%22http://www.opengis.net/gml%22%3E%3CIntersects%3E%3CPropertyName%3Ethe_geom%3C/PropertyName%3E%3Cgml:Point%20srsName=%224326%22%3E%3Cgml:coordinates%3E-74.817265,40.5296504%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E
-```
+``
 
 An example of an OGC filter encoding standard 2.0 in a GET request is:
 
-```properties
+``properties
 filter=%3Cfes%3AFilter%20xmlns%3Axsi%3D%22http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema-instance%22%20xmlns%3Agml%3D%22http%3A%2F%2Fwww.opengis.net%2Fgml%2F3.2%22%20xmlns%3Awfs%3D%22http%3A%2F%2Fwww.opengis.net%2Fwfs%22%20xmlns%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%20xmlns%3Afes%3D%22http%3A%2F%2Fwww.opengis.net%2Ffes%2F2.0%22%3E%3Cfes%3APropertyIsLike%20wildCard%3D%22*%22%20singleChar%3D%22.%22%20escapeChar%3D%22!%22%3E%3Cfes%3AValueReference%3ENAME%3C%2Ffes%3AValueReference%3E%3Cfes%3ALiteral%3E*United*%3C%2Ffes%3ALiteral%3E%3C%2Ffes%3APropertyIsLike%3E%3C%2Ffes%3AFilter%3E  
-```
+``
 
 An example of an OGC filter encoding standard 2.0 :
 
-```xml
+``xml
 <fes:Filter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:wfs="http://www.opengis.net/wfs" xmlns="http://www.opengis.net/fes/2.0" xmlns:fes="http://www.opengis.net/fes/2.0"><fes:PropertyIsLike wildCard="*" singleChar="." escapeChar="!"><fes:ValueReference>NAME</fes:ValueReference><fes:Literal>*United*</fes:Literal></fes:PropertyIsLike></fes:Filter>
-```
+``
 
 ### format_options
 
 The `format_options` is a container for parameters that are format-specific. The syntax is:
 
-```properties
+``properties
 format_options=param1:value1;param2:value2;...
-```
+``
 
 The supported format options are:
 
@@ -223,9 +254,9 @@ Note that not all layers support paging. For a layer to be queried in this way, 
 
 It is sometimes advisable (for speed and bandwidth reasons) to downsample the bit depth of returned maps. The way to do this is to create an image with a limited color palette, and save it in the `palettes` directory inside your GeoServer Data Directory. It is then possible to specify the `palette` parameter of the form:
 
-```properties
+``properties
 palette=<image>
-```
+``
 
 where `<image>` is the filename of the palette image (without the extension). To force a web-safe palette, use the syntax `palette=safe`. For more information see the tutorial on [Paletted Images](../../tutorials/palettedimage/palettedimage.md)
 
@@ -233,15 +264,15 @@ where `<image>` is the filename of the palette image (without the extension). To
 
 The `propertyName` parameter specifies which properties are included in the response of the `GetFeatureInfo` operation. The syntax is the same as in the WFS `GetFeature` operation. For a request for a single layer the syntax is:
 
-```properties
+``properties
 propertyName=name1,...,nameN
-```
+``
 
 For multiple layers the syntax is:
 
-```properties
+``properties
 propertyName=(nameLayer11,...,nameLayer1N)...(name1LayerN,...,nameNLayerN)
-```
+``
 
 The nature of the properties depends on the layer type:
 
@@ -255,9 +286,9 @@ Meta-tiling prevents issues with duplicated labels when using a tiled client suc
 
 The `tiled` parameter controls whether meta-tiling is used. The syntax is:
 
-```properties
+``properties
 tiled=[true|false]
-```
+``
 
 To invoke meta-tiling use `tiled=true`.
 
@@ -265,9 +296,9 @@ To invoke meta-tiling use `tiled=true`.
 
 The `tilesorigin` parameter is also required for meta-tiling. The syntax is:
 
-```properties
+``properties
 tilesorigin=x,y
-```
+``
 
 where `x` and `y` are the coordinates of the lower left corner (the "origin") of the tile grid system.
 
@@ -280,7 +311,7 @@ In OpenLayers, a good way to specify the `tilesorigin` is to reference the map e
 
 The following code shows how to specify the meta-tiling parameters:
 
-``` javascript
+`` javascript
 var options = {
     ...
     maxExtent: new OpenLayers.Bounds(-180, -90, 180, 90),
@@ -302,7 +333,7 @@ tiled = new OpenLayers.Layer.WMS(
     },
     {buffer: 0} 
 );
-```
+``
 
 ### scaleMethod
 
@@ -324,9 +355,9 @@ The `interpolations` parameter allows choosing a specific resampling (interpolat
 
 If more than one layer is specified in the `layers` parameter, then a separate interpolation method can be specified for each layer, separated by commas. The syntax is:
 
-```properties
+``properties
 interpolations=method1,method2,... 
-```
+``
 
 method<n> values can be one of the following:
 
@@ -344,10 +375,10 @@ The `clip` parameter can be used to clip WMS response using a Polygon/Multipolyg
 
 Here are two examples, the first one using WKT, the second using EWKT:
 
-```properties
+``properties
 clip=POLYGON((-14.50804652396198 55.579454354599356,34.53492222603802 55.579454354599356,34.53492222603802 32.400173313532584,-14.50804652396198 32.400173313532584,-14.50804652396198 55.579454354599356))
 clip=srid=900913;POLYGON ((-1615028.3514525702 7475148.401208023, 3844409.956787858 7475148.401208023, 3844409.956787858 3815954.983140064, -1615028.3514525702 3815954.983140064, -1615028.3514525702 7475148.401208023))
-```
+``
 
 When the WKT syntax is used, the default SRS matches the GetMap SRS/CRS parameter.
 

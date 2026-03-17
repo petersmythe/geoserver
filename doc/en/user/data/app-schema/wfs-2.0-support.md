@@ -13,7 +13,7 @@ Failing to respect one of these rules will result in failure of resolve.
 
 ### Resolving and Feature Chaining By Reference
 
-The 'resolve' and 'resolveDepth' parameters may also be used in the case of [app-schema.feature-chaining-by-reference](#app-schema.feature-chaining-by-reference). In this case, no brute force will take place, but resolving will instruct App-Schema to do full feature chaining rather than inserting a reference. The URI will not be used to find the feature, but the feature chaining parameters specified in the mapping, as with normal feature chaining. Because of this, the parameter 'resolveTimeOut' will be ignored in this case.
+The 'resolve' and 'resolveDepth' parameters may also be used in the case of [app-schema.feature-chaining-by-reference](feature-chaining.md). In this case, no brute force will take place, but resolving will instruct App-Schema to do full feature chaining rather than inserting a reference. The URI will not be used to find the feature, but the feature chaining parameters specified in the mapping, as with normal feature chaining. Because of this, the parameter 'resolveTimeOut' will be ignored in this case.
 
 However, be aware that every feature can only appear once in a response. If resolving would break this rule, for example with circular references, the encoder will change the resolved feature back to an (internal) x-link reference.
 
@@ -28,7 +28,7 @@ Paging is now supported in App-Schema. There are a few exceptions:
 - Paging is only supported for data stores with JDBC back ends and will not work for data stores with property files. It has been tested with Oracle and PostGIS databases.
 - Paging with filters involving attributes that are mapped to functions will not be supported, as this cannot be translated into SQL.
 
-For more efficient SQL queries generation, please set `isDenormalised` to false where applicable (when a one to one database table is used). See [app-schema.mapping-file](#app-schema.mapping-file).
+For more efficient SQL queries generation, please set `isDenormalised` to false where applicable (when a one to one database table is used). See [app-schema.mapping-file](mapping-file.md).
 
 ## NumberMatched
 

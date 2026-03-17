@@ -106,7 +106,10 @@ The following properties allow for a graphic to be displayed in addition to just
 | `opacity` | No | Specifies the level of transparency for the graphic. Value of `0` means entirely transparent, while `1` means entirely opaque. | `1` |
 | `rotation` | No | Value (in degrees) or rotation of the graphic. Larger values increase counter-clockwise rotation. A value of `180` will make the graphic upside-down. | `0` |
 
-{%raw%}{% include-markdown "./include/symbol.md" %}{%endraw%}
+| Property | Required? | Description | Default value |
+|----|----|----|----|
+| `geometry` | No | Specifies which attribute to use as the geometry (see [Geometry transformations in SLD](../../../../sld/extensions/geometry-transformations.md)) | First geometry attribute found (usually named `geom` or `the_geom`) |
+| `uom` | No | Unit of measure used for width calculations (see [Specifying symbolizer sizes in ground units](../../../../sld/extensions/uom.md)) | pixel |
 
 The following properties are equivalent to SLD "vendor options".
 
@@ -134,7 +137,12 @@ The following properties are equivalent to SLD "vendor options".
 | `x-charSpacing` | No | The option controls the amount of space between characters, a positive value increases it, a negative value shrinks it (and will eventually make characters overlap). The value is specified in pixels. | 0 |
 | `x-wordSpacing` | No | The option controls the amount of space between words, for this option only positive values (or zero) are accepted. The value is specified in pixels. | 0 |
 
-{%raw%}{% include-markdown "./include/composite.md" %}{%endraw%}
+Additional "vendor options" properties for [Color compositing and color blending](../../../../sld/extensions/composite-blend/index.md):
+
+| Property | Required? | Description | Default value |
+|----|----|----|----|
+| `x-composite` | No | Allows for both alpha compositing and color blending options between symbolizers. | N/A |
+| `x-composite-base` | No | Allows the rendering engine to use the symbolizer mapping to define a "base" buffer for subsequent compositing and blending using `x-composite`. See the section on [Feature Styles](../../featurestyles.md#ysld_reference_featurestyles_composite) for more details. | `false` |
 
 ## Examples
 

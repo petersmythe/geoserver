@@ -1,6 +1,6 @@
 # Joining Support For Performance
 
-App-schema joining is a optional configuration parameter that tells app-schema to use a different implementation for [app-schema.feature-chaining](#app-schema.feature-chaining), which in many cases can improve performance considerably, by reducing the amount of SQL queries sent to the DBMS.
+App-schema joining is a optional configuration parameter that tells app-schema to use a different implementation for [app-schema.feature-chaining](feature-chaining.md), which in many cases can improve performance considerably, by reducing the amount of SQL queries sent to the DBMS.
 
 ## Conditions
 
@@ -14,11 +14,11 @@ Failing to comply with any of these three restrictions when turning on Joining w
 
 When using app-schema with Joining turned on, the following restrictions exist with respect to normal behaviour:
 
-- XPaths specified inside Filters do not support handling referenced features (see [app-schema.feature-chaining-by-reference](#app-schema.feature-chaining-by-reference)) as if they were actual nested features, i.e. XPaths can only be evaluated when they can be evaluated against the actual XML code produced by WFS according to the XPath standard.
+- XPaths specified inside Filters do not support handling referenced features (see [app-schema.feature-chaining-by-reference](feature-chaining.md)) as if they were actual nested features, i.e. XPaths can only be evaluated when they can be evaluated against the actual XML code produced by WFS according to the XPath standard.
 
 ## Configuration
 
-Joining is turned on by default. It is disabled by adding this simple line to your app-schema.properties file (see [app-schema.property-interpolation](#app-schema.property-interpolation)) :
+Joining is turned on by default. It is disabled by adding this simple line to your app-schema.properties file (see [app-schema.property-interpolation](property-interpolation.md)) :
 
     app-schema.joining = false
 
@@ -43,13 +43,13 @@ Typical curves of response time for configurations with and without joining agai
 
 In the default implementation, response time increases rapidly with respect to the amount of produced features. This is because feature chaining is implemented by sending multiple SQL requests to the DBMS per feature, so the amount of requests increases with the amount of features produced. When Joining is turned on, response time will be almost constant with respect to the number of features. This is because in this implementation a small amount of larger queries is sent to the DBMS, independent of the amount of features produced. In summary, difference in performance becomes greater as the amount of features requested gets bigger. General performance of joining will be dependant on database and mapping design (see above) and database size.
 
-Using joining is strongly recommended when a large number of features need to be produced, for example when producing maps with WMS (see [app-schema.wms-support](#app-schema.wms-support)).
+Using joining is strongly recommended when a large number of features need to be produced, for example when producing maps with WMS (see [app-schema.wms-support](#app-schema-wms-support)).
 
 Optimising the performance of the database will maximise the benefit of using joining, including for small queries.
 
 ## Native Encoding of Filters on Nested Attributes
 
-When App-Schema Joining is active, filters operating on nested attributes (i.e. attributes of features that are joined to the queried type via [app-schema.feature-chaining](#app-schema.feature-chaining)) are translated to SQL and executed directly in the database backend, rather than being evaluated in memory after all features have been loaded (which was standard behavior in earlier versions of GeoServer). Native encoding can yield significant performance improvements, especially when the total number of features in the database is high (several thousands or more), but only a few of them would satisfy the filter.
+When App-Schema Joining is active, filters operating on nested attributes (i.e. attributes of features that are joined to the queried type via [app-schema.feature-chaining](feature-chaining.md)) are translated to SQL and executed directly in the database backend, rather than being evaluated in memory after all features have been loaded (which was standard behavior in earlier versions of GeoServer). Native encoding can yield significant performance improvements, especially when the total number of features in the database is high (several thousands or more), but only a few of them would satisfy the filter.
 
 There are, however, a few limitations in the current implementation:
 

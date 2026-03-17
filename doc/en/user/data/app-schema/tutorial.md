@@ -128,7 +128,7 @@ For this example, each feature type uses an identical source data store configur
  </sourceDataStores>
 ```
 
-See [app-schema.data-stores](#app-schema.data-stores) for a description of how to use other types of data stores such as databases.
+See [app-schema.data-stores](data-stores.md) for a description of how to use other types of data stores such as databases.
 
 ### Target types
 

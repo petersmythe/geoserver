@@ -32,7 +32,13 @@ This example shows a polygon filled in blue.
 [Download the "Simple polygon" YSLD](artifacts/polygon_simplepolygon.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_simplepolygon.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Simple polygon'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        fill-color: '#000080'
 ```
 
 ### Details
@@ -55,7 +61,15 @@ This example adds a 2 pixel white stroke to the [Simple polygon](#ysld_cookbook_
 [Download the "Simple polygon with stroke" YSLD](artifacts/polygon_simplepolygonwithstroke.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_simplepolygonwithstroke.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Simple polygon with stroke'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        stroke-color: '#FFFFFF'
+        stroke-width: 2
+        fill-color: '#000080'
 ```
 
 ### Details
@@ -75,7 +89,16 @@ This example builds on the [Simple polygon with stroke](#ysld_cookbook_polygons_
 [Download the "Transparent polygon" YSLD](artifacts/polygon_transparentpolygon.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_transparentpolygon.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Transparent polygon'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        stroke-color: '#FFFFFF'
+        stroke-width: 2
+        fill-color: '#000080'
+        fill-opacity: 0.5
 ```
 
 ### Details
@@ -95,7 +118,19 @@ This example fills the polygons with a tiled graphic.
 [Download the "Graphic fill" YSLD](artifacts/polygon_graphicfill.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_graphicfill.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Graphic fill'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        fill-color: '#808080'
+        fill-graphic:
+          size: 93
+          symbols:
+          - external:
+              url: colorblocks.png
+              format: image/png
 ```
 
 ### Details
@@ -119,7 +154,20 @@ This example fills the polygons with a hatching pattern.
 [Download the "Hatching fill" YSLD](artifacts/polygon_hatchingfill.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_hatchingfill.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Hatching fill'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        fill-color: '#808080'
+        fill-graphic:
+          size: 16
+          symbols:
+          - mark:
+              shape: shape://times
+              stroke-color: '#990099'
+              stroke-width: 1
 ```
 
 ### Details
@@ -139,7 +187,18 @@ This example shows a text label on the polygon. In the absence of any other cust
 [Download the "Polygon with default label" YSLD](artifacts/polygon_polygonwithdefaultlabel.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_polygonwithdefaultlabel.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Polygon with default label'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        stroke-color: '#FFFFFF'
+        stroke-width: 2
+        fill-color: '#40FF40'
+    - text:
+        label: ${name}
+        placement: point
 ```
 
 ### Details
@@ -159,7 +218,22 @@ This example alters the look of the [Polygon with default label](#ysld_cookbook_
 [Download the "Label halo" YSLD](artifacts/polygon_labelhalo.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_labelhalo.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Label halo'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        stroke-color: '#FFFFFF'
+        stroke-width: 2
+        fill-color: '#40FF40'
+    - text:
+        label: ${name}
+        halo:
+          fill-color: '#FFFFFF'
+          radius: 3
+        placement:
+          type: point
 ```
 
 ### Details
@@ -179,7 +253,26 @@ This example improves the label style from the [Polygon with default label](#ysl
 [Download the "Polygon with styled label" YSLD](artifacts/polygon_polygonwithstyledlabel.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_polygonwithstyledlabel.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Polygon with styled label'
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - polygon:
+        stroke-color: '#FFFFFF'
+        stroke-width: 2
+        fill-color: '#40FF40'
+    - text:
+        label: ${name}
+        fill-color: '#000000'
+        font-family: Arial
+        font-size: 11
+        font-style: normal
+        font-weight: bold
+        placement: point
+        anchor: [0.5,0.5]
+        x-autoWrap: 60
+        x-maxDisplacement: 150
 ```
 
 ### Details
@@ -203,7 +296,28 @@ This example styles the polygons differently based on the "pop" (Population) att
 [Download the "Attribute-based polygon" YSLD](artifacts/polygon_attributebasedpolygon.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_attributebasedpolygon.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Attribute-based polygon'
+feature-styles:
+- name: name
+  rules:
+  - name: SmallPop
+    title: Less Than 200,000
+    filter: ${pop < '200000'}
+    symbolizers:
+    - polygon:
+        fill-color: '#66FF66'
+  - name: MediumPop
+    title: 200,000 to 500,000
+    filter: ${pop >= '200000' AND pop < '500000'}
+    symbolizers:
+    - polygon:
+        fill-color: '#33CC33'
+  - name: LargePop
+    title: ${Greater Than 500,000}
+    filter: pop > '500000'
+    symbolizers:
+    - polygon:
+        fill-color: '#009900'
 ```
 
 ### Details
@@ -250,7 +364,40 @@ This example alters the style of the polygon at different zoom levels.
 [Download the "Zoom-based polygon" YSLD](artifacts/polygon_zoombasedpolygon.ysld)
 
 ```yaml
-{%raw%}{% include "./artifacts/polygon_zoombasedpolygon.ysld" %}{%endraw%}
+title: 'YSLD Cook Book: Zoom-based polygon'
+feature-styles:
+- name: name
+  rules:
+  - name: Large
+    scale: [min,1.0e8]
+    symbolizers:
+    - polygon:
+        stroke-color: '#000000'
+        stroke-width: 7
+        fill-color: '#0000CC'
+    - text:
+        label: ${name}
+        fill-color: '#FFFFFF'
+        font-family: Arial
+        font-size: 14
+        font-style: normal
+        font-weight: bold
+        placement: point
+        anchor: [0.5,0.5]
+  - name: Medium
+    scale: [1.0e8,2.0e8]
+    symbolizers:
+    - polygon:
+        stroke-color: '#000000'
+        stroke-width: 4
+        fill-color: '#0000CC'
+  - name: Small
+    scale: [2.0e8,max]
+    symbolizers:
+    - polygon:
+        stroke-color: '#000000'
+        stroke-width: 1
+        fill-color: '#0000CC'
 ```
 
 ### Details

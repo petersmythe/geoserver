@@ -96,7 +96,36 @@ The MBStyle extension is built with the same GeoServer rendering engine in mind,
 Here is an example [SLD file](../files/airports0.sld) for reference:
 
 ```xml
-{%raw%}{% include "../files/airports0.sld" %}{%endraw%}
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<StyledLayerDescriptor version="1.0.0"
+ xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+ xmlns="http://www.opengis.net/sld"
+ xmlns:ogc="http://www.opengis.net/ogc"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NamedLayer>
+    <Name>airports</Name>
+    <UserStyle>
+      <Title>Airports</Title>
+      <FeatureTypeStyle>
+        <Rule>
+          <Name>airports</Name>
+          <Title>Airports</Title>
+          <PointSymbolizer>
+            <Graphic>
+              <ExternalGraphic>
+                <OnlineResource xlink:type="simple"
+                xlink:href="airport.svg" />
+                <Format>image/svg</Format>
+              </ExternalGraphic>
+              <Size>16</Size>
+            </Graphic>
+          </PointSymbolizer>
+        </Rule>
+      </FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
 ```
 
 ### MBStyle Style
@@ -104,7 +133,20 @@ Here is an example [SLD file](../files/airports0.sld) for reference:
 Here is the same example as [MBStyle](../files/airports0.json):
 
 ```json
-{%raw%}{% include "../files/airports0.json" %}{%endraw%}
+{
+  "version": 8,
+  "name": "airports",
+  "sprite": "http://localhost:8080/geoserver/styles/sprites",
+  "layers": [
+      {
+          "id": "airports",
+          "type": "symbol",
+          "layout": {
+              "icon-image": "airport"
+          }
+      }
+  ]
+}
 ```
 
 We use a point symbolizer to indicate we want this content drawn as a **Point** (line 16 in the SLD, line 8 in the MBStyle). The point symbolizer declares an external graphic, which contains the URL ``airports.svg`` indicating the image that should be drawn (line 20 in the SLD, line 10 in the MBStyle).

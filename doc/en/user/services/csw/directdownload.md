@@ -45,7 +45,7 @@ The configuration of this parameter follows the same rules as shown for the CSW 
 
 ### GetRecords example
 
-A GetRecords response containing a layer with DirectDownload enabled, may result having a piece like this (using [ISO Metadata output schema<csw_iso>](#ISO Metadata output schema<csw_iso>)):
+A GetRecords response containing a layer with DirectDownload enabled, may result having a piece like this (using [ISO Metadata output schema](../../extensions/csw-iso/index.md)):
 
 ```xml
 ...

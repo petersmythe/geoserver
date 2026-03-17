@@ -254,7 +254,7 @@ This exploration focuses on accurately communicating differences in value, rathe
     ![image](../style/img/raster_contrast_1.png)
 
     !!! note
-        Discussion [provided](#ysld.raster.a1) at the end of the workbook.
+        Discussion [provided](#ysld-raster-a1) at the end of the workbook.
 
 ## Challenge Intervals {: #css.raster.q2 }
 
@@ -267,7 +267,7 @@ This exploration focuses on accurately communicating differences in value, rathe
 2.  **Challenge:** Update your DEM example to use **intervals** for presentation. What are the advantages of using this approach for elevation data?
 
     !!! note
-        Answer [provided](#ysld.raster.a2) at the end of the workbook.
+        Answer [provided](#ysld-raster-a2) at the end of the workbook.
 
     !!! abstract "Instructor Notes"
         By using intervals it becomes very clear how relatively flat most of the continent is. The ramp presentation provided lots of fascinating detail which distracted from this fact.
@@ -337,7 +337,7 @@ Image processing can be used to enhance the output to highlight small details or
 2.  **Challenge:** Use what you have learned to present the `usgs:dem` clearly.
 
     !!! note
-        Answer [provided](#ysld.raster.a3) at the end of the workbook.
+        Answer [provided](#ysld-raster-a3) at the end of the workbook.
 
     !!! abstract "Instructor Notes"
         The original was a dark mess, students will hopefully make use of the mid-tones (or even check color brewer) in order to fix this. I have left the ocean dark so the mountains can stand out more.
@@ -360,4 +360,4 @@ Image processing can be used to enhance the output to highlight small details or
 2.  **Challenge:** Can you think of an example where this would be useful?
 
     !!! note
-        Discussion [provided](#ysld.raster.a4) at the end of the workbook.
+        Discussion [provided](#ysld-raster-a4) at the end of the workbook.

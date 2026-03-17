@@ -2,13 +2,13 @@
 
 App-schema supports WMS requests as well as WFS requests. This page provides some useful examples for configuring the WMS service to work with complex features.
 
-Note that the rendering performance of WMS can be significantly slower when using app-schema data stores. We strongly recommend employing [app-schema.joining](#app-schema.joining) when using WMS with feature chaining, which can make response time for large data requests several orders of magnitude faster.
+Note that the rendering performance of WMS can be significantly slower when using app-schema data stores. We strongly recommend employing [app-schema.joining](joining.md) when using WMS with feature chaining, which can make response time for large data requests several orders of magnitude faster.
 
 ## Configuration
 
 For WMS to be applicable to complex feature data, it is necessary that the complex feature types are recognised by GeoServer as layers. This must be configured by adding an extra configuration file named 'layer.xml' in the data directory of each feature type that we want to use as a WMS layer.
 
-This will expand the structure of the `workspaces` folder in the GeoServer data directory as follows (`workspaces`) (see [app-schema.configuration](#app-schema.configuration)): :
+This will expand the structure of the `workspaces` folder in the GeoServer data directory as follows (`workspaces`) (see [app-schema.configuration](configuration.md)): :
 
     workspaces
         - gsml
@@ -50,7 +50,7 @@ Replace the fields in between brackets with the following values:
 
 ## GetMap
 
-Read [GetMap](../../services/wms/reference.md#wms_getmap) for general information on the GetMap request. Read [Styling](../../styling/index.md) for general information on how to style WMS maps with SLD files. When styling complex features, you can use XPaths to specify nested properties in your filters, as explained in [app-schema.filtering-nested](#app-schema.filtering-nested). However, in WMS styling filters X-paths do not support handling referenced features (see [app-schema.feature-chaining-by-reference](#app-schema.feature-chaining-by-reference)) as if they were actual nested features (because the filters are applied after building the features rather than before.) The prefix/namespace context that is used in the XPath expression is defined locally in the XML tags of the style file. This is an example of a Style file for complex features:
+Read [GetMap](../../services/wms/reference.md#wms_getmap) for general information on the GetMap request. Read [Styling](../../styling/index.md) for general information on how to style WMS maps with SLD files. When styling complex features, you can use XPaths to specify nested properties in your filters, as explained in [app-schema.filtering-nested](feature-chaining.md). However, in WMS styling filters X-paths do not support handling referenced features (see [app-schema.feature-chaining-by-reference](feature-chaining.md)) as if they were actual nested features (because the filters are applied after building the features rather than before.) The prefix/namespace context that is used in the XPath expression is defined locally in the XML tags of the style file. This is an example of a Style file for complex features:
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>

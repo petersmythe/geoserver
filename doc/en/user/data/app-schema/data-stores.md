@@ -1,8 +1,8 @@
 # Data Stores
 
-The app-schema [app-schema.mapping-file](#app-schema.mapping-file) requires you to specify your data sources in the `sourceDataStores` section. For GeoServer simple features, these are configured using the web interface, but because app-schema lacks a web configuration interface, data stores must be configured by editing the mapping file.
+The app-schema [app-schema.mapping-file](mapping-file.md) requires you to specify your data sources in the `sourceDataStores` section. For GeoServer simple features, these are configured using the web interface, but because app-schema lacks a web configuration interface, data stores must be configured by editing the mapping file.
 
-Many configuration options may be externalised through the use of [app-schema.property-interpolation](#app-schema.property-interpolation).
+Many configuration options may be externalised through the use of [app-schema.property-interpolation](property-interpolation.md).
 
 ## The DataStore element
 

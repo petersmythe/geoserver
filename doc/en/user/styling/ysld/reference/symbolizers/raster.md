@@ -50,11 +50,20 @@ where:
 
 Additional "vendor options" properties for [Color compositing and color blending](../../../sld/extensions/composite-blend/index.md):
 
-{%raw%}{% include-markdown "./include/composite.md" %}{%endraw%}
+Additional "vendor options" properties for [Color compositing and color blending](../../../../sld/extensions/composite-blend/index.md):
+
+| Property | Required? | Description | Default value |
+|----|----|----|----|
+| `x-composite` | No | Allows for both alpha compositing and color blending options between symbolizers. | N/A |
+| `x-composite-base` | No | Allows the rendering engine to use the symbolizer mapping to define a "base" buffer for subsequent compositing and blending using `x-composite`. See the section on [Feature Styles](../../featurestyles.md#ysld_reference_featurestyles_composite) for more details. | `false` |
 
 Additional "vendor options" properties for [Rendering Selection](../../../sld/extensions/rendering-selection.md):
 
-{%raw%}{% include-markdown "./include/inclusion.md" %}{%endraw%}
+Additional "vendor options" properties for [Rendering Selection](../../../../sld/extensions/rendering-selection.md):
+
+| Property | Required? | Description | Default value |
+|----|----|----|----|
+| `x-inclusion` | No | Define if rule should be included in style for `legendOnly` or `mapOnly`. | `normal` |
 
 ## Examples
 

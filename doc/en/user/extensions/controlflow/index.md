@@ -8,7 +8,7 @@ render_macros: true
 The `control-flow` module for GeoServer allows the administrator to control the amount of concurrent requests actually executing inside the server, as well as giving an opportunity to slow down users making too many requests. This kind of control is useful for a number of reasons:
 
 - *Performance*: tests show that, with local data sources, the maximum throughput in ``GetMap`` requests is achieved when allowing at most 2 times the number of CPU cores requests to run in parallel.
-- *Resource control*: requests such as ``GetMap`` can use a significant amount of memory. The [WMS request limits<wms_configuration_limits>](#WMS request limits<wms_configuration_limits>) allow to control the amount of memory used per request, but an `OutOfMemoryError` is still possible if too many requests run in parallel. By controlling also the amount of requests executing it's possible to limit the total amount of memory used below the memory that was actually given to the Java Virtual Machine.
+- *Resource control*: requests such as ``GetMap`` can use a significant amount of memory. The [WMS request limits](../../services/wms/configuration.md#wms_configuration_limits) allow to control the amount of memory used per request, but an `OutOfMemoryError` is still possible if too many requests run in parallel. By controlling also the amount of requests executing it's possible to limit the total amount of memory used below the memory that was actually given to the Java Virtual Machine.
 - *Fairness*: a single user should not be able to overwhelm the server with a lot of requests, leaving other users with tiny slices of the overall processing power.
 
 The control flow method does not normally reject requests, it just queues up those in excess and executes them late. However, it's possible to configure the module to reject requests that have been waited in queue for too long.
@@ -181,7 +181,27 @@ Note also that tile request are sensitive to the other rules (user based, ip bas
 Assuming the server we want to protect has 4 cores a sample configuration could be:
 
 ```properties
-{%raw%}{% include "./controlflow.properties" %}{%endraw%}
+# if a request waits in queue for more than 60 seconds it's not worth
+# executing, the client will  likely have given up by then
+timeout=60
+
+# don't allow the execution of more than 100 requests total in parallel
+ows.global=100
+
+# don't allow more than 10 GetMap in parallel
+ows.wms.getmap=10
+
+# don't allow more than 4 outputs with Excel output as it's memory bound
+ows.wfs.getfeature.application/msexcel=4
+
+# don't allow a single user to perform more than 6 requests in parallel
+# (6 being the Firefox default concurrency level at the time of writing)
+user=6
+
+# don't allow the execution of more than 16 tile requests in parallel
+# (assuming a server with 4 cores, GWC empirical tests show that throughput
+# peaks up at 4 x number of cores. Adjust as appropriate to your system)
+ows.gwc=16
 ```
 
 ## Debugging control flow
@@ -189,7 +209,63 @@ Assuming the server we want to protect has 4 cores a sample configuration could 
 The control flow module logs its activity to the GeoServer log file, with a few logs per request at INFO level, and more logs at FINE level, for each flow controller. The following logging configuration file enables both levels, specifically for control-flow:
 
 ```xml
-{%raw%}{% include "./CONTROL_FLOW_LOGGING.xml" %}{%endraw%}
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="CONTROL_FLOW_LOGGING_LOGGING" status="fatal" dest="out">
+    <Appenders>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%date{dd mmm HH:mm:ss} '%tn' %-6level [%logger{2}] - %msg%n%throwable{filters(org.junit,org.apache.maven,sun.reflect,java.lang.reflect)}"/>
+        </Console>
+        <RollingFile name="geoserverlogfile">
+            <filename>logs/geoserver.log</filename>
+            <filePattern>logs/geoserver-%i.log</filePattern>
+            <PatternLayout pattern="%date{dd mmm HH:mm:ss} '%tn' %-6level [%logger{2}] - %msg%n%throwable{filters(org.junit,org.apache.maven,sun.reflect,java.lang.reflect)}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="3" fileIndex="min"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+
+        <Logger name="org.geoserver.flow" level="debug" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Logger>
+
+        <Logger name="org.geotools" level="warn" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Logger>
+        <Logger name="org.geotools.factory" level="warn" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Logger>
+
+        <Logger name="org.geoserver" level="warn" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Logger>
+        <Logger name="org.vfny.geoserver" level="warn" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Logger>
+
+        <Logger name="org.springframework" level="warn" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Logger>
+
+        <Logger name="org.geowebcache" level="error" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Logger>
+
+        <Root level="warn">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="geoserverlogfile"/>
+        </Root>
+    </Loggers>
+</Configuration>
 ```
 
 An example output, filtered on a the single thread `http-nio-8080-exec-8` and a single WFS 1.0.0 GetFeature request follows:

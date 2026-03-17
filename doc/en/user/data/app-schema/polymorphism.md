@@ -1,6 +1,6 @@
 # Polymorphism
 
-Polymorphism in this context refers to the ability of an attribute to have different forms. Depending on the source value, it could be encoded with a specific structure, type, as an xlink:href reference, or not encoded at all. To achieve this, we reuse feature chaining syntax and allow OCQL functions in the linkElement tag. Read more about [app-schema.feature-chaining](#app-schema.feature-chaining), if you're not familiar with the syntax.
+Polymorphism in this context refers to the ability of an attribute to have different forms. Depending on the source value, it could be encoded with a specific structure, type, as an xlink:href reference, or not encoded at all. To achieve this, we reuse feature chaining syntax and allow OCQL functions in the linkElement tag. Read more about [app-schema.feature-chaining](feature-chaining.md), if you're not familiar with the syntax.
 
 ## Data-type polymorphism
 
@@ -249,7 +249,7 @@ To encode an attribute as xlink:href that represents missing value on the top le
 
 Having xs:anyType as the attribute type itself infers that it is polymorphic, since they can be encoded as any type.
 
-If the type is pre-determined and would always be the same, we might need to specify [app-schema.mapping-file.targetAttributeNode](#app-schema.mapping-file.targetAttributeNode). E.g.:
+If the type is pre-determined and would always be the same, we might need to specify [app-schema.mapping-file.targetAttributeNode](mapping-file.md#targetattributenode-optional). E.g.:
 
 ```xml
 <AttributeMapping>

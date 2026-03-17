@@ -9,7 +9,10 @@ The Windows installer provides an easy way to set up GeoServer on your system, a
 
 1.  Make sure you have a Java Runtime Environment (JRE) installed on your system. GeoServer requires a **Java 17** or **Java 21** environment.
 
-    {%raw%}{% include-markdown "./jdk-windows-guidance.txt" %}{%endraw%}
+    Download an OpenJDK release for Windows:
+
+    * https://adoptium.net/temurin/releases/?version=17 Temurin 17 (LTS) - Recommended
+    * https://adoptium.net/temurin/releases/?version=21 Temurin 21 (LTS)
 
     !!! note
         For more information about Java and GeoServer, please see the section on [Java Considerations](../production/java.md).

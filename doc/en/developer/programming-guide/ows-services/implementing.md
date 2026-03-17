@@ -10,7 +10,46 @@ The first step in creating our plug-in is setting up a maven project for it. The
 2.  Add a maven pom called **`pom.xml`** to the **`hello`** directory:
 
 ```xml
-{%raw%}{% include "./hello/pom.xml" %}{%endraw%}
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+<modelVersion>4.0.0</modelVersion>
+
+<!-- set parent pom to community pom -->
+<parent>
+    <groupId>org.geoserver</groupId>
+    <artifactId>community</artifactId>
+    <version>3.0-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
+</parent>  
+
+<groupId>org.geoserver</groupId>
+<artifactId>hello</artifactId>
+<packaging>jar</packaging>
+<version>1.0</version>
+<name>Hello World Service Module</name>
+
+<!-- declare dependency on geoserver main -->
+<dependencies>
+    <dependency>
+        <groupId>org.geoserver</groupId>
+        <artifactId>gs-main</artifactId>
+        <version>3.0-SNAPSHOT</version> <!-- change this to the proper GeoServer version -->
+    </dependency>
+</dependencies>
+
+<repositories>
+    <repository>
+        <id>boundless</id>
+        <name>Boundless Maven Repository</name>
+        <url>https://repo.boundlessgeo.com/snapshot</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+
+</project>
 ```
 
 1.  Create a java source directory, **`src/main/java`** under the **`hello`** directory:
@@ -28,7 +67,22 @@ A plug-in is a collection of extensions realized as spring beans. In this exampl
 1.  Create a class called **HelloWorld**:
 
 ```java
-{%raw%}{% include "./hello/src/main/java/HelloWorld.java" %}{%endraw%}
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class HelloWorld {
+
+    public HelloWorld() {
+        // Do nothing
+    }
+
+    public void sayHello(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.getOutputStream().write("Hello World".getBytes());
+    }
+}
 ```
 
 The service is relatively simple. It provides a method sayHello(..) which takes a HttpServletRequest, and a HttpServletResponse. The parameter list for this function is automatically discovered by the org.geoserver.ows.Dispatcher.
@@ -36,7 +90,36 @@ The service is relatively simple. It provides a method sayHello(..) which takes 
 1.  Create an **`applicationContext.xml`** declaring the above class as a bean.
 
 ```xml
-{%raw%}{% include "./hello/src/main/java/applicationContext.xml" %}{%endraw%}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!-- Spring will reference the instance of the HelloWorld class
+            by the id name "helloService" -->
+    <bean id="helloService" class="HelloWorld"/>
+
+    <!-- This creates a Service descriptor, which allows the org.geoserver.ows.Dispatcher
+        to locate it. -->
+    <bean id="helloService-1.0.0" class="org.geoserver.platform.Service">
+
+        <!-- used to reference the service in the URL -->
+        <constructor-arg index="0" value="hello"/>
+
+        <!-- our actual service POJO defined previously -->
+        <constructor-arg index="1" ref="helloService"/>
+
+        <!-- a version number for this service -->
+        <constructor-arg index="2" value="1.0.0"/>
+
+        <!-- a list of functions for this service -->
+        <constructor-arg index="3">
+            <list>
+                <value>sayHello</value>
+            </list>
+        </constructor-arg>
+
+    </bean>
+</beans>
 ```
 
 At this point the hello project should look like the following:

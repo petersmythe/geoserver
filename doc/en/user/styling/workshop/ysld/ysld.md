@@ -239,7 +239,36 @@ As noted above, YSLD has a one-to-one correspondence with SLD, it merely uses a 
 Here is an example [SLD file](../files/airports0.sld) for reference:
 
 ```xml
-{%raw%}{% include "../files/airports0.sld" %}{%endraw%}
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<StyledLayerDescriptor version="1.0.0"
+ xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+ xmlns="http://www.opengis.net/sld"
+ xmlns:ogc="http://www.opengis.net/ogc"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NamedLayer>
+    <Name>airports</Name>
+    <UserStyle>
+      <Title>Airports</Title>
+      <FeatureTypeStyle>
+        <Rule>
+          <Name>airports</Name>
+          <Title>Airports</Title>
+          <PointSymbolizer>
+            <Graphic>
+              <ExternalGraphic>
+                <OnlineResource xlink:type="simple"
+                xlink:href="airport.svg" />
+                <Format>image/svg</Format>
+              </ExternalGraphic>
+              <Size>16</Size>
+            </Graphic>
+          </PointSymbolizer>
+        </Rule>
+      </FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
 ```
 
 ### YSLD Style
@@ -247,7 +276,16 @@ Here is an example [SLD file](../files/airports0.sld) for reference:
 Here is the same example as [YSLD](../files/airports0.ysld):
 
 ```yaml
-{%raw%}{% include "../files/airports0.ysld" %}{%endraw%}
+name: airports
+title: Airports
+scale: [min, max]
+symbolizers:
+- point:
+    size: 16
+    symbols:
+    - external:
+        url: airport.svg
+        format: image/svg
 ```
 
 We use a point symbolizer to indicate we want this content drawn as a **Point** (line 16 in the SLD, line 5 in the YSLD). The point symbolizer declares an external graphic, which contains the URL ``airports.svg`` indicating the image that should be drawn (line 20 in the SLD, line 9 in the YSLD).

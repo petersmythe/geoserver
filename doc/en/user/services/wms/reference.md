@@ -142,7 +142,7 @@ Example WMS request using a GetMap XML document is:
 
 #### Time
 
-As of GeoServer 2.2.0, GeoServer supports a TIME attribute for WMS GetMap requests as described in version 1.3.0 of the WMS specification. This parameter allows filtering a dataset by temporal slices as well as spatial tiles for rendering. See [/services/wms/time](/services/wms/time.md) for information on its use.
+As of GeoServer 2.2.0, GeoServer supports a TIME attribute for WMS GetMap requests as described in version 1.3.0 of the WMS specification. This parameter allows filtering a dataset by temporal slices as well as spatial tiles for rendering. See [/services/wms/time](time.md) for information on its use.
 
 ### GetFeatureInfo {: #wms_getfeatureinfo }
 
@@ -170,15 +170,15 @@ The standard parameters for the GetFeatureInfo operation are:
 | `y` or `j` | Yes | Y ordinate of query point on map, in pixels. 0 is the top. `j` is the parameter key used in WMS 1.3.0. |
 | `exceptions` | No | Format in which to report exceptions. The default value is `application/vnd.ogc.se_xml`. |
 
-**Note:** If you are sending a GetFeatureInfo request against a layergroup, all the layers in that layergroup must be set as "Queryable" to get a result (See [WMS Settings on Layers page<data_webadmin_layers>](#WMS Settings on Layers page<data_webadmin_layers>))
+**Note:** If you are sending a GetFeatureInfo request against a layergroup, all the layers in that layergroup must be set as "Queryable" to get a result (See [WMS Settings on Layers page](../../data/webadmin/layers.md#data_webadmin_layers_edit_data))
 
 GeoServer supports a number of output formats for the `GetFeatureInfo` response. Server-styled HTML is the most commonly-used format. For maximum control and customisation the client should use GML3 and style the raw data itself. The supported formats are:
 
 | **Format** | **Syntax** | **Notes** |
 |----|----|----|
 | TEXT | `info_format=text/plain` | Simple text output. (The default format) |
-| GML 2 | `info_format=application/vnd.ogc.gml` | Works only for Simple Features (see [app-schema.complex-features](#app-schema.complex-features)) |
-| GML 3 | `info_format=application/vnd.ogc.gml/3.1.1` | Works for both Simple and Complex Features (see [app-schema.complex-features](#app-schema.complex-features)) |
+| GML 2 | `info_format=application/vnd.ogc.gml` | Works only for Simple Features (see [app-schema.complex-features](../../data/app-schema/complex-features.md)) |
+| GML 3 | `info_format=application/vnd.ogc.gml/3.1.1` | Works for both Simple and Complex Features (see [app-schema.complex-features](../../data/app-schema/complex-features.md)) |
 | HTML | `info_format=text/html` | Uses HTML templates that are defined on the server. See [HTML output format](../../tutorials/GetFeatureInfo/html.md) for information on how to template HTML output. |
 | JSON | `info_format=application/json` | Simple JSON representation. See [GeoJSON output format](../../tutorials/GetFeatureInfo/geojson.md) for information on how to template JSON output. |
 | JSONP | `info_format=text/javascript` | Returns JSONP in the form: `parseResponse(...json...)`. See [WMS vendor parameters](vendor.md) to change the callback name. Note that this format is disabled by default (See [Global variables affecting WMS](global.md)). |

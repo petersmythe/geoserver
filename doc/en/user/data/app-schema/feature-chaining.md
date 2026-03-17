@@ -10,7 +10,7 @@ This page describes the use of "Feature Chaining" to compose complex features fr
 - Encoding the same referenced property object as links when it appears in multiple containing features
 - Eliminating the need for large denormalized data store views of top level features and their related features. Denormalized views would still be needed for special cases, such as many-to-many relationships, but won't be as large.
 
-For non-application schema configurations, please refer to [app-schema.data-access-integration](#app-schema.data-access-integration).
+For non-application schema configurations, please refer to [app-schema.data-access-integration](#app-schema-data-access-integration).
 
 ## Mapping steps
 
@@ -236,7 +236,7 @@ When nesting another complex type, you need to specify in your source expression
 - **linkElement**:
 
   - the nested element name, which is normally the targetElement or mappingName of the corresponding type.
-      - on some cases, it has to be an OCQL function (see [app-schema.polymorphism](#app-schema.polymorphism))
+      - on some cases, it has to be an OCQL function (see [app-schema.polymorphism](polymorphism.md))
 
 - **linkField**: the indexed XPath attribute on the nested element that OCQL corresponds to
 
@@ -281,7 +281,7 @@ Run the getFeature request to test this configuration. Check that the nested fea
 
 At times, you may find the need to have different FeatureTypeMapping instances for the same type. You may have two different attributes of the same type that need to be nested. For example, in gsml:GeologicUnit, you have gsml:exposureColor and gsml:outcropCharacter that are both of gsml:CGI_TermValue type.
 
-This is when the optional mappingName tag mentioned in [app-schema.mapping-file](#app-schema.mapping-file) comes in. Instead of passing in the nested feature type's targetElement in the containing type's linkElement, specify the corresponding mappingName.
+This is when the optional mappingName tag mentioned in [app-schema.mapping-file](mapping-file.md) comes in. Instead of passing in the nested feature type's targetElement in the containing type's linkElement, specify the corresponding mappingName.
 
 !!! note
     * The mappingName is namespace aware and case sensitive. * When the referred mappingName contains special characters such as '-', it must be enclosed with single quotes in the linkElement. E.g. <linkElement>'observation-method'</linkElement>. * Each mappingName must be unique against other mappingName and targetElement tags across the application. * The mappingName is only to be used to identify the chained type from the nesting type. It is not a solution for multiple FeatureTypeMapping instances where > 1 of them can be queried as top level features. * When queried as a top level feature, the normal targetElement is to be used. Filters involving the nested type should still use the targetElement in the PropertyName part of the query. * You can't have more than 1 FeatureTypeMapping of the same type in the same mapping file if one of them is a top level feature. This is because featuretype.xml would look for the targetElement and wouldn't know which one to get.
@@ -360,4 +360,4 @@ This would be the encoded result for gsml:GeologicUnit:
 ```
 
 !!! note
-    * Don't forget to add *XLink* in your mapping file namespaces section, or you could end up with a StackOverflowException as the *xlink:href* client property won't be recognized and the mappings would chain endlessly. * [app-schema.resolve](#app-schema.resolve) may be used to force app-schema to do full feature chaining up to a certain level, even if an xlink reference is specified.
+    * Don't forget to add *XLink* in your mapping file namespaces section, or you could end up with a StackOverflowException as the *xlink:href* client property won't be recognized and the mappings would chain endlessly. * [app-schema.resolve](#app-schema-resolve) may be used to force app-schema to do full feature chaining up to a certain level, even if an xlink reference is specified.

@@ -533,14 +533,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 - [ ] 18. Fix link and anchor resolution issues
 
-  - [ ] 18.1 Create detection script for link/anchor issues
+  - [x] 18.1 Create detection script for link/anchor issues
     - Scan for dangling anchors with visible link syntax
     - Identify failed include statements
     - Detect broken internal links
     - Generate report with link locations and targets
     - _Requirements: 1.24, 1.25_
 
-  - [ ] 18.2 Implement automated fix for dangling anchors
+  - [x] 18.2 Implement automated fix for dangling anchors
     - Convert visible link syntax to proper Markdown links
     - Resolve anchor targets to correct page references
     - Update link paths for MkDocs structure
@@ -549,7 +549,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Working links remain unchanged_
     - _Requirements: 1.24, 2.24, 3.6_
 
-  - [ ] 18.3 Implement automated fix for include statements
+  - [x] 18.3 Implement automated fix for include statements
     - Replace failed include statements with actual content
     - OR convert to proper MkDocs snippet syntax
     - Ensure referenced content is accessible
@@ -558,14 +558,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Working includes remain unchanged_
     - _Requirements: 1.25, 2.25, 3.6_
 
-  - [ ] 18.4 Verify link/anchor exploration test now passes
+  - [x] 18.4 Verify link/anchor exploration test now passes
     - **Property 1: Expected Behavior** - Links and Anchors Fixed
     - **IMPORTANT**: Re-run the SAME test from task 7
     - Run link/anchor exploration test from step 7
     - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
     - _Requirements: 2.24, 2.25_
 
-  - [ ] 18.5 Verify preservation tests still pass
+  - [x] 18.5 Verify preservation tests still pass
     - **Property 2: Preservation** - No Regressions in Links
     - **IMPORTANT**: Re-run preservation tests from tasks 10-11
     - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)

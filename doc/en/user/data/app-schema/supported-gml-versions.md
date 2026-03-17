@@ -17,7 +17,7 @@
 
 ### Secondary namespace for GML 3.2.1 required
 
-GML 3.2.1 WFS responses are delivered in a WFS 2.0.0 `FeatureCollection`. Unlike WFS 1.1.0, WFS 2.0.0 does not depend explicitly on any GML version. As a consequence, the GML namespace is secondary and must be defined explicitly as a secondary namespace. See [app-schema.secondary-namespaces](#app-schema.secondary-namespaces) for details.
+GML 3.2.1 WFS responses are delivered in a WFS 2.0.0 `FeatureCollection`. Unlike WFS 1.1.0, WFS 2.0.0 does not depend explicitly on any GML version. As a consequence, the GML namespace is secondary and must be defined explicitly as a secondary namespace. See [app-schema.secondary-namespaces](secondary-namespaces.md) for details.
 
 For example, to use the prefix `gml` for GML 3.2, create `workspaces/gml/namespace.xml` containing:
 

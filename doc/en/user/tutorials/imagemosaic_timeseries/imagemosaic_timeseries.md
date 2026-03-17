@@ -150,7 +150,18 @@ This part showsn an entire MOSAIC_DIR configuration.
 #### datastore.properties:
 
 ```
-{%raw%}{% include "./src/datastore.properties" %}{%endraw%}
+SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory
+host=localhost
+port=5432
+database=db
+schema=public
+user=dbuser
+passwd=dbpasswd
+Loose\ bbox=true
+Estimated\ extends=false
+validate\ connections=true
+Connection\ timeout=10
+preparedStatements=true
 ```
 
 !!! note
@@ -161,7 +172,20 @@ This part showsn an entire MOSAIC_DIR configuration.
 Here an example of the granules naming that satisfies the rule shown before:
 
 ```
-{%raw%}{% include "./src/tiffiles.out" %}
+$ls hydroalp/snow/*.tif
+
+snow/snow_20091001.tif
+snow/snow_20091101.tif
+snow/snow_20091201.tif
+snow/snow_20100101.tif
+snow/snow_20100201.tif
+snow/snow_20100301.tif
+snow/snow_20100401.tif
+snow/snow_20100501.tif
+snow/snow_20100601.tif
+snow/snow_20100701.tif
+snow/snow_20100801.tif
+snow/snow_20100901.tif
 ```
 
 #### timeregex.properties:
@@ -169,7 +193,7 @@ Here an example of the granules naming that satisfies the rule shown before:
 In the timeregex property file you specify the pattern describing the date(time) part of the file names. In this example it consists simply of 8 digits as specified below.
 
 ```
-{%raw%}{% include "./src/timeregex.properties" %}
+regex=[0-9]{8}
 ```
 
 #### indexer.properties:
@@ -177,7 +201,10 @@ In the timeregex property file you specify the pattern describing the date(time)
 Here the user can specify the information that GeoServer uses to create the index table in the database. In this example, the time values are stored in the column ingestion.
 
 ```
-{%raw%}{% include "./src/indexer.properties" %}
+TimeAttribute=ingestion
+ElevationAttribute=elevation
+Schema=*the_geom:Polygon,location:String,ingestion:java.util.Date,elevation:Integer
+PropertyCollectors=TimestampFileNameExtractorSPI[timeregex](ingestion)
 ```
 
 ## Create and Publish an ImageMosaic store:
@@ -257,7 +284,19 @@ After this steps the new layer is available in GeoServer. GeoServer will create 
 #### Generated property file:
 
 ```
-{%raw%}{% include "./src/snow.properties" %}{%endraw%}
+#-Automagically created from GeoTools-
+#Sat Oct 13 10:47:08 CEST 2012
+Levels=100.0,100.0
+Heterogeneous=false
+ElevationAttribute=elevation
+TimeAttribute=ingestion
+AbsolutePath=false
+Name=snow
+Caching=false
+ExpandToRGB=false
+LocationAttribute=location
+SuggestedSPI=it.geosolutions.imageioimpl.plugins.tiff.TIFFImageReaderSpi
+LevelsNum=1
 ```
 
 !!! note

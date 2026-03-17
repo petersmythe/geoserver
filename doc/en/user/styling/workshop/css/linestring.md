@@ -434,7 +434,7 @@ Options can be used to enable some quite useful effects, while still providing a
 2.  Challenge: What is unusual about the generated SLD? Can you explain why it still works as expected?
 
     !!! note
-        Answer [provided](#css.line.a0) at the end of the workbook.
+        Answer [provided](#css-line-a0) at the end of the workbook.
 
 ### Challenge Classification {: #css.line.q1 }
 
@@ -449,7 +449,7 @@ Options can be used to enable some quite useful effects, while still providing a
     Hint: The available values are 'Major Highway','Secondary Highway','Road' and 'Unknown'.
 
     !!! note
-        Answer [provided](#css.line.a1) at the end of the workbook.
+        Answer [provided](#css-line-a1) at the end of the workbook.
 
 ### Challenge SLD Z-Index Generation {: #css.line.q2 }
 
@@ -466,7 +466,7 @@ Options can be used to enable some quite useful effects, while still providing a
 2.  *Challenge:* There is an interesting trick in the generated SLD, can you explain how it works?
 
     !!! note
-        Answer [provided](#css.line.a2) at the end of the workbook.
+        Answer [provided](#css-line-a2) at the end of the workbook.
 
 ### Challenge Label Shields {: #css.line.q3 }
 
@@ -477,4 +477,4 @@ Options can be used to enable some quite useful effects, while still providing a
 2.  *Challenge:* Have a look at the documentation and reproduce this technique.
 
     !!! note
-        Answer [provided](#css.line.a3) at the end of the workbook.
+        Answer [provided](#css-line-a3) at the end of the workbook.

@@ -206,7 +206,92 @@ The fill pattern is defined by repeating an image defined in a sprite-sheet.
 3.  You can view the names of all the icons in the sprite-sheet by looking at its json definition, at <http://localhost:8080/geoserver/styles/sprites.json>.
 
     ```json
-    {%raw%}{% include "../files/sprites.json" %}{%endraw%}
+    {
+        "white_square16": {
+            "height": 16,
+            "pixelRatio": 1,
+            "width": 16,
+            "x": 1,
+            "y": 1
+        },
+        "grey_square8": {
+            "height": 8,
+            "pixelRatio": 1,
+            "width": 8,
+            "x": 24,
+            "y": 18
+        },
+        "grey_square16": {
+            "height": 16,
+            "pixelRatio": 1,
+            "width": 16,
+            "x": 18,
+            "y": 1
+        },
+        "grey_square22": {
+            "height": 22,
+            "pixelRatio": 1,
+            "width": 22,
+            "x": 1,
+            "y": 18
+        },
+        "green_square16": {
+            "height": 16,
+            "pixelRatio": 1,
+            "width": 16,
+            "x": 35,
+            "y": 1
+        },
+        "grey_x": {
+            "height": 30,
+            "pixelRatio": 1,
+            "width": 30,
+            "x": 1,
+            "y": 41
+        },
+        "grey_diag8": {
+            "height": 8,
+            "pixelRatio": 1,
+            "width": 8,
+            "x": 24,
+            "y": 27
+        },
+        "grey_diag16": {
+            "height": 16,
+            "pixelRatio": 1,
+            "width": 16,
+            "x": 35,
+            "y": 18
+        },
+        "grey_circle": {
+            "height": 17,
+            "pixelRatio": 1,
+            "width": 17,
+            "x": 36,
+            "y": 36
+        },
+        "airport": {
+            "height": 16,
+            "pixelRatio": 1,
+            "width": 16,
+            "x": 52,
+            "y": 18
+        },
+        "port": {
+            "height": 16,
+            "pixelRatio": 1,
+            "width": 16,
+            "x": 52,
+            "y": 1
+        },
+        "star": {
+            "height": 16,
+            "pixelRatio": 1,
+            "width": 16,
+            "x": 69,
+            "y": 1
+        }
+    }
     ```
 
     Update the example to use **grey_diag16** for a pattern of left hatching.
@@ -805,7 +890,7 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_categorize.png)
 
     !!! note
-        Answer [provided](#mbstyle.polygon.a2) at the end of the workbook.
+        Answer [provided](#mbstyle-polygon-a2) at the end of the workbook.
 
 ### Challenge Halo {: #mbstyle.polygon.q4 }
 
@@ -816,7 +901,7 @@ In a classroom setting you are encouraged to team up into groups, with each grou
 2.  **Challenge:** Produce a map that uses a white halo around black text.
 
     !!! note
-        Answer [provided](#mbstyle.polygon.a4) at the end of the workbook.
+        Answer [provided](#mbstyle-polygon-a4) at the end of the workbook.
 
 ### Challenge Theming using Multiple Attributes {: #mbstyle.polygon.q5 }
 
@@ -827,7 +912,7 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_multitheme.png)
 
     !!! note
-        Answer [provided](#mbstyle.polygon.a5) at the end of the workbook.
+        Answer [provided](#mbstyle-polygon-a5) at the end of the workbook.
 
 ### Challenge Use of Z-Index {: #mbstyle.polygon.q6 }
 
@@ -838,4 +923,4 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_zorder.png)
 
     !!! note
-        Answer [provided](#mbstyle.polygon.a6) at the end of the workbook.
+        Answer [provided](#mbstyle-polygon-a6) at the end of the workbook.

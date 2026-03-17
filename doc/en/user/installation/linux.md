@@ -14,7 +14,32 @@ The platform-independent binary is a GeoServer web application bundled with [Jet
 
 1.  Make sure you have a Java Runtime Environment (JRE) installed on your system. GeoServer requires a **Java 17** or **Java 21** environment.
 
-    {%raw%}{% include-markdown "./jdk-linux-guidance.txt" %}{%endraw%}
+    We recommend using your Linux package manager allowing Java to be managed and patched alongside your operating system:
+
+    ```bash
+    sudo apt-get update
+    sudo apt-get install openjdk-17-jdk
+    ```
+
+    You may also choose to download an OpenJDK release for Linux:
+
+    * https://adoptium.net/temurin/releases/?version=17 Temurin 17 (LTS) - Recommended
+    * https://adoptium.net/temurin/releases/?version=21 Temurin 21 (LTS)
+
+    The developer tool [SDKMan](https://sdkman.io/) may be used to manage several versions:
+
+    ```bash
+    # list to determine latest Temurin JDK 17
+    sdk list java | grep "17.*-tem"
+    sdk install java 21.0.8-tem
+
+    # list to determine latest Temurin JDK 21
+    sdk list java | grep "21.*-tem"
+    sdk install java 17.0.16-tem
+
+    # change between versions 17.0.16-tem and 21.0.8-tem locally
+    sdk install use 17.0.16-tem
+    ```
 
     !!! note
         For more information about Java and GeoServer compatibility, please see the section on [Java Considerations](../production/java.md).

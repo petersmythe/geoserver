@@ -1,6 +1,6 @@
 # Application schemas
 
-The application schema support (app-schema) extension provides support for [app-schema.complex-features](#app-schema.complex-features) in GeoServer WFS.
+The application schema support (app-schema) extension provides support for [app-schema.complex-features](complex-features.md) in GeoServer WFS.
 
 !!! note
     You must install the app-schema plugin to use Application Schema Support.

@@ -10,7 +10,7 @@ Configure:
 
 Extensions:
 
-- [/services/features/index](/services/features/index.md)
+- [/services/features/index](../../services/features/index.md)
 
 Community modules:
 

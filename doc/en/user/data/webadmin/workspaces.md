@@ -145,7 +145,7 @@ The Security tab allows to set data access rules at workspace level.
 
 To create/edit the workspace's data access rules, check/uncheck checkboxes according to the desired role. The Grant access to any role checkbox grant each role for any access mode.
 
-The configuration of services inside a workspace is normally allowed only to a full administrator. In order to allow a workspace administrator access to the workspace service configuration, one can set the `WORKSPACE_ADMIN_SERVICE_ACCESS` to true. Also See [Settings<application_properties>](#Settings<application_properties>)
+The configuration of services inside a workspace is normally allowed only to a full administrator. In order to allow a workspace administrator access to the workspace service configuration, one can set the `WORKSPACE_ADMIN_SERVICE_ACCESS` to true. Also See [Settings](../../configuration/properties/index.md#application_properties_setting)
 
 !!! note
     Some of the settings need to be managed with care as they can affect the performance and operations of the application.

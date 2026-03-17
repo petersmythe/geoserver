@@ -87,8 +87,20 @@ x-inclusion: <text>
 
 Where:
 
-{%raw%}{% include-markdown "./include/symbol.md" %}{%endraw%}
+| Property | Required? | Description | Default value |
+|----|----|----|----|
+| `geometry` | No | Specifies which attribute to use as the geometry (see [Geometry transformations in SLD](../../../../sld/extensions/geometry-transformations.md)) | First geometry attribute found (usually named `geom` or `the_geom`) |
+| `uom` | No | Unit of measure used for width calculations (see [Specifying symbolizer sizes in ground units](../../../../sld/extensions/uom.md)) | pixel |
 
-{%raw%}{% include-markdown "./include/composite.md" %}{%endraw%}
+Additional "vendor options" properties for [Color compositing and color blending](../../../../sld/extensions/composite-blend/index.md):
 
-{%raw%}{% include-markdown "./include/inclusion.md" %}{%endraw%}
+| Property | Required? | Description | Default value |
+|----|----|----|----|
+| `x-composite` | No | Allows for both alpha compositing and color blending options between symbolizers. | N/A |
+| `x-composite-base` | No | Allows the rendering engine to use the symbolizer mapping to define a "base" buffer for subsequent compositing and blending using `x-composite`. See the section on [Feature Styles](../../featurestyles.md#ysld_reference_featurestyles_composite) for more details. | `false` |
+
+Additional "vendor options" properties for [Rendering Selection](../../../../sld/extensions/rendering-selection.md):
+
+| Property | Required? | Description | Default value |
+|----|----|----|----|
+| `x-inclusion` | No | Define if rule should be included in style for `legendOnly` or `mapOnly`. | `normal` |

@@ -2,26 +2,57 @@
 
 WFS vendor parameters are non-standard request parameters defined by an implementation to provide enhanced capabilities. GeoServer supports a variety of vendor-specific WFS parameters.
 
-{%raw%}{% include-markdown "./../generic_vendor_options.txt" %}{%endraw%}
+### General Vendor Options
+
+These vendor options are available for all operations.
+
+#### content-disposition
+
+The `content-disposition` parameter directs how a web browser directed to handle returned content. The syntax is:
+
+```
+content-disposition=<disposition>
+```
+
+Where `content-disposition =attachment` to direct the browser to save the content to disk.
+
+Where `content-disposition=inline` asks the browser to display the content. Note this may present performance issues when asked to display very large content.
+
+#### filename
+
+The `filename` parameter provides a suggested filename when a browser saves a file (e.g. to Downloads folder). The syntax is:
+
+```
+filename=<file>
+
+```
+
+An example of filename use is:
+
+```
+filename=features.json
+```
+
+When service output is saved as a file, the vendor-option `filename` is used to provide the file name used.
 
 ## XML request validation
 
 GeoServer is less strict than the WFS specification when it comes to the validity of an XML request. To force incoming XML requests to be valid, use the following parameter:
 
-```
+``
 strict=[true|false]
-```
+``
 
 The default option for this parameter is `false`.
 
 For example, the following request is invalid:
 
-``` xml
+`` xml
 <wfs:GetFeature service="WFS" version="1.0.0"
  xmlns:wfs="http://www.opengis.net/wfs">
   <Query typeName="topp:states"/>
 </wfs:GetFeature>
-```
+``
 
 The request is invalid for two reasons:
 
@@ -30,13 +61,13 @@ The request is invalid for two reasons:
 
 That said, the request would still be processed by default. Executing the above command with the `strict=true` parameter, however, would result in an error. The correct syntax should be:
 
-``` xml
+`` xml
 <wfs:GetFeature service="WFS" version="1.0.0"
  xmlns:wfs="http://www.opengis.net/wfs" 
  xmlns:topp="http://www.openplans.org/topp">
   <wfs:Query typeName="topp:states"/>
 </wfs:GetFeature>
-```
+``
 
 ### GetCapabilities Request
 
@@ -49,9 +80,9 @@ WFS [GetCapabilities](reference.md#wfs_getcap) requests may be filtered to retur
 
 To apply this filter, add the following code to your request:
 
-```
+``
 namespace=<namespace>
-```
+``
 
 Although providing an invalid namespace will not result in any errors, the GetCapabilities document returned will not contain any layer information.
 
@@ -71,36 +102,36 @@ For full details see the [ECQL Reference](../../filter/ecql_reference.md) and [C
 
 The following example illustrates a GET request OGC filter:
 
-```
+``
 filter=%3CFilter%20xmlns:gml=%22http://www.opengis.net/gml%22%3E%3CIntersects%3E%3CPropertyName%3Ethe_geom%3C/PropertyName%3E%3Cgml:Point%20srsName=%224326%22%3E%3Cgml:coordinates%3E-74.817265,40.5296504%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E
-```
+``
 
 Using ECQL, the identical filter would be defined as follows:
 
-```
+``
 cql_filter=INTERSECTS(the_geom,%20POINT%20(-74.817265%2040.5296504))
-```
+``
 
 ## Format options
 
 The `format_options` parameter is a container for other parameters that are format-specific. The syntax is:
 
-```
+``
 format_options=param1:value1;param2:value2;...
-```
+``
 
 The supported format option is:
 
 - `callback` (default is `parseResponse`) - specifies the callback function name for the JSONP response format
 - `id_policy` (default is `true`) - Specifies id generation for the JSON output format. To include feature id in the output, use an attribute name, or use `format_options=id_policy:true` for feature id generation. To avoid the use of feature id completely use `format_options=id_policy:false`.
 - `filename` (default is **`features`** or generated from feature type name)- provide a `Content-Disposition` header indicating the attachment filename (used as a suggestion by browsers saving content to disk using ***Save-As***). For example `format_options=filename:content.txt`.
-- `csvseparator` (default is `` `, ``` )- Specifies a separator that can be used in output csv file
+- `csvseparator` (default is `` `, `` )- Specifies a separator that can be used in output csv file
 
 ## Reprojection
 
 As WFS 1.1.0 and 2.0.0 both support data reprojection, GeoServer can store the data in one projection and return GML in another projection. While not part of the specification, GeoServer supports this using WFS 1.0.0 as well. When submitting a WFS [GetFeature](reference.md#wfs_getfeature) GET request, you can add this parameter to specify the reprojection SRS as follows:
 
-```
+``
 srsName=<srsName>
 ```
 

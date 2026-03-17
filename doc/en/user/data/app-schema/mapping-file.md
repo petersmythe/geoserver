@@ -64,7 +64,7 @@ Non-feature types (eg. gsml:CompositionPart is a data type that is nested in gsm
 
 ### sourceDataStores
 
-Every mapping file requires at least one data store to provide data for features. app-schema reuses GeoServer data stores, so there are many available types. See [app-schema.data-stores](#app-schema.data-stores) for details of data store configuration. For example:
+Every mapping file requires at least one data store to provide data for features. app-schema reuses GeoServer data stores, so there are many available types. See [app-schema.data-stores](data-stores.md) for details of data store configuration. For example:
 
 ```xml
 <sourceDataStores>
@@ -82,7 +82,7 @@ If you have more than one `DataStore` in a mapping file, be sure to give them ea
 
 ### catalog (optional)
 
-The location of an OASIS XML Catalog configuration file, given as a path relative to the mapping file. See [app-schema.app-schema-resolution](#app-schema.app-schema-resolution) for more information. For example:
+The location of an OASIS XML Catalog configuration file, given as a path relative to the mapping file. See [app-schema.app-schema-resolution](app-schema-resolution.md) for more information. For example:
 
 ```xml
 <catalog>../../../schemas/catalog.xml</catalog>
@@ -120,7 +120,7 @@ The `typeMappings` section is the heart of the app-schema module. It defines the
                 ...
 ```
 
-- `mappingName` is an optional tag, to identify the mapping in [app-schema.feature-chaining](#app-schema.feature-chaining) when there are multiple FeatureTypeMapping instances for the same type. This is solely for feature chaining purposes, and would not work for identifying top level features.
+- `mappingName` is an optional tag, to identify the mapping in [app-schema.feature-chaining](feature-chaining.md) when there are multiple FeatureTypeMapping instances for the same type. This is solely for feature chaining purposes, and would not work for identifying top level features.
 
 - `sourceDataStore` must be an identifier you provided when you defined a source data store the `sourceDataStores` section.
 
@@ -158,13 +158,13 @@ The `typeMappings` section is the heart of the app-schema module. It defines the
 <targetAttribute>gml:name</targetAttribute>
 ```
 
-Multivalued attributes resulting from [app-schema.denormalised-sources](#app-schema.denormalised-sources) are automatically encoded. If you wish to encode multivalued attributes from different input columns as a specific instance of an attribute, you can use a (one-based) index. For example, you can set the third `gml:name` with:
+Multivalued attributes resulting from [app-schema.denormalised-sources](mapping-file.md#app-schema.denormalised-sources) are automatically encoded. If you wish to encode multivalued attributes from different input columns as a specific instance of an attribute, you can use a (one-based) index. For example, you can set the third `gml:name` with:
 
 ```xml
 <targetAttribute>gml:name[3]</targetAttribute>
 ```
 
-The reserved name `FEATURE_LINK` is used to map data that is not encoded in XML but is required for use in [app-schema.feature-chaining](#app-schema.feature-chaining).
+The reserved name `FEATURE_LINK` is used to map data that is not encoded in XML but is required for use in [app-schema.feature-chaining](feature-chaining.md).
 
 ### idExpression (optional)
 
@@ -198,14 +198,14 @@ You can use CQL expressions to calculate the content of the element. This exampl
 </sourceExpression>
 ```
 
-You can also use [app-schema.cql-functions](#app-schema.cql-functions) for vocabulary translations.
+You can also use [app-schema.cql-functions](cql-functions.md) for vocabulary translations.
 
 !!! warning
     Avoid use of CQL expressions for properties that users will want to query, because the current implementation cannot reverse these expressions to generate efficient SQL, and will instead read all features to calculate the property to find the features that match the filter query. Falling back to brute force search makes queries on CQL-calculated expressions very slow. If you must concatenate strings to generate content, you may find that doing this in your database is much faster.
 
 ### linkElement and linkField (optional)
 
-The presence of `linkElement` and `linkField` change the meaning of `sourceExpression` to a [app-schema.feature-chaining](#app-schema.feature-chaining) mapping, in which the source of the mapping is the feature of type `linkElement` with property `linkField` matching the expression. For example, the following `sourceExpression` uses as the result of the mapping the (possibly multivalued) `gsml:MappedFeature` for which `gml:name[2]` is equal to the value of `URN` for the source feature. This is in effect a foreign key relation:
+The presence of `linkElement` and `linkField` change the meaning of `sourceExpression` to a [app-schema.feature-chaining](feature-chaining.md) mapping, in which the source of the mapping is the feature of type `linkElement` with property `linkField` matching the expression. For example, the following `sourceExpression` uses as the result of the mapping the (possibly multivalued) `gsml:MappedFeature` for which `gml:name[2]` is equal to the value of `URN` for the source feature. This is in effect a foreign key relation:
 
 ```xml
 <sourceExpression>
@@ -215,9 +215,9 @@ The presence of `linkElement` and `linkField` change the meaning of `sourceExpre
 </sourceExpression>
 ```
 
-The feature type `gsml:MappedFeature` might be defined in another mapping file. The `linkField` can be `FEATURE_LINK` if you wish to relate the features by a property not exposed in XML. See [app-schema.feature-chaining](#app-schema.feature-chaining) for a comprehensive discussion.
+The feature type `gsml:MappedFeature` might be defined in another mapping file. The `linkField` can be `FEATURE_LINK` if you wish to relate the features by a property not exposed in XML. See [app-schema.feature-chaining](feature-chaining.md) for a comprehensive discussion.
 
-For special cases, `linkElement` could be an OCQL function, and `linkField` could be omitted. See [app-schema.polymorphism](#app-schema.polymorphism) for further information.
+For special cases, `linkElement` could be an OCQL function, and `linkField` could be omitted. See [app-schema.polymorphism](polymorphism.md) for further information.
 
 ### targetAttributeNode (optional)
 
@@ -386,13 +386,13 @@ When the GML association pattern is used to encode a property by reference, the 
 </ClientProperty>
 ```
 
-See the discussion in [app-schema.feature-chaining](#app-schema.feature-chaining) for the special case in which `xlink:href` is created for multivalued properties by reference.
+See the discussion in [app-schema.feature-chaining](feature-chaining.md) for the special case in which `xlink:href` is created for multivalued properties by reference.
 
 ## CQL
 
 CQL functions enable data conversion and conditional behaviour to be specified in mapping files.
 
-- See [app-schema.cql-functions](#app-schema.cql-functions) for information on additional functions provided by the app-schema plugin.
+- See [app-schema.cql-functions](cql-functions.md) for information on additional functions provided by the app-schema plugin.
 
 - The uDig manual includes a list of CQL functions:
 
@@ -412,7 +412,7 @@ When referring to database table/view names or column names, use:
 Multivalued properties from denormalised sources (the same source feature ID appears more than once) are automatically encoded. For example, a view might have a repeated `id` column with varying `name` so that an arbitrarily large number of `gml:name` properties can be encoded for the output feature.
 
 !!! warning
-    Denormalised sources must grouped so that features with duplicate IDs are provided without any intervening features. This can be achieved by ensuring that denormalised source features are sorted by ID. Failure to observe this restriction will result in data corruption. This restriction is however not necessary when using [app-schema.joining](#app-schema.joining) because then ordering will happen automatically.
+    Denormalised sources must grouped so that features with duplicate IDs are provided without any intervening features. This can be achieved by ensuring that denormalised source features are sorted by ID. Failure to observe this restriction will result in data corruption. This restriction is however not necessary when using [app-schema.joining](joining.md) because then ordering will happen automatically.
 
 ## Attributes with cardinality 1..N
 

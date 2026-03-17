@@ -280,7 +280,7 @@ More information on the syntax of transactions can be found in the [WFS specific
 !!! note
     This operation is valid for **WFS version 1.1.0 only**.
 
-A **GetGMLObject** operation accepts the identifier of a GML object (feature or geometry) and returns that object. This operation is relevant only in situations that require [app-schema.complex-features](#app-schema.complex-features) by allowing clients to extract just a portion of the nested properties of a complex feature. As a result, this operation is not widely used by client applications.
+A **GetGMLObject** operation accepts the identifier of a GML object (feature or geometry) and returns that object. This operation is relevant only in situations that require [app-schema.complex-features](../../data/app-schema/complex-features.md) by allowing clients to extract just a portion of the nested properties of a complex feature. As a result, this operation is not widely used by client applications.
 
 ### GetPropertyValue
 

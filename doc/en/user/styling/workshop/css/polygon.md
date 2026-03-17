@@ -716,7 +716,7 @@ In a classroom setting you are encouraged to team up into groups, with each grou
 3.  **Explore:** Experiment with **fill** and **stroke** settings to eliminate slivers between polygons.
 
     !!! note
-        Answer [provided](#css.polygon.a1) at the end of the workbook.
+        Answer [provided](#css-polygon-a1) at the end of the workbook.
 
 ### Explore Categorize {: #css.polygon.q2 }
 
@@ -752,7 +752,7 @@ In a classroom setting you are encouraged to team up into groups, with each grou
     ![image](../style/img/polygon_categorize.png)
 
     !!! note
-        Answer [provided](#css.polygon.a2) at the end of the workbook.
+        Answer [provided](#css-polygon-a2) at the end of the workbook.
 
 ### Challenge Goodness of Fit {: #css.polygon.q3 }
 
@@ -780,7 +780,7 @@ label-max-displacement: 130;
 2.  **Challenge:** Produce a map that uses a white halo around black text.
 
     !!! note
-        Answer [provided](#css.polygon.a4) at the end of the workbook.
+        Answer [provided](#css-polygon-a4) at the end of the workbook.
 
 ### Challenge Theming using Multiple Attributes {: #css.polygon.q5 }
 
@@ -791,7 +791,7 @@ label-max-displacement: 130;
     ![image](../style/img/polygon_multitheme.png)
 
     !!! note
-        Answer [provided](#css.polygon.a5) at the end of the workbook.
+        Answer [provided](#css-polygon-a5) at the end of the workbook.
 
 ### Challenge Use of Z-Index {: #css.polygon.q6 }
 
@@ -802,4 +802,4 @@ label-max-displacement: 130;
     ![image](../style/img/polygon_zorder.png)
 
 !!! note
-    Answer [provided](#css.polygon.a6) at the end of the workbook.
+    Answer [provided](#css-polygon-a6) at the end of the workbook.

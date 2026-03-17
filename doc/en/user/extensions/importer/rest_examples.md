@@ -352,7 +352,39 @@ This example shows the process for uploading a Shapefile (in a zip file) to an e
 1.  Setup `cite:postgis` datastore:
 
     ```json
-    {%raw%}{% include "./files/postgis.json" %}{%endraw%}
+    {
+      "dataStore": {
+        "name": "postgis",
+        "type": "PostGIS",
+        "workspace": {
+          "name": "cite"
+        },
+        "connectionParameters": {
+          "entry": [
+            {"@key": "schema","$": "public"},
+            {"@key": "database","$": "postgres"},
+            {"@key": "host","$": "localhost"},
+            {"@key": "port","$": "5432"},
+            {"@key": "passwd","$": "postgres"},
+            {"@key": "dbtype","$": "postgis"},
+            {"@key": "user","$": "postgres"},
+            {"@key": "Estimated extends","$": "true"},
+            {"@key": "encode functions","$": "true"},
+            {"@key": "Loose bbox","$": "true"},
+            {"@key": "Method used to simplify geometries","$": "PRESERVETOPOLOGY"},
+            {"@key": "Support on the fly geometry simplification","$": "true"},
+            {"@key": "validate connections","$": "true"},
+            {"@key": "Connection timeout","$": "20"},
+            {"@key": "min connections","$": "1"},
+            {"@key": "max connections","$": "10"},
+            {"@key": "Evictor tests per run","$": "3"},
+            {"@key": "Test while idle","$": "true"},
+            {"@key": "Max connection idle time","$": "300"}
+          ]
+        },
+        "_default": true
+      }
+    }
     ```
 
     Using curl POST:
@@ -366,7 +398,20 @@ This example shows the process for uploading a Shapefile (in a zip file) to an e
 2.  Create the import definition:
 
     ```json
-    {%raw%}{% include "./files/import.json" %}{%endraw%}
+    {
+       "import": {
+          "targetWorkspace": {
+             "workspace": {
+                "name": "cite"
+             }
+          },
+          "targetStore": {
+             "dataStore": {
+                "name": "postgis"
+             }
+          }
+       }
+    }
     ```
 
     POST this definition to /geoserver/rest/imports:
@@ -429,13 +474,31 @@ A remote sensing tool is generating CSV files with some locations and measuremen
     Where **`import.json`** is:
 
     ```json
-    {%raw%}{% include "./files/import.json" %}{%endraw%}
+    {
+       "import": {
+          "targetWorkspace": {
+             "workspace": {
+                "name": "cite"
+             }
+          },
+          "targetStore": {
+             "dataStore": {
+                "name": "postgis"
+             }
+          }
+       }
+    }
     ```
 
 2.  Then, we are going to POST the csv file to the tasks list.
 
     ```text
-    {%raw%}{% include "./files/values.csv" %}{%endraw%}
+    AssetID, SampleTime, Lat, Lon, Value
+    1, 2015-01-01T10:00:00, 10.00, 62.00, 15.2
+    1, 2015-01-01T11:00:00, 10.10, 62.11, 30.25
+    1, 2015-01-01T12:00:00, 10.20, 62.22, 41.2
+    1, 2015-01-01T13:00:00, 10.31, 62.33, 27.6
+    1, 2015-01-01T14:00:00, 10.41, 62.45, 12
     ```
 
     In order to create an import task for it:
@@ -482,7 +545,11 @@ A remote sensing tool is generating CSV files with some locations and measuremen
 3.  Force the CRS by updating the layer:
 
     ```json
-    {%raw%}{% include "./files/layerUpdate.json" %}{%endraw%}
+    {
+       "layer" : {
+          "srs": "EPSG:4326"
+       }
+    }
     ```
 
     Using PUT to update task layer:
@@ -543,7 +610,11 @@ A remote sensing tool is generating CSV files with some locations and measuremen
 4.  Then, we are going to create a transformation mapping the Lat/Lon columns to a point:
 
     ```json
-    {%raw%}{% include "./files/toPoint.json" %}{%endraw%}
+    {
+      "type": "AttributesToPointGeometryTransform",
+      "latField": "Lat",
+      "lngField": "Lon"
+    }
     ```
 
     The above will be uploaded task transforms:
@@ -579,7 +650,20 @@ To update the `values` layer with new content:
     Using:
 
     ```json
-    {%raw%}{% include "./files/import.json" %}{%endraw%}
+    {
+       "import": {
+          "targetWorkspace": {
+             "workspace": {
+                "name": "cite"
+             }
+          },
+          "targetStore": {
+             "dataStore": {
+                "name": "postgis"
+             }
+          }
+       }
+    }
     ```
 
 2.  Use **`replace.csv`** to create a new task:
@@ -593,7 +677,12 @@ To update the `values` layer with new content:
     The csv file has an additional column:
 
     ```text
-    {%raw%}{% include "./files/replace.csv" %}{%endraw%}
+    AssetID, SampleTime, Lat, Lon, Value, Status
+    1, 2015-01-01T10:00:00, 10.00, 62.00, 15.2, ready
+    1, 2015-01-01T11:00:00, 10.10, 62.11, 30.25, recording
+    1, 2015-01-01T12:00:00, 10.20, 62.22, 41.2, recording
+    1, 2015-01-01T13:00:00, 10.31, 62.33, 27.6, recording
+    1, 2015-01-01T14:00:00, 10.41, 62.45, 12, complete
     ```
 
 3.  Update task with as a "REPLACE" and supply srs information:
@@ -607,7 +696,17 @@ To update the `values` layer with new content:
     Using:
 
     ```json
-    {%raw%}{% include "./files/taskUpdate.json" %}{%endraw%}
+    {
+       "task": {
+           "updateMode": "REPLACE",
+           "layer" : {
+              "name": "values",
+              "title": "values",
+              "nativeName": "values",
+              "srs": "EPSG:4326"
+           }
+       }
+    }
     ```
 
 4.  Update transform to supply a geometry column:
@@ -621,7 +720,11 @@ To update the `values` layer with new content:
     Using:
 
     ```json
-    {%raw%}{% include "./files/toPoint.json" %}{%endraw%}
+    {
+      "type": "AttributesToPointGeometryTransform",
+      "latField": "Lat",
+      "lngField": "Lon"
+    }
     ```
 
 5.  Double check import:
