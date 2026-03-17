@@ -421,9 +421,11 @@ The following properties must hold true in order to promote a community module:
         <dependencies>
            ...
            <dependency>
-             <groupId>org.geoserver.extension</groupId>
-             <artifactId>%module%</artifactId>
-             <version>%version%</version>
+        ```xml
+ <groupId>org.geoserver.extension</groupId>
+ <artifactId>%module%</artifactId>
+ <version>%version%</version>
+        ```
            </dependency>
            ...
          </dependencies>
@@ -437,14 +439,16 @@ The following properties must hold true in order to promote a community module:
           <artifactId>maven-assembly-plugin</artifactId>
           <version>2.1</version>
           <configuration>
-            <descriptors>
-             <descriptor>release/war.xml</descriptor>
-             <descriptor>release/javadoc.xml</descriptor>
-             <descriptor>release/bin.xml</descriptor>
-             <descriptor>release/doc.xml</descriptor>
-             ...
-             <descriptor>release/ext-%module%.xml</descriptor>
-            </descriptors>
+        ```xml
+<descriptors>
+ <descriptor>release/war.xml</descriptor>
+ <descriptor>release/javadoc.xml</descriptor>
+ <descriptor>release/bin.xml</descriptor>
+ <descriptor>release/doc.xml</descriptor>
+ ...
+ <descriptor>release/ext-%module%.xml</descriptor>
+</descriptors>
+        ```
           </configuration>
         </plugin>
         ```

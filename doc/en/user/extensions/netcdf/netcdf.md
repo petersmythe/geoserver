@@ -337,9 +337,11 @@ This will generate the files and it's going to be good enough if each NetCDF con
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?><Indexer>
   <domains>
-    <domain name="time">
-      <attributes><attribute>time</attribute></attributes>
-    </domain>
+```xml
+<domain name="time">
+  <attributes><attribute>time</attribute></attributes>
+</domain>
+```
   </domains>
   <coverages>
     <coverage>
