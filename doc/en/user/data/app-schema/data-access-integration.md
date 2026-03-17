@@ -72,7 +72,7 @@ Feature chaining works both ways for the re-mapped complex features. You can cha
 
 From the user point of view, filters are configured as per normal, using the mapped/output target attribute XPath expressions. However, when one or more attributes in the expression is a multi-valued property, we need to specify a function such as "contains_text" in the filter. This is because when multiple values are returned, comparing them to a single value would only return true if there is only one value returned, and it is the same value. Please note that the "contains_text" function used in the following example is not available in GeoServer API, but defined in the database.
 
-**Example:**
+### Example:
 
 Composition is a multi-valued property:
 

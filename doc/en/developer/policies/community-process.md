@@ -55,13 +55,13 @@ For each GeoServer release, we spend six month "prerelease" in a development cyc
 !!! note
     The former beta release has been replaced with an earlier release candidate. There is no longer a "feature freeze" on the main development branch after this release. Instead, the new branch is created at this time, freeing up the main development branch for new features.
 
-**Prerelease**
+### Prerelease
 
 - Month -6: main development branch open for development
 - Month -1: month: release candidate is made on new branch
 - Month 1: (start of month): second release candidate is made, if there are sufficient changes to warrant it.
 
-**Release**
+### Release
 
 - Month 1: initial stable release (aim for one month after the first release candidate)
 - Month 3: stable release
@@ -92,7 +92,7 @@ Here is what that looks like:
 
 For more information, or to volunteer, please check the [Release-Schedule](https://github.com/geoserver/geoserver/wiki/Release-Schedule) in the wiki.
 
-**Unscheduled Releases**
+### Unscheduled Releases
 
 Additional releases may be requested by downstream projects at any point, or may be produced by a volunteer to quickly disseminate a security fix.
 

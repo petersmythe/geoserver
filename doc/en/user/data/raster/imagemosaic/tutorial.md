@@ -51,7 +51,7 @@ This is a process very similar to creating a featuretype. More specifically, one
 6.  Use the **Layer Preview** to view the mosaic.
 
 !!! warning
-    If the created layer appears to be all black, it may be that GeoServer has not found any acceptable granules in the provided index. It is also possible that the shapefile index is empty (no granules were found in the provided directory) or it might be that the granules\' paths in the shapefile index are not correct, which could happen if an existing index (using absolute paths) is moved to another place. If the shapefile index paths are not correct, then the DBF file can be opened and fixed with an editor. Alternately, you can delete the index and let GeoServer recreate it from the root directory.
+    If the created layer appears to be all black, it may be that GeoServer has not found any acceptable granules in the provided index. It is also possible that the shapefile index is empty (no granules were found in the provided directory) or it might be that the granules' paths in the shapefile index are not correct, which could happen if an existing index (using absolute paths) is moved to another place. If the shapefile index paths are not correct, then the DBF file can be opened and fixed with an editor. Alternately, you can delete the index and let GeoServer recreate it from the root directory.
 
 ## Configuration examples
 
@@ -98,12 +98,12 @@ Inside the Coverage Editor Publishing tab, you can specify the **dem** default s
 </StyledLayerDescriptor>
 ```
 
-In this way you have a clear distinction between the different intervals of the dataset that compose the mosaic, like the background and the \"nodata\" area.
+In this way you have a clear distinction between the different intervals of the dataset that compose the mosaic, like the background and the "nodata" area.
 
 ![](images/vito_config_1.png)
 
 !!! note
-    The \"nodata\" on the sample mosaic is -9999. The default background value is for mosaics is 0.0.
+    The "nodata" on the sample mosaic is -9999. The default background value is for mosaics is 0.0.
 
 The result is the following:
 
@@ -113,7 +113,7 @@ The result is the following:
 
 By setting the other configuration parameters appropriately, it is possible to improve both the appearance of the mosaic as well as its performance. For instance, we could:
 
-- Make the \"nodata\" areas transparent and coherent with the real data. To achieve this we need to change the opacity of the \"nodata\" ColorMapEntry in the `dem` style to `0.0` and set the `BackgroundValues` parameter to `-9999` so that empty areas will be filled with this value. The result is as follows:
+- Make the "nodata" areas transparent and coherent with the real data. To achieve this we need to change the opacity of the "nodata" ColorMapEntry in the `dem` style to `0.0` and set the `BackgroundValues` parameter to `-9999` so that empty areas will be filled with this value. The result is as follows:
 
   ![](images/vito_2.png)
 
@@ -127,8 +127,8 @@ The configuration parameters are as follows:
 |------------------------|--------------|
 | MaxAllowedTiles        | 2147483647   |
 | BackgroundValues       | -9999        |
-| OutputTransparentColor | \"no color\" |
-| InputTransparentColor  | \"no color\" |
+| OutputTransparentColor | "no color" |
+| InputTransparentColor  | "no color" |
 | AllowMultiThreading    | True         |
 | USE_IMAGEN_IMAGEREAD   | True         |
 | SUGGESTED_TILE_SIZE    | 512,512      |
@@ -178,7 +178,7 @@ The various parameters can be set as follows:
 | MaxAllowedTiles        | 2147483647   |
 | BackgroundValues       | (default)    |
 | OutputTransparentColor | #000000      |
-| InputTransparentColor  | \"no color\" |
+| InputTransparentColor  | "no color" |
 | AllowMultiThreading    | True         |
 | USE_IMAGEN_IMAGEREAD   | True         |
 | SUGGESTED_TILE_SIZE    | 512,512      |
@@ -201,7 +201,7 @@ The result is the following.
 
 *Basic configuration*
 
-This mosaic, formed by two single granules, shows a typical case where the \"nodata\" collar areas of the granules overlap, as shown in the picture above. In this case we can use the `InputTransparentColor` parameter to make the collar areas disappear during the superimposition process --- in this case, by using an `InputTransparentColor` of `#FFFFFF`.
+This mosaic, formed by two single granules, shows a typical case where the "nodata" collar areas of the granules overlap, as shown in the picture above. In this case we can use the `InputTransparentColor` parameter to make the collar areas disappear during the superimposition process --- in this case, by using an `InputTransparentColor` of `#FFFFFF`.
 
 The final configuration parameters are the following:
 
@@ -209,7 +209,7 @@ The final configuration parameters are the following:
 |------------------------|--------------|
 | MaxAllowedTiles        | 2147483647   |
 | BackgroundValues       | (default)    |
-| OutputTransparentColor | \"no color\" |
+| OutputTransparentColor | "no color" |
 | InputTransparentColor  | #FFFFFF      |
 | AllowMultiThreading    | True         |
 | USE_IMAGEN_IMAGEREAD   | True         |
@@ -225,7 +225,7 @@ This is the result:
 
 A mosaic need not be static. It can contain granules which change, are added or deleted. In this example, we will create a mosaic that changes over time.
 
-1.  Create a mosaic in the standard way. (The specific configuration isn\'t important.)
+1.  Create a mosaic in the standard way. (The specific configuration isn't important.)
 
 ![](images/tutorial_dynamic1.png)
 
@@ -258,7 +258,7 @@ To update an ImageMosaic through the file system:
 
 ### Multi-resolution imagery with reprojection {%raw%}{#multi-crs-mosaic}{%endraw%}
 
-As a general rule, we want to have the highest resolution granules shown \"on top\", with the lower-resolution granules filling in the gaps as necessary.
+As a general rule, we want to have the highest resolution granules shown "on top", with the lower-resolution granules filling in the gaps as necessary.
 
 In this example, we will serve up overlapping granules that have varying resolutions. In addition, we will mix resolutions, such that the higher resolution granule is reprojected to match the resolution of the lower resolution granules.
 
@@ -281,7 +281,7 @@ In this example, we will serve up overlapping granules that have varying resolut
     Schema=*the_geom:Polygon,location:String,crs:String,resolution:String
     ```
 
-    The MosaicCRS property is not mandatory, but it\'s a good idea to set a predictable target CRS that all granule footprints can be reprojected into, otherwise the mosaic machinery will use the CRS of the first indexed granule.
+    The MosaicCRS property is not mandatory, but it's a good idea to set a predictable target CRS that all granule footprints can be reprojected into, otherwise the mosaic machinery will use the CRS of the first indexed granule.
 
 6.  Save this file in the root of the mosaic directory (along with the index files). The result is the following:
 
@@ -303,7 +303,7 @@ It is possible to make the mosaic refer to an existing data store. The **\`\`dat
 StoreName=workspace:storename
 ```
 
-For Oracle or H2, it\'s best to also specify the SPI in order to inform the mosaic that it needs to work around specific limitations of the storage (e.g., forced uppercase attribute usage, limitation in attribute name length and the like):
+For Oracle or H2, it's best to also specify the SPI in order to inform the mosaic that it needs to work around specific limitations of the storage (e.g., forced uppercase attribute usage, limitation in attribute name length and the like):
 
 ```properties
 StoreName=workspace:storename
@@ -314,7 +314,7 @@ The above will be sufficient in case the image mosaic can create the index table
 
 > TypeName=myMosaicTypeName
 
-In case the index \"table\" already exists instead, then a **\`\`indexer.properties\`\`** file will be required, with the following contents:
+In case the index "table" already exists instead, then a **\`\`indexer.properties\`\`** file will be required, with the following contents:
 
 ```properties
 UseExistingSchema=true

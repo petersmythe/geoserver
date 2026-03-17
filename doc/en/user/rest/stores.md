@@ -2,7 +2,7 @@
 
 ## Uploading a shapefile
 
-**Create a new store "roads" by uploading a shapefile "roads.zip"**
+### Create a new store "roads" by uploading a shapefile "roads.zip"
 
 *Request*
 
@@ -141,7 +141,7 @@ curl -v -u admin:geoserver -XGET
 
 ## Adding a PostGIS database store
 
-**Add an existing PostGIS database named "nyc" as a new store**
+### Add an existing PostGIS database named "nyc" as a new store
 
 !!! note
     This example assumes that a PostGIS database named `nyc` is present on the local system and is accessible by the user `bob`.
@@ -175,7 +175,7 @@ Given the following content saved as **`nycDataStore.xml`**:
 
 ## Listing a PostGIS database store details
 
-**Retrieve information about a PostGIS store**
+### Retrieve information about a PostGIS store
 
 *Request*
 
@@ -214,7 +214,7 @@ Given the following content saved as **`nycDataStore.xml`**:
 
 ## Publishing a table from an existing PostGIS store
 
-**Publish a new featuretype from a PostGIS store table "buildings"**
+### Publish a new featuretype from a PostGIS store table "buildings"
 
 !!! note
     This example assumes the table has already been created.
@@ -279,7 +279,7 @@ A new and empty table named "annotations" in the "nyc" database will be created 
 
 ## Adding an external WMTS Store
 
-**Create a new WMTS store "Basemap-Nat-Geo-Datastore"**
+### Create a new WMTS store "Basemap-Nat-Geo-Datastore"
 
 *Request*
 

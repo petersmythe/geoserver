@@ -93,7 +93,7 @@ Vocab(COLUMN_NAME, properties file)
 - **COLUMN_NAME**: column name to get values from
 - **properties file**: absolute path of the properties file
 
-**Example:**
+#### Example:
 
 Properties file:
 

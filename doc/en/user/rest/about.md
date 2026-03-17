@@ -51,7 +51,7 @@ The REST API allows you to set and retrieve information about the server itself.
 !!! note
     The result will be a very long list of manifest information. While this can be useful, it is often desirable to filter this list.
 
-**Retrieve manifests, filtered by resource name**
+### Retrieve manifests, filtered by resource name
 
 !!! note
     This example will retrieve only resources where the `name` attribute matches `gwc-.*`.
@@ -106,7 +106,7 @@ The REST API allows you to set and retrieve information about the server itself.
 </about>
 ```
 
-**Retrieve manifests, filtered by resource property**
+### Retrieve manifests, filtered by resource property
 
 !!! note
     This example will retrieve only resources with a property equal to `GeoServerModule`.
@@ -134,7 +134,7 @@ The REST API allows you to set and retrieve information about the server itself.
 </about>
 ```
 
-**Retrieve manifests, filtered by both resource name and property**
+### Retrieve manifests, filtered by both resource name and property
 
 !!! note
     This example will retrieve only resources where a property with named `GeoServerModule` has a value equal to `extension`.

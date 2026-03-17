@@ -10,7 +10,7 @@ An unexpected problem that is encountered when using the web administration cons
 
 Failures in GeoServer often show up as Java stack traces. It is important to read the entire stack trace all the way through to the end to determine the initial cause.
 
-**Example: File System Permission**
+#### Example: File System Permission
 
 Here is an example where GeoServer application did not have write permission in the GEOSERVER_DATA_DIR location:
 

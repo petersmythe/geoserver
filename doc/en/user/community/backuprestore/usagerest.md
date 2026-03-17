@@ -17,7 +17,7 @@ We are going to use the command line tool cURL to send HTTP REST requests to Geo
 
 The `/rest/br/backup/` and `/rest/br/restore` endpoints accept an optional format suffix that allows the Backup / Restore archive to be streamed to / from the client instead of being written on / read from the file system.
 
-**Initiate a Backup**
+### Initiate a Backup
 
 Prepare a file containing with a JSON object representing the Backup procedure configuration.
 
@@ -124,7 +124,7 @@ curl -u "admin:geoserver" -i -X GET  "http://mygeoserver/geoserver/rest/br/backu
 
 ![](images/usagerest001.png)
 
-**Query status of Backup executions**
+### Query status of Backup executions
 
 Status of the operation can be queried making an HTTP GET request to the location listed in the response.
 
@@ -152,7 +152,7 @@ GeoServer will respond with the status of the backup job corresponding to that I
 
 Here you are able to see the status of all the steps involved in the backup procedure with creation time, start time, end time, exit status etc.
 
-**Cancel a Backup**
+### Cancel a Backup
 
 Cancel an in progress Backup by sending an HTTP DELETE request with the ID of the task
 
@@ -162,7 +162,7 @@ curl -v -XDELETE -u "admin:geoserver" http://mygeoserver/geoserver/rest/br/backu
 
 Replace `$ID` with the **ID** of the backup operation you'd like to cancel.
 
-**Initiate a Restore**
+### Initiate a Restore
 
 Prepare a file with a JSON object representing the Restore procedure configuration
 
@@ -389,7 +389,7 @@ Query for status of Restore operations
 
 Here you are able to see the status of all the steps involved in the restore procedure with creation time, start time, end time, exit status etc.
 
-**Cancel a Restore**
+### Cancel a Restore
 
 Cancel an in-progress Restore by sending an HTTP DELETE request:
 

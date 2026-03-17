@@ -11,7 +11,7 @@ This REST API allows you to create and manage URL External Access Checks in GeoS
 
 ## Listing all URL Checks
 
-**List all URL Checks on the server, in JSON format:**
+### List all URL Checks on the server, in JSON format:
 
 *Request*
 
@@ -28,7 +28,7 @@ This REST API allows you to create and manage URL External Access Checks in GeoS
      {"name":"safeWFS","href":"http:\/\/localhost:8080\/geoserver\/rest\/urlchecks\/safeWFS.json"}]}}
 ```
 
-**List all URL Checks, in XML format:**
+### List all URL Checks, in XML format:
 
 *Request*
 
@@ -57,7 +57,7 @@ This REST API allows you to create and manage URL External Access Checks in GeoS
 
 ## Listing URL Check details
 
-**Retrieve information about a specific URL Check:**
+### Retrieve information about a specific URL Check:
 
 *Request*
 
@@ -78,7 +78,7 @@ This REST API allows you to create and manage URL External Access Checks in GeoS
 
 ## Creating a URL Check
 
-**Create a new URL Check:**
+### Create a new URL Check:
 
 *Request*
 
@@ -99,7 +99,7 @@ This REST API allows you to create and manage URL External Access Checks in GeoS
 
 ## Changing an existing URL Check
 
-**Edit the configuration of an existing URL Check:**
+### Edit the configuration of an existing URL Check:
 
 *Request*
 
@@ -119,7 +119,7 @@ This REST API allows you to create and manage URL External Access Checks in GeoS
 
 ## Deleting a URL Check
 
-**Remove a URL Check:**
+### Remove a URL Check:
 
 *Request*
 

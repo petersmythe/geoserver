@@ -171,7 +171,7 @@ This allow you to get a Client Secret.
 
 ![](../img/keycloak-client-secret.png)
 
-**Save your Client Secret for use in the GeoServer Configuration**
+#### Save your Client Secret for use in the GeoServer Configuration
 
 ### Debugging
 

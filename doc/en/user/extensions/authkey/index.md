@@ -129,7 +129,7 @@ Once the new `GeoServer UserGroup Service` has been configured, it can be easily
 
 ![](images/005_user_group_service.png)
 
-**Additional Options**
+##### Additional Options
 
 1.  *Optional static comma-separated list of available Groups from the Web Service response*
 
@@ -202,7 +202,7 @@ When enabled, the filter ignores any existing session or SecurityContext princip
 
 This feature is particularly useful for deployments that require stateless authentication or need to ensure that requests are processed strictly based on the authkey query parameter. By default, this option is disabled.
 
-**Internal User Cache**
+### Internal User Cache
 
 To enhance performance in stateless mode, the AuthKey filter can use an internal user cache. The cache prevents unnecessary backend authentication requests for the same authkey by storing the user information locally for a configurable period.
 

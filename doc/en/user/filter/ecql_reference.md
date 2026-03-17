@@ -86,8 +86,8 @@ An expression specifies a attribute, literal, or computed value. The type of the
 An attribute name denotes the value of a feature attribute.
 
 - Simple attribute names are sequences of letters and numbers, e.g. [States123``
-- Attribute names quoted with double-quotes may be any sequence of characters, e.g. ``\"States!@#\"``
-- [Note](https://gis.stackexchange.com/a/475826/68995): ``id`` is one of a few [reserved keywords](https://github.com/geotools/geotools/blob/2058be01323c3dea23d6df4d84b623be7f0b4102/modules/library/cql/src/main/jjtree/ECQLGrammar.jjt#L180) in ECQL and thus an attribute (or database column) named ``id`` must be quoted, e.g. ``\"id\"``
+- Attribute names quoted with double-quotes may be any sequence of characters, e.g. ``"States!@#"``
+- [Note](https://gis.stackexchange.com/a/475826/68995): ``id`` is one of a few [reserved keywords](https://github.com/geotools/geotools/blob/2058be01323c3dea23d6df4d84b623be7f0b4102/modules/library/cql/src/main/jjtree/ECQLGrammar.jjt#L180) in ECQL and thus an attribute (or database column) named ``id`` must be quoted, e.g. ``"id"``
 
 ## Literal {%raw%}{#ecql_literal}{%endraw%}
 

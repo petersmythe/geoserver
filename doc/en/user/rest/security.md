@@ -29,7 +29,7 @@ The REST API allows you to adjust GeoServer security settings.
 
 ## Changing the keystore password
 
-**Change to a new keystore password**
+### Change to a new keystore password
 
 !!! note
     Requires knowledge of the current keystore password.
@@ -55,7 +55,7 @@ Given a `changes.xml` file:
 
 ## Listing the catalog mode
 
-**Fetch the current catalog mode**
+### Fetch the current catalog mode
 
 *Request*
 
@@ -74,7 +74,7 @@ Given a `changes.xml` file:
 
 ## Changing the catalog mode
 
-**Set a new catalog mode**
+### Set a new catalog mode
 
 Given a `newMode.xml` file:
 
@@ -93,7 +93,7 @@ Given a `newMode.xml` file:
 
 ## Listing access control rules
 
-**Retrieve current list of access control rules**
+### Retrieve current list of access control rules
 
 *Request*
 
@@ -113,7 +113,7 @@ Given a `newMode.xml` file:
 
 ## Changing access control rules
 
-**Set a new list of access control rules**
+### Set a new list of access control rules
 
 Given a `rules.xml` file:
 
@@ -137,7 +137,7 @@ Given a `rules.xml` file:
 
 ## Deleting access control rules
 
-**Delete individual access control rule**
+### Delete individual access control rule
 
 *Request*
 

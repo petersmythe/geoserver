@@ -66,7 +66,7 @@ The steps are almost the same of the backup. Just select the `.zip` archive full
 !!! warning
     Please notice that a **non-dry-run restore** will lose all your current GeoServer configuration by replacing it with the new one, so be careful and be sure to backup everything before starting a restore.
 
-**DRY-RUN RESTORE**
+### DRY-RUN RESTORE
 
 > `Dry Run` option allows a user to **test** a `.zip` archive before actually performing a full restore.
 >

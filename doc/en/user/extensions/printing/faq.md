@@ -9,15 +9,15 @@
     
     Authors: MapFish developers.
 
-**All I get in my PDF is: "ERROR: infinite table loop". What's wrong?**
+## All I get in my PDF is: "ERROR: infinite table loop". What's wrong?
 
 Something in your page is too big. For example, the width or the height of your !map block.
 
-**I tried to print (pylons mode) and I get a "Java error". What's next?**
+## I tried to print (pylons mode) and I get a "Java error". What's next?
 
 Look in the apache error log, you'll find more information.
 
-**What are the limitations of the type 2 layers?**
+## What are the limitations of the type 2 layers?
 
 It depends mostly on the map server you use. For the moment, GeoServer has not been extensively tested. With MapServer:
 
@@ -36,7 +36,7 @@ There are three possible explanations:
 - Your printer firmware is buggy: upgrade it
 - Your printer driver is buggy: upgrade it
 
-**The module needs to go through a proxy to access the map services.**
+## The module needs to go through a proxy to access the map services.
 
 It's so 90s\... you should hire some fresh guys for your IT team. ;-)
 
@@ -55,7 +55,7 @@ By default, the browser's configured locale is used. You can force another local
 }
 ```
 
-**I copied the examples and the print widgets are not working.**
+## I copied the examples and the print widgets are not working.
 
 First edit the client/examples/examples.js file and make sure the URLs are correct.
 

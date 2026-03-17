@@ -64,7 +64,7 @@ $> cp /etc/sysconfig/tomcat /etc/sysconfig/geoserver
 $> ln -s /usr/share/tomcat/ /opt/tomcat
 ```
 
-**Creating apache tomcat HOME context**
+#### Creating apache tomcat HOME context
 
 Creating base template directory
 
@@ -76,7 +76,7 @@ $> mkdir -p /var/lib/tomcat/geoserver/{bin,conf,logs,temp,webapps,work}
 $> cp -Rf /opt/tomcat/conf/* /var/lib/tomcat/geoserver/conf/
 ```
 
-**Creating geoserver apache tomcat BASE context**
+#### Creating geoserver apache tomcat BASE context
 
 Make sure you already:
 
@@ -93,7 +93,7 @@ GeoServer is the first tomcat instance we are installing in this VM, so we can k
 
 Remember that you may change these ports in the file `/var/lib/tomcat/geoserver/conf/server.xml`
 
-**Final configurations**
+#### Final configurations
 
 Set the ownership of the `geoserver/` related directories to user tomcat
 
@@ -154,7 +154,7 @@ $> tail -F /var/lib/tomcat/geoserver/logs/catalina.YYYY-MM-DD.log
 
 ### Deploy And Configure GeoServer
 
-**First deployment**
+#### First deployment
 
 ``` bash
 # as root

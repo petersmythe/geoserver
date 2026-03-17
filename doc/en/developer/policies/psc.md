@@ -107,7 +107,7 @@ Responsibilities of PSC members fall into the following categories:
 
 Day to day project management. Duties include:
 
-**Mailing List Participation**
+#### Mailing List Participation
 
 PSC members are expected to be active on both the GeoServer User forum and the GeoServer Devel mailing list, subject to open-source mailing list etiquette of course.
 
@@ -116,13 +116,13 @@ PSC members are expected to be active on both the GeoServer User forum and the G
 !!! note
     Our community is subject to both a responsible disclosure policy and a code of conduct; this is the responsibility of all partipants and is not limited to the PSC.*
 
-**Biweekly Video Meeting Attendance**
+#### Biweekly Video Meeting Attendance
 
 PSC members are encouraged to attend one of biweekly Skype meetings. Of course this is not always possible due to various reasons. If known in advance that a member cannot attend a meeting it is polite to email the developer list in response to the meeting reminder. No reason need to be given for not attending the meeting.
 
 Meetings are a chance to quickly discuss project activities, review difficult pull requests, and cut down on email.
 
-**Community Commitments**
+#### Community Commitments
 
 As an Open Source Geospatial Foundation project we have a number of committments:
 
@@ -135,7 +135,7 @@ As an Open Source Geospatial Foundation project we have a number of committments
 
 Long term project management. Duties include:
 
-**Guiding Major Development Efforts**
+#### Guiding Major Development Efforts
 
 *PSC members are expected to help guide the major development efforts of the project. This may include deciding which development efforts should receive priority when different efforts are in conflict.*
 
@@ -143,7 +143,7 @@ Long term project management. Duties include:
 
 *A major development effort which is intended to become part of the core of GeoServer can be proposed by any interested party, PSC, or non PSC. However, the effort must be approved by the PSC before it can begin.*
 
-**Project Policies**
+#### Project Policies
 
 The PSC is responsible for defining project policies and practiced. Examples include:
 

@@ -6,7 +6,7 @@ This page covers some of the lines of communication and tools available to enact
 
 Our security policy asks the community to take care in the reporting and discussion of security vulnerabilities:
 
-**Reporting a Vulnerability**
+### Reporting a Vulnerability
 
 If you encounter a security vulnerability in GeoServer, please take care to report it in a responsible fashion:
 
@@ -88,7 +88,7 @@ When contacted by an external party on geoserver-security email list:
 
 GeoServer has adopted a coordinated vulnerability disclosure model, as outlined in [SECURITY.md](https://github.com/geoserver/geoserver/blob/main/SECURITY.md):
 
-**Coordinated vulnerability disclosure**
+### Coordinated vulnerability disclosure
 
 Disclosure policy:
 

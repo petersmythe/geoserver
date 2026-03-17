@@ -14,7 +14,7 @@ The REST API allows you to create and modify layer groups in GeoServer.
 
 ## Creating a layer group
 
-**Create a new layer group based on already-published layers**
+### Create a new layer group based on already-published layers
 
 Given the following content saved as **`nycLayerGroup.xml`**:
 

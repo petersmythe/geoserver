@@ -377,7 +377,7 @@ See the [Serving Static Files](../tutorials/staticfiles.md) page for more detail
 
 ## Session Management
 
-GeoServer defaults to managing user sessions using cookies with the `HttpOnly` flag set to prevent attackers from using cross-site scripting (XSS) attacks to steal a user\'s session token. You can configure the session behavior by modifying the **\`web.xml\`** file of your GeoServer instance.
+GeoServer defaults to managing user sessions using cookies with the `HttpOnly` flag set to prevent attackers from using cross-site scripting (XSS) attacks to steal a user's session token. You can configure the session behavior by modifying the **\`web.xml\`** file of your GeoServer instance.
 
 It is strongly recommended that production environments also set the `Secure` flag on session cookies. This can be enabled by uncommenting the following in the **\`web.xml\`** file if the web interface is only being accessed through HTTPS but the flag may need to be set by a proxy server if the web interface needs to support both HTTP and HTTPS.
 

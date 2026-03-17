@@ -11,7 +11,7 @@ The REST API allows you to create and manage workspaces in GeoServer.
 
 ## Adding a new workspace
 
-**Creates a new workspace named "acme" with a POST request**
+### Creates a new workspace named "acme" with a POST request
 
 *Request*
 
@@ -36,7 +36,7 @@ The REST API allows you to create and manage workspaces in GeoServer.
 
 ## Listing workspace details
 
-**Retrieve information about a specific workspace**
+### Retrieve information about a specific workspace
 
 *Request*
 

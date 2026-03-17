@@ -16,7 +16,7 @@ Fetches the keystore password and allows to change the keystore password
 
 Formats for PUT (keystore password change).
 
-**XML**
+### XML
 
 ``` xml
 <masterPassword>
@@ -25,7 +25,7 @@ Formats for PUT (keystore password change).
 </masterPassword>
 ```
 
-**JSON**
+### JSON
 
 ``` json
 { "oldMasterPassword":"oldPassword",

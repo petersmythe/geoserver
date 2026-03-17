@@ -74,12 +74,12 @@ This is a step by step guide to style a GeoServer demo layer, `sfdem`.
 
 ## Exporting raster symbology
 
-The following are a couple of examples on how to export raster layers\' symbology in QGIS and how to use the resulting SLD to style layers in GeoServer.
+The following are a couple of examples on how to export raster layers' symbology in QGIS and how to use the resulting SLD to style layers in GeoServer.
 
 !!! warning
     As mentioned above, this functionality has some limitations:
     
-    - **Hillshading** vendor options are not fully supported by GeoServer so you can\'t choose the ``Band`` and the position of the sun (``Altitude`` and ``Azimuth``), the ``Multidirectional`` option is not supported too
+    - **Hillshading** vendor options are not fully supported by GeoServer so you can't choose the ``Band`` and the position of the sun (``Altitude`` and ``Azimuth``), the ``Multidirectional`` option is not supported too
     - GeoServer is not able to interpret the **Color Rendering** options yet
 
 This is a step by step guide to style a GeoServer demo layer, `sfdem`.
@@ -102,7 +102,7 @@ This is a step by step guide to style a GeoServer demo layer, `sfdem`.
 
     *QGIS raster styling*
 
-6.  Return to the layer\'s **Properties** dialog **Symbology** page, at the bottom of the page choose **Style \--\> Save Style**.
+6.  Return to the layer's **Properties** dialog **Symbology** page, at the bottom of the page choose **Style \--\> Save Style**.
 
     ![](images/qgis-raster-saveas.png)
 

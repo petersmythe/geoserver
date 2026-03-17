@@ -11,7 +11,7 @@ The REST API allows you to list, create, upload, update, and delete layers in Ge
 
 ## Listing all layers
 
-**List all layers on the server, in JSON format:**
+### List all layers on the server, in JSON format:
 
 *Request*
 
@@ -39,7 +39,7 @@ The REST API allows you to list, create, upload, update, and delete layers in Ge
 }
 ```
 
-**List all layers on the server, in XML format:**
+### List all layers on the server, in XML format:
 
 *Request*
 

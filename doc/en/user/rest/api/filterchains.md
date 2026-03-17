@@ -11,7 +11,7 @@ Adds or Lists the filter chains in the geoserver systems
 
 Formats:
 
-**XML**
+### XML
 
 For Get (List - Response)
 
@@ -58,7 +58,7 @@ For Post (Create - Response)
 
 201 Created Content-Type: text/plain Location: "http://localhost:9002/geoserver/rest/security/filterChains/web-test-2"
 
-**JSON**
+### JSON
 
 For Get (list)
 
@@ -134,7 +134,7 @@ View, Update or Delete an existing auth filter
 
 Formats:
 
-**XML**
+### XML
 
 Request GET: <http://localhost:9002/geoserver/rest/security/filterChains/web-test-1> Header Accept: application/xml
 
@@ -234,7 +234,7 @@ Response: Status: 200
 </filterChain>
 ```
 
-**JSON**
+### JSON
 
 Request GET: <http://localhost:9002/geoserver/rest/security/filterChains/web-test-2> Header Accept: application/json
 

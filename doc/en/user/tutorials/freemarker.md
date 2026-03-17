@@ -33,7 +33,7 @@ The data model is a sort of tree, where each element has a name and a type. Besi
 
 Here are the data models (as you can see there are redundancies, in particular in attributes, we chose this approach to make template building easier):
 
-**FeatureType (map)**
+#### FeatureType (map)
 
 - name (string): the type name
 - attributes (listMap): the type attributes
@@ -43,7 +43,7 @@ Here are the data models (as you can see there are redundancies, in particular i
   - type (string): attribute type, the fully qualified Java class name
   - isGeometry (boolean): true if the attribute is geometric, false otherwise
 
-**Feature (map)**
+#### Feature (map)
 
 - fid (string): the feature ID (WFS feature id)
 - typeName (string): the type name
@@ -68,16 +68,16 @@ Here are the data models (as you can see there are redundancies, in particular i
   - SRS (string): The layer's SRS
   - nativeCRS (string): The layer's coordinate reference system as WKT
 
-**FeatureCollection (map)**
+#### FeatureCollection (map)
 
 - features (list of Feature, see above)
 - type (FeatureType, see above)
 
-**request (map)**
+#### request (map)
 
 Contains the GetFeatureInfo request parameters and related values.
 
-**environment (map)**
+#### environment (map)
 
 Allows accessing several environment variables, in particular those defined in:
 
@@ -85,22 +85,22 @@ Allows accessing several environment variables, in particular those defined in:
 - OS environment variables
 - web.xml context parameters
 
-**Math (map)**
+#### Math (map)
 
 Allows accessing math functions.
 
 ### Examples
 
-**request**
+#### request
 
 - \${request.LAYERS}
 - \${request.ENV.PROPERTY}
 
-**environment**
+#### environment
 
 - \${environment.GEOSERVER_DATA_DIR}
 - \${environment.WEB_SITE_URL}
 
-**Math**
+#### Math
 
 - \${Math.max(request.NUMBER1,request.NUMBER2)}

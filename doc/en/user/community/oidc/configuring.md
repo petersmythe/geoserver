@@ -74,11 +74,11 @@ This is the callback URL that must be registered with your IDP as a permitted re
 
 When a user clicks **Log out** in GeoServer, two things can happen depending on how the **After-Logout Redirect URI** is configured:
 
-**Global logout (default)**
+#### Global logout (default)
 
 :   If the After-Logout Redirect URI points to the IDP's logout endpoint (e.g. Keycloak's `/protocol/openid-connect/logout`), the user is signed out of both GeoServer **and** the IDP. This terminates the IDP session entirely, affecting all applications that share the same IDP session.
 
-**GeoServer-only logout**
+#### GeoServer-only logout
 
 :   If the After-Logout Redirect URI is changed to GeoServer's own URL (e.g. `http://localhost:8080/geoserver/web/`), the user is only signed out of GeoServer. The IDP session remains active, so the user can re-authenticate without entering credentials again.
 

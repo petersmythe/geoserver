@@ -263,31 +263,31 @@ Run the ``geoserver-release`` job in Jenkins:
 
 The job takes the following parameters:
 
-**BRANCH**
+### BRANCH
 
-> The branch to release from, \"2.29.x\", \"2.28.x\", etc\... This must be a stable branch. Releases are not performed from the main development branch.
+> The branch to release from, "2.29.x", "2.28.x", etc\... This must be a stable branch. Releases are not performed from the main development branch.
 
-**REV**
+### REV
 
-> The Git revision number to release from, e.g. \"24ae10fe662c\....\". If left blank, the latest revision (i.e. HEAD) on the `BRANCH` being released is used.
+> The Git revision number to release from, e.g. "24ae10fe662c\....". If left blank, the latest revision (i.e. HEAD) on the `BRANCH` being released is used.
 
-**VERSION**
+### VERSION
 
-> The version/name of the release to build, \"2.29.4\", \"2.28.2\", etc\...
+> The version/name of the release to build, "2.29.4", "2.28.2", etc\...
 
-**GT_VERSION**
+### GT_VERSION
 
-> The GeoTools version to include in the release. This may be specified as a version number such as \"34.0\" or \"33.4\". Alternatively, the version may be specified as a Git branch/revision pair in the form `<branch>@<revision>`. For example \"main@36ba65jg53\.....\". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT). Again, this version must be a version number corresponding to an official GeoTools release.
+> The GeoTools version to include in the release. This may be specified as a version number such as "34.0" or "33.4". Alternatively, the version may be specified as a Git branch/revision pair in the form `<branch>@<revision>`. For example "main@36ba65jg53\.....". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT). Again, this version must be a version number corresponding to an official GeoTools release.
 
-**GWC_VERSION**
+### GWC_VERSION
 
-> The GeoWebCache version to include in the release. This may be specified as a version number such as \"1.29.0\". Alternatively, the version may be specified as a Git revision of the form `<branch>@<revision>` such as \"master@1b3243jb\...\". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT).Git Again, this version must be a version number corresponding to an official GeoTools release.
+> The GeoWebCache version to include in the release. This may be specified as a version number such as "1.29.0". Alternatively, the version may be specified as a Git revision of the form `<branch>@<revision>` such as "master@1b3243jb\...". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT).Git Again, this version must be a version number corresponding to an official GeoTools release.
 
-**GIT_USER**
+### GIT_USER
 
 > The Git username to use for the release.
 
-**GIT_EMAIL**
+### GIT_EMAIL
 
 > The Git email to use for the release.
 
@@ -310,11 +310,11 @@ Run the ``geoserver-release-publish`` in Jenkins:
 
 The job takes the following parameters:
 
-**VERSION**
+### VERSION
 
 > The version being released. The same value specified for `VERSION` when running the `geoserver-release` job.
 
-**BRANCH**
+### BRANCH
 
 > The branch being released from. The same value specified for `BRANCH` when running the `geoserver-release` job.
 

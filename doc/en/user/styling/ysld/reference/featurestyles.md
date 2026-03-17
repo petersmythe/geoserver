@@ -115,7 +115,7 @@ The following two tables show the possible alpha compositing and color blending 
 !!! info "Todo"
     Add image showing source and destination
 
-**Alpha compositing**
+### Alpha compositing
 
 Alpha compositing controls how buffers are merged using the transparent areas of each buffer.
 
@@ -133,7 +133,7 @@ Alpha compositing controls how buffers are merged using the transparent areas of
 | `destination-atop` | The source is drawn fully, and the destination is drawn over the source only where it intersects it.<br>![image](img/composite-destination-atop.svg) |
 | `xor` | "Exclusive Or" mode. Each pixel is rendered only if either the source or the destination is not blank, but not both.<br>![image](img/composite-xor.svg) |
 
-**Color blending**
+### Color blending
 
 Color blending allows buffers to be mixed during composition.
 

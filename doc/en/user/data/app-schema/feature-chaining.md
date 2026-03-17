@@ -101,7 +101,7 @@ In CGI_TermValue (the nested feature) mapping:
 
 The ENVIRONMENT_OWNER column in CGI_TermValue view corresponds to the ID column in GeologicEvent view.
 
-**Geologic Event property file:**
+#### Geologic Event property file:
 
 | **id** | **GEOLOGIC_UNIT_ID:String** | **ghminage:String** | **ghmaxage:String** | **ghage_cdspace:String** |
 |----|----|----|----|----|
@@ -110,7 +110,7 @@ The ENVIRONMENT_OWNER column in CGI_TermValue view corresponds to the ID column 
 | ge.26930960 | gu.25678 | Pliocene | Miocene | <urn:cgi:classifierScheme:ICS:StratChart:2008> |
 | ge.26932959 | gu.25678 | LowerOrdovician | LowerOrdovician | <urn:cgi:classifierScheme:ICS:StratChart:2008> |
 
-**CGI Term Value property file:**
+#### CGI Term Value property file:
 
 | **id** | **VALUE:String** | **PROCESS_OWNER:String** | **ENVIRONMENT_OWNER:String** |
 |----|----|----|----|
@@ -260,14 +260,14 @@ In Geologic Unit mapping file:
 - *linkElement*: links to gsml:CompositionPart type
 - *linkField*: FEATURE_LINK, the linking field mapped in gsml:CompositionPart type that also stores the geologic unit id. If there are more than one of these attributes in the nested feature type, make sure the index is included, e.g. FEATURE_LINK[2].
 
-**Geologic Unit property file:**
+#### Geologic Unit property file:
 
 | **id**   | **ABBREVIATAION:String** | **NAME:String**        | **TEXTDESCRIPTION:String**                                 |
 |----------|--------------------------|------------------------|------------------------------------------------------------|
 | gu.25699 | `-Py`<br>:               | Yaugher Volcanic Group | Olivine basalt, tuff, microgabbro, minor sedimentary rocks |
 | gu.25678 | `-Py`<br>:               | Yaugher Volcanic Group | Olivine basalt, tuff, microgabbro, minor sedimentary rocks |
 
-**Composition Part property file:**
+#### Composition Part property file:
 
 | **id** | **COMPONENT_ROLE:String** | **PROPORTION:String** | **GEOLOGIC_UNIT_ID:String** |
 |----|----|----|----|

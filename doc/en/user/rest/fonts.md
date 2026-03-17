@@ -11,7 +11,7 @@ The REST API allows you to list---but not modify---fonts available in GeoServer.
 
 ## Getting a list of all fonts
 
-**List all fonts on the server, in JSON format:**
+### List all fonts on the server, in JSON format:
 
 *Request*
 
@@ -25,7 +25,7 @@ The REST API allows you to list---but not modify---fonts available in GeoServer.
 {"fonts":["Calibri Light Italic","Microsoft PhagsPa Bold","Lucida Sans Typewriter Oblique","ChaparralPro-Regular","Californian FB Italic"]}
 ```
 
-**List all fonts on the server, in XML format:**
+### List all fonts on the server, in XML format:
 
 *Request*
 

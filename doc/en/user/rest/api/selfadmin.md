@@ -19,7 +19,7 @@ Allows a user to change own password
 
 Formats for PUT (password change).
 
-**XML**
+### XML
 
 ``` xml
 <userPassword>
@@ -27,7 +27,7 @@ Formats for PUT (password change).
 </userPassword>
 ```
 
-**JSON**
+### JSON
 
 ``` json
 { "newPassword":"newPassword" }

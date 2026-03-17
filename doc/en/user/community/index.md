@@ -2,7 +2,7 @@
 
 This section is devoted to GeoServer community modules that are not officially part of the GeoServer releases.
 
-**Pending Community Modules**
+## Pending Community Modules
 
 The following community modules have indicated a wish to graduate. In each case they are in need of resources, funding, and feedback to be completed. Please see the individual pages below for opportunities to help out.
 
@@ -15,7 +15,7 @@ The following community modules have indicated a wish to graduate. In each case 
 
 </div>
 
-**Remaining Community Modules**
+## Remaining Community Modules
 
 Community modules are considered experimental in nature and are considered under development. For that reason documentation in this section is in the process of being written and will be subject to change.
 

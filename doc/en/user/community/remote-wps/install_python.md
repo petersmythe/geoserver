@@ -131,7 +131,7 @@ The following commands will prepare a MS Windows 7+, Windows 2008+ Server ISO ma
 1.  Remote WPS Python wrapper
 2.  Sample configuration and testing of a sample executable `test.py` running the `gdal_contour` on a GeoTIFF DEM
 
-**Preparation of the system: standard and basic OS packages**
+### Preparation of the system: standard and basic OS packages
 
 *Python*
 
@@ -160,7 +160,7 @@ PYTHONPATH=.\;C:\Python27;C:\work\RemoteWPS
 $> pip install wps-remote==2.11.0
 ```
 
-**Configure the RemoteWPS Environment**
+### Configure the RemoteWPS Environment
 
 *NFS Shared Folder*
 
@@ -725,7 +725,7 @@ The *Inputs Section* can contain three type of objects:
 2.  `[Action#]`; `1..n` actions of the Python Wrapper associated to an `[Input]`. The reference is done through the **input_ref** property.
 3.  `[Const#]`; Constant values passed to the executable and transparent to the GeoServer WPS.
 
-**[Input#]**
+### [Input#]
 
 - **class**; Uses introspection to instantiate an Input parameter. Currently the only value admitted is `param`
 - **name**; The name of the input parameter. This will be also the name of the GeoServer Input parameter.
@@ -743,7 +743,7 @@ The *Inputs Section* can contain three type of objects:
 - **default**; Optional parameter for setting the default value of this input if a value has not provided.
 - **formatter**; Optional parameter to be used along with `datetime` inputs. Defines the date pattern to be applied to the input string (e.g.: %Y-%m-%d %H:%M:%S)
 
-**[Action#]**
+### [Action#]
 
 - **class**; Uses introspection to instantiate the type of Action.
 
@@ -782,7 +782,7 @@ The *Inputs Section* can contain three type of objects:
 
 - **input_ref**; `name` of the input parameter referenced by this Action.
 
-**[Const#]**
+### [Const#]
 
 - **class = const**
 - **name**; Name of the input parameter, used by an action as reference.
@@ -1110,7 +1110,7 @@ The examples above represents all the possible types of Outputs currently suppor
     ]
     ```
 
-**Other options for the Outputs**
+### Other options for the Outputs
 
 - **backup_on_wps_execution_shared_dir**; This is a boolean which tells to the Remote WPS to store first the outcome into the **sharedir** defined into the `[DEFAULT]` section before streaming out to GeoServer. This allows the Remote WPS to preserve the outcomes even when the resources are cleaned out.
 

@@ -103,7 +103,7 @@ In terms of precedence, `AND` is evaluated first, followed by `OR`, unless modif
 
 ## Examples
 
-**Filter size based on an attribute**
+### Filter size based on an attribute
 
 Filters are used to style different features of a layer based on certain conditions. The `ILIKE` operator is used to compare two strings (ignoring case) to see if they are similar. When using `LIKE` or `ILIKE`, the `%` character matches any number of letters (So `%hwy` matches any streetname ending in `hwy`). This example uses filters to distinguish between Highways, Roads, and other streets, and draw them using different colors and sizes:
 
@@ -131,7 +131,7 @@ feature-styles:
 
 *Filter based on road types*
 
-**Filter color based on attribute value**
+### Filter color based on attribute value
 
 Filters can also be used to color a map based on attributes of the data. The following example uses the `YEARBLT` attribute to color different lots based on the year they were built. The `else` rule applies only if no other filter rule applies
 
@@ -176,7 +176,7 @@ Filters can also be used to color a map based on attributes of the data. The fol
 
 *Filter based on attribute value*
 
-**Filter by bounding box**
+### Filter by bounding box
 
 Spatial filters can be used to filter a layer based on its geometry. The `bbox` filter can be used to select features that are contained within a bounding box. This example colors polygons orange within the bounding box, and blue outside the bounding box:
 
@@ -199,7 +199,7 @@ feature-styles:
 
 *Detail of ``bbox`` filter*
 
-**Filter by arbitrary geometries**
+### Filter by arbitrary geometries
 
 Spatial filters can also be used to compare layer geometries against arbitrary geometries, not just bounding boxes. In this example, the `within` filter is used to select all buildings inside a triangular region defined using Well-Known Text (WKT) and color them green. All other features are colored blue:
 

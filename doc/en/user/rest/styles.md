@@ -11,7 +11,7 @@ The REST API allows you to list, create, upload, update, and delete styles in Ge
 
 ## Listing all styles
 
-**List all styles on the server, in JSON format:**
+### List all styles on the server, in JSON format:
 
 *Request*
 
@@ -25,7 +25,7 @@ The REST API allows you to list, create, upload, update, and delete styles in Ge
 {"styles":{"style":[{"name":"burg","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/burg.json"},{"name":"capitals","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/capitals.json"},{"name":"dem","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/dem.json"},{"name":"generic","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/generic.json"},{"name":"giant_polygon","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/giant_polygon.json"},{"name":"grass","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/grass.json"},{"name":"green","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/green.json"},{"name":"line","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/line.json"},{"name":"poi","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/poi.json"},{"name":"point","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/point.json"},{"name":"polygon","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/polygon.json"},{"name":"poly_landmarks","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/poly_landmarks.json"},{"name":"pophatch","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/pophatch.json"},{"name":"population","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/population.json"},{"name":"rain","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/rain.json"},{"name":"raster","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/raster.json"},{"name":"restricted","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/restricted.json"},{"name":"simple_roads","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/simple_roads.json"},{"name":"simple_streams","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/simple_streams.json"},{"name":"tiger_roads","href":"http:\/\/localhost:8080\/geoserver\/rest\/styles\/tiger_roads.json"}]}}
 ```
 
-**List all styles in a workspace, in XML format:**
+### List all styles in a workspace, in XML format:
 
 *Request*
 
@@ -46,7 +46,7 @@ The REST API allows you to list, create, upload, update, and delete styles in Ge
 
 ## Retrieve a style
 
-**Download the actual style code for a style:**
+### Download the actual style code for a style:
 
 *Request*
 
@@ -87,7 +87,7 @@ The REST API allows you to list, create, upload, update, and delete styles in Ge
 
 You can create a new style on the server in two ways. In the first way, the creation is done in two steps: the style entry is created in the catalog, and then the style content is uploaded. The second way can add the style to the server in a single step by uploading a ZIP containing the style content:
 
-**Create a new style in two steps:**
+### Create a new style in two steps:
 
 *Request*
 
@@ -109,7 +109,7 @@ You can create a new style on the server in two ways. In the first way, the crea
 
     200 OK
 
-**Create a new style in a single step:**
+### Create a new style in a single step:
 
 *Request*
 
@@ -121,7 +121,7 @@ You can create a new style on the server in two ways. In the first way, the crea
 
     201 Created
 
-**Create a new style in a single step using CSS:**
+### Create a new style in a single step using CSS:
 
 *Request*
 
@@ -160,7 +160,7 @@ The SLD itself can be downloaded through a a GET request:
 
 ## Changing an existing style
 
-**Edit/reupload the content of an existing style on the server:**
+### Edit/reupload the content of an existing style on the server:
 
 *Request*
 
@@ -200,7 +200,7 @@ The SLD itself can be downloaded through a a GET request:
 
 ## Deleting a style
 
-**Remove a style entry from the server, retaining the orphaned style content:**
+### Remove a style entry from the server, retaining the orphaned style content:
 
 *Request*
 
@@ -212,7 +212,7 @@ The SLD itself can be downloaded through a a GET request:
 
     200 OK
 
-**Remove a style entry from the server, deleting the orphaned style content:**
+### Remove a style entry from the server, deleting the orphaned style content:
 
 *Request*
 

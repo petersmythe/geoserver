@@ -405,6 +405,6 @@ A sample response, reporting warnings and the frame count where they happened, f
 
 In the above output, frames 0, 2 and 3 were nearest matched to an available time, being specified in the `Value` field, while the time requested for frame number 1 was too far away from any available time, resulting in a `NearestFail`. The frame is still present in the animation, but will likely be blank. In case multiple time based layers are requested in the animation, there might be multiple warnings for each frame.
 
-**Footnotes**
+#### Footnotes
 
 [^1]: The default value of `transparent` can be flipped using a system variable, e.g. `-DDOWNLOAD_MAP_TRANSPARENT=true`

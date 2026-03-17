@@ -2,7 +2,7 @@
 
 WPS longitudinal profile process provides the ability to calculate an altitude profile for the specified linestring.
 
-**In addition, the process can:**
+## In addition, the process can:
 
 - Reproject result to different CRS
 - Adjust altitude profile based on additional layer
@@ -24,13 +24,13 @@ This module provides longitudinal profile process. The process splits provided g
 
 Process accepts following parameters:
 
-**Required:**
+### Required:
 
 1.  layerName - name of the raster layer (coverage) which will be used for altitude profile creation
 2.  coverage - the actual raster to be used for altitude profile creation. This is an alternative to layerName, allows for process chaining (a chained process might have computed the input coverage)
 3.  geometry - geometry in wkt or ewkt format, along which the altitude profile will be created. If wkt is used, its CRS will be assumed as CRS of coverage.
 
-**Optional:**
+### Optional:
 
 1.  distance - maximum distance (in meters) between points in the altitude profile. If not specified, this distance will be automatically determined based on the coverage resolution, by calculating the diagonal length of a central pixel.
 2.  adjustmentLayerName - name of the layer with altitude, which will be used to adjust altitude values. Layer should have polygon or multipolygon geometry, and altitude attribute. Layer should be configured in the GeoServer
@@ -38,14 +38,14 @@ Process accepts following parameters:
 4.  altitudeIndex - index of altitude field in the array of coverage coordinates (0 by default)
 5.  altitudeName - name of the altitude attribute on adjustment layer feature type
 
-**Response contains following objects:**
+### Response contains following objects:
 
 1.  profile - contains array of points of the profile
 2.  infos - general info on process result
 
 The profile object contains an array of points.
 
-**Each point has following values:**
+### Each point has following values:
 
 1.  totalDistanceToThisPoint - distance to this point from the beginning of the profile (first point) in units of CRS
 2.  x - x coordinate of point
@@ -53,7 +53,7 @@ The profile object contains an array of points.
 4.  altitude - altitude of this point
 5.  slope - slope between previous and current altitude
 
-**Infos object fields:**
+### Infos object fields:
 
 1.  altitudePositive - sum of positive altitudes on this profile
 2.  altitudeNegative - sum of negative altitudes on this profile

@@ -2,11 +2,11 @@
 
 WCS vendor parameters are non-standard request parameters that are defined by an implementation to provide enhanced capabilities.
 
-### General Vendor Options
+## General Vendor Options
 
 These vendor options are available for all operations.
 
-#### content-disposition
+### content-disposition
 
 The `content-disposition` parameter directs how a web browser directed to handle returned content. The syntax is:
 

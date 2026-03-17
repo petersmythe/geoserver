@@ -15,7 +15,7 @@ Fetches the catalog mode and allows to change the catalog mode. The mode must be
 
 Formats:
 
-**XML**
+### XML
 
 ``` xml
 <catalog>
@@ -23,7 +23,7 @@ Formats:
 </catalog>
 ```
 
-**JSON**
+### JSON
 
 ``` json
 {"mode":"HIDE" }
@@ -67,7 +67,7 @@ The specified rule has to be the last part in the URI:
 
 Formats for GET,POST and PUT:
 
-**XML**
+### XML
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>

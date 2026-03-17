@@ -91,11 +91,11 @@ Together these two attributes allow the administrator to define the contents of 
 
 > <link href="https://creativecommons.org/licenses/by/4.0/" rel="license" title="Attribution 4.0 International (CC BY 4.0)"/>
 
-**License Title**
+### License Title
 
 The License Title will be included as the value of `title` attribute of the `<link rel=license>` element in the MapML header.
 
-**License Link**
+### License Link
 
 The License Link will be included as the value of `href` attribute of the `<link rel=license>` element in the MapML header, and should be a valid URL referencing the license document.
 
@@ -103,7 +103,7 @@ The License Link will be included as the value of `href` attribute of the `<link
 
 Using tiles to access the layer can increase the performance of your web map. This is especially true if there is a tile cache mechanism in use between GeoServer and the browser client.
 
-**Use Tiles**
+### Use Tiles
 
 If you check the "Use Tiles" checkbox and save it, the MapML format on the Layer Preview page will use tile-based references to the WMS server. Checking this checkbox sets the ``FORMAT_OPTIONS=mapmlusetiles:true`` parameter value in the Layer Preview URL, but you can set and use this value in WMS requests for the text/mapml format independently. The ``mapmlusetiles``, ``mapmlusefeatures`` and ``mapmlusemultiextents`` FORMAT_OPTIONS parameters can be used together to control the type of requests and responses used in your web map client. For example, if your layer or layer group has a cached tile layer configured, GeoServer will generate tile references (e.g., <map-link rel="tile" tref="\...request=GetTile\...">) instead of WMS GetMap URLs (e.g., <map-link rel="image" tref="\...request=GetMap\...">); if in addition to having a cached tile layer for a layer or layer group you have also enabled caching of the ``text/mapml`` format, you can use ``FORMAT_OPTIONS=mapmlusetiles:true;mapmlusefeatures:true`` to obtain and use tiles in MapML format.
 
@@ -111,7 +111,7 @@ If you check the "Use Tiles" checkbox and save it, the MapML format on the Layer
 
 MapML supports the serving of vector feature representations of the data. This results in a smoother user navigation experience, smaller bandwidth requirements, and more options for dynamic styling on the client-side.
 
-**Use Features**
+### Use Features
 
 If the "Use Features" checkbox is checked, the output MapML on the Layer Preview page will define a feature-based reference to the WMS server. When making WMS request add ``mapmlusefeatures:true`` to the FORMAT_OPTIONS parameter. Otherwise, an image-based reference will be used. Note that when applied to raster data map-tile elements will be generated for the requested coverage area. MapML <map-extent> element with a feature link:
 
@@ -146,7 +146,7 @@ If the `Show <map-extent> in layer control` checkbox is checked (and the configu
 
 When configuring a cascaded WMS or WMTS remote layers, a new "Client Requests" setting is available.
 
-**Remote**
+### Remote
 
 If the "Remote" checkbox is checked, the link templates embedded in MapML will refer to the remote WMS/WMTS. The MapML viewer will directly contact the remote server if certain criteria are met:
 
@@ -155,7 +155,7 @@ If the "Remote" checkbox is checked, the link templates embedded in MapML will r
 - The remote Server is supporting the requested CoordinateReferenceSystem for that layer.
 - GetTile requests will be sent to the remote server if there is a compatible gridset for that layer (same origin, same CRS, same tile sizes, same levels and same resolutions)
 
-**Feature Styling**
+### Feature Styling
 
 :   Basic styling of vector features is supported by the MapML extension. The style is defined in the WMS GetMap request, and the MapML extension will convert the rules and style attributes defined in the SLD into CSS classes and apply those classes to the appropriate features. Note that this conversion is currently limited to basic styling and does not include transformation functions, external graphics, or styling dependent on individual feature attributes (non-static style values). See below for a more detailed compatibility table:
 
@@ -236,7 +236,7 @@ Starting with version 2.26.x of GeoServer, Sharding support and related configur
 
 ## Dimension Config
 
-**Dimension**
+### Dimension
 
 :   The selected dimension (if any) is advertised in the mapml as an input with the appropriate value options or ranges, as configured in the *Dimension* tab of the Layer Configuration page. Only dimensions enabled in the *Dimension* tab are available as options.
 
@@ -244,7 +244,7 @@ Starting with version 2.26.x of GeoServer, Sharding support and related configur
 
 **List of attributes** The list allows you to read the names of the layer attributes, it doesn't really do more than that.
 
-**Feature Caption Template String**
+### Feature Caption Template String
 
 To cause an attribute to be serialized in MapML vector content as the <featurecaption> element value, you must enter its name as a \${placeholder} in the text box immediately below the attributes list. You can also add (a small amount of) plain text that will be copied verbatim into the <featurecaption> content. <featurecaption> is used as the accessible name of features by screen reader software, which will often read out this value without the user having to expand a popup; in other words, it will be used as a visual and audible tooltip when the feature is focused.
 
@@ -252,7 +252,7 @@ To cause an attribute to be serialized in MapML vector content as the <featureca
 
 MapML resources will be available for any published WMS layers by making a GetMap request with the WMS output format to `format=text/mapml`. See [Web Map Service (WMS)](../../services/wms/index.md) for further WMS details, [GetMap](../../services/wms/reference.md#wms_getmap) for GetMap details, and [WMS output formats](../../services/wms/outputformats.md) for output format reference information.
 
-**SRS/CRS**
+## SRS/CRS
 
 Note that the WMS SRS or CRS must be one of the built-in projections supported by MapML or one of the TCRS configured through the dedicated section. Built-in MapML CRS are:
 
@@ -267,7 +267,7 @@ If the native SRS of a layer is not a match for the MapML ones, remember to conf
 
 If the SRS or CRS is not one of the above, the GetMap request will fail with an `InvalidParameterValue` exception. The main "MapML" link in the preview page generates a HTML client able to consume MapML resources. The link is generated so that it always work, if the CRS configured for the layer is not supported, it will automatically fall back on MapML:WGS84.
 
-**MapML Output Format**
+## MapML Output Format
 
 The output image format for the MapML resource should be specified using the format_options parameter with a key called `mapml-wms-format`. If provided, the provided mime type must be a valid WMS format specifier. If not provided, it defaults to `image/png`.
 

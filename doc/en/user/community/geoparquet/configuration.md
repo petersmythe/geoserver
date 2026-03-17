@@ -86,7 +86,7 @@ Enable secure, automatic credential discovery by checking the **Use AWS Credenti
 4.  **ECS task roles**: For containerized applications running in ECS
 5.  **AWS SSO**: Single sign-on sessions and federation
 
-**Example Configuration:**
+#### Example Configuration:
 
 **GeoParquet URI**: `s3://my-bucket/data/countries.parquet`
 
@@ -96,14 +96,14 @@ Enable secure, automatic credential discovery by checking the **Use AWS Credenti
 
 **AWS Profile**: `production` (optional, uses specific profile from \~/.aws/credentials)
 
-**Benefits of Credential Chain:**
+#### Benefits of Credential Chain:
 
 - **Security**: No credentials stored in GeoServer configuration or logs
 - **Flexibility**: Works across different environments (development, staging, production)
 - **IAM Integration**: Leverages AWS IAM roles and policies
 - **No credential rotation**: Credentials managed externally through AWS mechanisms
 
-**AWS Profile Configuration:**
+#### AWS Profile Configuration:
 
 If you use multiple AWS profiles in your `~/.aws/credentials` file:
 
@@ -215,7 +215,7 @@ Secret Validation Failure: during `create` using the following: Credential Chain
 
 - **Disable credential chain**: If you don't need credential chain authentication, uncheck **Use AWS Credential Chain** and use URI-based credentials (not recommended for production)
 
-**No feature types/layers appear after creating the store**
+#### No feature types/layers appear after creating the store
 
 This commonly happens when the AWS region is not correctly detected or configured.
 
@@ -241,21 +241,21 @@ The bucket name often hints at the region (`overturemaps-us-west-2`), but you ca
     - Cross-region access
     - Buckets in non-default regions
 
-**Store creation fails with "Access Denied" for S3 URIs**
+#### Store creation fails with "Access Denied" for S3 URIs
 
 - Verify that AWS credentials are properly configured
 - Check IAM permissions for the S3 bucket
 - Ensure the bucket region matches the configured region
 - For public buckets, verify they allow anonymous access or provide appropriate credentials
 
-**GeoServer logs show parsing errors**
+#### GeoServer logs show parsing errors
 
 - Verify the URI points to valid GeoParquet files
 - Check that the GeoParquet files have valid `geo` metadata
 - Ensure the files are not corrupted
 - Verify the glob pattern matches the intended files
 
-**Performance issues with large remote datasets**
+#### Performance issues with large remote datasets
 
 - Use glob patterns to limit the files being accessed
 - Leverage Hive partitioning to reduce data scanned

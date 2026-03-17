@@ -44,7 +44,7 @@ Returns providers in the **current active order**.
 !!! abstract "curl (XML)"
     curl -u admin:•••• -H "Accept: application/xml" <http://localhost:8080/geoserver/rest/security/authproviders>
 
-**Response 200 (XML)**
+#### Response 200 (XML)
 
 ``` xml
 <authproviders>
@@ -60,7 +60,7 @@ Returns providers in the **current active order**.
 !!! abstract "curl (JSON)"
     curl -u admin:•••• -H "Accept: application/json" <http://localhost:8080/geoserver/rest/security/authproviders>
 
-**Response 200 (JSON)**
+#### Response 200 (JSON)
 
 ``` json
 {
@@ -80,7 +80,7 @@ Returns providers in the **current active order**.
 !!! abstract "curl (XML)"
     curl -u admin:•••• -H "Accept: application/xml" <http://localhost:8080/geoserver/rest/security/authproviders/default>
 
-**Response 200 (XML)**
+#### Response 200 (XML)
 
 ``` xml
 <org.geoserver.security.config.UsernamePasswordAuthenticationProviderConfig>
@@ -91,7 +91,7 @@ Returns providers in the **current active order**.
 </org.geoserver.security.config.UsernamePasswordAuthenticationProviderConfig>
 ```
 
-**Response 200 (JSON)**
+#### Response 200 (JSON)
 
 ``` json
 {
@@ -144,7 +144,7 @@ Optional `?position=N` (0-based) inserts the new provider at that index; omit to
          http://localhost:8080/geoserver/rest/security/authproviders
     ```
 
-**Response 201**
+#### Response 201
 
 ``` none
 Location: /geoserver/rest/security/authproviders/corporateLdap
@@ -192,7 +192,7 @@ Rules recap:
 
 **Response 200** returns the updated provider.
 
-**Status codes**
+#### Status codes
 
 `200`, `400` (name mismatch/class change/position), `403`, `404`, `500`
 
@@ -207,7 +207,7 @@ Removes the provider **and** drops it from the active order.
          http://localhost:8080/geoserver/rest/security/authproviders/corporateLdap
     ```
 
-**Status codes**
+#### Status codes
 
 `200`, `403`, `404` (not found), `410` (already removed), `500`
 
@@ -243,7 +243,7 @@ Only **PUT** is allowed.
     EOF
     ```
 
-**Status codes**
+#### Status codes
 
 `200`, `400` (unknown name/empty list), `403`, `500`
 

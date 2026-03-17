@@ -634,7 +634,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - Generate report with affected headings and locations
     - _Requirements: 1.29, 1.30_
 
-  - [-] 20.2 Implement automated fix for low-level heading hierarchy
+  - [x] 20.2 Implement automated fix for low-level heading hierarchy
     - Correct heading levels (##, ###, ####, etc.) for proper hierarchy
     - Ensure headings render in visual hierarchy
     - Maintain document structure and navigation

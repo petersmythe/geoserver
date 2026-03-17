@@ -8,7 +8,7 @@ Detailed information about this image format can be obtained from [Googles WebP 
 
 A simpler representative representation can be found at [Learn Images! WebP](https://web.dev/learn/images/webp).
 
-**Results based on the standard libraries and the ImageIO WebP extension**
+## Results based on the standard libraries and the ImageIO WebP extension
 
 > | tile size [pixel] | ImageIO PNG [ms] | ImageIO Ext WebP [ms] | LibWebP encode [ms] |
 > |----|----|----|----|
@@ -86,7 +86,7 @@ In general, the default values (lossy, q=0.75) are a good choice.
 
 The significantly longer duration regarding the ImageIO Extension cannot be explained by the writing process alone (compare tables 3 & 4).
 
-**Processing time & energy consumption**
+## Processing time & energy consumption
 
 The increased processing time correlates with increased energy consumption.
 
@@ -116,7 +116,7 @@ Result:
 
 This also applies to the JPEG format in a weakened way.
 
-**Browser rendering energy impact for different image formats**
+## Browser rendering energy impact for different image formats
 
 > | Image Format | Energie impact |
 > |--------------|----------------|

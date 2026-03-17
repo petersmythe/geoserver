@@ -1,6 +1,6 @@
 # Uploading a new image mosaic
 
-**Upload a ZIP file containing a mosaic definition and granule(s)**
+## Upload a ZIP file containing a mosaic definition and granule(s)
 
 *Request*
 
@@ -43,7 +43,7 @@
 
 # Listing image mosaic details
 
-**Retrieve the image mosaic index structure**
+## Retrieve the image mosaic index structure
 
 *Request*
 
@@ -110,7 +110,7 @@
     </Schema>
 ```
 
-**Retrieve the existing granule information**
+## Retrieve the existing granule information
 
 *Request*
 
@@ -178,7 +178,7 @@
 
 # Removing image mosaic granules
 
-**Remove all the granules originating from a particular file**
+## Remove all the granules originating from a particular file
 
 *Request*
 
@@ -192,7 +192,7 @@
 
 # Uploading an empty mosaic
 
-**Upload an archive with the definition of an mosaic, but with no granules**
+## Upload an archive with the definition of an mosaic, but with no granules
 
 Given a [empty.zip](artifacts/empty.zip) file containing:
 
@@ -217,7 +217,7 @@ Given a [empty.zip](artifacts/empty.zip) file containing:
 
     200 OK
 
-**Configure a coverage on the mosaic**
+## Configure a coverage on the mosaic
 
 Given a `coverageconfig.xml`:
 

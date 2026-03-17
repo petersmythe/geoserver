@@ -9,22 +9,22 @@ This resource lets administrators list, retrieve, create, update, and delete *us
 
 ## Collection
 
-**Endpoint**
+### Endpoint
 
 `/rest/security/usergroupservices`
 
-**Methods**
+### Methods
 
 - **GET** --- List configured services.
 - **POST** --- Create a new service.
 
 ## Item
 
-**Endpoint**
+### Endpoint
 
 `/rest/security/usergroupservices/{name}`
 
-**Methods**
+### Methods
 
 - **GET** --- Retrieve a service configuration.
 - **PUT** --- Create or replace *{name}* with the provided configuration.
@@ -132,7 +132,7 @@ The equivalent JSON payload:
 
 **GET** `/rest/security/usergroupservices`
 
-**Response**
+#### Response
 
 - **200 OK** with a document containing the configured services.
 
@@ -147,7 +147,7 @@ curl -u admin:geoserver -H "Accept: application/xml" \
 
 **GET** `/rest/security/usergroupservices/{name}`
 
-**Response**
+#### Response
 
 - **200 OK** with the service configuration.
 - **404 Not Found** if the service does not exist.
@@ -166,7 +166,7 @@ curl -u admin:geoserver -H "Accept: application/json" \
 - **Request body**: one of the configuration payloads shown above.
 - **Content-Type**: `application/xml` or `application/json`
 
-**Response**
+#### Response
 
 - **201 Created** (some versions may return **200 OK**) and a `Location` header.
 - **400 Bad Request** on validation errors (e.g. missing `fileName` for XML service).
@@ -187,7 +187,7 @@ curl -u admin:geoserver -H "Content-Type: application/xml" -H "Accept: applicati
 - Replaces (or creates) the service named *{name}* with the provided configuration.
 - The `name` inside the payload must match the path parameter.
 
-**Response**
+#### Response
 
 - **200 OK** on successful update, or **201 Created** if newly created.
 - **400 Bad Request** if the payload name does not match the path parameter.
@@ -205,7 +205,7 @@ curl -u admin:geoserver -X PUT -H "Content-Type: application/json" -H "Accept: a
 
 **DELETE** `/rest/security/usergroupservices/{name}`
 
-**Response**
+#### Response
 
 - **200 OK** on successful deletion.
 - **404 Not Found** if the service does not exist (some deployments may return **410 Gone**).

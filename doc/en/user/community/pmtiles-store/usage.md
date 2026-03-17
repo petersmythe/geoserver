@@ -38,7 +38,7 @@ The PMTiles data store configuration form presents the following basic parameter
 
 For a local PMTiles file, you can specify the path using either a `file://` URI or an absolute file path.
 
-**Unix/Linux/Mac examples:**
+#### Unix/Linux/Mac examples:
 
 With URI scheme:
 
@@ -52,7 +52,7 @@ Without URI scheme:
 /var/geoserver/data/tiles/countries.pmtiles
 ```
 
-**Windows examples:**
+#### Windows examples:
 
 With URI scheme (forward slashes):
 
@@ -130,15 +130,15 @@ Click the **Advanced** section in the data store configuration form to access ad
 
 These parameters control in-memory caching of byte ranges to improve performance:
 
-**Enable memory cache for raw byte data**
+#### Enable memory cache for raw byte data
 
 :   Checkbox to enable in-memory caching. When enabled, frequently accessed byte ranges are cached in memory, reducing repeated reads from the underlying storage.
 
-**Enable block-aligned memory caching**
+#### Enable block-aligned memory caching
 
 :   Checkbox to enable block-aligned caching. When enabled, read requests are aligned to block boundaries, which can improve performance for cloud storage by fetching larger, contiguous chunks of data.
 
-**Memory cache block size in bytes**
+#### Memory cache block size in bytes
 
 :   The block size in bytes for block-aligned caching. Recommended values are powers of 2 (e.g., 65536 for 64 KB, 1048576 for 1 MB). Larger blocks may improve performance for cloud storage but use more memory.
 
@@ -146,11 +146,11 @@ These parameters control in-memory caching of byte ranges to improve performance
 
 These parameters appear when using HTTP or HTTPS URLs:
 
-**HTTP connection timeout in milliseconds**
+#### HTTP connection timeout in milliseconds
 
 :   Connection timeout for HTTP requests (default: 30000 ms).
 
-**Trust all SSL/TLS certificates**
+#### Trust all SSL/TLS certificates
 
 :   Checkbox to disable SSL certificate validation. Use only for testing with self-signed certificates.
 
@@ -158,16 +158,16 @@ These parameters appear when using HTTP or HTTPS URLs:
 
 For HTTP/HTTPS URLs requiring authentication, the form provides multiple authentication options:
 
-**HTTP Basic Authentication**
+##### HTTP Basic Authentication
 
 - **HTTP Basic Auth username**: Username for HTTP Basic Authentication
 - **HTTP Basic Auth password**: Password for HTTP Basic Authentication (hidden)
 
-**Bearer Token Authentication**
+##### Bearer Token Authentication
 
 - **HTTP Bearer Token**: Bearer token for authentication (hidden)
 
-**API Key Authentication**
+##### API Key Authentication
 
 - **API Key header name**: The HTTP header name for the API key (e.g., `X-API-Key`)
 - **API Key value**: The API key value (hidden)
@@ -177,27 +177,27 @@ For HTTP/HTTPS URLs requiring authentication, the form provides multiple authent
 
 These parameters appear when using S3 URLs or when connecting to S3-compatible services:
 
-**Configure the AWS region**
+#### Configure the AWS region
 
 :   AWS region for the S3 bucket (e.g., `us-west-2`, `eu-central-1`).
 
-**Use Default Credentials Provider**
+#### Use Default Credentials Provider
 
 :   Checkbox to use the AWS default credentials chain (environment variables, IAM roles, credential file).
 
-**AWS Access Key**
+#### AWS Access Key
 
 :   AWS access key ID for authentication (if not using default credentials).
 
-**AWS Secret Access Key**
+#### AWS Secret Access Key
 
 :   AWS secret access key (hidden, password field).
 
-**Default Credentials Profile**
+#### Default Credentials Profile
 
 :   AWS credential profile name to use from the credentials file.
 
-**Enable S3 path style access**
+#### Enable S3 path style access
 
 :   Checkbox to use path-style URLs (`https://s3.region.amazonaws.com/bucket/key`) instead of virtual-hosted-style URLs. Required for S3-compatible services like MinIO.
 
@@ -205,15 +205,15 @@ These parameters appear when using S3 URLs or when connecting to S3-compatible s
 
 These parameters appear when using Azure Blob Storage URLs:
 
-**Set the blob name if the endpoint points to the account URL**
+#### Set the blob name if the endpoint points to the account URL
 
 :   The blob name if your URL points to the storage account rather than a specific blob.
 
-**Azure Account access key**
+#### Azure Account access key
 
 :   Storage account key for authentication (hidden, password field).
 
-**Azure SAS token**
+#### Azure SAS token
 
 :   Shared Access Signature token for authentication (hidden, password field). Recommended for limited-time or limited-scope access.
 
@@ -221,15 +221,15 @@ These parameters appear when using Azure Blob Storage URLs:
 
 These parameters appear when using Google Cloud Storage URLs:
 
-**Google Cloud project ID**
+#### Google Cloud project ID
 
 :   Your GCP project ID.
 
-**Quota Project ID**
+#### Quota Project ID
 
 :   Optional project ID for quota and billing purposes.
 
-**Use default application credentials**
+#### Use default application credentials
 
 :   Checkbox to use Google's default application credentials chain (service account, application default credentials, etc.).
 

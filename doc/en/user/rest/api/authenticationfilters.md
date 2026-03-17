@@ -40,7 +40,7 @@ Adds or lists authentication filters.
 | GET | List all authentication filters | 200, 403, 406, 500 | XML, JSON | (uses `Accept`) |
 | POST | Create a new authentication filter | 201, 200, 400, 403, 406, 415, 500 | XML, JSON | (uses `Accept` if a body is returned) |
 
-**Base URL used in examples**
+### Base URL used in examples
 
 ``` bash
 BASE="http://localhost:9002/geoserver/rest/security"
@@ -48,7 +48,7 @@ BASE="http://localhost:9002/geoserver/rest/security"
 
 ### GET --- List all filters
 
-**XML**
+#### XML
 
 ``` bash
 curl -u admin:geoserver \
@@ -56,7 +56,7 @@ curl -u admin:geoserver \
      "$BASE/authfilters"
 ```
 
-**Response: 200 OK**
+#### Response: 200 OK
 
 ``` xml
 <authfilters>
@@ -70,7 +70,7 @@ curl -u admin:geoserver \
 </authfilters>
 ```
 
-**JSON**
+#### JSON
 
 ``` bash
 curl -u admin:geoserver \
@@ -78,7 +78,7 @@ curl -u admin:geoserver \
      "$BASE/authfilters"
 ```
 
-**Response: 200 OK**
+#### Response: 200 OK
 
 ``` json
 {
@@ -95,7 +95,7 @@ curl -u admin:geoserver \
 
 ### POST --- Create a filter
 
-**XML**
+#### XML
 
 ``` bash
 curl -u admin:geoserver \
@@ -134,12 +134,12 @@ curl -u admin:geoserver \
 XML
 ```
 
-**Response**
+#### Response
 
 - `201 Created`
 - `Location: http://localhost:9002/geoserver/rest/security/authfilters/Keycloak7`
 
-**JSON**
+#### JSON
 
 ``` bash
 curl -u admin:geoserver \
@@ -183,12 +183,12 @@ curl -u admin:geoserver \
 JSON
 ```
 
-**Response**
+#### Response
 
 - `200 OK` **or** `201 Created`
 - `Location: http://localhost:9002/geoserver/rest/security/authfilters/Keycloak12`
 
-**Error status codes (collection)**
+#### Error status codes (collection)
 
 | Condition                         | Status |
 |-----------------------------------|--------|
@@ -210,7 +210,7 @@ View, update, or delete an existing authentication filter.
 
 ### GET --- View a filter
 
-**XML**
+#### XML
 
 ``` bash
 curl -u admin:geoserver \
@@ -218,7 +218,7 @@ curl -u admin:geoserver \
      "$BASE/authfilters/anonymous"
 ```
 
-**Response: 200 OK**
+#### Response: 200 OK
 
 ``` xml
 <org.geoserver.security.config.AnonymousAuthenticationFilterConfig>
@@ -228,7 +228,7 @@ curl -u admin:geoserver \
 </org.geoserver.security.config.AnonymousAuthenticationFilterConfig>
 ```
 
-**JSON**
+#### JSON
 
 ``` bash
 curl -u admin:geoserver \
@@ -236,7 +236,7 @@ curl -u admin:geoserver \
      "$BASE/authfilters/Keycloak"
 ```
 
-**Response: 200 OK**
+#### Response: 200 OK
 
 ``` json
 {
@@ -279,7 +279,7 @@ curl -u admin:geoserver \
 
 ### PUT --- Update a filter
 
-**XML**
+#### XML
 
 ``` bash
 curl -u admin:geoserver \
@@ -296,11 +296,11 @@ curl -u admin:geoserver \
 XML
 ```
 
-**Response**
+#### Response
 
 - `200 OK`
 
-**JSON**
+#### JSON
 
 ``` bash
 curl -u admin:geoserver \
@@ -319,7 +319,7 @@ curl -u admin:geoserver \
 JSON
 ```
 
-**Response**
+#### Response
 
 - `200 OK`
 
@@ -331,7 +331,7 @@ curl -u admin:geoserver \
      "$BASE/authfilters/restInterceptor13"
 ```
 
-**Response**
+#### Response
 
 - `200 OK`
 

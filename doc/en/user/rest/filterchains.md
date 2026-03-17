@@ -162,7 +162,7 @@ Installations that provide custom authentication filter chain implementations ca
 
 The configured values are **merged** with the built-in allow-list.
 
-**System property**
+### System property
 
 ```
 -Dgeoserver.security.allowedAuthFilterChainClasses=\
@@ -170,7 +170,7 @@ com.example.geoserver.security.CustomChain,\
 com.example.geoserver.security.*
 ```
 
-**Environment variable**
+### Environment variable
 
 ```
 GEOSERVER_SECURITY_ALLOWED_AUTH_FILTERCHAIN_CLASSES=\

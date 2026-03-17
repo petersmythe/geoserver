@@ -84,7 +84,7 @@ On the next steps we assume:
 
 Make sure to update the incoming URLs accordingly, based on your actual installation.
 
-**Create an empty ImageMosaic without configuring it**
+#### Create an empty ImageMosaic without configuring it
 
 !!! abstract "curl request"
 
@@ -94,7 +94,7 @@ Make sure to update the incoming URLs accordingly, based on your actual installa
 
     201 OK
 
-**Providing sample prototyping granules**
+#### Providing sample prototyping granules
 
 Next step is providing a prototype dataset for the coverage to be supported.
 
@@ -106,7 +106,7 @@ Next step is providing a prototype dataset for the coverage to be supported.
 
     202 Accepted
 
-**Initializing the store (Listing available coverages)**
+#### Initializing the store (Listing available coverages)
 
 Once a prototype has been provided we need to initialize the store by querying it for the available coverages.
 
@@ -122,7 +122,7 @@ Once a prototype has been provided we need to initialize the store by querying i
 </list>
 ```
 
-**Configuring the coverage**
+#### Configuring the coverage
 
 Once we get the list of available coverages, we need to configure a coverage by sending the config through REST.
 
@@ -152,7 +152,7 @@ where coverage.xml has this content:
 </coverage>
 ```
 
-**Adding more granules**
+#### Adding more granules
 
 Now that we have a coverageStore ready and a coverage layer configured we can start adding more granules.
 
@@ -160,7 +160,7 @@ Now that we have a coverageStore ready and a coverage layer configured we can st
 
         curl -u admin:geoserver -XPOST -H "Content-type: text/plain" --write-out %{http_code} -d "https://modis-vi-nasa.s3-us-west-2.amazonaws.com/MOD13A1.006/2018.01.17.tif" "http://localhost:8080/geoserver/rest/workspaces/test/coveragestores/modisvi/remote.imagemosaic"
 
-**Setting Style**
+#### Setting Style
 
 That MODIS data has 2 bands representing (Normalized Difference Vegetation Index) (NDVI) and Enhanced Vegetation Index (EVI). Let's add this ndvi.sld style to apply a proper colormap to the NDVI band (copy this content to a file named ndvi.sld to be used by the next REST call):
 

@@ -95,19 +95,19 @@ To configure manually:
 
 ### Common Issues with Generic Providers
 
-**HTTPS enforcement in development**
+#### HTTPS enforcement in development
 
 :   By default, GeoServer enforces HTTPS for the Token and Authorization URIs. If your development setup uses HTTP (e.g. a local Keycloak on `http://localhost:7777`), uncheck **Force Access Token URI HTTPS Secured Protocol** and **Force User Authorization URI HTTPS Secured Protocol** in the **Advanced Settings** section.
 
-**Scope format**
+#### Scope format
 
 :   Some providers are strict about scope formatting. The standard format is space-separated (e.g. `openid profile email`). If authentication fails, verify that your IDP does not expect a different separator.
 
-**Clock skew**
+#### Clock skew
 
 :   Token validation can fail if the clocks on the GeoServer and IDP servers are not synchronized. Ensure both servers use NTP or a similar time synchronization mechanism.
 
-**Redirect URI mismatch**
+#### Redirect URI mismatch
 
 :   The most common configuration error is a mismatch between the Redirect URI that GeoServer sends and the one registered with your IDP. Copy the exact value from the read-only **Redirect URI** field in the GeoServer filter form into your IDP's client configuration. See [Redirect Base URI](../configuring.md#community_oidc_redirect_base_uri) for how this value is calculated.
 

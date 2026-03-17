@@ -118,7 +118,7 @@ $> firewall-cmd --permanent --zone=public --add-port=9091/tcp
 $> firewall-cmd --reload
 ```
 
-**Configuration of Openfire server**
+#### Configuration of Openfire server
 
 Move the browser to the url
 

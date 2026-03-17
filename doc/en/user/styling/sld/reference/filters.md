@@ -61,7 +61,7 @@ Other available **value comparison operators** are:
 
 Spatial operators are used to specify conditions on the geometric attributes of a feature. The following spatial operators are available:
 
-**Topological Operators**
+### Topological Operators
 
 These operators test topological spatial relationships using the standard OGC Simple Features predicates:
 
@@ -76,7 +76,7 @@ These operators test topological spatial relationships using the standard OGC Si
 
 The content for these operators is a `<PropertyName>` element for a geometry-valued property and a GML geometry literal.
 
-**Distance Operators**
+### Distance Operators
 
 These operators compute distance relationships between geometries:
 
@@ -85,7 +85,7 @@ These operators compute distance relationships between geometries:
 
 The content for these elements is a `<PropertyName>` element for a geometry-valued property, a GML geometry literal, and a `<Distance>` element containing the value for the distance tolerance. The `<Distance>` element may include an optional `units` attribute.
 
-**Bounding Box Operator**
+### Bounding Box Operator
 
 This operator tests whether a feature geometry attribute intersects a given bounding box:
 
@@ -159,7 +159,7 @@ The content for `<And>` and `<Or>` is two filter operator elements. The content 
 
 Filter expressions allow performing computation on data values. The following elements can be used to form expressions.
 
-**Arithmetic Operators**
+### Arithmetic Operators
 
 These operators perform arithmetic on numeric values. Each contains two expressions as sub-elements.
 
@@ -168,14 +168,14 @@ These operators perform arithmetic on numeric values. Each contains two expressi
 - `<Mul>`
 - `<Div>`
 
-**Functions**
+### Functions
 
 The `<Function>` element specifies a filter function to be evaluated. The `name` attribute gives the function name. The element contains a sequence of zero or more filter expressions providing the function arguments. See the [Filter Function Reference](../../../filter/function_reference.md) for details of the functions provided by GeoServer.
 
-**Feature Property Values**
+### Feature Property Values
 
 The `<PropertyName>` element allows referring to the value of a given feature attribute. It contains a string specifying the attribute name.
 
-**Literals**
+### Literals
 
 The `<Literal>` element allows specifying constant values of numeric, boolean, string, date or geometry type.
