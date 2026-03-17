@@ -28,9 +28,9 @@ Answer for [Challenge SLD Generation](#css-line-q0):
     The generated SLD does not contain any stroke properties, even though black was specified:
 
     ```xml
-<sld:LineSymbolizer>
-  <sld:Stroke/>
-</sld:LineSymbolizer>
+    <sld:LineSymbolizer>
+    <sld:Stroke/>
+    </sld:LineSymbolizer>
     ```
 
     SLD considers black the default stroke color for a LineSymbolizer, so no further detail was required.

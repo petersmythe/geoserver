@@ -761,8 +761,8 @@ In a classroom setting you are encouraged to team up into groups, with each grou
 2.  In addition to the vendor parameter for max displacement you can experiment with different values for "goodness of fit". These settings control how far GeoServer is willing to move a label to avoid conflict, and under what terms it simply gives up:
 
     ```http
-label-fit-goodness: 0.3;
-label-max-displacement: 130;
+    label-fit-goodness: 0.3;
+    label-max-displacement: 130;
     ```
 
 3.  You can also experiment with turning off this facility completely:

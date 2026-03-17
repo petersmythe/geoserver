@@ -51,9 +51,9 @@ The steps for creating a new **RESTUploadPathMapper** implementation are:
 2.  Configure it as a Spring Bean inside the *applicationContext*. For example:
 
     ```xml
-<bean id="ECQLRUPathMapper" class="org.geoserver.rest.ecql.RESTUploadECQLPathMapper">
-  <constructor-arg ref="catalog"/>
-</bean>
+    <bean id="ECQLRUPathMapper" class="org.geoserver.rest.ecql.RESTUploadECQLPathMapper">
+    <constructor-arg ref="catalog"/>
+    </bean>
     ```
 
 If any optional parameter requires to be configured, then a GUI panel must be created using Wicket. The panel will be added to the Global and WorkSpace Settings configuration page.
@@ -68,13 +68,13 @@ The steps for creating the GUI panel are:
 2.  Definition of a Spring Bean which will be an instance of the *SettingsPluginPanelInfo* class and will have the class defined above as component class (*priority* property can be avoided). For example:
 
     ```xml
-<bean id="restECQLSettingsPanel" class="org.geoserver.web.data.settings.SettingsPluginPanelInfo">
-  <description>This bean adds the necessary form fields to REST Settings</description>
-  <property name="id" value="restECQLSettingsPanel"/>
-  <property name="titleKey" value="restECQLsettings"/>
-  <property name="componentClass" value="org.geoserver.rest.web.RESTECQLSettingsPanel"/>
-  <property name="priority" value="1"/>
-</bean>
+    <bean id="restECQLSettingsPanel" class="org.geoserver.web.data.settings.SettingsPluginPanelInfo">
+    <description>This bean adds the necessary form fields to REST Settings</description>
+    <property name="id" value="restECQLSettingsPanel"/>
+    <property name="titleKey" value="restECQLsettings"/>
+    <property name="componentClass" value="org.geoserver.rest.web.RESTECQLSettingsPanel"/>
+    <property name="priority" value="1"/>
+    </bean>
     ```
 
 3.  Then the result will be added at the bottom of the GeoServer *Global Settings* and *Edit WorkSpace* Pages:

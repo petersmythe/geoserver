@@ -583,7 +583,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - Generate report with affected content patterns
     - _Requirements: 1.26, 1.27, 1.28_
 
-  - [ ] 19.2 Implement automated fix for indented paragraphs
+  - [x] 19.2 Implement automated fix for indented paragraphs
     - Remove incorrect code block or blockquote formatting from indented text
     - Preserve intentional indentation using proper Markdown syntax
     - Distinguish between code blocks and indented prose
@@ -627,14 +627,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 - [ ] 20. Fix heading and structure rendering issues
 
-  - [ ] 20.1 Create detection script for heading/structure issues
+  - [x] 20.1 Create detection script for heading/structure issues
     - Scan for low-level subsection headings that render incorrectly
     - Identify quoted specification text formatted as code blocks
     - Detect heading hierarchy problems
     - Generate report with affected headings and locations
     - _Requirements: 1.29, 1.30_
 
-  - [ ] 20.2 Implement automated fix for low-level heading hierarchy
+  - [-] 20.2 Implement automated fix for low-level heading hierarchy
     - Correct heading levels (##, ###, ####, etc.) for proper hierarchy
     - Ensure headings render in visual hierarchy
     - Maintain document structure and navigation

@@ -157,23 +157,23 @@ Answer for [Challenge Classification](#ysld-line-q1):
          ](<: *common
     ```
 
-### One Rule Classification {: #ysld.line.a2 }
+    ### One Rule Classification {: #ysld.line.a2 }
 
-Answer for `Challenge One Rule Classification <ysld.line.q2):
+    Answer for `Challenge One Rule Classification <ysld.line.q2):
 
-1.  **Challenge:** Create a new style and classify the roads based on their scale rank using expressions in a single rule instead of multiple rules with filters.
-2.  This exercise requires looking up information in the user guide, the search term *recode* provides several examples.
+    1.  **Challenge:** Create a new style and classify the roads based on their scale rank using expressions in a single rule instead of multiple rules with filters.
+    2.  This exercise requires looking up information in the user guide, the search term *recode* provides several examples.
     - The YSLD Reference [theming functions](../../ysld/reference/functions.md#ysld_reference_functions_theming) provides a clear example.
 
-### Label Shields {: #ysld.line.a3 }
+    ### Label Shields {: #ysld.line.a3 }
 
-Answer for [Challenge Label Shields](#ysld.line.q3):
+    Answer for [Challenge Label Shields](#ysld.line.q3):
 
-1.  *Challenge:* Have a look at the documentation for putting a graphic on a text symbolizer in SLD and reproduce this technique in YSLD.
+    1.  *Challenge:* Have a look at the documentation for putting a graphic on a text symbolizer in SLD and reproduce this technique in YSLD.
 
     ![image](../style/img/line_shield.png)
 
-2.  The use of a label shield is a vendor specific capability of the GeoServer rendering engine. The tricky part of this exercise is finding the documentation online ( i.e. [TextSymbolizer - Graphic](../../sld/reference/textsymbolizer.md)).
+    2.  The use of a label shield is a vendor specific capability of the GeoServer rendering engine. The tricky part of this exercise is finding the documentation online ( i.e. [TextSymbolizer - Graphic](../../sld/reference/textsymbolizer.md)).
 
     ``` yaml
     symbolizers:
@@ -193,27 +193,27 @@ Answer for [Challenge Label Shields](#ysld.line.q3):
         placement: point
         graphic:
       ```http
-size: 18
-symbols:
-- mark:
-    shape: square
-    stroke-color: '#000000'
-    stroke-width: 1
-    fill-color: '#FFFFFF'
+      size: 18
+      symbols:
+      - mark:
+      shape: square
+      stroke-color: '#000000'
+      stroke-width: 1
+      fill-color: '#FFFFFF'
       ```
     ```
 
-### Antialiasing {: #ysld.polygon.a1 }
+    ### Antialiasing {: #ysld.polygon.a1 }
 
-Answer for [Explore Antialiasing](#ysld.polygon.q1):
+    Answer for [Explore Antialiasing](#ysld.polygon.q1):
 
-1.  When we rendered our initial preview, without a stroke, thin white gaps (or slivers) are visible between our polygons.
+    1.  When we rendered our initial preview, without a stroke, thin white gaps (or slivers) are visible between our polygons.
 
     ![image](../style/img/polygon_04_preview.png)
 
     This effect is made more pronounced by the rendering engine making use of the Java 2D sub-pixel accuracy. This technique is primarily used to prevent an aliased (stair-stepped) appearance on diagonal lines.
 
-2.  **Explore:** Experiment with **fill** and **stroke** settings to eliminate slivers between polygons.
+    2.  **Explore:** Experiment with **fill** and **stroke** settings to eliminate slivers between polygons.
 
     The obvious approach works - setting both values to the same color:
 
@@ -225,13 +225,13 @@ Answer for [Explore Antialiasing](#ysld.polygon.q1):
         fill-color: 'lightgrey'
     ```
 
-### Categorize {: #ysld.polygon.a2 }
+    ### Categorize {: #ysld.polygon.a2 }
 
-Answer for [Explore Categorize](#ysld.polygon.q2):
+    Answer for [Explore Categorize](#ysld.polygon.q2):
 
-1.  An exciting use of the GeoServer **shape** symbols is the theming by changing the **size** used for pattern density.
+    1.  An exciting use of the GeoServer **shape** symbols is the theming by changing the **size** used for pattern density.
 
-2.  **Explore:** Use the **Categorize** function to theme by **datarank**.
+    2.  **Explore:** Use the **Categorize** function to theme by **datarank**.
 
     ![image](../style/img/polygon_categorize.png)
 
@@ -245,24 +245,24 @@ Answer for [Explore Categorize](#ysld.polygon.q2):
         fill-color: 'gray'
         fill-graphic:
       ```http
-size: ${Categorize(datarank,'4','4','5','6','8','10','10')}
-symbols:
-- mark:
-    shape: shape://slash
-    stroke-color: 'darkgray'
-    stroke-width: 1
+      size: ${Categorize(datarank,'4','4','5','6','8','10','10')}
+      symbols:
+      - mark:
+      shape: shape://slash
+      stroke-color: 'darkgray'
+      stroke-width: 1
       ```
     ```
 
-### Halo {: #ysld.polygon.a4 }
+    ### Halo {: #ysld.polygon.a4 }
 
-Answer for [Challenge Halo](#ysld.polygon.q4):
+    Answer for [Challenge Halo](#ysld.polygon.q4):
 
-1.  The halo example used the fill color and opacity for a muted halo, while this improved readability it did not bring attention to our labels.
+    1.  The halo example used the fill color and opacity for a muted halo, while this improved readability it did not bring attention to our labels.
 
     A common design choice for emphasis is to outline the text in a contrasting color.
 
-2.  **Challenge:** Produce a map that uses a white halo around black text.
+    2.  **Challenge:** Produce a map that uses a white halo around black text.
 
     Here is an example:
 
@@ -277,8 +277,8 @@ Answer for [Challenge Halo](#ysld.polygon.q4):
         fill-color: 'black'
         halo:
       ```http
-fill-color: 'white'
-radius: 1
+      fill-color: 'white'
+      radius: 1
       ```
         font-family: Arial
         font-size: 14
@@ -287,13 +287,13 @@ radius: 1
         anchor: [0.5, 0.5]
     ```
 
-### Theming using Multiple Attributes {: #ysld.polygon.a5 }
+    ### Theming using Multiple Attributes {: #ysld.polygon.a5 }
 
-Answer for [Challenge Theming using Multiple Attributes](#ysld.polygon.q5):
+    Answer for [Challenge Theming using Multiple Attributes](#ysld.polygon.q5):
 
-1.  A powerful tool is theming using multiple attributes. This is an important concept allowing map readers to perform "integration by eyeball" (detecting correlations between attribute values information).
+    1.  A powerful tool is theming using multiple attributes. This is an important concept allowing map readers to perform "integration by eyeball" (detecting correlations between attribute values information).
 
-2.  **Challenge:** Combine the **mapcolor9** and **datarank** examples to reproduce the following map.
+    2.  **Challenge:** Combine the **mapcolor9** and **datarank** examples to reproduce the following map.
 
     ![image](../style/img/polygon_multitheme.png)
 
@@ -320,23 +320,23 @@ Answer for [Challenge Theming using Multiple Attributes](#ysld.polygon.q5):
         fill-color: 'gray'
         fill-graphic:
       ```http
-size: ${Categorize(datarank,'6','4','8','6','10','10','12')}
-symbols:
-- mark:
-    shape: shape://slash
-    stroke-color: 'black'
-    stroke-width: 1
-    fill-color: 'gray'
+      size: ${Categorize(datarank,'6','4','8','6','10','10','12')}
+      symbols:
+      - mark:
+      shape: shape://slash
+      stroke-color: 'black'
+      stroke-width: 1
+      fill-color: 'gray'
       ```
     ```
 
-### Use of Feature styles {: #ysld.polygon.a6 }
+    ### Use of Feature styles {: #ysld.polygon.a6 }
 
-Answer for [Challenge Use of Feature styles](#ysld.polygon.q6):
+    Answer for [Challenge Use of Feature styles](#ysld.polygon.q6):
 
-1.  Using multiple **feature-styles** to simulate line string casing. The resulting effect is similar to text halos - providing breathing space around complex line work allowing it to stand out.
+    1.  Using multiple **feature-styles** to simulate line string casing. The resulting effect is similar to text halos - providing breathing space around complex line work allowing it to stand out.
 
-2.  **Challenge:** Use what you know of LineString **feature-styles** to reproduce the following map:
+    2.  **Challenge:** Use what you know of LineString **feature-styles** to reproduce the following map:
 
     ![image](../style/img/polygon_zorder.png)
 
@@ -356,12 +356,12 @@ Answer for [Challenge Use of Feature styles](#ysld.polygon.q6):
             fill-color: 'gray'
             fill-graphic:
           ```http
-size: 8
-symbols:
-- mark:
-    shape: shape://slash
-    stroke-color: 'black'
-    stroke-width: 0.75
+          size: 8
+          symbols:
+          - mark:
+          shape: shape://slash
+          stroke-color: 'black'
+          stroke-width: 0.75
           ```
     - rules:
       - symbolizers:
@@ -377,13 +377,13 @@ symbols:
 
     The structure of the legend graphic provides an indication on what is going on.
 
-### Geometry Location {: #ysld.point.a1 }
+    ### Geometry Location {: #ysld.point.a1 }
 
-Answer for [Challenge Geometry Location](#ysld.point.q1):
+    Answer for [Challenge Geometry Location](#ysld.point.q1):
 
-1.  The **mark** property can be used to render any geometry content.
+    1.  The **mark** property can be used to render any geometry content.
 
-2.  **Challenge:** Try this yourself by rendering a polygon layer using a **mark** property.
+    2.  **Challenge:** Try this yourself by rendering a polygon layer using a **mark** property.
 
     This can be done one of two ways:
 
@@ -392,11 +392,11 @@ Answer for [Challenge Geometry Location](#ysld.point.q1):
 
     The important thing to notice is that the centroid of each polygon is used as a point location.
 
-### Dynamic Symbolization {: #ysld.point.a2 }
+    ### Dynamic Symbolization {: #ysld.point.a2 }
 
-Answer for [Explore Dynamic Symbolization](#ysld.point.q2):
+    Answer for [Explore Dynamic Symbolization](#ysld.point.q2):
 
-1.  SLD Mark and ExternalGraphic provide an opportunity for dynamic symbolization.
+    1.  SLD Mark and ExternalGraphic provide an opportunity for dynamic symbolization.
 
     This is accomplished by embedding a small CQL expression in the string passed to symbol or url. This sub-expression is isolated with ``\${ }`` as shown:
 
@@ -407,7 +407,7 @@ Answer for [Explore Dynamic Symbolization](#ysld.point.q2):
     >         shape: ${if_then_else(equalTo(FEATURECLA,'Admin-0 capital'),'star','circle')}
     > ```
 
-2.  **Challenge:** Use this approach to rewrite the *Dynamic Styling* example.
+    2.  **Challenge:** Use this approach to rewrite the *Dynamic Styling* example.
 
     Example available here [point_example.css](../files/point_example2.ysld) :
 
@@ -422,19 +422,19 @@ Answer for [Explore Dynamic Symbolization](#ysld.point.q2):
     >
     >     x-labelObstacle: true
 
-### Layer Group {: #ysld.point.a3 }
+    ### Layer Group {: #ysld.point.a3 }
 
-Answer for [Challenge Layer Group](#ysld.point.q3):
+    Answer for [Challenge Layer Group](#ysld.point.q3):
 
-1.  Use a **Layer Group** to explore how symbology works together to form a map.
+    1.  Use a **Layer Group** to explore how symbology works together to form a map.
 
     - ne:NE1
     - ne:states_provincces_shp
     - ne:populated_places
 
-2.  This background is relatively busy and care must be taken to ensure both symbols and labels are clearly visible.
+    2.  This background is relatively busy and care must be taken to ensure both symbols and labels are clearly visible.
 
-3.  **Challenge:** Do your best to style populated_places over this busy background.
+    3.  **Challenge:** Do your best to style populated_places over this busy background.
 
     Here is an example with labels for inspiration:
 
@@ -469,13 +469,13 @@ Answer for [Challenge Layer Group](#ysld.point.q3):
 
     Using a lightgray halo, 0.7 opacity and radius 2 fades out the complexity immediately surrounding the label text improving legibility.
 
-### Contrast Enhancement {: #ysld.raster.a1 }
+    ### Contrast Enhancement {: #ysld.raster.a1 }
 
-Discussion for [Explore Contrast Enhancement](#ysld.raster.q1):
+    Discussion for [Explore Contrast Enhancement](#ysld.raster.q1):
 
-1.  A special effect that is effective with grayscale information is automatic contrast adjustment.
+    1.  A special effect that is effective with grayscale information is automatic contrast adjustment.
 
-2.  Make use of a simple contrast enhancement with `usgs:dem`:
+    2.  Make use of a simple contrast enhancement with `usgs:dem`:
 
     ``` yaml
     symbolizers:
@@ -485,7 +485,7 @@ Discussion for [Explore Contrast Enhancement](#ysld.raster.q1):
           mode: normalize
     ```
 
-3.  Can you explain what happens when zoom in to only show a land area (as indicated with the bounding box below)?
+    3.  Can you explain what happens when zoom in to only show a land area (as indicated with the bounding box below)?
 
     ![image](../style/img/raster_contrast_1.png)
 
@@ -495,17 +495,17 @@ Discussion for [Explore Contrast Enhancement](#ysld.raster.q1):
 
     Once we zoom in to show only a land area, the lowest point on the screen (say 100) becomes the new black, radically altering what is displayed on the screen.
 
-### Intervals {: #ysld.raster.a2 }
+    ### Intervals {: #ysld.raster.a2 }
 
-Answer for [Challenge Intervals](#ysld.raster.q2):
+    Answer for [Challenge Intervals](#ysld.raster.q2):
 
-1.  The color-map **type** property dictates how the values are used to generate a resulting color.
+    1.  The color-map **type** property dictates how the values are used to generate a resulting color.
 
     - ``ramp`` is used for quantitative data, providing a smooth interpolation between the provided color values.
     - ``intervals`` provides categorization for quantitative data, assigning each range of values a solid color.
     - ``values`` is used for qualitative data, each value is required to have a **color-map** entry or it will not be displayed.
 
-2.  **Challenge:** Update your DEM example to use **intervals** for presentation. What are the advantages of using this approach for elevation data?
+    2.  **Challenge:** Update your DEM example to use **intervals** for presentation. What are the advantages of using this approach for elevation data?
 
     By using intervals it becomes very clear how relatively flat most of the continent is. The ramp presentation provided lots of fascinating detail which distracted from this fact.
 
@@ -532,13 +532,13 @@ Answer for [Challenge Intervals](#ysld.raster.q2):
           - ['#FFF7FB', 1.0, 4000, null]
     ```
 
-### Clear Digital Elevation Model Presentation {: #ysld.raster.a3 }
+    ### Clear Digital Elevation Model Presentation {: #ysld.raster.a3 }
 
-Answer for [Challenge Clear Digital Elevation Model Presentation](#ysld.raster.q3):
+    Answer for [Challenge Clear Digital Elevation Model Presentation](#ysld.raster.q3):
 
-1.  Now that you have seen the data on screen and have a better understanding how would you modify our initial gray-scale example?
+    1.  Now that you have seen the data on screen and have a better understanding how would you modify our initial gray-scale example?
 
-2.  **Challenge:** Use what you have learned to present the `usgs:dem` clearly.
+    2.  **Challenge:** Use what you have learned to present the `usgs:dem` clearly.
 
     ![image](../style/img/raster_grayscale.png)
 
@@ -556,13 +556,13 @@ Answer for [Challenge Clear Digital Elevation Model Presentation](#ysld.raster.q
           - ['#FFFFFF', 1.0, 3000, null]
     ```
 
-### Raster Opacity {: #ysld.raster.a4 }
+    ### Raster Opacity {: #ysld.raster.a4 }
 
-Discussion for [Challenge Clear Digital Elevation Model Presentation](#ysld.raster.q3):
+    Discussion for [Challenge Clear Digital Elevation Model Presentation](#ysld.raster.q3):
 
-1.  There is a quick way to make raster data transparent, raster **opacity** property works in the same fashion as with vector data. The raster as a whole will be drawn partially transparent allow content from other layers to provide context.
+    1.  There is a quick way to make raster data transparent, raster **opacity** property works in the same fashion as with vector data. The raster as a whole will be drawn partially transparent allow content from other layers to provide context.
 
-2.  **Challenge:** Can you think of an example where this would be useful?
+    2.  **Challenge:** Can you think of an example where this would be useful?
 
     This is difficult as raster data is usually provided for use as a basemap, with layers being drawn over top.
 

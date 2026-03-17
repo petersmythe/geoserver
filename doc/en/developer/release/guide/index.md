@@ -157,11 +157,11 @@ When creating the first release candidate of a series, there are some extra step
     Edit **`build/rename.xml`** to update GeoServer, GeoTools and GeoWebCache version numbers:
 
     ```xml
-<property name="current" value="2.28"/>
-<property name="release" value="2.29"/>
-..
-<replacefilter token="34-SNAPSHOT" value="35-SNAPSHOT"/>
-<replacefilter token="1.28-SNAPSHOT" value="1.29-SNAPSHOT"/>
+    <property name="current" value="2.28"/>
+    <property name="release" value="2.29"/>
+    ..
+    <replacefilter token="34-SNAPSHOT" value="35-SNAPSHOT"/>
+    <replacefilter token="1.28-SNAPSHOT" value="1.29-SNAPSHOT"/>
     ```
 
 ```sql
@@ -202,11 +202,11 @@ Manually update hardcoded versions in configuration files:
 6.  Add the new version to the documentation index (`doc/en/index.html`) just after line 105, e.g.:
 
     ```xml
-<tr>
-  <td><strong><a href="https://geoserver.org/release/2.29.x/">2.29.x</a></strong></td>
-  <td><a href="2.29.x/en/user/">User Manual</a></td>
-  <td><a href="2.29.x/en/developer/">Developer Manual</a></td>
-</tr>
+    <tr>
+    <td><strong><a href="https://geoserver.org/release/2.29.x/">2.29.x</a></strong></td>
+    <td><a href="2.29.x/en/user/">User Manual</a></td>
+    <td><a href="2.29.x/en/developer/">Developer Manual</a></td>
+    </tr>
     ```
 
 7.  Commit the changes and push to the main development branch on GitHub:

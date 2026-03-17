@@ -68,7 +68,7 @@ Homepage of Topp
 2.  The logo of your organization:
 
     ```xml
-<img src="http://topp.openplans.org/images/logo.jpg"/>
+    <img src="http://topp.openplans.org/images/logo.jpg"/>
     ```
 
 Logo of Topp
@@ -126,7 +126,7 @@ You will notice that hovering the mouse over one of the points on the map displa
 1.  In the `featureTypes/DS_poi_poi` directory of the geoserver data directory create the following template:
 
     ```xml
-<img src="http://localhost:8080/geoserver/popup_map/${THUMBNAIL.value}"/>
+    <img src="http://localhost:8080/geoserver/popup_map/${THUMBNAIL.value}"/>
     ```
 
 2.  Add the following network link in Google Earth:

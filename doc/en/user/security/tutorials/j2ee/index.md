@@ -84,26 +84,26 @@ By default Tomcat does not require authentication for web applications. In this 
 2.  Edit the `conf/tomcat-users.xml` under the Tomcat root directory and add a user named "admin":
 
     ```xml
-<user username="admin" password="password" roles="tomcat"/>
+    <user username="admin" password="password" roles="tomcat"/>
     ```
 
 3.  Edit the GeoServer `web.xml` file located at `webapps/geoserver/WEB-INF/web.xml` under the Tomcat root directory and add the following at the end of the file directly before the closing `</web-app>` element:
 
     ```xml
-<security-constraint>
-  <web-resource-collection>
+    <security-constraint>
+    <web-resource-collection>
     <url-pattern>/*</url-pattern>
      <http-method>GET</http-method>
      <http-method>POST</http-method>
-  </web-resource-collection>
-  <auth-constraint>
+    </web-resource-collection>
+    <auth-constraint>
     <role-name>tomcat</role-name>
-  </auth-constraint>
-</security-constraint>
+    </auth-constraint>
+    </security-constraint>
 
-<login-config>
-  <auth-method>BASIC</auth-method>
-</login-config>
+    <login-config>
+    <auth-method>BASIC</auth-method>
+    </login-config>
     ```
 
 4.  Save `web.xml` and restart Tomcat.

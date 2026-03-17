@@ -13,7 +13,7 @@ To enable this option, choose *one* of these:
 2.  Or: Insert the following line before the closing tag in **`wfs.xml`**:
 
     ```xml
-<canonicalSchemaLocation>true</canonicalSchemaLocation>
+    <canonicalSchemaLocation>true</canonicalSchemaLocation>
     ```
 
 ## Encode using featureMember
@@ -27,5 +27,5 @@ To enable this option, choose *one* of these:
 2.  Or: Insert the following line before the closing tag in **`wfs.xml`**:
 
     ```xml
-<encodeFeatureMember>true</encodeFeatureMember>
+    <encodeFeatureMember>true</encodeFeatureMember>
     ```

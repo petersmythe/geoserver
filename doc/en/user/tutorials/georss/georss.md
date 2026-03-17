@@ -35,8 +35,8 @@ How to create a Google Maps mashup with a GeoRSS overlay produced by GeoServer.
 2.  Create an html file called `gmaps.html`:
 
     ```html
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org    R/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org    R/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Google Maps JavaScript API Example<    itle>
@@ -60,7 +60,7 @@ How to create a Google Maps mashup with a GeoRSS overlay produced by GeoServer.
     <body onload="load()" onunload="GUnload()">
         <div id="map" style="width: 800px; height: 600px"></div>
     </body>
-</html>
+    </html>
     ```
 
 3.  Visit `gmaps.html` in your web browser.
@@ -77,7 +77,7 @@ How to create a Yahoo! Maps mashup with a GeoRSS overlay produced by GeoServer.
 2.  Create an html file called `ymaps.html`:
 
     ```html
-<html>
+    <html>
     <head>
     <title>Yahoo! Maps GeoRSS Overlay Example<    itle>
     <script src="http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=<INSERT APPLICATION ID HERE>" type="text/javascript"></script>
@@ -115,7 +115,7 @@ How to create a Yahoo! Maps mashup with a GeoRSS overlay produced by GeoServer.
       <body>
            <div id="ymap" style="width: 800px; height: 600px; left:2px; top:2px"></div>
      </body>
-</html>
+    </html>
     ```
 
 3.  Visit `ymaps.html` in your web browser.
@@ -136,8 +136,8 @@ How to create a Microsoft Virtual Earth mashup with a GeoRSS overlay produced by
 1.  Create an html file called `ve.html`. **Note**: You must insert your specific maps api key, and geoserver base url:
 
     ```html
-<html>
-  <head>
+    <html>
+    <head>
     <script src="http://dev.virtualearth.net/mapcontrol/v4/mapcontrol.js"></script>
     <script>
      var map;
@@ -154,13 +154,13 @@ How to create a Microsoft Virtual Earth mashup with a GeoRSS overlay produced by
     veLayerSpec.Method = 'get';
     map.AddLayer(veLayerSpec);
     }
-   </script>
- </head>
- <body onload="OnPageLoad();">
+    </script>
+    </head>
+    <body onload="OnPageLoad();">
     <div id="map" style="position:relative;width:800px;height:600px;"></div>
-  </body>
+    </body>
 
-</html>
+    </html>
     ```
 
 2.  Visit `ve.html` in your web browser. You should see the following:

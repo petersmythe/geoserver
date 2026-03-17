@@ -61,7 +61,7 @@ This tutorial uses the [curl](http://curl.haxx.se/) utility to issue HTTP reques
 1.  Execute the following curl command (with a wrong password):
 
     ```bash
-curl -v -H "X-Credentials: private-user=admin&private-pw=wrong" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
+    curl -v -H "X-Credentials: private-user=admin&private-pw=wrong" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
     ```
 
 ```html
@@ -90,7 +90,7 @@ The result should be a 403 response signaling that access is denied. The output 
 2.  Execute the same command but specify the right password.:
 
     ```bash
-curl -v -H "X-Credentials: private-user=admin&private-pw=geoserver" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
+    curl -v -H "X-Credentials: private-user=admin&private-pw=geoserver" "http://localhost:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetCapabilities"
     ```
 
     The result should be a successful authentication and contain the normal WMS capabilities response.

@@ -352,13 +352,13 @@ This section explores the use of rules with filters and scale restrictions.
           stroke-width: 1
     ```
 
-2.  And use the **Layer Preview** tab to preview the result.
+    2.  And use the **Layer Preview** tab to preview the result.
 
     ![image](../style/img/line_04_scalerank.png)
 
-3.  The **scalerank** attribute is provided by the Natural Earth dataset to allow control of the level of detail based on scale. Our filter short-listed all content with scalerank 4 or lower, providing a nice quick preview when we are zoomed out.
+    3.  The **scalerank** attribute is provided by the Natural Earth dataset to allow control of the level of detail based on scale. Our filter short-listed all content with scalerank 4 or lower, providing a nice quick preview when we are zoomed out.
 
-4.  In addition to testing feature attributes, selectors can also be used to check the state of the rendering engine.
+    4.  In addition to testing feature attributes, selectors can also be used to check the state of the rendering engine.
 
     Replace your YSLD with the following:
 
@@ -376,11 +376,11 @@ This section explores the use of rules with filters and scale restrictions.
           stroke-width: 1
     ```
 
-5.  As you adjust the scale in the **Layer Preview** (using the mouse scroll wheel) the color will change between black and blue. You can read the current scale in the bottom right corner, and the legend will change to reflect the current style.
+    5.  As you adjust the scale in the **Layer Preview** (using the mouse scroll wheel) the color will change between black and blue. You can read the current scale in the bottom right corner, and the legend will change to reflect the current style.
 
     ![image](../style/img/line_05_scale.png)
 
-6.  Putting these two ideas together allows control of level detail based on scale:
+    6.  Putting these two ideas together allows control of level detail based on scale:
 
     ``` yaml
     define: &primaryStyle
@@ -447,7 +447,7 @@ This section explores the use of rules with filters and scale restrictions.
             stroke-width: 4
     ```
 
-7.  When a rule has both a filter and a scale, it will trigger when both are true.
+    7.  When a rule has both a filter and a scale, it will trigger when both are true.
 
     The first rule has ``else: true`` instead of a filter. This causes it to be applied after all other rules have been checked if none of them worked.
 
@@ -455,23 +455,23 @@ This section explores the use of rules with filters and scale restrictions.
 
     ![image](../style/img/line_06_adjust.png)
 
-## Bonus
+    ## Bonus
 
-Finished early? Here are some opportunities to explore what we have learned, and extra challenges requiring creativity and research.
+    Finished early? Here are some opportunities to explore what we have learned, and extra challenges requiring creativity and research.
 
-In a classroom setting please divide the challenges between teams (this allows us to work through all the material in the time available).
+    In a classroom setting please divide the challenges between teams (this allows us to work through all the material in the time available).
 
-!!! abstract "Instructor Notes"
+    !!! abstract "Instructor Notes"
 
     As usual the Explore section invites readers to reapply the material covered in a slightly different context or dataset.
     
     The use of selectors using the roads **type** attribute provides this opportunity.
 
-### Explore Vendor Option Follow Line
+    ### Explore Vendor Option Follow Line
 
-Vendor options can be used to enable some quite spectacular effects, while still providing a style that can be used by other applications.
+    Vendor options can be used to enable some quite spectacular effects, while still providing a style that can be used by other applications.
 
-1.  Update ``line_example`` with the following:
+    1.  Update ``line_example`` with the following:
 
     ``` yaml
     symbolizers:
@@ -486,7 +486,7 @@ Vendor options can be used to enable some quite spectacular effects, while still
 
     The ``\#`` character is the comment character in YAML, so we have to quote strings that contain it like colours and in this expression.
 
-2.  The property **stroke-width** has been used to make our line thicker in order to provide a backdrop for our label.
+    2.  The property **stroke-width** has been used to make our line thicker in order to provide a backdrop for our label.
 
     ```yaml hl_lines="4"
     symbolizers:
@@ -500,7 +500,7 @@ Vendor options can be used to enable some quite spectacular effects, while still
         x-followLine: true
     ```
 
-3.  The **label** property combine several CQL expressions together for a longer label.
+    3.  The **label** property combine several CQL expressions together for a longer label.
 
     ```yaml hl_lines="4"
     symbolizers:
@@ -523,7 +523,7 @@ Vendor options can be used to enable some quite spectacular effects, while still
 
     This happens silently in the background.
 
-4.  The property **x-followLine** provides the ability of have a label exactly follow a LineString character by character.
+    4.  The property **x-followLine** provides the ability of have a label exactly follow a LineString character by character.
 
     ```yaml hl_lines="8"
     symbolizers:
@@ -536,17 +536,17 @@ Vendor options can be used to enable some quite spectacular effects, while still
         x-followLine: true
     ```
 
-5.  The result is a new appearance for our roads.
+    5.  The result is a new appearance for our roads.
 
     ![image](../style/img/line_label_4.png)
 
-### Challenge Classification {: #ysld.line.q1 }
+    ### Challenge Classification {: #ysld.line.q1 }
 
-1.  The roads **type** attribute provides classification information.
+    1.  The roads **type** attribute provides classification information.
 
     You can **Layer Preview** to inspect features to determine available values for type.
 
-2.  **Challenge:** Create a new style adjust road appearance based on **type**.
+    2.  **Challenge:** Create a new style adjust road appearance based on **type**.
 
     ![image](../style/img/line_type.png)
 
@@ -554,21 +554,21 @@ Vendor options can be used to enable some quite spectacular effects, while still
 
     note:: Answer `provided <ysld.line.a1) at the end of the workbook.
 
-### Challenge One Rule Classification {: #ysld.line.q2 }
+    ### Challenge One Rule Classification {: #ysld.line.q2 }
 
-1.  You can save a lot of typing by doing your classification in an expression using arithmetic or the ``Recode`` function
+    1.  You can save a lot of typing by doing your classification in an expression using arithmetic or the ``Recode`` function
 
-2.  **Challenge:** Create a new style and classify the roads based on their scale rank using expressions in a single rule instead of multiple rules with filters.
+    2.  **Challenge:** Create a new style and classify the roads based on their scale rank using expressions in a single rule instead of multiple rules with filters.
 
     !!! note
 
         Answer [provided](#ysld.line.a2) at the end of the workbook.
 
-### Challenge Label Shields {: #ysld.line.q3 }
+    ### Challenge Label Shields {: #ysld.line.q3 }
 
-1.  The traditional presentation of roads in the US is the use of a shield symbol, with the road number marked on top.
+    1.  The traditional presentation of roads in the US is the use of a shield symbol, with the road number marked on top.
 
-2.  *Challenge:* Have a look at the documentation for putting a graphic on a text symbolizer in SLD and reproduce this technique in YSLD.
+    2.  *Challenge:* Have a look at the documentation for putting a graphic on a text symbolizer in SLD and reproduce this technique in YSLD.
 
     ![image](../style/img/line_shield.png)
 

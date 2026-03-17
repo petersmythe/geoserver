@@ -79,7 +79,7 @@ In order to test the authentication settings configured in the previous section 
 1.  Execute the following curl command:
 
     ```bash
-curl -v  -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
+    curl -v  -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
     ```
 
 ```html
@@ -108,7 +108,7 @@ The result should be a 403 response signaling that access is denied. The output 
 2.  Execute the same command but specify the `--header` option.:
 
     ```bash
-curl -v --header "sdf09rt2s: admin" -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
+    curl -v --header "sdf09rt2s: admin" -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
     ```
 
     The result should be a successful authentication and contain the normal WFS capabilities response.

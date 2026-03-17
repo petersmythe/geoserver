@@ -298,12 +298,12 @@ During development the most convenient way to work with the extension is to run 
 3.  Edit the **`community/pom.xml`** and add a new profile:
 
     ```xml
-<profile>
-  <id>hello</id>
-  <modules>
+    <profile>
+    <id>hello</id>
+    <modules>
     <module>hello</module>
-  </modules>
-</profile>
+    </modules>
+    </profile>
     ```
 
 4.  If not already done, edit **`web/app/pom.xml`** and add the following dependency:

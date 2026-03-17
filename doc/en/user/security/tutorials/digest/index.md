@@ -67,7 +67,7 @@ In order to test the authentication settings configured in the previous section 
 1.  Ensure that basic authentication is disabled execute the following curl command:
 
     ```bash
-curl -v -u admin:geoserver -G "http://localhost:8080/geoserve/wfs?request=getcapabilities"
+    curl -v -u admin:geoserver -G "http://localhost:8080/geoserve/wfs?request=getcapabilities"
     ```
 
 ```html
@@ -101,7 +101,7 @@ The result should be a 401 response signaling that authentication is required. T
 2.  Execute the same command but specify the `--digest` option to tell curl to use digest authentication rather than basic authentication:
 
     ```bash
-curl --digest -v -u admin:geoserver -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
+    curl --digest -v -u admin:geoserver -G "http://localhost:8080/geoserver/wfs?request=getcapabilities"
     ```
 
     The result should be a successful authentication and contain the normal WFS capabilities response.

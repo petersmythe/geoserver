@@ -19,11 +19,11 @@ In order to write NetCDF-4 files, you must have the NetCDF-4 C library (version 
         wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/zlib-1.2.8.tar.gz
         ```
 
-2.  Download the latest NetCDF-C source code from [here](https://github.com/Unidata/netcdf-c/releases/).
+        2.  Download the latest NetCDF-C source code from [here](https://github.com/Unidata/netcdf-c/releases/).
 
-    As an instance:
+        As an instance:
 
-    :   ``` bash
+        :   ``` bash
         wget https://github.com/Unidata/netcdf-c/archive/v4.3.3.1.tar.gz
         ```
 
@@ -39,11 +39,11 @@ In order to write NetCDF-4 files, you must have the NetCDF-4 C library (version 
             make check install
             ```
 
-    2.  
+            2.  
 
-        HDF5
+            HDF5
 
-        :   ``` bash
+            :   ``` bash
             ./configure --with-zlib=/work/libs/nc4libs --prefix=/work/libs/nc4libs --enable-threadsafe --with-pthread=/DIR/TO/PTHREAD
 
             make check install

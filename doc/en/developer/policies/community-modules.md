@@ -276,10 +276,10 @@ The following properties must hold true in order to promote a community module:
     2.  Edit `pom.xml` under the root of the source tree and add a module entry:
 
         ```xml
-<modules>
-  ...
-  <module>myCommunityModule</module>
-</modules>
+        <modules>
+        ...
+        <module>myCommunityModule</module>
+        </modules>
         ```
 
     3.  Edit `web/app/pom.xml` and move the dependency on the community module into the main dependencies section of the pom. Then remove the profile.

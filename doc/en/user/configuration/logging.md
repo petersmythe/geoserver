@@ -64,14 +64,14 @@ There are however a few rules to follow:
 
     ```xml
     <!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml -->
-<!-- TODO: Copy file to docs directory or use alternative approach -->
+    <!-- TODO: Copy file to docs directory or use alternative approach -->
     ```
 
   - a `Console` appender writing to the standard output should be called `stdout` and again GeoServer will enable/disable it according to the configuration set in the [global settings](globalsettings.md#config_globalsettings_log_stdout)
 
     ```xml
     <!-- Include path goes outside docs directory: ../../../../src/main/src/main/resources/DEFAULT_LOGGING.xml -->
-<!-- TODO: Copy file to docs directory or use alternative approach -->
+    <!-- TODO: Copy file to docs directory or use alternative approach -->
     ```
 - Loggers are used to collect messages from geoserver components, and individual libraries used.
   - GeoServer Logger names match up with the package names in the project javadocs overview (available for download).
