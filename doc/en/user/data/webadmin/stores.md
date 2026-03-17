@@ -3,6 +3,7 @@
 A store connects to a data source that contains raster or vector data. A data source can be a file or group of files, a table in a database, a single raster file, or a directory (for example, a Vector Product Format library). The store construct allows connection parameters to be defined once, rather than for each dataset in a source. As such, it is necessary to register a store before configuring datasets within it.
 
 ![](img/data_stores.png)
+
 *Stores View*
 
 ## Store types
@@ -21,6 +22,7 @@ While there are many potential formats for data sources, there are only four kin
 To view or edit a store, click the store name. A store configuration page will be displayed. The exact contents of this page depend on the specific format of the store. See the sections [Vector data](../vector/index.md), [Raster data](../raster/index.md), and [Databases](../database/index.md) for information about specific data formats. The example shows the configuration for the `nurc:GeoTIFFSample` store.
 
 ![](img/data_stores_edit.png)
+
 *Editing a raster data store*
 
 ### Basic Store Info
@@ -42,16 +44,19 @@ The connection parameters vary depending on data format.
 The buttons for adding and removing a store can be found at the top of the Stores page.
 
 ![](img/data_stores_add_remove.png)
+
 *Buttons to add and remove a Store*
 
 To add a store, select the **Add new Store** button. You will be prompted to choose a data source. GeoServer natively supports many formats (with more available via extensions). Click the appropriate data source to continue.
 
 ![](img/data_stores_chooser.png)
+
 *Choosing the data source for a new store*
 
 The next page configures the store. Since connection parameters differ across data sources, the exact contents of this page depend on the store's specific format. See the sections [Vector data](../vector/index.md), [Raster data](../raster/index.md), and [Databases](../database/index.md) for information on specific data formats. The example below shows the GeoTIFF raster configuration page.
 
 ![](img/data_stores_add.png)
+
 *Configuration page for an GeoTIFF raster data source*
 
 ## Remove a Store
@@ -59,9 +64,11 @@ The next page configures the store. Since connection parameters differ across da
 To remove a store, click the checkbox next to the store. Multiple stores can be selected, or all can be selected by clicking the checkbox in the header.
 
 ![](img/data_stores_delete.png)
+
 *Stores selected for removal*
 
 Click the **Remove selected Stores** button. You will be asked to confirm the removal of the configuration for the store(s) and all resources defined under them. Clicking **OK** removes the selected store(s), and returns to the Stores page.
 
 ![](img/data_stores_delete_confirm.png)
+
 *Confirm removal of stores*

@@ -30,11 +30,13 @@ render_macros: true
 Once the extension is properly installed `MySQL` will show up as an option when creating a new data store.
 
 ![](images/mysqlcreate.png)
+
 *MySQL in the list of data sources*
 
 ## Configuring a MySQL data store
 
 ![](images/mysqlconfigure.png)
+
 *Configuring a MySQL data store*
 
 | `host` | The mysql server host name or ip address. |

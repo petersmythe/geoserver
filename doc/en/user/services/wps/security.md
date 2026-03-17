@@ -5,11 +5,13 @@ GeoServer service security is normally based on the generic [OGC security config
 WPS security allows access to be determined by process group or by single process. Each process and process group can be enabled/disabled, or subject to access control based on the user roles.
 
 ![](images/security.png)
+
 *The WPS security page*
 
 The WPS security configurations can be changed using the [Web administration interface](../../webadmin/index.md) on the **WPS security** page under **Security**.
 
 ![](images/security_link.png)
+
 *Click to access the WPS security settings*
 
 ## Setting access roles
@@ -19,6 +21,7 @@ The list of roles attached to each group or process will determine which users c
 The roles string must be a list of roles separated by semicolons. The role editor provides auto-completion and also allows quick copy and paste of role lists from one process definition to the other:
 
 ![](images/security_roles.png)
+
 *Role selector field with auto-complete*
 
 ## Access modes
@@ -54,11 +57,13 @@ The maximum size can be given a global default on the **WPS security** page. It 
     Processes having a `*` beside the link have a defined set of limits
 
 ![](images/security_processselector.png)
+
 *The process selector, with access constraints and links to the limits configuration*
 
 The process limits editor shows all inputs for which a limit can be provided. An empty field means that limits are disabled for that input.
 
 ![](images/security_processlimits.png)
+
 *The process limit page, with input limits configured*
 
 !!! warning

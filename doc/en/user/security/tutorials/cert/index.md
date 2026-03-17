@@ -140,13 +140,13 @@ Download and unpack the [sample certificate files](sample_certs.zip). This archi
 
 #\. When warned about the self-signed server certificate, click **Add Exception** to add a security exception.
 
-> ![](images/cert13.jpg)
+![](images/cert13.jpg)
 
 The result is that the user `rod` is now logged into the GeoServer admin interface.
 
-> ![](images/cert14.jpg)
+![](images/cert14.jpg)
 
 !!! note
     Starting with version 31, Firefox implements a new mechanism for using certificates, which will cause a *Issuer certificate is invalid error (sec_error_ca_cert_invalid)* error when trying to use a self-signed repository such as the one proposed. To avoid that, you can disable this mechanism by browsing to **about:config** and setting the **security.use_mozillapkix_verification** parameter to **false**.
     
-    > ![](images/mozilla_pki.jpg)
+    ![](images/mozilla_pki.jpg)

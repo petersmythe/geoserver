@@ -128,6 +128,7 @@ feature-styles:
 ```
 
 ![](img/filters_roadtypes.png)
+
 *Filter based on road types*
 
 **Filter color based on attribute value**
@@ -172,6 +173,7 @@ Filters can also be used to color a map based on attributes of the data. The fol
             fill-color: '#DD4400'
 
 ![](img/filters_categories.png)
+
 *Filter based on attribute value*
 
 **Filter by bounding box**
@@ -194,6 +196,7 @@ feature-styles:
 ```
 
 ![](img/filters_bbox.png)
+
 *Detail of ``bbox`` filter*
 
 **Filter by arbitrary geometries**
@@ -215,4 +218,5 @@ feature-styles:
 ```
 
 ![](img/filters_within.png)
+
 *Filter using ``within``*

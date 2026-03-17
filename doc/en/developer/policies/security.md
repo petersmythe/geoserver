@@ -118,6 +118,7 @@ This represents a balance between transparency and participation that does not o
     - Affected versions: It is difficult to communicate version ranges, due to limitations in CVE advisory processing, requiring multiple lines.
 
     ![](img/cve-version-range.png)
+
     *Package guidance and version range*
 
 3.  Work on providing a fix, mitigation instructions, or best-practice clarification for documentation.
@@ -142,6 +143,7 @@ This represents a balance between transparency and participation that does not o
         Example: The report "GHSA-cqpc-x2c6-2gmf" has been assigned CVE-2023-41339 and is shown as "not yet published".
     
         ![](img/cve-not-yet-published.png)
+
         *CVE-2023-41339 Not Yet Published*
 
 5.  Assign a placeholder Jira issue with `Vulnerability` category with security level "geoserver-security"
@@ -152,6 +154,7 @@ This represents a balance between transparency and participation that does not o
         Example: The Jira issue GEOS-11121 ticket is created for CVE-2023-41339.
     
         ![](img/cve-issue.png)
+
         *Jira GEOS-11121 Placeholder*
 
 6.  During the release process list CVE in "Security Considerations" section of release announcements.
@@ -177,6 +180,7 @@ This represents a balance between transparency and participation that does not o
           Example: Security considerations section showing a mix of disclosed and not yet disclosed (no hyperlink) vulnerabilities.
 
           ![](img/cve-disclosure.png)
+
           *Release announcement communication*
 
     - Publish the security advisory to make the vulnerability public
@@ -224,4 +228,5 @@ When a national agency or similar has already reported a vulnerability publicly,
         Example: CVE-2023-35042 reported to our issue tracker as GEOS-11027
     
         ![](img/cve-issue-public.png)
+
         *GEOS-11027 documenting state of CVE-2023-35042*

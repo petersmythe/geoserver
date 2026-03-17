@@ -37,11 +37,13 @@ The steps to install the EO extension as the same as most other extensions:
 The first step to work with EO is to go into the WCS service panel and enable the EO extensions:
 
 ![](images/serviceConfig.png)
+
 *Enabling the WCS 2.0 EO extensions*
 
 The second step is finding and activating the EO extensions for a suitable grid layer, which needs to be one with time dimension support and ability to describe its inner structure. At the time of writing, this means a image mosaic with time support or a netCDF data layer with time dimension. Once the layer is located, the EO extensions for it can be enabled by ticking a checkbox in the publishing tab:
 
 ![](images/layerConfig.png)
+
 *Exposing a layer as a dataset*
 
 Once that is done the capabilities document (e.g. `http://localhost:8080/geoserver/ows?service=WCS&version=2.0.1&request=GetCapabilities` for WCS 2.0 will contain an indication that a coverage set is present:

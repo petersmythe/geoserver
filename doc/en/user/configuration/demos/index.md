@@ -10,6 +10,7 @@ The page contains the following options
 - [WCS Request Builder](#demos_wcsrequestbuilder)
 
 ![](img/demos_view.png)
+
 *Demos page*
 
 If you have the [WPS](../../services/wps/index.md) extension installed, you will see an additional option:
@@ -17,6 +18,7 @@ If you have the [WPS](../../services/wps/index.md) extension installed, you will
 - [WPS Request Builder](#demos_wpsrequestbuilder)
 
 ![](img/demos_viewwps.png)
+
 *Demos page with WPS extension installed*
 
 ## Demo Requests {: #demos_demorequests }
@@ -24,11 +26,13 @@ If you have the [WPS](../../services/wps/index.md) extension installed, you will
 This page has example WMS, WCS, and WFS requests for GeoServer that you can use, examine, and change. Select a request from the drop down list.
 
 ![](img/demos_requests.png)
+
 *Selecting demo requests*
 
 Both [Web Feature Service (WFS)](../../services/wfs/index.md) as well as [Web Coverage Service (WCS)](../../services/wcs/index.md) requests will display the request URL and the XML body. [Web Map Service (WMS)](../../services/wms/index.md) requests will only display the request URL.
 
 ![](img/demos_requests_WFS.png)
+
 *WFS 1.1 DescribeFeatureType sample request (Demo Request **WFS_describeFeatureType-1.1.xml**)*
 
 Click **Show Result** or **Show Result in New Page** to send the request to GeoServer. For WFS and WCS requests, GeoServer will automatically generate an XML response.
@@ -38,19 +42,23 @@ Click **Show Result** or **Show Result in New Page** to send the request to GeoS
 **Show Result in New Page** will show GeoServer's result in a new page (your browser will render the result).
 
 ![](img/demos_requests_schema.png)
+
 *Headers and XML response from a WFS 1.1 DescribeFeatureType sample request after pressing **Show Result**. (Demo Request **WFS_describeFeatureType-1.1.xml**)*
 
 Submitting a WMS GetMap request displays an image based on the provided geographic data.
 
 ![](img/demos_requests_WMS_map.png)
+
 *Headers and image response for a WMS GetMap request after pressing **Show Result**. (Demo Request **WMS_getMap_multilayer.url**)*
 
 WMS GetFeatureInfo requests retrieve information regarding a particular feature on the map image.
 
 ![](img/demos_requests_WMS_feature.png)
+
 *Plain text WMS GetFeatureInfo request after pressing **Show Result**.  (Demo Request **WMS_featureInfo.url**)*
 
 ![](img/demos_requests_transaction.png)
+
 *WFS Transaction result after pressing **Show Result in New Page** (Your browser may render this differently).  (Demo Request **WFS_transactionInsert.xml**)*
 
 !!! note
@@ -61,11 +69,13 @@ WMS GetFeatureInfo requests retrieve information regarding a particular feature 
 GeoServer natively supports almost 4,000 Spatial Referencing Systems (SRS), also known as **projections**, and more can be added. A spatial reference system defines an ellipsoid, a datum using that ellipsoid, and either a geocentric, geographic or projection coordinate system. This page lists all SRS info known to GeoServer.
 
 ![](img/demos_SRS.png)
+
 *Listing of all Spatial Referencing Systems (SRS) known to GeoServer*
 
 The **Code** column refers to the unique integer identifier defined by the author of that spatial reference system. Each code is linked to a more detailed description page, accessed by clicking on that code.
 
 ![](img/demos_SRS_page.png)
+
 *Details for SRS EPSG:2000*
 
 The title of each SRS is composed of the author name and the unique integer identifier (code) defined by the Author. In the above example, the author is the [European Petroleum Survey Group](http://www.epsg.org/) (EPSG) and the Code is 2000. The fields are as follows:
@@ -83,6 +93,7 @@ The reprojection console allows you to calculate and test coordinate transformat
 For example, you can use the reprojection console to transform a bounding box (as a WKT polygon or line) between different CRSs.
 
 ![](img/demos_reprojectionconsole.png)
+
 *Reprojection console showing a transformed bounding box*
 
 Use **Forward transformation** to convert from source CRS to target CRS, and **Backward transformation** to convert from target CRS to source CRS.
@@ -90,6 +101,7 @@ Use **Forward transformation** to convert from source CRS to target CRS, and **B
 You can also view the underlying calculation GeoServer is using to perform the transformation.
 
 ![](img/demos_reprojectionconsoledetails.png)
+
 *Reprojection console showing operation details*
 
 Read more about [Coordinate Reference System Handling](../crshandling/index.md).

@@ -7,12 +7,13 @@ The importer extension can be used without any explicit configuration, and by de
 
 It is however possible to configure the above using the "Importer" entry under the "Settings" menu:
 
-> ![](images/menu.png)
-> *The importer configuration menu entry*
+![](images/menu.png)
+
+*The importer configuration menu entry*
 
 The configuration page looks as follows:
 
-> ![The importer configuration page](images/configuration.png)
+![The importer configuration page](images/configuration.png)
 
 | Entry                                  | Description                                                                                                                                                                                                                                                                                                                                   |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

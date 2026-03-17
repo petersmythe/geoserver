@@ -29,6 +29,7 @@ render_macros: true
 Once the extension is properly installed `SingleStore` will show up as an option when creating a new data store.
 
 ![](images/singlestorecreate.png)
+
 *SingleStore in the list of data sources*
 
 ## Configuring a SingleStore data store
@@ -36,6 +37,7 @@ Once the extension is properly installed `SingleStore` will show up as an option
 ![](images/singlestoreconfigure.png)
 
 ![](images/singlestoreconfigure2.png)
+
 *Configuring a SingleStore data store*
 
 | `host` | The SingleStore server host name or ip address. |

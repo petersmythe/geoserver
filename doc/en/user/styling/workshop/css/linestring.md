@@ -3,6 +3,7 @@
 We will start our tour of CSS styling by looking at the representation of lines.
 
 ![](../style/img/LineSymbology.svg)
+
 *LineString Geometry*
 
 Review of line symbology:
@@ -27,6 +28,7 @@ Reference:
 The only mandatory property for representation of linework is **stroke**. This is a **key property**; its presence triggers the generation of an appropriate LineSymbolizer.
 
 ![](../style/img/LineStringStroke_CSS.svg)
+
 *Basic Stroke Properties*
 
 The use of **stroke** as a key property prevents CSS from having the idea of a default line color (as the **stroke** information must be supplied each time).
@@ -115,6 +117,7 @@ The use of **stroke** as a key property prevents CSS from having the idea of a d
 The next exercise shows how to work around a limitation when using multiple strokes to render a line.
 
 ![](../style/img/LineStringZOrder_CSS.svg)
+
 *Use of Z-Index*
 
 1.  Providing two strokes is often used to provide a contrasting edge (called casing) to thick line work.
@@ -155,6 +158,7 @@ The next exercise shows how to work around a limitation when using multiple stro
 Our next example is significant as it introduces the how text labels are generated.
 
 ![](../style/img/LineStringLabel_CSS.svg)
+
 *Use of Label Property*
 
 This is also our first example making use of a dynamic style (where the value of a property is defined by an attribute from your data).

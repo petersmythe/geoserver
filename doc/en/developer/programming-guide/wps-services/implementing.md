@@ -217,8 +217,9 @@ In the WPS Request Builder select the process called `gs:helloWPS` from the **Ch
 
 The following image shows the WPS Request Builder running the `gs:helloWPS` process. Enter the desired parameter and click on **Execute process** to run it. A window with the expected result should appear.
 
-> ![](img/helloWPS.png)
-> *WPS Request Builder, showing gs:HelloWPS process parameters*
+![](img/helloWPS.png)
+
+*WPS Request Builder, showing gs:HelloWPS process parameters*
 
 ## Accepting or returning raw data
 

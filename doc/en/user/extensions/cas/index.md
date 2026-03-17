@@ -35,7 +35,7 @@ The CAS integration is a authentication filter module, hence in order to use it 
 
 This page serves as a reference for configuration options, but a step by step tutorial is also available, see [Authentication with CAS](../../security/tutorials/cas/index.md).
 
-> ![](images/configuration.png)
+![](images/configuration.png)
 
 | Key | Description |
 |----|----|
@@ -145,24 +145,24 @@ The CAS authentication can be included in the web filter chain, with different b
 
 As first case, let's consider having only the CAS authentication in the "web" filter chain:
 
-> ![](images/webCasOnly.png)
+![](images/webCasOnly.png)
 
 Since anonymous access is not allowed, any attempt to access the GeoServer web console will cause a redirect to the CAS server, for login. Once logged in, the user interface shows a button to initiate a CAS logout (the logout is shared among all examples, won't be repeated in the following text).
 
-> ![](images/webCasLogout.png)
+![](images/webCasLogout.png)
 
 A second option is to allow anonymous access in the web chain, allowing users to access the layer preview and other demo functionality without logging in:
 
-> ![](images/webCasAnonymous.png)
+![](images/webCasAnonymous.png)
 
 In this case the web console does not immediately redirect to the CAS server, but provides a CAS login button instead:
 
-> ![](images/webCasLogin.png)
+![](images/webCasLogin.png)
 
 As a final example, let's consider having both CAS and form login in the web chain:
 
-> ![](images/webCasFormAnonymous.png)
+![](images/webCasFormAnonymous.png)
 
 This allows both a CAS login, and a form based login using GeoServer local username/password. It could be useful to allow GeoServer administration while the CAS server is offline for any reason. In this case both the form login and the CAS login button appear at the same time:
 
-> ![](images/webCasFormLogin.png)
+![](images/webCasFormLogin.png)

@@ -20,6 +20,7 @@ For more details, here are detailed examples for different OIDC server types:
 When creating or editing an OIDC filter, the top of the configuration form contains settings that apply to all providers.
 
 ![](img/filter1.png)
+
 *Common Login Settings section of the OIDC filter configuration.*
 
 The following table describes each field:

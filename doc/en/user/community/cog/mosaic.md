@@ -188,4 +188,5 @@ That MODIS data has 2 bands representing (Normalized Difference Vegetation Index
 This is how a layer preview will looks like:
 
 ![](images/ndvi.png)
+
 *NDVI COG dataset*

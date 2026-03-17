@@ -23,6 +23,7 @@ The following example shows a rule that will match any URL contains the substrin
 Example of a Proxy Base Extension rule:
 
 ![](images/proxy_base_ext_rule_editor2.png)
+
 *Example of a Proxy Base Extension rule defined in the UI*
 
 This rule will transform the URL (when the `myCollection` and `yourFeature` headers are set):
@@ -38,6 +39,7 @@ to:
 Rules can be managed and tested with simulated headers in the rules management UI. Besides the basic operations like add, remove and update is also possible to activate or deactivate rules. A deactivated rule will be ignored by this module.
 
 ![](images/proxy_base_rule_config.png)
+
 *Rules management UI*
 
 | **Attribute** | **Description** |

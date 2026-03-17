@@ -9,9 +9,11 @@ GeoPackage files can be used both as Raster Data Stores as well as Vector Data S
 When the extension has been installed, **GeoPackage** will be an option in the **Vector Data Sources** list when creating a new data store.
 
 ![](images/geopackagecreate.png)
+
 *GeoPackage in the list of vector data stores*
 
 ![](images/geopackageconfigure.png)
+
 *Configuring a GeoPackage Vector data store*
 
 | **Option** | **Description** |

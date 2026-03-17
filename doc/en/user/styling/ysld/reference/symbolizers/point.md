@@ -102,6 +102,7 @@ feature-styles:
 ```
 
 ![](img/point_basic.png)
+
 *Basic point*
 
 ### Point as image
@@ -123,6 +124,7 @@ feature-styles:
 ```
 
 ![](img/point_graphic.png)
+
 *Point as image*
 
 ### Point composition
@@ -147,6 +149,7 @@ symbolizers:
 ```
 
 ![](img/point_composition.png)
+
 *Point composition*
 
 ### Points as arrow heads
@@ -170,4 +173,5 @@ symbolizers:
 ```
 
 ![](img/arrow.png)
+
 *Point as arrow head*

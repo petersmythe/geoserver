@@ -29,11 +29,13 @@ To compare the spatial reference system definition for `EPSG:4326`:
 2.  Compare the formal ``EPSG`` definition of `WGS84`:
 
     ![](img/wgs84-epsg-description.png)
+
     *WGS84 EPSG definition*
 
 3.  With the internal definition of `WGS84`:
 
     ![](img/wgs84-internal-description.png)
+
     *WGS84 Internal definition*
 
 The same approach can be used to check the definition of any spatial reference system supported by GeoServer.
@@ -68,6 +70,7 @@ To review how this layer has been published:
     The **`PRJ`** did not provide an axis-order and GeoSever has filled in an assumption. This describing the data in ``x/y`` order which matches our data and we could use it unmodified.
 
     ![](img/native_srs.png)
+
     *Native SRS for topp:states*
 
 3.  Locate **Declared SRS** and click on **EPSG:WGS 84\...** link to see the definition used to publish this content.
@@ -75,6 +78,7 @@ To review how this layer has been published:
     This is the internal definition of `EPSG:4326` as shown in the SRSList above, which also describes the data in ``x/y`` order matching our data. This definition provides slightly more readable names along with additional `AUTHORITY` information that may be helpful to client applications.
 
     ![](img/declared_srs.png)
+
     *Declared SRS for topp:states*
 
 4.  The **SRS Handling** is set to `Force declared` to completely ignore the provided **Native SRS** definition and use the **Declared SRS**.

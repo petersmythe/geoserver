@@ -28,7 +28,7 @@ Directory contents:
 
 The following diagram illustrates the hierarchy of the LDAP datatabse:
 
-> ![](images/acme_ldap.png)
+![](images/acme_ldap.png)
 
 The LDAP tree consists of:
 
@@ -79,7 +79,7 @@ The LDAP tree consists of:
 
 #\. Login as the user "bob" with the password "secret".
 
-> ![](images/ldap6.jpg)
+![](images/ldap6.jpg)
 
 Logging in as bob doesn't yield any administrative functionality because the bobaccount has not been mapped to the administrator role. In the next section GeoServer will be configured to map groups from the LDAP database to roles.
 

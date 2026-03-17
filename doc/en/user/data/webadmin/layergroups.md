@@ -3,6 +3,7 @@
 A layer group is a container in which layers and other layer groups can be organized in a hierarchical structure. A layer group can be referred to by a single name in WMS requests. This allows simpler requests, as one layer can be specified instead of multiple individual layers. A layer group also provides a consistent, fixed ordering of the layers it contains, and can specify alternate (non-default) styles for layers.
 
 ![](img/data_layergroups.png)
+
 *Layer Groups page*
 
 ## Layer Group modes
@@ -37,6 +38,7 @@ The new **Enabled** checkbox, if disabled, will cause the layer group to just sh
 ![](img/data_layergroups_edit.png)
 
 ![](img/data_layergroups_edit_table.png)
+
 *Layer Groups Edit page*
 
 The table at the bottom of the page lists layers and groups contained within the current layer group. We refer to layers and layer groups as **publishable elements**. When a layer group is processed, the layers are rendered in the order provided, so the **publishable elements** at the bottom of list will be rendered last and will show on top of the other **publishable elements**.
@@ -46,6 +48,7 @@ A **publishable element** can be positioned higher or lower on this list by clic
 The **Style** column shows the style associated with each layer. To change the style associated with a layer, click the appropriate style link. A list of enabled styles will be displayed. Clicking on a style name reassigns the layer's style.
 
 ![](img/data_layergroups_edit_styles.png)
+
 *Style editing for a layer within a layer group*
 
 To remove a **publishable element** from the layer group, select its button in the **Remove** column. You will now be prompted to confirm or cancel this deletion.
@@ -53,21 +56,25 @@ To remove a **publishable element** from the layer group, select its button in t
 A layer can be added to the list by clicking the **Add Layer\...** button at the top of the table. From the list of layers, select the layer to be added by clicking the layer name. The selected layer will be appended to the bottom of the **publishable** list.
 
 ![](img/data_layergroups_add_layer.png)
+
 *Dialog for adding a layer to a layer group*
 
 A layer group can be added by clicking the **Add Layer Group\...** button at the top of the table. From the list of layer groups, select the layer group to be added by clicking its name. The selected group will be appended to the bottom of the **publishable** list.
 
 ![](img/data_layergroups_add_layergroup.png)
+
 *Dialog for adding a layer group to a layer group*
 
 A style group can be added by clicking the **Add Style Group\...** button at the top of the table. From the list of styles, select the [style group](../../styling/sld/working.md) to be added by clicking its name. The selected style will be appended to the bottom of the **publishable** list.
 
 ![](img/data_layergroups_add_stylegroup.png)
+
 *Dialog for adding a style group to a layer group*
 
 You can view layer groups in the [Layer Preview](layerpreview.md) section of the web admin.
 
 ![](img/data_layergroups_tasmania.png)
+
 *Openlayers preview of the layer group "tasmania"*
 
 !!! note
@@ -108,16 +115,19 @@ The base configuration will be treated as the default Style of the Layer Group a
 The buttons for adding and removing a layer group can be found at the top of the **Layer Groups** page.
 
 ![](img/data_layergroups_add_remove.png)
+
 *Buttons to add or remove a layer group*
 
 To add a new layer group, select the "Add a new layer group" button. You will be prompted to name the layer group.
 
 ![](img/data_layergroups_name.png)
+
 *New layer group dialog*
 
 When finished, click **Submit**. You will be redirected to an empty layer group configuration page. Begin by adding layers by clicking the **Add layer\...** button (described in the previous section). Once the layers are positioned accordingly, press **Generate Bounds** to automatically generate the bounding box and projection. You may also press the **Generate Bounds From CRS** button to use the CRS bounds (if available). Press **Save** to save the new layer group.
 
 ![](img/data_layergroups_edit.png)
+
 *New layer group configuration page*
 
 ## Remove a Layer Group
@@ -125,6 +135,7 @@ When finished, click **Submit**. You will be redirected to an empty layer group 
 To remove a layer group, select it by clicking the checkbox next to the layer group. Multiple layer groups can be selected, or all can be selected by clicking the checkbox in the header. Click the **Remove selected layer group(s)** link. You will be asked to confirm or cancel the deletion. Selecting **OK** removes the selected layer group(s).
 
 ![](img/data_layergroups_delete.png)
+
 *Removing a layer group*
 
 ## Layer Group Keywords
@@ -132,6 +143,7 @@ To remove a layer group, select it by clicking the checkbox next to the layer gr
 Is possible to associate a layer group with some keywords that will be used to assist catalog searching.
 
 ![](img/data_layergroups_keywords.png)
+
 *Layer groups keywords editor*
 
 Layer groups keywords will no be merged with contained layers keywords but keywords of a layer group should be logically inherited by contained layers.
@@ -147,6 +159,7 @@ To enable this functionality, choose the **No** option from the Root Layer in Ca
 By default this behaviour is inherited from the global WMS service settings (**WMS Global Settings** option). Finally, it is possible to override the service settings and force a **Yes** to always include the GeoServer root element.
 
 ![](img/data_layers_root_in_capabilities.png)
+
 *Layer groups root layer in capabilities options*
 
 ### HTTP Settings

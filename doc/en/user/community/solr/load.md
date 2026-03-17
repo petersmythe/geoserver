@@ -49,9 +49,11 @@ Some observations:
 At this point it's possible to configure a layer showing only the roads in the GeoServer UI:
 
 ![](images/solr_roads_configure.png)
+
 *Setting up the roads layer*
 
 After setting the bounding box and the proper style, the layer preview will show the roads stored in SOLR:
 
 ![](images/solr_roads_preview.png)
+
 *Preview roads from SOLR layer*

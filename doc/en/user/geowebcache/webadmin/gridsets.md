@@ -5,6 +5,7 @@ A gridset defines a spatial reference system, bounding box (extent), a list of z
 This page allows you to edit existing saved gridsets or create new ones. There is a set of pre-configured gridsets, a few legacy ones based on "EPSG:4326" and "EPSG:900913", and a larger set coming from the ``OGC Tile Matrix Set specification <http://docs.opengeospatial.org/is/17-083r2/17-083r2.html>``. For additional CRS support, new gridsets can be created. Another reason to create a new gridset would be to set a different tile size or different number of zoom levels.
 
 ![](img/gridsets.png)
+
 *Gridsets menu*
 
 ## Creating a new gridset
@@ -12,6 +13,7 @@ This page allows you to edit existing saved gridsets or create new ones. There i
 To create a new gridset, click **Create new gridset**. You will then be asked to enter a range of parameters.
 
 ![](img/gridsets_new.png)
+
 *Creating a new gridset*
 
 ### Name
@@ -45,6 +47,7 @@ Typically each additional zoom level is twice as large in each dimension, and so
 When finished, click **Save**. Before you will be able to use this new gridset with a layer, you will need to add this gridset to the layer's list of available gridsets. This is done on an individual layer's [properties](../../data/webadmin/layers.md) page. You can also add this gridset to the default list on the [Caching defaults](defaults.md) page.
 
 ![](img/gridsets_matrix.png)
+
 *Tile matrix set*
 
 ## Editing a gridset
@@ -52,9 +55,11 @@ When finished, click **Save**. Before you will be able to use this new gridset w
 Click an existing gridset to open it for editing. Please note that the built-in gridsets cannot be edited. They can, however, be copied.
 
 ![](img/editgridset.png)
+
 *Editing a gridset*
 
 ![](img/readonlygridset.png)
+
 *This gridset is read-only*
 
 ## Copying a gridset
@@ -69,4 +74,5 @@ To remove a gridset, select the check box next to the gridset or gridsets, and c
     Removing a gridset definition will remove not only the gridset definition, but also any tiles on any layers generated with this gridset.
 
 ![](img/removegridset.png)
+
 *Removing a gridset*

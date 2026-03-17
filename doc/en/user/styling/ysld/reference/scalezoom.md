@@ -264,6 +264,7 @@ This defines zoom levels as the following (rounded to the nearest whole number b
     These scale values can be verified in GeoServer on the **Gridsets** page under the definition for the gridset:
     
     ![](img/scalezoom_customgridset.png)
+
     *Gridset defined in GeoServer*
     
     Specifically, note the **Scale** values under **Tile Matrix Set**.

@@ -10,11 +10,13 @@ In addition to the parameters common to each `DataStore` configuration such as `
 - `hardLimit`: maximum amount of items to fetch from the STAC store, in any request (it's a good idea to pose a limit, as many STAC APIs host millions of items, and the data transfer is not particularly efficient due to the large size of items, and the paged transfer)
 
 ![](images/configuration.png)
+
 *STAC datastore configuration*
 
 STAC items are multi-temporal, so it's advisable to configure the time dimension when setting up the layer, using the `datetime` attribute. This will allow time navigation and reduce the number of items returned to a more manageable subset:
 
 ![](images/time-vector.png)
+
 *Setting up time for the layers*
 
 ## Mosaicking images from a STAC store
@@ -137,6 +139,7 @@ Some notes about the configuration:
 Once the mosaic is configured in GeoServer, create a new coverage view setting up the bands according to the desired order:
 
 ![](images/coverage-view.png)
+
 *Creating a coverage view from a multi-band mosaic*
 
 Also remember to configure the time dimension for this layer, for the same reasons explained in the vector data section above.

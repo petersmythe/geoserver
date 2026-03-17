@@ -14,11 +14,13 @@ In GeoServer, encrypting and decrypting passwords involves the generation of sec
 This option sets the active keystore password provider, via a list of all available keystore password providers.
 
 ![](images/passwd_activemaster.png)
+
 *Active keystore password provider*
 
 To change the keystore password click the **Change password** link.
 
 ![](images/passwd_changemaster.png)
+
 *Changing the keystore password*
 
 To view the current keystore password use the link **Keystore password forgotten?**. This link requires access to the REST API which is used to [view the current value](../../rest/security.md#rest_security_keystore) in your browser.
@@ -33,6 +35,7 @@ To view the current keystore password use the link **Keystore password forgotten
 This section provides the options for adding, removing, and editing keystore password providers.
 
 ![](images/passwd_masterprovider.png)
+
 *Keystore password provider list*
 
 Use **Add new** and **Remove selected** to manage the list of keystore passowrd providers.
@@ -40,6 +43,7 @@ Use **Add new** and **Remove selected** to manage the list of keystore passowrd 
 When creating or editing a **URL Keystore password Provider** the following settings are available.
 
 ![](images/keystore-provider.png)
+
 *URL Keystore password Provider*
 
 The **Read-only** setting is used to indicate the URL location is used as the source only, and disables the ability to change the keystore password from GeoServer.
@@ -60,9 +64,11 @@ This section configures the various [Password policies](../passwd.md#security_pa
 By default there are two password policies in effect, `default` and `root`. The `default` password policy, intended for most GeoServer users, does not have any active password constraints. The `keystore` password policy, intended for the [Root account](../root.md), specifies a **minimum password length of eight characters**. Password policies are applied to users via the user/group service.
 
 ![](images/passwd_policies.png)
+
 *List of password policies*
 
 Clicking an existing policy enables editing, while clicking the **Add new** button will create a new password policy.
 
 ![](images/passwd_newpolicy.png)
+
 *Creating a new password policy*

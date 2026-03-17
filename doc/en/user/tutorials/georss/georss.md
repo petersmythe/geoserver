@@ -166,6 +166,7 @@ How to create a Microsoft Virtual Earth mashup with a GeoRSS overlay produced by
 2.  Visit `ve.html` in your web browser. You should see the following:
 
 ![](ve.png)
+
 *Virtual Earth*
 
 !!! note

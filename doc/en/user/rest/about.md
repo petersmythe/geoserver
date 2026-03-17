@@ -163,6 +163,7 @@ The available REST endpoints are: :
 The HTML representation of the system data is equal to the `System status` tab representation:
 
 ![](img/resthtml.png)
+
 *System status*
 
 The XML and JSON representations are quite similar. For each system information metric, the following attributes will be available:

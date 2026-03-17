@@ -27,11 +27,13 @@ render_macros: true
 Once the extension is properly installed **Oracle** appears as an option in the **Vector Data Sources** list when creating a new data store.
 
 ![](images/oraclecreate.png)
+
 *Oracle in the list of data sources*
 
 ## Configuring an Oracle datastore
 
 ![](images/oracleconfigure.png)
+
 *Configuring an Oracle datastore*
 
 | **Option** | **Description** |

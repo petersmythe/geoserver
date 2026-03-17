@@ -21,4 +21,5 @@ OS_PROJECT_DOMAIN_NAME = default
 This extension adds 'VSI Virtual File System' as a possible raster data store type. The only values required when choosing this type is a connection path. This is identical to the connection paths specified in [GDAL's documentation](https://gdal.org/user/virtual_file_systems.md). You may also chain GDAL drivers together by concatenating their prefixes, as in the example below.
 
 ![](images/vsiconfig.png)
+
 *VSI Virtual File System data store configuration*

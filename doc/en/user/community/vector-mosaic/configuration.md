@@ -3,9 +3,11 @@
 When the extension has been installed, ``Vector Mosaic Data Store`` will be an option in the ``Vector Data Sources`` list when creating a new data store.
 
 ![](images/vector-mosaic-vector-create.png)
+
 *Vector Mosaic Data Store in the list of vector data sources*
 
 ![](images/vector-mosaic-vector-configure.png)
+
 *Configuring an Vector Mosaic data source*
 
 | **Option** | **Description** |

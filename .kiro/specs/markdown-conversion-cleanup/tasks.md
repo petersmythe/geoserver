@@ -419,15 +419,15 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 ### 3.5 Image and Caption Fixes
 
-- [ ] 16. Fix image and caption rendering issues
+- [-] 16. Fix image and caption rendering issues
 
-  - [ ] 16.1 Create detection script for image/caption issues
+  - [x] 16.1 Create detection script for image/caption issues
     - Scan for images with captions aligned beside (not below)
     - Identify images wrapped in blockquote syntax
     - Generate report with affected image references
     - _Requirements: 1.17, 1.18_
 
-  - [ ] 16.2 Implement automated fix for caption positioning
+  - [x] 16.2 Implement automated fix for caption positioning
     - Convert caption syntax to place captions below images
     - Use proper Markdown figure syntax or HTML figure tags
     - Ensure captions are visually separated from images
@@ -436,7 +436,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly positioned captions remain unchanged_
     - _Requirements: 1.17, 2.17, 3.5_
 
-  - [ ] 16.3 Implement automated fix for blockquote-wrapped images
+  - [x] 16.3 Implement automated fix for blockquote-wrapped images
     - Remove blockquote markers (>) from image references
     - Ensure images render without quote styling
     - Maintain image alignment and sizing
@@ -445,14 +445,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted images remain unchanged_
     - _Requirements: 1.18, 2.18, 3.5_
 
-  - [ ] 16.4 Verify image/caption exploration test now passes
+  - [x] 16.4 Verify image/caption exploration test now passes
     - **Property 1: Expected Behavior** - Images and Captions Fixed
     - **IMPORTANT**: Re-run the SAME test from task 5
     - Run image/caption exploration test from step 5
     - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
     - _Requirements: 2.17, 2.18_
 
-  - [ ] 16.5 Verify preservation tests still pass
+  - [x] 16.5 Verify preservation tests still pass
     - **Property 2: Preservation** - No Regressions in Images
     - **IMPORTANT**: Re-run preservation tests from tasks 10-11
     - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)

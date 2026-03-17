@@ -3,6 +3,7 @@
 The Coverage Access Settings page in the Server menu in the [Web administration interface](../webadmin/index.md) provides configuration options to customize thread pool executors and ImageIO caching memory.
 
 ![](img/raster_access.png)
+
 *Raster Access Settings*
 
 ## Memory Use {: #ImageIO_settings }

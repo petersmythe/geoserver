@@ -243,14 +243,17 @@ To confirm everything works, let's reproduce the airports style above.
 2.  Click the **Layer Preview** tab to preview the style. We want to preview on the airports layer, so click the name of the current layer and select ``ne:airports`` from the list that appears. You can use the mouse buttons to pan and scroll wheel to change scale.
 
     ![](../style/img/css_02_choose_data.png)
+
     *Choosing the airports layer*
 
     ![](../style/img/css_06_preview.png)
+
     *Layer preview*
 
 3.  Click **Layer Data** for a summary of the selected data.
 
     ![](../style/img/css_07_data.png)
+
     *Layer attributes*
 
 ## Bonus

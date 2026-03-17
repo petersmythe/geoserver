@@ -158,6 +158,7 @@ feature-styles:
 ```
 
 ![](img/text_basic.png)
+
 *Basic label*
 
 ### Label with wrap
@@ -181,6 +182,7 @@ feature-styles:
 ```
 
 ![](img/text_wrap.png)
+
 *Label with wrap*
 
 ### Label with halo
@@ -208,6 +210,7 @@ feature-styles:
 ```
 
 ![](img/text_halo.png)
+
 *Label with halo*
 
 ### Grouped labels
@@ -235,6 +238,7 @@ feature-styles:
 ```
 
 ![](img/text_group.png)
+
 *Grouped labels*
 
 ### Labels following lines
@@ -257,6 +261,7 @@ feature-styles:
 ```
 
 ![](img/text_follow.png)
+
 *Labels following lines*
 
 ### Labels avoiding obstacles
@@ -287,6 +292,7 @@ feature-styles:
 ```
 
 ![](img/text_labelobstacle.png)
+
 *Labels avoiding obstacles*
 
 ### Road Shields
@@ -343,4 +349,5 @@ feature-styles:
 ```
 
 ![](img/text_roadshields.png)
+
 *Road Shields*

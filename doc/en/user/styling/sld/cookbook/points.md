@@ -26,6 +26,7 @@ The [points layer](artifacts/sld_cookbook_point.zip) used for the examples below
 This example specifies points be styled as red circles with a diameter of 6 pixels.
 
 ![](images/point_simplepoint.png)
+
 *Simple point*
 
 ### Code
@@ -59,6 +60,7 @@ There is one `<Rule>` in one `<FeatureTypeStyle>` for this SLD, which is the sim
 This example adds a stroke (or border) around the [Simple point](#sld_cookbook_points_simplepoint), with the stroke colored black and given a thickness of 2 pixels.
 
 ![](images/point_simplepointwithstroke.png)
+
 *Simple point with stroke*
 
 ### Code
@@ -96,6 +98,7 @@ This example is similar to the [Simple point](#sld_cookbook_points_simplepoint) 
 This example creates a square instead of a circle, colors it green, sizes it to 12 pixels, and rotates it by 45 degrees.
 
 ![](images/point_rotatedsquare.png)
+
 *Rotated square*
 
 ### Code
@@ -130,6 +133,7 @@ In this example, **line 6** sets the shape to be a square, with **line 8** setti
 This example draws a triangle, creates a black stroke identical to the [Simple point with stroke](#sld_cookbook_points_simplepointwithstroke) example, and sets the fill of the triangle to 20% opacity (mostly transparent).
 
 ![](images/point_transparenttriangle.png)
+
 *Transparent triangle*
 
 ### Code
@@ -168,6 +172,7 @@ In this example, **line 6** once again sets the shape, in this case to a triangl
 This example styles each point as a graphic instead of as a simple shape.
 
 ![](images/point_pointasgraphic.png)
+
 *Point as graphic*
 
 ### Code
@@ -197,6 +202,7 @@ This example styles each point as a graphic instead of as a simple shape.
 This style uses a graphic instead of a simple shape to render the points. In SLD, this is known as an `<ExternalGraphic>`, to distinguish it from the commonly-used shapes such as squares and circles that are "internal" to the renderer. **Lines 5-10** specify the details of this graphic. **Line 8** sets the path and file name of the graphic, while **line 9** indicates the format (MIME type) of the graphic (image/png). In this example, the graphic is contained in the same directory as the SLD, so no path information is necessary in **line 8**, although a full URL could be used if desired. **Line 11** determines the size of the displayed graphic; this can be set independently of the dimensions of the graphic itself, although in this case they are the same (32 pixels). Should a graphic be rectangular, the `<Size>` value will apply to the *height* of the graphic only, with the width scaled proportionally.
 
 ![](images/smileyface.png)
+
 *Graphic used for points*
 
 ## Point with default label {: #sld_cookbook_points_pointwithdefaultlabel }
@@ -204,6 +210,7 @@ This style uses a graphic instead of a simple shape to render the points. In SLD
 This example shows a text label on the [Simple point](#sld_cookbook_points_simplepoint) that displays the "name" attribute of the point. This is how a label will be displayed in the absence of any other customization.
 
 ![](images/point_pointwithdefaultlabel.png)
+
 *Point with default label*
 
 ### Code
@@ -245,6 +252,7 @@ This example shows a text label on the [Simple point](#sld_cookbook_points_simpl
 This example improves the label style from the [Point with default label](#sld_cookbook_points_pointwithdefaultlabel) example by centering the label above the point and providing a different font name and size.
 
 ![](images/point_pointwithstyledlabel.png)
+
 *Point with styled label*
 
 ### Code
@@ -306,6 +314,7 @@ The result is a centered bold label placed slightly above each point.
 This example builds on the previous example, [Point with styled label](#sld_cookbook_points_pointwithstyledlabel), by rotating the label by 45 degrees, positioning the labels farther away from the points, and changing the color of the label to purple.
 
 ![](images/point_pointwithrotatedlabel.png)
+
 *Point with rotated label*
 
 ### Code
@@ -368,6 +377,7 @@ Note that the displacement takes effect before the rotation during rendering, so
 This example alters the size of the symbol based on the value of the population ("pop") attribute.
 
 ![](images/point_attributebasedpoint.png)
+
 *Attribute-based point*
 
 ### Code
@@ -478,12 +488,15 @@ The result of this style is that cities with larger populations have larger poin
 This example alters the style of the points at different zoom levels.
 
 ![](images/point_zoombasedpointlarge.png)
+
 *Zoom-based point: Zoomed in*
 
 ![](images/point_zoombasedpointmedium.png)
+
 *Zoom-based point: Partially zoomed*
 
 ![](images/point_zoombasedpointsmall.png)
+
 *Zoom-based point: Zoomed out*
 
 ### Code

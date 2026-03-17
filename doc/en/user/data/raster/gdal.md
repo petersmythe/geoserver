@@ -139,6 +139,7 @@ Once these steps have been completed, restart GeoServer.
 Navigate to **About > Server Status** page, and change to the **Modules** tab, and click **ImageI/O-Ext GDAL Coverage Extension** link for status information.
 
 ![](images/gdal-extension-status.png)
+
 *ImageI/O GDAL Coverage Extension Module Status*
 
 This information can be used to verify that the extension is active, the version of GDAL used, and the version of the SWIG bindings used.
@@ -146,6 +147,7 @@ This information can be used to verify that the extension is active, the version
 If all the steps have been performed correctly, new data formats will be in the **Raster Data Sources** list when creating a new data store in the **Stores** section as shown here below.
 
 ![](images/newsource.png)
+
 *GDAL image formats in the list of raster data stores*
 
 If new formats do not appear in the GUI and you see the following message in the log file:
@@ -161,26 +163,31 @@ This means that the extension was installed, bu twas not able to access your gda
 ## Configuring a DTED data store
 
 ![](images/gdaldtedconfigure.png)
+
 *Configuring a DTED data store*
 
 ## Configuring a EHdr data store
 
 ![](images/gdalehdrconfigure.png)
+
 *Configuring a EHdr data store*
 
 ## Configuring a ERDASImg data store
 
 ![](images/gdalerdasimgconfigure.png)
+
 *Configuring a ERDASImg data store*
 
 ## Configuring a JP2MrSID data store
 
 ![](images/gdaljp2mrsidconfigure.png)
+
 *Configuring a JP2MrSID data store*
 
 ## Configuring a NITF data store
 
 ![](images/gdalnitfconfigure.png)
+
 *Configuring a NITF data store*
 
 ## Supporting vector footprints
@@ -195,16 +202,19 @@ For example, supposing you have a MrSID file located at **`/mnt/storage/data/lan
 This is how the sample footprint geometry looks:
 
 ![](images/masking.png)
+
 *A sample geometry stored as WKT, rendered on OpenJump*
 
 Once footprint file has been added, you need to change the FootprintBehavior parameter from None (the default value) to Transparent, from the layer configuration.
 
 ![](images/footprintbehavior.png)
+
 *Setting the FootprintBehavior parameter*
 
 The next image depicts 2 layer previews for the same layer: the left one has no footprint, the right one has a footprint available and FootprintBehavior set to transparent.
 
 ![](images/gdalmasks.png)
+
 *No Footprint VS FootprintBehavior = Transparent*
 
 ### External Footprints data directory

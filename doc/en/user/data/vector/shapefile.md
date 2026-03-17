@@ -15,6 +15,7 @@ A shapefile is actually a collection of files (with the extensions: `.shp`, `.db
 To begin, navigate to **Stores --> Add a new store --> Shapefile**.
 
 ![](images/shapefile.png)
+
 *Adding a shapefile as a store*
 
 | **Option** | **Description** |

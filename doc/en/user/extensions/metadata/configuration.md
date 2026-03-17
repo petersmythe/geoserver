@@ -15,6 +15,7 @@ To install the GeoServer Metadata extension:
 By default the metadata module will add an extra tab to the edit layer page. Open the layer: navigate to **Layers --> Choose the layer --> Metadata tab**.
 
 ![](images/empty-default.png)
+
 *The initial UI. Note the **Metadata fields** panel is still empty*
 
 The content of the **Metadata fields** is configured by placing one or multiple [yaml](https://yaml.org/) files describing the UI components in the metadata configuration folder, see [INSPIRE metadata configuration using metadata and CSW](../../tutorials/metadata/index.md) for a real life example.

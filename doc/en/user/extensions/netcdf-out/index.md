@@ -81,11 +81,13 @@ Note that the output name can also be chosen from the list of CF Standard names.
 Once you click on the dropdown, you may choose from the set of available standard names.
 
 ![](cfnames.png)
+
 *NetCDF CF Standard names list*
 
 Note that once you specify the standard name, the unit will be automatically configured, using the canonical unit associated with that standard name.
 
 ![](cfunit.png)
+
 *NetCDF CF Standard names and canonical unit*
 
 The list of standard names is populated by taking the entries from a standard name table xml. At time of writing, a valid example is available [Here](http://cfconventions.org/Data/cf-standard-names/27/src/cf-standard-name-table.xml)

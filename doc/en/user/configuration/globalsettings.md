@@ -7,6 +7,7 @@ The Global Setting page configures messaging, logging, character, and proxy sett
 Global Settings are used to configure how OGC Web Services function.
 
 ![](img/global_settings_service.png)
+
 *Global Settings Service Configuration*
 
 ### Service Settings
@@ -116,6 +117,7 @@ This setting is only recommended for local troubleshooting and debugging. The ex
 Global Settings are also used to control the GeoServer application as a whole.
 
 ![](img/global_settings_internal.png)
+
 *Global Settings Internal Configuration*
 
 ### Logging Settings

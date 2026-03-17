@@ -29,6 +29,7 @@ There are two ways to verify that the monitoring extension has been properly ins
 1.  Start GeoServer and open the [Web administration interface](../../webadmin/index.md). Log in using the administration account. If successfully installed, there will be a **Monitor** section on the left column of the home page.
 
     ![](images/monitorwebadmin.png)
+
     *Monitoring section in the web admin interface*
 
 1.  Start GeoServer and navigate to the current [GeoServer data directory](../../datadirectory/index.md). If successfully installed, a new directory named `monitoring` will be created in the data directory.

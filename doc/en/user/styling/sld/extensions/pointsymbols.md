@@ -100,6 +100,7 @@ where `fontname` is the full name of a TTF font available to GeoServer, and `hex
 For example, to use the "shield" symbol contained in the WebDings font, the Gnome `charmap` reports the symbol hex code as shown:
 
 ![](images/charmap.png)
+
 *Selecting a symbol hex code in the Gnome char map*
 
 The SLD to use the shield glyph as a symbol is:
@@ -122,6 +123,7 @@ The SLD to use the shield glyph as a symbol is:
 This results in the following map display:
 
 ![](images/shields.png)
+
 *Shield symbols rendered on the map*
 
 ### Extending the Mark subsystem using Java
@@ -195,6 +197,7 @@ Default behaviour:
 - Displays **`poi_peak.svg`** with the default black ``fill``.
 
   ![](images/peak_black.png)
+
   *SVG image with default black fill*
 
 Using ``#ff000`` red parameter:
@@ -208,6 +211,7 @@ Using ``#ff000`` red parameter:
 - Displays **`poi_peak.svg`** with supplied red ``fill``.
 
   ![](images/peak_redfill.png)
+
   *SVG image with fill provided by parameter*
 
 To define several parameters, the query-parameters should be url-encoded.
@@ -221,6 +225,7 @@ To define several parameters, the query-parameters should be url-encoded.
 - Displayed with white fill, red outlined peaks:
 
   ![](images/peak_green25opacity.png)
+
   *SVG image with fill and outline provided by parameters*
 
 Parameters names are defined by the SVG file:
@@ -240,6 +245,7 @@ Parameters names are defined by the SVG file:
 - Displayed as:
 
   ![](images/peak_whitered.png)
+
   *SVG image with fill*
 
 The use of SVG parameters can be combinded with dynamic symbolizers (covered below) to supply SVG parameter values based on feature attribute data and expressions.

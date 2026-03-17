@@ -27,11 +27,13 @@ An image pyramid is several layers of an image rendered at various image sizes, 
 Once the extension is properly installed **ImagePyramid** will be an option in the **Raster Data Sources** list when creating a new data store.
 
 ![](images/imagepyramidcreate.png)
+
 *ImagePyramid in the list of raster data stores*
 
 ## Configuring an ImagePyramid data store
 
 ![](images/imagepyramidconfigure.png)
+
 *Configuring an ImagePyramid data store*
 
 | **Option**         | **Description** |

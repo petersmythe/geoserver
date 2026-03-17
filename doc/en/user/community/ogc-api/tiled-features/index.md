@@ -39,9 +39,11 @@ Upon installation, the OGC API - Features API will show the following extensions
 - Tile matrix sets links from the home page
 
   ![](img/tilematrix.png)
+
   *Tile matrix EPSG:4326 definition*
 
 - Collections with vector tiles enabled will have a "data tiles" link pointing at the tiles endpoint
 
   ![](img/dataTiles.png)
+
   *Data tiles link*

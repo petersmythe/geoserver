@@ -41,6 +41,7 @@ The [lines layer](../../sld/cookbook/artifacts/sld_cookbook_line.zip) used in th
 This example specifies lines be colored black with a thickness of 3 pixels.
 
 ![](../../sld/cookbook/images/line_simpleline.png)
+
 *Simple line*
 
 ### Code
@@ -61,6 +62,7 @@ The only rule asks for a black stroke (this attribute is mandatory to get stroke
 This example shows how to draw lines with borders (sometimes called "cased lines"). In this case the lines are drawn with a 3 pixel blue center and a 1 pixel wide gray border.
 
 ![](../../sld/cookbook/images/line_linewithborder.png)
+
 *Line with border*
 
 ### Code
@@ -91,6 +93,7 @@ The result is a 3 pixel blue line with a 1 pixel gray border, since the 5 pixel 
 This example alters the [Simple line](#css_cookbook_lines_simpleline) to create a dashed line consisting of 5 pixels of drawn line alternating with 2 pixels of blank space.
 
 ![](../../sld/cookbook/images/line_dashedline.png)
+
 *Dashed line*
 
 ### Code
@@ -112,6 +115,7 @@ In this example the we create a blue line, 3 pixels wide, and specify a dash arr
 This example uses hatching to create a railroad style. Both the line and the hatches are black, with a 2 pixel thickness for the main line and a 1 pixel width for the perpendicular hatches.
 
 ![](../../sld/cookbook/images/line_railroad.png)
+
 *Railroad (hatching)*
 
 ### Code
@@ -139,6 +143,7 @@ In order to specify how the symbol itself should be painted, the ":nth-stroke(2)
 This example uses a graphic stroke along with dash arrays to create a "dot and space" line type. Adding the dash array specification allows to control the amount of space between one symbol and the next one. Without using the dash array the lines would be densely populated with dots, each one touching the previous one.
 
 ![](../../sld/cookbook/images/line_dashspace.png)
+
 *Spaced symbols along a line*
 
 ### Code
@@ -176,6 +181,7 @@ This also shows the usage of a ``dash offset``, which controls where rendering s
 The example shows how to use these features to create two synchronized sequences of dash arrays, one drawing line segments and the other symbols.
 
 ![](../../sld/cookbook/images/line_dashdot.png)
+
 *Alternating dash and symbol*
 
 ### Code
@@ -207,6 +213,7 @@ The circle portrayal details are specified using the pseudo selector "nth-stroke
 This example shows a text label on the simple line. This is how a label will be displayed in the absence of any other customization.
 
 ![](../../sld/cookbook/images/line_linewithdefaultlabel.png)
+
 *Line with default label*
 
 ### Code
@@ -228,6 +235,7 @@ This example paints lines with a red stroke, and then adds horizontal black labe
 This example shows a text label on the simple line, just like the previous example, but will force the label to be parallel to the lines, and will offset them a few pixels away.
 
 ![](../../sld/cookbook/images/line_labelwithoffset.png)
+
 *Line with default label*
 
 ### Code
@@ -250,6 +258,7 @@ This example is line by line identical to the previous one, but it add a new att
 This example renders the text label to follow the contour of the lines.
 
 ![](../../sld/cookbook/images/line_labelfollowingline.png)
+
 *Label following line*
 
 ### Code
@@ -276,6 +285,7 @@ Not all labels are visible partly because of conflict resolution, and partly bec
 This example optimizes label placement for lines such that the maximum number of labels are displayed.
 
 ![](../../sld/cookbook/images/line_optimizedlabel.png)
+
 *Optimized label*
 
 ### Code
@@ -301,6 +311,7 @@ This example is similar to the previous example, [Label following line](#css_coo
 This example improves the style of the labels from the [Optimized label placement](#css_cookbook_lines_optimizedlabel) example.
 
 ![](../../sld/cookbook/images/line_optimizedstyledlabel_with_halo.png)
+
 *Optimized and styled label*
 
 ### Code
@@ -334,6 +345,7 @@ This example is similar to the [Optimized label placement](#css_cookbook_lines_o
 This example styles the lines differently based on the "type" (Road class) attribute.
 
 ![](../../sld/cookbook/images/line_attributebasedline.png)
+
 *Attribute-based line*
 
 ### Code
@@ -384,12 +396,15 @@ The three rules are designed as follows:
 This example alters the [Simple line](#css_cookbook_lines_simpleline) style at different zoom levels.
 
 ![](../../sld/cookbook/images/line_zoombasedlinelarge.png)
+
 *Zoom-based line: Zoomed in*
 
 ![](../../sld/cookbook/images/line_zoombasedlinemedium.png)
+
 *Zoom-based line: Partially zoomed*
 
 ![](../../sld/cookbook/images/line_zoombasedlinesmall.png)
+
 *Zoom-based line: Zoomed out*
 
 ### Code

@@ -25,4 +25,5 @@ The installation process is similar to other GeoServer extensions:
 5.  To verify the installation was successful, to "Tile Caching", "Blobstores" and create a new blobstore, the S3 option show be available:
 
     ![](img/newBlobstore.png)
+
     *The S3 option showing while creating a new blobstore*

@@ -119,7 +119,7 @@ First thing to do is to:
 !!! note
     This is the only real mandatory value to provide. The others are optional and will allow you to customize the User Group Service behavior (see below)
 >
-> ![](images/004_user_group_service.png)
+![](images/004_user_group_service.png)
 
 Once the new `GeoServer UserGroup Service` has been configured, it can be easily linked to the `Key Provider Web Service Mapper`.
 
@@ -127,7 +127,7 @@ Once the new `GeoServer UserGroup Service` has been configured, it can be easily
 
 2\. Select the newly defined `UserGroup Service` and save
 
-> ![](images/005_user_group_service.png)
+![](images/005_user_group_service.png)
 
 **Additional Options**
 
@@ -163,11 +163,11 @@ Once the new `GeoServer UserGroup Service` has been configured, it can be easily
 
     In order to be able to assign any `GeoServer User Group` to other internal `GeoServer User Roles`, since those are known only at runtime, the `UserGroup Service` allows us to **statically** specify the `GeoServer User Groups` the Web Service can use; this possible by setting the `Optional static comma-separated list of available Groups from the Web Service response` option:
 
-    > ![](images/008_user_group_service.png)
+    ![](images/008_user_group_service.png)
 
     Once this is correctly configured, it will be possible to edit and assign `GeoServer User Roles` to the Groups by using the standard way
 
-    > ![](images/009_user_group_service.png)
+    ![](images/009_user_group_service.png)
 
 2\. *Role Service to use*
 
@@ -213,13 +213,13 @@ The cache offers the following benefits:
 
 Both the "Challenge Anonymous Sessions" option and the internal user cache settings can be configured through the filter's settings panel in GeoServer. For step-by-step instructions and examples, refer to the screenshots below.
 
-> ![](images/001_stateless.png)
+![](images/001_stateless.png)
 
 ## Enabling Mappers' Auto-Synchronization
 
 The following check is available for all provides.
 
-> ![](images/001_auto_sync.png)
+![](images/001_auto_sync.png)
 
 If enabled, the service will automatically invoke the corresponding mapper synchronize method; the one associated to the current AuthKey provider.
 

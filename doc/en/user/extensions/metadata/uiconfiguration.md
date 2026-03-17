@@ -58,13 +58,15 @@ If present this value will be used as the label for the field. When the label is
 
 The value for `occurrence` determines whether or not the field should displayed as a table or as a single input field. `SINGLE` will result in one input field.
 
-> ![](images/single-value.png)
-> *e.g. single value input field of fieldType ``TEXT``.*
+![](images/single-value.png)
+
+*e.g. single value input field of fieldType ``TEXT``.*
 
 Choosing `REPEAT` will render the field in a table allowing the user to input multiple values.
 
-> ![](images/repeat.png)
-> *e.g. field of fieldType ``TEXT`` rendered as a table.*
+![](images/repeat.png)
+
+*e.g. field of fieldType ``TEXT`` rendered as a table.*
 
 The data in table can be sorted using the green arrow buttons.
 
@@ -87,7 +89,7 @@ condition: equalTo(typeOf("."), 'FeatureTypeInfo')
 
 Optionally, attributes may be displayed on separate tabs. All tabs must be listed under ``tabs`` in the main configuration. Then this property is used to assign each attribute to one or more tab (separated by comma), so that the custom metadata panel is divided in tabs:
 
-> ![](images/metadata-tabs.png)
+![](images/metadata-tabs.png)
 
 ### values
 
@@ -120,7 +122,7 @@ The `typename` is a required attribute for [COMPLEX](#complex) fields. It contai
 
 Input field that allows any text.
 
-> ![](images/fieldtext.png)
+![](images/fieldtext.png)
 
 ``` YAML
 attributes:
@@ -132,7 +134,7 @@ attributes:
 
 A multiline input.
 
-> ![](images/fieldtextarea.png)
+![](images/fieldtextarea.png)
 
 ``` YAML
 attributes:
@@ -144,7 +146,7 @@ attributes:
 
 Input field for a UUID, it allows any text input or the user can generate a UUID.
 
-> ![](images/fielduuid.png)
+![](images/fielduuid.png)
 
 ``` YAML
 attributes:
@@ -156,7 +158,7 @@ attributes:
 
 Only numbers are accepted as valid input.
 
-> ![](images/fieldnumber.png)
+![](images/fieldnumber.png)
 
 ``` YAML
 attributes:
@@ -168,7 +170,7 @@ attributes:
 
 Input field with checkbox.
 
-> ![](images/fieldboolean.png)
+![](images/fieldboolean.png)
 
 ``` YAML
 attributes:
@@ -180,7 +182,7 @@ attributes:
 
 Date selection without time information.
 
-> ![](images/fielddate.png)
+![](images/fielddate.png)
 
 ``` YAML
 attributes:
@@ -192,7 +194,7 @@ attributes:
 
 Selection date with time information.
 
-> ![](images/fielddatetime.png)
+![](images/fielddatetime.png)
 
 ``` YAML
 attributes:
@@ -204,7 +206,7 @@ attributes:
 
 A field for selecting a value from a dropdown. The values can be configured with the `values` attribute in the yaml or they can be configured in an other .csv file which is used for dropdowns with a lot of choices.
 
-> ![](images/fielddropdown.png)
+![](images/fielddropdown.png)
 
 Configuration in the yaml file.
 

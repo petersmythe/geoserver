@@ -11,9 +11,11 @@ To access a remote WMTS, it is necessary to load it as a store in GeoServer. Geo
 To connect to an external WMTS, it is necessary to load it as a new store. To start, in the [Web administration interface](../../webadmin/index.md), navigate to **Stores --> Add a new store --> WMTS**. The option is listed under **Other Data Sources**.
 
 ![](images/wmtsaddnew.png)
+
 *Adding an external WMTS as a store*
 
 ![](images/wmtsconfigure.png)
+
 *Configuring a new external WTMS store*
 
 | **Option** | **Description** |
@@ -61,5 +63,6 @@ WMTS it is a service that serves tiles and they have been generated for a concre
 - On the other hand if shrunk, the same object and shape could appear smaller than the original size and will be similarly appear blurred.
 
 ![](images/cascaded_wmts.png)
+
 *This figure compares the resulting image from a WMTS to a cascaded layer which has been slightly stretched or scaled out**Left image shows a original wmts layer at its defined zoom level 4 which scale denominator is about 4M*
 *Right image shows a cascaded wmts layer as wms layer with at different scale denominator (the closest to its homologous cascaded layer) which is about 5M*

@@ -19,6 +19,7 @@ First let's gather the data that we'll be publishing.
 1.  Navigate to **Data > Style** page.
 
     ![](images/styles_page.png)
+
     *Styles*
 
 2.  This page displays a list of styles, including the workspace the style belongs to.
@@ -36,6 +37,7 @@ First let's gather the data that we'll be publishing.
 | Format    | `SLD`                    |
 
 ![](images/style_data.png)
+
 *Style data*
 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
@@ -45,6 +47,7 @@ First let's gather the data that we'll be publishing.
     - Under **Generate a default style** select `Polygon`
 
     ![](images/style_content.png)
+
     *Style Content configured to generate a polygon default style.*
 
 2.  Under **Generate a default style** locate and click the **Generate** link to populate the style editor with a generated outline of a polygon style.
@@ -61,6 +64,7 @@ First let's gather the data that we'll be publishing.
     - Check the **Default** checkbox for `tutorial:countries` to use the `tutorial:background` style the default for this layer.
 
     ![](images/publish.png)
+
     *Style publish*
 
 5.  Next to **Publishing** navigate to the **Layer Preview** tab.
@@ -68,6 +72,7 @@ First let's gather the data that we'll be publishing.
     - Locate the **Preview on layer** and click on the link to select `tutorial:countries` as a dataset to use when editing the style.
 
     ![](images/preview.png)
+
     *Styled editor Layer Preview tab*
 
 6.  Edit your style by inserting `fill-opacity` value of `0.25`.
@@ -84,9 +89,11 @@ First let's gather the data that we'll be publishing.
     - Full screen mode for side-by-side editing
 
     ![](images/full.png)
+
     *Full screen mode*
 
 9.  When this style is used as part of the `tutorial::basemap` the `fill-opacity` allows the shaded relief detail to be shown.
 
     ![](images/basemap.png)
+
     *Basemap with background style applied to countries*

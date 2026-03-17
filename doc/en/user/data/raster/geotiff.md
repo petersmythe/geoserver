@@ -7,11 +7,13 @@ A GeoTIFF is a georeferenced TIFF (Tagged Image File Format) file.
 By default, **GeoTIFF** will be an option in the **Raster Data Sources** list when creating a new data store.
 
 ![](images/geotiffcreate.png)
+
 *GeoTIFF in the list of raster data stores*
 
 ## Configuring a GeoTIFF data store
 
 ![](images/geotiffconfigure.png)
+
 *Configuring a GeoTIFF data store*
 
 | **Option** | **Description** |

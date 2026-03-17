@@ -22,6 +22,7 @@ Once on the service configuration page, there will be a block titled **INSPIRE**
 - **Service Metadata Type** combo box, for detailing whether the metadata came from a CSW (Catalog Service) or a standalone metadata file
 
 ![](images/inspire.png)
+
 *INSPIRE-related options*
 
 After clicking **Submit** on this page, any changes will be immediately reflected in the services (WMS 1.3.0 or WMTS 1.0.0) capabilities document.
@@ -90,6 +91,7 @@ Once on the WFS or WCS configuration page, there will be a block titled **INSPIR
 - **Spatial dataset identifiers** table, where you can specify a code (mandatory), a namespace (optional) and a metadata URL (optional) for each spatial data set the WFS or WCS is offering
 
 ![](images/inspire_wfs.png)
+
 *INSPIRE-related options*
 
 After clicking **Submit** on this page, any changes will be immediately reflected in the WFS 1.1 and WFS 2.0 or WCS 2.0 capabilities documents as appropriate.

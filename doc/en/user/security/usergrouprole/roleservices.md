@@ -266,4 +266,5 @@ The GeoServerRoleService talking to a remote service provides the following conf
 The above can be configured via the [Web administration interface](../../webadmin/index.md). The figure below shows the REST role service options configured to be compatible with the sample APIs above:
 
 ![](images/restroleservice.png)
+
 *REST based role service configuration panel*

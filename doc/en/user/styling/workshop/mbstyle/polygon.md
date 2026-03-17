@@ -3,6 +3,7 @@
 Next we look at how MBStyle styling can be used to represent polygons.
 
 ![](../style/img/PolygonSymbology.svg)
+
 *Polygon Geometry*
 
 Review of polygon symbology:
@@ -39,7 +40,7 @@ This exercise makes use of the `ne:states_provinces_shp` layer.
 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> ![image](../style/img/polygon_02_create.png)
+![image](../style/img/polygon_02_create.png)
 
 1.  Enter the following style and click ****Apply`` to save:
 

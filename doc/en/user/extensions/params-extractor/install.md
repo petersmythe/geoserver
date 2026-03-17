@@ -27,4 +27,5 @@ The installation process is similar to other GeoServer extensions:
 If installation was successful, you will see a new Params-Extractor entry in the left menu, under "Settings".
 
 ![](images/menu.png)
+
 *The Parameter Extractor menu entry*

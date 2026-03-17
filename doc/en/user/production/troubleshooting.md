@@ -90,6 +90,7 @@ The amount of information logged can vary based on the [logging profile chosen](
 GeoServer provides a request logging capability that is inactive by default. When enabled in the [global settings](../configuration/globalsettings.md#config_globalsettings_log_request) GeoServer can log both the requested URL and POST requests contents.
 
 ![](images/request_logging_settings.png)
+
 *Global Settings*
 
 To track the history of the incoming requests:
@@ -121,6 +122,7 @@ GeoServer provides a built-in [JVM Console](../configuration/status.md#config_se
 This page can be used to check current status and download the results for careful review.
 
 ![](../configuration/img/thread_dump.png)
+
 *JVM Console*
 
 ## Using JDK tools to get stack and memory dumps

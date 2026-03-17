@@ -109,4 +109,5 @@ feature-styles:
 ```
 
 ![](img/transforms_pointstacker.png)
+
 *Point stacker*

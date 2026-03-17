@@ -11,7 +11,9 @@ If you are on Windows, make sure that the Kakadu DLL files are on your PATH. If 
 Once these steps have been completed, restart GeoServer. If done correctly, new data formats will be in the Raster Data Sources list when creating a new data store:
 
 ![](images/datasets.png)
+
 *Raster Data Source*
 
 ![](images/jp2k.png)
+
 *Configuring a JP2K data store*

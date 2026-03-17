@@ -18,6 +18,7 @@ First let's gather the data that we'll be publishing.
 1.  Navigate to **Data > Layer Group** page.
 
     ![](images/groups.png)
+
     *Layer Groups*
 
 2.  This page displays a list of layer groups and the workspace the group belongs to.
@@ -44,8 +45,9 @@ First let's gather the data that we'll be publishing.
 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> ![](images/basemap.png)
-> *Basic resource information*
+![](images/basemap.png)
+
+*Basic resource information*
 
 1.  Scroll down to the **Layers** list which is presently empty.
 
@@ -62,6 +64,7 @@ First let's gather the data that we'll be publishing.
     By drawing only the outline of the countries the shaded relief can show through.
 
     ![](images/layers.png)
+
     *Layer group layers in drawing order*
 
 5.  Locate the **Coordinate Reference Systems** and press **Generate Bounds**.
@@ -69,6 +72,7 @@ First let's gather the data that we'll be publishing.
     Now that layers are listed they can be used to determine the coordinate reference system and bounds of the layer group.
 
     ![](images/layers_crs.png)
+
     *Coordinate Reference Systems*
 
 6.  Press **Save** complete your layer group.
@@ -87,4 +91,5 @@ In order to verify that the `tutorial:basemap` layer is published correctly, we 
 3.  An OpenLayers map will load in a new tab. This preview is used to zoom and pan around the dataset, as well as display the attributes of features.
 
     ![](images/openlayers.png)
+
     *Preview basemap*

@@ -13,6 +13,7 @@ The GeoWebCache WMS endpoint is:
     http://GEOSERVER_URL/gwc/service/wms?...
 
 ![](img/defaults_services.png)
+
 *Provided services*
 
 The following settings describe the different services that can be enabled with GeoWebCache.
@@ -80,6 +81,7 @@ Possible values for this setting:
 This section describes the configuration of the various defaults and other global options for the tile cache in GeoServer.
 
 ![](img/defaults_options.png)
+
 *Default caching options*
 
 ### Automatically configure a GeoWebCache layer for each new layer or layer group
@@ -126,6 +128,7 @@ The default settings are subdivided into vector layers, raster layers, and layer
 These defaults can be overwritten on a per-layer basis when [editing the layer properties](../../data/webadmin/layers.md).
 
 ![](img/defaults_formats.png)
+
 *Default image formats*
 
 ### Skip caching on dimension warnings
@@ -135,6 +138,7 @@ WMS dimension handling can be complex, with ability to return tiles where the sp
 The following settings allow to disable caching when a WMS dimension warning is issued:
 
 ![](img/skipCacheWarnings.png)
+
 *Skip caching on cache warnings*
 
 The best settings depend on the type of dataset and disk-quota configurations:
@@ -152,11 +156,13 @@ This section shows the gridsets that will be automatically configured for cached
 - EPSG:900913 (spherical Mercator) with 31 maximum zoom levels and 256x256 pixel tiles
 
 ![](img/defaults_gridsets.png)
+
 *Default gridsets*
 
 To add a pre-existing grid set, select it from the **Add default grid set** menu, and click the Add icon (green circle with plus sign).
 
 ![](img/addexistinggridset.png)
+
 *Adding an existing gridset to the list of defaults*
 
 These definitions are described in more detail on the [Gridsets](gridsets.md) page.

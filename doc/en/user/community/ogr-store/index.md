@@ -58,6 +58,7 @@ If the library is properly installed you will get the "OGR" data store among the
 Creating a new store requires configuration of only the **DatasourceName** field, any other parameter is optional:
 
 ![](images/store_config.png)
+
 *The OGR datasore configuration page*
 
 The **DatasourceName** can be a reference to a file, a directory, or a set of connection parameters to a server. For example, to connect to a PostGIS database the connection parameters could be:

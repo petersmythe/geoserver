@@ -25,6 +25,7 @@ To set the environment variable:
 4.  Click the `New` button and create a environment variable called `GEOSERVER_DATA_DIR` and set it to the desired location.
 
     ![](img/envvar_win.png)
+
     *Setting an environment variable on Windows*
 
 ## Linux

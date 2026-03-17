@@ -24,6 +24,7 @@ The [polygons layer](artifacts/mbstyle_cookbook_polygon.zip) used below contains
 This example shows a polygon filled in blue.
 
 ![](../../sld/cookbook/images/polygon_simplepolygon.png)
+
 *Simple polygon*
 
 ### Code
@@ -58,6 +59,7 @@ There is one layer for this style, which is the simplest possible situation. Sty
 This example adds a 1 pixel white outline to the [Simple polygon](#mbstyle_cookbook_polygons_simplepolygon) example.
 
 ![](../../sld/cookbook/images/polygon_simplepolygonwithstroke.png)
+
 *Simple polygon with stroke*
 
 ### Code
@@ -90,6 +92,7 @@ This example is similar to the [Simple polygon](#mbstyle_cookbook_polygons_simpl
 This example builds on the [Simple polygon with stroke](#mbstyle_cookbook_polygons_simplepolygonwithstroke) example and makes the fill partially transparent by setting the opacity to 50%.
 
 ![](../../sld/cookbook/images/polygon_transparentpolygon.png)
+
 *Transparent polygon*
 
 ### Code

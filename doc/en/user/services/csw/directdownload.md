@@ -18,6 +18,7 @@ Those links also contain the validity domain for the file such as envelope/time/
 DirectDownload capability can be activated as default for all layers, as global CSW configuration. Go into the CSW service panel and click on the *enable DirectDownload* checkbox if you want it enabled for all layers:
 
 ![](images/serviceConfig.png)
+
 *DirectDownload configuration (Service level)*
 
 From this section you can also set a download size limit value (0 means no limit). The specified value represents the maximum size (in kilobytes) of the sum of the sizes of the raw data referred to by a single download link. (You can think about the case of a download link referring to the whole layer data which may contain a wide set of files).
@@ -31,11 +32,13 @@ DirectDownload capability can also be enabled/disabled for a specific layer, whi
 Go to the *publishing* tab of the layer.
 
 ![](images/layerConfig.png)
+
 *Layer publishing section*
 
 Look for the *DirectDownload settings* section.
 
 ![](images/layerConfig2.png)
+
 *DirectDownload configuration (Layer level)*
 
 The configuration of this parameter follows the same rules as shown for the CSW configuration panel.

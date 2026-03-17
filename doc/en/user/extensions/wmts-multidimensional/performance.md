@@ -16,6 +16,7 @@ For it to perform well, the typical configurations for relational databases are,
 The multidimensional module can be configured to use a sidecar summary table, that will be queried in place of the original table, for any domain extraction purpose:
 
 ![](images/sidecar.png)
+
 *Setting up a sidecar table.*
 
 The summary table is normally looked up in the same store, but if needed, it can be also found in a different store, as long as it's accessible to the GeoServer instance. Leave the sidecar store empty in case the summary table is in the same store as the original table.

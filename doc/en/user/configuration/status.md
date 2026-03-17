@@ -5,6 +5,7 @@ The Server Status page has two tabs to summarize the current status of GeoServer
 ## Server Status
 
 ![](img/server_status.png)
+
 *Status Page (default tab)*
 
 ### Status Field Descriptions
@@ -47,6 +48,7 @@ The following table describes the current status indicators.
 The **Modules** tab provides a summary of the status of all installed modules in the running server.
 
 ![](img/module_status.png)
+
 *Module Status*
 
 ### Field Descriptions
@@ -65,6 +67,7 @@ The **Modules** tab provides a summary of the status of all installed modules in
 | Contact         | For pending module, a contact email address for further information on how to help the module graduate.                                                                                          |
 
 ![](img/module_popup.png)
+
 *Module Status popup*
 
 ## System Status {: #config_serverstatus_system }
@@ -72,6 +75,7 @@ The **Modules** tab provides a summary of the status of all installed modules in
 The **System Status** tab provides extra information about the system environment GeoServer is running in. This provides an overview of the status of the GeoServer instance.
 
 ![](img/system_status.png)
+
 *System status*
 
 This information is also available via the REST API to troubleshoot remote systems. The library [OSHI](https://github.com/oshi/oshi/) is used to retrieve system-level information without depending on native libraries or DLLs, relying solely on [Apache JNA](https://github.com/java-native-access/jna/). Major operating systems (Linux, Windows and MacOS) are supported out of the box.
@@ -129,6 +133,7 @@ Java Threads are how CPU use is shared between outstanding work GeoServer is per
 1.  Press **Thread Dump** for a summary of all active threads.
 
     ![](img/thread_dump.png)
+
     *Thread Dump console output*
 
 2.  Click **Download** link to download the JVM Console contents.
@@ -140,6 +145,7 @@ The Java Heap is a description of dynamic (or heap) memory use. The "Thread Dump
 1.  Press **Heap Dump** for an overview of memory use.
 
     ![](img/heap_dump.png)
+
     *Heap Dump console output*
 
 2.  Click **Download** link to download the JVM Console contents.

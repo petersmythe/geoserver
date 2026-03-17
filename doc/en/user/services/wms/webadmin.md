@@ -3,6 +3,7 @@
 This page details the configuration options for WMS in the web administration interface.
 
 ![](img/services_WMS.png)
+
 *WMS configuration options*
 
 ## Workspace
@@ -60,12 +61,15 @@ Each of these methods have their own advantages and disadvantages. When using an
 Because each WMS request renders the watermark, a single tiled map positions *one* watermark relative to the view window while a tiled map positions the watermark for each tile. The only layer specific aspect of watermarking occurs because a single tile map is one WMS request, whereas a tiled map contains many WMS requests. (The latter watermark display resembles Google Maps faint copyright notice in their Satellite imagery.) The following three examples demonstrate watermark position, transparency and tiling display, respectively.
 
 ![](img/services_WMS_watermark1.png)
+
 *Single tile watermark (aligned top-right, transparency=0)*
 
 ![](img/services_WMS_watermark2.png)
+
 *Single tile watermark (aligned top-right, transparency=90)*
 
 ![](img/services_WMS_watermark3.png)
+
 *Tiled watermark (aligned top-right, transparency=90)*
 
 ## SVG Options
@@ -82,6 +86,7 @@ The GeoServer WMS supports SVG (Scalable Vector Graphics) as an output format. G
 Some clients can have problems processing the large list of SRS (projections) that GeoServer can support when they are all listed in the capabilities document. It is possible to add a list of needed projections in the *Limited SRS List* box. This takes the form of a list of EPSG codes separated by commas, e.g. `4326,27700`.
 
 ![](img/services_WMS_srs.png)
+
 *A limited SRS list*
 
 The `Output bounding box for every supported CRS` flag is only respected if a Limited SRS list has been specified.Setting this flag causes the WMS capabilities document to contain a Bounding Box for each supported CRS, for each Layer. Doing this for every CRS in the EPSG database, for each Layer in the catalog, would result in a impractically huge capabilities document.
@@ -91,6 +96,7 @@ The `Output bounding box for every supported CRS` flag is only respected if a Li
 A GetMap request may specify the style by referring a remote URL in the SLD parameter. There might be the case that the remote URL require same authorization headers as the current GetMap request. If that's the case a list of allowed style URLs can be specified using newline as separators (URLs might be long). Authorization headers will be only forwarded to a remote URL when it starts with one of the specified URLs.
 
 ![](img/services_WMS_remoteurlsauth.png)
+
 *The list of remote URLs being allowed for authorization headers forwarding.*
 
 ## Advanced projection handling and map wrapping
@@ -195,6 +201,7 @@ Mark factories can be filtered and ordered during the rendering execution. This 
 Select default language for WMS Service.
 
 ![](img/i18n_default_language.png)
+
 *Default language*
 
 See [Internationalization (i18n)](../../configuration/internationalization/index.md) section for a how this setting is used.

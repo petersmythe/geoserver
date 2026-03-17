@@ -11,6 +11,7 @@ Here is an example invocation:
 which would produce four 20x20 icons that graphically represent the rules of the default style of the topp:states layer.
 
 ![](img/samplelegend.png)
+
 *Sample legend*
 
 The following table lists the whole set of GetLegendGraphic parameters that can be used.
@@ -65,6 +66,7 @@ Here is a sample request sporting most the options:
     http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=topp:states&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontColor:0x000033;fontSize:14;bgColor:0xFFFFEE;dpi:180
 
 ![](img/legendoptions.png)
+
 *Using LEGEND_OPTIONS to control the output*
 
 ## Controlling legend layout
@@ -86,6 +88,7 @@ This chapter aims to briefly describe the work that I have performed in order to
 Here below I have drawn the structure of a typical legend, where some elements of interests are parameterized.
 
 ![](img/rasterlegend1.png)
+
 *The structure of a typical legend*
 
 Take as an instance one of the SLD files attached to this page, each row in the above table draws its essence from the ColorMapEntry element as shown here below:
@@ -112,6 +115,7 @@ In conclusion, here below I am adding an image of a sample legend with all the v
 Do not worry if it seems like something written in ancient dead language, I am going to explain the various params here below.
 
 ![](img/rasterlegend2.png)
+
 *Example of a raster legend*
 
 ### Raster legends' types
@@ -129,6 +133,7 @@ Here below I am going to list various examples that use the attached styles on a
 Refer to the SLD rainfall.sld in attachment.
 
 ![](img/rasterlegend3.png)
+
 *Raster legend - VALUES type*
 
 ### ColorMap type is CLASSES
@@ -136,6 +141,7 @@ Refer to the SLD rainfall.sld in attachment.
 Refer to the SLD rainfall_classes.sld in attachment.
 
 ![](img/rasterlegend4.png)
+
 *Raster legend - CLASSES type*
 
 ### ColorMap type is RAMP
@@ -143,6 +149,7 @@ Refer to the SLD rainfall_classes.sld in attachment.
 Refer to the SLD rainfall_classes.sld in attachment. Notice that the first legend shows the default border behavior while the second has been forced to draw a border for the breakpoint color of the colormap entry quantity described by the rendered text. Notice that each color element has a part that show the fixed color from the colormap entry it depicts (the lowest part of it, the one that has been outlined by the border in the second legend below) while the upper part of the element has a gradient that connects each element to the previous one to point out the fact that we are using linear interpolation.
 
 ![](img/rasterlegend5.png)
+
 *Raster legend - RAMP type*
 
 ### The various control parameters and how to set them
@@ -192,15 +199,19 @@ This will make a legend appear in the GetMap response. The following preview req
 The result will look as follows:
 
 ![](img/states-all.png)
+
 *Embedded legend, full map*
 
 ![](img/states-four.png)
+
 *Embedded legend, four states*
 
 ![](img/states-one.png)
+
 *Embedded legend, single state*
 
 ![](img/states-one-hide-empty.png)
+
 *Embedded legend, single state, hide empty rules*
 
 The same can be achieved using a stand-alone GetLegendGraphic request:
@@ -208,6 +219,7 @@ The same can be achieved using a stand-alone GetLegendGraphic request:
     http://localhost:8080/geoserver/topp/wms?service=WMS&version=1.1.0&request=GetLegendGraphic&width=20&height=20&layer=topp:states&bbox=-124.73142200000001,24.955967,-66.969849,49.371735&srcwidth=768&srcheight=330&srs=EPSG:4326&format=image/png&legend_options=countMatched:true;fontAntiAliasing:true
 
 ![](img/legend-all.png)
+
 *Direct legend request*
 
 Or hide the empty rules using a stand-alone GetLegendGraphic request:
@@ -215,6 +227,7 @@ Or hide the empty rules using a stand-alone GetLegendGraphic request:
     http://localhost:8080/geoserver/topp/wms?service=WMS&version=1.1.0&request=GetLegendGraphic&width=20&height=20&layer=topp:states&bbox=-101.0028076171875,31.025390625,-96.7840576171875,32.838134765625&srcwidth=768&srcheight=330&srs=EPSG:4326&format=image/png&legend_options=countMatched:true;fontAntiAliasing:true;hideEmptyRules:true
 
 ![](img/legend-not-empty.png)
+
 *Direct legend request*
 
 !!! note

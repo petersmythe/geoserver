@@ -310,8 +310,31 @@ The following properties must hold true in order to promote a community module:
             Follow the [dxf-LICENSE.md](https://github.com/geoserver/geoserver/blob/main/src/release/extensions/dxf/dxf-LICENSE.md) example:
 
             ```markdown
-            <!-- Include path goes outside docs directory: ../../../../src/release/extensions/dxf/dxf-LICENSE.md -->
-<!-- TODO: Copy file to docs directory or use alternative approach -->
+            Extension License Notice
+            ========================
+
+            DXFOutputFormat WFS Output and WPS PPIO for GeoServer
+            Mauro Bartolomeoli, GeoSolutions Sas
+
+                This program is free software; you can redistribute it and/or modify
+                it under the terms of the GNU General Public License as published by
+                the Free Software Foundation; either version 2 of the License, or
+                (at your option) any later version.
+
+                This program is distributed in the hope that it will be useful,
+                but WITHOUT ANY WARRANTY; without even the implied warranty of
+                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                GNU General Public License for more details.
+
+                You should have received a copy of the GNU General Public License
+                along with this program; if not, write to the Free Software
+                Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+            This GeoServer plugin is licensed under the GNU General Public License (GPL).
+            For more information see license notice and the full GPL.
+
+            This software is an extension for GeoServer. You can find full information
+            on it at https://www.geoserver.org
             ```
 
         2.  A readme called **`<module>-README.md`** which contains instructions on how to install the extension.
@@ -319,8 +342,21 @@ The following properties must hold true in order to promote a community module:
             Follow the [dxf-README.md](https://github.com/geoserver/geoserver/blob/main/src/release/extensions/dxf/dxf-README.md) example:
 
             ```markdown
-            <!-- Include path goes outside docs directory: ../../../../src/release/extensions/dxf/dxf-README.md -->
-<!-- TODO: Copy file to docs directory or use alternative approach -->
+            DXFOutputFormat WFS Output and WPS PPIO for GeoServer
+            =====================================================
+
+            For more information http://docs.geoserver.org/latest/en/user/extensions/dxf/index.html
+
+            INSTALLATION
+            ---------------------------
+            If you only need the WFS Output, copy `gs-dxf-core-*.jar` to `geoserver WEB-INF/lib`.
+            If you need both the WFS Output and the WPS PPIO, copy `gs-dxf-*.jar` to
+            `geoserver WEB-INF/lib`.
+
+            Please note that the WPS PPIO needs the WPS extension to be installed, so please
+            first download and install that.
+
+            ...
             ```
 
             !!! warning
@@ -335,8 +371,47 @@ The following properties must hold true in order to promote a community module:
         Follow the example of [ext-dxf-xml](https://github.com/geoserver/geoserver/blob/main/src/release/ext-dxf.xml):
 
         ```xml
-        <!-- Include path goes outside docs directory: ../../../../src/release/ext-dxf.xml -->
-<!-- TODO: Copy file to docs directory or use alternative approach -->
+        <assembly>
+          <id>dxf-plugin</id>
+          <formats>
+            <format>zip</format>
+          </formats>
+          <includeBaseDirectory>false</includeBaseDirectory>
+          <fileSets>
+            <fileSet>
+              <directory>release/target/dependency</directory>
+              <outputDirectory></outputDirectory>
+              <includes>
+                <include>gs-dxf*.jar</include>
+              </includes>
+            </fileSet>
+            <fileSet>
+              <directory>release/target/html/licenses</directory>
+              <outputDirectory>licenses</outputDirectory>
+              <includes>
+                 <include>GPL.html</include>
+                 <include>NOTICE.html</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+          <files>
+             <file>
+               <source>release/extensions/dxf/dxf-README.md</source>
+               <outputDirectory></outputDirectory>
+               <destName>README.txt</destName>
+             </file>
+             <file>
+               <source>release/target/html/extensions/dxf/dxf-LICENSE.html</source>
+               <outputDirectory></outputDirectory>
+               <destName>LICENSE.html</destName>
+             </file>
+             <file>
+               <source>release/target/html/extensions/dxf/dxf-README.html</source>
+               <outputDirectory></outputDirectory>
+               <destName>README.html</destName>
+             </file>
+          </files>
+        </assembly>
         ```
 
         - Add additional `include` elements in the root folder (outputDirectory empty) for the jar dependencies of the module
@@ -350,11 +425,9 @@ The following properties must hold true in order to promote a community module:
         <dependencies>
            ...
            <dependency>
-        ```xml
- <groupId>org.geoserver.extension</groupId>
- <artifactId>%module%</artifactId>
- <version>%version%</version>
-        ```
+             <groupId>org.geoserver.extension</groupId>
+             <artifactId>%module%</artifactId>
+             <version>%version%</version>
            </dependency>
            ...
          </dependencies>
@@ -368,15 +441,16 @@ The following properties must hold true in order to promote a community module:
           <artifactId>maven-assembly-plugin</artifactId>
           <version>2.1</version>
           <configuration>
-        ```xml
-<descriptors>
- <descriptor>release/war.xml</descriptor>
- <descriptor>release/javadoc.xml</descriptor>
- <descriptor>release/bin.xml</descriptor>
- <descriptor>release/doc.xml</descriptor>
- ...
- <descriptor>release/ext-%module%.xml</descriptor>
-</descriptors>
+            <descriptors>
+             <descriptor>release/war.xml</descriptor>
+             <descriptor>release/javadoc.xml</descriptor>
+             <descriptor>release/bin.xml</descriptor>
+             <descriptor>release/doc.xml</descriptor>
+             ...
+             <descriptor>release/ext-%module%.xml</descriptor>
+            </descriptors>
+          </configuration>
+        </plugin>
         ```
           </configuration>
         </plugin>

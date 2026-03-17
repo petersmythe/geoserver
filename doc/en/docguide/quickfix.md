@@ -9,6 +9,7 @@ For really quick fixes:
 2.  Navigate to the file you wish to change and click the **edit** icon
 
     ![](github_edit1.png)
+
     *GitHub Preview of style.rst page*
 
     Note: you must first be signed into GitHub, and GitHub will help you create a fork from which to submit the quick fix, (we recommend that you keep the fork for next time.)
@@ -16,6 +17,7 @@ For really quick fixes:
 3.  Use the editor to modify the file
 
     ![](github_edit1.png)
+
     *GitHub Editor for style.rst page*
 
 4.  Scroll to the bottom of the page, provide a commit comment and submit.

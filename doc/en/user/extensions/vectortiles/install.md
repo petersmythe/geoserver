@@ -38,6 +38,7 @@ To verify that the extension was installed successfully
     - `application/vnd.mapbox-vector-tile`
 
     ![](img/vectortiles_tileformats.png)
+
     *Vector tiles tile formats*
 
     If you don't see these options, the extension did not install correctly.

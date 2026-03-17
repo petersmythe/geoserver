@@ -30,7 +30,7 @@ footprint_filter=*filter on the Shapefile searching for the attribute associated
 
 For example if a Shapefile called **fakeShapeFile** stores the various footprints in a table like this, where each *Name* attribute is referred to a granule file:
 
-> ![](img/shp_table.png)
+![](img/shp_table.png)
 
 And the associated granules are:
 
@@ -99,17 +99,17 @@ Here are presented the results for each dataset.
 
 This is an example of mosaic without applying Footprint:
 
-> ![](img/footprint_normal.png)
+![](img/footprint_normal.png)
 
 And this is the result of setting **FootprintBehavior** to *Cut*:
 
-> ![](img/footprint_cut.png)
+![](img/footprint_cut.png)
 
 Background is gray because in this example the *BackgroundValues* field has been set to -20000.
 
 If an Inset is added, the final mosaic is:
 
-> ![](img/footprint_cut_inset.png)
+![](img/footprint_cut_inset.png)
 
 The **footprints.properties** file is:
 
@@ -128,11 +128,11 @@ footprint_inset_type=full
 
 This is another example of mosaic without Footprint:
 
-> ![](img/footprint_mosaic_none.png)
+![](img/footprint_mosaic_none.png)
 
 And now after setting **FootprintBehavior** to *Transparent* (no Inset is used) on the Layer:
 
-> ![](img/footprint_mosaic.png)
+![](img/footprint_mosaic.png)
 
 #### Footprint configured with *footprints.properties*
 
@@ -141,7 +141,7 @@ And now after setting **FootprintBehavior** to *Transparent* (no Inset is used) 
 
 The result of setting **FootprintBehavior** to *Transparent*, Inset type to *border* and Inset value to 0.00001 is:
 
-> ![](img/footprint_mosaic_prop.png)
+![](img/footprint_mosaic_prop.png)
 
 The **footprints.properties** file is:
 

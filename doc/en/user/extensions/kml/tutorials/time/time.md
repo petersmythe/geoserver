@@ -13,6 +13,7 @@ For this tutorial we will using a Shapefile which contains information about the
 4.  Set the style of the feature type added in step 2 to the style added in step 3
 
 ![](style.png)
+
 *Style*
 
 ## Checking the Setup
@@ -20,6 +21,7 @@ For this tutorial we will using a Shapefile which contains information about the
 If all is configured properly you should be able to navigate to <http://localhost:8080/geoserver/wms/kml?layers=topp:inet_weu&format=openlayers&bbox=-33.780,26.266,21.005,56.427> and see the following map:
 
 ![](gettingStarted.png)
+
 *Setup*
 
 ## Creating the Template
@@ -52,16 +54,19 @@ Ok time to try it out.
 1.  Navigate to <http://localhost:8080/geoserver/wms/kml?layers=inet_weu&legend=true>. This should cause Google Earth to open.
 
 ![](try1.png)
+
 *Google Earth*
 
 2.  In Google Earth, adjust the time bar so that it captures a time interval that is approximately 1 year wide
 
 ![](try2.png)
+
 *Google Earth Time Bar*
 
 3.  Slide the time bar forward in time and notice how the polygon colors change
 
 ![](try3.png)
+
 *Sliding the Time Bar*
 
 ## References

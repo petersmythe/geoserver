@@ -35,6 +35,7 @@ Typical use cases:
 To make a point in case, if we want the PostgreSQL session to run with the current GeoServer user credentials the following scripts will be used:
 
 ![](images/postgresqlSession.png)
+
 *Setting up session authorization for PostgreSQL*
 
 The first command makes the database session use either the current GeoServer user, or the `geoserver` user if no authentication was available (anonymous user, or startup situation). The second command resets the session to the rights of the connection pool user.

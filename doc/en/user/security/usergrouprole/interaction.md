@@ -7,6 +7,7 @@ The following section describes the interaction between the [User/group services
 The diagram below illustrates how a user/group service and a role service interact to calculate user roles.
 
 ![](images/usergrouprole1.png)
+
 *User/group and role service interacting for role calculation*
 
 On fetching an enabled user from a user/group service, the roles(s) assigned to that user must be identified. The identification procedure is:
@@ -27,6 +28,7 @@ On fetching an enabled user from a user/group service, the roles(s) assigned to 
 A user/group service is primarily used during authentication. An authentication provider in the [Authentication chain](../auth/chain.md) may use a user/group service to authenticate user credentials.
 
 ![](images/usergrouprole2.png)
+
 *Using a a user/group service for authentication*
 
 ## GeoServer defaults
@@ -34,6 +36,7 @@ A user/group service is primarily used during authentication. An authentication 
 The following diagram illustrates the default user/group service, role service, and authentication provider in GeoServer:
 
 ![](images/usergrouprole3.png)
+
 *Default GeoServer security configuration*
 
 Two authentication providers are configured---the *Root* provider and the *Username/password* provider. The *Root* provider authenticates for the GeoServer [Root account](../root.md) and does not use a user/group service. The *Username/password* provider is the default provider and relays username and password credentials to a user/group service.

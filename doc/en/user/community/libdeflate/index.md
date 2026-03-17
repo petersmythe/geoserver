@@ -20,6 +20,7 @@ When the community module is not installed, the TIFF Deflate compression/decompr
 Default ZIP Deflater compression plugin has priority 50. Libdeflate compression plugin has default priority 80 for both compression and decompression. Is it possible to fallback to the old plugin for either compression, decompression or both. Go to the Global Settings and set the priority to a value lower than 50.
 
 ![](images/libdeflate-settings.png)
+
 *Default Libdeflate compression Settings*
 
 Finally, during testing phases, we found that, at compression level 9, the old plugin is faster than the new one. By default, when priority is higher, the Libdeflate compression will be only used for compression levels in the range 1 to 8. These settings can be modified in the above Global Settings too.

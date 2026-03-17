@@ -114,6 +114,7 @@ feature-styles:
 ```
 
 ![](img/polygon_checkers.png)
+
 *Checkered fill*
 
 ### Randomized graphic fill
@@ -143,4 +144,5 @@ feature-styles:
 ```
 
 ![](img/polygon_random.png)
+
 *Randomized graphic fill*

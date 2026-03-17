@@ -13,6 +13,7 @@ To begin, navigate to **Stores --> Add a new store --> PostGIS**.
 Fill in the *Basic Store Info* used to identify the database when managing layers.
 
 ![](images/postgis-basic-info.png)
+
 *Adding a PostGIS database*
 
 | Basic Store Info | Description |
@@ -25,6 +26,7 @@ Fill in the *Basic Store Info* used to identify the database when managing layer
 Move on to the connection parameters used to connect and interact with the database.
 
 ![](images/postgis.png)
+
 *PostGIS connection parameters*
 
 The `dbtype` and `namespace` connection parameters are not directly editable. The **dbtype** parameter is for internal use only (and only accessible via the REST API).
@@ -89,6 +91,7 @@ GeoServer can also connect to a PostGIS database using [JNDI](https://docs.oracl
 To begin, navigate to **Stores --> Add a new store --> PostGIS (JNDI)**.
 
 ![](images/postgisjndi.png)
+
 *Adding a PostGIS database (using JNDI)*
 
 | Option | Description |

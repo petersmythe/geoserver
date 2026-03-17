@@ -73,6 +73,7 @@ symbolizers:
 ```
 
 ![](img/raster_brightness.png)
+
 *Lightened image*
 
 ### Normalized output
@@ -87,6 +88,7 @@ symbolizers:
 ```
 
 ![](img/raster_normalize.png)
+
 *Normalized image*
 
 ### Band selection
@@ -106,6 +108,7 @@ feature-styles:
 ```
 
 ![](img/raster_band_gray.png)
+
 *Grayscale band selection*
 
 ### Band selection with contrast
@@ -133,6 +136,7 @@ feature-styles:
 ```
 
 ![](img/raster_band_contrast.png)
+
 *Band selection with contrast enhancement*
 
 ### Color ramp
@@ -158,6 +162,7 @@ In this example, the grid values will have the following colors applied:
 - Greater than 200 will have an output color of **solid blue**
 
 ![](img/raster_map_ramp.png)
+
 *Color map with ramp*
 
 ### Color intervals
@@ -183,6 +188,7 @@ In this example, the grid values will have the following colors applied:
 - Greater than 200 will **not be colored** at all (transparent)
 
 ![](img/raster_map_intervals.png)
+
 *Color map with intervals*
 
 ### Color values
@@ -209,4 +215,5 @@ In this example, the grid values will have the following colors applied:
 Any other values (even those in between the above values) will not be colored at all.
 
 ![](img/raster_map_values.png)
+
 *Color map with values*

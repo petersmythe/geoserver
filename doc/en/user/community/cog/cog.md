@@ -25,6 +25,7 @@ The COG plugin does not add new stores, instead, it adds COG support to existing
 When configuring a GeoTIFF store, a new checkbox is available: `Cloud Optimized GeoTIFF (COG)`. Setting that will open a new section presenting the COG configuration parameters for this COG Store.
 
 ![](images/cogparams.png)
+
 *COG Connection params*
 
 Checking the `Cloud Optimized GeoTIFF (COG)` checkbox will provide new options:
@@ -65,6 +66,7 @@ The following table provides the values for the `CogRangeReader` based on the ty
 The GeoServer Global Settings page contains the default COG settings presented when setting up a new COG GeoTIFF Store.
 
 ![](images/globalcogsettings.png)
+
 *Default Global COG Settings*
 
 ## Image locations

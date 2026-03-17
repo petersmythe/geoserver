@@ -58,7 +58,7 @@ docker run --name geoserver_keycloak -p 7777:8080 \
 
 #\. Press "Save" (again).
 
-> ![](../img/keycloak-create-client5.png)
+![](../img/keycloak-create-client5.png)
 
 You have now configured the "gs-realm" with a "gs-client".
 
@@ -78,7 +78,7 @@ This will create a "geoserverAdmin" role that can be used to give users admin ac
 
 #\. Set the role's name as "geoserverAdmin" and press "Save"
 
-> ![](../img/keycloak-create-role2.png)
+![](../img/keycloak-create-role2.png)
 
 ### Setting Up Users
 
@@ -153,7 +153,7 @@ We will also put the Keycloak roles in the ID Token. By default, keycloak only p
 
 #\. Turn on "Add to ID token" and "Add to userinfo". Then press "Save".
 
-> ![](../img/keycloak-id-token3.png)
+![](../img/keycloak-id-token3.png)
 
 You have now created two users - "admin" and "user". We then attached the "geoserverAdmin" role to the "admin" user. We also added the keycloak roles to the ID Token.
 
@@ -169,7 +169,7 @@ This allow you to get a Client Secret.
 
 #\. Click on the "Credentials" tab (top) and then the copy button.
 
-> ![](../img/keycloak-client-secret.png)
+![](../img/keycloak-client-secret.png)
 
 **Save your Client Secret for use in the GeoServer Configuration**
 
@@ -331,7 +331,7 @@ The next step is to configure your Keycloak as the OIDC IDP for GeoServer. You w
 
 #\. After you press the "Discovery" button, most of the information will be filled out for you
 
-> ![](../img/keycloak-gs-filter3.png)
+![](../img/keycloak-gs-filter3.png)
 
 ### Configure Role Source
 

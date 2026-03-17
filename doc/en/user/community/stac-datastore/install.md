@@ -29,4 +29,5 @@ The installation process is similar to other GeoServer community modules:
     On successful installation there is a new STAC-API datastore entry in the "new Data Source" menu.
 
     ![](images/store-selection.png)
+
     *STAC datastore entry*

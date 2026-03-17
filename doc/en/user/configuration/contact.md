@@ -9,6 +9,7 @@ Contact information supports [Internationalization (i18n)](internationalization/
 Complete this form with the organization details.
 
 ![](img/contact_organization.png)
+
 *Contact Information Organization*
 
 The welcome message is displayed in the welcome page header as an introduction to the GeoServer web services. The organization name and online resource, if provided, are used in the welcome page header for the **For more information visit** link.
@@ -26,6 +27,7 @@ Contact information fields:
 Complete this form with the relevant contact information.
 
 ![](img/contact_information.png)
+
 *Contact Information Primary Contact*
 
 The **email** address, if provided, is used to provide a **Contact administrator** link for the welcome page footer.
@@ -45,6 +47,7 @@ Contact information fields:
 Complete this form with the relevant physical address information.
 
 ![](img/contact_address.png)
+
 *Contact Information Address*
 
 Address information fields:

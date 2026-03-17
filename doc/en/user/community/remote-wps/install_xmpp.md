@@ -126,7 +126,7 @@ Move the browser to the url
 
 Choose preferable language and hit `Contine`
 
-> ![](images/openfire001.jpg)
+![](images/openfire001.jpg)
 
 Specify the server Domain as
 
@@ -136,20 +136,20 @@ Specify the server Domain as
 
 Choose the *Standard Database Connection* in the next section
 
-> ![](images/openfire003.jpg)
+![](images/openfire003.jpg)
 
 Provide the Database connection parameters for the PostgreSQL DB in the standard connection section.
 
 The password for the user `openfire` is the same provided in the PostgreSQL DB setup (see above).
 
-> ![](images/openfire004.jpg)
+![](images/openfire004.jpg)
 
 !!! note
     Be sure the `openfire` database and user have been correctly created on PostgreSQL and the passwords provided (see above for instructions).
 
 If there are no connection issues, choose `Default` value on the users profile settings section.
 
-> ![](images/openfire005.jpg)
+![](images/openfire005.jpg)
 
 Create the *Administrator* account in the next section.
 
@@ -190,7 +190,7 @@ Update the `Security Settings` in order to allow the server accepting self-signe
 
 Create the `default` channel as shown in the next figure.
 
-> ![](images/openfire012.jpg)
+![](images/openfire012.jpg)
 
 Create the `management` channel as shown in the next figure. Pay attention to the `Room Options` and specify the password for the channel
 
@@ -200,7 +200,7 @@ Create the `management` channel as shown in the next figure. Pay attention to th
 
 Double check that the channels have been correctly created and they appear in the `Group Chat Rooms`.
 
-> ![](images/openfire014.jpg)
+![](images/openfire014.jpg)
 
 *Restart GeoServer*
 
@@ -214,11 +214,11 @@ After the GeoServer has successfully restarted, double check that it is connecte
 
 It is ***very*** important that the user is shown as `Authenticated`.
 
-> ![](images/openfire015.jpg)
+![](images/openfire015.jpg)
 
 Check also that the user is registered to the XMPP channels created above.
 
-> ![](images/openfire016.jpg)
+![](images/openfire016.jpg)
 
 ### Firewall Rules For XMPP Ports
 

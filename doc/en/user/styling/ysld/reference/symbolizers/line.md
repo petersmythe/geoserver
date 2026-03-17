@@ -64,6 +64,7 @@ feature-styles:
 ```
 
 ![](img/line_basic.png)
+
 *Basic line with styled ends*
 
 ### Railroad pattern
@@ -89,6 +90,7 @@ feature-styles:
 ```
 
 ![](img/line_railroad.png)
+
 *Railroad pattern*
 
 ### Specifying sizes in units
@@ -105,9 +107,11 @@ feature-styles:
 ```
 
 ![](img/line_uomsmall.png)
+
 *Line width measured in meters (zoomed out)*
 
 ![](img/line_uombig.png)
+
 *Line width measured in meters (zoomed in)*
 
 The default unit of measure for the symbolizer is defined using `uom`. This example uses a default of meters to supply distances for `stroke-width` and `stroke-dasharray` using meters.
@@ -121,4 +125,5 @@ line:
 ```
 
 ![](img/line-uom.png)
+
 *Line width and spacing in meters*

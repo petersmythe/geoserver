@@ -4,35 +4,27 @@ Welcome to the GeoServer documentation. Choose a guide to get started:
 
 <div class="doc-cards">
   <a href="en/user/" class="doc-card">
-```xml
-<div class="doc-card-icon">📖</div>
-<h2>User Manual</h2>
-<p>Learn how to install, configure, and use GeoServer for publishing geospatial data</p>
-```
+    <div class="doc-card-icon">📖</div>
+    <h2>User Manual</h2>
+    <p>Learn how to install, configure, and use GeoServer for publishing geospatial data</p>
   </a>
 
   <a href="en/developer/" class="doc-card">
-```xml
-<div class="doc-card-icon">💻</div>
-<h2>Developer Guide</h2>
-<p>Contribute to GeoServer development with architecture guides and coding standards</p>
-```
+    <div class="doc-card-icon">💻</div>
+    <h2>Developer Guide</h2>
+    <p>Contribute to GeoServer development with architecture guides and coding standards</p>
   </a>
 
   <a href="en/docguide/" class="doc-card">
-```xml
-<div class="doc-card-icon">✍️</div>
-<h2>Documentation Guide</h2>
-<p>Learn how to write and contribute to GeoServer documentation</p>
-```
+    <div class="doc-card-icon">✍️</div>
+    <h2>Documentation Guide</h2>
+    <p>Learn how to write and contribute to GeoServer documentation</p>
   </a>
 
   <a href="en/api/" class="doc-card">
-```xml
-<div class="doc-card-icon">🔌</div>
-<h2>API Reference</h2>
-<p>Explore the REST API and service endpoints for programmatic access</p>
-```
+    <div class="doc-card-icon">🔌</div>
+    <h2>API Reference</h2>
+    <p>Explore the REST API and service endpoints for programmatic access</p>
   </a>
 </div>
 

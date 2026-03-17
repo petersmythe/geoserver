@@ -115,6 +115,7 @@ feature-styles:
 ```
 
 ![](img/functions_arrows.png)
+
 *Endpoint arrows*
 
 ### Drop shadow
@@ -140,6 +141,7 @@ feature-styles:
 ```
 
 ![](img/functions_dropshadow.png)
+
 *Drop shadow*
 
 ### Different-colored outline
@@ -160,6 +162,7 @@ feature-styles:
 ```
 
 ![](img/functions_buffer.png)
+
 *Buffered outline*
 
 See also:
@@ -180,6 +183,7 @@ point:
 ```
 
 ![](img/functions_vertices.png)
+
 *Endpoint arrows*
 
 See also:
@@ -278,6 +282,7 @@ feature-styles:
 In the above example, the attribute is `zone` , and then each subsequent pair consists of an attribute value followed by a color.
 
 ![](img/functions_recode.png)
+
 *Recode Function*
 
 ### Color based on categories
@@ -303,6 +308,7 @@ feature-styles:
 ```
 
 ![](img/filters_categories.png)
+
 *Categorize Function*
 
 ### Choropleth map
@@ -321,4 +327,5 @@ feature-styles:
 ```
 
 ![](img/functions_choropleth.png)
+
 *Choropleth Map*

@@ -12,6 +12,7 @@ Using alpha blending, this can be achieved by creating a mask around the state b
 This is the source (mask):
 
 ![](images/states-border.png)
+
 *Layer mask*
 
 The SLD will contain three FeatureTypeStyles. The first one would be the standard rules (states colored by population) and the last one will contain the label rules. The second (middle) one is where the blending will occur:

@@ -42,4 +42,5 @@ This module is a community module pending graduation, and is available alongside
 4.  Restart GeoServer
 
     ![](images/admin.png)
+
     *The GeoServer home page after the OpenSearch for EO module installation.*

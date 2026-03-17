@@ -18,6 +18,7 @@ Please refer back to this page for any additional remote service access checks a
 Navigate to **Data > URL Checks** page to manage and configure URL Checks.
 
 ![](images/urlchecks.png)
+
 *URL Checks table*
 
 Use the **Enable/Disable URL Checks** enable this safety feature:
@@ -52,6 +53,7 @@ Regular Expression URL checks can be configured, with the following parameters f
 | Enabled            | Check box to enable or disable the check             |
 
 ![](images/urlchecks-edit.png)
+
 *Configure Regular Expression URL check*
 
 ## Testing URL checks
@@ -67,6 +69,7 @@ Test URL Checks form:
 Press the **Test URL** button to perform the checks. If at least one URL Check matches the URL, it will be allowed and the test will indicate the URL Check permitting access. Otherwise it will be rejected and the test will indicate that no URL Check matched.
 
 ![](images/urlchecks-test.png)
+
 *Test URL Checks with external URL*
 
 ## Example RegEx Patterns

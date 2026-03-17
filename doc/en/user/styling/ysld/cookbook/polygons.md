@@ -24,6 +24,7 @@ The [polygons layer](artifacts/ysld_cookbook_polygon.zip) used below contains co
 This example shows a polygon filled in blue.
 
 ![](../../sld/cookbook/images/polygon_simplepolygon.png)
+
 *Simple polygon*
 
 ### Code
@@ -46,6 +47,7 @@ There is one rule in one feature style for this style, which is the simplest pos
 This example adds a 2 pixel white stroke to the [Simple polygon](#ysld_cookbook_polygons_simplepolygon) example.
 
 ![](../../sld/cookbook/images/polygon_simplepolygonwithstroke.png)
+
 *Simple polygon with stroke*
 
 ### Code
@@ -65,6 +67,7 @@ This example is similar to the [Simple polygon](#ysld_cookbook_polygons_simplepo
 This example builds on the [Simple polygon with stroke](#ysld_cookbook_polygons_simplepolygonwithstroke) example and makes the fill partially transparent by setting the opacity to 50%.
 
 ![](../../sld/cookbook/images/polygon_transparentpolygon.png)
+
 *Transparent polygon*
 
 ### Code
@@ -84,6 +87,7 @@ This example is similar to the [Simple polygon with stroke](#ysld_cookbook_polyg
 This example fills the polygons with a tiled graphic.
 
 ![](../../sld/cookbook/images/polygon_graphicfill.png)
+
 *Graphic fill*
 
 ### Code
@@ -99,6 +103,7 @@ This example fills the polygons with a tiled graphic.
 This style fills the polygon with a tiled graphic. This is known as an `external` in YSLD, to distinguish it from commonly-used shapes such as squares and circles that are "internal" to the renderer. **Lines 11-13** specify details for the graphic, with **line 12** setting the path and file name of the graphic and **line 13** indicating the file format (MIME type) of the graphic (`image/png`). Although a full URL could be specified if desired, no path information is necessary in **line 12** because this graphic is contained in the same directory as the YSLD. **Line 9** determines the height of the displayed graphic in pixels; if the value differs from the height of the graphic then it will be scaled accordingly while preserving the aspect ratio.
 
 ![](../../sld/cookbook/images/colorblocks.png)
+
 *Graphic used for fill*
 
 ## Hatching fill
@@ -106,6 +111,7 @@ This style fills the polygon with a tiled graphic. This is known as an `external
 This example fills the polygons with a hatching pattern.
 
 ![](../../sld/cookbook/images/polygon_hatchingfill.png)
+
 *Hatching fill*
 
 ### Code
@@ -125,6 +131,7 @@ In this example, there is a `fill-graphic` parameter as in the [Graphic fill](#y
 This example shows a text label on the polygon. In the absence of any other customization, this is how a label will be displayed.
 
 ![](../../sld/cookbook/images/polygon_polygonwithdefaultlabel.png)
+
 *Polygon with default label*
 
 ### Code
@@ -144,6 +151,7 @@ In this example there is a polygon symbolizer and a text symbolizer. **Lines 6-9
 This example alters the look of the [Polygon with default label](#ysld_cookbook_polygons_polygonwithdefaultlabel) by adding a white halo to the label.
 
 ![](../../sld/cookbook/images/polygon_labelhalo.png)
+
 *Label halo*
 
 ### Code
@@ -163,6 +171,7 @@ This example is similar to the [Polygon with default label](#ysld_cookbook_polyg
 This example improves the label style from the [Polygon with default label](#ysld_cookbook_polygons_polygonwithdefaultlabel) example by centering the label on the polygon, specifying a different font name and size, and setting additional label placement optimizations.
 
 ![](../../sld/cookbook/images/polygon_polygonwithstyledlabel.png)
+
 *Polygon with styled label*
 
 ### Code
@@ -186,6 +195,7 @@ Finally, there are two added touches for label placement optimization: **line 20
 This example styles the polygons differently based on the "pop" (Population) attribute.
 
 ![](../../sld/cookbook/images/polygon_attributebasedpolygon.png)
+
 *Attribute-based polygon*
 
 ### Code
@@ -224,12 +234,15 @@ The third rule, on **lines 17-22**, specifies a style for polygons whose populat
 This example alters the style of the polygon at different zoom levels.
 
 ![](../../sld/cookbook/images/polygon_zoombasedpolygonlarge.png)
+
 *Zoom-based polygon: Zoomed in*
 
 ![](../../sld/cookbook/images/polygon_zoombasedpolygonmedium.png)
+
 *Zoom-based polygon: Partially zoomed*
 
 ![](../../sld/cookbook/images/polygon_zoombasedpolygonsmall.png)
+
 *Zoom-based polygon: Zoomed out*
 
 ### Code

@@ -74,6 +74,7 @@ In SLD, styles for points are specified via a PointSymbolizer. An empty PointSym
 ```
 
 ![](pointDefault.png)
+
 *Figure 4: Default point*
 
 Three aspects of points that can be specified are *color*, *opacity*, and the *icon*.
@@ -95,6 +96,7 @@ The color of a point is specified with a `CssParameter` element and a `fill` att
 ```
 
 ![](pointColor.png)
+
 *Figure 5: Setting the point color (#ff0000 = 100% red)*
 
 ### Point Opacity
@@ -114,6 +116,7 @@ The opacity of a point is specified with a CssParameter element and a `fill-opac
 ```
 
 ![](pointOpacity.png)
+
 *Figure 6: Setting the point opacity (0.5 = 50% opaque)*
 
 ### Point Icon
@@ -133,6 +136,7 @@ An icon different from the default can be specified with the `ExternalGraphic` e
 ```
 
 ![](pointCustomIcon.png)
+
 *Figure 7: A custom icon for points*
 
 In Figure 7, the custom icon is specified as a remote URL. It is also possible to place the graphic in the GeoServer `styles` directory, and then specify the filename only:
@@ -163,6 +167,7 @@ Styles for lines are specified via a `LineSymbolizer`. An empty `LineSymbolizer`
 ```
 
 ![](lineDefault.png)
+
 *Figure 9: Default line*
 
 The aspects of the resulting line which can be specified via a `LineSymbolizer` are *color*, *width*, and *opacity*.
@@ -180,6 +185,7 @@ The color of a line is specified with a `CssParameter` element and a `stroke` at
 ```
 
 ![](lineColor.png)
+
 *Figure 10: Line rendered with color #ff0000 (100% red)*
 
 ### Line Width
@@ -195,6 +201,7 @@ The width of a line is specified with a `CssParameter` element and a `stroke-wid
 ```
 
 ![](lineWidth.png)
+
 *Figure 11: Line rendered with a width of five (5) pixels*
 
 ### Line Opacity
@@ -210,6 +217,7 @@ The opacity of a line is specified with a `CssParameter` element and a `fill-opa
 ```
 
 ![](lineOpacity.png)
+
 *Figure 12: A line rendered with 50% opacity*
 
 ## Polygons {: #kml-styling-polygons }
@@ -236,6 +244,7 @@ The outline color of a polygon is specified with a `CssParameter` element and `s
 ```
 
 ![](polygonOutlineColor.png)
+
 *Figure 13: Outline of a polygon (#0000FF or 100% blue)*
 
 ### Polygon Stroke Width
@@ -267,6 +276,7 @@ The stroke opacity of a polygon is specified with a `CssParameter` element and `
 ```
 
 ![](polygonOutlineOpacity.png)
+
 *Figure 15: Polygon stroke opacity of 0.5 (50% opaque)*
 
 ### Polygon Fill Color
@@ -282,6 +292,7 @@ The fill color of a polygon is specified with a `CssParameter` element and `fill
 ```
 
 ![](polygonFillColor.png)
+
 *Figure 16: Polygon fill color of #0000FF (100% blue)*
 
 ### Polygon Fill Opacity
@@ -297,6 +308,7 @@ The fill opacity of a polygon is specified with a `CssParameter` element and `fi
 ```
 
 ![](polygonFillOpacity.png)
+
 *Figure 17: Polygon fill opacity of 0.5 (50% opaque)*
 
 ## Text Labels {: #kml-styling-text-labels }
@@ -312,6 +324,7 @@ ${STATE_NAME.value}
 ```
 
 ![](labelTemplate.png)
+
 *Figure 18: Using a Freemarker template to display the value of STATE_NAME*
 
 For more information on Placemark Templates, please see our full tutorial (LINK FORTHCOMING).
@@ -329,6 +342,7 @@ In SLD labels are specified with the Label element of a `TextSymbolizer`. (Note 
 ```
 
 ![](labelSymbolizer.png)
+
 *Figure 19: Using a TextSymbolizer to display the value of STATE_NAME*
 
 The aspects of the resulting label which can be specified via a `TextSymbolizer` are *color* and *opacity*.
@@ -349,6 +363,7 @@ The color of a label is specified with a `CssParameter` element and `fill` attri
 ```
 
 ![](labelColor.png)
+
 *Figure 20: TextSymbolizer with black text color (#000000)*
 
 ### TextSymbolizer Opacity
@@ -367,6 +382,7 @@ The opacity of a label is specified with a `CssParameter` element and `fill-opac
 ```
 
 ![](labelOpacity.png)
+
 *Figure 21: TextSymbolizer with opacity 0.5 (50% opaque)*
 
 ## Descriptions {: #kml-styling-descriptions }
@@ -374,6 +390,7 @@ The opacity of a label is specified with a `CssParameter` element and `fill-opac
 When working with KML, each feature is linked to a description, accessible when the feature is clicked on. By default, GeoServer creates a list of all the attributes and values for the particular feature.
 
 ![](descriptionDefault.png)
+
 *Figure 22: Default description for a feature*
 
 It is possible to modify this default behavior. Much like with featureType titles, which are edited by creating a `title.ftl` template, a custom description can be used by creating template called `description.ftl` and placing it into the feature type directory (inside the GeoServer data directory) for the dataset. For instance, to create a template to provide a description for the states dataset, one would create the file: `<data_dir>/workspaces/topp/states_shapefile/states/description.ftl`. As an example, if the content of the description template is:
@@ -385,6 +402,7 @@ This is the state of ${STATE_NAME.value}.
 The resultant description will look like this:
 
 ![](descriptionTemplate.png)
+
 *Figure 23: A custom description*
 
 It is also possible to create one description template for all featureTypes in a given namespace. To do this, create a `description.ftl` file as above, and save it as `<data_dir>/templates/<workspace>/description.ftl`. Please note that if a description template is created for a specific featureType that also has an associated namespace description template, the featureType template (i.e. the most specific template) will take priority.

@@ -38,6 +38,7 @@ For this tutorial, we'll be using the layer `opengeo:countries` to show off the 
 1.  In the GeoServer admin interface, click `Tile Layers` under `Tile Caching`.
 
     ![](img/tilelayerslink.png)
+
     *Tile Layers*
 
 2.  Click `opengeo:countries` in the list of layers.
@@ -49,6 +50,7 @@ For this tutorial, we'll be using the layer `opengeo:countries` to show off the 
     - `application/vnd.mapbox-vector-tile`
 
     ![](img/vectortiles_tileformats.png)
+
     *Vector tiles tile formats*
 
 4.  Click `Save`.
@@ -190,6 +192,7 @@ This guarantees that vector tile metatiling cannot exhaust heap memory or destab
         If your GeoServer is deployed at a server other than `http://localhost:8080/geoserver/`, then please adjust the above URL.
 
     ![](img/vectortileoutput.png)
+
     *Vector tile output*
 
 These tiles are being rendered by the OpenLayers client.
@@ -323,6 +326,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 2.  Save the file and reload the application.
 
     ![](img/vectortileoutputgreen.png)
+
     *Vector tile output with alternate color*
 
 3.  We can also do attributed-based styling. This dataset contains has a property (`region_un`) which contains the region the country is in. Let's highlight countries in Africa by adding another style definition below the existing style:
@@ -361,4 +365,5 @@ Since these tiles are rendered in the client, we need only change the styling in
 5.  Save the file and reload the application.
 
     ![](img/vectortileoutputafrica.png)
+
     *Vector tile output with Africa highlighted*

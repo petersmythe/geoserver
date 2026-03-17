@@ -71,11 +71,13 @@ Login into the GeoServer web administration interface and configure the datastor
 First, choose the *Oracle (JNDI)* datastore and give it a name:
 
 ![](oracle_start.png)
+
 *Choosing a JNDI enabled datastore*
 
 Then, configure the connection parameters so that the JNDI path matches the one specified in the Tomcat configuration:
 
 ![](oracle_conf.png)
+
 *Configuring the JNDI connection*
 
 When you are doing this, make sure the *schema* is properly setup, or the datastore will list all the tables it can find in the schema it can access. In the case of Oracle the schema is usually the user name, upper cased.

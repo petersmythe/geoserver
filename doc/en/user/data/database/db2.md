@@ -47,11 +47,13 @@ After all GeoServer files and external files have been downloaded and copied, re
 When properly installed, **Db2** will be an option in the **Vector Data Sources** list when creating a new data store.
 
 ![](images/db2create.png)
+
 *Db2 in the list of raster data stores*
 
 ## Configuring a Db2 data store
 
 ![](images/db2configure.png)
+
 *Configuring a Db2 data store*
 
 ## Configuring a Db2 data store with JNDI

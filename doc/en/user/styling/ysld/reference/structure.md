@@ -46,6 +46,7 @@ The structure of a typical YSLD file is as follows:
 The structure YSLD files is outlined using indentation.
 
 ![](img/structure_example.svg)
+
 *Structure of YSLD style_example*
 
 ## Property syntax

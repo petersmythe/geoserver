@@ -53,6 +53,7 @@ The plugin includes an `OIDC_LOGGING` profile which is installed on startup. Thi
 The module also includes an additional connection setting to include the token details as additional log messages. This is intended to assist in troubleshooting during development and initial setup.
 
 ![](images/log-sensitive-information.png)
+
 *Log sensitive information*
 
 This setting can obviously be used to access sensitive information, and you are advised to clear logs after use.
@@ -85,6 +86,7 @@ To setup for troubleshooting OIDC activity:
 ## Resource Server (Bearer JWT)
 
 ![](images/resource_server.png)
+
 *Bearer Resource Server Checkbox*
 
 When enabled, the same OAuth2 / OpenID Connect login filter also accepts machine-to-machine requests that provide an Authorization: Bearer <JWT> header. The token is validated using the provider's JWK Set URI configured in this panel.
@@ -94,6 +96,7 @@ Disable this option if you only want browser-based login, and you do not want th
 ## Opaque Token Support (JWE)
 
 ![](images/opaque_token.png)
+
 *Bearer Resource Server Checkbox*
 
 When enabled, the same OAuth2 / OpenID Connect login filter will perform the token validation externally by triggering the token introspection URL.
@@ -107,6 +110,7 @@ So the token is validated remotely, and any "claims" GeoServer sees come from th
 The OpenID Connect plugin allows the use of Proof Key of Code Exchange (PKCE).
 
 ![](images/pkce.png)
+
 *Proof Key of Code Exchange*
 
 The setup process is as follows:
@@ -209,7 +213,7 @@ In this example we are going to
     openssl s_client -connect accounts.google.com:443
     ```
     >
-    > ![](images/google_ssl_001.png)
+    ![](images/google_ssl_001.png)
 
     And for `https://www.googleapis.com`
 
@@ -217,7 +221,7 @@ In this example we are going to
     openssl s_client -connect www.googleapis.com:443
     ```
     >
-    > ![](images/google_ssl_002.png)
+    ![](images/google_ssl_002.png)
 
 2.  Store SSL Certificates on local hard disk
 

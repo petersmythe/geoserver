@@ -20,6 +20,7 @@ render_macros: true
 3.  On restart the feature services is listed on the welcome page: <http://localhost:8080/geoserver/>
 
     ![](img/welcome-ogc-api-features.png)
+
     *GeoServer Welcome Page OGC API - Features*
 
 4.  The feature service is available at: <http://localhost:8080/geoserver/ogc/features/v1>
@@ -67,6 +68,7 @@ render_macros: true
 3.  The feature service is listed on the welcome page: <http://localhost:8080/geoserver/>
 
     ![](img/welcome-ogc-api-features.png)
+
     *GeoServer Welcome Page OGC API - Features*
 
 4.  The feature service is available at: <http://localhost:8080/geoserver/ogc/features/v1>

@@ -16,11 +16,13 @@ There are several warnings shown when we first start up GeoServer and login as a
 1.  Change the default login from **admin/geoserver**.
 
     ![](images/admin-password-warning.png)
+
     *Default admin password warning*
 
     Click on the **change it** to open **Edit user** for the `admin` user. You may also reach this screen by navigate to **Security > Users, Groups, and Roles**. Changing the the **Users/Groups** tag, and selecting the `admin` user.
 
     ![](images/admin-password.png)
+
     *Change Master Password*
 
     User this screen to change the ``admin`` user password from the default:
@@ -35,11 +37,13 @@ There are several warnings shown when we first start up GeoServer and login as a
 3.  Change master password:
 
     ![](images/master-password-warning.png)
+
     *Master password warning*
 
     Click on the **change it** to open **Change Master Password**. You may also reach this screen by navigate to **Security > Passwords**, and pressing **Change password**.
 
     ![](images/master-password.png)
+
     *Change Master Password*
 
     Use this screen to change the master or keystore password.
@@ -70,6 +74,7 @@ For more information see [Keystore password](../../security/passwd.md#security_m
     Navigate to **Settings > Global**. Locate the heading **Internal Settings** and adjust **Logging profile** to `PRODUCTION_LOGGING`.
 
     ![](images/logging-profile.png)
+
     *PRODUCTION_LOGGING profile*
 
     For more information see [Logging Profile](../../configuration/globalsettings.md#config_globalsettings_log_profile).

@@ -2,8 +2,9 @@
 
 The following diagram outlines the architecture of the monitor extension:
 
-> ![](images/monitor.png)
-> *Monitor extension architecture*
+![](images/monitor.png)
+
+*Monitor extension architecture*
 
 As a request is processed the monitor inserts itself at particular points in the request life cycle to capture various information about the request. Such information includes:
 

@@ -7,6 +7,7 @@ GeoServer has the ability to load data from a remote Web Feature Server (WFS). T
 To connect to an external WFS, it is necessary to load it as a new datastore. To start, navigate to **Stores --> Add a new store --> Web Feature Server**.
 
 ![](images/externalwfs.png)
+
 *Adding an external WFS as a store*
 
 | **Option** | **Description** |

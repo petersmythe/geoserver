@@ -7,6 +7,7 @@ This section provides the configuration options for [User/group services](../use
 In this menu, user/group services can be added, removed, or edited. By default, there is one user/group service in GeoServer, which is [XML-based](../usergrouprole/usergroupservices.md#security_rolesystem_usergroupxml). It is encrypted with [Weak PBE](../passwd.md#security_passwd_encryption) and uses the default [password policy](../passwd.md#security_passwd_policy). It is also possible to have a user/group service based on [JDBC](../usergrouprole/usergroupservices.md#security_rolesystem_usergroupjdbc), with or without JNDI.
 
 ![](images/ugr_usergroup.png)
+
 *User/group services*
 
 Clicking an existing user/group service will enable editing, while clicking the **Add new** link will configure a new user/group service.
@@ -21,6 +22,7 @@ There are three tabs for configuration: Settings, Users, and Groups.
 To add a new XML user/group service, click the **Add new** link. XML is the default option. The following figure shows the configuration options for an XML user/group service.
 
 ![](images/ugr_ugxmlsettings.png)
+
 *Adding an XML user/group service*
 
 | Option | Description |
@@ -37,6 +39,7 @@ To add a new XML user/group service, click the **Add new** link. XML is the defa
 To add a new JDBC user/group service, click the **Add new** link, and then the **JDBC** option at the top of the following form. The following figure shows the configuration options for a JDBC user/group service.
 
 ![](images/ugr_ugjdbcsettings.png)
+
 *Adding a user/group service via JDBC*
 
 | Option | Description |
@@ -56,6 +59,7 @@ To add a new JDBC user/group service, click the **Add new** link, and then the *
 In addition to the parameters listed above, the following additional parameter will apply when the [JNDI](../../data/database/jndi.md) flag is set.
 
 ![](images/ugr_ugjdbcjndisettings.png)
+
 *Adding a user/group service via JDBC with JNDI*
 
 | Option             | Description                                       |
@@ -67,6 +71,7 @@ In addition to the parameters listed above, the following additional parameter w
 To add a new LDAP user/group service, click the **Add new** link, and then the **LDAP** option at the top of the following form. The following figure shows the configuration options for a LDAP user/group service.
 
 ![](images/ldap_group_service.png)
+
 *Adding a user/group service via LDAP*
 
 | Option                                            | Description                                                                                                                                                                  |
@@ -107,6 +112,7 @@ There are three tabs in the resulting menu: **Settings**, **Users**, and **Group
 The Users tab provides options to configure users in the user/group service.
 
 ![](images/ugr_ugusers.png)
+
 *Users tab*
 
 Clicking a username will allow its parameters to be changed, while clicking the **Add new** link will create a new user.
@@ -114,6 +120,7 @@ Clicking a username will allow its parameters to be changed, while clicking the 
 ### Add user {: #security_webadmin_users }
 
 ![](images/ugr_newuser.png)
+
 *Creating or editing a user*
 
 | Option | Description |
@@ -132,6 +139,7 @@ Clicking a username will allow its parameters to be changed, while clicking the 
 The Groups tab provides configuration options for groups in this user/group service. There are options to add and remove a group, with an additional option to remove a group and the roles associated with that group.
 
 ![](images/ugr_uggroups.png)
+
 *Groups tab*
 
 ### Remove User {: #security_webadmin_groups }
@@ -142,11 +150,13 @@ There are two related buttons that are responsible for removing users: **Remove 
 - **Remove Selected and remove role associations** removes user from [users.xml](https://github.com/geoserver/geoserver/blob/main/data/release/security/usergroup/default/users.xml) and also removes user and associated role to user from [roles.xml](https://github.com/geoserver/geoserver/blob/main/data/release/security/role/default/roles.xml).
 
 ![](images/ugr_ugusers.png)
+
 *Users tab*
 
 ### Add group
 
 ![](images/ugr_newgroup.png)
+
 *Creating or editing a group*
 
 | Option | Description |
@@ -165,6 +175,7 @@ In this menu, role services can be added, removed, or edited. By default, the ac
 The Administrator role is called `ROLE_ADMINISTRATOR`.
 
 ![](images/ugr_roleservices.png)
+
 *Role services*
 
 Clicking an existing role service will open it for editing, while clicking the **Add new** link will configure a new role service.
@@ -179,6 +190,7 @@ There are two pages for configuration: Settings and Roles.
 To add a new XML role service, click the **Add new** link. XML is the default option. The following figure shows the configuration options for an XML role service.
 
 ![](images/ugr_rolexmlsettings.png)
+
 *Adding an XML role service*
 
 | Option | Description |
@@ -193,6 +205,7 @@ To add a new XML role service, click the **Add new** link. XML is the default op
 To add a new XML role service, click the **Add new** link, and then the **JDBC** option at the top of the following form. The following figure shows the configuration options for a JDBC role service.
 
 ![](images/ugr_rolejdbcsettings.png)
+
 *Adding a role service via JDBC*
 
 | Option | Description |
@@ -211,6 +224,7 @@ To add a new XML role service, click the **Add new** link, and then the **JDBC**
 In addition to the parameters listed above, the following additional parameter will apply when the [JNDI](../../data/database/jndi.md) flag is set.
 
 ![](images/ugr_rolejdbcjndisettings.png)
+
 *Adding a role service via JDBC with JNDI*
 
 | Option             | Description                                       |
@@ -222,6 +236,7 @@ In addition to the parameters listed above, the following additional parameter w
 To add a new LDAP role service, click the **Add new** link, and then the **LDAP** option at the top of the following form. The following figure shows the configuration options for a LDAP role service.
 
 ![](images/ldap_role_empty.png)
+
 *Adding a role service via LDAP*
 
 | Option | Description |
@@ -251,6 +266,7 @@ Once the new role service is added (either XML or JDBC), clicking it in the list
 There are two tabs in the resulting menu: **Settings** and **Roles**. The Settings tab is identical to that found when creating the role service, while the Roles tab is described below.
 
 ![](images/ugr_roleroles.png)
+
 *Roles tab*
 
 Clicking a role will allow its parameters to be changed, while clicking the **Add new** link will create a new role.
@@ -258,6 +274,7 @@ Clicking a role will allow its parameters to be changed, while clicking the **Ad
 ### Add role {: #security_webadmin_roles }
 
 ![](images/ugr_newrole.png)
+
 *Creating or editing a role*
 
 | Option | Description |

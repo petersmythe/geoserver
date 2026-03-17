@@ -257,9 +257,11 @@ regex=(?<=_)(\\d{4}\\.\\d{3})(?=_)
 By default, **ImageMosaic** will be an option in the **Raster Data Sources** list when creating a new data store.
 
 ![](images/imagemosaiccreate.png)
+
 *ImageMosaic in the list of raster data stores*
 
 ![](images/imagemosaicconfigure.png)
+
 *Configuring an ImageMosaic data store*
 
 | Parameter | Description |
@@ -277,6 +279,7 @@ Creation of the store is the first step to getting an ImageMosaic published in G
 The Coverage Editor gives users the possibility to set a few control parameters to further control the mosaic creation process.
 
 ![](images/coverageparameters.png)
+
 *Coverage parameters*
 
 The parameters are as follows:

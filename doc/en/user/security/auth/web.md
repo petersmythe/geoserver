@@ -14,6 +14,7 @@ The typical process of authentication is as follows:
 The following shows the default configuration of the authentication chain for the web admin.
 
 ![](images/auth_chain_web1.png)
+
 *GeoServer authentication chain, with filter and provider chains*
 
 In this example the filter chain is made up of the following filters:
@@ -36,6 +37,7 @@ To following example requests illustrate how the elements of the various chains 
 This example describes the process when a user visits the home page of the web admin for the first time.
 
 ![](images/auth_chain_web2.png)
+
 *Authentication chain for a first time visit from a user*
 
 The first filter to execute is the *Session* filter. It checks for an existing session, but finds none, so processing continues to the next filter in the chain. The *Logout* filter checks for the case of a user logging out, which also is not the case, so processing continues. The *Form login* filter checks for a form login, and also finds none. The *Remember Me* filter determines if this request can be authenticated from a previous session cookie, but in this case it cannot. The final filter to execute is the *Anonymous* filter which checks if the user specified any credentials. In this case the user has not provided any credentials, so the request is authenticated anonymously. Since no authentication is required to view the home page, the provider chain is not invoked.
@@ -47,6 +49,7 @@ The last response to the request directs the user to the home page.
 This examples describes the process invoked when a user logs on to the web admin via the login form.
 
 ![](images/auth_chain_web3.png)
+
 *Authentication chain for a user logging in*
 
 The *Session* filter finds no existing session, and processing continues. The *Logout* filter checks for a logout request, finds none, and continues. The *Form login* filter recognizes the request as a form login and begins the authentication process. It extracts the username and password from the request and invokes the provider chain.
@@ -60,6 +63,7 @@ If the credentials are invalid, the user will be returned to the login form page
 This example describes the process invoked when a user who is already logged on visits another page in the web admin.
 
 ![](images/auth_chain_web4.png)
+
 *Authentication chain for a user visiting another page after logging in*
 
 The *Session* filter executes and finds an existing session that is still valid. The session contains the authentication details and no further chain processing is required. The response is the page requested by the user.
@@ -81,6 +85,7 @@ The chain of events for logging on with "Remember Me" set is identical to the pr
 This example describes the process invoked when the user returns to the web admin after a period of inactivity, while the "Remember Me" flag is set.
 
 ![](images/auth_chain_web5.png)
+
 *Authentication chain for a user returning after session time out with the "Remember Me" flag*
 
 Even though the "Remember Me" flag is set, the user's session on the server will still time out as normal. As such, the chain proceeds accordingly through the filters, starting with the *Session* filter, which finds no valid session. The *Logout* and *Form login* filters do not apply here. The *Remember Me* filter recognizes the browser cookie and is able to authenticate the request. The user is directed to whatever page was accessed and remains logged on.

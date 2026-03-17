@@ -26,11 +26,13 @@ This single layer can be published multiple times, giving each published layer a
 Once the extension is properly installed `SOLR` will show up as an option when creating a new data store.
 
 ![](images/solr_store.png)
+
 *SOLR in the list of vector data sources*
 
 ## Configuring a SOLR data store {: #community_solr_configure_store }
 
 ![](images/solr_configuration.png)
+
 *Configuring a SOLR data store*
 
 | `solr_url` | Provide a link to the SOLR server that provides the documents |
@@ -39,6 +41,7 @@ Once the extension is properly installed `SOLR` will show up as an option when c
 Once the parameters are entered and confirmed, GeoServer will contact the SOLR server and fetch a list of layer names and fill the layer chooser page accordingly:
 
 ![](images/solr_layerlist.png)
+
 *List of layers available in the SOLR server*
 
 ## Configuring a new SOLR base layer
@@ -46,6 +49,7 @@ Once the parameters are entered and confirmed, GeoServer will contact the SOLR s
 Once the layer name is chosen, the usual layer configuration panel will appear, with a pop-up showing in a table the fields available:
 
 ![](images/solr_fieldlist.png)
+
 *The layer field list configuration*
 
 | `Is empty` | Read only fields, checked if the field has no values in the documents associated to this layer |
@@ -60,11 +64,13 @@ Once the layer name is chosen, the usual layer configuration panel will appear, 
 By default the list will contain only the fields that have at least one non null value in the documents associated to the layer, but it is possible to get the full list by un-checking the "Hide field if empty" check-box:
 
 ![](images/solr_fieldlist_all.png)
+
 *Showing all fields available in SOLR*
 
 Once the table is filled with the all the required parameters, press the "Apply" button to confirm and go back to the main layer configuration panel. Should the choice of fields be modified, you can click the "Configure SOLR fields" just below the "Feature Type Details" panel.
 
 ![](images/solr_fieldlist_edit.png)
+
 *Going back to the field list editor*
 
 The rest of the layer configuration works as normal, once all the fields are provided you'll be able to save and use the layer in WMS and WFS.

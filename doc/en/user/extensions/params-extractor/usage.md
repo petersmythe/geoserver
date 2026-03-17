@@ -43,6 +43,7 @@ Echo parameter rules are very simple, they allow us to define that a certain exi
 Example of an echo parameter rule:
 
 ![](images/echo_rule.png)
+
 *Example of a echo parameter rule defined in the UI*
 
 This rule will echo the cql_filter of this URL:
@@ -70,6 +71,7 @@ For commodity is also possible when defining this type of rules to configure tha
 Example of a basic rule:
 
 ![](images/basic_rule.png)
+
 *Example of a basic rule defined in the UI*
 
 This rule will transform the URL:
@@ -101,6 +103,7 @@ For commodity is also possible when defining this type of rules to configure tha
 Example of an advanced rule:
 
 ![](images/advanced_rule.png)
+
 *Example of an advanced rule defined in the UI*
 
 This rule will transform the URL:
@@ -116,6 +119,7 @@ No that this rule will also echo an existing cql_filter parameter to the get cap
 Example of an advanced rule with repeat:
 
 ![](images/advanced_rule_repeat.png)
+
 *Example of an advanced rule with repeat defined in the UI*
 
 This rule will transform the URL:
@@ -133,6 +137,7 @@ Rules can be managed and tested in the rules management UI. Besides the basic op
 Follow a print screen of the rules management UI with all the rules previously defined:
 
 ![](images/rules_management.png)
+
 *Rules management UI*
 
 Note that the first rule (the advanced one) is not active.

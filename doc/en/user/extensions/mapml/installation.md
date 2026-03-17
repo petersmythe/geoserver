@@ -133,11 +133,13 @@ When both "Use Tiles" and "Use Features" are set in the FORMAT_OPTIONS parameter
 ## Sub-layer Settings
 
 ![](images/mapml_sub_layer_settings.png)
+
 *The sub-layer settings checkbox is shown*
 
 If the `Show <map-extent> in layer control` checkbox is checked (and the configuration is saved), the ``mapmlusemultiextents:true`` FORMAT_OPTIONS value will be used in the Layer Preview URL, and an individually accessible <map-extent> element will be generated for each requested layer. When composing a WMS request independently, include the ``mapmlusemultiextents:true`` parameter within FORMAT_OPTIONS if desired. The default value (false) is to represent the all layers in the LAYERS list as a single (hidden) <map-extent>.
 
 ![](images/mapml_wms_multi_extent.png)
+
 *This map uses `FORMAT_OPTIONS=mapmlusefeatures:true;mapmlusemultiextents:true;mapmlusetiles:true`*
 
 ## Client Requests

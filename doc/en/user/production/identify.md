@@ -24,10 +24,13 @@ This is possible by setting one variable, `GEOSERVER_NODE_OPTS`, with one of the
 Here are some examples:
 
 ![](images/custom_id.png)
+
 *GEOSERVER_NODE_OPTS="id:test1;background:black;color:white"*
 
 ![](images/host_ip.png)
+
 *GEOSERVER_NODE_OPTS="id:$host_ip"*
 
 ![](images/host_name.png)
+
 *GEOSERVER_NODE_OPTS="id:$host_name"*

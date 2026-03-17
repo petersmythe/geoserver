@@ -3,6 +3,7 @@
 The default HTML output is a sequence of titled tables, each one for a different layer. The following example shows the default output for the tiger-ny basemap (included in the above cited releases, and onwards).
 
 ![](default.png)
+
 *Default Output*
 
 ## Standard Templates
@@ -70,14 +71,14 @@ The *footer template* is similar, a static template used to close the HTML docum
 
 The *content template* is the one that turns feature objects into actual HTML tables. The template is called multiple times: each time it's fed with a different feature collection, whose features all have the same type. In the above example, the template has been called once for the roads, and once for the points of interest (POI). Here is the template source:
 
-    <#-- 
-    Body section of the GetFeatureInfo template, it's provided with one feature collection, and
-    will be called multiple times if there are various feature collections
-    -->
+```html
+<#-- 
+Body section of the GetFeatureInfo template, it's provided with one feature collection, and
+will be called multiple times if there are various feature collections
+-->
 <table class="featureInfo">
-      <caption class="featureInfo">${type.name}</caption>
-      <tr>
-```
+  <caption class="featureInfo">${type.name}</caption>
+  <tr>
 <#list type.attributes as attribute>
   <#if !attribute.isGeometry>
     <th >${attribute.name}</th>
@@ -101,9 +102,7 @@ The *content template* is the one that turns feature objects into actual HTML ta
   </#list>
   </tr>
 </#list>
-```
 </table>
-```xml
 <br/>
 ```
 
@@ -117,8 +116,8 @@ So, what do you have to do if you want to override the custom templates? Well, i
 
 For example, let's say you would prefer a bulleted list appearance for your feature info output, and you want this to be applied to all GetFeatureInfo HTML output. In that case you would drop the following `content.ftl` in the templates directory:
 
+```html
 <ul>
-```
 <#list features as feature>
   <li><b>Type: ${type.name}</b> (id: <em>${feature.fid}</em>):
   <ul>
@@ -130,31 +129,33 @@ For example, let's say you would prefer a bulleted list appearance for your feat
   </ul>
   </li>
 </#list>
-```
 </ul>
+```
 
 With this template in place, the output would be:
 
 ![](ul.png)
+
 *Bulleted List Output*
 
 Looking at the output we notice that point of interest features refer to image files, which we know are stored inside the default GeoServer distribution in the `demo_app/pics` path. So, we could provide a POI specific override that actually loads the images.
 
 This is easy: just put the following template in the feature type folder, which in this case is `workspaces/topp/DS_poi/poi` (you should refer to your Internet visible server address instead of localhost, or its IP if you have fixed IPs):
 
+```html
 <ul>
-```xml
 <#list features as feature>
   <li><b>Point of interest, "${feature.NAME.value}"</b>: <br/>
   <img src="http://localhost:8080/geoserver/popup_map/${feature.THUMBNAIL.value}"/>
   </li>
 </#list>
-```
 </ul>
+```
 
 With this additional template, the output is:
 
 ![](thumb.png)
+
 *Output with Thumbnail Image*
 
 As you can see, roads are still using the generic template, whilst POI is using its own custom template.
@@ -224,14 +225,14 @@ The following system property enables selective access:
 
 This exposes the static members of `java.lang.String` using the variable name `String` in the template, which can be used in templates as follows:
 
+```html
 <ul>
-```
 <#list features as feature>
   <li>${feature.NAME.value}: ${String.format("%.2f €", feature.AMOUNT.rawValue)}
   </li>
 </#list>
-```
 </ul>
+```
 
 In case of granting access to multiple classes with the same simple name, the later specified classes will be exposed with a number suffix. For example when specifying `-Dorg.geoserver.htmlTemplates.staticMemberAccess=java.lang.String,com.acme.String`, the statics of `java.lang.String` will be exposed as `String` while the statics of `com.acme.String` will be exposed as `String2` and so on.
 
@@ -243,15 +244,15 @@ The following system property enables unrestricted access:
 
 In this case GeoServer exposes a `statics` variable you can use in templates to access static members as follows:
 
-    <#assign String=statics['java.lang.String']>
+```html
+<#assign String=statics['java.lang.String']>
 <ul>
-```
 <#list features as feature>
   <li>${feature.NAME.value}: ${String.format("%.2f €", feature.AMOUNT.rawValue)}
   </li>
 </#list>
-```
 </ul>
+```
 
 !!! warning
     Unrestricted access as shown above is only recommended if you can fully trust your template authors.

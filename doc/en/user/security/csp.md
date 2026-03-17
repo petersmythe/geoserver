@@ -38,6 +38,7 @@ It is important that administrators do **NOT** modify **`csp_default.xml`**. In 
 Navigate to **Data > Content Security Policy** to manage and configure the CSP header.
 
 ![](images/csp-config.png)
+
 *CSP Configuration*
 
 Use the **Enable Content-Security-Policy header** checkbox to enable/disable this feature. This setting will enable/disable the CSP set by Wicket or any other modules setting their own CSP unless **Allow modules to override header** is set to ``true``.
@@ -127,6 +128,7 @@ Each policy contains the rules and directives to set a single CSP header value. 
 The button for adding policies can be found at the top of the **Policy List** table and a policy can be edited by clicking on its name in the table or removed by clicking on the remove icon at the end of the policy's row in the table. Policy positions can also be changed by using the up/down arrows or by dragging and dropping the rule's row in the table.
 
 ![](images/csp-policy.png)
+
 *CSP Policy Configuration*
 
 - A unique name must be provided in the **Name** text field when adding a new policy.
@@ -143,6 +145,7 @@ Each rule contains a filter to match against user requests and the CSP directive
 The button for adding rules can be found at the top of the **Rule List** table and a rule can be edited by clicking on its name in the table or removed by clicking on the remove icon at the end of the rule's row in the table. Rule positions can also be changed by using the up/down arrows or by dragging and dropping the rule's row in the table.
 
 ![](images/csp-rule.png)
+
 *CSP Rule Configuration*
 
 - A name that is unique among the rules within the specific policy must be provided in the **Name** text field when adding a new rule.
@@ -202,6 +205,7 @@ The **Test Content Security Policy** form allows a URL to be checked, reporting 
 Enter the URL to test in the **Test URL** text field and press the **Test** button to perform the test. The **Content-Security-Policy header value** text field will contain the CSP for the test URL with the string ``NONE`` being shown if no header would be set.
 
 ![](images/csp-test.png)
+
 *Test CSP with URL*
 
 ## System Administrator CSP Settings {: #security_csp_references }

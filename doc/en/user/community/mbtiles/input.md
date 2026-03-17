@@ -5,9 +5,11 @@
 When the extension has been installed, :guilabel:MBTiles` will be an option in the **Raster Data Sources** list when creating a new data store.
 
 ![](images/mbtilescreate.png)
+
 *MBTiles in the list of raster data sources*
 
 ![](images/mbtilesconfigure.png)
+
 *Configuring an MBTiles data source*
 
 | **Option** | **Description** |
@@ -23,9 +25,11 @@ When the extension has been installed, :guilabel:MBTiles` will be an option in t
 When the extension has been installed, **MBTiles with vector tiles** will be an option in the **Vector Data Sources** list when creating a new data store.
 
 ![](images/mbtiles-vector-create.png)
+
 *MBTiles in the list of vector data sources*
 
 ![](images/mbtiles-vector-configure.png)
+
 *Configuring an MBTiles data store*
 
 | **Option** | **Description**          |
@@ -37,6 +41,7 @@ When the extension has been installed, **MBTiles with vector tiles** will be an 
 After configuration the store will allow setting up the layers, as they get described in the `json` entry of the [metadata table](https://github.com/mapbox/mbtiles-spec/blob/master/1.3/spec.md#content).
 
 ![](images/mbtiles-vector-layers.png)
+
 *Configuring layers out of a MBTiles store*
 
 Each vector tile contains data for all the layers described, the store maintains a "soft cache" of parsed tiles to avoid re-parsing them from the binary on multi-layer rendering operations.

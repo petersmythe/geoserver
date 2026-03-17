@@ -38,6 +38,7 @@ The default behavior of WMTS is to list in the capabilities document all the val
 This module will instead take into account the presentation mode selected by the user:
 
 ![](images/layer_dimensions.png)
+
 *Configuration of a layer dimensions.*
 
 With the presentation mode select to `Continuous interval` or `Resolution and interval` we will instead see something like this:
@@ -82,6 +83,7 @@ This operation is useful to understand which domains are available in our layer 
 | ExpandLimit | No | A numerical value, greater or equal to zero. If the number of unique domain values is below `ExpandLimit` then the domain with be represented in full, as a comma separated list of values, otherwise in compact form, as `start--end`. The server assumes a built-in limit of 200 in case not specified, and allows client to specify a value up to 10000, values can be tuned via the user interface, in the WMTS panel (server defaults) and on a layer by layer basis. |
 
 ![](images/expandLimitConfig.png)
+
 *Configuration domain expansion limits.*
 
 !!! note

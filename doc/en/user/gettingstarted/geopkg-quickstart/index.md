@@ -33,6 +33,7 @@ The next step is to create a workspace for the geopackage. A workspace is a fold
 3.  Navigate to **Data --> Workspaces**.
 
     ![](../../data/webadmin/img/data_workspaces.png)
+
     *Workspaces page*
 
 4.  Click the **Add new workspace** button to display the **New Workspace** page.
@@ -55,6 +56,7 @@ The next step is to create a workspace for the geopackage. A workspace is a fold
 1.  Press the **Submit** button.
 
     ![](images/workspace.png)
+
     *New workspace*
 
 2.  The `tutorial` workspace will be added to the **Workspaces** list.
@@ -66,6 +68,7 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 1.  Navigate to **Data-->Stores**.
 
     ![](images/stores.png)
+
     *Stores page*
 
 2.  This page displays a list of stores, including the type of store and the workspace that the store belongs to.
@@ -73,6 +76,7 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 3.  In order to add the geopackage, you need to create a new store. Click the **Add new Store** button. You will be redirected to a list of the data sources supported by GeoServer. Note that the data sources are extensible, so your list may look slightly different.
 
     ![](images/stores_new.png)
+
     *New data source*
 
 4.  From the list of **Vector Data Sources** locate and click the **GeoPackage** link.
@@ -90,15 +94,17 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 > This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the **Data Source Name** simple as they will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).
->
-> ![](images/basic.png)
-> *Basic Store info*
+
+![](images/basic.png)
+
+*Basic Store info*
 
 1.  Connection parameters are used to establish the connection with your database. As GeoPackage is a file based database this will primarily consist of the geopackage location.
 
 2.  Under **Connection Parameters**, browse to the location **URL** of the geopackage, in our example **`data/ne.shp`**.
 
     ![](images/connection_browse.png)
+
     *Browse database location*
 
 3.  The **Connection Parameters** for our geopackage are:
@@ -111,9 +117,10 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 > The use of **read_only** above indicates that we will not be writing to this GeoPackage, allowing GeoServer to avoid managing write locks when accessing this content for greater performance.
->
-> ![](images/connection.png)
-> *Connection Parameters*
+
+![](images/connection.png)
+
+*Connection Parameters*
 
 1.  Press **Save**.
 2.  You will be redirected to the **New Layer** page (as this is the most common next step when adding a new data store).
@@ -125,11 +132,13 @@ Now that we have connected to the GeoPackage, we can publish the layer.
 1.  On the **New Layer** page, click **Publish** beside the `countries` **layer name**.
 
     ![](images/layer_new.png)
+
     *New Layer*
 
 2.  The **Edit Layer** page defines the data and publishing parameters for a layer.
 
     ![](images/layer.png)
+
     *Edit Layer Data tab*
 
 3.  There are three critical pieces of information required on the **Data** tab before we can even save.
@@ -149,9 +158,10 @@ Now that we have connected to the GeoPackage, we can publish the layer.
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 > The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.
->
-> ![](images/layer_basic.png)
-> *Basic Resource Info*
+
+![](images/layer_basic.png)
+
+*Basic Resource Info*
 
 1.  Double check the **Coordinate Reference Systems** information is correct.
 
@@ -163,12 +173,14 @@ Now that we have connected to the GeoPackage, we can publish the layer.
 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> ![](images/layer_crs.png)
-> *Coordinate Reference Systems*
+![](images/layer_crs.png)
+
+*Coordinate Reference Systems*
 
 1.  Locate **Bounding Boxes** and generate the layer's bounding boxes by clicking the **Compute from data** and then **Compute from native bounds** links.
 
     ![](images/layer_bbox.png)
+
     *Generating bounding boxes*
 
 2.  Press **Apply** to save your work thus far without closing the page.
@@ -180,6 +192,7 @@ Now that we have connected to the GeoPackage, we can publish the layer.
 4.  Locate the **WMS Settings** heading, where we can set the style.Ensure that the **Default Style** is set to `polygon``.
 
     ![](images/layer_style.png)
+
     *WMS Settings*
 
 5.  Press **Save** to complete your layer edits.
@@ -194,6 +207,7 @@ In order to verify that the `tutorial:countries` layer is published correctly, w
         Use the **Search** field with ``tutorial`` as shown to limit the number of layers to page through.
 
     ![](images/preview.png)
+
     *Layer Preview*
 
 2.  Click the **OpenLayers** link in the **Common Formats** column.
@@ -203,4 +217,5 @@ In order to verify that the `tutorial:countries` layer is published correctly, w
     You can use this preview map to zoom and pan around the dataset, as well as display the attributes of features.
 
     ![](images/openlayers.png)
+
     *Preview map of countries*

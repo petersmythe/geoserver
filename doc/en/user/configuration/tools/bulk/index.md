@@ -3,6 +3,7 @@
 The **Catalog Bulk Load Tool** is used to duplicate GeoServer configuration (workspaces, stores, layers) for testing. The tool can also be used to make a single duplicate for experimenting with configuration and optimization.
 
 ![](img/bulk_tool.png)
+
 *Catalog Bulk Load Tool*
 
 ## Duplicating Configuration

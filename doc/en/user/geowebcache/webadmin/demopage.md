@@ -5,6 +5,7 @@ In addition to the [Tile Layers](layers.md) page, there is also a demo page wher
 As this interface is part of the standalone GeoWebCache, some of the functionality here is duplicated from the [Tile Layers](layers.md) page.
 
 ![](img/demopage.png)
+
 *Built-in demo page*
 
 ## Viewing
@@ -24,6 +25,7 @@ If there is a problem loading this page, verify the steps on the [Using GeoWebCa
 The demo page contains a list of every layer that GeoWebCache is aware of. This is typically (though not necessarily) identical to the list of layers as published in the GeoServer WMS capabilities document. If configuration changes are made to GeoServer, GeoWebCache will not automatically become aware of them. To ensure that GeoWebCache is using the latest configuration information, click the **Reload Configuration** button. Reloading the configuration will trigger authentication to GeoServer, and will require an administration username and password. Use the same username and password that you would use to log on to the [Web administration interface](../../webadmin/index.md). After a successful logon, the number of layers found and loaded will be displayed.
 
 ![](img/demopage_reload.png)
+
 *Reloading the configuration*
 
 ## Layers and output formats

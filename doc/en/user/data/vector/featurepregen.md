@@ -25,11 +25,13 @@ render_macros: true
 If the extension is properly installed, **Generalized Data Store** will be listed as an option when creating a new data store.
 
 ![](images/featurepregencreate.png)
+
 *Generalized Data Store in the list of vector data stores*
 
 ## Configuring a Pregeneralized Features data store
 
 ![](images/featurepregenconfigure.png)
+
 *Configuring a Pregeneralized Features data store*
 
 For a detailed description, look at the [Tutorial](../../tutorials/feature-pregeneralized/feature-pregeneralized_tutorial.md).

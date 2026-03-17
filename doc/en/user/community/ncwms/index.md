@@ -24,6 +24,7 @@ Comments can be added in the file by starting the line by a percentage sign. For
     #0000FF
 
 ![](images/redblue-editor.png)
+
 *Configuring a dynamic palette style*
 
 Several ready to use palettes coming from the popular "color brewer" site are available in the [ncWMS source code repository](https://github.com/Reading-eScience-Centre/edal-java/tree/master/graphics/src/main/resources/palettes).
@@ -105,6 +106,7 @@ The above explains a bit of how the palette is applied:
 - The scale can be either linear, or logarithmic
 
 ![](images/bandrange.png)
+
 *Editing the defaults for min/max scale range values in the GeoServer layer editor*
 
 The above parameters can all be used at will to control the palette generation using the typical environment variable approach. However, it's also possible to use ncWMS own extensions, which are adding direct parameters in the request. See the following section for details.

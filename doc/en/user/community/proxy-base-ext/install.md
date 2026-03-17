@@ -29,4 +29,5 @@ The installation process is similar to other GeoServer extensions:
     On successful installation, a new Proxy Base Extension entry will appear in the left menu, under "Settings".
 
     ![](images/proxy_base_settings.png)
+
     *The Proxy Base Extension menu entry*

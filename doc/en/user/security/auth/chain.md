@@ -10,6 +10,7 @@ Understanding the **authentication chain** helps explain how GeoServer authentic
 Multiple authentication mechanisms may be active within GeoServer at a given time. The following figure illustrates the flow of a generic request.
 
 ![](images/auth_chain1.png)
+
 *Flow of a request through the authentication system*
 
 Before dispatching a request to the appropriate service or handler, GeoServer first filters the request through the authentication chain. The request is passed to each mechanism in the chain in order, and each is given the chance to authenticate the request. If one of the mechanisms in the chain is able to successfully authenticate, the request moves to normal processing. Otherwise the request is not routed any further and an authorization error (usually a HTTP 401) is returned to the user.
@@ -19,6 +20,7 @@ Before dispatching a request to the appropriate service or handler, GeoServer fi
 In the case of GeoServer, the authentication chain is actually made up of two chains: a **filter chain**, which determine if further authentication of a request is required, and a **provider chain**, which performs the actual authentication.
 
 ![](images/auth_chain2.png)
+
 *Detail of authentication chain, showing filter chain and provider chain*
 
 The filter chain performs a variety of tasks, including:

@@ -7,6 +7,7 @@ To upload a file to the global styles folder:
 1.  Use **Resource Browser** to select **/ --> styles** in the resource tree.
 
     ![](img/upload_select_styles.png)
+
     *Resource Browser styles folder*
 
 2.  Click **Upload** button to open **Upload a Resource** dialog.
@@ -14,11 +15,13 @@ To upload a file to the global styles folder:
 3.  Use **Browse** to select a file from the local file system.
 
     ![](img/upload_icon.png)
+
     *Upload icon to styles folder*
 
 4.  Press **OK** to upload the file.
 
     ![](img/upload_icon_complete.png)
+
     *Resource Browser icon*
 
 ## Creating a control-flow configuration file
@@ -32,6 +35,7 @@ To create a **`controlflow.properties`** file:
     This can be tricky as the label is not very long.
 
     ![](img/control_root.png)
+
     *Resource Browser root folder*
 
 2.  Click **New resource** button to open **Edit a Resource** dialog.
@@ -51,4 +55,5 @@ To create a **`controlflow.properties`** file:
 3.  Press **OK** to create the resource.
 
     ![](img/control_edit.png)
+
     *Edit a Resource controlflow.properties*

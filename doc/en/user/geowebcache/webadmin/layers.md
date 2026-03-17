@@ -46,11 +46,13 @@ The list of layers displayed on this page is typically the same as, or similar t
     Deleting the tile cache cannot be undone.
 
 ![](img/removecachedlayers.png)
+
 *Removing a cached layer*
 
 To add in a layer from GeoServer (if it wasn't set up to be added automatically), click the **Add a new cached layer** link.
 
 ![](img/newcachedlayer.png)
+
 *Adding a new cached layer*
 
 ## Clearing GeoWebCache
@@ -61,6 +63,7 @@ The `Empty all` link allows to clear the entire cache, for all layers, grid sets
     This will truncate all layers in GeoWebCache
 
 ![](img/gwc_confirm.png)
+
 *Confirmation to GeoWebCache*
 
 A confirmation will appear on the page as message with names of cleared Tile layers.

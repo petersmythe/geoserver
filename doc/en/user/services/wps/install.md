@@ -28,6 +28,7 @@ The WPS module is not a part of GeoServer core, but instead must be installed as
 After restarting, load the [Web administration interface](../../webadmin/index.md). If the extension loaded properly, you should see an extra entry for WPS in the **Service Capabilities** column. If you don't see this entry, check the logs for errors.
 
 ![](images/wpscapslink.png)
+
 *A link for the WPS capabilities document will display if installed properly*
 
 ## Configuring WPS

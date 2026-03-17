@@ -25,31 +25,37 @@ This is a step by step guide to style a GeoServer demo layer, `sfdem`.
 4.  Choose a ``Graduated`` rendering, on the `PERSONS` column, and click on **Classify** button to generate ``1.5`` standard deviations, select the ``spectral`` color ramp, switch mode to ``Quantile`` and finally and click on the **Classify** button to generate a 5 classes map, as shown in figure.
 
     ![](images/qgis-vector-style.png)
+
     *QGIS vector styling*
 
 5.  Switch to the **Labels** page, choose ``Single labels````, label with the ````STATE NAME``\` attribute and choose your preferred text rendering options, as shown in figure
 
     ![](images/qgis-label-style.png)
+
     *QGIS labelling*
 
 6.  The layer renders as follows:
 
     ![](images/qgis-vector-render.png)
+
     *QGIS raster styling*
 
 7.  Go back At the **Properties** dialog, from the bottom of the **Styles** page, choose **Style \--\> Save Style**.
 
     ![](images/qgis-vector-saveas.png)
+
     *Export using Save As...*
 
 8.  Choose export in the `SLD` format, placing the file in the desired location.
 
     ![](images/qgis-choose-format.png)
+
     *Choosing export format...*
 
 9.  Go in GeoServer, create a new style, use the **Upload a new style** dialog to choose the exported file, and click on ``upload`` link.
 
     ![](images/gs-vector-upload.png)
+
     *Uploading style in GeoServer...*
 
 10. Click on guilabel:\`Apply\`.
@@ -57,11 +63,13 @@ This is a step by step guide to style a GeoServer demo layer, `sfdem`.
 11. Change to the **Layer preview** tab, click on the **Preview on Layer** link to choose `topp:states` to verify proper rendering.
 
     ![](images/gs-vector-preview.png)
+
     *Previewing style in GeoServer...*
 
 12. Eventually switch to the **Publishing** tab, search for `states`, and select **Default** or **Associated** checkbox to publish the layer to use the new style permanently.
 
     ![](images/gs-vector-associate.png)
+
     *Associating style in GeoServer...*
 
 ## Exporting raster symbology
@@ -85,36 +93,43 @@ This is a step by step guide to style a GeoServer demo layer, `sfdem`.
 4.  Choose a ``Singleband pseudocolor`` rendering, Generate **Min / Max Value Settings** using **Mean +/- standard deviation** with using `1.5` standard deviations. Generate a 5 classes **Linear** interpolated map, as shown in figure.
 
     ![](images/qgis-raster-style.png)
+
     *QGIS raster styling*
 
 5.  The layer renders as follows:
 
     ![](images/qgis-raster-render.png)
+
     *QGIS raster styling*
 
 6.  Return to the layer\'s **Properties** dialog **Symbology** page, at the bottom of the page choose **Style \--\> Save Style**.
 
     ![](images/qgis-raster-saveas.png)
+
     *Export using Save As...*
 
 7.  Choose export in the `SLD` format, placing the file in the desired location
 
     ![](images/qgis-choose-format.png)
+
     *Choosing export format...*
 
 8.  Go in GeoServer, create a new style, use the **Upload a new style** dialog to choose the exported file, and click on ``upload`` link.
 
     ![](images/gs-raster-upload.png)
+
     *Uploading style in GeoServer...*
 
 9.  Click on guilabel:\`Apply\` then change to the **Layer preview** tab. Click on the **Preview on Layer** link to choose `sfdem` to verify proper rendering.
 
     ![](images/gs-raster-preview.png)
+
     *Previewing style in GeoServer...*
 
 10. Finally switch to the **Publishing** tab, search for `sfdem` layer, and select **Default** or **Associated** checkbox to publish `sfdem` with the new style.
 
     ![](images/gs-raster-associate.png)
+
     *Associating style in GeoServer...*
 
 The next example shows how to style an aerial image instead.
@@ -137,11 +152,13 @@ The next example shows how to style an aerial image instead.
 7.  Choose a ``Multiband color`` rendering, set the **bands** (Red band == Band 1 (red), Green band == Band 2 (Green), Blue band == Band 3 (Blue)), generate **Min / Max Value Settings** using `5,0 - 95,0 % range` of **Cumulative count cut** and select `Stretch to MinMax` as **Contrast enhancement** option, as shown in the picture below
 
     ![](images/qgis-sentinel2-raster-style.png)
+
     *QGIS layer properties - Symbology*
 
 8.  The layer renders as follows:
 
     ![](images/qgis-sentinel2-raster-rendering.png)
+
     *QGIS layer rendering*
 
 9.  **Save the Style** as `SLD`
@@ -149,6 +166,7 @@ The next example shows how to style an aerial image instead.
 10. Go in GeoServer, use the generated `SLD` to **create a new style**, choose the `aerial` layer through the **Preview on Layer** link and verify if the layer is properly rendered (see the previous example for further details)
 
     ![](images/gs-sentinel2-raster-rendering.png)
+
     *GeoServer layer rendering*
 
 11. Finally **Publish** the `aerial` layer with the new style as described in the previous example.

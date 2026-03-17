@@ -28,6 +28,7 @@ render_macros: true
 5.  To verify that the extension was installed successfully, open the [Web administration interface](../../webadmin/index.md) and look for an **Import Data** page in the **Data** section on the left-side navigation menu.
 
     ![](images/importer_link.png)
+
     *Importer extension successfully installed.*
 
 For additional information please see the section on [Using the Importer extension](using.md).

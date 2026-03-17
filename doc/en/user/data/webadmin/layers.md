@@ -5,6 +5,7 @@ In GeoServer, the term "layer" refers to a raster or vector dataset that represe
 In the Layers section of the web interface, you can view and edit existing layers, add (register) a new layer, or remove (unregister) a layer. The Layers View page displays the list of layers, and the Store and Workspace in which each layer is contained. The View page also displays the layer's status and native SRS.
 
 ![](img/data_layers.png)
+
 *Layers View*
 
 ## Layer types
@@ -23,16 +24,19 @@ Layers can be divided into two types of data: raster and vector. These two forma
 At the upper left-hand corner of the layers view page there are two buttons for the adding and removal of layers. The green plus button allows you to add a new layer. The red minus button allows you to remove selected layers.
 
 ![](img/data_layers_add_remove.png)
+
 *Buttons to Add and Remove a Layer*
 
 Clicking the **Add a new layer** button brings up a **New Layer Chooser** panel. The menu displays all currently enabled stores. From this menu, select the Store where the layer should be added.
 
 ![](img/data_layers_add_chooser.png)
+
 *List of all currently enabled stores*
 
 Upon selection of a Store, a list is displayed of resources within the store. Resources which have already been published as layers are listed first, followed by other resources which are available to be published. In this example, `giant_polygon`, `poi`, `poly_landmarks` and `tiger_roads` are all existing layers within the NYC store.
 
 ![](img/data_layers_add_view.png)
+
 *List of published and available resources in a store*
 
 To add a layer for an available resource click **Publish**. To add a new layer for a published resource click **Publish Again**. (Note that when re-publishing the name of the new layer may have to be modified to avoid conflict with an existing layer.) The actions display an [Edit Layer](#data_webadmin_layers_edit_data) page to enter the definition of the new layer.
@@ -42,11 +46,13 @@ To add a layer for an available resource click **Publish**. To add a new layer f
 To remove a layer, select it by clicking the checkbox next to the layer. As shown below, multiple layers can be selected for batch removal. Note that selections for removal will not persist from one results page to the next.
 
 ![](img/data_layers_delete.png)
+
 *Some layers selected for removal*
 
 All layers can be selected for removal by clicking the checkbox in the header.
 
 ![](img/data_layers_delete_all.png)
+
 *All layers selected for removal*
 
 Once layer(s) are selected, the **Remove selected resources** link is activated. Once you've clicked the link, you will be asked to confirm or cancel the removal. Selecting **OK** removes the selected layer(s).
@@ -56,6 +62,7 @@ Once layer(s) are selected, the **Remove selected resources** link is activated.
 To view or edit a layer, click the layer name. A layer configuration page will be displayed. The **Data** tab, activated by default, allows you to define and change data parameters for a layer.
 
 ![](img/data_layers_edit_data.png)
+
 *Edit Layer: Data tab*
 
 ### Basic Info
@@ -82,6 +89,7 @@ The beginning sections---Basic Resource Info, Keywords and Metadata link---are a
 - **Metadata Links**---Allows linking to external documents that describe the data layer. The "type" input provides a few example types, like FGDC or ISO19115:2003, but allows any other type to be declared. The optional "About" entry can be used to point to the definition of the metadata standard, or any other side information about it. Finally, "URL" points to the actual metadata, while "Format" provides its mime type.
 
   ![](img/data_layers_meta.png)
+
   *Adding a metadata link in FGDC format*
 
 ### Coordinate Reference Systems
@@ -89,6 +97,7 @@ The beginning sections---Basic Resource Info, Keywords and Metadata link---are a
 A coordinate reference system (CRS) defines how georeferenced spatial data relates to real locations on the Earth's surface. CRSs are part of a more general model called Spatial Reference Systems (SRS), which includes referencing by coordinates and geographic identifiers. GeoServer needs to know the Coordinate Reference System of your data. This information is used for computing the latitude/longitude bounding box and reprojecting the data during both WMS and WFS requests.
 
 ![](img/data_layers_CRS.png)
+
 *Coordinate reference system of a layer*
 
 - **Native SRS**---Specifies the coordinate system the layer is stored in. Clicking the projection link displays a description of the SRS.
@@ -112,6 +121,7 @@ The bounding box determines the extent of the data within a layer.
 - **Lat/Lon Bounding Box**---The bounds specified in geographic coordinates. These bounds can be calculated by clicking the **Compute from native bounds** button.
 
 ![](img/data_layers_BB.png)
+
 *Bounding Boxes of a layer*
 
 ### Coverage Parameters (Raster)
@@ -130,6 +140,7 @@ There are two options pertaining the circular arcs:
 - **Linearization tolerance** controls how accurately the linearized version of geometries matches the original circular version of them. The tolerance can be expressed as an absolute number in the native unit of measure of the data, or it can be expressed in meters or feet using the "m" and "ft" suffixes (such as "10m" or "15ft").
 
 ![](img/curved.png)
+
 *Curved geometry control*
 
 ### Feature Type Details (Vector) {: #data_webadmin_layers_edit_publishing }
@@ -137,6 +148,7 @@ There are two options pertaining the circular arcs:
 Vector layers have a list of the **Feature Type Details**. These include the **Property** and **Type** of a data source. For example, the `sf:archsites` layer shown below includes a geometry (`the_geom`) of type "point".
 
 ![](img/data_layers_feature.png)
+
 *Feature Type Details*
 
 The **Nillable** option refers to whether the property requires a value or may be flagged as being null. Meanwhile **Min/Max Occurrences** refers to how many values a field is allowed to have. Currently both **Nillable** and **Min/Max Occurrences** are set to `true` and `0/1` but may be extended with future work on complex features.
@@ -144,6 +156,7 @@ The **Nillable** option refers to whether the property requires a value or may b
 The **Customize attributes** checkbox activates the attributes customization view.
 
 ![](img/data_layers_feature_customize.png)
+
 *Attribute customization*
 
 This view allows to:
@@ -165,6 +178,7 @@ From the **Add attribute dialog** it is possible to define a new attribute for t
 - The ``nillability`` of the new attribute, for example, making the attribute mandatory even if it's not in the data source, and vice-versa.
 
 ![](img/data_layers_feature_customize_add_attribute.png)
+
 *Add attribute dialog*
 
 For numeric or string types, the dialog also allows defining ``restrictions`` on the attribute value, which will be reported wherever the feature type is described. The restrictions set for an attribute are then available to clients, who may enforce them before applying changes to the feature type.
@@ -174,11 +188,13 @@ Two kinds of restrictions are available, but only one can be specified at a time
 - **Options** (for numeric and string types): when selected, the dialog shows controls to define a set of values; the attribute value must be equal to one of them.
 
 ![](img/data_layers_feature_customize_add_attribute_options.png)
+
 *Add attribute dialog with options restriction*
 
 - **Range** (for numeric types): when selected, the dialog allows defining a minimum and a maximum as a range for the attribute value, which must fall within the defined bounds.
 
 ![](img/data_layers_feature_customize_add_attribute_range.png)
+
 *Add attribute dialog with range restriction*
 
 When opening the **Edit attribute dialog** from a row in the attribute table, a dialog is shown, populated with the available details for the attribute. From this dialog it is possible to:
@@ -193,6 +209,7 @@ When opening the **Edit attribute dialog** from a row in the attribute table, a 
 Whenever an attribute has been edited with property values significantly different from the default, its representation in the **Feature Type Details** table displays these values in the **Details** column, as shown in the image below.
 
 ![](img/data_layers_feature_customize_details.png)
+
 *Attribute customization showing attribute details*
 
 !!! note
@@ -203,6 +220,7 @@ Whenever an attribute has been edited with property values significantly differe
 By default GeoServer will publish all the features available in the layer. It is possible to restrict the features to a subset by specifying a CQL filter in the configuration:
 
 ![](img/data_layers_cql.png)
+
 *Restrict the features on layer by CQL filter*
 
 !!! note
@@ -213,6 +231,7 @@ By default GeoServer will publish all the features available in the layer. It is
 The Publishing tab configures HTTP and WMS/WFS/WCS settings.
 
 ![](img/data_layers_edit_publish.png)
+
 *Edit Layer: Publishing tab*
 
 ### HTTP Settings
@@ -234,6 +253,7 @@ To enable this functionality, choose the **No** option from the Root Layer in Ca
 By default this behavior is inherited from the global WMS service settings (**WMS Global Settings** option). Finally, it is possible to override the service settings and force a **Yes** to always include the GeoServer root element.
 
 ![](img/data_layers_root_in_capabilities.png)
+
 *Layer root layer in capabilities options*
 
 ### Services Settings {: #data_webadmin_layers_services }
@@ -242,8 +262,9 @@ GeoServer publishes ``virtual_layer_services`` associated with each layer using 
 
 For greater control the **Service Settings** allows specific services to be disabled.
 
-> ![](img/service_layer.png)
-> *Disabled Services Settings*
+![](img/service_layer.png)
+
+*Disabled Services Settings*
 
 - **Selectively disable services for layer**---Activate/deactivate service disable configuration for the layer.
 
@@ -255,6 +276,7 @@ For greater control the **Service Settings** allows specific services to be disa
       It is also possible to define by-default disabled services to all layers using the `org.geoserver.service.disabled` [application property](../../configuration/properties/index.md).
     
       ![](img/server_layer_defaults.png)
+
       *Application property org.geoserver.service.disabled*
     
       This property accepts a comma separated list of services that should be disabled by default, in case the resource in question has no explicit configuration.
@@ -263,8 +285,9 @@ For greater control the **Service Settings** allows specific services to be disa
 
 Sets the WMS specific publishing parameters.
 
-> ![](img/wms_settings.png)
-> *WMS Settings*
+![](img/wms_settings.png)
+
+*WMS Settings*
 
 - **Queryable**---Controls whether the layer is queryable via WMS `GetFeatureInfo` requests.
 - **Default style**---Style that will be used when the client does not specify a named style in GetMap requests.
@@ -277,8 +300,9 @@ Sets the WMS specific publishing parameters.
 
 Sets publishing information about data providers.
 
-> ![](img/data_layers_WMS.png)
-> *WMS Attribution*
+![](img/data_layers_WMS.png)
+
+*WMS Attribution*
 
 - **Attribution Text**---Human-readable text describing the data provider. This might be used as the text for a hyperlink to the data provider's website.
 - **Attribution Link**---URL to the data provider's website.
@@ -289,8 +313,9 @@ Sets publishing information about data providers.
 
 Sets the WFS specific publishing parameters.
 
-> ![](img/wfs_settings.png)
-> *WFS Settings*
+![](img/wfs_settings.png)
+
+*WFS Settings*
 
 - **Per-Request Feature Limit**---Sets the maximum number of features for a layer a WFS GetFeature operation should generate (regardless of the actual number of query hits)
 
@@ -302,6 +327,7 @@ Sets the WFS specific publishing parameters.
       It is also possible to override the `OtherSRS/OtherCRS` list configured in the WFS service, including overriding it with an empty list if need be. The input area will accept a comma separated list of EPSG codes:
     
       ![](img/data_layers_WFS.png)
+
       *WFS otherSRS/otherCRS override*
     
       The list will be used only for the capabilities document generation, but will not be used to limit the actual target SRS usage in GetFeature requests.
@@ -333,6 +359,7 @@ GeoServer supports adding specific dimensions to WMS layers, as specified in WMS
 These dimensions can be enabled and configured on the Dimensions tab.
 
 ![](img/data_layers_dimension_editor_time.png)
+
 *TIME dimension enabled for a WMS layer*
 
 For each enabled dimension the following configuration options are available:
@@ -365,6 +392,7 @@ Only for the "Reference value" strategy, it is also possible to use ranges or ti
 GeoServer also supports adding custom dimensions to vector layers, defining their names and configurations.
 
 ![](img/data_layers_dimension_editor_custom.png)
+
 *Custom dimension enabled for a vector layer*
 
 For each enabled dimension the following configuration options are available:

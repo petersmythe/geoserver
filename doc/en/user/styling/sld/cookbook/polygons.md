@@ -27,6 +27,7 @@ The [polygons layer](artifacts/sld_cookbook_polygon.zip) used below contains cou
 This example shows a polygon filled in blue.
 
 ![](images/polygon_simplepolygon.png)
+
 *Simple polygon*
 
 ### Code
@@ -57,6 +58,7 @@ There is one `<Rule>` in one `<FeatureTypeStyle>` for this style, which is the s
 This example adds a 2 pixel white stroke to the [Simple polygon](#sld_cookbook_polygons_simplepolygon) example.
 
 ![](images/polygon_simplepolygonwithstroke.png)
+
 *Simple polygon with stroke*
 
 ### Code
@@ -88,6 +90,7 @@ This example is similar to the [Simple polygon](#sld_cookbook_polygons_simplepol
 This example builds on the [Simple polygon with stroke](#sld_cookbook_polygons_simplepolygonwithstroke) example and makes the fill partially transparent by setting the opacity to 50%.
 
 ![](images/polygon_transparentpolygon.png)
+
 *Transparent polygon*
 
 ### Code
@@ -120,6 +123,7 @@ This example is similar to the [Simple polygon with stroke](#sld_cookbook_polygo
 Shows how to draw inner buffer lines inside a polygon.
 
 ![](images/polygon_offset.png)
+
 *Offset buffer*
 
 ### Code
@@ -155,6 +159,7 @@ This example is similar to the [Simple polygon with stroke](#sld_cookbook_polygo
 This example fills the polygons with a tiled graphic.
 
 ![](images/polygon_graphicfill.png)
+
 *Graphic fill*
 
 ### Code
@@ -188,6 +193,7 @@ This example fills the polygons with a tiled graphic.
 This style fills the polygon with a tiled graphic. This is known as an `<ExternalGraphic>` in SLD, to distinguish it from commonly-used shapes such as squares and circles that are "internal" to the renderer. **Lines 7-12** specify details for the graphic, with **line 10** setting the path and file name of the graphic and **line 11** indicating the file format (MIME type) of the graphic (`image/png`). Although a full URL could be specified if desired, no path information is necessary in **line 11** because this graphic is contained in the same directory as the SLD. **Line 13** determines the height of the displayed graphic in pixels; if the value differs from the height of the graphic then it will be scaled accordingly while preserving the aspect ratio.
 
 ![](images/colorblocks.png)
+
 *Graphic used for fill*
 
 ## Hatching fill
@@ -198,6 +204,7 @@ This example fills the polygons with a hatching pattern.
     This example leverages an SLD extension in GeoServer. Hatching is not part of the standard SLD 1.0 specification.
 
 ![](images/polygon_hatchingfill.png)
+
 *Hatching fill*
 
 ### Code
@@ -236,6 +243,7 @@ In this example, there is a `<GraphicFill>` tag as in the [Graphic fill](#sld_co
 This example shows a text label on the polygon. In the absence of any other customization, this is how a label will be displayed.
 
 ![](images/polygon_polygonwithdefaultlabel.png)
+
 *Polygon with default label*
 
 ### Code
@@ -272,6 +280,7 @@ In this example there is a `<PolygonSymbolizer>` and a `<TextSymbolizer>`. **Lin
 This example alters the look of the [Polygon with default label](#sld_cookbook_polygons_polygonwithdefaultlabel) by adding a white halo to the label.
 
 ![](images/polygon_labelhalo.png)
+
 *Label halo*
 
 ### Code
@@ -317,6 +326,7 @@ This example improves the label style from the [Polygon with default label](#sld
     The label placement optimizations discussed below (the `<VendorOption>` tags) are SLD extensions that are custom to GeoServer. They are not part of the SLD 1.0 specification.
 
 ![](images/polygon_polygonwithstyledlabel.png)
+
 *Polygon with styled label*
 
 ### Code
@@ -376,6 +386,7 @@ Finally, there are two added touches for label placement optimization: **line 33
 This example styles the polygons differently based on the "pop" (Population) attribute.
 
 ![](images/polygon_attributebasedpolygon.png)
+
 *Attribute-based polygon*
 
 ### Code
@@ -466,12 +477,15 @@ The third rule, on **lines 38-52**, specifies a style for polygons whose populat
 This example alters the style of the polygon at different zoom levels.
 
 ![](images/polygon_zoombasedpolygonlarge.png)
+
 *Zoom-based polygon: Zoomed in*
 
 ![](images/polygon_zoombasedpolygonmedium.png)
+
 *Zoom-based polygon: Partially zoomed*
 
 ![](images/polygon_zoombasedpolygonsmall.png)
+
 *Zoom-based polygon: Zoomed out*
 
 ### Code

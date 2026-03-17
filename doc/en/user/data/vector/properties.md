@@ -11,11 +11,13 @@ The Properties data store provides access to one or more feature types (layers) 
 By default, **Properties** will be an option in the **Vector Data Sources** list when creating a new data store.
 
 ![](images/propertiescreate.png)
+
 *Properties in the list of vector data stores*
 
 ## Configuring a Properties data store
 
 ![](images/propertiesconfigure.png)
+
 *Configuring a Properties data store*
 
 | **Option** | **Description** |

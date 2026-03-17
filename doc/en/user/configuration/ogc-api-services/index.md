@@ -15,6 +15,7 @@ In addition, the OGC API modules will have some unique configuration options.
 - Service security: OGC API web services are managed directly in **Security > Services** page. New access rules can be defined for OGC API services.
 
   ![](img/service_rule.png)
+
   *Service rule for OGC API Features getLandingPage*
 
 ## Collections
@@ -32,6 +33,7 @@ As an example OGC API - Features collections lists:
 The `collections` resource can have a number of additional links, beyond the basic ones that the service code already includes. Navigate to ****Settings > Global`. The links are configured under heading **OGC API Settings**.    .. code-block:: raw_markdown     ![](img/global_links.png)    *Links used to indicate global Creative Commons license*  Link editor column description:  * **rel**: the link relation type, as per the OGC API - Features specification * **Mime type**: the mime type for the resource found following the link * **URL**: the link URL * **Title**: the link title (optional) * **Service**: the service for which the link is valid (optional, defaults to all)   Common links relationships that could be added for the`collections`resource are:  *`enclosure`, in case there is a package delivering all the collections (e.g. a GeoPackage, a ZIP full of shapefiles). *`describedBy`, in case there is a document describing all the collections (e.g. a JSON or XML schema). *`license`, if all collection data is under the same license.  Example from OGC API - Features service (`<http://localhost:8080/geoserver/ogc/features/v1/collections/?f=application%2Fjson>`):  .. code-block::  json     {      "href": "https://creativecommons.org/licenses/by/3.0/",      "rel": "license",      "type": "text/html",      "title": "Creative Commons - Attribution"    }  Custom links for workspace collections ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  Additional custom`collections`links can also be defined for an individual workspace. Navigate to ****Workspaces > Edit Workspace`. Links are configured on the **Basic Info** tab.
 
 ![](img/workspace_links.png)
+
 *Links used to indicate public domain license for ne workspace*
 
 In this example the `license` is changed to reflect the natural earth terms of use (overriding the `license` defined in global settings).

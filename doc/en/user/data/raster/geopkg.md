@@ -9,9 +9,11 @@ GeoPackage files can be used both as Vector Data Stores as well as Raster Data S
 By default, **GeoPackage (mosaic)** will be an option in the **Raster Data Sources** list when creating a new data store.
 
 ![](images/geopackagemosaiccreate.png)
+
 *GeoPackage (mosaic) in the list of raster data stores*
 
 ![](images/geopackagemosaicconfigure.png)
+
 *Configuring a GeoPackage (mosaic) data store*
 
 | **Option** | **Description** |

@@ -63,7 +63,7 @@ We will also assume that:
 
 #\. Login as the user "GISUSER" with the password "secret".
 
-> ![](images/ad3.jpg)
+![](images/ad3.jpg)
 
 Logging in as GISUSER doesn't yield any administrative functionality because the GISUSER account has not been mapped to the administrator role. In the next section GeoServer will be configured to map groups from the LDAP database to roles.
 

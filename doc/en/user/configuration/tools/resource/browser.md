@@ -3,6 +3,7 @@
 The **Resource Browser** provides a tree showing configuration folders, along with actions to edit and manage resources.
 
 ![](img/browser.png)
+
 *Resource Browser*
 
 User interface elements:
@@ -12,6 +13,7 @@ User interface elements:
 - **Upload** uploads files to GeoServer. Select a directory to enable this tool.
 
   ![](img/upload.png)
+
   *Upload a resource*
 
 - **Download** is used to download a selected resource from GeoServer as a file.
@@ -19,26 +21,31 @@ User interface elements:
 - **New resource** creates a new text file in the selected directory. The **Edit Resource** dialog is used to record the resource location, and the contents.
 
   ![](img/new_resource.png)
+
   *Edit a Resource (New File)*
 
 - **Edit** a selected resource.
 
   ![](img/edit_resource.png)
+
   *Edit a Resource (Existing File)*
 
 - Use **Cut**, **Copy**, and **Paste** to move resources between folders.
 
   ![](img/paste_resource.png)
+
   *Paste a Resource*
 
 - **Rename** to rename a selected resource.
 
   ![](img/rename_resource.png)
+
   *Rename a Resource*
 
 - **Delete** to remove a selected resource.
 
   ![](img/delete_resource.png)
+
   *Delete a resource*
 
 ## Before you start

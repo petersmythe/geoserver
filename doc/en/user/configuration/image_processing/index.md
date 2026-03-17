@@ -5,6 +5,7 @@
 Several ImageN parameters, used by both WMS and WCS operations, can be configured in the Image Processing page.
 
 ![](img/image_processing.png)
+
 *Image Processing*
 
 ## Memory & Tiling

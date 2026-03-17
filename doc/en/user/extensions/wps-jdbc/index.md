@@ -58,4 +58,5 @@ Nevertheless, this won't be sufficient. You will need to share the Execution fol
 2.  From the GeoServer Admin dashboard, go to the ``WPS`` menu and edit the Resource Storage Directory accordingly
 
 ![](images/wps-resource-storage-directory.png)
+
 *WPS JDBC shared Resource Storage Directory*

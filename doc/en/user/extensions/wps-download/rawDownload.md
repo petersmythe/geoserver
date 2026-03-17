@@ -483,7 +483,7 @@ The associated VerticalCRS can be specified in the layer configuration, at the v
 
 The following example shows a DSM layer being configured to specify EPSG:5778 as adopted VerticalCRS.
 
-> ![](images/verticalCRS.png)
+![](images/verticalCRS.png)
 
 This section will only show up if:
 

@@ -566,13 +566,19 @@ class TestPreservationImages:
         )
 
         # Check that images are followed by italic caption lines
+        # (possibly separated by a blank line for proper Markdown rendering)
         lines = content.split("\n")
         caption_count = 0
         for i, line in enumerate(lines):
-            if re.match(r'^!\[', line) and i + 1 < len(lines):
-                next_line = lines[i + 1].strip()
-                if next_line.startswith("*") and next_line.endswith("*"):
-                    caption_count += 1
+            if re.match(r'^!\[', line):
+                # Check next non-blank line for caption
+                for j in range(i + 1, min(i + 3, len(lines))):
+                    next_line = lines[j].strip()
+                    if next_line == "":
+                        continue
+                    if next_line.startswith("*") and next_line.endswith("*"):
+                        caption_count += 1
+                    break
 
         assert caption_count >= 3, (
             f"Preservation BROKEN: identify.md should have at least 3 image "

@@ -58,6 +58,7 @@ Selection of an appropriate color palette is difficult, with a tension between w
     The website provides a generic data set which we can use to determine how effective each choice is in communicating attribute differences. We will be using this website to explore how to effectively theme an attribute.
 
     ![](img/color_01_brewer.png)
+
     *Color Brewer*
 
 2.  The decisions we make when theming depend entirely on what point we are trying to communicate.
@@ -67,17 +68,21 @@ Selection of an appropriate color palette is difficult, with a tension between w
 3.  The first step is determining how many attribute values you are looking to communicate. Set **Number of data classes** to ``5``.
 
     ![](img/color_02_classes.png)
+
     *Number of data classes*
 
 4.  Color brewer offers palettes using three different color schemes:
 
     ![](img/color_sequential.png)
+
     *Sequential*
 
     ![](img/color_diverging.png)
+
     *Diverging*
 
     ![](img/color_qualatative.png)
+
     *Qualitative*
 
     The nature of our data is qualitative (each attribute value is attached an equal importance, and there is no implied order that wish to communicate with color).
@@ -85,6 +90,7 @@ Selection of an appropriate color palette is difficult, with a tension between w
 5.  Set **Nature of your data** to ``Qualitative``. This change drastically reduces the number of color schemes listed.
 
     ![](img/color_03_qualitative.png)
+
     *Qualitative color scheme*
 
 6.  The initial **5-class Accent** color scheme does reasonably well.
@@ -95,26 +101,31 @@ Selection of an appropriate color palette is difficult, with a tension between w
 7.  One of our requirements is to help readers locate their county. To assist with that let's turn on roads and cities.
 
     ![](img/color_05_context.png)
+
     *Adding context*
 
 8.  The map is now starting to look a little busy:
 
     ![](img/color_06_context.png)
+
     *Lots of context*
 
 9.  Now that we have seen what we are up against, we can try a strategy to help the text and roads stand out while still communicating our vaccination schedule. Change to one of the pastel color schemes.
 
     ![](img/color_06_pastel1.png)
+
     *Pastel color scheme*
 
 10. Change the borders and roads to gray.
 
     ![](img/color_07_context.png)
+
     *Gray borders and roads*
 
 11. The result is fairly clear symbology and provides context.
 
     ![](img/color_08_done.png)
+
     *Finished with context*
 
 12. Using our current "pastel" design, set the **Number of data classes** to ``9``. At values larger than this, the distinctions between colors becomes so subtle that readers will have trouble clearly distinguishing the content.
@@ -134,6 +145,7 @@ Selection of an appropriate color palette is difficult, with a tension between w
     | 9        | #f2f2f2 |
 
     ![](img/color_09_color.png)
+
     *Color palette*
 
 ## Bonus
@@ -167,6 +179,7 @@ Finished early? While waiting take a moment to explore this topic in more detail
     1.  The Color Brewer application provides a lot of helpful information using the small "information" icons in each section.
     
         ![](img/color_09_info.png)
+
         *Information icons*
     
     2.  **Explore:** Using this information which color scheme would you choose for a digital elevation model?

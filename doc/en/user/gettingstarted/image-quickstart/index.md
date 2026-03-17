@@ -66,6 +66,7 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 4.  From the list of **Raster Data Sources** locate and click the **GeoTIFF** link.
 
     ![](images/stores_rasters.png)
+
     *Raster Data Sources*
 
 5.  The **New Vector Data Source** page will display.
@@ -80,9 +81,10 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 > This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the **Data Source Name** simple as it will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).
->
-> ![](images/layer_basic.png)
-> *Basic Store info*
+
+![](images/layer_basic.png)
+
+*Basic Store info*
 
 1.  Connection parameters are used to establish the location of your data.
 2.  Under **Connection Parameters**, browse to the location **URL** of the image, in our example **`file:data/ne/SR_50M.tif`**.
@@ -116,9 +118,10 @@ Now that we have located the image, we can publish this information as a layer.
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
 > The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.
->
-> ![](images/layer_basic.png)
-> *Basic Resource Info*
+
+![](images/layer_basic.png)
+
+*Basic Resource Info*
 
 1.  Check the **Coordinate Reference Systems** information is as listed below.
 
@@ -132,8 +135,9 @@ Now that we have located the image, we can publish this information as a layer.
 
 <!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> ![](images/layer_crs.png)
-> *Coordinate Reference Systems*
+![](images/layer_crs.png)
+
+*Coordinate Reference Systems*
 
 1.  Locate **Bounding Boxes** and generate the layer's bounding boxes by clicking the **Compute from SRS bounds** and then **Compute from native bounds** links.
 
@@ -141,6 +145,7 @@ Now that we have located the image, we can publish this information as a layer.
         In this case we are choosing a slightly larger bounding box that fully contains the image.
 
     ![](images/layer_bbox.png)
+
     *Generating bounding boxes*
 
 2.  Press **Apply** to save your work thus far without closing the page.
@@ -152,6 +157,7 @@ Now that we have located the image, we can publish this information as a layer.
 4.  Locate the **WMS Settings** heading, where we can set the style. Ensure that the **Default Style** is set to `raster`.
 
     ![](images/layer_style.png)
+
     *WMS Settings*
 
 5.  Press **Save** to complete your layer edits.
@@ -172,4 +178,5 @@ In order to verify that the `tutorial:shaded` layer is published correctly, we c
     You can use this preview map to zoom and pan around the dataset, as well as display the attributes of features.
 
     ![](images/openlayers.png)
+
     *Preview map of shaded relief*

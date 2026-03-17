@@ -3,6 +3,7 @@
 Next we look at how YSLD styling can be used to represent polygons.
 
 ![](../style/img/PolygonSymbology.svg)
+
 *Polygon Geometry*
 
 Review of polygon symbology:

@@ -94,6 +94,7 @@ A layout configuration file might look like this:
 Used against the states layer from the default GeoServer data, this layout produces an image like the following.
 
 ![](img/decoration.png)
+
 *The default states layer, drawn with the decoration layout above.*
 
 ## Expressions in decoration attributes and options {: #wms_dynamic_decorations }

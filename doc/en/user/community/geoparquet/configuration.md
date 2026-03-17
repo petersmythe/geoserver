@@ -11,6 +11,7 @@ To create a new GeoParquet data store:
 3.  Configure the connection parameters as described below
 
 ![](images/geoparquet-config.png)
+
 *GeoParquet data store configuration panel*
 
 ## Connection Parameters

@@ -50,6 +50,7 @@ This section provides an example of configuring the `DataStore` with weather sta
 A diagram of the entities involved is shown below:
 
 ![](images/stations-diagram.png)
+
 *Entities diagram*
 
 !!! note
@@ -64,6 +65,7 @@ As shown, the dataset consists of:
 Assuming a PostGIS datastore named meteos-simple under the st workspace, by opening the Smart Data Loader page we will have to select the desired workspace and the postgis datastore belonging to the selected workspace, in this case the meteos-postgis one:
 
 ![](images/store-page.png)
+
 *Smart Data Loader configuration page*
 
 After having selected the root entity as meteo-stations, a schema, which will be used to generate the XSD and mappings file, will appear. Each attribute/entity can be unchecked to avoid it being included in the generated mappings.
@@ -463,6 +465,7 @@ The Smart Data Loader allows to override the default behavior of the generated m
 The Smart Override rules are defined using the following parameters on the `Add Override Rule` form: - Key: The entity attribute expression to be overridden. The key is defined using the following syntax: `<entity_name>.<attribute_name>` for attribute value expression override, or `<entity_name>` for PK column override. - Expression: The new OCQL expression to be used for the attribute value override, or the new column name to be used as PK on PK column override.
 
 ![](images/smart-loader-overrides.png)
+
 *Smart Overrides configuration panel*
 
 ## Entities prefix

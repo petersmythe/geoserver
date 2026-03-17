@@ -12,6 +12,7 @@ One example of a raster is a Digital Elevation Model (DEM) layer, which has elev
 The [raster layer](artifacts/sld_cookbook_raster.zip) that is used in the examples below contains elevation data for a fictional world. The data is stored in EPSG:4326 (longitude/latitude) and has a data range from 70 to 256. If rendered in grayscale, where minimum values are colored black and maximum values are colored white, the raster would look like this:
 
 ![](images/raster.png)
+
 *Raster file as rendered in grayscale*
 
 [Download the raster shapefile](artifacts/sld_cookbook_raster.zip)
@@ -21,6 +22,7 @@ The [raster layer](artifacts/sld_cookbook_raster.zip) that is used in the exampl
 This example shows a two-color style with green at lower elevations and brown at higher elevations.
 
 ![](images/raster_twocolorgradient.png)
+
 *Two-color gradient*
 
 ### Code
@@ -51,6 +53,7 @@ This example creates a smooth gradient between two colors corresponding to two e
 This example creates the same two-color gradient as in the [Two-color gradient](#sld_cookbook_raster_twocolorgradient) as in the example above but makes the entire layer mostly transparent by setting a 30% opacity.
 
 ![](images/raster_transparentgradient.png)
+
 *Transparent gradient*
 
 ### Code
@@ -80,6 +83,7 @@ This example is similar to the [Two-color gradient](#sld_cookbook_raster_twocolo
 This example normalizes the color output and then increases the brightness by a factor of 2.
 
 ![](images/raster_brightnessandcontrast.png)
+
 *Brightness and contrast*
 
 ### Code
@@ -114,6 +118,7 @@ As with previous examples, **lines 8-11** determine the `<ColorMap>`, with **lin
 This example creates a three-color gradient in primary colors.
 
 ![](images/raster_threecolorgradient.png)
+
 *Three-color gradient*
 
 ### Code
@@ -145,6 +150,7 @@ Since our data values run between 70 and 256, some data points are not accounted
 This example creates an "alpha channel" effect such that higher values are increasingly transparent.
 
 ![](images/raster_alphachannel.png)
+
 *Alpha channel*
 
 ### Code
@@ -178,6 +184,7 @@ This example shows a gradient that is not linearly interpolated but instead has 
     This example leverages an SLD extension in GeoServer. Discrete colors are not part of the standard SLD 1.0 specification.
 
 ![](images/raster_discretecolors.png)
+
 *Discrete colors*
 
 ### Code
@@ -206,6 +213,7 @@ Sometimes color bands in discrete steps are more appropriate than a color gradie
 This example shows a gradient interpolated across eight different colors.
 
 ![](images/raster_manycolorgradient.png)
+
 *Many color gradient*
 
 ### Code

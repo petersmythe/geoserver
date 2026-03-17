@@ -7,6 +7,7 @@ The Natural Earth dataset is a free collection of vector and raster data publish
 For this course we will be using the [Natural Earth](http://www.naturalearthdata.com/) cultural and physical vector layers backed by a raster shaded relief dataset.
 
 ![](img/natural_earth.png)
+
 *Natural Earth*
 
 The quickstart Natural Earth styling has been exported from QGIS and cleaned up in uDig for use in GeoServer.
@@ -16,6 +17,7 @@ The quickstart Natural Earth styling has been exported from QGIS and cleaned up 
 A digital elevation model records height information for visualisation and analysis. We are using a dataset derived from the USGS GTOPO30 dataset.
 
 ![](img/gtopo30.gif)
+
 *Digital Elevation Model*
 
 The GeoServer "dem" styling has been used for this dataset.

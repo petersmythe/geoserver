@@ -11,6 +11,7 @@ To access the WCS Request Builder:
 3.  Select **WCS Request Builder** from the list of demos.
 
 ![](img/demos_wcsrequestbuilder.png)
+
 *WCS request builder in the list of demos*
 
 ## Using the WCS Request Builder
@@ -27,6 +28,7 @@ When first opened, the form is short, only including the following options:
       All other options displayed will be non-functional until **Coverage name** is selected.
 
 ![](img/wcsrequestbuilder.png)
+
 *WCS request builder in its initial form*
 
 Once selected, the remainder of the form will be displayed. The following options are available:
@@ -42,9 +44,11 @@ Once selected, the remainder of the form will be displayed. The following option
 - **Output format**---Format of the result (output) of the GetCoverage request. Any valid WCS output format is allowed. Default is **GeoTIFF**.
 
 ![](img/wcsrequestbuilder_100.png)
+
 *WCS request builder form (WCS version 1.0.0)*
 
 ![](img/wcsrequestbuilder_111.png)
+
 *WCS request builder form (WCS version 1.1.1)*
 
 There is also a link for **Describe coverage** next to the **Coverage name** which will execute a [WCS DescribeCoverage](reference.md#wcs_describecoverage) request for the particular layer.
@@ -56,7 +60,9 @@ At the bottom of the form are three buttons for form submission:
 - **Generate GetCoverage XML**---Generates the GetCoverage XML request using the parameters in the form and then, instead of executing it, outputs the request itself to the screen.
 
 ![](img/wcsrequestbuilder_demo.png)
+
 *Get Coverage request in Demo Requests*
 
 ![](img/wcsrequestbuilder_xml.png)
+
 *WCS request builder showing GetCoverage XML*

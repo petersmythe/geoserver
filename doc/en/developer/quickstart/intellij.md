@@ -97,13 +97,13 @@
 
 The above instructions assume running GeoServer without any extensions enabled. In cases where certain extensions are needed, the `web-app` module declares a number of profiles that will enable specific extensions when running `Start`. To enable an extension, open the `Maven Projects` tool and select the profile(s) to enable.
 
-> ![image](img/intellij_run_profile.png){width="600px"}
+![image](img/intellij_run_profile.png){width="600px"}
 
 The full list of supported profiles can be found in `src/web/app/pom.xml`.
 
 In order to sync the GeoServer execution with the new modules, from the `Maven Projects` tool click the `Reload All Maven Project` button (1), then `Build the Project` (2) and, once finished, `Run 'Start'` (3).
 
-> ![image](img/intellij_run_profile_sync.png){width="400px"}
+![image](img/intellij_run_profile_sync.png){width="400px"}
 
 ## Access GeoServer front page
 

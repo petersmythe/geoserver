@@ -38,7 +38,7 @@ On the remote machines the Python framework wrappers and scripts will act as XMP
 
 The illustration below shows the interaction between the GeoServer Remote WPS plug-in and the Python framework wrappers. The whole communication is achieved through the XMPP protocols. The Python framework makes available a set of scripts and wrappers allowing to invoke the external executables and manage the entire execution by translating commands and outputs into XMPP messages to be sent and received by GeoServer.
 
-> ![](images/orchestrator2.png)
+![](images/orchestrator2.png)
 
 As mentioned above the remote executables should adhere to a certain contract in order to fully support all these functionalities. As an example the ability to kill an existing execution heavily relies on the fact that the current process accounted for this functionality, otherwise we would have to try and kill it using operating system calls. This might require the end user to create wrappers around the legacy executables in certain cases.
 
@@ -77,7 +77,7 @@ goodbye = {"type": "string", "description": "A goodbye message"}
 
 ### Deploy Diagram
 
-> ![](images/deploy_diagram.png)
+![](images/deploy_diagram.png)
 
 The illustration shows a deploy diagram of a *Change Detection* executable running on a remote machine and exposed as a GeoServer WPS Process thought the *WPS Remote Plug-in*.
 

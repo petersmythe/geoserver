@@ -43,7 +43,7 @@ We will use Microsoft Entra (Microsoft Azure) for login and either the Azure/Ent
 
 #\. At the top press "+ Add user/group". Under "Users", press "None Selected" and then choose your account. Under "Select a role", keep the selection as "geoserverAdmin". Press "Assign".
 
-> ![](../img/azure_create_app9.png)
+![](../img/azure_create_app9.png)
 
 ## Configure GeoServer
 
@@ -127,7 +127,7 @@ We need to setup azure so GeoServer can access the MSGraph and get the roles/gro
 
 #\. On the far left column, press "Enterprise Apps", choose your application ("gs-azure-app"), and copy the "Object ID" (**not** the Application ID). You will need this in the next step.
 
-> ![](../img/azure_gs_msgraph7.png)
+![](../img/azure_gs_msgraph7.png)
 
 #### Setting up GeoServer
 

@@ -27,11 +27,13 @@ A world file is a plain text file used to georeference raster map images. This f
 Once the extension is properly installed **WorldImage** will be an option in the **Raster Data Sources** list when creating a new data store.
 
 ![](images/worldimagecreate.png)
+
 *WorldImage in the list of raster data stores*
 
 ## Configuring a WorldImage data store
 
 ![](images/worldimageconfigure.png)
+
 *Configuring a WorldImage data store*
 
 | **Option**         | **Description** |

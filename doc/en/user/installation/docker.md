@@ -56,6 +56,7 @@ This will run the container, with the data directory included with the container
     If you see the GeoServer Welcome page, then GeoServer is successfully installed.
 
     ![](images/success.png)
+
     *GeoServer Welcome Page*
 
 5.  This setup is a quick test to ensure the software is working, but is difficult to use as file data can only be transferred to the data directory included with the container via the REST API.
@@ -110,6 +111,7 @@ This will run the container with a local data directory. The data directory will
     If you see the GeoServer Welcome page, then GeoServer is successfully installed.
 
     ![](images/success.png)
+
     *GeoServer Welcome Page*
 
 5.  This setup allows direct management of the file data shared with the container. This setup is also easy to update to use the latest container.

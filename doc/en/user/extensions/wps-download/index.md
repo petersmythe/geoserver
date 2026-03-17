@@ -40,7 +40,7 @@ This module provides the following WPS process:
 
 The user interface provides a way to configure the WPS download in the WPS administration page:
 
-> ![](images/admin.png)
+![](images/admin.png)
 
 Where the available limits are:
 

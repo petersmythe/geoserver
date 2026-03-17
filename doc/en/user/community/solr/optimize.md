@@ -11,6 +11,7 @@ Once the SOLR documents have been updated with a centroid column, and it has bee
 \... (other fields omitted)
 
 ![](images/optimize_ft2.png)
+
 *Configuring a layer with multiple geometries*
 
 With this setup the polygonal geometry will still be used for all spatial filters, and for rendering, unless the style otherwise specifical demands for the centroid.

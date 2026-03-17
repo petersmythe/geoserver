@@ -31,6 +31,7 @@ An interesting value to use for the height would be the population of each state
 This uses the value of the `PERSONS` attribute as the height for each feature. To admire our handiwork, we can refresh our view by right-clicking on our temporary place (called `topp:states`) and selecting **Refresh**:
 
 ![](height-toomuch.png)
+
 *Height by Population*
 
 ## Step Three
@@ -51,6 +52,7 @@ However, we know that the `PERSONS` field is numeric, even if it is declared in 
 One final **Refresh** brings us to a nicely sized map of the US:
 
 ![](height-math.png)
+
 *Scaled Height*
 
 ## Step Four

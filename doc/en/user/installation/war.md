@@ -141,6 +141,7 @@ Add to `<Host name=...` section this new ErrorReportValve entry: :
 3.  When you see the GeoServer Welcome page, GeoServer has been successfully installed.
 
     ![](images/success.png)
+
     *GeoServer Welcome Page*
 
 ## Update

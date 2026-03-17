@@ -17,6 +17,7 @@ For the module to work, the [NetCDF](../../extensions/netcdf/netcdf.md) and [Net
 A GHRSST file contains multiple variables that are related with each other, and should be explored together in order to better understand the data. Thus, it is assumed that the source GHRSST file is published as a single coverage view holding all the variables as bands, retaining their native name (this is important for the plugin to work):
 
 ![](images/coverageView.png)
+
 *Setting up a coverage view with all variables as bands*
 
 A GHRSST output must also have a time, so the time dimension of this layer should be enabled (the output generation will fail with an error otherwise).
@@ -34,6 +35,7 @@ The GHRSST may also have to be setup in a image mosaic in order to provide a dee
 The normal WCS NetCDF output will pick the first band of a coverage and generate a single variable NetCDF output. When the GHRSST plugin is installed, a new UI element will show up that enables GHRSST output:
 
 ![](images/ghrsstConfiguration.png)
+
 *Enabling GHRSST output mode*
 
 Notes about the configuration UI:

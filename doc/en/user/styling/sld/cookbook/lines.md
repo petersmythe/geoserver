@@ -44,6 +44,7 @@ The [lines layer](artifacts/sld_cookbook_line.zip) used in the examples below co
 This example specifies lines be colored black with a thickness of 3 pixels.
 
 ![](images/line_simpleline.png)
+
 *Simple line*
 
 ### Code
@@ -72,6 +73,7 @@ There is one `<Rule>` in one `<FeatureTypeStyle>` for this SLD, which is the sim
 This example shows how to draw lines with borders (sometimes called "cased lines"). In this case the lines are drawn with a 3 pixel blue center and a 1 pixel wide gray border.
 
 ![](images/line_linewithborder.png)
+
 *Line with border*
 
 ### Code
@@ -120,6 +122,7 @@ The result is a 3 pixel blue line with a 1 pixel gray border, since the 5 pixel 
 This example alters the [Simple line](#sld_cookbook_lines_simpleline) to create a dashed line consisting of 5 pixels of drawn line alternating with 2 pixels of blank space.
 
 ![](images/line_dashedline.png)
+
 *Dashed line*
 
 ### Code
@@ -149,6 +152,7 @@ In this example, **line 5** sets the color of the lines to be blue (`#0000FF`) a
 This example alters the [Simple line](#sld_cookbook_lines_simpleline) to add a perpendicular offset line on the left side of the line, at five pixels distance.
 
 ![](images/line_offset.png)
+
 *Offset line*
 
 ### Code
@@ -186,6 +190,7 @@ This example uses hatching to create a railroad style. Both the line and the hat
     This example leverages an SLD extension in GeoServer. Hatching is not part of the standard SLD 1.0 specification.
 
 ![](images/line_railroad.png)
+
 *Railroad (hatching)*
 
 ### Code
@@ -235,6 +240,7 @@ This example uses a graphic stroke along with dash arrays to create a "dot and s
     This example may not work in other systems using SLD, since they may not support combining the use of `stroke-dasharray` and `GraphicStroke`. While the SLD is spec-compliant, the SLD specification does not state what this combination is supposed to produce.
 
 ![](images/line_dashspace.png)
+
 *Spaced symbols along a line*
 
 ### Code
@@ -288,6 +294,7 @@ The example shows how to use these features to create two synchronized sequences
     This example may not work in other systems using SLD, since they may not support combining the use of `stroke-dasharray` and `GraphicStroke`. While the SLD is spec-compliant, the SLD specification does not state what this combination is supposed to produce.
 
 ![](images/line_dashdot.png)
+
 *Alternating dash and symbol*
 
 ### Code
@@ -335,6 +342,7 @@ In this example two `LineSymbolizer`s use `stroke-dasharray` and different symbo
 This example shows a text label on the simple line. This is how a label will be displayed in the absence of any other customization.
 
 ![](images/line_linewithdefaultlabel.png)
+
 *Line with default label*
 
 ### Code
@@ -376,6 +384,7 @@ This example renders the text label to follow the contour of the lines.
     Labels following lines is an SLD extension specific to GeoServer. It is not part of the SLD 1.0 specification.
 
 ![](images/line_labelfollowingline.png)
+
 *Label following line*
 
 ### Code
@@ -423,6 +432,7 @@ This example optimizes label placement for lines such that the maximum number of
     This example uses options that are specific to GeoServer and are not part of the SLD 1.0 specification.
 
 ![](images/line_optimizedlabel.png)
+
 *Optimized label*
 
 ### Code
@@ -467,6 +477,7 @@ This example is similar to the previous example, [Label following line](#sld_coo
 This example improves the style of the labels from the [Optimized label placement](#sld_cookbook_lines_optimizedlabel) example.
 
 ![](images/line_optimizedstyledlabel.png)
+
 *Optimized and styled label*
 
 ### Code
@@ -515,6 +526,7 @@ This example is similar to the [Optimized label placement](#sld_cookbook_lines_o
 This example styles the lines differently based on the "type" (Road class) attribute.
 
 ![](images/line_attributebasedline.png)
+
 *Attribute-based line*
 
 ### Code
@@ -601,12 +613,15 @@ The three rules are designed as follows:
 This example alters the [Simple line](#sld_cookbook_lines_simpleline) style at different zoom levels.
 
 ![](images/line_zoombasedlinelarge.png)
+
 *Zoom-based line: Zoomed in*
 
 ![](images/line_zoombasedlinemedium.png)
+
 *Zoom-based line: Partially zoomed*
 
 ![](images/line_zoombasedlinesmall.png)
+
 *Zoom-based line: Zoomed out*
 
 ### Code

@@ -3,6 +3,7 @@
 This page provides layer views in various output formats. A layer must be enabled to be previewed.
 
 ![](img/preview_list.png)
+
 *Layer Preview Page*
 
 Each layer row consists of a type, name, title, and available formats for viewing.
@@ -21,6 +22,7 @@ Each layer row consists of a type, name, title, and available formats for viewin
 Name refers to the Workspace and Layer Name of a layer, while Title refers to the brief description configured in the [Edit Layer: Data](layers.md#data_webadmin_layers_edit_data) panel. In the following example, nurc refers to the Workspace, Mosaic refers to the Layer Name and "A sample mosaic field" is specified on the Edit Later Data panel.
 
 ![](img/preview_row.png)
+
 *Single Layer preview row*
 
 ## Output Formats
@@ -43,6 +45,7 @@ All image outputs can be initiated from a WMS getMap request on either a raster,
 | PDF | A PDF (Portable Document Format) encapsulates a complete description of a fixed-layout 2D document,including any text, fonts, raster images, and 2D vector graphics. |
 
 ![](img/preview_openlayers.png)
+
 *Sample Image Output-an OpenLayers preview of nurc:Pk50095*
 
 ### Text Outputs

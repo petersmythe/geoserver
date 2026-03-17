@@ -75,6 +75,7 @@ In some situations, that won't be enough and the page might get stuck anyways. T
 When using `text` selection mode the page description is static, no longer offering of available workspace and layers.
 
 ![](images/selector_text.png)
+
 *Welcome page text selection mode*
 
 ### Cache your data

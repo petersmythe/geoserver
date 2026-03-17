@@ -5,6 +5,7 @@ This section of the [Web administration interface](../../webadmin/index.md) desc
 The pages in this menu can be accessed on the left side of the screen under the heading **Tile Caching**.
 
 ![](img/menu.png)
+
 *Tile Caching menu*
 
 <div class="grid cards" markdown>

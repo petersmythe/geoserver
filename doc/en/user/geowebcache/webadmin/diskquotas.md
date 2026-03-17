@@ -7,6 +7,7 @@ By default, disk usage for cached tiles is unbounded. However, this can cause di
 When finished making any changes, remember to click **Submit**.
 
 ![](img/diskquota.png)
+
 *Disk quota*
 
 ## Enable disk quota

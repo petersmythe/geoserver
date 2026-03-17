@@ -3,6 +3,7 @@
 We will start our tour of YSLD styling by looking at the representation of lines.
 
 ![](../style/img/LineSymbology.svg)
+
 *LineString Geometry*
 
 Review of line symbology:
@@ -31,6 +32,7 @@ line:
 ```
 
 ![](../style/img/LineStringStroke.svg)
+
 *Basic Stroke Properties*
 
 !!! note
@@ -201,6 +203,7 @@ Providing two strokes is often used to provide a contrasting edge (called casing
 Our next example is significant as it introduces how text labels are generated.
 
 ![](../style/img/LineStringLabel.svg)
+
 *Use of Label Property*
 
 This is also our first example making use of a dynamic style (where a value comes from an attribute from your data).

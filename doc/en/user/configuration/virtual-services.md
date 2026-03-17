@@ -9,6 +9,7 @@ The different types of web services in GeoServer include:
 By default these services are **global** in that each web service *publishes all* GeoServer layers: WFS publishes all vector layer (feature types), WCS publishes all raster layers (coverages), and WMS publishes everything.
 
 ![](img/global-services.png)
+
 *Global Services with access to all layers*
 
 If you would like to have smaller web services, that only publish a few layers, you do not have to install multiple copies of GeoServer -- make use of the idea of **virtual services** that only *publishes a subset* of the GeoServer layers.
@@ -29,6 +30,7 @@ When a client accesses a virtual service that client only has access to those la
 **Workspace services** are based on GeoServer workspaces. For each workspace that exists a virtual GeoServer exists along with it with its own Welcome Page and virtual web services. The virtual services publish only those layers that fall under the corresponding workspace.
 
 ![](img/workspace-services.png)
+
 *Workspaces services restricted to a single workspace*
 
 Consider the following snippets of the WFS capabilities document from the GeoServer release configuration that list all the feature types:
@@ -151,11 +153,13 @@ The above request results in an exception. Since the request feature type `tiger
 Workspace services can be configured to override service configuration for an individual workspace.
 
 ![](../data/webadmin/img/workspace_services.png)
+
 *Workspace services*
 
 Each workspace service can be configured with their own title, abstract and service settings. This can also be used to enable/disable specific services on a workspace by workspace basis to control what virtual services are available.
 
 ![](../data/webadmin/img/workspace_wms_settings.png)
+
 *Workspace Service Settings*
 
 For more information see [Workspace Services](../data/webadmin/workspaces.md#workspace_services).
@@ -165,6 +169,7 @@ For more information see [Workspace Services](../data/webadmin/workspaces.md#wor
 **Layer services** are based on a single GeoServer layer or layer group. They use the workspace description of each web service but only contain a single layer or layer group.
 
 ![](img/layer-services.png)
+
 *Layer services restricted to a single layer*
 
 A layer service further filters a global service by specifying the name of layer as part of the virtual service URL. For instance consider the following capabilities document:
@@ -217,8 +222,9 @@ Layer services use the configuration provided by [workspace services](../data/we
 
 Additionally you may choose to [disable specific layer services](../data/webadmin/layers.md#data_webadmin_layers_services) to control which services are available for this layer.
 
-> ![](../data/webadmin/img/service_layer.png)
-> *Disabled Services Settings*
+![](../data/webadmin/img/service_layer.png)
+
+*Disabled Services Settings*
 
 WMS Configuration offers configuration of [Root Layer in Capabilities](../data/webadmin/layers.md#data_webadmin_layers_root) only when a single layer is to be listed for a layer service:
 
@@ -252,13 +258,14 @@ With the use of virtual services being available additional configuration option
 It is possible to completely restrict access to the global OWS services by adjusing [Enable Global Services](globalsettings.md#config_globalsettings_global). When global access is disabled OWS services may only occur through a virtual workspace or layer service.
 
 ![](img/global-services-disabled.png)
+
 *Global Services disabled*
 
 Any client that tries to access a service globally (i.e. not via a '/workspace' or '/workspace/layer' url) will receive an exception.
 
 To disable global services, log into the GeoServer web administration interface and navigate to "Global Settings". Uncheck the "Enable Global Services" check box.
 
-> ![](img/global-services.jpg)
+![](img/global-services.jpg)
 
 ### Isolated Workspaces {: #workspace_isolated }
 
@@ -271,6 +278,7 @@ Isolated workspaces content is only visible and queryable in the context of a vi
 A workspace can be made isolated by checking the **Isolated Workspace** checkbox when creating or editing a workspace.
 
 ![](img/isolated_workspace.png)
+
 *Making a workspace isolated*
 
 An isolated workspace will be able to reuse an XML namespace already used by another workspace, but its resources (layers, styles, etc \...) can only be retrieved when using that workspace virtual services and will only show up in those virtual services capabilities documents.
@@ -294,6 +302,7 @@ At most only one non isolated workspace can use a certain XML namespace.
 Consider the following image which shows to workspaces (st1 and st2) that use the same namespace (<http://www.stations.org/1.0>) and several layers contained by them:
 
 ![](img/workspaces_example.png)
+
 *Two workspaces using the same namespace, one of them is isolated.*
 
 In the example above st2 is the isolated workspace. Consider the following WFS GetFeature requests:

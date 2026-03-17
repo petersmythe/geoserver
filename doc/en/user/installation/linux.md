@@ -73,6 +73,7 @@ The platform-independent binary is a GeoServer web application bundled with [Jet
     If you see the GeoServer Welcome page, then GeoServer is successfully installed.
 
     ![](images/success.png)
+
     *GeoServer Welcome Page*
 
 11. To shut down GeoServer, either close the persistent command-line window, or run the **`shutdown.sh`** file inside the **`bin`** directory.

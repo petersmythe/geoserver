@@ -67,6 +67,7 @@ You will need to set the `JAVA_HOME` environment variable if it is not already s
     If you see the GeoServer Welcome page, then GeoServer is successfully installed.
 
     ![](images/success.png)
+
     *GeoServer Welcome Page*
 
 ## Stopping

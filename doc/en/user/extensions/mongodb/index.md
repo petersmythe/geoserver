@@ -31,6 +31,7 @@ This module provides support for MongoDB data store. This extension is build on 
 If the extension was successfully installed a new type of data store named `MongoDB` should be available:
 
 ![](images/mongodb_store_1.png)
+
 *MongoDB data store.*
 
 Configuring a new MongoDB data store requires providing:
@@ -39,6 +40,7 @@ Configuring a new MongoDB data store requires providing:
 2.  The absolute path to a data directory where GeoServer will store the schema produced for the published collections.
 
 ![](images/mongodb_store_2.png)
+
 *Configuring a MongoDB data store.*
 
 For more details about the usage of this data store please check the [GeoTools MongoDB plugin documentation

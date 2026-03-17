@@ -35,11 +35,13 @@ The extension supports SQL Server 2019 - 2022 and SQL Azure, older versions down
 Once the extension is properly installed `SQL Server` will show up as an option when creating a new data store.
 
 ![](images/sqlservercreate.png)
+
 *SQL Server in the list of vector data sources*
 
 ## Configuring a SQL Server data store
 
 ![](images/sqlserverconfigure.png)
+
 *Configuring a SQL Server data store*
 
 | `host` | The sql server instance host name or ip address, only. Note that `server\instance` notation is not accepted - specify the port below, instead, if you have a non-default instance. |

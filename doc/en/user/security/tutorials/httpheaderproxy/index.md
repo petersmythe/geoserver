@@ -38,8 +38,7 @@ This tutorial uses the [curl](https://curl.haxx.se/) utility to issue HTTP reque
 
 Additional information about role services is here [Role source and role calculation](../../usergrouprole/rolesource.md)
 
-> ![](images/digest4.jpg)
->
+![](images/digest4.jpg)
 !!! warning
     The tutorial uses the obscure "sdf09rt2s" name for the header attribute. Why not use "user" or "username" ?. In a proxy scenario a relationship of trust is needed between the proxy and GeoServer. An attacker could easily send an HTTP request with an HTTP header attribute "user" and value "admin" and operate as an administrator.
 

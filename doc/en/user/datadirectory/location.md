@@ -8,6 +8,7 @@ render_macros: true
 The current data directory location is always shown on the [Status](../configuration/status.md) page.
 
 ![](../configuration/img/server_status.png)
+
 *Status Page (default tab)*
 
 ## Default data directory location

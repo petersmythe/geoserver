@@ -9,9 +9,11 @@ To access a remote WMS, it is necessary to load it as a store in GeoServer. GeoS
 To connect to an external WMS, it is necessary to load it as a new store. To start, in the [Web administration interface](../../webadmin/index.md), navigate to **Stores --> Add a new store --> WMS**. The option is listed under **Other Data Sources**.
 
 ![](images/wmsaddnew.png)
+
 *Adding an external WMS as a store*
 
 ![](images/wmsconfigure.png)
+
 *Configuring a new external WMS store*
 
 | **Option** | **Description** |

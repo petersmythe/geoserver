@@ -123,6 +123,7 @@ First, got to the styles page and click on **Add a new style** link to start a n
 - In the **Generate a default style** dropdown choose `Polygon` and click on **Generate\...**
 
 ![](images/tutorial_new_style.png)
+
 *Creating a new CSS style*
 
 This creates an example style with a source similar to this one (the colors may differ):
@@ -154,6 +155,7 @@ Before moving on, let's save the style and preview it with the states layer:
 - The style editor should now show the states layer filled and stroked
 
 ![](images/tutorial_preview.png)
+
 *Previewing the CSS style with the state layer*
 
 Let's use these basics to start translating the states style. The first rule in the SLD applies to states where the `PERSONS` field is less than two million:
@@ -307,6 +309,7 @@ Putting it all together, you should now have a style that looks like:
 Click the **Apply** button at the bottom of the form to save your changes.
 
 ![](images/tutorial_noborder.png)
+
 *CSS style applied to the ``states`` layer*
 
 You will see that the borders are missing! In the GeoServer CSS module, each type of symbolizer has a "key" property which controls whether it is applied. Without these "key" properties, subordinate properties are ignored. These "key" properties are:
@@ -336,6 +339,7 @@ Since we don't specify a `stroke` color, no stroke is applied. Let's add it, rep
 ```
 
 ![](images/tutorial_border.png)
+
 *Border added to style*
 
 ## Refining the style
@@ -468,6 +472,7 @@ The final CSS should look like this:
 ```
 
 ![](images/tutorial_finalstyle.png)
+
 *Final style with rule names*
 
 ### Applying rule nesting

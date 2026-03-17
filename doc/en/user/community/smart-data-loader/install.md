@@ -37,4 +37,5 @@ The installation process is similar to other GeoServer community modules:
     When installation is successful, a Smart Data Loader entry is available in "new Data Source" menu.
 
     ![](images/store-selection.png)
+
     *Smart Data Loader entry*

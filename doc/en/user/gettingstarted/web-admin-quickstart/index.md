@@ -13,6 +13,7 @@ GeoServer has a browser-based web administration interface application used to c
 3.  When the application starts, it displays the Welcome page.
 
     ![](../../webadmin/images/web-admin.png)
+
     *Welcome Page*
 
 4.  The welcome page provides links describing the web services used to access information.
@@ -35,11 +36,13 @@ In order to change any server settings or configure data, a user must first be a
         These can be changed in the [Security](../../security/index.md) section.
 
     ![](login-page.png)
+
     *Login*
 
 2.  Once logged in, the Welcome screen changes to show the available admin functions. These are primarily shown in the menus on the left side of the page.
 
     ![](logged_in.png)
+
     *Additional options when logged in*
 
 ## Layer Preview
@@ -55,11 +58,13 @@ The [Layer Preview](../../data/webadmin/layerpreview.md) page allows you to quic
 3.  To sort a column alphabetically, click the column header.
 
     ![](../../data/webadmin/img/data_sort.png)
+
     *Unsorted (left) and sorted (right) columns*
 
 4.  Searching can be used to filter the number of items displayed. This is useful for working with data types that contain a large number of items. To search data type items, enter the search string in the search box and click Enter. GeoServer will search the data type for items that match your query, and display a list view showing the search results.
 
     ![](../../data/webadmin/img/data_search_results.png)
+
     *Search results for the query "top" on the Workspace page*
 
     !!! tip "Hint"
