@@ -4,17 +4,23 @@
 
 A secondary namespace is one that is referenced indirectly by the main schema, that is, one schema imports another one as shown below:
 
-    a.xsd imports b.xsd
-    b.xsd imports c.xsd
+```
+a.xsd imports b.xsd
+b.xsd imports c.xsd
+```
 
 (using a, b and c as the respective namespace prefixes for a.xsd, b.xsd and c.xsd):
 
-    a.xsd declares b:prefix
-    b.xsd declares c:prefix
+```
+a.xsd declares b:prefix
+b.xsd declares c:prefix
+```
 
 The GeoTools encoder does not honour these namespaces and writes out:
 
-    "a:" , "b:" but NOT "c:"
+```
+"a:" , "b:" but NOT "c:"
+```
 
 The result is c's element being encoded as:
 
@@ -28,7 +34,9 @@ If your application spans several namespaces which may be very common in applica
 
 A sure sign that calls for secondary namespace configuration is when prefixes for namespaces are printed out as the literal string "null" or error messages like:
 
-    java.io.IOException: The prefix "null" for element "null:something" is not bound.
+```
+java.io.IOException: The prefix "null" for element "null:something" is not bound.
+```
 
 !!! note
     When using secondary namespaces, requests involving complex featuretypes must be made to the **global OWS service** only, not to [Virtual Services](../../configuration/virtual-services.md). This is because virtual services are restricted to a single namespace, and thus are not able to access secondary namespaces.

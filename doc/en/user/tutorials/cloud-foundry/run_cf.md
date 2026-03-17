@@ -124,9 +124,9 @@ As for most parameters, resource limits can also be set in the manifest file
 
 The manifest file allows you to configure:
 
-:   - Resource limits (memory and cpu)
-    - configure the route URL
-    - Set environment variables, for instance to set a specific tomcat version
+- Resource limits (memory and cpu)
+- configure the route URL
+- Set environment variables, for instance to set a specific tomcat version
 
 ``` YAML
 ---

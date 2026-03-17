@@ -93,11 +93,11 @@ Together these two attributes allow the administrator to define the contents of 
 
 **License Title**
 
-:   The License Title will be included as the value of `title` attribute of the `<link rel=license>` element in the MapML header.
+The License Title will be included as the value of `title` attribute of the `<link rel=license>` element in the MapML header.
 
 **License Link**
 
-:   The License Link will be included as the value of `href` attribute of the `<link rel=license>` element in the MapML header, and should be a valid URL referencing the license document.
+The License Link will be included as the value of `href` attribute of the `<link rel=license>` element in the MapML header, and should be a valid URL referencing the license document.
 
 ## Tile Settings
 
@@ -105,7 +105,7 @@ Using tiles to access the layer can increase the performance of your web map. Th
 
 **Use Tiles**
 
-:   If you check the "Use Tiles" checkbox and save it, the MapML format on the Layer Preview page will use tile-based references to the WMS server. Checking this checkbox sets the ``FORMAT_OPTIONS=mapmlusetiles:true`` parameter value in the Layer Preview URL, but you can set and use this value in WMS requests for the text/mapml format independently. The ``mapmlusetiles``, ``mapmlusefeatures`` and ``mapmlusemultiextents`` FORMAT_OPTIONS parameters can be used together to control the type of requests and responses used in your web map client. For example, if your layer or layer group has a cached tile layer configured, GeoServer will generate tile references (e.g., <map-link rel="tile" tref="\...request=GetTile\...">) instead of WMS GetMap URLs (e.g., <map-link rel="image" tref="\...request=GetMap\...">); if in addition to having a cached tile layer for a layer or layer group you have also enabled caching of the ``text/mapml`` format, you can use ``FORMAT_OPTIONS=mapmlusetiles:true;mapmlusefeatures:true`` to obtain and use tiles in MapML format.
+If you check the "Use Tiles" checkbox and save it, the MapML format on the Layer Preview page will use tile-based references to the WMS server. Checking this checkbox sets the ``FORMAT_OPTIONS=mapmlusetiles:true`` parameter value in the Layer Preview URL, but you can set and use this value in WMS requests for the text/mapml format independently. The ``mapmlusetiles``, ``mapmlusefeatures`` and ``mapmlusemultiextents`` FORMAT_OPTIONS parameters can be used together to control the type of requests and responses used in your web map client. For example, if your layer or layer group has a cached tile layer configured, GeoServer will generate tile references (e.g., <map-link rel="tile" tref="\...request=GetTile\...">) instead of WMS GetMap URLs (e.g., <map-link rel="image" tref="\...request=GetMap\...">); if in addition to having a cached tile layer for a layer or layer group you have also enabled caching of the ``text/mapml`` format, you can use ``FORMAT_OPTIONS=mapmlusetiles:true;mapmlusefeatures:true`` to obtain and use tiles in MapML format.
 
 ## Vector Settings
 
@@ -113,7 +113,7 @@ MapML supports the serving of vector feature representations of the data. This r
 
 **Use Features**
 
-:   If the "Use Features" checkbox is checked, the output MapML on the Layer Preview page will define a feature-based reference to the WMS server. When making WMS request add ``mapmlusefeatures:true`` to the FORMAT_OPTIONS parameter. Otherwise, an image-based reference will be used. Note that when applied to raster data map-tile elements will be generated for the requested coverage area. MapML <map-extent> element with a feature link:
+If the "Use Features" checkbox is checked, the output MapML on the Layer Preview page will define a feature-based reference to the WMS server. When making WMS request add ``mapmlusefeatures:true`` to the FORMAT_OPTIONS parameter. Otherwise, an image-based reference will be used. Note that when applied to raster data map-tile elements will be generated for the requested coverage area. MapML <map-extent> element with a feature link:
 
 ``` html
 <map-extent units="WGS84" label="Manhattan (NY) points of interest" checked="checked">
@@ -148,7 +148,7 @@ When configuring a cascaded WMS or WMTS remote layers, a new "Client Requests" s
 
 **Remote**
 
-:   If the "Remote" checkbox is checked, the link templates embedded in MapML will refer to the remote WMS/WMTS. The MapML viewer will directly contact the remote server if certain criteria are met:
+If the "Remote" checkbox is checked, the link templates embedded in MapML will refer to the remote WMS/WMTS. The MapML viewer will directly contact the remote server if certain criteria are met:
 
 - No restricting DataAccessLimit security is associated to the layer (e.g. with GeoFence integration) that will do filtering, clipping or similar operations. In that case, the MapML will point to the local GeoServer so that the param is honored.
 - No vendor parameters are used in the incoming request. If vendor parameters are used (e.g., request clipping with geometric mask) the MapML is pointing to the local GeoServer so that the vendor parameter is honored

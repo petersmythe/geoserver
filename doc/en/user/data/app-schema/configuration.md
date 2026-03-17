@@ -6,13 +6,15 @@ Configuration of an app-schema complex feature type requires manual construction
 
 The GeoServer data directory contains a folder called `workspaces` with the following structure:
 
-    workspaces
-        - gsml
-            - SomeDataStore
-                - SomeFeatureType
-                    - featuretype.xml
-                - datastore.xml
-                - SomeFeatureType-mapping-file.xml
+```
+workspaces
+    - gsml
+        - SomeDataStore
+            - SomeFeatureType
+                - featuretype.xml
+            - datastore.xml
+            - SomeFeatureType-mapping-file.xml
+```
 
 !!! note
     The folder inside `workspaces` must have a name (the workspace name) that is the same as the namespace prefix (`gsml` in this example).

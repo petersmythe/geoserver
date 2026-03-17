@@ -354,8 +354,8 @@ Whitin each feature attribute there is another `Generate` action that will gener
 
 There are two options to do this:
 
-:   - Using the existing data in the database for this attribute.
-    - Using data from a look-up table in the same database. In this case you must specify the table, an attribute from which to take values and an attribute from which to take definitions.
+- Using the existing data in the database for this attribute.
+- Using data from a look-up table in the same database. In this case you must specify the table, an attribute from which to take values and an attribute from which to take definitions.
 
 ![](images/fa03.png)
 *e.g. Feature attribute with generate domain*

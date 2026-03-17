@@ -40,15 +40,15 @@ A different **filter chain** can be applied to each different type of request in
 
 Matching rules can be applied to:
 
-:   - HTTP Method (GET, POST, etc.)
-    - one or more ANT patterns for the path section of the request (e.g /wms/**); if more than one pattern (comma delimited) is specified, any of them will match
-    - an optional regular expression to match parameters on the query string, for one or more of the specified ANT pattern; if the path matches, also the query string is checked for matching; the regular expression can be specified after the ANT pattern, with a pipe (|) separator
+- HTTP Method (GET, POST, etc.)
+- one or more ANT patterns for the path section of the request (e.g /wms/**); if more than one pattern (comma delimited) is specified, any of them will match
+- an optional regular expression to match parameters on the query string, for one or more of the specified ANT pattern; if the path matches, also the query string is checked for matching; the regular expression can be specified after the ANT pattern, with a pipe (|) separator
 
 ANT Patterns support the following wildcards:
 
-:   - ? matches one character
-    - * matches zero or more characters
-    - ** matches zero or more 'directories' in a path
+- ? matches one character
+- \* matches zero or more characters
+- \*\* matches zero or more 'directories' in a path
 
 Query String regular expressions will match the full query string (\^ and \$ terminators are automatically appended), so to match only part of it, remember to prefix and postfix the expression with .* (e.g. .*request=getcapabilities.*)
 

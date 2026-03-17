@@ -16,11 +16,11 @@ If the point of the document is to showcase a new feature it does not belong in 
 
 Bad
 
-:   Super-overlays are a great way to publish super cool datasets awesomely in Google Earth!
+> Super-overlays are a great way to publish super cool datasets awesomely in Google Earth!
 
 Good
 
-:   Super-overlays allow you to efficiently publish data via Google Earth.
+> Super-overlays allow you to efficiently publish data via Google Earth.
 
 ### Be professional
 
@@ -28,11 +28,11 @@ Avoid the use of slang or other "colorful" language. The point of a technical do
 
 Bad
 
-:   Next, fire up whatever tool you use to browse the web and point it in the direction of \...
+> Next, fire up whatever tool you use to browse the web and point it in the direction of \...
 
 Good
 
-:   Next, start your web browser and navigate to \...
+> Next, start your web browser and navigate to \...
 
 ### Use direct commands
 
@@ -40,11 +40,11 @@ When providing step-by-step instructions, use direct commands or requests. Avoid
 
 Bad
 
-:   Now let's add a shapefile by \...
+> Now let's add a shapefile by \...
 
 Good
 
-:   Add a shapefile by \...
+> Add a shapefile by \...
 
 ## Naming conventions
 
@@ -57,19 +57,19 @@ Each word in the page name should be capitalized except for articles (such as "t
 
 Bad
 
-:   Adding a shapefile or postgis table
+> Adding a shapefile or postgis table
 
 Good
 
-:   Adding a Shapefile or PostGIS Table
+> Adding a Shapefile or PostGIS Table
 
 Bad
 
-:   The Shapefile Tutorial
+> The Shapefile Tutorial
 
 Good
 
-:   Shapefile Tutorial
+> Shapefile Tutorial
 
 ### Capitalization of section names
 
@@ -77,11 +77,11 @@ Do not capitalize second and subsequent words unless the title is almost always 
 
 Bad
 
-:   Creating a New Datastore
+> Creating a New Datastore
 
 Good
 
-:   Creating a new datastore
+> Creating a new datastore
 
 ### Verb usage
 
@@ -89,11 +89,11 @@ It is recommended that the gerund (the -ing form in English) be used unless ther
 
 Bad
 
-:   Create a new datastore
+> Create a new datastore
 
 Good
 
-:   Creating a new datastore
+> Creating a new datastore
 
 ### Avoid plurals
 
@@ -101,11 +101,11 @@ Create page titles that are in the singular. Exceptions to this are nouns that a
 
 Bad
 
-:   Templates tutorial
+> Templates tutorial
 
 Good
 
-:   Template tutorial
+> Template tutorial
 
 ## Formatting
 

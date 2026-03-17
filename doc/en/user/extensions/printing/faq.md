@@ -11,49 +11,49 @@
 
 **All I get in my PDF is: "ERROR: infinite table loop". What's wrong?**
 
-:   Something in your page is too big. For example, the width or the height of your !map block.
+Something in your page is too big. For example, the width or the height of your !map block.
 
 **I tried to print (pylons mode) and I get a "Java error". What's next?**
 
-:   Look in the apache error log, you'll find more information.
+Look in the apache error log, you'll find more information.
 
 **What are the limitations of the type 2 layers?**
 
-:   It depends mostly on the map server you use. For the moment, GeoServer has not been extensively tested. With MapServer:
+It depends mostly on the map server you use. For the moment, GeoServer has not been extensively tested. With MapServer:
 
-    - The PDF output must be enabled when you compile and doesn't work in WMS mode, only in native MapServer mode. There are some limitations. on the styling. And you must use truetype fonts.
-    - The SVG output is limited regarding the stylings you can use. For example only plain polygon fillings are supported by MapServer. If a complex styling is used, your features may appear plain black.
+- The PDF output must be enabled when you compile and doesn't work in WMS mode, only in native MapServer mode. There are some limitations. on the styling. And you must use truetype fonts.
+- The SVG output is limited regarding the stylings you can use. For example only plain polygon fillings are supported by MapServer. If a complex styling is used, your features may appear plain black.
 
 **I tried to change the layout and half the Map is printed off the page on the right. Or I have an empty page added. Is it a bug?**
 
-:   It's mostly a feature ;-) . This kind of behavior can be seen in iText, when adding a block that is too big for the page size. Try to reduce the size of your map block.
+It's mostly a feature ;-) . This kind of behavior can be seen in iText, when adding a block that is too big for the page size. Try to reduce the size of your map block.
 
 **When I look at my generated PDF in Acrobat Reader, it looks good. But, when I print it, it misses some tiles/layers, some bitmaps are just weird or there are no page printed. What's wrong?**
 
-:   There are three possible explanations:
+There are three possible explanations:
 
-    - Your printer has not enough memory: in Acrobat's print dialog, select "Save printer memory"
-    - Your printer firmware is buggy: upgrade it
-    - Your printer driver is buggy: upgrade it
+- Your printer has not enough memory: in Acrobat's print dialog, select "Save printer memory"
+- Your printer firmware is buggy: upgrade it
+- Your printer driver is buggy: upgrade it
 
 **The module needs to go through a proxy to access the map services.**
 
-:   It's so 90s\... you should hire some fresh guys for your IT team. ;-)
+It's so 90s\... you should hire some fresh guys for your IT team. ;-)
 
-    You need to set some system properties (http.proxy*) when you start your java programs.
+You need to set some system properties (http.proxy*) when you start your java programs.
 
 **On the browser, the scale is displayed with spaces to separate thousands and it's against my religion. How do I put my sacred separator?**
 
-:   By default, the browser's configured locale is used. You can force another locale in the print widget configuration:
+By default, the browser's configured locale is used. You can force another locale in the print widget configuration:
 
-    ``` yaml
-    {
-      ...
-      configUrl: 'print/info.json',
-      serviceParams: { locale: 'fr_CH' },
-      ...
-    }
-    ```
+``` yaml
+{
+  ...
+  configUrl: 'print/info.json',
+  serviceParams: { locale: 'fr_CH' },
+  ...
+}
+```
 
 **I copied the examples and the print widgets are not working.**
 

@@ -20,11 +20,15 @@ When using app-schema with Joining turned on, the following restrictions exist w
 
 Joining is turned on by default. It is disabled by adding this simple line to your app-schema.properties file (see [app-schema.property-interpolation](property-interpolation.md)) :
 
-    app-schema.joining = false
+```
+app-schema.joining = false
+```
 
 Or, alternatively, by setting the value of the Java System Property "app-schema.joining" to "false", for example :
 
-    java -DGEOSERVER_DATA_DIR=... -Dapp-schema.joining=false Start
+```
+java -DGEOSERVER_DATA_DIR=... -Dapp-schema.joining=false Start
+```
 
 Not specifying "app-schema.joining" parameter will enable joining by default.
 
@@ -61,11 +65,15 @@ There are, however, a few limitations in the current implementation:
 
 Much like joining support, native encoding of nested filters is turned on by default, and it is disabled by adding to your app-schema.properties file the line :
 
-    app-schema.encodeNestedFilters = false
+```
+app-schema.encodeNestedFilters = false
+```
 
 Or, alternatively, by setting the value of the Java System Property "app-schema.encodeNestedFilters" to "false", for example :
 
-    java -DGEOSERVER_DATA_DIR=... -Dapp-schema.encodeNestedFilters=false Start
+```
+java -DGEOSERVER_DATA_DIR=... -Dapp-schema.encodeNestedFilters=false Start
+```
 
 ## UNION performance improvement for OR conditions
 
@@ -85,11 +93,15 @@ SELECT id, name FROM table WHERE name = "A" UNION SELECT id, name FROM table WHE
 
 UNION improvement is enabled by default, and it is disabled by adding to your app-schema.properties file the line :
 
-    app-schema.orUnionReplace = false
+```
+app-schema.orUnionReplace = false
+```
 
 Or, alternatively, by setting the value of the Java System Property "app-schema.orUnionReplace" to "false", for example :
 
-    java -DGEOSERVER_DATA_DIR=... -Dapp-schema.orUnionReplace=false Start
+```
+java -DGEOSERVER_DATA_DIR=... -Dapp-schema.orUnionReplace=false Start
+```
 
 !!! note
     This optimization will only be applied when a PostgresSQL database is being used.

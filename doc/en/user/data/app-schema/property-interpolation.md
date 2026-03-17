@@ -70,7 +70,9 @@ This example defines an Oracle data store, where the connection parameter are in
 
 This sample property file gives the property values that are interpolated into the mapping file fragment above. These properties can be installed in `WEB-INF/classes/app-schema.properties` in your GeoServer installation:
 
-    example.host = database.example.com
-    example.database = example
-    example.user = dbuser
-    example.passwd = s3cr3t
+```
+example.host = database.example.com
+example.database = example
+example.user = dbuser
+example.passwd = s3cr3t
+```

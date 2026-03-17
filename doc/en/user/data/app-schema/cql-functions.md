@@ -20,7 +20,9 @@ This is similar to *if_then_else* function, except that there is no default clau
 
 **Syntax**:
 
-    Recode(COLUMN_NAME, key1, value1, key2, value2,...)
+```
+Recode(COLUMN_NAME, key1, value1, key2, value2,...)
+```
 
 - **COLUMN_NAME**: column name to get values from
 
@@ -46,7 +48,9 @@ This is more suitable for numeric keys, where the translation value is determine
 
 **Syntax**:
 
-    Categorize(COLUMN_NAME, default_value, threshold 1, value 1, threshold 2, value 2, ..., [preceding/succeeding])
+```
+Categorize(COLUMN_NAME, default_value, threshold 1, value 1, threshold 2, value 2, ..., [preceding/succeeding])
+```
 
 - **COLUMN_NAME**: data source column name
 
@@ -82,7 +86,9 @@ This function is more useful for bigger vocabulary pairs. Instead of writing a l
 
 **Syntax**:
 
-    Vocab(COLUMN_NAME, properties file)
+```
+Vocab(COLUMN_NAME, properties file)
+```
 
 - **COLUMN_NAME**: column name to get values from
 - **properties file**: absolute path of the properties file
@@ -91,9 +97,11 @@ This function is more useful for bigger vocabulary pairs. Instead of writing a l
 
 Properties file:
 
-    1GRAV=urn:cgi:classifier:CGI:SimpleLithology:2008:gravel
-    1TILL=urn:cgi:classifier:CGI:SimpleLithology:2008:diamictite
-    6ALLU=urn:cgi:classifier:CGI:SimpleLithology:2008:sediment
+```
+1GRAV=urn:cgi:classifier:CGI:SimpleLithology:2008:gravel
+1TILL=urn:cgi:classifier:CGI:SimpleLithology:2008:diamictite
+6ALLU=urn:cgi:classifier:CGI:SimpleLithology:2008:sediment
+```
 
 Mapping file:
 
@@ -116,21 +124,10 @@ This example uses the `config.parent` predefined interpolation property to speci
 
 This function converts double values to `DirectPosition` geometry type. This is needed when the data store doesn't have geometry type columns. This function expects:
 
-Literal
-
-:   `'SRS_NAME'` (optional)
-
-Expression
-
-:   expression of SRS name if `'SRS_NAME'` is present as the first argument
-
-Expression
-
-:   name of column pointing to first double value
-
-Expression
-
-:   name of column pointing to second double value (optional, only for 2D)
+- **Literal** — `'SRS_NAME'` (optional)
+- **Expression** — expression of SRS name if `'SRS_NAME'` is present as the first argument
+- **Expression** — name of column pointing to first double value
+- **Expression** — name of column pointing to second double value (optional, only for 2D)
 
 ### ToEnvelope
 
@@ -138,59 +135,45 @@ Expression
 
 **Option 1 (1D Envelope)**:
 
-    ToEnvelope(minx,maxx)
+```
+ToEnvelope(minx,maxx)
+```
 
 **Option 2 (1D Envelope with crsname)**:
 
-    ToEnvelope(minx,maxx,crsname)
+```
+ToEnvelope(minx,maxx,crsname)
+```
 
 **Option 3 (2D Envelope)**:
 
-    ToEnvelope(minx,maxx,miny,maxy)
+```
+ToEnvelope(minx,maxx,miny,maxy)
+```
 
 **Option 4 (2D Envelope with crsname)**:
 
-    ToEnvelope(minx,maxx,miny,maxy,crsname)
+```
+ToEnvelope(minx,maxx,miny,maxy,crsname)
+```
 
 ### toPoint
 
 This function converts double values to a 2D Point geometry type. This is needed when the data store doesn't have geometry type columns. This function expects:
 
-Literal
-
-:   `'SRS_NAME'` (optional)
-
-Expression
-
-:   expression of SRS name if `'SRS_NAME'` is present as the first argument
-
-Expression
-
-:   name of column pointing to first double value
-
-Expression
-
-:   name of column pointing to second double value
-
-Expression
-
-:   expression of gml:id (optional)
+- **Literal** — `'SRS_NAME'` (optional)
+- **Expression** — expression of SRS name if `'SRS_NAME'` is present as the first argument
+- **Expression** — name of column pointing to first double value
+- **Expression** — name of column pointing to second double value
+- **Expression** — expression of gml:id (optional)
 
 ### toLineString
 
 This function converts double values to 1D LineString geometry type. This is needed to express 1D borehole intervals with custom (non EPSG) CRS.
 
-Literal
-
-:   `'SRS_NAME'` (EPSG code or custom SRS)
-
-Expression
-
-:   name of column pointing to first double value
-
-Expression
-
-:   name of column pointing to second double value
+- **Literal** — `'SRS_NAME'` (EPSG code or custom SRS)
+- **Expression** — name of column pointing to first double value
+- **Expression** — name of column pointing to second double value
 
 ## Reference
 
@@ -198,9 +181,7 @@ Expression
 
 This function redirects an attribute to be encoded as xlink:href, instead of being encoded as a full attribute. This is useful in polymorphism, where static client property cannot be used when the encoding is conditional. This function expects:
 
-Expression
-
-:   REFERENCE_VALUE (could be another function or literal)
+- **Expression** — REFERENCE_VALUE (could be another function or literal)
 
 ## Date/time formatting
 
@@ -210,19 +191,15 @@ A function to format a date/time using a [SimpleDateFormat pattern](https://docs
 
 **Syntax**:
 
-    FormatDateTimezone(pattern, date, timezone)
+```
+FormatDateTimezone(pattern, date, timezone)
+```
 
-pattern
+- **pattern** — formatting pattern supported by [SimpleDateFormat](http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.md), for example `'yyyy-MM-dd'`. Use two single quotes to include a literal single quote in a CQL string literal, for example `'yyyy-MM-dd''T''HH:mm:ss''Z'''`.
 
-:   formatting pattern supported by [SimpleDateFormat](http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.md), for example `'yyyy-MM-dd'`. Use two single quotes to include a literal single quote in a CQL string literal, for example `'yyyy-MM-dd''T''HH:mm:ss''Z'''`.
+- **date** — the date/time to be formatted or its string representation, for example `'1948-01-01T00:00:00Z'`. An exception will be returned if the date is malformed (and not null). Database types with time zone information are recommended.
 
-date
-
-:   the date/time to be formatted or its string representation, for example `'1948-01-01T00:00:00Z'`. An exception will be returned if the date is malformed (and not null). Database types with time zone information are recommended.
-
-timezone
-
-:   the name of a time zone supported by Java, for example `'UTC'` or `'Canada/Mountain'`. Note that unrecognised timezones will silently be converted to UTC.
+- **timezone** — the name of a time zone supported by Java, for example `'UTC'` or `'Canada/Mountain'`. Note that unrecognised timezones will silently be converted to UTC.
 
 This function returns null if any parameter is null.
 

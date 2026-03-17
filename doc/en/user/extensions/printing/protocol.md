@@ -176,8 +176,8 @@ Returns the PDF. Can be called only during a limited time since the server side 
 
 To print more than one map on a single page you need to:
 
-:   - specify several map blocks in a page of the yaml file, each with a distinct name property value
-    - use a particular syntax in the spec to bind different rendering properties to each map block
+- specify several map blocks in a page of the yaml file, each with a distinct name property value
+- use a particular syntax in the spec to bind different rendering properties to each map block
 
 This is possible specifying a **maps** object in spec root object with a distinct key - object pair for each map. The key will refer the map block name as defined in yaml file. The object will contain layers and srs for the named map. Another **maps** object has to be specified inside the page object to describe positioning, scale and so on.
 

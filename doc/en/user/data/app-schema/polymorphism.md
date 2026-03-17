@@ -142,7 +142,9 @@ Otherwise, if NUMERIC_VALUE is less or equal than 1000, it would be encoded with
 
 **Syntax**:
 
-    if_then_else(BOOLEAN_EXPRESSION, value, default value) 
+```
+if_then_else(BOOLEAN_EXPRESSION, value, default value) 
+```
 
 - **BOOLEAN_EXPRESSION**: could be a Boolean column value, or a Boolean function
 - **value**: the value to map to, if BOOLEAN_EXPRESSION is true
@@ -152,7 +154,9 @@ Otherwise, if NUMERIC_VALUE is less or equal than 1000, it would be encoded with
 
 **Syntax**:
 
-    Recode(EXPRESSION, key1, value1, key2, value2,...)
+```
+Recode(EXPRESSION, key1, value1, key2, value2,...)
+```
 
 - **EXPRESSION**: column name to get values from, or another function
 
@@ -169,7 +173,9 @@ Returns true if ATTRIBUTE_EXPRESSION evaluates to less or equal than LIMIT_EXPRE
 
 **Syntax**:
 
-    lessEqualThan(ATTRIBUTE_EXPRESSION, LIMIT_EXPRESSION)
+```
+lessEqualThan(ATTRIBUTE_EXPRESSION, LIMIT_EXPRESSION)
+```
 
 - **ATTRIBUTE_EXPRESSION**: expression of the attribute being evaluated.
 - **LIMIT_EXPRESSION**: expression of the numeric value to be compared against.
@@ -180,7 +186,9 @@ Returns true if ATTRIBUTE_EXPRESSION evaluates to less than LIMIT_EXPRESSION.
 
 **Syntax**:
 
-    lessThan(ATTRIBUTE_EXPRESSION, LIMIT_EXPRESSION)
+```
+lessThan(ATTRIBUTE_EXPRESSION, LIMIT_EXPRESSION)
+```
 
 - **ATTRIBUTE_EXPRESSION**: expression of the attribute being evaluated.
 - **LIMIT_EXPRESSION**: expression of the numeric value to be compared against.
@@ -191,7 +199,9 @@ Compares two expressions and returns true if they're equal.
 
 **Syntax**:
 
-    equalTo(LHS_EXPRESSION, RHS_EXPRESSION)
+```
+equalTo(LHS_EXPRESSION, RHS_EXPRESSION)
+```
 
 ### isNull
 
@@ -199,7 +209,9 @@ Returns a Boolean that is true if the expression evaluates to null.
 
 **Syntax**:
 
-    isNull(EXPRESSION)
+```
+isNull(EXPRESSION)
+```
 
 - **EXPRESSION**: expression to be evaluated.
 
@@ -209,7 +221,9 @@ Special function written for referential polymorphism and feature chaining, not 
 
 **Syntax**:
 
-    toXlinkHref(XLINK_HREF_EXPRESSION)
+```
+toXlinkHref(XLINK_HREF_EXPRESSION)
+```
 
 - **XLINK_HREF_EXPRESSION**:
 
@@ -227,8 +241,10 @@ Please refer to [Filter Function Reference](../../filter/function_reference.md).
 
 You can combine functions, but it might affect performance. E.g.:
 
-    if_then_else(isNull(NUMERIC_VALUE), toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'), 
-        if_then_else(lessEqualThan(NUMERIC_VALUE, 1000), 'numeric_value', toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'))) 
+```
+if_then_else(isNull(NUMERIC_VALUE), toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'), 
+    if_then_else(lessEqualThan(NUMERIC_VALUE, 1000), 'numeric_value', toXlinkHref('urn:ogc:def:nil:OGC:1.0:missing'))) 
+```
 
 !!! note
     * When specifying a mappingName or targetElement as a value in functions, make sure they're enclosed in single quotes. * Some functions have no null checking, and will fail when they encounter null. * The workaround for this is to wrap the expression with isNull() function if null is known to exist in the data set.
@@ -237,11 +253,17 @@ You can combine functions, but it might affect performance. E.g.:
 
 To skip the attribute for a specific case, you can use Expression.NIL as a value in if_then_else or not include the key in [Recode function](#recode-function) . E.g.:
 
-    if_then_else(isNull(VALUE), Expression.NIL, 'gsml:CGI_TermValue')
-        means the attribute would not be encoded if VALUE is null.
+```
+if_then_else(isNull(VALUE), Expression.NIL, 'gsml:CGI_TermValue')
+```
 
-    Recode(VALUE, 'term_value', 'gsml:CGI_TermValue')
-        means the attribute would not be encoded if VALUE is anything but 'term_value'. 
+means the attribute would not be encoded if VALUE is null.
+
+```
+Recode(VALUE, 'term_value', 'gsml:CGI_TermValue')
+```
+
+means the attribute would not be encoded if VALUE is anything but 'term_value'.
 
 To encode an attribute as xlink:href that represents missing value on the top level, see [Referential Polymorphism](#referential-polymorphism).
 
