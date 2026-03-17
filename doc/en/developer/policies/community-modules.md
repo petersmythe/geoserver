@@ -448,9 +448,6 @@ The following properties must hold true in order to promote a community module:
           </configuration>
         </plugin>
         ```
-          </configuration>
-        </plugin>
-        ```
 
 1.  Update the ``/doc/en/user/source/community`` documentation:
 
