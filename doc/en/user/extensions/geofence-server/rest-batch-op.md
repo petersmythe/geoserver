@@ -95,9 +95,6 @@ Issue a Batch operation executing all the declared operations.
 | Method | Action          | Response code | Response                                                    |
 | ------ | --------------- | ------------- | ----------------------------------------------------------- |
 | POST   | Execute a batch | 200           | OK                                                          |
-|        |                 +---------------+-------------------------------------------------------------+
 |        |                 | 400           | BadRequest: malformed request body, duplicate rule addition |
-|        |                 +---------------+-------------------------------------------------------------+
 |        |                 | 404           | NotFound: rule not found                                    |
-|        |                 +---------------+-------------------------------------------------------------+
 |        |                 | 500           | InternalServerError: unexpected error                       |

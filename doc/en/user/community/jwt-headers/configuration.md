@@ -13,7 +13,7 @@ The JWT Headers module covers three main use cases:
 | Config Option | Meaning |
 |----|----|
 | Request header attribute for User Name | The name of the HTTP header item that contains the user name. |
-|  |  |
+| Format the Header value is in | Format that the user name is in: Simple String (user name is the header's value), JSON (header is a JSON string, use JSON path), or JWT (header is a base64 JWT string, use JSON path). |
 | JSON path for the User Name | If the user name is in JSON or JWT format, this is the JSON path to the user's name. |
 
 If you are using [Apache's mod_auth_openidc](https://github.com/OpenIDC/mod_auth_openidc), then Apache will typically add:
@@ -56,7 +56,7 @@ You can use the standard role source options in GeoServer (``Request Header``, `
 
 | Config Option | Meaning |
 |----|----|
-|  |  |
+| Role Source | Which Role Source to use: Header containing JSON String (header contains a JSON claims object) or Header Containing JWT (header contains a Base64 JWT Access Token). |
 | Request Header attribute for Roles | Name of the header item the JSON or JWT is contained in |
 | JSON Path | Path in the JSON object or JWT claims that contains the roles. This should either be a simple string (single role) or a list of strings. |
 

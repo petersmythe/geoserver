@@ -337,15 +337,11 @@ The key properties **fill** and **label** are used to enable Polygon label gener
 
     The property **anchor** provides two numbers expressing how a label is aligned with respect to the centroid. The first value controls the horizontal alignment, while the second value controls the vertical alignment. Alignment is expressed between 0.0 and 1.0 as shown in the following table.
 
-    +----------+---------+---------+---------+
-    |          | Left    | Center  | Right   |
-    +----------+---------+---------+---------+
-    | Top      | 0.0 1.0 | 0.5 1.0 | 1.0 1.0 |
-    +----------+---------+---------+---------+
-    | Middle   | 0.0 0.5 | 0.5 0.5 | 1.0 0.5 |
-    +----------+---------+---------+---------+
-    | Bottom   | 0.0 0.0 | 0.5 0.0 | 1.0 0.0 |
-    +----------+---------+---------+---------+
+    |        | Left    | Center  | Right   |
+    |--------|---------|---------|---------|
+    | Top    | 0.0 1.0 | 0.5 1.0 | 1.0 1.0 |
+    | Middle | 0.0 0.5 | 0.5 0.5 | 1.0 0.5 |
+    | Bottom | 0.0 0.0 | 0.5 0.0 | 1.0 0.0 |
 
     Adjusting the **anchor** is the recommended approach to positioning your labels.
 
@@ -543,15 +539,11 @@ A thematic map (rather than focusing on representing the shape of the world) use
 
 2.  For our `ne:states_provinces_shp` dataset, a **mapcolor9** attribute has been provided for this purpose. Theming by **mapcolor9** results in a map where neighbouring countries are visually distinct.
 
-    +------------+------------+------------+
-    | > Qualitative 9-class Set3           |
-    +------------+------------+------------+
-    | #8dd3c7    | #fb8072    | #b3de69    |
-    +------------+------------+------------+
-    | #ffffb3    | #80b1d3    | #fccde5    |
-    +------------+------------+------------+
-    | #bebada    | #fdb462    | #d9d9d9    |
-    +------------+------------+------------+
+    | > Qualitative 9-class Set3 |         |         |
+    |----------------------------|---------|---------|
+    | #8dd3c7                    | #fb8072 | #b3de69 |
+    | #ffffb3                    | #80b1d3 | #fccde5 |
+    | #bebada                    | #fdb462 | #d9d9d9 |
 
     If you are unfamiliar with theming you may wish to visit <http://colorbrewer2.org> to learn more. The **i** icons provide an adequate background on theming approaches for qualitative, sequential and diverging datasets.
 

@@ -100,9 +100,6 @@ customNativeMappings:
 | Key         | Required | Description                                                                                                                                                                       |
 | ----------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **type**    | yes      | currently supported: KEYWORDS, IDENTIFIERS, METADATALINKS                                                                                                                         |
-| **mapping** | yes      | | List of key to value pairs. Value contains a literal with or without placeholder that contains custom attribute path (the `/` symbol denoting subfields inside complex fields). |
-|             |          | | Possible keys for KEYWORDS: value, vocabulary                                                                                                                                   |
-|             |          | | Possible keys for METADATALINKS: value, type, metadataType, about                                                                                                               |
-|             |          | | Possible keys for IDENTIFIERS: value, authority                                                                                                                                 |
+| **mapping** | yes |  | List of key to value pairs. Value contains a literal with or without placeholder that contains custom attribute path (the `/` symbol denoting subfields inside complex fields).<br>Possible keys for KEYWORDS: value, vocabulary<br>Possible keys for METADATALINKS: value, type, metadataType, about<br>Possible keys for IDENTIFIERS: value, authority |
 
 The synchronisation of the metadata takes place each time a layer is saved. Any information that has been entered by the user in mapped native fields via the GUI will be lost.

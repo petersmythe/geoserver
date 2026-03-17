@@ -123,8 +123,7 @@ Specifies an inclusive lower bound on the timestamp for the start of a request. 
 
 | Syntax             | Example                                |
 |--------------------|----------------------------------------|
-| `from=<timestamp>` | requests.html?from=2010-07-23T16:16:44 |
-|                    | requests.html?from=2010-07-23          |
+| `from=<timestamp>` | requests.html?from=2010-07-23T16:16:44<br>requests.html?from=2010-07-23 |
 
 ### to Parameter
 
@@ -132,8 +131,7 @@ Specifies an inclusive upper bound on the timestamp for the start of a request. 
 
 | Syntax           | Example                              |
 |------------------|--------------------------------------|
-| `to=<timestamp>` | requests.html?to=2010-07-24T00:00:00 |
-|                  | requests.html?to=2010-07-24          |
+| `to=<timestamp>` | requests.html?to=2010-07-24T00:00:00<br>requests.html?to=2010-07-24 |
 
 ### order Parameter
 
@@ -141,6 +139,4 @@ Specifies which request attribute to sort by, and optionally specifies the sort 
 
 | Syntax                           | Example                            |
 |----------------------------------|------------------------------------|
-| `order=<attribute>[;<ASC|DESC>]` | requests.html?order=path           |
-|                                  | requests.html?order=startTime;DESC |
-|                                  | requests.html?order=totalTime;ASC  |
+| `order=<attribute>[;<ASC|DESC>]` | requests.html?order=path<br>requests.html?order=startTime;DESC<br>requests.html?order=totalTime;ASC |

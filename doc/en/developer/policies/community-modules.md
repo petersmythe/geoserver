@@ -39,7 +39,7 @@ The following outlines the steps to be taken in order to add a new community mod
 
     For example, from the root of the GeoServer source tree:
 
-    ```json
+    ```shell
 [geoserver]% cd src/community
 [geoserver/src/community]% mkdir myCommunityModule
 [geoserver/src/community]% git add myCommunityModule
@@ -247,7 +247,7 @@ The following properties must hold true in order to promote a community module:
 
     Core modules live under the root of the source tree:
 
-    ```json
+    ```shell
 [geoserver]% mv src/community/myCommunityModule src/
 [geoserver]% git add src/myCommunityModule
 [geoserver]% git add --all src/community/myCommunityModule
@@ -258,7 +258,7 @@ The following properties must hold true in order to promote a community module:
 
     Extension modules live under the extension directory, under the root of the source tree:
 
-    ```json
+    ```shell
 [geoserver]% mv src/community/myCommunityModule src/extension
 [geoserver]% git add src/extension/myCommunityModule
 [geoserver]% git add --all src/community/myCommunityModule
@@ -449,9 +449,6 @@ The following properties must hold true in order to promote a community module:
              ...
              <descriptor>release/ext-%module%.xml</descriptor>
             </descriptors>
-          </configuration>
-        </plugin>
-        ```
           </configuration>
         </plugin>
         ```

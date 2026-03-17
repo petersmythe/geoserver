@@ -10,64 +10,36 @@ This data store allows features from an Elasticsearch index to be published thro
 
 Once the Elasticsearch GeoServer extension is installed, `Elasticsearch index` will be an available vector data source format when creating a new data store.
 
-+-------------------------------------------------------------+
-| ![new_store](images/elasticsearch_store.png){.align-middle} |
-+-------------------------------------------------------------+
+![new_store](images/elasticsearch_store.png){.align-middle}
+
 
 The Elasticsearch data store configuration panel includes connection parameters and search settings.
 
-+---------------------------------------------------------+
-| ![store_config](images/elasticsearch_configuration.png) |
-+---------------------------------------------------------+
+![store_config](images/elasticsearch_configuration.png)
+
 
 Available data store configuration parameters are summarized in the following table:
 
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Parameter                | Description                                                                                                                                                    |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| elasticsearch_host       | Host (IP) for connecting to Elasticsearch. HTTP scheme and port can optionally be included to override the defaults. Multiple hosts can be provided. Examples: |
-|                          |                                                                                                                                                                |
-|                          |     localhost                                                                                                                                                  |
-|                          |     localhost:9200                                                                                                                                             |
-|                          |     http://localhost                                                                                                                                           |
-|                          |     http://localhost:9200                                                                                                                                      |
-|                          |     https://localhost:9200                                                                                                                                     |
-|                          |     https://somehost.somedomain:9200,https://anotherhost.somedomain:9200                                                                                       |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| elasticsearch_port       | Default HTTP port for connecting to Elasticsearch. Ignored if the hostname includes the port.                                                                  |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| user                     | Elasticsearch user. Must have superuser privilege on index.                                                                                                    |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| passwd                   | Elasticsearch user password                                                                                                                                    |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| runas_geoserver_user     | Whether to submit requests on behalf of the authenticated GeoServer user                                                                                       |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| proxy_user               | Elasticsearch user for document queries. If not provided then admin user credentials are used for all requests.                                                |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| proxy_passwd             | Elasticsearch proxy user password                                                                                                                              |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| index_name               | Index name or alias (wildcards supported)                                                                                                                      |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| reject_unauthorized      | Whether to validate the server certificate during the SSL handshake for https connections                                                                      |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| default_max_features     | Default used when maxFeatures is unlimited                                                                                                                     |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| source_filtering_enabled | Whether to enable filtering of the {%raw%}[source]{#source}{%endraw%} field                                                                                                     |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| scroll_enabled           | Enable the Elasticsearch scan and scroll API                                                                                                                   |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| scroll_size              | Number of documents per shard when using the scroll API                                                                                                        |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| scroll_time              | Search context timeout when using the scroll API                                                                                                               |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| array_encoding           | Array encoding strategy. Allowed values are `JSON` (keep arrays) and `CSV` (keep first array element).                                                         |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| grid_size                | Hint for Geohash grid size (numRows*numCols)                                                                                                                  |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| grid_threshold           | Geohash grid aggregation precision will be the minimum necessary so that actual_grid_size/grid_size > grid_threshold                                          |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| response_buffer_limit    | Maximum number of bytes to buffer in memory when reading responses from Elasticsearch                                                                          |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Parameter                | Description                                                                      |
+|--------------------------|----------------------------------------------------------------------------------|
+| elasticsearch_host       | Host (IP) for connecting to Elasticsearch. HTTP scheme and port can optionally be included to override the defaults. Multiple hosts can be provided. Examples:<br>localhost<br>localhost:9200<br>http://localhost<br>http://localhost:9200<br>https://localhost:9200<br>https://somehost.somedomain:9200,https://anotherhost.somedomain:9200 |
+| elasticsearch_port       | Default HTTP port for connecting to Elasticsearch. Ignored if the hostname includes the port. |
+| user                     | Elasticsearch user. Must have superuser privilege on index.                      |
+| passwd                   | Elasticsearch user password                                                      |
+| runas_geoserver_user     | Whether to submit requests on behalf of the authenticated GeoServer user         |
+| proxy_user               | Elasticsearch user for document queries. If not provided then admin user credentials are used for all requests. |
+| proxy_passwd             | Elasticsearch proxy user password                                                |
+| index_name               | Index name or alias (wildcards supported)                                        |
+| reject_unauthorized      | Whether to validate the server certificate during the SSL handshake for https connections |
+| default_max_features     | Default used when maxFeatures is unlimited                                       |
+| source_filtering_enabled | Whether to enable filtering of the {%raw%}[source]{#source}{%endraw%} field      |
+| scroll_enabled           | Enable the Elasticsearch scan and scroll API                                     |
+| scroll_size              | Number of documents per shard when using the scroll API                          |
+| scroll_time              | Search context timeout when using the scroll API                                 |
+| array_encoding           | Array encoding strategy. Allowed values are `JSON` (keep arrays) and `CSV` (keep first array element). |
+| grid_size                | Hint for Geohash grid size (numRows*numCols)                                     |
+| grid_threshold           | Geohash grid aggregation precision will be the minimum necessary so that actual_grid_size/grid_size > grid_threshold |
+| response_buffer_limit    | Maximum number of bytes to buffer in memory when reading responses from Elasticsearch |
 
 #### Configuring authentication
 
@@ -102,9 +74,8 @@ $ export JAVA_OPTS="-Djavax.net.ssl.trustStore=/path/to/truststore.jks -Djavax.n
 
 The initial layer configuration panel for an Elasticsearch layer will include an additional pop-up showing a table of available fields.
 
-+------------------------------------------------------------------+
-| ![field_list](images/elasticsearch_fieldlist.png){.align-middle} |
-+------------------------------------------------------------------+
+![field_list](images/elasticsearch_fieldlist.png){.align-middle}
+
 
 | Item | Description |
 |----|----|
@@ -123,9 +94,8 @@ The initial layer configuration panel for an Elasticsearch layer will include an
 
 To return to the field table after it has been closed, click the "Configure Elasticsearch fields" button below the "Feature Type Details" panel on the layer configuration page.
 
-+----------------------------------------------------------------------------+
-| ![field_list_edit](images/elasticsearch_fieldlist_edit.png){.align-middle} |
-+----------------------------------------------------------------------------+
+![field_list_edit](images/elasticsearch_fieldlist_edit.png){.align-middle}
+
 
 ### Configuring logging
 
@@ -136,9 +106,8 @@ Logging is configurable through Log4j. The data store includes logging such as t
 
 The logging configuration file will be in the `logs` subdirectory in the GeoServer data directory. Check GeoServer global settings for which logging profile is being used (e.g. `DEFAULT_LOGGING`, etc.).
 
-+-------------------------------------------------------------+
-| ![logging](images/elasticsearch_logging.png){.align-middle} |
-+-------------------------------------------------------------+
+![logging](images/elasticsearch_logging.png){.align-middle}
+
 
 ## Filtering
 

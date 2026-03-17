@@ -51,19 +51,10 @@ http://localhost:8080/geoserver/ows?
 
 The response XML document contains the following information:
 
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Title**          | "Buffers a geometry using a certain distance"                                                                                                 |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Inputs**         | **geom**: "The geometry to be buffered" *(geometry, mandatory)*                                                                               |
-|                    |                                                                                                                                                 |
-|                    | **distance**: "The distance (same unit of measure as the geometry)" *(double, mandatory)*                                                     |
-|                    |                                                                                                                                                 |
-|                    | **quadrant segments**: "Number of quadrant segments. Use > 0 for round joins, 0 for flat joins,](# 0 for mitred joins" *(integer, optional)* |
-|                    |                                                                                                                                                 |
-|                    | **capstyle**: "The buffer cap style, round, flat, square" *(literal value, optional)*                                                         |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Output formats** | One of the GeoServer supported formats for Geometry encoding                                                                                    |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Title**          | "Buffers a geometry using a certain distance"                                    |
+|--------------------|----------------------------------------------------------------------------------|
+| **Inputs**         | **geom**: "The geometry to be buffered" *(geometry, mandatory)*<br>**distance**: "The distance (same unit of measure as the geometry)" *(double, mandatory)*<br>**quadrant segments**: "Number of quadrant segments. Use > 0 for round joins, 0 for flat joins,](# 0 for mitred joins" *(integer, optional)*<br>**capstyle**: "The buffer cap style, round, flat, square" *(literal value, optional)* |
+| **Output formats** | One of the GeoServer supported formats for Geometry encoding                     |
 
 In general, GeoServer processes use complex objects as inputs and objects, like geometries, feature collections and raster data.
 

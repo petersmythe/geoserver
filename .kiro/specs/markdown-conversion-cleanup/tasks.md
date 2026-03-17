@@ -462,7 +462,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 - [ ] 17. Fix table structure and content issues
 
-  - [ ] 17.1 Create detection script for table issues
+  - [x] 17.1 Create detection script for table issues
     - Scan for tables with lists in cells that split across cells
     - Identify tables with notes/admonitions breaking structure
     - Detect multi-line cell content splitting into multiple cells
@@ -471,7 +471,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - Generate comprehensive report with table locations
     - _Requirements: 1.19, 1.20, 1.21, 1.22, 1.23_
 
-  - [ ] 17.2 Implement automated fix for lists in table cells
+  - [x] 17.2 Implement automated fix for lists in table cells
     - Convert multi-item lists to single-cell format (semicolon-separated or HTML)
     - Use <br> tags for line breaks within cells
     - Ensure list content stays within single cells
@@ -480,7 +480,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted table lists remain unchanged_
     - _Requirements: 1.19, 2.19, 3.3_
 
-  - [ ] 17.3 Implement automated fix for notes/admonitions in tables
+  - [x] 17.3 Implement automated fix for notes/admonitions in tables
     - Simplify note/admonition content to plain text in cells
     - OR move notes outside tables with cell references
     - Maintain table structure integrity
@@ -489,7 +489,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Tables without notes remain unchanged_
     - _Requirements: 1.20, 2.20, 3.3_
 
-  - [ ] 17.4 Implement automated fix for multi-line cell content
+  - [x] 17.4 Implement automated fix for multi-line cell content
     - Use HTML <br> tags or proper Markdown table syntax for line breaks
     - Ensure newlines don't split content into multiple cells
     - Maintain cell content integrity
@@ -498,7 +498,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly formatted multi-line cells remain unchanged_
     - _Requirements: 1.21, 2.21, 3.3_
 
-  - [ ] 17.5 Implement automated fix for complex table alignment
+  - [x] 17.5 Implement automated fix for complex table alignment
     - Repair table structure with correct column alignment
     - Ensure header and data rows align properly
     - Fix cell spanning issues
@@ -507,7 +507,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly aligned tables remain unchanged_
     - _Requirements: 1.22, 2.22, 3.3_
 
-  - [ ] 17.6 Implement automated fix for empty table cells
+  - [x] 17.6 Implement automated fix for empty table cells
     - Restore content to empty cells from RST source
     - Cross-reference with original RST files
     - Ensure all cells have their original content
@@ -516,14 +516,14 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Non-empty cells remain unchanged_
     - _Requirements: 1.23, 2.23, 3.3_
 
-  - [ ] 17.7 Verify table exploration test now passes
+  - [x] 17.7 Verify table exploration test now passes
     - **Property 1: Expected Behavior** - Tables Fixed
     - **IMPORTANT**: Re-run the SAME test from task 6
     - Run table exploration test from step 6
     - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
     - _Requirements: 2.19, 2.20, 2.21, 2.22, 2.23_
 
-  - [ ] 17.8 Verify preservation tests still pass
+  - [x] 17.8 Verify preservation tests still pass
     - **Property 2: Preservation** - No Regressions in Tables
     - **IMPORTANT**: Re-run preservation tests from tasks 10-11
     - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)

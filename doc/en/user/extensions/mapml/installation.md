@@ -162,73 +162,40 @@ When configuring a cascaded WMS or WMTS remote layers, a new "Client Requests" s
 | Symbolizer               | Style Attribute    | Supported |
 | ------------------------ | ------------------ | --------- |
 | PointSymbolizer          | Opacity            | yes       |
-|                          +--------------------+-----------+
 |                          | Default Radius     | yes       |
-|                          +--------------------+-----------+
 |                          | Radius             | yes       |
-|                          +--------------------+-----------+
 |                          | Rotation           | no        |
-|                          +--------------------+-----------+
 |                          | Displacement       | no        |
-|                          +--------------------+-----------+
 |                          | Anchor Point       | no        |
-|                          +--------------------+-----------+
 |                          | Gap                | no        |
-|                          +--------------------+-----------+
 |                          | Initial Gap        | no        |
-|                          +--------------------+-----------+
 |                          | Well Known Name    | yes       |
-|                          +--------------------+-----------+
 |                          | External Mark      | no        |
-|                          +--------------------+-----------+
 |                          | Graphic Fill       | no        |
-|                          +--------------------+-----------+
 |                          | Fill Color         | yes       |
-|                          +--------------------+-----------+
 |                          | Fill Opacity       | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Color       | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Opacity     | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Width       | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Linecap     | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Dash Array  | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Dash Offset | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Line Join   | no        |
 | LineSymbolizer           | Stroke Linecap     | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Dash Array  | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Dash Offset | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Line Join   | no        |
 | PolygonSymbolizer        | Displacement       | no        |
-|                          +--------------------+-----------+
 |                          | Perpendicular Offs | no        |
-|                          +--------------------+-----------+
 |                          | Graphic Fill       | no        |
-|                          +--------------------+-----------+
 |                          | Fill Color         | yes       |
-|                          +--------------------+-----------+
 |                          | Fill Opacity       | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Color       | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Opacity     | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Width       | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Linecap     | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Dash Array  | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Dash Offset | yes       |
-|                          +--------------------+-----------+
 |                          | Stroke Line Join   | no        |
 | TextSymbolizer           | ALL                | no        |
 | RasterSymbolizer         | ALL                | no        |
