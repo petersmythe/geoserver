@@ -47,6 +47,7 @@ theme:
     - navigation.tracking
     - navigation.indexes
     - navigation.path
+    - navigation.footer
 
 extra:
   version:

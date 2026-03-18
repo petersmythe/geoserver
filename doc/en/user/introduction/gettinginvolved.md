@@ -80,7 +80,7 @@ If you are not in position to communicate in public, please consider [commercial
     
     > Or directly use GitHub [private vulnerablity reporting](https://github.com/geoserver/geoserver/security/advisories/new).
     
-    - There is no expected response time. Be prepared to work with Be prepared to work with geoserver-security email list volunteers on a solution.
+    - There is no expected response time. Be prepared to work with geoserver-security email list volunteers on a solution.
     - Keep in mind participants are volunteering their time, an extensive fix may require fundraising/resources.
 
 ## Translation
