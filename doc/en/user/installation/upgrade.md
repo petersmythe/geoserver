@@ -171,9 +171,9 @@ Additionally, the image processing engine is now ImageN:
 - JAI native settings have been removed (ImageN is pure Java).
 - One notable change in the configuration is that the `USE_JAI_IMAGEREAD` parameter is now called `USE_IMAGEN_IMAGEREAD`.
 
-This `USE_IMAGEN_IMAGEREAD`` parameter is used by image mosaic and a few other coverage readers, and is normally called "deferred loading" in the UI. GeoServer will migrate the parameter name automatically when layers are saved, and compatibility with REST scripts using the old name is preserved. If you want to migrate the data directory to the new parameter in bulk, look up all the coverage.xml files and replace the parameter name in them. For example, on Linux, the following command will perform a migration:
+This `USE_IMAGEN_IMAGEREAD` parameter is used by image mosaic and a few other coverage readers, and is normally called "deferred loading" in the UI. GeoServer will migrate the parameter name automatically when layers are saved, and compatibility with REST scripts using the old name is preserved. If you want to migrate the data directory to the new parameter in bulk, look up all the coverage.xml files and replace the parameter name in them. For example, on Linux, the following command will perform a migration:
 
-``` bash
+``` shell
 find <GEOSERVER_DATA_DIR> -name coverage.xml -exec sed -i 's/USE_JAI_IMAGEREAD/USE_IMAGEN_IMAGEREAD/g' {} \;
 ```
 
@@ -245,7 +245,7 @@ With this change it is no longer necessary to generate a **`masterpw.info`** whe
 
 ### ENTITY_RESOLUTION_UNRESTRICTED application property (GeoServer 2.26.4 and newer)
 
-The global setting **Unrestricted XML External Entity Resolution** has been repalced with the `ENTITY_RESOLUTION_UNRESTRICTED` application property.
+The global setting **Unrestricted XML External Entity Resolution** has been replaced with the `ENTITY_RESOLUTION_UNRESTRICTED` application property.
 
 For more information see [External Entities Resolution](../production/config.md#production_config_external_entities).
 
@@ -269,7 +269,7 @@ Due to the above compatibility issues, **some** layers based on underlying GRIB 
 
 #### Basic cleanup
 
-#\. Remove any auxiliary/cache file associated with the underlying GRIB file (assuming the file is named gribfile.grib2):
+1. Remove any auxiliary/cache file associated with the underlying GRIB file (assuming the file is named gribfile.grib2):
 
 - gribfile.ncx3
 - gribfile.ncx4
@@ -288,7 +288,7 @@ Due to the above compatibility issues, **some** layers based on underlying GRIB 
 2.  If using a datastore.properties connecting to an actual DB, clean up the tables from the DB
     - Assuming that all the GRIB files belonging to the same ImageMosaic are affected by the same issue, you can delete the related tables and allow the imageMosaic reconfiguration to recreate them.
     - Based on the above example, the naming convention is that granules for VariableA are stored on table named VariableA and so on.
-3.  Recreate the indexer.xml and {%raw%}[auxiliary.xml]{#auxiliary.xml}{%endraw%} file as reported in the [NetCDF documentation](https://docs.geoserver.org/main/en/user/extensions/netcdf/netcdf.md#setting-up-a-basic-mosaic) . (At the end, GRIB file are served through the NetCDF libraries)
+3.  Recreate the indexer.xml and auxiliary.xml file as reported in the [NetCDF documentation](https://docs.geoserver.org/main/en/user/extensions/netcdf/netcdf.md#setting-up-a-basic-mosaic). (At the end, GRIB file are served through the NetCDF libraries)
 
 #### Configuration cleanup
 
@@ -296,7 +296,7 @@ The GeoServer configuration refers to the "native name" of the variables, as rep
 
 If you are lucky, the following might help you to reconfigure the layers:
 
-1.  Open the `coverage.xml` file of the affected layer and check the `nativeName` and `nativeCoverageName`` attributes, to the new variable name (you can pick it up from tools like ToolsUI or Panoply).
+1.  Open the `coverage.xml` file of the affected layer and check the `nativeName` and `nativeCoverageName` attributes, to the new variable name (you can pick it up from tools like ToolsUI or Panoply).
 2.  Reload the GeoServer configuration, either by restarting the GeoServer service or by using the GeoServer Admin UI.
 3.  Check if the layer is now working.
 
@@ -336,7 +336,7 @@ The external entity allow list is an important setting from a security standpoin
     In general only application schema extension users need to update this setting.
 
 !!! note
-    To restore the previous behavour use system property `ENTITY_RESOLUTION_ALLOWLIST=*` to allow external entity resolution from any ``http`` or ``https`` location.
+    To restore the previous behaviour use system property `ENTITY_RESOLUTION_ALLOWLIST=*` to allow external entity resolution from any ``http`` or ``https`` location.
 
 For more information, including how to add additional allowed locations see [External Entities Resolution](../production/config.md#production_config_external_entities).
 
@@ -402,8 +402,8 @@ As of GeoServer 2.21, the logging system used by GeoServer has been upgraded fro
 
 - The built-in logging profiles are upgraded with **`xml`** files:
 
-      DEFAULT_LOGGING.xml
-      DEFAULT_LOGGING.properties.bak
+      * DEFAULT_LOGGING.xml
+      * DEFAULT_LOGGING.properties.bak
 
 - A backup of the prior **`properties`** files are created during the upgrade process. If you had previously made any customizations to a built-in profiles these backup files may be used as a reference when customizing the xml file.
 
