@@ -643,7 +643,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
     - _Preservation: Correctly leveled headings remain unchanged_
     - _Requirements: 1.29, 2.29, 3.8_
 
-  - [ ] 20.3 Implement automated fix for quoted specification text
+  - [x] 20.3 Implement automated fix for quoted specification text
     - Convert code block-formatted quotes to proper blockquotes
     - Use > syntax for quoted text from specifications
     - Maintain quote formatting and attribution

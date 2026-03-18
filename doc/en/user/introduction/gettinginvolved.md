@@ -10,9 +10,9 @@ GeoServer operates with full transparency with public [policies and procedures](
 
 Helping to develop GeoServer is the obvious way to help out. Developers usually start with bug fixes and other small patches, and then move into larger contributions as they learn the system. Our developers are more than happy to help out as you learn and get acquainted. We try our hardest to keep our code clean and well documented.
 
-You can find the project on [github.com/geoserver <>](https://github.com/geoserver/geoserver/github.com/geoserver <>). Anyone can submit pull requests, following our [contributing policy <blob/main/CONTRIBUTING.md>](https://github.com/geoserver/geoserver/contributing policy <blob/main/CONTRIBUTING.md>), which will be evaluated by the team.
+You can find the project on [github.com/geoserver](https://github.com/geoserver/geoserver). Anyone can submit pull requests, following our [contributing policy](https://github.com/geoserver/geoserver/blob/main/CONTRIBUTING.md), which will be evaluated by the team.
 
-To learn more about contributing to the GeoServer codebase, we recommend reading the [Developers Guide <>](../developer/Developers Guide <>) and joining GeoServer Developers (see below).
+To learn more about contributing to the GeoServer codebase, we recommend reading the [Developers Guide](https://docs.geoserver.org/latest/en/developer/) and joining GeoServer Developers (see below).
 
 !!! note
     For [commit access](https://docs.geoserver.org/latest/en/developer/policies/committing.md) new developers can request to work on a community module immediately, or make contributions over time to earn a nomination for full commit access.
@@ -21,10 +21,10 @@ To learn more about contributing to the GeoServer codebase, we recommend reading
 
 Another crucial way to help out is with documentation. Whether it's adding tutorials or just correcting mistakes, every contribution serves to make the project healthier. And the best part is that you do not need to be a developer in order to contribute.
 
-Our official documentation is contained as part of our [official code repository <>](https://github.com/geoserver/geoserver/official code repository <>). Anyone can submit pull requests, which will be evaluated by the team.
+Our official documentation is contained as part of our [official code repository](https://github.com/geoserver/geoserver). Anyone can submit pull requests, which will be evaluated by the team.
 
 !!! info "See Also"
-    To learn more about contributing to the GeoServer documentation, we recommend reading the [Documentation Guide <>](../developer/Documentation Guide <>) and joining GeoServer Developers (see below).
+    To learn more about contributing to the GeoServer documentation, we recommend reading the [Documentation Guide](https://docs.geoserver.org/latest/en/docguide/) and joining GeoServer Developers (see below).
 
 !!! note
     For typos and other small changes you can use the **Edit Page** link on any page. Please see [Quick Fix](https://docs.geoserver.org/latest/en/docguide/quickfix.html) example.
@@ -42,7 +42,7 @@ These open communication channels are publicly available and are a great resourc
 
 ## GeoServer Developer
 
-The :`GeoServer Developers <https://discourse.osgeo.org/c/geoserver/developer/63>`_ mailing list is hosted on Discourse.
+The [GeoServer Developers](https://discourse.osgeo.org/c/geoserver/developer/63) mailing list is hosted on Discourse.
 
 The GeoServer Developers forum is for those working directly on the project, with code-specific and roadmap-based discussions.
 
@@ -72,7 +72,7 @@ If you are not in position to communicate in public, please consider [commercial
 !!! warning
     Coordinated Vulnerability Disclosure
     
-    If you encounter a security vulnerability in GeoServer please keep in mind our [Coordinated Vulnerability Disclosure <security/policy>](https://github.com/geoserver/geoserver/Coordinated Vulnerability Disclosure <security/policy>) policy:
+    If you encounter a security vulnerability in GeoServer please keep in mind our [Coordinated Vulnerability Disclosure](https://github.com/geoserver/geoserver/security/policy) policy:
     
     - Keep exploit details out of public forums, mailing list and issue tracker.
     

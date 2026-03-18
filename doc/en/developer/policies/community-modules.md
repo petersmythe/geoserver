@@ -482,7 +482,7 @@ The following properties must hold true in order to promote a community module:
           #. Visit the :website:`website download <download>` page and download :download_community:`jdbcconfig`.
           ```
 
-    For more information see [documentation guide <>](../docguide/documentation guide <>).
+    For more information see [documentation guide](https://docs.geoserver.org/latest/en/docguide/).
 
 2.  Download and a contributor license agreement as pdf for txt file:
 

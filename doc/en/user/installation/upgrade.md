@@ -46,7 +46,7 @@ GeoServer operates with a time boxed release cycle, maintaining "stable" and "ma
 
   GeoServer provides some overlap between "stable" and "maintenance" releases to provide you a window of opportunity to upgrade between supported versions.
 
-- GeoServer [security policy <security/policy>](https://github.com/geoserver/geoserver/security policy <security/policy>) indicates each release is supported with bug fixes for a year, with releases made approximately every two months.
+- GeoServer [security policy](https://github.com/geoserver/geoserver/security/policy) indicates each release is supported with bug fixes for a year, with releases made approximately every two months.
 
   You may also contact our service providers for extended support beyond this timeframe.
 
