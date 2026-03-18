@@ -23,6 +23,33 @@ def define_env(env):
     env.variables['release'] = '3.0.0'
     env.variables['snapshot'] = '3.0-SNAPSHOT'
     
+    # Branch used for nightly build URLs
+    branch = 'main'
+
+    # Download URL templates
+    # Usage: [geoserver-{{ release }}-war.zip]({{ download_release }}war)
+    env.variables['download_release'] = (
+        'https://sourceforge.net/projects/geoserver/files/GeoServer/'
+        + env.variables['release'] + '/geoserver-' + env.variables['release'] + '-'
+    )
+    env.variables['download_extension'] = (
+        'https://sourceforge.net/projects/geoserver/files/GeoServer/'
+        + env.variables['release'] + '/extensions/geoserver-' + env.variables['release'] + '-'
+    )
+    # Usage: [geoserver-{{ snapshot }}-war.zip]({{ nightly_release }}war)
+    env.variables['nightly_release'] = (
+        'https://build.geoserver.org/geoserver/'
+        + branch + '/geoserver-' + env.variables['snapshot'] + '-'
+    )
+    env.variables['nightly_extension'] = (
+        'https://build.geoserver.org/geoserver/'
+        + branch + '/extensions/geoserver-' + env.variables['snapshot'] + '-'
+    )
+    env.variables['nightly_community'] = (
+        'https://build.geoserver.org/geoserver/'
+        + branch + '/community-latest/geoserver-' + env.variables['snapshot'] + '-'
+    )
+
     # Additional useful variables
     env.variables['geoserver_repo'] = 'https://github.com/geoserver/geoserver'
     env.variables['docs_url'] = 'https://docs.geoserver.org'

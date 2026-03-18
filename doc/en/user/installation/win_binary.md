@@ -36,8 +36,8 @@ The other way of installing GeoServer on Windows is to use the platform-independ
 
 4.  Select **Platform Independent Binary** on the download page:
 
-    - [bin](https://sourceforge.net/projects/geoserver/files/GeoServer/bin)
-    - [bin](https://build.geoserver.org/geoserver/main/release/bin)
+    - [geoserver-{{ release }}-bin.zip]({{ download_release }}bin.zip)
+    - [geoserver-{{ snapshot }}-bin.zip]({{ nightly_release }}bin.zip)
 
 5.  Download the archive and unpack to the directory where you would like the program to be located.
 

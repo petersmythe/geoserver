@@ -108,8 +108,8 @@ GeoServer is tested using Tomcat 11.0.x, and this is the recommended application
 
 4.  Select **Web Archive** on the download page:
 
-    - [war](https://sourceforge.net/projects/geoserver/files/GeoServer/war)
-    - [war](https://build.geoserver.org/geoserver/main/release/war)
+    - [geoserver-{{ release }}-war.zip]({{ download_release }}war.zip)
+    - [geoserver-{{ snapshot }}-war.zip]({{ nightly_release }}war.zip)
 
 5.  Download and unpack the archive.
 

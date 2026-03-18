@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # License
 
 For complete license information [NOTICE.txt](https://github.com/geoserver/geoserver/blob/main/licenses/NOTICE.md).
