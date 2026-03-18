@@ -134,11 +134,11 @@ Hide the Tomcat version in error responses and its error details.
 
 2.  Additionally add to **`server.xml`** the ErrorReportValve to disable showReport and showServerInfo. This is used to hide errors handled globally by tomcat in the host section.
 
-   ```xml
 `vi ./conf/server.xml`
 
-Add to `<Host name=...` section this new ErrorReportValve entry: :
+Add to `<Host name=...` section this new ErrorReportValve entry:
 
+   ```xml
     ...
          <Host name="localhost"  appBase="webapps"
                unpackWARs="true" autoDeploy="true">
@@ -159,13 +159,13 @@ Add to `<Host name=...` section this new ErrorReportValve entry: :
 
     Let's take the attackers point of view.
 
-    Response with just HTTP status: :
+    Response with just HTTP status:
 
         HTTP Status 400 – Bad Request
 
     Ok, it looks like a Tomcat is installed.
 
-    Default full response: :
+    Default full response:
 
         HTTP Status 400 – Bad Request
         Type Status Report
@@ -210,7 +210,7 @@ Update GeoServer:
 
 - Be sure to stop the application server before deploying updated **`geoserver.war`**.
 
-  This is important as when Tomcat is running it will replace the entire **`webapps/geoserver`** folder, including any configuration in the default GEOSERVER_DATA_DIR <file:%60geoserver/data>`` folder location or customizations made to **`web.xml``**.
+  This is important as when Tomcat is running it will replace the entire **`webapps/geoserver`** folder, including any configuration in the default GEOSERVER_DATA_DIR `<file:geoserver/data>` folder location or customizations made to **`web.xml`**.
 
 - Re-apply any customizations you have made to **`webapps/geoserver/web.xml`**.
 

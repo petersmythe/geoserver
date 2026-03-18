@@ -54,10 +54,10 @@ GeoServer operates with a time boxed release cycle, maintaining "stable" and "ma
 
   It is always advisable to stay up to date with security patches. The blog post will indicate when the update is urgent, and several releases will be made concurrently (for both stable and maintenance) when urgent action is required.
 
-  !!! note
+!!! note
       Do not wait for a release to fall out of support before upgrading. Doing so places you in a position of having to perform an upgrade quickly with a lot of pressure in the event a security vulnerability is announced.
 
-  !!! note
+!!! note  
       If you do see several releases being made concurrently, in response to an urgent vulnerability, the developers will not be in a position to tell you what is going on. Their goal is to provide you an opportunity to upgrade prior to public disclosure.
     
       Those seeking more information, or with a legal obligation to be informed, are welcome to volunteer on the geoserver-security email list. See [Security Process](https://docs.geoserver.org/latest/en/developer/policies/security.md) for details on how to participate.
