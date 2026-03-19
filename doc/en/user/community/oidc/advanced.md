@@ -79,8 +79,8 @@ To setup for troubleshooting OIDC activity:
     DEBUG  [security.oauth2] - OIDC: ACCESS TOKEN: .... 
     DEBUG  [security.oauth2] - OIDC: ID  TOKEN: ... 
     DEBUG  [security.oauth2] - OIDC: Getting Roles from UserGroupService, location=null
-    DEBUG  [security.oauth2] - OIDC: Geoserver Roles: ADMIN
-    DEBUG  [security.oauth2] - OIDC: Geoserver Roles: ROLE_ADMINISTRATOR
+    DEBUG  [security.oauth2] - OIDC: GeoServer Roles: ADMIN
+    DEBUG  [security.oauth2] - OIDC: GeoServer Roles: ROLE_ADMINISTRATOR
     ```
 
 ## Resource Server (Bearer JWT)

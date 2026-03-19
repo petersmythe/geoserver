@@ -30,7 +30,7 @@ Each message is combined with its processor and send into a destination queue, w
 
 The usage of the extensions is based on two components that defines its behavior and logic:
 
-- A configuration file named notifier.xml that must be present on a "notifier" subfolder of Geoserver root data directory (if extensions found no one `notifier.xml` file under notifier folder, will create a new one with default values)
+- A configuration file named notifier.xml that must be present on a "notifier" subfolder of GeoServer root data directory (if extensions found no one `notifier.xml` file under notifier folder, will create a new one with default values)
 - A JAR that implements the specific logic of sender/encoder
 
 ## Configuration file

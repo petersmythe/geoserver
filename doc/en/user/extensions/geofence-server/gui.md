@@ -44,7 +44,7 @@ A CQL filter limiting access to data older than a week (dynamic time range) woul
 
 (see [temporal-functions](../../filter/function_reference.md#temporal-functions) for more details on the date difference function)
 
-Allowed area can be defined in whatever SRID. Geoserver will automatically reproject it to the resource CRS when needed.
+Allowed area can be defined in whatever SRID. GeoServer will automatically reproject it to the resource CRS when needed.
 
 ### Layer groups
 

@@ -72,7 +72,7 @@ A number of system properties allow us to configure this behavior:
 
 - `org.geotools.coverage.io.netcdf.auxiliary.store`
 
-  Set to TRUE to display the 'NetCDF Auxiliary Store' option in Geoserver. A NetCDF Auxiliary Store must be published *after* publishing the actual NetCDF store.
+  Set to TRUE to display the 'NetCDF Auxiliary Store' option in GeoServer. A NetCDF Auxiliary Store must be published *after* publishing the actual NetCDF store.
 
 The NetCDF Auxiliary Store returns a WFS record like this for each possible combination of dimension values that do not include the two prime spatial dimensions:
 

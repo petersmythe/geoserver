@@ -121,7 +121,7 @@ dpis:
 
 ### DPI and PDF Dimensions
 
-A chosen DPI value from the above configuration is used in WMS GetMap requests as an added format_options (GeoServer) or map_resolution (MapServer) parameter. This is used for symbol/label-rescaling suitable for high resolution printouts, see [Geoserver format_options specification](https://docs.geoserver.org/stable/en/user/services/wms/vendor.md) (Geoserver 2.1) and [MapServer defresolution keyword](http://mapserver.org/development/rfc/ms-rfc-55.md) (MapServer 5.6) for more information.
+A chosen DPI value from the above configuration is used in WMS GetMap requests as an added format_options (GeoServer) or map_resolution (MapServer) parameter. This is used for symbol/label-rescaling suitable for high resolution printouts, see [GeoServer format_options specification](https://docs.geoserver.org/stable/en/user/services/wms/vendor.md) (GeoServer 2.1) and [MapServer defresolution keyword](http://mapserver.org/development/rfc/ms-rfc-55.md) (MapServer 5.6) for more information.
 
 In general, PDF dimensions and positions are specified in points. 72 points == 1 inch == 25.4 mm.
 

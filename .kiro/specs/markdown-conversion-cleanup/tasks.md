@@ -671,7 +671,7 @@ These tests MUST be written BEFORE implementing fixes. They will PASS on unfixed
 
 - [ ] 21. Review and repair complex tables requiring manual intervention
 
-  - [ ] 21.1 Identify complex tables that automated fixes couldn't resolve
+  - [x] 21.1 Identify complex tables that automated fixes couldn't resolve
     - Review detection script output for remaining table issues
     - Prioritize tables with most severe structural problems
     - Document specific issues per table

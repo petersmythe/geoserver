@@ -587,7 +587,7 @@ We could define the following mapping :
 </FeatureTypeMapping>
 ```
 
-So Geoserver will produce GML like this :
+So GeoServer will produce GML like this :
 
 ```xml
 <st_gml32:Station_gml32 gml:id="st.2">

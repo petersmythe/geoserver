@@ -109,7 +109,7 @@ The JWT Headers module also allows for converting roles (from the external IDP) 
 
 | Config Option | Meaning |
 |----|----|
-| Role Converter Map from External Roles to Geoserver Roles | This is a ";" delimited map in the form of ``ExternalRole1=GeoServerRole1;ExternalRole2=GeoServerRole2`` |
+| Role Converter Map from External Roles to GeoServer Roles | This is a ";" delimited map in the form of ``ExternalRole1=GeoServerRole1;ExternalRole2=GeoServerRole2`` |
 | Only allow External Roles that are explicitly named above | If checked, external roles that are not mentioned in the conversion map will be ignored. If unchecked, those external roles will be turned into GeoServer roles of the same name. |
 
 For example, a conversion map like ``GeoserverAdministrator=ROLE_ADMINISTRATOR`` will convert our IDP "GeoserverAdministrator" role to GeoServer's "ROLE_ADMINISTRATOR".

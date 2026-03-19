@@ -43,7 +43,7 @@ Assume we have a Vectorial layer named **geosolutions:bplandmarks**
     -->
     <html>
             <head>
-                    <title>Geoserver GetFeatureInfo output</title>
+                    <title>GeoServer GetFeatureInfo output</title>
             </head>
             <style type="text/css">
                     table.featureInfo, table.featureInfo td, table.featureInfo th {

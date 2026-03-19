@@ -24,7 +24,7 @@ However you can create your own installer (using a Windows machine).
 
         unzip geoserver-[VERSION].zip
 
-5.  Copy the files **`LICENSE.md`**, **`src/release/licenses/GPL.md`** and the following files from **`src/release/installer/win`** from the Geoserver source GeoServer package to the root of the unpacked archive (the same directory level as the **`start.jar`**):
+5.  Copy the files **`LICENSE.md`**, **`src/release/licenses/GPL.md`** and the following files from **`src/release/installer/win`** from the GeoServer source GeoServer package to the root of the unpacked archive (the same directory level as the **`start.jar`**):
 
         GeoServerEXE.nsi
         gs.ico

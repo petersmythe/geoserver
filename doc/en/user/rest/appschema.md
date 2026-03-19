@@ -261,4 +261,4 @@ A new `geosciml` data store will be created with three feature types in it:
     200 OK
 
 !!! note
-    This endpoins are only available when App-Schema and MongoDB modules are installed on Geoserver, and involved app-schema store have internal MongoDB stores in mappings definition.
+    This endpoins are only available when App-Schema and MongoDB modules are installed on GeoServer, and involved app-schema store have internal MongoDB stores in mappings definition.

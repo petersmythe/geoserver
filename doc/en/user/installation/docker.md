@@ -5,7 +5,7 @@ render_macros: true
 
 # Docker Container
 
-Geoserver is also packaged as a Docker Container. For more details, see the [Geoserver Docker Container Project](https://github.com/geoserver/docker).
+GeoServer is also packaged as a Docker Container. For more details, see the [GeoServer Docker Container Project](https://github.com/geoserver/docker).
 
 See the [README.md](https://github.com/geoserver/docker/blob/master/README.md) file for more technical information.
 
@@ -66,7 +66,7 @@ This will run the container, with the data directory included with the container
 This will run the container with a local data directory. The data directory will be [mounted](https://docs.docker.com/storage/bind-mounts/) into the docker container.
 
 !!! note
-    Change ``/MY/DATADIRECTORY`` to your data directory. If this directory is empty it will be populated with the standard Geoserver Sample Data Directory.
+    Change ``/MY/DATADIRECTORY`` to your data directory. If this directory is empty it will be populated with the standard GeoServer Sample Data Directory.
 
 1.  Make sure you have [Docker](https://www.docker.com/) installed.
 
@@ -164,7 +164,7 @@ Here is a list of available extensions (taken from the [build server](https://bu
     geofence-wps             ogr-wfs                  ysld
     kml
 
-## Testing Geoserver Community modules
+## Testing GeoServer Community modules
 
 Working with a Nightly build is a good way to test community modules and provide feedback to developers working on new functionality.
 

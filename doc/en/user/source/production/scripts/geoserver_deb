@@ -10,7 +10,7 @@
 
 # Author: Lennart Jütte <lenn@rtjuette.de>
 
-# Geoserver configuration - use /etc/default/geoserver to override these vars
+# GeoServer configuration - use /etc/default/geoserver to override these vars
 # user that shall run GeoServer
 USER=geoserver
 GEOSERVER_DATA_DIR=/home/$USER/data_dir
