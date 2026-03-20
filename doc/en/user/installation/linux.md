@@ -23,8 +23,8 @@ The platform-independent binary is a GeoServer web application bundled with [Jet
 
     You may also choose to download an OpenJDK release for Linux:
 
-    * https://adoptium.net/temurin/releases/?version=17 Temurin 17 (LTS) - Recommended
-    * https://adoptium.net/temurin/releases/?version=21 Temurin 21 (LTS)
+    * [Temurin 17 (LTS) - Recommended](https://adoptium.net/temurin/releases/?version=17)
+    * [Temurin 21 (LTS)](https://adoptium.net/temurin/releases/?version=21)
 
     The developer tool [SDKMan](https://sdkman.io/) may be used to manage several versions:
 

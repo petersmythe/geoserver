@@ -11,8 +11,8 @@ The Windows installer provides an easy way to set up GeoServer on your system, a
 
     Download an OpenJDK release for Windows:
 
-    * https://adoptium.net/temurin/releases/?version=17 Temurin 17 (LTS) - Recommended
-    * https://adoptium.net/temurin/releases/?version=21 Temurin 21 (LTS)
+    * [Temurin 17 (LTS) - Recommended](https://adoptium.net/temurin/releases/?version=17)
+    * [Temurin 21 (LTS)](https://adoptium.net/temurin/releases/?version=21)
 
     !!! note
         For more information about Java and GeoServer, please see the section on [Java Considerations](../production/java.md).

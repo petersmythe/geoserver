@@ -16,8 +16,8 @@ The other way of installing GeoServer on Windows is to use the platform-independ
 
     Download an OpenJDK release for Windows:
 
-    * https://adoptium.net/temurin/releases/?version=17 Temurin 17 (LTS) - Recommended
-    * https://adoptium.net/temurin/releases/?version=21 Temurin 21 (LTS)
+    * [Temurin 17 (LTS) - Recommended](https://adoptium.net/temurin/releases/?version=17)
+    * [Temurin 21 (LTS)](https://adoptium.net/temurin/releases/?version=21)
 
     !!! note
         For more information about Java and GeoServer, please see the section on [Java Considerations](../production/java.md).
