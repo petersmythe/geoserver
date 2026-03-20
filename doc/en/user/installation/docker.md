@@ -17,39 +17,31 @@ This will run the container, with the data directory included with the container
 
 2.  Download the container:
 
-    !!! abstract "Release"
-
-
+{% if is_release %}
     These instructions are for GeoServer {{ release }}.
 
     ``` text
     docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
-
-    !!! abstract "Nightly Build"
-
-
+{% else %}
     These instructions are for GeoServer {{ version }}-SNAPSHOT which is provided as a [Nightly](https://geoserver.org/release/main) release. Testing a Nightly release is a great way to try out new features, and test community modules. Nightly releases change on an ongoing basis and are not suitable for a production environment.
 
     ``` text
     docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
+{% endif %}
 
 3.  Run the container
 
-    !!! abstract "Release"
-
-
+{% if is_release %}
     ``` text
     docker run -it -p 8080:8080 docker.osgeo.org/geoserver:{{ release }}
     ```
-
-    !!! abstract "Nightly Build"
-
-
+{% else %}
     ``` text
     docker run -it -p 8080:8080 docker.osgeo.org/geoserver:{{ version }}.x
     ```
+{% endif %}
 
 4.  In a web browser, navigate to `http://localhost:8080/geoserver`.
 
@@ -72,39 +64,31 @@ This will run the container with a local data directory. The data directory will
 
 2.  Download the container
 
-    !!! abstract "Release"
-
-
+{% if is_release %}
     ``` text
     docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
-
-    !!! abstract "Nightly Build"
-
-
+{% else %}
     ``` text
     docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
+{% endif %}
 
 3.  Run the container
 
-    !!! abstract "Release"
-
-
+{% if is_release %}
     ``` text
     docker run  -it -p 8080:8080 \
       --mount type=bind,src=/MY/DATADIRECTORY,target=/opt/geoserver_data \
       docker.osgeo.org/geoserver:{{ release }}
     ```
-
-    !!! abstract "Nightly Build"
-
-
+{% else %}
     ``` text
     docker run -it -p 8080:8080 \
       --mount type=bind,src=/MY/DATADIRECTORY,target=/opt/geoserver_data \
       docker.osgeo.org/geoserver:{{ version }}.x
     ```
+{% endif %}
 
 4.  In a web browser, navigate to `http://localhost:8080/geoserver`.
 
