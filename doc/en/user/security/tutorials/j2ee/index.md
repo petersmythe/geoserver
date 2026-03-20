@@ -115,7 +115,7 @@ By default Tomcat does not require authentication for web applications. In this 
 
 1.  Navigate to the GeoServer web admin interface. The result should be a prompt to authenticate.
 
-#\. Enter in the username "admin" and password "password"
+2. Enter in the username "admin" and password "password"
 
 ![](images/j2ee4.jpg)
 
