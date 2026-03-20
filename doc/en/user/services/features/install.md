@@ -29,45 +29,33 @@ render_macros: true
 
 1.  The Docker image supports the use of OGC API Feature:
 
-    !!! abstract "Release"
-
-
+{% if is_release %}
     ``` text
-    docker pull docker.osgeo.org/geoserver:{{ release }}
+docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
-
-    !!! abstract "Nightly Build"
-
-
+{% else %}
     ``` text
-    docker pull docker.osgeo.org/geoserver:{{ version }}.x
+docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
+{% endif %}
 
 2.  To run with OGC API Features:
 
-    !!! abstract "Release"
-
-
+{% if is_release %}
     ``` text
-    docker run -it -p 8080:8080 \
+docker run -it -p 8080:8080 \
       --env INSTALL_EXTENSIONS=true \
       --env STABLE_EXTENSIONS="ogcapi-features" \
       docker.osgeo.org/geoserver:{{ release }}
     ```
-
-    !!! abstract "Nightly Build"
-
-
+{% else %}
     ``` text
-    docker run -it -p 8080:8080 \
+docker run -it -p 8080:8080 \
       --env INSTALL_EXTENSIONS=true \
       --env STABLE_EXTENSIONS="ogcapi-features" \
       docker.osgeo.org/geoserver:{{ version }}.x
     ```
-
-3.  The feature service is listed on the welcome page: <http://localhost:8080/geoserver/>
-
-    ![](img/welcome-ogc-api-features.png)
+{% endif %}
 
     *GeoServer Welcome Page OGC API - Features*
 

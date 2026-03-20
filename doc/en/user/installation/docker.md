@@ -104,25 +104,21 @@ This will run the container with a local data directory. The data directory will
 
 You can add GeoServer Extensions - the container will download them during startup.
 
-!!! abstract "Release"
-
-
+{% if is_release %}
 ``` text
 docker run -it -p 8080:8080 \
   --env INSTALL_EXTENSIONS=true \
   --env STABLE_EXTENSIONS="ysld,ogcapi-features" \
   docker.osgeo.org/geoserver:{{ release }}
 ```
-
-!!! abstract "Nightly Build"
-
-
+{% else %}
 ``` text
 docker run -it -p 8080:8080 \
   --env INSTALL_EXTENSIONS=true \
   --env STABLE_EXTENSIONS="ysld,ogcapi-features" \
   docker.osgeo.org/geoserver:{{ version }}.x
 ```
+{% endif %}
 
 This will download and install the [YSLD](../styling/ysld/index.md) and [OGCAPI - Features](../services/features/index.md) extension.
 
@@ -152,9 +148,7 @@ Here is a list of available extensions (taken from the [build server](https://bu
 
 Working with a Nightly build is a good way to test community modules and provide feedback to developers working on new functionality.
 
-!!! abstract "Release"
-
-
+{% if is_release %}
 Community modules are shared as part GeoServer {{ release }} source code bundle to be compiled for testing and feedback by the developer community.
 
 When the developer has met the documentation and quality assurance standards for GeoServer they may ask for the module to be included in GeoServer.
@@ -164,10 +158,7 @@ If you are interested in helping out, please make contact via the [developer for
 Reference:
 
 - [community modules](https://docs.geoserver.org/latest/en/developer/policies/community-modules.md) (Developer Guide)
-
-!!! abstract "Nightly Build"
-
-
+{% else %}
 To work with community modules you must be using the GeoServer {{ version }}.x nightly build that matches the community module build:
 
 ``` text
@@ -177,6 +168,7 @@ docker run -it -p 8080:8080 \
   --env COMMUNITY_EXTENSIONS="ogcapi-images,ogcapi-maps,ogcapi-styles,ogcapi-tiles" \
   docker.osgeo.org/geoserver:{{ version }}.x
 ```
+{% endif %}
 
 For the current list see GeoServer [build server](https://build.geoserver.org/geoserver/main/community-latest/).
 
