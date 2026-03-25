@@ -24,8 +24,8 @@ When first opened, the form is short, only including the following options:
 
 - **Coverage name**---Coverage to use in the request. Any published (raster) layer in GeoServer can be selected.
 
-  !!! note
-      All other options displayed will be non-functional until **Coverage name** is selected.
+    !!! note
+        All other options displayed will be non-functional until **Coverage name** is selected.
 
 ![](img/wcsrequestbuilder.png)
 
@@ -37,9 +37,9 @@ Once selected, the remainder of the form will be displayed. The following option
 - **Coordinate reference system**---Source CRS of the layer. Default is the CRS of the layer in GeoServer.
 - **Specify source grid manually** *(1.0.0 only)*---If checked, allows for determining the grid of pixels for the output.
 - **Target coverage layout** *(1.1.1 only)*---Specifies how the dimensions of the output grid will be determined:
-  - **Automatic target layout**---Sets that the output grid will be determined automatically.
-  - **Specify grid resolutions**---Sets the resolution of the output grid. X and Y resolutions can be set differently.
-  - **Specify "grid to world" transformation**---Sets the output using latitude/longitude, as well as X and Y scale and shear values.
+    - **Automatic target layout**---Sets that the output grid will be determined automatically.
+    - **Specify grid resolutions**---Sets the resolution of the output grid. X and Y resolutions can be set differently.
+    - **Specify "grid to world" transformation**---Sets the output using latitude/longitude, as well as X and Y scale and shear values.
 - **Target CRS**---CRS of the result (output) of the GetCoverage request. If different from the **Coordinate reference system**, the result will be a reprojection into the target CRS.
 - **Output format**---Format of the result (output) of the GetCoverage request. Any valid WCS output format is allowed. Default is **GeoTIFF**.
 
