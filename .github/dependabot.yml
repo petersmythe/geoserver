@@ -3,9 +3,7 @@ updates:
   # Updates for production dependencies. Currently excludes test dependencies and maven plugins.
   - package-ecosystem: "maven"
     directories:
-      - "/src"
-      - "/extension"
-      - "/community"      
+      - "/src/**"
     target-branch: "main"
     schedule:
       interval: "daily"
