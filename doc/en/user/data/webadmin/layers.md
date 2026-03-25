@@ -73,8 +73,8 @@ The beginning sections---Basic Resource Info, Keywords and Metadata link---are a
 
   Names are required to be unique within a workspace. If two DataStores have resources with the same name, or when creating a new layer for an already-published resource, the layer name must be changed to avoid conflict.
 
-  !!! note
-      Each protocol has different restrictions on the layer names supported. WFS FeatureType uses the layer name as an XML Element Type: start with a letter or underscore, then continue with letters, digits, hyphens, underscores, and periods.
+    !!! note
+        Each protocol has different restrictions on the layer names supported. WFS FeatureType uses the layer name as an XML Element Type: start with a letter or underscore, then continue with letters, digits, hyphens, underscores, and periods.
 
 - **Enabled**---A layer that is not enabled won't be available to any kind of request, it will just show up in the configuration (and in REST config)
 
@@ -272,8 +272,8 @@ For greater control the **Service Settings** allows specific services to be disa
 
 - **Disabled Services**---Selects disabled services list for this layer.
 
-  !!! note
-      It is also possible to define by-default disabled services to all layers using the `org.geoserver.service.disabled` [application property](../../configuration/properties/index.md).
+    !!! note
+        It is also possible to define by-default disabled services to all layers using the `org.geoserver.service.disabled` [application property](../../configuration/properties/index.md).
     
       ![](img/server_layer_defaults.png)
 
@@ -323,8 +323,8 @@ Sets the WFS specific publishing parameters.
 
 - **Activate complex to simple features conversion** - If the target output format does not handle complex features natively, this option enables the conversion of complex features to simple features, using only SF-0 (simple) attributes. This means that nested features and multiple-value attributes will be omitted from the final result, instead of throwing errors while generating the output. Output formats capable of handling complex features are not affected.
 
-  !!! note
-      It is also possible to override the `OtherSRS/OtherCRS` list configured in the WFS service, including overriding it with an empty list if need be. The input area will accept a comma separated list of EPSG codes:
+    !!! note
+        It is also possible to override the `OtherSRS/OtherCRS` list configured in the WFS service, including overriding it with an empty list if need be. The input area will accept a comma separated list of EPSG codes:
     
       ![](img/data_layers_WFS.png)
 

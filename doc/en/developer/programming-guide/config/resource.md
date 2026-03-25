@@ -41,14 +41,14 @@ All geoserver developers should be wary of the following general principles when
 
 - Avoid as much as possible using the file system directly.
 
-  !!! note
+!!! note
       The only acceptable exception is when third party libraries require use of a File. Even in this case use Resources API as much as possible.
 
 - Use Avoid the usage of `Resource.file()` and `Resource.directory()`.
 
   These methods are only necessary for third party libraries that require usage of the file system, when the third party library accepts a file input.
 
-  !!! note
+!!! note
       The `file()` and `directory()` methods are never be used for permanent storage. Since there are alternative implementations of the ResourceStore that do not use the file system as underlying storage device, modifying a file on disk does not necessarily have a lasting effect.
 
 - For custom configuration files with a fixed location, always use `ResourceStore`.

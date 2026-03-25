@@ -46,8 +46,8 @@ The amount of resources used by a process is usually related directly to the inp
 
 - The maximum multiplicity of repeatable inputs
 
-  !!! note
-      As an example of the last point, think of contour extraction, where the number of levels for the contours can drastically affect the execution time
+    !!! note
+        As an example of the last point, think of contour extraction, where the number of levels for the contours can drastically affect the execution time
 
 GeoServer allows the administrator to configure these limits, and fail requests that don't respect them.
 

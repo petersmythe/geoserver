@@ -179,8 +179,8 @@ The filter contains a string of predicates concatenated with the string `AND` an
 
       PROP(GEOSERVER_CONSOLE_DISABLED,(?i)^(?!true$).*$)
 
-  !!! note
-      The `(?i)` at the beginning of the regular expression will use case-insensitive matching and enclosing the pattern inside of the `^$` characters will match the entire string. See the [Regular Expressions Tutorial](https://docs.oracle.com/javase/tutorial/essential/regex/) for more information about how to use Java regular expressions.
+    !!! note
+        The `(?i)` at the beginning of the regular expression will use case-insensitive matching and enclosing the pattern inside of the `^$` characters will match the entire string. See the [Regular Expressions Tutorial](https://docs.oracle.com/javase/tutorial/essential/regex/) for more information about how to use Java regular expressions.
 
 Leaving the filter blank will cause this rule to match all requests and should only be used on the last rule in a policy since any additional rules would never be checked.
 

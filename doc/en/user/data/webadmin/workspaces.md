@@ -125,8 +125,8 @@ Other settings provide additional [Global Settings](../../configuration/globalse
 
       ${rootDirectory}/workspace/store[/<file>]
 
-  !!! note
-      This parameter is only used when the **Enabled** parameter of the *Settings* section is checked.
+    !!! note
+        This parameter is only used when the **Enabled** parameter of the *Settings* section is checked.
 
 ![](img/workspace_settings_other.png)
 

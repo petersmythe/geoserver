@@ -164,10 +164,11 @@ When creating the first release candidate of a series, there are some extra step
     <replacefilter token="1.28-SNAPSHOT" value="1.29-SNAPSHOT"/>
     ```
 
-```sql
-And then run:
+    And then run:
 
+    ```shell
     ant -f build/rename.xml 
+    ```
 
 !!! note
 
@@ -196,8 +197,6 @@ Manually update hardcoded versions in configuration files:
 - `doc/en/developer/source/conf.py`
 - `doc/en/docguide/source/conf.py`
 - `doc/en/user/source/conf.py`
-::::::::
-```
 
 6.  Add the new version to the documentation index (`doc/en/index.html`) just after line 105, e.g.:
 

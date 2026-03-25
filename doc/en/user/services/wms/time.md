@@ -172,5 +172,5 @@ For example, the multiple representations listed below are all equivalent.
 
       P18M
 
-  !!! note
-      `P1.25Y3M` would not be acceptable, because fractional values are only permitted in the most specific value given, which in this case would be months.
+    !!! note
+        `P1.25Y3M` would not be acceptable, because fractional values are only permitted in the most specific value given, which in this case would be months.

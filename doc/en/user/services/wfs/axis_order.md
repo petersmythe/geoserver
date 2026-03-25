@@ -280,8 +280,8 @@ WFS 1.1 *GetFeature* request defaults to GML3 output, and the default `urn:x-ogc
               -88.071564 37.51099 -88.087883 37.476273
   ```
 
-  !!! note
-      The ``srsName`` and ``posList`` coordinate order are consistent.
+    !!! note
+        The ``srsName`` and ``posList`` coordinate order are consistent.
     
       This approach can be used to force x/y order.
 
@@ -334,8 +334,8 @@ WFS 1.1 *GetFeature* request defaults to GML3 output, and the default `urn:x-ogc
               -88.071564,37.51099 -88.087883,37.476273
   ```
 
-  !!! note
-      The ``srsName`` and ``posList`` coordinate order are consistent.
+    !!! note
+        The ``srsName`` and ``posList`` coordinate order are consistent.
     
       This approach can be used to force x/y order.
 
@@ -373,8 +373,8 @@ WFS 1.1 *GetFeature* request defaults to GML3 output, and the default `urn:x-ogc
               -88.071564 37.51099 -88.087883 37.476273
   ```
 
-  !!! note
-      The ``srsName`` and ``posList`` coordinate order are consistent.
+    !!! note
+        The ``srsName`` and ``posList`` coordinate order are consistent.
     
       This approach can be used to force x/y order.
 
@@ -394,8 +394,8 @@ WFS 1.1 *GetFeature* request defaults to GML3 output, and the default `urn:x-ogc
               -88.071564 37.51099 -88.087883 37.476273
   ```
 
-  !!! note
-      The ``srsName`` and ``posList`` coordinate order are consistent.
+    !!! note
+        The ``srsName`` and ``posList`` coordinate order are consistent.
     
       This approach can be used to force x/y order.
 
@@ -548,8 +548,8 @@ WFS 2.0 *GetFeature* request defaults to GML3.2 output, and the default `urn:ogc
               -88.071564,37.51099 -88.087883,37.476273
   ```
 
-  !!! note
-      The ``srsName`` and ``posList`` coordinate order are consistent.
+    !!! note
+        The ``srsName`` and ``posList`` coordinate order are consistent.
     
       This approach can be used to force x/y order.
 
