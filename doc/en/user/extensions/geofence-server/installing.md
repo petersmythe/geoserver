@@ -20,10 +20,10 @@ GeoFence Server extension is provided as two mutually exclusive packages, to be 
 
 - GeoFence Server H2: (Quick demo choice) contains all the libraries to run geofence-server, using as backend an embedded H2 DB.
 
-    !!! warning
-        this plugin will install a version of the [H2](http://www.h2database.com) library that **is not compatible** with other plugins using H2 (e.g. grib/netcdf).
-        
-        This package is purely for demo purposes, allowing you to run the GeoFence plugin without the need to configure an external DB backend.
+!!! warning
+    this plugin will install a version of the [H2](http://www.h2database.com) library that **is not compatible** with other plugins using H2 (e.g. grib/netcdf).
+    
+    This package is purely for demo purposes, allowing you to run the GeoFence plugin without the need to configure an external DB backend.
 
 ## Install the plugin
 
