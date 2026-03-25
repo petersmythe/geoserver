@@ -243,8 +243,8 @@ The [application property](../configuration/properties/index.md) `GEOSERVER_FEAT
 
 - `UNSAFE`: No restriction
 
-  !!! warning
-      Warning Allowing unsafe scripts could allow cross-site scripting attacks and should only be done if you can fully trust your template authors.
+    !!! warning
+        Warning Allowing unsafe scripts could allow cross-site scripting attacks and should only be done if you can fully trust your template authors.
 
 For more information see [GetFeatureInfo Templates](../tutorials/GetFeatureInfo/html.md#tutorials_getfeatureinfo_html_csp) tutorial.
 

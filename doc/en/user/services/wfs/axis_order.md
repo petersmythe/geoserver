@@ -597,10 +597,10 @@ WFS 2.0 *GetFeature* request defaults to GML3.2 output, and the default `urn:ogc
               -88.071564 37.51099 -88.087883 37.476273
   ```
 
-  !!! warning
-      This combination is inconsistent between ``srsName`` and ``posList`` coordinate order and may confuse applications expecting a valid GML3 document.
-    
-      This approach can be used to force x/y order.
+    !!! warning
+        This combination is inconsistent between ``srsName`` and ``posList`` coordinate order and may confuse applications expecting a valid GML3 document.
+        
+        This approach can be used to force x/y order.
 
 - GML3 reproject to `urn:x-ogc:def:crs:EPSG:4326`:
 
@@ -644,10 +644,10 @@ WFS 2.0 *GetFeature* request defaults to GML3.2 output, and the default `urn:ogc
             -88.071564 37.51099 -88.087883 37.476273
   ```
 
-  !!! warning
-      This combination is inconsistent between ``srsName`` and ``posList`` coordinate order and may confuse applications expecting a valid GML3 document.
+    !!! warning
+        This combination is inconsistent between ``srsName`` and ``posList`` coordinate order and may confuse applications expecting a valid GML3 document.
     
-      This approach can be used to force x/y order.
+        This approach can be used to force x/y order.
 
 - GML32 reproject to `urn:x-ogc:def:crs:EPSG:4326`:
 
