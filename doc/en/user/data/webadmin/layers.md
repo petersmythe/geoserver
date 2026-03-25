@@ -73,8 +73,8 @@ The beginning sections---Basic Resource Info, Keywords and Metadata link---are a
 
   Names are required to be unique within a workspace. If two DataStores have resources with the same name, or when creating a new layer for an already-published resource, the layer name must be changed to avoid conflict.
 
-    !!! note
-        Each protocol has different restrictions on the layer names supported. WFS FeatureType uses the layer name as an XML Element Type: start with a letter or underscore, then continue with letters, digits, hyphens, underscores, and periods.
+!!! note
+    Each protocol has different restrictions on the layer names supported. WFS FeatureType uses the layer name as an XML Element Type: start with a letter or underscore, then continue with letters, digits, hyphens, underscores, and periods.
 
 - **Enabled**---A layer that is not enabled won't be available to any kind of request, it will just show up in the configuration (and in REST config)
 
