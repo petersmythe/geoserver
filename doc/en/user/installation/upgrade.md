@@ -216,8 +216,8 @@ It is anticipated that future work may further restrict the default policy in th
 
       For more information, see [Content-Security-Policy](../production/config.md#production_config_csp).
 
-      !!! note
-          It is recommended that static web files be disabled if they are not necessary in order to mitigate cross-site scripting attacks. For more information, see [Serving Static Files](../tutorials/staticfiles.md).
+    !!! note
+        It is recommended that static web files be disabled if they are not necessary in order to mitigate cross-site scripting attacks. For more information, see [Serving Static Files](../tutorials/staticfiles.md).
 
     - GeoServer provides tools for administrators to control content security policy headers, see GeoServer Security section on [Content Security Policy Reference](../security/csp.md) for very detailed information.
 
