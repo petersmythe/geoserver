@@ -47,12 +47,12 @@ The default option for this parameter is `false`.
 
 For example, the following request is invalid:
 
-`` xml
+```xml
 <wfs:GetFeature service="WFS" version="1.0.0"
  xmlns:wfs="http://www.opengis.net/wfs">
   <Query typeName="topp:states"/>
 </wfs:GetFeature>
-``
+```
 
 The request is invalid for two reasons:
 
@@ -61,13 +61,13 @@ The request is invalid for two reasons:
 
 That said, the request would still be processed by default. Executing the above command with the `strict=true` parameter, however, would result in an error. The correct syntax should be:
 
-`` xml
+```xml
 <wfs:GetFeature service="WFS" version="1.0.0"
  xmlns:wfs="http://www.opengis.net/wfs" 
  xmlns:topp="http://www.openplans.org/topp">
   <wfs:Query typeName="topp:states"/>
 </wfs:GetFeature>
-``
+```
 
 ### GetCapabilities Request
 

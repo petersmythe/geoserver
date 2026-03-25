@@ -45,7 +45,7 @@ An example request:
 
 > <http://localhost:8080/geoserver/ows?service=wms&version=1.1.1&request=GetCapabilities&format=text/xml>
 
-`` xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <WMT_MS_Capabilities version="1.1.1" updateSequence="247">
    <Capability>
@@ -54,7 +54,7 @@ An example request:
             <Format>application/vnd.ogc.wms_xml</Format>
             <Format>text/xml</Format>
 ...
-``
+```
 
 !!! note
     Currently this parameter can only be used to request WMS 1.1.1 capabilities documents encoded in `text/xml`, if used with other WMS versions or other formats it will have no effect. `application/json` is not supported.
