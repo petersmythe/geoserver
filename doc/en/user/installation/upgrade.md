@@ -402,8 +402,10 @@ As of GeoServer 2.21, the logging system used by GeoServer has been upgraded fro
 
 - The built-in logging profiles are upgraded with **`xml`** files:
 
-      * DEFAULT_LOGGING.xml
-      * DEFAULT_LOGGING.properties.bak
+    ```text
+    DEFAULT_LOGGING.xml
+    DEFAULT_LOGGING.properties.bak
+    ```
 
 - A backup of the prior **`properties`** files are created during the upgrade process. If you had previously made any customizations to a built-in profiles these backup files may be used as a reference when customizing the xml file.
 
