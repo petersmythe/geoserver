@@ -30,11 +30,11 @@ To install:
 
 {% if is_release %}
     ```text
-docker pull docker.osgeo.org/geoserver:{{ release }}
+    docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
     ```text
-docker pull docker.osgeo.org/geoserver:{{ version }}.x
+    docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
 {% endif %}
 
@@ -42,16 +42,16 @@ docker pull docker.osgeo.org/geoserver:{{ version }}.x
 
 {% if is_release %}
     ```text
-docker run -it -p 8080:8080 \
-      --env INSTALL_EXTENSIONS=true \
-      --env STABLE_EXTENSIONS="ysld" \
-      docker.osgeo.org/geoserver:{{ release }}
+    docker run -it -p 8080:8080 \
+        --env INSTALL_EXTENSIONS=true \
+        --env STABLE_EXTENSIONS="ysld" \
+        docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
     ```text
-docker run -it -p 8080:8080 \
-      --env INSTALL_EXTENSIONS=true \
-      --env STABLE_EXTENSIONS="ysld" \
-      docker.osgeo.org/geoserver:{{ version }}.x
+    docker run -it -p 8080:8080 \
+        --env INSTALL_EXTENSIONS=true \
+        --env STABLE_EXTENSIONS="ysld" \
+        docker.osgeo.org/geoserver:{{ version }}.x
     ```
 {% endif %}
