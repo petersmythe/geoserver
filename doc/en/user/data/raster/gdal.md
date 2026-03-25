@@ -233,7 +233,7 @@ Suppose you have 3 raster files with the following paths:
 
 They can be represented by this tree:
 
-``` text
+```text
 /data
  \---raster
      +---charts
@@ -262,7 +262,7 @@ In order to support external footprints you should
 
 Which can be represented by this tree:
 
-``` text
+```text
 /footprints
  \---data
      \---raster
@@ -281,7 +281,7 @@ Which can be represented by this tree:
 
 Such that, in the end, you will have the following folders hierarchy tree:
 
-``` text
+```text
 +---data
 |   \---raster
 |       +---charts

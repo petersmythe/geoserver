@@ -29,11 +29,11 @@ To install:
 1.  The Docker image supports the use of YSLD extension
 
 {% if is_release %}
-    ``` text
+    ```text
 docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
-    ``` text
+    ```text
 docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
 {% endif %}
@@ -41,14 +41,14 @@ docker pull docker.osgeo.org/geoserver:{{ version }}.x
 2.  To run with YSLD extension:
 
 {% if is_release %}
-    ``` text
+    ```text
 docker run -it -p 8080:8080 \
       --env INSTALL_EXTENSIONS=true \
       --env STABLE_EXTENSIONS="ysld" \
       docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
-    ``` text
+    ```text
 docker run -it -p 8080:8080 \
       --env INSTALL_EXTENSIONS=true \
       --env STABLE_EXTENSIONS="ysld" \

@@ -20,13 +20,13 @@ This will run the container, with the data directory included with the container
 {% if is_release %}
     These instructions are for GeoServer {{ release }}.
 
-    ``` text
+    ```text
     docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
     These instructions are for GeoServer {{ version }}-SNAPSHOT which is provided as a [Nightly](https://geoserver.org/release/main) release. Testing a Nightly release is a great way to try out new features, and test community modules. Nightly releases change on an ongoing basis and are not suitable for a production environment.
 
-    ``` text
+    ```text
     docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
 {% endif %}
@@ -34,11 +34,11 @@ This will run the container, with the data directory included with the container
 3.  Run the container
 
 {% if is_release %}
-    ``` text
+    ```text
     docker run -it -p 8080:8080 docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
-    ``` text
+    ```text
     docker run -it -p 8080:8080 docker.osgeo.org/geoserver:{{ version }}.x
     ```
 {% endif %}
@@ -65,11 +65,11 @@ This will run the container with a local data directory. The data directory will
 2.  Download the container
 
 {% if is_release %}
-    ``` text
+    ```text
     docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
-    ``` text
+    ```text
     docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
 {% endif %}
@@ -77,13 +77,13 @@ This will run the container with a local data directory. The data directory will
 3.  Run the container
 
 {% if is_release %}
-    ``` text
+    ```text
     docker run  -it -p 8080:8080 \
       --mount type=bind,src=/MY/DATADIRECTORY,target=/opt/geoserver_data \
       docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
-    ``` text
+    ```text
     docker run -it -p 8080:8080 \
       --mount type=bind,src=/MY/DATADIRECTORY,target=/opt/geoserver_data \
       docker.osgeo.org/geoserver:{{ version }}.x
@@ -105,14 +105,14 @@ This will run the container with a local data directory. The data directory will
 You can add GeoServer Extensions - the container will download them during startup.
 
 {% if is_release %}
-``` text
+```text
 docker run -it -p 8080:8080 \
   --env INSTALL_EXTENSIONS=true \
   --env STABLE_EXTENSIONS="ysld,ogcapi-features" \
   docker.osgeo.org/geoserver:{{ release }}
 ```
 {% else %}
-``` text
+```text
 docker run -it -p 8080:8080 \
   --env INSTALL_EXTENSIONS=true \
   --env STABLE_EXTENSIONS="ysld,ogcapi-features" \
@@ -161,7 +161,7 @@ Reference:
 {% else %}
 To work with community modules you must be using the GeoServer {{ version }}.x nightly build that matches the community module build:
 
-``` text
+```text
 docker run -it -p 8080:8080 \
   --env INSTALL_EXTENSIONS=true \
   --env STABLE_EXTENSIONS="ysld,h2" \

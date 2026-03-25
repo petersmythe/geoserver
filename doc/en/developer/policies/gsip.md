@@ -31,7 +31,7 @@ To make a GSIP:
 
 2.  Edit the page with a new link under *Proposals Under Discussion*:
 
-    ``` text
+    ```text
     [GSIP 200 - Title](GSIP-200)
     ```
 

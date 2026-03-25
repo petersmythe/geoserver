@@ -949,7 +949,7 @@ The examples above represents all the possible types of Outputs currently suppor
 
     *Sample* `wmc_template.json`
 
-    ``` text
+    ```text
     {
       "type": "FeatureCollection",
       "id": "GeoServer OWC Map Context: version of 2015-07-14",
@@ -1046,7 +1046,7 @@ The examples above represents all the possible types of Outputs currently suppor
 
     *Sample* `owc_json_ctx.json`
 
-    ``` text
+    ```text
     "lang" : "en",
     "title" : "Sample Title goes here",
     "subtitle" : "Sample sub-title goes here",
@@ -1075,7 +1075,7 @@ The examples above represents all the possible types of Outputs currently suppor
 
     *Sample* `result#.json`
 
-    ``` text
+    ```text
     "title" : "Result 2",
     "updated" : "${lastUpdated}",
     "content" : "Sample Content Description for result 2 goes here",
@@ -1145,7 +1145,7 @@ stdout_action = [ignore,          progress,                                     
 
   As an instance
 
-  ``` text
+  ```text
   .*\[DEBUG\](.*)
   ```
   >
@@ -1155,7 +1155,7 @@ stdout_action = [ignore,          progress,                                     
   >
   > Another example
   >
-  ``` text
+  ```text
   .*\[INFO\] ProgressInfo\:([-+]?[0-9]*\.?[0-9]*)\%
   ```
   >

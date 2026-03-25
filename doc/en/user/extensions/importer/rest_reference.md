@@ -50,7 +50,7 @@ A task is classified as either "direct" or "indirect". A *direct task* is one in
 
 #### Retrieving the list of all imports
 
-``` text
+```text
 GET /imports     
 ```
 
@@ -231,7 +231,7 @@ The location can be [any URI supported by Commons VFS](http://commons.apache.org
 
 #### Getting the list of tasks {: #file_upload }
 
-``` text
+```text
 GET /imports/0/tasks
 ```
 

@@ -350,7 +350,7 @@ Publish Jira markdown release notes to GitHub tag:
 
     Use **Copy to clipboard** to obtain the markdown, similar to the following:
 
-    ``` text
+    ```text
     # Release notes
 
     ### Bug

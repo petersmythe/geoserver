@@ -36,7 +36,7 @@ To run the GeoServer Docker image with the Monitor Micrometer extension installe
 
 {{ release }} example:
 
-``` text
+```text
 docker run -it -p 8080:8080 \
   --env INSTALL_EXTENSIONS=true \
   --env STABLE_EXTENSIONS="monitor" \
@@ -46,7 +46,7 @@ docker run -it -p 8080:8080 \
 
 {{ snapshot }} example:
 
-``` text
+```text
 docker run -it -p 8080:8080 \
   --env INSTALL_EXTENSIONS=true \
   --env STABLE_EXTENSIONS="monitor" \
@@ -58,7 +58,7 @@ If using GeoServer in Docker Compose, use this instead:
 
 {{ release }} example:
 
-``` text
+```text
 services:
   geoserver:
     image: docker.osgeo.org/geoserver:{{ release }}
@@ -72,7 +72,7 @@ services:
 
 {{ snapshot }} example:
 
-``` text
+```text
 services:
   geoserver:
     image: docker.osgeo.org/geoserver:{{ version }}.x

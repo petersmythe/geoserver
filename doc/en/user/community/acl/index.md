@@ -75,7 +75,7 @@ will set the cache TTL to ``5`` seconds.
 
 Examples:
 
-``` text
+```text
 "PT20.345S" -- parses as "20.345 seconds"
 "PT15M"     -- parses as "15 minutes" (where a minute is 60 seconds)
 "PT10H"     -- parses as "10 hours" (where an hour is 3600 seconds)
@@ -97,7 +97,7 @@ The web user interface can also be used to clear out the caches through the "Ser
 
 In either case, you'd see a message like the following in the GeoServer logs, provided the logging configuration enables the info level for the ``org.geoserver.acl.authorization.cache`` topic:
 
-``` text
+```text
 INFO   [org.geoserver.acl.authorization.cache] - evicted 56 cached ACL authorizations
 ```
 

@@ -30,11 +30,11 @@ render_macros: true
 1.  The Docker image supports the use of OGC API Feature:
 
 {% if is_release %}
-    ``` text
+    ```text
 docker pull docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
-    ``` text
+    ```text
 docker pull docker.osgeo.org/geoserver:{{ version }}.x
     ```
 {% endif %}
@@ -42,14 +42,14 @@ docker pull docker.osgeo.org/geoserver:{{ version }}.x
 2.  To run with OGC API Features:
 
 {% if is_release %}
-    ``` text
+    ```text
 docker run -it -p 8080:8080 \
       --env INSTALL_EXTENSIONS=true \
       --env STABLE_EXTENSIONS="ogcapi-features" \
       docker.osgeo.org/geoserver:{{ release }}
     ```
 {% else %}
-    ``` text
+    ```text
 docker run -it -p 8080:8080 \
       --env INSTALL_EXTENSIONS=true \
       --env STABLE_EXTENSIONS="ogcapi-features" \

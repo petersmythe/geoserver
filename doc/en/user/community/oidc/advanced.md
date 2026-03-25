@@ -70,7 +70,7 @@ To setup for troubleshooting OIDC activity:
 
 5.  With these settings each individual step of the OAuth2 authentication is shown. The logging sensitive information setting logs access token and id token (the contents of these tokens may be decoded using <https://jwt.io>).
 
-    ``` text
+    ```text
     DEBUG  [security.oauth2] - OIDC: - CLIENT_SECRET: squirrel
     DEBUG  [security.oauth2] - OIDC: received a CODE from Identity Provider - handing it in for ID/Access Token
     DEBUG  [security.oauth2] - OIDC: CODE=...

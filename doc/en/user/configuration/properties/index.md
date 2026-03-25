@@ -113,7 +113,7 @@ Using `GEOSERVER_DATA_DIR` as an example:
 
     - For Tomcat on Windows use ***Apache Tomcat Properties*** application, navigating to the **Java** tab to edit **Java Options**:
 
-      ``` text
+      ```text
       -DGEOSERVER_DATA_DIR=C:\ProgramData\GeoServer\data
       ```
 

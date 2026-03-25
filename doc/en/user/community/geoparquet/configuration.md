@@ -38,7 +38,7 @@ The GeoParquet URI parameter supports various formats:
 
 Point to a local GeoParquet file or directory:
 
-``` text
+```text
 file:///data/countries.parquet
 /data/countries.parquet
 file:///data/geoparquet-files/
@@ -46,7 +46,7 @@ file:///data/geoparquet-files/
 
 With glob patterns:
 
-``` text
+```text
 /data/**/*.parquet
 file:///data/year=2024/month=*/*.parquet
 ```
@@ -55,7 +55,7 @@ file:///data/year=2024/month=*/*.parquet
 
 Access GeoParquet files over HTTP or HTTPS:
 
-``` text
+```text
 https://example.com/data/countries.parquet
 https://storage.googleapis.com/bucket/data.parquet
 ```
@@ -64,7 +64,7 @@ https://storage.googleapis.com/bucket/data.parquet
 
 Access GeoParquet files stored in Amazon S3:
 
-``` text
+```text
 s3://my-bucket/data/countries.parquet
 s3://my-bucket/data/**/*.parquet
 ```
@@ -134,7 +134,7 @@ You can specify which profile to use with the **AWS Profile** parameter. If not 
 
 If you must use URI-based authentication, you can include credentials as query parameters:
 
-``` text
+```text
 s3://my-bucket/data.parquet?s3_region=us-west-2&s3_access_key_id=AKIAIOSFODNN7EXAMPLE&s3_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
@@ -142,7 +142,7 @@ s3://my-bucket/data.parquet?s3_region=us-west-2&s3_access_key_id=AKIAIOSFODNN7EX
 
 GeoParquet data stores fully support Hive-partitioned datasets, where data is organized in directory hierarchies with `key=value` patterns:
 
-``` text
+```text
 /data/year=2023/month=01/day=01/file.parquet
 /data/year=2023/month=01/day=02/file.parquet
 /data/year=2023/month=02/day=01/file.parquet
@@ -187,7 +187,7 @@ For detailed information about working with Overture Maps data, refer to the Geo
 
 When using AWS credential chain authentication, you may encounter this error:
 
-``` text
+```text
 Failed to create AWS credential chain secret: Invalid Configuration Error:
 Secret Validation Failure: during `create` using the following: Credential Chain: 'config'
 ```

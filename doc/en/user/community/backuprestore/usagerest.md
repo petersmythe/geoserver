@@ -128,7 +128,7 @@ curl -u "admin:geoserver" -i -X GET  "http://mygeoserver/geoserver/rest/br/backu
 
 Status of the operation can be queried making an HTTP GET request to the location listed in the response.
 
-``` text
+```text
 ``http://mygeoserver/geoserver/rest/br/backup/$ID.{json/xml}``
 ```
 
@@ -188,7 +188,7 @@ Available Options are:
 
 3.  `BK_PASSWORD_TOKENS`: A comma separated list of equal sign separated key/values to be replaced in data store passwords in an incoming backup. For example:
 
-    ``` text
+    ```text
     BK_PASSWORD_TOKENS=${workspace:store1.passwd.encryptedValye}=foo,${workspace:store2.passwd.encryptedValue}=bar
     ```
 
@@ -208,7 +208,7 @@ Also an optional `Filter` can be passed to restrict the scope of the restore ope
 
 For example:
 
-``` text
+```text
 {
    "restore":{
       "archiveFile":"/home/sg/BackupAndRestore/test_rest_1.zip",
@@ -304,7 +304,7 @@ Query for status of Restore operations
 
 `http://mygeoserver/geoser/restore/$ID.{json/xml}`:
 
-``` text
+```text
 {
    "restore":{
       "execution":{
