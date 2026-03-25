@@ -12,7 +12,7 @@ It is possible to keep the same data directory while migrating to different vers
 
   Always check to [Upgrading GeoServer](../installation/upgrade.md) page for notes on upgrading between different versions. This provides specific guidance for any manual steps required.
 
-  !!! note
-      Some minor version upgrades may not be reversible, since **newer versions of GeoServer may make backwards-incompatible changes** to the data directory.
+    !!! note
+        Some minor version upgrades may not be reversible, since **newer versions of GeoServer may make backwards-incompatible changes** to the data directory.
 
 - Upgrading between major versions of GeoServer (for example from 2.28 to 3.0) may not be reversible, since newer versions of GeoServer may make backwards-incompatible changes to the data directory.
