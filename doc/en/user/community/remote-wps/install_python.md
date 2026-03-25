@@ -655,8 +655,8 @@ process_blacklist = [resource consuming process name1, resource consuming proces
 
 - **service**; The name of the WPS service. On GeoServer the WPS Process will be represented as `namespace.service`
 
-  !!! note
-      The XMPP Server *must* have a registered user named like the fully qualified service name `namespace.service`
+    !!! note
+        The XMPP Server *must* have a registered user named like the fully qualified service name `namespace.service`
 
 - **namespace**; The namespace (or prefix) of the service. Along with the *service* parameter, it represents the fully qualified name of the service.
 

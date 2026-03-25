@@ -53,6 +53,34 @@ To return to top level, use 0 indentation again. For example:
     - Nested
 - Back to top level
 
+## Notes and warnings (admonitions)
+
+GeoServer documentation uses the `admonition` extension in Markdown for notes and warnings.
+
+### Important user guidance
+
+- `!!! note`, `!!! warning`, etc. is valid at top level, and in list nesting when indented to the same depth as surrounding list content.
+- For top-level admonitions, use 0-3 spaces before `!!!` and indent block content by 4 spaces.
+- For nested admonitions in lists, align `!!!` with the list item block content (e.g. 4 / 8 / 12 spaces depending on nesting).
+
+This means `!!!` can be at 12 spaces and still render when it is nested in a list item at that depth.
+
+Example:
+
+```md
+!!! note
+    Do not wait for a release to fall out of support before upgrading.
+```
+
+This produces a note box.
+
+If you need a note-like callout inside a list item, use inline emphasis instead:
+
+```md
+- Remember:
+    - **Note:** Do not rely on this in production.
+```
+
 ## List-packed table
 
 Use a Markdown table instead of rst list-table:
@@ -95,9 +123,9 @@ GeoServer documentation uses the `admonition` extension in Markdown for notes an
 
 ### Important user guidance
 
-- `!!! note`, `!!! warning`, etc. must start at column 0 (no leading spaces).
-- The content of the block should be indented by 4 spaces.
-- Do not put `!!! note` at an indented list level; it will render as code text instead of an admonition.
+- `!!! note`, `!!! warning`, etc. is valid at top level, and in list nesting when indented to the same depth as surrounding list content.
+- For top-level admonitions, use 0-3 spaces before `!!!` and indent block content by 4 spaces.
+- For nested admonitions in lists, align `!!!` with the list item block content (e.g. 4 / 8 / 12 spaces depending on nesting).
 
 Example:
 
