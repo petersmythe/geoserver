@@ -100,15 +100,15 @@ There are 2 ways to run the suites. One is running with `make` that will automat
 
     - Choose which test to run, this is an example:
 
-      !!! warning
-          The first Docker build may take a long time.
+    !!! warning
+        The first Docker build may take a long time.
 
       ``` SHELL
       suite=wcs10
       ```
 
-      !!! note
-          Valid values for the suite parameter are:
+    !!! note
+        Valid values for the suite parameter are:
     
           :   - wcs10
               - wcs11

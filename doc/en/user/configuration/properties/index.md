@@ -130,7 +130,7 @@ Using `GEOSERVER_DATA_DIR` as an example:
       </Context>
       ```
 
-      !!! note
+    !!! note
           Tomcat management of application properties as using `override="false"` is not the most straight forward to understand. This setting prevents parameter defined in **`WEB-INF/web.xml`** (from the **`geoserver.war`** ) to override the provided file location.
     
           Other application servers provide a user interface to manage web application properties and are more intuitive.
@@ -144,7 +144,7 @@ Using `GEOSERVER_DATA_DIR` as an example:
       </context-param>
       ```
 
-      !!! note
+    !!! note
           This file is part of the GeoServer application and will be replaced when updating the application.
     
           As a result this approach is error prone making updates more difficult and is not recommended.

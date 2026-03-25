@@ -1034,7 +1034,7 @@ nav:
     - Installing Sphinx: en/docguide/install.md
     - Installing LaTeX: en/docguide/installlatex.md
     - Workflow: en/docguide/workflow.md
-    - Sphinx Syntax: en/docguide/sphinx.md
+    - Markdown Syntax: en/docguide/markdown.md
     - Style Guidelines: en/docguide/style.md
     - Writing a Tutorial: en/docguide/tutorial.md
   

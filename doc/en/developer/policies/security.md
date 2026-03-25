@@ -176,7 +176,7 @@ This represents a balance between transparency and participation that does not o
 
     - Update prior release announcements, and placeholder Jira issue, with the complete title of the vulnerability.
 
-      !!! note
+    !!! note
           Example: Security considerations section showing a mix of disclosed and not yet disclosed (no hyperlink) vulnerabilities.
 
           ![](img/cve-disclosure.png)
@@ -187,7 +187,7 @@ This represents a balance between transparency and participation that does not o
 
     - If you feel a statement is necessary, you may write an appropriate blog post.
 
-      !!! note
+    !!! note
           Examples statements:
 
           - [CVE-2024-36401 Remote Code Execution (RCE) vulnerability in evaluating property name expressions](https://geoserver.org/vulnerability/2024/09/12/cve-2024-36401.md).

@@ -100,8 +100,8 @@ Connecting a new executable instance to GeoServer through the Python wrapper req
 
     :   - The service name and the namespace
 
-          !!! note
-              there must exist an user on the XMPP Server named as `namespace.serviceName` and a communication channel with the same identified of the service namespace.
+    !!! note
+        there must exist an user on the XMPP Server named as `namespace.serviceName` and a communication channel with the same identified of the service namespace.
     
               e.g.:
     
