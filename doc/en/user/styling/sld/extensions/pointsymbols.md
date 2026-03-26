@@ -35,7 +35,7 @@ The SLD specification mandates the support of the following symbols:
 
 The shape symbols set adds extra symbols that are not part of the basic set.
 
-1.  To enable ensure that the WMS Settings ****Mark Factory Precedence`has`ShapeMarkFactory`` selected.
+1.  To enable ensure that the WMS Settings `Mark Factory Precedence` has `ShapeMarkFactory` selected.
 2.  The shape symbols are prefixed by `shape://`
 
 | **Name** | **Description** |
@@ -56,7 +56,7 @@ The shape symbols set adds extra symbols that are not part of the basic set.
 
 The weather symbols are prefixed by the `extshape://` protocol in the SLD:
 
-1.  To enable ensure that the WMS Settings ****Mark Factory Precedence`has`MeteoMarkFactory`` selected.
+1.  To enable ensure that the WMS Settings `Mark Factory Precedence` has `MeteoMarkFactory` selected.
 2.  These symbols are:
 
 | **Name** | **Description** | **Produces** |
@@ -77,7 +77,7 @@ The weather symbols are prefixed by the `extshape://` protocol in the SLD:
 
 More complex symbols like Wind Barbs can be created with the `windbarbs://` prefix.
 
-1.  To enable ensure that the WMS Settings ****Mark Factory Precedence`has`WindBarbsmFactory`` selected.
+1.  To enable ensure that the WMS Settings `Mark Factory Precedence` has `WindBarbsmFactory` selected.
 2.  There are some examples:
 
 | **Name** | **Description** |

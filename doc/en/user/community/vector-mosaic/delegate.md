@@ -10,7 +10,10 @@ The delegate datastore can be in any format that GeoServer supports but there ar
   - The URI/URL pointing at granule resources like shapefiles, GeoPackage, FlatGeobuf, etc. (for simplicity).
   - A configuration string in .properties format. (See [Java Properties file](https://en.wikipedia.org/wiki/.properties) for more details about the format).
 
-In addition to that, the following fields are optional: * `type` indicates the typename to be used when querying the granule store. Useful when the target store can contain multiple feature types. If not present, it's recommended to target a store with a single feature type (e.g., Shapefile, FlatGeoBuf). * `filter` is a (E)CQL filter that can be used to cherry pick the features to be read from the delegate store. This is useful when the delegate store contains a large number of features, and only a subset of them are of interest for the given set of index record attributes.
+In addition to that, the following fields are optional:
+
+  * `type` indicates the typename to be used when querying the granule store. Useful when the target store can contain multiple feature types. If not present, it's recommended to target a store with a single feature type (e.g., Shapefile, FlatGeoBuf). 
+  * `filter` is a (E)CQL filter that can be used to cherry pick the features to be read from the delegate store. This is useful when the delegate store contains a large number of features, and only a subset of them are of interest for the given set of index record attributes.
 
 Any other field beyond the two required can serve as queryable/filterable attribute, and will be used to narrow the number of potential granule vectors that are searched by a query. The non-required parameters will be combined with the vector granule parameters to create the output feature type.
 
