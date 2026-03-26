@@ -87,18 +87,16 @@ While the UI method above is recommended, administrators using Tomcat may still 
 
 1.  Uncomment the following `<filter>` in **`webapps/geoserver/WEB-INF/web.xml`**:
 
-    ```
-    <!-- Include path goes outside docs directory: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml -->
-    <!-- TODO: Copy file to docs directory or use alternative approach -->
+    ```xml
+    --8<-- "src/web/app/src/main/webapp/WEB-INF/web.xml"
     ```
 
     Note that in some cases you may have to replace the asterisk (*) param-value for cors.allowed.methods with an explicit list: Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization
 
 2.  Uncomment the following `<filter-mapping>`:
 
-    ```
-    <!-- Include path goes outside docs directory: ../../../../src/web/app/src/main/webapp/WEB-INF/web.xml -->
-    <!-- TODO: Copy file to docs directory or use alternative approach -->
+    ```xml
+    --8<-- "src/web/app/src/main/webapp/WEB-INF/web.xml"
     ```
 
 3.  Restart

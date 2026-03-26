@@ -151,8 +151,7 @@ In case an invalid report is given, an annotation on the class/method/variable c
 or if it's a general one that should be ignored, the [build/qa/spotbugs-exclude.xml](https://github.com/geoserver/geoserver/blob/main/build/qa/spotbugs-exclude.xml) file can be modified.
 
 ```xml
-{%raw%}{%endraw%}<!-- Include path goes outside docs directory: ../../../../build/qa/spotbugs-exclude.xml -->
-<!-- TODO: Copy file to docs directory or use alternative approach -->
+--8<-- "build/qa/spotbugs-exclude.xml"
 ```
 
 ## Spotless
@@ -247,8 +246,7 @@ The actual plugin configuration and execution is defined as:
 The checkstyle ruleset checks the following:
 
 ```xml
-{%raw%}<!-- Include path goes outside docs directory: ../../../../build/qa/checkstyle.xml -->{%endraw%}
-<!-- TODO: Copy file to docs directory or use alternative approach -->
+--8<-- "build/qa/checkstyle.xml"
 ```
 
 To run the plugin directly:
