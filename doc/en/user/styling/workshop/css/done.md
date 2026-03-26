@@ -154,9 +154,7 @@ Answer for [Explore Categorize](#css-polygon-q2):
 
     Example:
 
-    ``` yaml
-    .. code-block:: css
-
+    ``` css
        * {
          fill: symbol('shape://slash');
          fill-size: [
