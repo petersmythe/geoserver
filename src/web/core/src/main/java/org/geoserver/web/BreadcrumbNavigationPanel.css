@@ -10,6 +10,9 @@
     background-color: var(--gs-tertiary-bg);
     border-bottom: 1px solid var(--gs-border-color);
 }
+.gs-breadcrumb li {
+    list-style: none;
+}
 .gs-breadcrumb-item {
     display: inline-flex;
     align-items: center;
@@ -56,12 +59,12 @@
 }
 .gs-dropdown-menu .gs-dropdown-header:hover {
     cursor: default;
-    background-color: none;
+    background-color: initial;
 }
 .gs-breadcrumb .gs-dropdown-header {
     font-weight: 600;
 }
-.gs-breadcrumb .gs-dropdown-header > span::after {
+.gs-breadcrumb .gs-dropdown > .gs-dropdown-header > span::after {
     content: " \25BE";
 }
 .gs-breadcrumb .gs-dropdown-item {

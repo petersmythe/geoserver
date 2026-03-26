@@ -20,14 +20,14 @@
           </button>
           <div id="main-navigation" class="gs-header-nav-container">
             <div id="navigation-container" class="gs-header-nav" role="navigation" aria-label="Main navigation">
-              <ul id="navigation">
-                <li class="gs-dropdown" wicket:id="category">
-                  <div class="gs-dropdown-header">
+              <ul id="navigation" role="menubar" aria-label="Main menu">
+                <li class="gs-dropdown" wicket:id="category" role="none">
+                  <div class="gs-dropdown-header" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false">
                     <span wicket:id="category.header">[Category Header]</span>
                   </div>
-                  <ul class="gs-dropdown-menu">
-                    <li class="gs-dropdown-item" wicket:id="category.links">
-                      <a wicket:id="link">
+                  <ul class="gs-dropdown-menu" role="menu">
+                    <li class="gs-dropdown-item" wicket:id="category.links" role="none">
+                      <a wicket:id="link" role="menuitem">
                         <img src="#" wicket:id="link.icon" alt=""/><span wicket:id="link.label"></span>
                       </a>
                     </li>

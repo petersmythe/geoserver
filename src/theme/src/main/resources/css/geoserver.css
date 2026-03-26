@@ -1713,6 +1713,10 @@ form a.collapsed {
 .gs-dropdown-header:hover {
   background: var(--gs-tertiary-bg);
 }
+.gs-header-nav .gs-dropdown-header:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 2px var(--gs-primary-border-subtle);
+}
 .gs-dropdown-menu,
 .gs-dropdown ul {
   display: none;
@@ -1728,26 +1732,30 @@ form a.collapsed {
   min-width: 12em;
   z-index: 100;
 }
-.gs-dropdown:hover .gs-dropdown-menu,
-.gs-dropdown:hover ul {
+.gs-dropdown.is-open .gs-dropdown-menu,
+.gs-dropdown.is-open ul,
+.gs-dropdown:focus-within .gs-dropdown-menu,
+.gs-dropdown:focus-within ul {
   display: flex;
 }
-.gs-dropdown li a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.125em;
+/* Hover behavior only applies on devices that actually support hover. */
+@media (hover: hover) and (pointer: fine) {
+  .gs-dropdown:hover .gs-dropdown-menu,
+  .gs-dropdown:hover ul {
+    display: flex;
+  }
 }
 .gs-dropdown li a,
 .gs-dropdown-menu a {
   display: inline-flex;
   align-items: center;
-  gap: 0.35em;
+  gap: 0.375em;
   padding: 0.25em 0.5em;
   border-radius: var(--gs-border-radius);
   white-space: nowrap;
   color: var(--gs-body-color);
   width: 100%;
+  font-size: 1.125em;
 }
 .gs-dropdown li.gs-dropdown-item {
   width: 100%;
