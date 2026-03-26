@@ -39,11 +39,11 @@ The imageMosaic reader may load, in parallel, different files that make up the m
 !!! note
     If ``corePoolSize`` and ``maximumPoolSize`` are the same, a fixed-size thread pool is used.
 
-# System Properties Configuration
+## System Properties Configuration
 
 There are some additional global configuration parameters involved in raster access which can be specified through System properties.
 
-## Max Oversampling Factor
+### Max Oversampling Factor
 
 When dealing with reprojection, the underlying raster read operation might do some oversampling in order to provide the requested output resolution. Depending on the reprojection and the requested area, the oversampling factor might be high.
 
@@ -52,8 +52,7 @@ Consider an untiled whole world request of an EPSG:4326 raster, towards EPSG:385
 This can be very time consuming (you may notice long rendering time for that). It's possible to put a limit on the maximum oversampling factor by adding the following java option to GeoServer startup script and restart it:
 
 ``` xml
+-Dorg.geotools.coverage.max.oversample=N
 ```
->
-> -Dorg.geotools.coverage.max.oversample=N
 
 With N a number representing the maximum oversampling factor. By this way, the underlying read operation will use a reading resolution within that limit, making the rendering faster. The speed gain has however a penalty, output quality decrease at the poles. So you may want to play a bit with this value to find the optimal trade-off between speed and quality. For example, you could start trying with a value of 3 and check the results, and then slowly increase it until the output matches the desired quality within an acceptable rendering time.
