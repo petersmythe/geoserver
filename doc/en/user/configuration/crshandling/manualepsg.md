@@ -19,9 +19,9 @@ To define a custom projection, edit the EPSG.sql file, which is used to create t
 
         where:
 
-- **1324** is the EPSG_AREA code that describes the area covered by my projection
-- **4400** is the EPSG_COORDINATESYSTEM code for my projection
-- **20000** is the EPSG_COORDOPERATIONPARAMVALUE key for the array that contains my projection parameters
+        - **1324** is the EPSG_AREA code that describes the area covered by my projection
+        - **4400** is the EPSG_COORDINATESYSTEM code for my projection
+        - **20000** is the EPSG_COORDOPERATIONPARAMVALUE key for the array that contains my projection parameters
 
     2.  An entry in the EPSG_COORDOPERATIONPARAMVALUE table:
 
@@ -34,7 +34,7 @@ To define a custom projection, edit the EPSG.sql file, which is used to create t
 
         where:
 
-- **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
+        - **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
 
     3.  An entry in the EPSG_COORDOPERATION table:
 
@@ -42,22 +42,22 @@ To define a custom projection, edit the EPSG.sql file, which is used to create t
 
         where:
 
-- **1324** is the EPSG_AREA code that describes the area covered by my projection
-- **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
+        - **1324** is the EPSG_AREA code that describes the area covered by my projection
+        - **9802** is the EPSG_COORDOPERATIONMETHOD key for the Lambert Conic Conformal (2SP) formula
 
 !!! note
     Observe the commas. If you enter a line that is at the end of an INSERT statement, the comma is omitted (make sure the row before that has a comma at the end). Otherwise, add a comma at the end of your entry.
 
-1.  After all edits, save the file and exit.
+4.  After all edits, save the file and exit.
 
-2.  Compress the gt2-epsg-h.jar file. On Linux, the command is:
+5.  Compress the gt2-epsg-h.jar file. On Linux, the command is:
 
         jar -Mcvf gt2-epsg-h.jar META-INF org
 
-3.  Remove the cached copy of the EPSG database, so that can be recreated. On Linux, the command is:
+6.  Remove the cached copy of the EPSG database, so that can be recreated. On Linux, the command is:
 
         rm -rf /tmp/Geotools/Databases/HSQL
 
-4.  Restart GeoServer.
+7.  Restart GeoServer.
 
 The new projection will be successfully parsed. Verify that the CRS has been properly parsed by navigating to the [SRS List](../demos/index.md#srs_list) page in the [Web administration interface](../../webadmin/index.md).
