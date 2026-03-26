@@ -7,7 +7,7 @@ render_macros: true
 This REST API allows you to create and manage URL External Access Checks in GeoServer.
 
 !!! note
-    Read the [API reference for /urlchecks]({{ api_url }}/urlchecks.yaml).
+    Read the [API reference for /urlchecks]({{ api_url }}?urls.primaryName=URL%20Checks).
 
 ## Listing all URL Checks
 

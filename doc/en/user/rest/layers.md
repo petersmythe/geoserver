@@ -7,7 +7,7 @@ render_macros: true
 The REST API allows you to list, create, upload, update, and delete layers in GeoServer.
 
 !!! note
-    Read the [API reference for /layers]({{ api_url }}/layers.yaml).
+    Read the [API reference for /layers]({{ api_url }}?urls.primaryName=Layers).
 
 ## Listing all layers
 

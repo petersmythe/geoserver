@@ -7,7 +7,7 @@ render_macros: true
 The REST API allows you to list, create, upload, update, and delete authFilters in GeoServer.
 
 !!! note
-    Read the [API reference for security/authFilters]({{ api_url }}/authenticationfilters.yaml).
+    Read the [API reference for security/authFilters]({{ api_url }}?urls.primaryName=Authentication%20Filters).
 
 ## View an Authentication Filter
 
