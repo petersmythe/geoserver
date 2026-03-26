@@ -18,7 +18,7 @@ import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CatalogBuilder;
 import org.geoserver.catalog.CoverageInfo;
@@ -40,7 +40,6 @@ import org.geoserver.web.data.importer.WMTSLayerImporterPage;
 import org.geoserver.web.data.resource.ResourceConfigurationPage;
 import org.geoserver.web.data.store.StoreListChoiceRenderer;
 import org.geoserver.web.data.store.StoreListModel;
-import org.geoserver.web.wicket.CachingImage;
 import org.geoserver.web.wicket.GeoServerDataProvider.Property;
 import org.geoserver.web.wicket.GeoServerTablePanel;
 import org.geoserver.web.wicket.ParamResourceModel;
@@ -118,9 +117,9 @@ public class NewLayerPage extends GeoServerSecuredPage {
                     final Resource resource = itemModel.getObject();
                     final CatalogIconFactory icons = CatalogIconFactory.get();
                     if (resource.isPublished()) {
-                        PackageResourceReference icon = icons.getEnabledIcon();
+                        ResourceReference icon = icons.getEnabledIcon();
                         Fragment f = new Fragment(id, "iconFragment", selectLayers);
-                        f.add(new CachingImage("layerIcon", icon));
+                        f.add(icons.getIcon("layerIcon", icon));
                         return f;
                     } else {
                         return new Label(id);
@@ -185,7 +184,7 @@ public class NewLayerPage extends GeoServerSecuredPage {
             public void onClick(AjaxRequestTarget target) {
                 DataStoreInfo ds = getCatalog().getStore(storeId, DataStoreInfo.class);
                 PageParameters pp = new PageParameters()
-                        .add("wsName", ds.getWorkspace().getName())
+                        .add("workspace", ds.getWorkspace().getName())
                         .add("storeName", ds.getName());
                 setResponsePage(NewFeatureTypePage.class, pp);
             }
@@ -199,7 +198,7 @@ public class NewLayerPage extends GeoServerSecuredPage {
             public void onClick(AjaxRequestTarget target) {
                 DataStoreInfo ds = getCatalog().getStore(storeId, DataStoreInfo.class);
                 PageParameters pp = new PageParameters()
-                        .add("wsName", ds.getWorkspace().getName())
+                        .add("workspace", ds.getWorkspace().getName())
                         .add("storeName", ds.getName());
                 setResponsePage(SQLViewNewPage.class, pp);
             }
@@ -213,7 +212,7 @@ public class NewLayerPage extends GeoServerSecuredPage {
             public void onClick(AjaxRequestTarget target) {
                 CoverageStoreInfo cs = getCatalog().getStore(storeId, CoverageStoreInfo.class);
                 PageParameters pp = new PageParameters()
-                        .add("wsName", cs.getWorkspace().getName())
+                        .add("workspace", cs.getWorkspace().getName())
                         .add("storeName", cs.getName());
                 setResponsePage(CoverageViewNewPage.class, pp);
             }
@@ -227,7 +226,7 @@ public class NewLayerPage extends GeoServerSecuredPage {
             public void onClick(AjaxRequestTarget target) {
                 DataStoreInfo ds = getCatalog().getStore(storeId, DataStoreInfo.class);
                 PageParameters pp = new PageParameters()
-                        .add("wsName", ds.getWorkspace().getName())
+                        .add("workspace", ds.getWorkspace().getName())
                         .add("storeName", ds.getName());
                 setResponsePage(CascadedWFSStoredQueryNewPage.class, pp);
             }

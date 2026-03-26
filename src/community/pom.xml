@@ -163,16 +163,18 @@
         <module>stac-datastore</module>
         <module>acl</module>
         <module>geoparquet</module>
+        <module>duckdb</module>
         <module>wps-download-netcdf</module>
         <module>singlestore</module>
         <module>pmtiles-store</module>
         <module>wps-openai</module>
+        <module>png-wind</module>
       </modules>
     </profile>
     <profile>
       <id>pending</id>
       <modules>
-        <module>oseo</module>
+        <!--module>oseo</module-->
       </modules>
     </profile>
     <profile>
@@ -531,6 +533,12 @@
       </modules>
     </profile>
     <profile>
+      <id>duckdb</id>
+      <modules>
+        <module>duckdb</module>
+      </modules>
+    </profile>
+    <profile>
       <id>wps-download-netcdf</id>
       <modules>
         <module>wps-download-netcdf</module>
@@ -552,6 +560,12 @@
       <id>wps-openai</id>
       <modules>
         <module>wps-openai</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>png-wind</id>
+      <modules>
+        <module>png-wind</module>
       </modules>
     </profile>
     <profile>

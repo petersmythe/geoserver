@@ -1868,7 +1868,7 @@
       <dependencies>
         <dependency>
           <groupId>org.geoserver.community</groupId>
-          <artifactId>gs-acl</artifactId>
+          <artifactId>gs-acl-plugin</artifactId>
           <version>${gs.version}</version>
         </dependency>
       </dependencies>
@@ -1899,6 +1899,16 @@
         <dependency>
           <groupId>org.geoserver.community</groupId>
           <artifactId>gs-singlestore</artifactId>
+          <version>${gs.version}</version>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>duckdb</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.geoserver.community</groupId>
+          <artifactId>gs-duckdb</artifactId>
           <version>${gs.version}</version>
         </dependency>
       </dependencies>
@@ -1959,6 +1969,16 @@
         <dependency>
           <groupId>org.geoserver.extension</groupId>
           <artifactId>gs-image</artifactId>
+          <version>${project.version}</version>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>png-wind</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.geoserver.community</groupId>
+          <artifactId>gs-png-wind</artifactId>
           <version>${project.version}</version>
         </dependency>
       </dependencies>

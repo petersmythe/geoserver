@@ -42,6 +42,7 @@ Community modules are provided "as is" alongside the `nightly builds <https://bu
    colormap/index
    cov-json/index
    dds/index
+   duckdb/index
    elasticsearch/index
    features-autopopulate/index
    features-templating/index
@@ -75,6 +76,7 @@ Community modules are provided "as is" alongside the `nightly builds <https://bu
    ogr-store/index
    oidc/index
    pmtiles-store/index
+   png-wind/index
    proxy-base-ext/index
    remote-wps/index
    s3-geotiff/index
@@ -93,4 +95,3 @@ Community modules are provided "as is" alongside the `nightly builds <https://bu
    wps-download-netcdf/index
    wps-longitudinal-profile/index
    wps-openai/index
-

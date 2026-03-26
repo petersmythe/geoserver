@@ -16,7 +16,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CoverageStoreInfo;
 import org.geoserver.catalog.DataStoreInfo;
@@ -72,7 +72,7 @@ public class StorePanel extends GeoServerTablePanel<StoreInfo> {
         if (property == StoreProvider.DATA_TYPE) {
             final StoreInfo storeInfo = itemModel.getObject();
 
-            PackageResourceReference storeIcon = icons.getStoreIcon(storeInfo);
+            ResourceReference storeIcon = icons.getStoreIcon(storeInfo);
 
             Fragment f = new Fragment(id, "iconFragment", this);
             f.add(new CachingImage("storeIcon", storeIcon));
@@ -84,7 +84,7 @@ public class StorePanel extends GeoServerTablePanel<StoreInfo> {
             return storeNameLink(id, itemModel);
         } else if (property == ENABLED) {
             final StoreInfo storeInfo = itemModel.getObject();
-            PackageResourceReference enabledIcon;
+            ResourceReference enabledIcon;
             if (storeInfo.isEnabled()) {
                 enabledIcon = icons.getEnabledIcon();
             } else {
@@ -108,6 +108,9 @@ public class StorePanel extends GeoServerTablePanel<StoreInfo> {
         IModel storeNameModel = NAME.getModel(itemModel);
         String storeName = (String) storeNameModel.getObject();
         StoreInfo store = getCatalog().getStoreByName(wsName, storeName, StoreInfo.class);
+        if (store == null) {
+            return new Label(id, storeNameModel);
+        }
         if (store instanceof DataStoreInfo) {
             return new SimpleBookmarkableLink(
                     id,
@@ -152,7 +155,7 @@ public class StorePanel extends GeoServerTablePanel<StoreInfo> {
     private Component workspaceLink(String id, IModel<StoreInfo> itemModel) {
         IModel nameModel = WORKSPACE.getModel(itemModel);
         return new SimpleBookmarkableLink(
-                id, WorkspaceEditPage.class, nameModel, "name", (String) nameModel.getObject());
+                id, WorkspaceEditPage.class, nameModel, "workspace", (String) nameModel.getObject());
     }
 
     protected Component removeLink(String id, final IModel itemModel) {

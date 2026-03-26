@@ -6,6 +6,7 @@
 package org.geoserver.web.data.workspace;
 
 import static org.geoserver.web.services.BaseServiceAdminPage.WORKSPACE_ADMIN_SERVICE_ACCESS;
+import static org.geoserver.web.util.WebUtils.IsWicketCssFileEmpty;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -366,6 +367,19 @@ public class WorkspaceEditPage extends GeoServerSecuredPage {
 
     class WsEditInfoPanel extends Panel {
 
+        private static final boolean isCssEmpty = IsWicketCssFileEmpty(WorkspaceEditPage.WsEditInfoPanel.class);
+
+        @Override
+        public void renderHead(org.apache.wicket.markup.head.IHeaderResponse response) {
+            super.renderHead(response);
+            // if the panel-specific CSS file contains actual css then have the browser load the css
+            if (!isCssEmpty) {
+                response.render(org.apache.wicket.markup.head.CssHeaderItem.forReference(
+                        new org.apache.wicket.request.resource.PackageResourceReference(
+                                getClass(), getClass().getSimpleName() + ".css")));
+            }
+        }
+
         @Serial
         private static final long serialVersionUID = -8487041433764733692L;
 
@@ -408,6 +422,19 @@ public class WorkspaceEditPage extends GeoServerSecuredPage {
     }
 
     class SettingsPanel extends FormComponentPanel<Serializable> {
+
+        private static final boolean isCssEmpty = IsWicketCssFileEmpty(WorkspaceEditPage.SettingsPanel.class);
+
+        @Override
+        public void renderHead(org.apache.wicket.markup.head.IHeaderResponse response) {
+            super.renderHead(response);
+            // if the panel-specific CSS file contains actual css then have the browser load the css
+            if (!isCssEmpty) {
+                response.render(org.apache.wicket.markup.head.CssHeaderItem.forReference(
+                        new org.apache.wicket.request.resource.PackageResourceReference(
+                                getClass(), getClass().getSimpleName() + ".css")));
+            }
+        }
 
         @Serial
         private static final long serialVersionUID = -1580928887379954134L;
@@ -536,6 +563,11 @@ public class WorkspaceEditPage extends GeoServerSecuredPage {
             // initialize from global service
             ServiceInfo global = gs.getService(serviceClass);
             OwsUtils.copy(global, newService, serviceClass);
+            // deep-copy disabledVersions so workspace service has its own independent list
+            ServiceInfoImpl newServiceImpl = (ServiceInfoImpl) newService;
+            if (newServiceImpl.getDisabledVersions() != null) {
+                newServiceImpl.setDisabledVersions(new ArrayList<>(newServiceImpl.getDisabledVersions()));
+            }
             newService.setWorkspace(wsModel.getObject());
 
             // hack, but need id to be null so its considered unattached
@@ -565,6 +597,19 @@ public class WorkspaceEditPage extends GeoServerSecuredPage {
     }
 
     class ServicesPanel extends FormComponentPanel<Serializable> {
+
+        private static final boolean isCssEmpty = IsWicketCssFileEmpty(WorkspaceEditPage.ServicesPanel.class);
+
+        @Override
+        public void renderHead(org.apache.wicket.markup.head.IHeaderResponse response) {
+            super.renderHead(response);
+            // if the panel-specific CSS file contains actual css then have the browser load the css
+            if (!isCssEmpty) {
+                response.render(org.apache.wicket.markup.head.CssHeaderItem.forReference(
+                        new org.apache.wicket.request.resource.PackageResourceReference(
+                                getClass(), getClass().getSimpleName() + ".css")));
+            }
+        }
 
         @Serial
         private static final long serialVersionUID = 7375904545106343626L;
