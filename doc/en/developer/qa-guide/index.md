@@ -25,15 +25,13 @@ The plugin version is managed in the pluginManagement section.
 The actual plugin configuration and execution is defined as:
 
 ```xml
-{%raw%}{% include "../../../../src/pom.xml" start="<!-- doc-include-pmd-plugin-start" %}{%endraw%}
+--8<-- "src/pom.xml:2171:2232"
 ```
 
 Rules are configured in our build [build/qa/pmd-ruleset.xml](https://github.com/geoserver/geoserver/blob/main/build/qa/pmd-ruleset.xml):
 
 ```xml
-{%raw%}<!-- Include with start/end not supported: ../../../../build/qa/pmd-ruleset.xml -->{%endraw%}
-<!-- Extract: from "</description>" to "</ruleset>" -->
-<!-- TODO: Copy relevant section to docs directory -->
+--8<-- "build/qa/pmd-ruleset.xml:23:133"
 ```
 
 In order to activate the ***PMD*** checks, use the `-Ppmd` profile:
@@ -100,7 +98,7 @@ The [Error Prone](https://errorprone.info/) checker runs a compiler plugin.
 In order to activate the Error Prone checks, use the "-Perrorprone":
 
 ```xml
-{%raw%}{% include "../../../../src/pom.xml" end="</profile>" %}{%endraw%}
+--8<-- "src/pom.xml:2223:2345"
 ```
 
 Any failure to comply with the "Error Prone" rules will show up as a compile error in the build output, e.g. (example taken from GeoTools):
@@ -129,7 +127,7 @@ The plugin version is managed in the pluginManagement section.
 The actual plugin configuration and execution is defined as:
 
 ```xml
-{%raw%}{% include "../../../../src/pom.xml" start="<!-- doc-include-spotbugs-plugin-start" %}
+--8<-- "src/pom.xml:2356:2398"
 ```
 
 Any failure to comply with the rules will show up as a compile error, e.g.:
@@ -156,14 +154,14 @@ or if it's a general one that should be ignored, the [build/qa/spotbugs-exclude.
 
 ## Spotless
 
-Spotless is used as a fast way to check that the [palantir-java -format](https://github.com/palantir/palantir-java-format?tab=readme-ov-file#palantir-java-format) is being applied to the codebase.
+Spotless is used as a fast way to check that the [palantir-java-format](https://github.com/palantir/palantir-java-format?tab=readme-ov-file#palantir-java-format) is being applied to the codebase.
 
 The plugin version is managed in the pluginManagement section.
 
 The actual plugin configuration and execution is defined as:
 
 ```xml
-{%raw%}{% include "../../../../src/pom.xml" start="<!-- doc-include-spotless-plugin-start" %}
+--8<-- "src/pom.xml:1696:1720"
 ```
 
 This has been setup for incremental checking, with hidden **`.spotless-index`** files used determine when files were last checked.
@@ -204,7 +202,7 @@ The plugin version is managed in the pluginManagement section.
 The actual plugin configuration and execution is defined as:
 
 ```xml
-{%raw%}{% include "../../../../src/pom.xml" start="<!-- doc-include-sortpom-plugin-start" %}{%endraw%}
+--8<-- "src/pom.xml:1722:1746"
 ```
 
 The plugin is attached to verification phase to sort **`pom.xml`** files.
@@ -240,7 +238,7 @@ The plugin version is managed in the pluginManagement section.
 The actual plugin configuration and execution is defined as:
 
 ```xml
-{%raw%}{% include "../../../../src/pom.xml" start="<!-- doc-include-checkstyle-plugin-start" %}{%endraw%}
+--8<-- "src/pom.xml:2388:2421"
 ```
 
 The checkstyle ruleset checks the following:
