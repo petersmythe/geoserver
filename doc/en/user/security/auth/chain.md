@@ -57,6 +57,6 @@ Query String regular expressions will match the full query string (\^ and \$ ter
 | Pattern | Description |
 |----|----|
 | /wms, /wms/** | simple ANT pattern |
-| /wms|.*request=GetMap.* | ANT pattern and querystring regex to match one parameter |
-| /wms|(?=.*request=getmap)(?=.*format=image/png).* | ANT pattern and querystring regex to match two parameters in any order |
-| /wms|(?=.*request=getmap)(?!.*format=image/png).* | ANT pattern and querystring regex to match one parameters and be sure another one is not matched |
+| /wms\|.*request=GetMap.* | ANT pattern and querystring regex to match one parameter |
+| /wms\|(?=.*request=getmap)(?=.*format=image/png).* | ANT pattern and querystring regex to match two parameters in any order |
+| /wms\|(?=.*request=getmap)(?!.*format=image/png).* | ANT pattern and querystring regex to match one parameters and be sure another one is not matched |

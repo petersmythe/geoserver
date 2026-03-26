@@ -33,7 +33,7 @@ This page lists the supported rendering properties. See [CSS value types](valuet
 | `stroke-linecap` | keyword: butt, square, round | The style to apply to the ends of lines drawn | yes |
 | `stroke-linejoin` | keyword: miter, round, bevel | The style to apply to the "elbows" where segments of multi-line features meet. | yes |
 | `stroke-dasharray` | list of lengths | The lengths of segments to use in a dashed line. | no |
-| `stroke-dashoffset` | length | How far to offset the dash pattern from the ends of the lines. | yes| |
+| `stroke-dashoffset` | length | How far to offset the dash pattern from the ends of the lines. | yes |
 | `stroke-repeat` | keyword: repeat, stipple | How to use the provided graphic to paint the line. If repeat, then the graphic is repeatedly painted along the length of the line (rotated appropriately to match the line's direction). If stipple, then the line is treated as a polygon to be filled. | yes |
 | `z-index` | integer | Controls the z ordering of output | no |
 | `stroke-label-obstacle` | boolean | If true the line will be considered an obstacle for labels, no label will overlap it | no |
@@ -138,7 +138,7 @@ This page lists the supported rendering properties. See [CSS value types](valuet
 | `composite` | string | The composite mode to be used and the optional opacity separated with a comma. See the [full list of available modes](../sld/extensions/composite-blend/modes.md). | no |
 | `composite-base` | one of `true` or `false` | This will tell the rendering engine to use that FeatureTypeStyle as the destination, and will compose all subsequent FeatureTypeStyle/Layers on top of it, until another base is found. | no |
 | `geometry` | expression | An expression to use for the geometry when rendering features. This provides a geometry for all types of symbology, but can be overridden by the symbol-specific geometry properties. | yes |
-| `sort-by` | string | A comma separated list of sorting directives, `att1 A|D, att2 A|D, ...` where `att?` are attribute names, and `A` or `D` are an optional direction specification, `A` is ascending, `D` is descending. Determines the loading, and thus painting, order of the features | no |
+| `sort-by` | string | A comma separated list of sorting directives, `att1 A\|D, att2 A\|D, ...` where `att?` are attribute names, and `A` or `D` are an optional direction specification, `A` is ascending, `D` is descending. Determines the loading, and thus painting, order of the features | no |
 | `sort-by-group` | string | Rules with the different z-index but same sort-by-group id have their features sorted as a single group. Useful to z-order across layers or across different feature groups, like roads and rails, especially when using z-index to support casing | no |
 | `transform` | function | Applies a rendering transformation on the current level. The function syntax is `txName(key1:value1,key1:value2)`. Values can be single ones, or space separated lists. | no |
 

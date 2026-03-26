@@ -397,8 +397,8 @@ Extract raster value from nested aggregation results.
 | 0 | `nested` | Key used to pluck nested aggregation results from the geogrid bucket. |
 | 1 | empty string | Key used to pluck metric object from each nested aggregation bucket. Empty string results in plucking doc_count. |
 | 2 | `value` | Key used to pluck the value from the metric object. |
-| 3 | `largest` | `largest` | `smallest`. Strategy used to select a bucket from the nested aggregation buckets. The grid cell raster value is extracted from the selected bucket. |
-| 4 | `value` | `key` | `value`. Strategy used to extract the raster value from the selected bucket. `value`: Raster value is the selected bucket's metric value. `key`: Raster value is the selected bucket's key. |
+| 3 | `largest` | `largest` \| `smallest`. Strategy used to select a bucket from the nested aggregation buckets. The grid cell raster value is extracted from the selected bucket. |
+| 4 | `value` | `key` \| `value`. Strategy used to extract the raster value from the selected bucket. `value`: Raster value is the selected bucket's metric value. `key`: Raster value is the selected bucket's key. |
 | 5 | null | (Optional) Map used to convert String keys into numeric values. Use the format `key1:1;key2:2`. Only utilized when raster strategy is `key`. |
 
 Example Aggregation:

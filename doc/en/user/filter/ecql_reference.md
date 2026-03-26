@@ -19,9 +19,9 @@ A filter condition is a single predicate, or a logical combination of other cond
 | **Syntax** | **Description** |
 |----|----|
 | [Predicate](#ecql_pred) | Single predicate expression |
-| [Condition](#ecql_cond) `AND` | `OR` [Condition](#ecql_cond) | Conjunction or disjunction of conditions |
+| [Condition](#ecql_cond) `AND` \| `OR` [Condition](#ecql_cond) | Conjunction or disjunction of conditions |
 | `NOT` [Condition](#ecql_cond) | Negation of a condition |
-| `(` | `[` [Condition](#ecql_cond) `]` | `)` | Bracketing with `(` or `[` controls evaluation order |
+| `(` \| `[` [Condition](#ecql_cond) `]` \| `)` | Bracketing with `(` or `[` controls evaluation order |
 
 ## Predicate {: #ecql_pred }
 
@@ -29,14 +29,14 @@ Predicates are boolean-valued expressions which specify relationships between va
 
 | **Syntax** | **Description** |
 |----|----|
-| [Expression](#ecql_expr) `=` | `<>` | `<` | `<=` | `>` | `>=` [Expression](#ecql_expr) | Comparison operations |
+| [Expression](#ecql_expr) `=` \| `<>` \| `<` \| `<=` \| `>` \| `>=` [Expression](#ecql_expr) | Comparison operations |
 | [Expression](#ecql_expr) **[** `NOT` **]** `BETWEEN` [Expression](#ecql_expr) `AND` [Expression](#ecql_expr) | Tests whether a value lies in or outside a range (inclusive) |
-| [Expression](#ecql_expr) **[** `NOT` **]** `LIKE` | `ILIKE` *like-pattern* | Simple pattern matching. *like-pattern* uses the `%` character as a wild-card for any number of characters. `ILIKE` does case-insensitive matching. |
+| [Expression](#ecql_expr) **[** `NOT` **]** `LIKE` \| `ILIKE` *like-pattern* | Simple pattern matching. *like-pattern* uses the `%` character as a wild-card for any number of characters. `ILIKE` does case-insensitive matching. |
 | [Attribute](#ecql_attr) **[** `NOT` **]** `IN (` [Expression](#ecql_expr) **{** `,`[Expression](#ecql_expr) **}** `)` | Tests whether an attribute value is (not) in a set of values. |
 | **[** `NOT` **]** `IN (` [Literal](#ecql_literal) **{** `,`[Literal](#ecql_literal) **}** `)` | Tests whether a feature ID value is (not) in a given set. ID values are integers or string literals |
 | [Expression](#ecql_expr) `IS` **[** `NOT` **]** `NULL` | Tests whether a value is (non-)null |
-| [Attribute](#ecql_attr) `EXISTS` **|** `DOES-NOT-EXIST` | Tests whether a featuretype does (not) have a given attribute |
-| `INCLUDE` | `EXCLUDE` | Always include (exclude) features to which this filter is applied |
+| [Attribute](#ecql_attr) `EXISTS` **\|** `DOES-NOT-EXIST` | Tests whether a featuretype does (not) have a given attribute |
+| `INCLUDE` \| `EXCLUDE` | Always include (exclude) features to which this filter is applied |
 
 ### Temporal Predicate {: #ecql_temp }
 
@@ -77,7 +77,7 @@ An expression specifies a attribute, literal, or computed value. The type of the
 |----|----|
 | [Attribute](#ecql_attr) | Name of a feature attribute |
 | [Literal](#ecql_literal) | Literal value |
-| [Expression](#ecql_expr) `+` | `-` | `*` | `/` [Expression](#ecql_expr) | Arithmetic operations |
+| [Expression](#ecql_expr) `+` \| `-` \| `*` \| `/` [Expression](#ecql_expr) | Arithmetic operations |
 | *function* `(` [ [Expression](#ecql_expr) { `,` [Expression](#ecql_expr) } ] `)` | Value computed by evaluation of a [filter function](function_reference.md) with zero or more arguments. |
 | `(` \| `[` [Expression](#ecql_expr) `]` \| `)` | Bracketing with `(` or ```` controls evaluation order |
 

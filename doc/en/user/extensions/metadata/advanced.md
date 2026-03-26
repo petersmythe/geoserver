@@ -69,7 +69,7 @@ Metadata from geonetwork can also be mapped to native fields. Do this by setting
 | ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | **geoserver**    | yes      | the key for the attributes in geoserver                                                                                                   |
 | **geonetwork**   | yes      | The [xpath](https://developer.mozilla.org/en-US/docs/Web/XPath) expression pointing to the content from the geonetwork metadata xml file. |
-| **mappingType:** | no       | | CUSTOM (default; map to fields from the metadata module configuration) | NATIVE (map to geoserver native fields)                       |
+| **mappingType:** | no       | `CUSTOM` (default; map to fields from the metadata module configuration) \| `NATIVE` (map to geoserver native fields)                       |
 
 ## Custom to Native Mapping {: #community_metadata_advanced_configuration_custom_native }
 
@@ -100,6 +100,6 @@ customNativeMappings:
 | Key         | Required | Description                                                                                                                                                                       |
 | ----------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **type**    | yes      | currently supported: KEYWORDS, IDENTIFIERS, METADATALINKS                                                                                                                         |
-| **mapping** | yes |  | List of key to value pairs. Value contains a literal with or without placeholder that contains custom attribute path (the `/` symbol denoting subfields inside complex fields).<br>Possible keys for KEYWORDS: value, vocabulary<br>Possible keys for METADATALINKS: value, type, metadataType, about<br>Possible keys for IDENTIFIERS: value, authority |
+| **mapping** | yes | List of key to value pairs. Value contains a literal with or without placeholder that contains custom attribute path (the `/` symbol denoting subfields inside complex fields).<br>Possible keys for KEYWORDS: value, vocabulary<br>Possible keys for METADATALINKS: value, type, metadataType, about<br>Possible keys for IDENTIFIERS: value, authority |
 
 The synchronisation of the metadata takes place each time a layer is saved. Any information that has been entered by the user in mapped native fields via the GUI will be lost.

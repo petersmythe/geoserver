@@ -4,9 +4,9 @@
 
 | Method | Action | Status code | Parameters |
 |----|----|----|----|
-| GET | Download a resource, list contents of directory, or show formatted resource metadata. | 200 | operation (default | metadata); format (html | xml | json) |
+| GET | Download a resource, list contents of directory, or show formatted resource metadata. | 200 | operation (default | metadata); format (html \| xml \| json) |
 | HEAD | Show resource metadata in HTTP headers. | 200 |  |
-| PUT | Upload/move/copy a resource, create directories on the fly (overwrite if exists). For move/copy operations, place source path in body. Copying is not supported for directories. | 200 (exists) 201 (new) | operation (default | copy | move) |
+| PUT | Upload/move/copy a resource, create directories on the fly (overwrite if exists). For move/copy operations, place source path in body. Copying is not supported for directories. | 200 (exists) 201 (new) | operation (default \| copy \| move) |
 | DELETE | Delete a resource (recursively if directory) | 200 |  |
 
 ### Exceptions
@@ -25,7 +25,7 @@
 |--------------------------|-------------------------------------------------|
 | Last-Modified            | When resource was last modified.                |
 | Content-Type             | Will guess mime-type from extension or content. |
-| Resource-Type (custom)   | directory | resource                           |
+| Resource-Type (custom)   | directory \| resource                           |
 | Resource-Parent (custom) | Path to parent                                  |
 
 ### Format

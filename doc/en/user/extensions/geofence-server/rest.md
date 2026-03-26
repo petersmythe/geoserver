@@ -118,16 +118,16 @@ Encoding of a list of rules in JSON:
 | subfield | string | O | An additional generic field for filtering rules. At the moment only used to specify WPS processes in WPS calls. |
 | workspace | string | O | The workspace this rule should be applied to |
 | layer | string | O | The layer this rule should be applied to |
-| access | string | M | The type of access granted. May be `ALLOW | DENY | LIMIT`. When `LIMIT` the ``limits`` element should be declared. |
+| access | string | M | The type of access granted. May be `ALLOW \| DENY \| LIMIT`. When `LIMIT` the ``limits`` element should be declared. |
 | limits | complex | C | Mandatory when `access=LIMIT`. Allowed when `access=ALLOW`. Tells how the access should be limited. |
 | allowedArea | EWKT | O | Limit the geographic area that will be returned. |
-| catalogMode | String | O | GeoServer cataog mode to be applied. May be `HIDE | CHALLENGE | MIXED`. |
+| catalogMode | String | O | GeoServer cataog mode to be applied. May be `HIDE \| CHALLENGE \| MIXED`. |
 | layerDetails | complex | C | Only allowed when `layer` is specified. Set further limitations to the data access when the rule is matched. |
 | defaultStyle | String | O | If not null, forces a different style |
 | cqlFilterRead | CQL | O | Apply the CQL filter to the returned data. |
 | cqlFilterWrite | CQL | O | Limits the features that can be modified. |
 | allowedArea | EWKT | O | Limit the geographic area that will be returned. |
-| catalogMode | String | O | GeoServer cataog mode to be applied. May be `HIDE | CHALLENGE | MIXED`. |
+| catalogMode | String | O | GeoServer cataog mode to be applied. May be `HIDE \| CHALLENGE \| MIXED`. |
 | attributes | complex | O | Set R/W privileges to the single attributes |
 
 ### Filter Parameters
