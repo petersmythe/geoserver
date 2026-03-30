@@ -219,7 +219,7 @@ Manually update hardcoded versions in configuration files:
 
     1.  Disable the maintenance jobs, and remove them from the geoserver view.
 
-        **Warning**: If you wish to keep the `geoserver-<version->docs` job for emergencies be sure to edit the live-docs build to comment out publishing to ``maintain`` location.:
+        **Warning**: If you wish to keep the `geoserver-<version>-docs` job for emergencies be sure to edit the live-docs build to comment out publishing to `maintain` location.:
 
             # Change this when releasing
             # LINK=maintain 
@@ -231,7 +231,7 @@ Manually update hardcoded versions in configuration files:
 
     2.  Create new jobs, copying from the existing stable jobs, and edit the branch.
 
-    3.  For the previously stable version, modify the last line of ``geoserver-\<version\>-docs```` job, changing ````stable```` to ````maintain```` so that it publishes to the ````https://docs.geoserver.org/maintain``\` location.:
+    3.  For the previously stable version, modify the last line of `geoserver-<version>-docs` job, changing `stable` to `maintain` so that it publishes to the `https://docs.geoserver.org/maintain` location.:
 
             # Change this when releasing
             LINK=maintain 
@@ -264,23 +264,23 @@ The job takes the following parameters:
 
 ### BRANCH
 
-> The branch to release from, "2.29.x", "2.28.x", etc\... This must be a stable branch. Releases are not performed from the main development branch.
+> The branch to release from, "2.29.x", "2.28.x", etc... This must be a stable branch. Releases are not performed from the main development branch.
 
 ### REV
 
-> The Git revision number to release from, e.g. "24ae10fe662c\....". If left blank, the latest revision (i.e. HEAD) on the `BRANCH` being released is used.
+> The Git revision number to release from, e.g. "24ae10fe662c....". If left blank, the latest revision (i.e. HEAD) on the `BRANCH` being released is used.
 
 ### VERSION
 
-> The version/name of the release to build, "2.29.4", "2.28.2", etc\...
+> The version/name of the release to build, "2.29.4", "2.28.2", etc...
 
 ### GT_VERSION
 
-> The GeoTools version to include in the release. This may be specified as a version number such as "34.0" or "33.4". Alternatively, the version may be specified as a Git branch/revision pair in the form `<branch>@<revision>`. For example "main@36ba65jg53\.....". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT). Again, this version must be a version number corresponding to an official GeoTools release.
+> The GeoTools version to include in the release. This may be specified as a version number such as "34.0" or "33.4". Alternatively, the version may be specified as a Git branch/revision pair in the form `<branch>@<revision>`. For example "main@36ba65jg53.....". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT). Again, this version must be a version number corresponding to an official GeoTools release.
 
 ### GWC_VERSION
 
-> The GeoWebCache version to include in the release. This may be specified as a version number such as "1.29.0". Alternatively, the version may be specified as a Git revision of the form `<branch>@<revision>` such as "master@1b3243jb\...". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT).Git Again, this version must be a version number corresponding to an official GeoTools release.
+> The GeoWebCache version to include in the release. This may be specified as a version number such as "1.29.0". Alternatively, the version may be specified as a Git revision of the form `<branch>@<revision>` such as "master@1b3243jb...". Finally, this value may be left blank in which the version currently declared in the geoserver pom will be used (usually a SNAPSHOT).Git Again, this version must be a version number corresponding to an official GeoTools release.
 
 ### GIT_USER
 
@@ -409,8 +409,7 @@ https://geoserver.org/release/2.29.0/
 
 GeoServer 2.29.0 is the next stable release of GeoServer and is recommended for production deployment.
 
-This release comes with some exciting new features. The new and
-noteworthy include:
+This release comes with some exciting new features. The new and noteworthy include:
 
 * By popular request Top/Bottom labels when configuring layer group order
 * You can now identify GeoServer “nodes” in a cluster by configuring a label and color in the UI. Documentation and example in the user guide.
