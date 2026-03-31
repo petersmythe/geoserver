@@ -63,7 +63,6 @@ Community modules are provided "as is" alongside the `nightly builds <https://bu
    importer-jdbc/index
    jdbcconfig/index
    jdbcstore/index
-   jms-cluster/index
    jwt-headers/index
    libdeflate/index
    mbtiles/index
