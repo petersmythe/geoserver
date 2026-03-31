@@ -126,6 +126,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/hide-empty-toc.js
+  - javascripts/version-archive.js
 
 nav:
   - Home: index.md
