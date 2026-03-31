@@ -2,12 +2,12 @@ name: MkDocs Documentation
 
 on:
   push:
-    branches: [3.0, 2.28.x, 'migration/**', 'fix-AA-feedback', 'afrigis-new-screenshots']
+    branches: [main, 3.0.x, 2.28.x, 'migration/**', 'fix-AA-feedback', 'afrigis-new-screenshots']
     paths:
       - 'doc/**'
       - '.github/workflows/mkdocs.yml'
   pull_request:
-    branches: [3.0, 2.28.x]
+    branches: [main, 3.0.x, 2.28.x]
     paths:
       - 'doc/**'
       - '.github/workflows/mkdocs.yml'
