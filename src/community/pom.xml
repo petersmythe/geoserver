@@ -269,12 +269,6 @@
       </modules>
     </profile>
     <profile>
-      <id>activemq</id>
-      <modules>
-        <module>jms-cluster</module>
-      </modules>
-    </profile>
-    <profile>
       <id>hz-cluster</id>
       <modules>
         <module>hz-cluster</module>
