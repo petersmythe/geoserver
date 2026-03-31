@@ -1,3 +1,0 @@
-../../../../../src/release/extensions/dxf/dxf-README.md
-../../../../../src/release/extensions/dxf/dxf-LICENSE.md
-../../../../../src/release/ext-dxf.xml
