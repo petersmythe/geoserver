@@ -1,5 +1,10 @@
 [
   {
+    "version": "latest",
+    "title": "Latest (3.0 dev)",
+    "aliases": []
+  },
+  {
     "version": "fix-AA-feedback",
     "title": "fix-AA-feedback",
     "aliases": []
