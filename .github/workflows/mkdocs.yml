@@ -49,4 +49,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-output
           destination_dir: ${{ github.ref_name }}
-          cname: docs-test.geoserver.org
