@@ -1,5 +1,0 @@
-{
-  "type": "AttributesToPointGeometryTransform",
-  "latField": "Lat",
-  "lngField": "Lon"
-}
