@@ -95,10 +95,15 @@
     var timer;
 
     if (isLocal) {
-      // Path should exist here but doesn't — don't auto-redirect to archive
-      redirectBox.innerHTML =
-        '<p>This page does not exist on this server.</p>' +
-        '<p>Try the <a href="/latest/">Latest documentation</a> home page.</p>';
+      // For /latest/, a .html URL very likely maps to a trailing-slash URL in the new MkDocs build
+      if (path.indexOf('/latest/') === 0 && path.slice(-5) === '.html') {
+        window.location.replace(path.slice(0, -5) + '/' + window.location.search + window.location.hash);
+      } else {
+        // Path should exist here but doesn't — don't auto-redirect to archive
+        redirectBox.innerHTML =
+          '<p>This page does not exist on this server.</p>' +
+          '<p>Try the <a href="/latest/">Latest documentation</a> home page.</p>';
+      }
     } else {
       timer = setInterval(function () {
         seconds--;
