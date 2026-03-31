@@ -53,35 +53,41 @@ extra:
   version:
     provider: mike
   version_selector:
-    # GitHub Pages versions (new versions)
+    # GitHub Pages versions (mike-managed)
     - version: latest
-      title: Latest (3.0)
-      aliases: []
+      title: Latest
+      aliases: [main, 3.0.x]
       archive: false
-    - version: "3.0"
-      title: "3.0"
-      aliases: []
+    # Archive versions (docs.geoserver.org)
+    - version: "https://docs.geoserver.org/2.28.x/en/user/"
+      title: "2.28.x (Stable)"
       archive: false
-    - version: "main"
-      title: "Latest"
-      aliases: []
+    - version: "https://docs.geoserver.org/2.27.x/en/user/"
+      title: "2.27.x (Maintenance)"
       archive: false
-    - version: "2.28.x"
-      title: "2.28.x"
-      aliases: []
-      archive: false
-    # Archive versions (OSGeo server)
-    - version: "2.27.x"
-      title: "2.27.x (archive)"
-      url: "https://docs-archive.geoserver.org/2.27.x/"
+    - version: "https://docs.geoserver.org/2.26.x/en/user/"
+      title: "2.26.x"
       archive: true
-    - version: "2.26.x"
-      title: "2.26.x (archive)"
-      url: "https://docs-archive.geoserver.org/2.26.x/"
+    - version: "https://docs.geoserver.org/2.25.x/en/user/"
+      title: "2.25.x"
       archive: true
-    - version: "2.25.x"
-      title: "2.25.x (archive)"
-      url: "https://docs-archive.geoserver.org/2.25.x/"
+    - version: "https://docs.geoserver.org/2.24.x/en/user/"
+      title: "2.24.x"
+      archive: true
+    - version: "https://docs.geoserver.org/2.23.x/en/user/"
+      title: "2.23.x"
+      archive: true
+    - version: "https://docs.geoserver.org/2.22.x/en/user/"
+      title: "2.22.x"
+      archive: true
+    - version: "https://docs.geoserver.org/2.21.x/en/user/"
+      title: "2.21.x"
+      archive: true
+    - version: "https://docs.geoserver.org/2.20.x/en/user/"
+      title: "2.20.x"
+      archive: true
+    - version: "https://docs.geoserver.org/2.19.x/en/user/"
+      title: "2.19.x"
       archive: true
   social:
     - icon: fontawesome/brands/github
