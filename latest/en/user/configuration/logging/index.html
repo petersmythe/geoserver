@@ -11378,7 +11378,7 @@
   <a href="#logging_location" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overriding the log location setup in the GeoServer configuration
+        Configuring the log location
       
     </span>
   </a>
@@ -30370,7 +30370,7 @@
   <a href="#logging_location" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overriding the log location setup in the GeoServer configuration
+        Configuring the log location
       
     </span>
   </a>
@@ -30515,7 +30515,7 @@
 <li>GeoWebCache loggers record the activity of the tile protocol library used by GeoServer.</li>
 <li>GeoTools loggers record the activity of the data access and rendering library used by GeoServer.</li>
 <li>The appender <code>stdout</code> is setup as a Console appender sending information to standard output, based on <strong>Log to Stdout</strong> <a href="../globalsettings/#config_globalsettings_log_stdout">global settings</a>.</li>
-<li>The appender <code>geoserverlogfile</code> is setup as a FileAppender or RollingFile appender sending information to the <strong>Log location</strong> <a href="../globalsettings/#config_globalsettings_log_location">global settings</a>.</li>
+<li>The appender <code>geoserverlogfile</code> is setup as a FileAppender or RollingFile appender sending information to the <strong>Log location</strong> set using the <code>GEOSERVER_LOG_LOCATION</code> application property.</li>
 <li>Logging levels range from:</li>
 <li>Failure (<code>FATAL</code>, <code>ERROR</code>, <code>WARN</code>) levels</li>
 <li>Operational (<code>INFO</code>, <code>CONFIG</code>) levels</li>
@@ -30614,7 +30614,7 @@
 <li>Custom levels are available for <code>CONFIG</code> and <code>FINEST</code> levels.</li>
 <li>Appenders are used to output logging information, with GeoServer providing external configuration for appenders named <code>geoserverlogfile</code> and <code>stdout</code>.</li>
 <li>
-<p>Always include a <code>geoserverlogfile</code> <code>FileAppender</code> or <code>RollingFile</code> appender that GeoServer will configure to work against the location configured in the <a href="../globalsettings/#config_globalsettings_log_location">global settings</a>.</p>
+<p>Always include a <code>geoserverlogfile</code> <code>FileAppender</code> or <code>RollingFile</code> appender that GeoServer will configure to work against the location configured using the <code>GEOSERVER_LOG_LOCATION</code> application property.</p>
 <p>Care is taken to preserve your file extension when updating <code>&lt;filename&gt;</code> location, so if you wish to log to <strong><code>access_logs.txt</code></strong> you may do so, and the <strong><code>txt</code></strong> extension will be preserved.</p>
 </li>
 <li>
@@ -30875,17 +30875,14 @@
 <p>This result provides minimal feedback to the console, only reporting when GeoServer encounters an error.</p>
 </li>
 </ol>
-<h2 id="logging_location">Overriding the log location setup in the GeoServer configuration<a class="headerlink" href="#logging_location" title="Permanent link">&para;</a></h2>
-<p>When setting up a cluster of GeoServer machines it is common to share a single data directory among all the cluster nodes.</p>
-<p>There is however a gotcha, all nodes would end up writing the logs in the same file, which would cause various kinds of troubles depending on the operating system file locking rules (a single server might be able to write, or all together in an uncontrolled manner resulting in an unreadable log file).</p>
-<p>A common choice could be to use the machine name as a distinction, setting values such as <code>logs/geoserver_node1.log</code>, <code>logs/geoserver_node2.log</code> and so on: in this case all the log files would still be contained in the data directory and properly rotated, but each server would have its own separate log file to write on.</p>
-<p>In this case it is convenient to set a separate log location for each GeoServer node:</p>
-<ul>
-<li>The <code>GEOSERVER_LOG_LOCATION</code> parameter can be set as system property, environment variables, or servlet context parameters:</li>
-</ul>
+<h2 id="logging_location">Configuring the log location<a class="headerlink" href="#logging_location" title="Permanent link">&para;</a></h2>
+<p>The log file location is set using the <code>GEOSERVER_LOG_LOCATION</code> application property. This is the only way to configure the log location as of GeoServer 3.0 (the Admin Console and REST API no longer allow changing this setting).</p>
+<p>The <code>GEOSERVER_LOG_LOCATION</code> parameter can be set as system property, environment variables, or servlet context parameters:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="na">GEOSERVER_LOG_LOCATION</span><span class="o">=</span><span class="s">&lt;the location of the file&gt;</span>
 </code></pre></div>
-<p>This setting overrides global setting, and is applied to <code>geoserverlogfile</code> appender as a template for filename and filePattern.</p>
+<p>This setting is applied to <code>geoserverlogfile</code> appender as a template for filename and filePattern.</p>
+<p>When setting up a cluster of GeoServer machines it is common to share a single data directory among all the cluster nodes. All nodes would end up writing the logs in the same file, which would cause various kinds of troubles depending on the operating system file locking rules.</p>
+<p>A common choice is to use the machine name as a distinction, setting values such as <code>logs/geoserver_node1.log</code>, <code>logs/geoserver_node2.log</code> and so on: in this case all the log files would still be contained in the data directory and properly rotated, but each server would have its own separate log file to write on.</p>
 <ul>
 <li>This same effect may be obtained using Log4J <a href="https://logging.apache.org/log4j/2.x/manual/configuration.md#PropertySubstitution">property substitution</a>, where a wide range of <a href="https://logging.apache.org/log4j/2.x/manual/lookups.md">property lookups</a> are available.</li>
 </ul>

@@ -31111,7 +31111,6 @@
 <p>In this workflow the Administration Console is used to adapt the application to the operational environment:</p>
 <ul>
 <li><a href="../../configuration/globalsettings/#proxy_base">Proxy Base URL</a></li>
-<li><a href="../../configuration/globalsettings/#config_globalsettings_log_location">Log Location</a></li>
 <li>... and many more <a href="../../configuration/globalsettings/">Global Settings</a>.</li>
 </ul>
 <p>Management of a web service using an administration console is a more common practice when running GeoServer as a windows web service.</p>
@@ -31126,9 +31125,8 @@
 <p>This approach removes some functionality from the Administration Console and REST API.</p>
 <p>Management of web services using environmental variables is standard practice when running GeoServer in a Linux or Docker environment.</p>
 <h3 id="logging-configuration-hardening">Logging configuration hardening<a class="headerlink" href="#logging-configuration-hardening" title="Permanent link">&para;</a></h3>
-<p>For production systems, it is advised to set <code>GEOSERVER_LOG_LOCATION</code> parameter during startup. The value may be defined as either an environment variable, java system property, or servlet context parameter.</p>
-<p>The location set for <code>GEOSERVER_LOG_LOCATION</code> has priority, causing the setting provided using the Admin Console or REST API to be ignored.</p>
-<p>See <a href="../../configuration/logging/#logging_location">Overriding the log location setup in the GeoServer configuration</a> for more information.</p>
+<p>The <code>GEOSERVER_LOG_LOCATION</code> application property is the only way to set the log file location. The Admin Console and REST API do not allow changing this setting.</p>
+<p>See <a href="../configuration/logging/#logging_location">Configuring the log location</a> for more information.</p>
 <h3 id="disable-the-geoserver-web-administration-interface">Disable the GeoServer web administration interface<a class="headerlink" href="#disable-the-geoserver-web-administration-interface" title="Permanent link">&para;</a></h3>
 <p>In some circumstances, you might want to completely disable the web administration interface. There are two ways of doing this:</p>
 <ul>
