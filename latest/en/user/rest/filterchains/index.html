@@ -12940,6 +12940,89 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authentication-rest-class-allowlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication REST Class Allowlist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication REST Class Allowlist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-filter-chain-allowlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Filter Chain Allowlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-provider-allowlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Provider Allowlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-configuration-is-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Configuration Is Applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Note
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -30348,6 +30431,89 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authentication-rest-class-allowlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication REST Class Allowlist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication REST Class Allowlist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-filter-chain-allowlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Filter Chain Allowlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-provider-allowlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Provider Allowlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-configuration-is-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Configuration Is Applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Note
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -30556,10 +30722,32 @@
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">&lt;/filterChain&gt;</span>
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nt">&lt;/filterChains&gt;</span>
 </code></pre></div>
-<h1 id="configuring-allowed-authentication-filter-chain-classes">Configuring Allowed Authentication Filter Chain Classes<a class="headerlink" href="#configuring-allowed-authentication-filter-chain-classes" title="Permanent link">&para;</a></h1>
-<p>GeoServer uses reflection to instantiate authentication filter chain implementations defined in the security configuration. To reduce the risk of loading unexpected or unsupported classes, GeoServer enforces an allow-list of authentication filter chain classes.</p>
-<h2 id="default-behavior">Default behavior<a class="headerlink" href="#default-behavior" title="Permanent link">&para;</a></h2>
-<p>By default, GeoServer allows the built-in authentication filter chain implementations shipped with the platform, including:</p>
+<h2 id="authentication-rest-class-allowlist">Authentication REST Class Allowlist<a class="headerlink" href="#authentication-rest-class-allowlist" title="Permanent link">&para;</a></h2>
+<p>GeoServer can restrict which authentication-related classes may be created by the REST security configuration endpoints.</p>
+<p>This protection applies to reflective class loading used when REST requests define authentication filter chain classes
+or authentication provider classes. The allowlists are intended to reduce the risk of creating unexpected classes from
+request input.</p>
+<p>Two separate allowlists are available:</p>
+<ul>
+<li>one for authentication filter chain classes</li>
+<li>one for authentication provider and provider configuration classes</li>
+</ul>
+<p>The configuration accepts comma-separated values. Supported syntax depends on the specific allowlist.</p>
+<h3 id="authentication-filter-chain-allowlist">Authentication Filter Chain Allowlist<a class="headerlink" href="#authentication-filter-chain-allowlist" title="Permanent link">&para;</a></h3>
+<p>GeoServer uses reflection to instantiate authentication filter chain implementations defined in the security
+configuration. To reduce the risk of loading unexpected or unsupported classes, GeoServer enforces an allow-list of
+authentication filter chain classes.</p>
+<p>This allowlist is used by both:</p>
+<ul>
+<li>the XML/domain path for authentication filter chains</li>
+<li>the REST controller path that creates or updates authentication filter chains</li>
+</ul>
+<p>Configuration keys:</p>
+<ul>
+<li>System property: <code>geoserver.security.allowedAuthFilterChainClasses</code></li>
+<li>Environment variable: <code>GEOSERVER_SECURITY_ALLOWED_AUTH_FILTERCHAIN_CLASSES</code></li>
+</ul>
+<p>Default allowed classes:</p>
 <ul>
 <li><code>org.geoserver.security.HtmlLoginFilterChain</code></li>
 <li><code>org.geoserver.security.ConstantFilterChain</code></li>
@@ -30567,28 +30755,87 @@
 <li><code>org.geoserver.security.ServiceLoginFilterChain</code></li>
 <li><code>org.geoserver.security.VariableFilterChain</code></li>
 </ul>
-<p>These default classes are always permitted.</p>
-<h2 id="extending-the-allow-list">Extending the allow-list<a class="headerlink" href="#extending-the-allow-list" title="Permanent link">&para;</a></h2>
-<p>Installations that provide custom authentication filter chain implementations can extend the allow-list using either a system property or an environment variable.</p>
-<p>The configured values are <strong>merged</strong> with the built-in allow-list.</p>
-<h3 id="system-property">System property<a class="headerlink" href="#system-property" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>-Dgeoserver.security.allowedAuthFilterChainClasses=\
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>com.example.geoserver.security.CustomChain,\
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>com.example.geoserver.security.*
-</code></pre></div>
-<h3 id="environment-variable">Environment variable<a class="headerlink" href="#environment-variable" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>GEOSERVER_SECURITY_ALLOWED_AUTH_FILTERCHAIN_CLASSES=\
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>com.example.geoserver.security.CustomChain,\
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>com.example.geoserver.security.*
-</code></pre></div>
-<p>The value is a comma-separated list of:</p>
+<p>Supported values:</p>
 <ul>
-<li>Fully qualified class names, or</li>
-<li>Package prefixes ending in <code>.*</code></li>
+<li>exact fully qualified class names</li>
+<li>package prefixes ending in <code>.*</code></li>
 </ul>
-<h2 id="security-notes">Security notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
-<p>If a class name is not present in the allow-list, GeoServer will reject the configuration and fail to instantiate the filter chain.</p>
-<p>This mechanism prevents the reflective construction of unexpected classes and mitigates risks associated with unsafe reflection, while preserving extensibility for custom deployments.</p>
+<p>Example prefix value:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">geoserver.security.allowedAuthFilterChainClasses</span><span class="o">=</span><span class="s">com.example.security.*</span>
+</code></pre></div>
+<p>If a class name is not present in the allow-list, GeoServer will reject the configuration and fail to instantiate the
+filter chain.</p>
+<p>This mechanism prevents the reflective construction of unexpected classes and mitigates risks associated with unsafe
+reflection, while preserving extensibility for custom deployments.</p>
+<h3 id="authentication-provider-allowlist">Authentication Provider Allowlist<a class="headerlink" href="#authentication-provider-allowlist" title="Permanent link">&para;</a></h3>
+<p>This allowlist is used by the REST authentication provider endpoint for both JSON and XML payloads.</p>
+<p>Configuration keys:</p>
+<ul>
+<li>System property: <code>geoserver.security.allowedAuthenticationProviderClasses</code></li>
+<li>Environment variable: <code>GEOSERVER_SECURITY_ALLOWED_AUTHENTICATION_PROVIDER_CLASSES</code></li>
+</ul>
+<p>Default allowed classes:</p>
+<ul>
+<li><code>org.geoserver.security.auth.UsernamePasswordAuthenticationProvider</code></li>
+<li><code>org.geoserver.security.jdbc.JDBCConnectAuthProvider</code></li>
+<li><code>org.geoserver.security.ldap.LDAPAuthenticationProvider</code></li>
+<li><code>org.geoserver.geoserver.authentication.auth.GeoFenceAuthenticationProvider</code></li>
+<li><code>org.geoserver.security.auth.web.WebServiceAuthenticationProvider</code></li>
+<li><code>org.geoserver.security.config.UsernamePasswordAuthenticationProviderConfig</code></li>
+<li><code>org.geoserver.security.jdbc.config.JDBCConnectAuthProviderConfig</code></li>
+<li><code>org.geoserver.security.ldap.LDAPSecurityServiceConfig</code></li>
+<li><code>org.geoserver.geoserver.authentication.auth.GeoFenceAuthenticationProviderConfig</code></li>
+<li><code>org.geoserver.security.auth.web.WebAuthenticationConfig</code></li>
+<li><code>org.geoserver.security.WebServiceBodyResponseSecurityProvider</code></li>
+<li><code>org.geoserver.security.WebServiceBodyResponseSecurityProviderConfig</code></li>
+</ul>
+<p>Supported values:</p>
+<ul>
+<li>exact fully qualified class names</li>
+<li>package prefixes ending in <code>.*</code></li>
+</ul>
+<h3 id="how-configuration-is-applied">How Configuration Is Applied<a class="headerlink" href="#how-configuration-is-applied" title="Permanent link">&para;</a></h3>
+<p>For each allowlist:</p>
+<ul>
+<li>GeoServer starts with the built-in defaults listed above</li>
+<li>if a system property is set, its values are added to the built-in defaults</li>
+<li>otherwise, if the environment variable is set, its values are added to the built-in defaults</li>
+<li>blank values are ignored</li>
+</ul>
+<p>System properties take precedence over environment variables.</p>
+<p>The configured values do not replace the defaults. They extend them.</p>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<p>To allow a custom authentication filter chain class, add its fully qualified name to the filter chain allowlist.</p>
+<p>Example using a system property:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">-Dgeoserver.security.allowedAuthFilterChainClasses</span><span class="o">=</span><span class="s">com.example.security.CustomFilterChain</span>
+</code></pre></div>
+<p>Example using an environment variable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEOSERVER_SECURITY_ALLOWED_AUTH_FILTERCHAIN_CLASSES</span><span class="o">=</span>com.example.security.CustomFilterChain
+</code></pre></div>
+<p>To allow a custom authentication provider and its configuration class:</p>
+<p>System property:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="na">-Dgeoserver.security.allowedAuthenticationProviderClasses</span><span class="o">=</span><span class="s">com.example.security.CustomAuthenticationProvider,com.example.security.CustomAuthenticationProviderConfig</span>
+</code></pre></div>
+<p>Environment variable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEOSERVER_SECURITY_ALLOWED_AUTHENTICATION_PROVIDER_CLASSES</span><span class="o">=</span>com.example.security.CustomAuthenticationProvider,com.example.security.CustomAuthenticationProviderConfig
+</code></pre></div>
+<p>To allow classes in a custom package:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="na">-Dgeoserver.security.allowedAuthenticationProviderClasses</span><span class="o">=</span><span class="s">com.example.security.*</span>
+</code></pre></div>
+<h3 id="migration-note">Migration Note<a class="headerlink" href="#migration-note" title="Permanent link">&para;</a></h3>
+<p>Before upgrading, deployments with custom authentication provider classes should configure the allowlist with those
+provider and provider-config class names (or package prefixes) so create/update operations keep working after upgrade.</p>
+<p>At startup, GeoServer logs the active authentication provider allowlist and warns if persisted provider configurations
+reference classes outside the effective allowlist.</p>
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The filter chain allowlist accepts exact class names and package prefixes ending in <code>.*</code>.</li>
+<li>The authentication provider allowlist accepts exact class names and package prefixes ending in <code>.*</code>.</li>
+<li>A custom authentication provider typically requires both the provider class and its corresponding configuration class
+  to be allowed.</li>
+<li>These allowlists only affect the REST security class-loading paths described above. They do not replace the normal
+  type checks performed by GeoServer.</li>
+</ul>
 
 
 
