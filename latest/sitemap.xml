@@ -345,6 +345,18 @@
          <lastmod>2026-04-05</lastmod>
     </url>
     <url>
+         <loc>https://docs.geoserver.org/3.0.x/latest/en/user/community/duckdb/</loc>
+         <lastmod>2026-04-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.geoserver.org/3.0.x/latest/en/user/community/duckdb/configuration/</loc>
+         <lastmod>2026-04-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.geoserver.org/3.0.x/latest/en/user/community/duckdb/installing/</loc>
+         <lastmod>2026-04-05</lastmod>
+    </url>
+    <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/user/community/elasticsearch/</loc>
          <lastmod>2026-04-05</lastmod>
     </url>
@@ -726,6 +738,10 @@
     </url>
     <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/user/community/pmtiles-store/usage/</loc>
+         <lastmod>2026-04-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.geoserver.org/3.0.x/latest/en/user/community/png-wind/</loc>
          <lastmod>2026-04-05</lastmod>
     </url>
     <url>
@@ -2458,6 +2474,10 @@
     </url>
     <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/user/styling/css/install/</loc>
+         <lastmod>2026-04-05</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.geoserver.org/3.0.x/latest/en/user/styling/css/metadata/</loc>
          <lastmod>2026-04-05</lastmod>
     </url>
     <url>
