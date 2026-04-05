@@ -12474,7 +12474,7 @@
   <span class="md-ellipsis">
     
   
-    Rest
+    REST
   
 
     
@@ -12496,7 +12496,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Rest
+    REST
   
 
           </label>
@@ -15351,7 +15351,7 @@
   <span class="md-ellipsis">
     
   
-    Geowebcache
+    GeoWebCache
   
 
     
@@ -15373,7 +15373,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Geowebcache
+    GeoWebCache
   
 
           </label>
@@ -28908,7 +28908,7 @@
   <span class="md-ellipsis">
     
   
-    Wps Services
+    WPS Services
   
 
     
@@ -28930,7 +28930,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Wps Services
+    WPS Services
   
 
           </label>
@@ -29780,8 +29780,6 @@
       
         
       
-        
-      
     
     
     
@@ -29986,62 +29984,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installing Sphinx
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../installlatex/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installing LaTeX
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../workflow/" class="md-nav__link">
         
   
@@ -30050,6 +29992,34 @@
     
   
     Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing mkdocs
   
 
     
@@ -30334,12 +30304,16 @@
 <h1 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h1>
 <p>Welcome! From all of the GeoServer users and developers, we are happy to see that you have an interest in contributing to the GeoServer documentation. Whether it's the fix of a typo or a whole new collection of pages, all contributions are appreciated. With your help we can make GeoServer documentation helpful and robust, and thus make GeoServer a better product.</p>
 <h2 id="writing-documentation">Writing Documentation<a class="headerlink" href="#writing-documentation" title="Permanent link">&para;</a></h2>
-<p>GeoServer documentation written in <a href="https://docutils.sourceforge.io/rst.md">reStructuredText</a>, a lightweight markup syntax, and built into HTML and PDF content using <a href="http://sphinx.pocoo.org">Sphinx</a>, a documentation framework written by the developers of Python. In this way, the documentation could be merged with the source code of GeoServer itself, and exist in the <a href="https://github.com/geoserver/geoserver">same repository</a>. With this merge, version control follows naturally, so documentation can now be version specific.</p>
+<p>GeoServer documentation written in <a href="https://docutils.sourceforge.io/rst.md">Markdown</a>, a lightweight markup syntax, and built into HTML and PDF content using <a href="https://www.mkdocs.org/">mkdocs</a>, a documentation framework written by the developers of Python. In this way, the documentation is managed alongside the source code of GeoServer itself, and exist in the <a href="https://github.com/geoserver/geoserver">same repository</a>. Using this approach, version control follows naturally, so documentation can now be version specific.</p>
 <p>We handle changes to the documentation in the same way as we do changes to the code base, so you need to make a branch for your change and submit it as a "pull request" to the main repository, this is all explained in the <a href="../workflow/">Workflow</a> section later.</p>
 <p>Since the repository requires authentication to make changes, authors who plan large changes can be granted access, so they are able to directly contribute to the documentation. While this does slightly raise the barrier to entry, the ability to control the quality of the documentation was seen as a greater benefit.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Prior to the use of Sphinx GeoServer documentation was created using a wiki as part of the GeoServer home page. While this allowed anyone to sign up and contribute documentation we ended up with problems of vandalism and lacked features we now enjoy (Version control, PDF export).</p>
+<p>Prior to the use of Markdown GeoServer used the sphinx documentation generator, and ReStructuredText files were used for documentation generation. Over time Markdown became more popular motivating the change.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Initially GeoServer documentation was created using a wiki as part of the GeoServer home page. While this allowed anyone to sign up and contribute documentation we ended up with problems of vandalism and lacked features we now enjoy.</p>
 </div>
 <p>Read on to find out more about <a href="../contributing/">Contributing</a>.</p>
 
@@ -30359,6 +30333,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -30464,7 +30440,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

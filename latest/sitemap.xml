@@ -253,10 +253,6 @@
          <lastmod>2026-04-05</lastmod>
     </url>
     <url>
-         <loc>https://docs.geoserver.org/3.0.x/latest/en/docguide/installlatex/</loc>
-         <lastmod>2026-04-05</lastmod>
-    </url>
-    <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/docguide/markdown/</loc>
          <lastmod>2026-04-05</lastmod>
     </url>
@@ -278,10 +274,6 @@
     </url>
     <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/docguide/workflow/</loc>
-         <lastmod>2026-04-05</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.geoserver.org/3.0.x/latest/en/release/</loc>
          <lastmod>2026-04-05</lastmod>
     </url>
     <url>
@@ -2914,10 +2906,6 @@
     </url>
     <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/user/webadmin/welcome/</loc>
-         <lastmod>2026-04-05</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.geoserver.org/3.0.x/latest/themes/geoserver/</loc>
          <lastmod>2026-04-05</lastmod>
     </url>
 </urlset>

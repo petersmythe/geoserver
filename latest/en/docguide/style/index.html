@@ -12474,7 +12474,7 @@
   <span class="md-ellipsis">
     
   
-    Rest
+    REST
   
 
     
@@ -12496,7 +12496,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Rest
+    REST
   
 
           </label>
@@ -15351,7 +15351,7 @@
   <span class="md-ellipsis">
     
   
-    Geowebcache
+    GeoWebCache
   
 
     
@@ -15373,7 +15373,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Geowebcache
+    GeoWebCache
   
 
           </label>
@@ -28908,7 +28908,7 @@
   <span class="md-ellipsis">
     
   
-    Wps Services
+    WPS Services
   
 
     
@@ -28930,7 +28930,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Wps Services
+    WPS Services
   
 
           </label>
@@ -29780,8 +29780,6 @@
       
         
       
-        
-      
     
     
     
@@ -29928,62 +29926,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installing Sphinx
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../installlatex/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installing LaTeX
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../workflow/" class="md-nav__link">
         
   
@@ -29992,6 +29934,34 @@
     
   
     Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing mkdocs
   
 
     
@@ -30700,21 +30670,24 @@
 </blockquote>
 <h2 id="formatting">Formatting<a class="headerlink" href="#formatting" title="Permanent link">&para;</a></h2>
 <h3 id="code-and-command-line">Code and command line<a class="headerlink" href="#code-and-command-line" title="Permanent link">&para;</a></h3>
-<p>Any code or command line snippets should be formatted as code:</p>
-<div class="highlight"><pre><span></span><code>This is a code block.
+<p>Any code or command line snippets should be formatted as code:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="err">code</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;This</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">block.&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>When lines are longer than 80 characters, extend multiple lines in a format appropriate for the language in use. If possible, snippets should be functional when pasted directly into the appropriate target.</p>
+<p>Java and XML make no distinction between a single space and multiple spaces, so the following snippets are fine:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">org</span><span class="p">.</span><span class="na">geoserver</span><span class="p">.</span><span class="na">package</span><span class="p">.</span><span class="na">Object</span><span class="w"> </span><span class="n">someVeryLongIdentifier</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">   </span><span class="n">org</span><span class="p">.</span><span class="na">geoserver</span><span class="p">.</span><span class="na">package</span><span class="p">.</span><span class="na">Object</span><span class="p">.</span><span class="na">factoryMethod</span><span class="p">();</span>
 </code></pre></div>
-<p>When lines are longer than 77 characters, extend multiple lines in a format appropriate for the language in use. If possible, snippets should be functional when pasted directly into the appropriate target.</p>
-<p>For example, Java and XML make no distinction between a single space and multiple spaces, so the following snippets are fine:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>org.geoserver.package.Object someVeryLongIdentifier =
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   org.geoserver.package.Object.factoryMethod();
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>&lt;namespace:tagname attributename=&quot;attributevalue&quot; attribute2=&quot;attributevalue&quot;
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   nextattribute=&quot;this is on another line&quot;/&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;namespace:tagname</span><span class="w"> </span><span class="na">attributename=</span><span class="s">&quot;attributevalue&quot;</span><span class="w"> </span><span class="na">attribute2=</span><span class="s">&quot;attributevalue&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">   </span><span class="na">nextattribute=</span><span class="s">&quot;this is on another line&quot;</span><span class="nt">/&gt;</span>
 </code></pre></div>
-<p>For shell scripts, new lines can be escaped with a backslash character (\). It is also recommended to use a simple <code>$</code> prompt to save space. For example:</p>
-<div class="highlight"><pre><span></span><code>$ /org/jdk1.5.0*/bin/java \
-   -cp /home/user/.m2/repository/org/geoserver/*/*.jar \
-   org.geoserver.GeoServer -DGEOSERVER_DATA_DIR=/var/lib/geoserver_data/release
+<p>For shell scripts, new lines can be escaped with a backslash character (\). It is also recommended to avoid including a prompt so the entire example can be copied and pasted:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="nb">cd</span><span class="w"> </span>gwc/tmp
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">      </span>-type<span class="w"> </span>f<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span>-regex<span class="w"> </span><span class="s2">&quot;.*\.png&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
 </code></pre></div>
 
 
@@ -30733,6 +30706,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -30838,7 +30813,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

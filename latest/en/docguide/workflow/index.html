@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://docs.geoserver.org/3.0.x/latest/en/docguide/workflow/">
       
       
-        <link rel="prev" href="../installlatex/">
+        <link rel="prev" href="../contributing/">
       
       
-        <link rel="next" href="../markdown/">
+        <link rel="next" href="../install/">
       
       
         
@@ -12474,7 +12474,7 @@
   <span class="md-ellipsis">
     
   
-    Rest
+    REST
   
 
     
@@ -12496,7 +12496,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Rest
+    REST
   
 
           </label>
@@ -15351,7 +15351,7 @@
   <span class="md-ellipsis">
     
   
-    Geowebcache
+    GeoWebCache
   
 
     
@@ -15373,7 +15373,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Geowebcache
+    GeoWebCache
   
 
           </label>
@@ -28908,7 +28908,7 @@
   <span class="md-ellipsis">
     
   
-    Wps Services
+    WPS Services
   
 
     
@@ -28930,7 +28930,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Wps Services
+    WPS Services
   
 
           </label>
@@ -29780,8 +29780,6 @@
       
         
       
-        
-      
     
     
     
@@ -29908,62 +29906,6 @@
     
   
     Contributing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installing Sphinx
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../installlatex/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installing LaTeX
   
 
     
@@ -30116,17 +30058,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#pdf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PDF
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -30147,6 +30078,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing mkdocs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -30409,17 +30368,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#pdf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PDF
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -30572,70 +30520,51 @@ theme/
 <td>Documentation Guide source files (this is what you are reading now)</td>
 </tr>
 <tr>
-<td><strong><code>theme</code></strong></td>
-<td>GeoServer Sphinx theme (common to all three projects)</td>
+<td><strong><code>api</code></strong></td>
+<td>GeoServer API docs written in OpenAPI yml</td>
 </tr>
 </tbody>
 </table>
 <h2 id="make-changes">Make changes<a class="headerlink" href="#make-changes" title="Permanent link">&para;</a></h2>
-<p>Documentation in Sphinx is written in <a href="https://docutils.sourceforge.io/rst.md">reStructuredText</a>, a lightweight markup syntax. For suggestions on writing reStructuredText for use with Sphinx, please see the section on <a href="../sphinx/">Sphinx Syntax</a>. For suggestions about writing style, please see the <a href="../style/">Style Guidelines</a>.</p>
+<p>Documentation in is written in <a href="https://www.markdownguide.org/">Markdown</a>, a lightweight markup syntax. For suggestions on writing Markdown for use with mkdocs, please see the section on <a href="../markdown/">Markdown Syntax</a>. For suggestions about writing style, please see the <a href="../style/">Style Guidelines</a>.</p>
 <h2 id="build-and-test-locally">Build and test locally<a class="headerlink" href="#build-and-test-locally" title="Permanent link">&para;</a></h2>
-<p>You should install Sphinx on your local system (see the next page on <a href="../install/">Installing Sphinx</a>) to build the documentation locally and view any changes made. Sphinx builds the reStructuredText files into HTML pages and PDF files.</p>
+<p>You should install mkdocs on your local system (see the page on <a href="../install/">Installing</a>) to build the documentation locally and view any changes made.</p>
 <ol>
 <li>
-<p>Confirm availability of Python 3:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>--version
+<p>From the root of your GeoServer checkout, install python virtual environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 </code></pre></div>
 </li>
 <li>
-<p>Install sphinx and sphinx-autobuild:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>doc<span class="se">\e</span>n
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<p>Activate virtual environment and install (or update) requirements:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+</li>
+<li>
+<p>Use <strong><em>mkdocs</em></strong> to preview from virtual environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>The documentation will refresh as you edit individual files.</p>
+</li>
+<li>
+<p>Open the preview in your browser:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>webbrowser<span class="w"> </span>http://localhost:8000
 </code></pre></div>
 </li>
 </ol>
 <h3 id="html">HTML<a class="headerlink" href="#html" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>On a terminal, navigate to your GeoServer source checkout and change to the <strong><code>doc/en</code></strong> directory (or whichever project you wish to build).</p>
+<p>On a terminal, navigate to your GeoServer source checkout:</p>
 </li>
 <li>
-<p>Run the following command to build the docs and open the browser with a live preview:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ant<span class="w"> </span>user-site
+<p>Run the following command to build the docs locally (generating <code>index.html</code> links for use on local filesytem):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdocs<span class="w"> </span>build<span class="w"> </span>--no-directory-urls
 </code></pre></div>
-<p>The documentation will refresh as you edit individual files.</p>
-</li>
-<li>
-<p>Run the following command to only build the docs:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ant<span class="w"> </span>user
-</code></pre></div>
-<p>The resulting HTML pages will be contained in <strong><code>doc/en/target/user/html</code></strong>.</p>
 </li>
 <li>
 <p>Watch the output of the above commands for any errors and warnings. These could be indicative of problems with your markup. Please fix any errors and warnings before continuing.</p>
-</li>
-</ol>
-<h3 id="pdf">PDF<a class="headerlink" href="#pdf" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p>On a terminal, navigate to your GeoServer source checkout and change to the <strong><code>doc/en</code></strong> directory (or whichever project you wish to build).</p>
-</li>
-<li>
-<p>Run the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ant<span class="w"> </span>user-pdf
-</code></pre></div>
-<p>This will create a PDF file called <strong><code>{GeoServerProject}.pdf</code></strong> in the same directory</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The exact name of <strong><code>{GeoServerProject}</code></strong> depends on which project is being built. However, there will only be one file with the extension <code>.tex</code> in the <strong><code>doc/en/user/build/latex</code></strong> directory, so there should hopefully be little confusion.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This command requires <a href="http://www.latex-project.org/">LaTeX</a> to be installed, and <strong><em>pdflatex</em></strong> to be added to your Path.</p>
-</div>
-</li>
-<li>
-<p>Watch the output of the above command for any errors and warnings. These could be indicative of problems with your markup. Please fix any errors and warnings before continuing.</p>
 </li>
 </ol>
 <h2 id="commit-changes">Commit changes<a class="headerlink" href="#commit-changes" title="Permanent link">&para;</a></h2>
@@ -30644,21 +30573,21 @@ theme/
 <p>If you have any errors or warnings in your project, please fix them before committing!</p>
 </div>
 <p>The final step is to commit the changes to a branch in <em>your</em> repository, using these commands:</p>
-<div class="highlight"><pre><span></span><code>git checkout -b doc-fix
-git add [path/file(s)]
-git commit -m &quot;message describing your fix&quot;
-git push origin doc-fix
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>doc-fix
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>add<span class="w"> </span><span class="o">[</span>path/file<span class="o">(</span>s<span class="o">)]</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;message describing your fix&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>doc-fix
 </code></pre></div>
 <p>You can use any name you like for the branch, often I use the issue number so I can tell my branches apart if I need to find them later. <strong><code>{path/file(s)}</code></strong> is the path and file(s) you wish to commit to the repository. If you are unclear about which files you have changed you can use <code>git status -sb</code> to list the files that you have changed, this will give you a list of changed files, and indicate the ones that still need to be added to this commit:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ git status -sb 
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>## update
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a> M docguide/source/background.rst
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a> M docguide/source/contributing.rst
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a> M docguide/source/install.rst
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a> M docguide/source/installlatex.rst
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a> M docguide/source/workflow.rst
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>status<span class="w"> </span>-sb<span class="w"> </span>
 </code></pre></div>
-<p>Here the <code>M</code> indicate these files are modified but not added. Once <code>git add *.rst</code> is run the indicator will change to <code>A</code>, files that are not under git's control will show a <code>?</code> these are new files that you may need to add if you have created them for the documentation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>## update
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a> M docguide/source/background.md
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a> M docguide/source/contributing.md
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a> M docguide/source/install.md
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a> M docguide/source/workflow.md
+</code></pre></div></p>
+<p>Here the <code>M</code> indicate these files are modified but not added. Once <code>git add *.md</code> is run the indicator will change to <code>A</code>, files that are not under git's control will show a <code>?</code> these are new files that you may need to add if you have created them for the documentation.</p>
 <p>When ready return to the GitHub website and submit a pull request:</p>
 <ul>
 <li><a href="https://help.github.com/articles/using-pull-requests">https://help.github.com/articles/using-pull-requests</a></li>
@@ -30681,6 +30610,8 @@ git push origin doc-fix
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -30699,7 +30630,7 @@ git push origin doc-fix
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../installlatex/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installing LaTeX">
+          <a href="../contributing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Contributing">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -30709,20 +30640,20 @@ git push origin doc-fix
                 Previous
               </span>
               <div class="md-ellipsis">
-                Installing LaTeX
+                Contributing
               </div>
             </div>
           </a>
         
         
           
-          <a href="../markdown/" class="md-footer__link md-footer__link--next" aria-label="Next: Markdown Syntax">
+          <a href="../install/" class="md-footer__link md-footer__link--next" aria-label="Next: Installing mkdocs">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Markdown Syntax
+                Installing mkdocs
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -30786,7 +30717,7 @@ git push origin doc-fix
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
