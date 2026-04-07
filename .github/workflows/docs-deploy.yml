@@ -22,35 +22,35 @@ permissions:
   contents: write
 
 jobs:
-  deploy-docs:
+  build-docs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
           fetch-depth: 0  # Full history for mike
-      
+
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.x'
           cache: 'pip'
-      
+
       - name: Install MkDocs and mike
         run: |
           pip install mkdocs mkdocs-material mkdocs-macros-plugin \
                       mkdocs-with-pdf pymdown-extensions mike
-      
+
       - name: Configure Git for mike
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      
+
       - name: Determine version and aliases
         id: version
         run: |
           BRANCH=${GITHUB_REF##refs/heads/}
-          
+
           if [ "$BRANCH" = "main" ]; then
             echo "version=latest" >> $GITHUB_OUTPUT
             echo "title=Latest" >> $GITHUB_OUTPUT
@@ -77,7 +77,7 @@ jobs:
             echo "aliases=" >> $GITHUB_OUTPUT
             echo "is_default=false" >> $GITHUB_OUTPUT
           fi
-      
+
       # Deploy unified documentation with mike (builds and deploys)
       - name: Deploy unified documentation
         if: github.event_name == 'push'
@@ -88,7 +88,7 @@ jobs:
             --title "${{ steps.version.outputs.title }}" \
             --push \
             --update-aliases --alias-type symlink
-      
+
       # Build only on pull_request (no deploy)
       - name: Build documentation (PR validation)
         if: github.event_name == 'pull_request'
@@ -99,3 +99,35 @@ jobs:
         if: github.event_name == 'push' && steps.version.outputs.is_default == 'true'
         run: |
           mike set-default ${{ steps.version.outputs.version }} --push
+
+  # Deploy gh-pages content to GitHub Pages via Actions API.
+  # This eliminates the ~15 min delay from pages-build-deployment.
+  # Requires Pages source set to "GitHub Actions" in repo settings.
+  deploy-pages:
+    if: github.event_name == 'push'
+    needs: build-docs
+    runs-on: ubuntu-22.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout gh-pages branch content
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: _gh-pages-content
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _gh-pages-content
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
