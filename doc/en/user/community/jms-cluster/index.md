@@ -89,9 +89,6 @@ NO DATA IS SENT THROUGH THE JMS CHANNEL The clustering solution we have put in p
 <div class="grid cards" markdown>
 
 - [Installation of the JMS Cluster modules](installation.md)
-- [HOWTO configure ActiveMQ broker](activemq/activemqBroker.md)
-- [JDBC Primary/Replica](activemq/JDBC.md)
-- [Shared File System Primary/Replica](activemq/SharedFolder.md)
 
 </div>
 
