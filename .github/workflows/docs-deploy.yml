@@ -99,14 +99,3 @@ jobs:
         if: github.event_name == 'push' && steps.version.outputs.is_default == 'true'
         run: |
           mike set-default ${{ steps.version.outputs.version }} --push
-      
-      # Create CNAME file (main branch only)
-      - name: Configure custom domain
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          echo "docs-test.smythe.co.za" > CNAME
-          git add CNAME
-          git commit -m "Add CNAME for custom domain" || echo "CNAME exists"
-          git push origin gh-pages
