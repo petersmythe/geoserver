@@ -30808,69 +30808,6 @@
 <li>Run the mosaic creation again, inspect the logs to find out the reason (often it's due to database permissions, or to NetCDF files that are not conforming to the CF conventions).</li>
 <li>Repeat from the top until the mosaic creation succeeds.</li>
 </ul>
-<h2 id="storing-netcdf-internal-indexes-in-a-centralized-index">Storing NetCDF internal indexes in a centralized index<a class="headerlink" href="#storing-netcdf-internal-indexes-in-a-centralized-index" title="Permanent link">&para;</a></h2>
-<p>By default the NetCDF reader creates a hidden directory, either as a sidecar or in the NetCDF data dir, containing a low level index file to speed up slices lookups, as well as a H2 database containing information about slice indexes and dimensions associated to them. This H2 store is opened and closed every time the associated NetCDF is read, causing less than optimal performance in map rendering.</p>
-<p>As an alternative, it's possible to store all slice metadata from H2 to a centralized database, and have GeoServer manage the store connecting to it, thus keeping it always open. Some work is needed in order to make that happen thought.</p>
-<p>As a first step, create a store connection property file named <code>netcdf_datastore.properties</code>. Here is an example file, suitable to connect to a PostGIS enabled database, which makes the pair with the previously introduced <code>datastore.properties</code> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">SPI</span><span class="o">=</span><span class="s">org.geotools.data.postgis.PostgisNGDataStoreFactory</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="na">host</span><span class="o">=</span><span class="s">localhost</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="na">port</span><span class="o">=</span><span class="s">5432</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="na">database</span><span class="o">=</span><span class="s">netcdf</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="na">schema</span><span class="o">=</span><span class="s">netcdf_indexes</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="na">user</span><span class="o">=</span><span class="s">user</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="na">passwd</span><span class="o">=</span><span class="s">pwd</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="na">Loose</span><span class="se">\ </span><span class="na">bbox</span><span class="o">=</span><span class="s">true</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="na">Estimated</span><span class="se">\ </span><span class="na">extends</span><span class="o">=</span><span class="s">false</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="na">validate</span><span class="se">\ </span><span class="na">connections</span><span class="o">=</span><span class="s">true</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="na">Connection</span><span class="se">\ </span><span class="na">timeout</span><span class="o">=</span><span class="s">10</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="na">preparedStatements</span><span class="o">=</span><span class="s">true</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="na">max</span><span class="se">\ </span><span class="na">connections</span><span class="o">=</span><span class="s">20</span>
-</code></pre></div>
-<p>Notice how the NetCDF indexes are going to be stored in a different database schema, to prevent eventual table name conflicts (again, make sure the schema already exists in the database).</p>
-<p>GeoServer needs to be informed of this new configuration file, by editing the <code>indexer.xml</code> file and adding this new line in the parameters section:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;AuxiliaryDatastoreFile&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;netcdf_datastore.properties&quot;</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w"> </span>
-</code></pre></div>
-<p>The <code>_auxiliary.xml</code> file also needs to be modified, open it and change the <code>attributes</code> element(s), adding a <code>location:String</code> attribute right after the <code>imageIndex:Integer</code> attribute (position is important, mosaic construction will fail if the attribute is misplaced):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">&lt;attributes&gt;</span>the_geom:Polygon,imageindex:Integer,location:String,time:java.util.Date<span class="nt">&lt;/attributes&gt;</span>
-</code></pre></div>
-<p>At this point the mosaic construction can be repeated from the GUI, just like a normal NetCDF image mosaic.</p>
-<h2 id="migrating-mosaics-with-h2-netcdf-index-files-to-a-centralized-index">Migrating mosaics with H2 NetCDF index files to a centralized index<a class="headerlink" href="#migrating-mosaics-with-h2-netcdf-index-files-to-a-centralized-index" title="Permanent link">&para;</a></h2>
-<p>While the above setup allows to centralized index for NetCDF file contents. In case one already has a (very) large image mosaic of NetCDF files, having to re-harvest the NetCDF files can be time consuming and, in general, not practical.</p>
-<p>A utility has been created to perform the migration of existing mosaics to a centralized database index, the <strong>H2Migrate</strong> tool.</p>
-<p>On Windows:</p>
-<div class="highlight"><pre><span></span><code>java -cp &lt;path-to-geoserver&gt;/WEB-INF/lib/*.jar org.geotools.coverage.io.netcdf.tools.H2Migrate -m &lt;path-to-mosaic-directory&gt; -is &lt;indexPropertyFile&gt; -v
-</code></pre></div>
-<p>On Linux:</p>
-<div class="highlight"><pre><span></span><code>java -cp &#39;&lt;path-to-geoserver&gt;/WEB-INF/lib/*&#39; org.geotools.coverage.io.netcdf.tools.H2Migrate -m &lt;path-to-mosaic-directory&gt; -is &lt;indexPropertyFile&gt; -v
-</code></pre></div>
-<p>The tool supports other options as well, they can be discovered by running the tool without any parameter.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>On older GeoServer version the command might fail complaining it cannot find <code>org.apache.commons.cli.ParseException</code>. If that's the case, download <a href="https://repo1.maven.org/maven2/commons-cli/commons-cli/1.4/commons-cli-1.4.jar">commons-cli 1.1.4</a>, add it into the GeoServer <code>WEB-INF/lib</code> directory, and try again.</p>
-</div>
-<p><code>H2Migrate</code> will connect to the target store using the information in indexPropertyFile, locate the granules to be migrated inspecting the mosaic contents, create a <code>netcdf_index.properties</code> file with <code>StoreName=storeNameForIndex</code> and update the mosaic to use it (basically, update the indexer.xml and all coverage property files to have a <code>AuxiliaryDatastoreFile</code> property pointing to <code>netcdf_indexer.properties</code>).</p>
-<p>It will also generate two files, <code>migrated.txt</code> and <code>h2.txt</code>:</p>
-<blockquote>
-<ul>
-<li><code>migrated.txt</code> contains the list of files successfully migrated, for audit purposes</li>
-<li><code>h2.txt</code> the list of H2 database files that can now be removed. The tool won't do it automatically to ensure that the migration, but with this one one could automate removal, e.g., on Linux a simple <code>cat h2.txt | xargs rm</code> would do the trick (the <code>&lt;name&gt;.log.db</code> files change name often, it's likely that they will have to be hunted down and removed with other means, e.g. if on Linux, using the "find").</li>
-</ul>
-</blockquote>
-<p>If the mosaic to be migrated is backed by a <strong>OpenSearch</strong> index, then the tool won't be able to open the mosaic (it would require running inside GeoServer), so the connection parameters will have to be provided in a second property file, along with the list of tables containing the granules paths in the "location" attribute, e.g.:</p>
-<blockquote>
-<p>java -cp \&lt;path-to-geoserver&gt;/WEB-INF/lib/*.jar org.geotools.coverage.io.netcdf.tools.H2Migrate -m \&lt;path-to-mosaic-directory&gt; -ms \&lt;mosaicStorePropertyFile&gt; -mit granule -is \&lt;indexPropertyFile&gt; -isn \&lt;storeNameForIndex&gt; -v</p>
-</blockquote>
-<p>After a successful migration, one final manual step is required. As before, the <code>_auxiliary.xml</code> file also needs to be modified. Open it and change the <code>attributes</code> element(s), adding a <code>location:String</code> attribute right after the <code>imageIndex:Integer</code> attribute (position is important, mosaic construction will fail if the attribute is mispaced):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">&lt;attributes&gt;</span>the_geom:Polygon,imageindex:Integer,location:String,time:java.util.Date<span class="nt">&lt;/attributes&gt;</span>
-</code></pre></div>
-<p>Also, find every XML file holding a indexer like configuration, and add the parameter <code>AuxiliaryDatastoreFile</code> parameter:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">&lt;parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;AuxiliaryDatastoreFile&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;&lt;path/to/mosaic/directory/&gt;netcdf_datastore.properties&quot;</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w"> </span>
-</code></pre></div>
-<p>Finally, do the same with the property files for each coverage, adding:</p>
-<div class="highlight"><pre><span></span><code>AuxiliaryDatastoreFile=&lt;path/to/mosaic/directory/&gt;netcdf_datastore.properties
-</code></pre></div>
-<p>The path to <code>netcdf_datastore.properties</code> can also be relative, but only if the image mosaic is configured to use relative paths.</p>
-<p>If GeoServer was running during the migration, the mosaic store just migrated needs to be reset so that it reads again its configuration: go to the mosaic store, open its configuration, and without changing any parameter, save it again: the layers backed by the mosaic are now ready to use.</p>
 
 
 
