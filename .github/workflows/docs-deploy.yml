@@ -20,10 +20,15 @@ concurrency:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy-docs:
     runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -99,3 +104,30 @@ jobs:
         if: github.event_name == 'push' && steps.version.outputs.is_default == 'true'
         run: |
           mike set-default ${{ steps.version.outputs.version }} --push
+
+      # === Deploy to GitHub Pages via Actions API ===
+      # Deploys gh-pages content directly, eliminating the ~15 min
+      # delay from the separate pages-build-deployment workflow.
+      # Requires Pages source set to "GitHub Actions" in repo settings.
+
+      - name: Checkout gh-pages branch content
+        if: github.event_name == 'push'
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: _gh-pages-content
+
+      - name: Setup GitHub Pages
+        if: github.event_name == 'push'
+        uses: actions/configure-pages@v4
+
+      - name: Upload to GitHub Pages
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _gh-pages-content
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push'
+        id: deployment
+        uses: actions/deploy-pages@v4
