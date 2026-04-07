@@ -40,18 +40,17 @@ The next step is to create a workspace for the geopackage. A workspace is a fold
 
 5.  You will be prompted to enter a workspace **Name** and **Namespace URI**.
 
-| Field         | Value                                                  |
-|---------------|--------------------------------------------------------|
-| Name:         | ``tutorial``                                 |
-| Namespace URI | ``http://localhost:8080/geoserver/tutorial`` |
+    | Field         | Value                                                  |
+    |---------------|--------------------------------------------------------|
+    | Name:         | ``tutorial``                                 |
+    | Namespace URI | ``http://localhost:8080/geoserver/tutorial`` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-!!! note
-    A workspace name is an identifier describing your project. It must not exceed ten characters or contain spaces.
->
-!!! note
-    A Namespace URI (Uniform Resource Identifier) can usually be a URL associated with your project with an added trailing identifier indicating the workspace. The Namespace URI filed does not need to resolve to an actual valid web address.
+    !!! note
+        A workspace name is an identifier describing your project. It must not exceed ten characters or contain spaces.
+
+    !!! note
+        A Namespace URI (Uniform Resource Identifier) can usually be a URL associated with your project with an added trailing identifier indicating the workspace. The Namespace URI filed does not need to resolve to an actual valid web address.
 
 1.  Press the **Submit** button.
 
@@ -85,19 +84,18 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 
 5.  Begin by configuring the **Basic Store Info**.
 
-| Field            | Value                             |
-|------------------|-----------------------------------|
-| workspace        | `tutorial`                        |
-| Data Source Name | `NaturalEarth`                    |
-| Description      | `GeoPackage of NaturalEarth data` |
+    | Field            | Value                             |
+    |------------------|-----------------------------------|
+    | workspace        | `tutorial`                        |
+    | Data Source Name | `NaturalEarth`                    |
+    | Description      | `GeoPackage of NaturalEarth data` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the **Data Source Name** simple as they will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).
+    > This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the **Data Source Name** simple as they will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).
 
-![](images/basic.png)
+    ![](images/basic.png)
 
-*Basic Store info*
+    *Basic Store info*
 
 1.  Connection parameters are used to establish the connection with your database. As GeoPackage is a file based database this will primarily consist of the geopackage location.
 
@@ -109,20 +107,19 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 
 3.  The **Connection Parameters** for our geopackage are:
 
-| Field     | Value                             |
-|-----------|-----------------------------------|
-| Database  | `file:data/ne/natural_earth.gpkg` |
-| Read only | checked                           |
+    | Field     | Value                             |
+    |-----------|-----------------------------------|
+    | Database  | `file:data/ne/natural_earth.gpkg` |
+    | Read only | checked                           |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> The use of **read_only** above indicates that we will not be writing to this GeoPackage, allowing GeoServer to avoid managing write locks when accessing this content for greater performance.
+    > The use of **read_only** above indicates that we will not be writing to this GeoPackage, allowing GeoServer to avoid managing write locks when accessing this content for greater performance.
 
-![](images/connection.png)
+    ![](images/connection.png)
 
-*Connection Parameters*
+    *Connection Parameters*
 
-1.  Press **Save**.
+4.  Press **Save**.
 2.  You will be redirected to the **New Layer** page (as this is the most common next step when adding a new data store).
 
 ## Creating a layer
@@ -149,33 +146,31 @@ Now that we have connected to the GeoPackage, we can publish the layer.
 
 4.  Locate **Basic Resource Info** and define the layer:
 
-| Field    | Value                   |
-|----------|-------------------------|
-| Name     | `countries`             |
-| Title    | ``Countries`` |
-| Abstract | `Sovereign states`      |
+    | Field    | Value                   |
+    |----------|----------------------------|
+    | Name     | `countries`             |
+    | Title    | ``Countries`` |
+    | Abstract | `Sovereign states`      |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.
+    > The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.
 
-![](images/layer_basic.png)
+    ![](images/layer_basic.png)
 
-*Basic Resource Info*
+    *Basic Resource Info*
 
-1.  Double check the **Coordinate Reference Systems** information is correct.
+5.  Double check the **Coordinate Reference Systems** information is correct.
 
-| Field         | Value            |
-|---------------|------------------|
-| Native SRS    | `EPSG:4326`      |
-| Declaired SRS | `EPSG:4326`      |
-| SRS Handling  | `Force declared` |
+    | Field         | Value            |
+    |---------------|------------------|
+    | Native SRS    | `EPSG:4326`      |
+    | Declaired SRS | `EPSG:4326`      |
+    | SRS Handling  | `Force declared` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-![](images/layer_crs.png)
+    ![](images/layer_crs.png)
 
-*Coordinate Reference Systems*
+    *Coordinate Reference Systems*
 
 1.  Locate **Bounding Boxes** and generate the layer's bounding boxes by clicking the **Compute from data** and then **Compute from native bounds** links.
 

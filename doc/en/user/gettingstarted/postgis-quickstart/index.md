@@ -89,25 +89,24 @@ Once the workspace is created we are ready to add a new store. The store tells G
 
 6.  Specify the PostGIS database **Connection Parameters**:
 
-| Option                   | Value                              |
-|--------------------------|------------------------------------|
-| **dbtype**               | ``postgis``              |
-| **host**                 | ``localhost``            |
-| **port**                 | ``5432``                 |
-| **database**             | ``nyc``                  |
-| **schema**               | ``public``               |
-| **user**                 | ``postgres``             |
-| **passwd**               | (Password for the `postgres` user) |
-| **validate connections** | (Checked)                          |
+    | Option                   | Value                              |
+    |--------------------------|------------------------------------|
+    | **dbtype**               | ``postgis``              |
+    | **host**                 | ``localhost``            |
+    | **port**                 | ``5432``                 |
+    | **database**             | ``nyc``                  |
+    | **schema**               | ``public``               |
+    | **user**                 | ``postgres``             |
+    | **passwd**               | (Password for the `postgres` user) |
+    | **validate connections** | (Checked)                          |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-!!! note
+    !!! note
     Leave all other fields at their default values.
->
-![](connectionParameters.png)
+    >
+    ![](connectionParameters.png)
 
-*Connection Parameters*
+    *Connection Parameters*
 
 1.  Click **Save**.
 

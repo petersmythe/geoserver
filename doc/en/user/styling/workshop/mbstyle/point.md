@@ -24,12 +24,11 @@ This exercise makes use of the `ne:populated_places` layer.
 1.  Navigate to the **Styles** page.
 2.  Click **Add a new style** and choose the following:
 
-| Name:      | ``point_example`` |
-|------------|-----------------------------|
-| Workspace: | ``No workspace``  |
-| Format:    | ``MBStyle``       |
+    | Name:      | ``point_example`` |
+    |------------|-----------------------------|
+    | Workspace: | ``No workspace``  |
+    | Format:    | ``MBStyle``       |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 1.  Replace the initial MBStyle definition with the following and click **apply**:
 
