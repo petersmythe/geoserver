@@ -845,9 +845,6 @@ nav:
       - JMS based Clustering:
         - en/user/community/jms-cluster/index.md
         - en/user/community/jms-cluster/installation.md
-        - en/user/community/jms-cluster/activemq/activemqBroker.md
-        - en/user/community/jms-cluster/activemq/JDBC.md
-        - en/user/community/jms-cluster/activemq/SharedFolder.md
       - Jwt Headers:
         - en/user/community/jwt-headers/index.md
         - en/user/community/jwt-headers/overview.md
