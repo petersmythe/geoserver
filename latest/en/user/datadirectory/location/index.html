@@ -30126,8 +30126,8 @@
 <h2 id="default-data-directory-location">Default data directory location<a class="headerlink" href="#default-data-directory-location" title="Permanent link">&para;</a></h2>
 <p>By default GeoServer includes an example data directory allowing you to try out the application quickly:</p>
 <ul>
-<li>Platform Independent Binary: The data directory is located at <strong><code>&lt;installation root&gt;/data_dir</code></strong>.</li>
-</ul>
+<li>
+<p>Platform Independent Binary: The data directory is located at <strong><code>&lt;installation root&gt;/data_dir</code></strong>.</p>
 <table>
 <thead>
 <tr>
@@ -30146,14 +30146,12 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 2 spaces indentation -->
-
 <blockquote>
 <p>The windows <strong><code>Program Files</code></strong> location above is not ideal due to restrictions placed on this location.</p>
 </blockquote>
-<ul>
-<li>Web archive: If GeoServer is running as a <strong>web archive</strong> inside of your application server, the data directory is by default located at <strong><code>&lt;web application root&gt;/data</code></strong>`.</li>
-</ul>
+</li>
+<li>
+<p>Web archive: If GeoServer is running as a <strong>web archive</strong> inside of your application server, the data directory is by default located at <strong><code>&lt;web application root&gt;/data</code></strong>`.</p>
 <table>
 <thead>
 <tr>
@@ -30168,15 +30166,13 @@
 </tr>
 <tr>
 <td>Windows (Tomcat)</td>
-<td><strong><code>C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\geoserver\data</code></strong></td>
+<td><strong><code>C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\geoserver/data</code></strong></td>
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 2 spaces indentation -->
-
-<ul>
-<li>Windows Installer: The windows installer unpacks the data directory to <strong><code>%PROGRAMDATA%\GeoServer</code></strong>:</li>
-</ul>
+</li>
+<li>
+<p>Windows Installer: The windows installer unpacks the data directory to <strong><code>%PROGRAMDATA%\GeoServer</code></strong>:</p>
 <table>
 <thead>
 <tr>
@@ -30191,10 +30187,10 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 2 spaces indentation -->
-
-<ul>
-<li>Docker: The Docker image maintains a data directory in **<code>**/opt/geoserver_data</code>.</li>
+</li>
+<li>
+<p>Docker: The Docker image maintains a data directory in <code>/opt/geoserver_data</code>.</p>
+</li>
 </ul>
 <p>This location should be mapped to an absolute path in your host as described in <a href="../../installation/docker/#installation_docker_data">Using your own Data Directory</a>.</p>
 <h2 id="external-data-directory-location">External data directory location<a class="headerlink" href="#external-data-directory-location" title="Permanent link">&para;</a></h2>

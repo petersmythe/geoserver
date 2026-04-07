@@ -30204,8 +30204,8 @@
 <li>Log into GeoServer as described in the <a href="../web-admin-quickstart/#logging_in">Logging In</a> section.</li>
 <li>Navigate to <strong>Data --&gt; Workspaces</strong>.</li>
 <li>Click the <strong>Add new workspace</strong> button to display the <strong>New Workspace</strong> page.</li>
-<li>You will be prompted to enter a workspace <strong>Name</strong> and <strong>Namespace URI</strong>.</li>
-</ol>
+<li>
+<p>You will be prompted to enter a workspace <strong>Name</strong> and <strong>Namespace URI</strong>.</p>
 <table>
 <thead>
 <tr>
@@ -30220,19 +30220,19 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A workspace name is an identifier describing your project. It must not exceed ten characters or contain spaces.</p>
 </div>
+<p>A workspace name is an identifier describing your project. It must not exceed ten characters or contain spaces.</p>
 <blockquote></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A Namespace URI (Uniform Resource Identifier) can usually be a URL associated with your project with an added trailing identifier indicating the workspace. The Namespace URI filed does not need to resolve to an actual valid web address.</p>
 </div>
-<ol>
-<li>Press the <strong>Submit</strong> button.</li>
+<p>A Namespace URI (Uniform Resource Identifier) can usually be a URL associated with your project with an added trailing identifier indicating the workspace. The Namespace URI filed does not need to resolve to an actual valid web address.</p>
+</li>
+<li>
+<p>Press the <strong>Submit</strong> button.</p>
+</li>
 <li>The <code>tutorial</code> workspace will be added to the <strong>Workspaces</strong> list.</li>
 </ol>
 <h2 id="create-a-store">Create a store<a class="headerlink" href="#create-a-store" title="Permanent link">&para;</a></h2>
@@ -30257,8 +30257,6 @@
 </li>
 <li>
 <p>Begin by configuring the <strong>Basic Store Info</strong>.</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -30277,18 +30275,18 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <blockquote>
 <p>This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the <strong>Data Source Name</strong> simple as it will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).</p>
 </blockquote>
 <p><img alt="" src="images/layer_basic.png" /></p>
 <p><em>Basic Store info</em></p>
-<ol>
-<li>Connection parameters are used to establish the location of your data.</li>
+</li>
+<li>
+<p>Connection parameters are used to establish the location of your data.</p>
+</li>
 <li>Under <strong>Connection Parameters</strong>, browse to the location <strong>URL</strong> of the image, in our example <strong><code>file:data/ne/SR_50M.tif</code></strong>.</li>
-<li>The <strong>Connection Parameters</strong> for our geopackage are:</li>
-</ol>
+<li>
+<p>The <strong>Connection Parameters</strong> for our geopackage are:</p>
 <table>
 <thead>
 <tr>
@@ -30303,10 +30301,10 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
-<ol>
-<li>Press <strong>Save</strong>.</li>
+</li>
+<li>
+<p>Press <strong>Save</strong>.</p>
+</li>
 <li>You will be redirected to the <strong>New Layer</strong> page (as this is the most common next step when adding a new data store).</li>
 </ol>
 <h2 id="creating-a-layer">Creating a layer<a class="headerlink" href="#creating-a-layer" title="Permanent link">&para;</a></h2>
@@ -30320,8 +30318,8 @@
 <li><strong>Bounding Boxes</strong> - establishes where the dataset is located in the world</li>
 </ul>
 </li>
-<li>Locate <strong>Basic Resource Info</strong> and define the layer:</li>
-</ol>
+<li>
+<p>Locate <strong>Basic Resource Info</strong> and define the layer:</p>
 <table>
 <thead>
 <tr>
@@ -30340,22 +30338,18 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <blockquote>
 <p>The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.</p>
 </blockquote>
 <p><img alt="" src="images/layer_basic.png" /></p>
 <p><em>Basic Resource Info</em></p>
-<ol>
+</li>
 <li>
 <p>Check the <strong>Coordinate Reference Systems</strong> information is as listed below.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this case select <code>Force declared</code> to prefer the GeoServer internal EPSG database definition of WGS84 over the <strong><code>prj</code></strong> file provided alongside the same image.</p>
 </div>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -30374,11 +30368,9 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <p><img alt="" src="images/layer_crs.png" /></p>
 <p><em>Coordinate Reference Systems</em></p>
-<ol>
+</li>
 <li>
 <p>Locate <strong>Bounding Boxes</strong> and generate the layer's bounding boxes by clicking the <strong>Compute from SRS bounds</strong> and then <strong>Compute from native bounds</strong> links.</p>
 <div class="admonition note">

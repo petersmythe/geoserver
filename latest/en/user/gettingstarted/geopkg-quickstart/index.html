@@ -30208,8 +30208,6 @@
 </li>
 <li>
 <p>You will be prompted to enter a workspace <strong>Name</strong> and <strong>Namespace URI</strong>.</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -30228,18 +30226,15 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A workspace name is an identifier describing your project. It must not exceed ten characters or contain spaces.</p>
 </div>
-<blockquote></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A Namespace URI (Uniform Resource Identifier) can usually be a URL associated with your project with an added trailing identifier indicating the workspace. The Namespace URI filed does not need to resolve to an actual valid web address.</p>
 </div>
-<ol>
+</li>
 <li>
 <p>Press the <strong>Submit</strong> button.</p>
 <p><img alt="" src="images/workspace.png" /></p>
@@ -30271,8 +30266,6 @@
 </li>
 <li>
 <p>Begin by configuring the <strong>Basic Store Info</strong>.</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -30295,14 +30288,12 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <blockquote>
 <p>This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the <strong>Data Source Name</strong> simple as they will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).</p>
 </blockquote>
 <p><img alt="" src="images/basic.png" /></p>
 <p><em>Basic Store info</em></p>
-<ol>
+</li>
 <li>
 <p>Connection parameters are used to establish the connection with your database. As GeoPackage is a file based database this will primarily consist of the geopackage location.</p>
 </li>
@@ -30313,8 +30304,6 @@
 </li>
 <li>
 <p>The <strong>Connection Parameters</strong> for our geopackage are:</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -30333,15 +30322,15 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <blockquote>
 <p>The use of <strong>read_only</strong> above indicates that we will not be writing to this GeoPackage, allowing GeoServer to avoid managing write locks when accessing this content for greater performance.</p>
 </blockquote>
 <p><img alt="" src="images/connection.png" /></p>
 <p><em>Connection Parameters</em></p>
-<ol>
-<li>Press <strong>Save</strong>.</li>
+</li>
+<li>
+<p>Press <strong>Save</strong>.</p>
+</li>
 <li>You will be redirected to the <strong>New Layer</strong> page (as this is the most common next step when adding a new data store).</li>
 </ol>
 <h2 id="creating-a-layer">Creating a layer<a class="headerlink" href="#creating-a-layer" title="Permanent link">&para;</a></h2>
@@ -30367,8 +30356,6 @@
 </li>
 <li>
 <p>Locate <strong>Basic Resource Info</strong> and define the layer:</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -30391,16 +30378,14 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <blockquote>
 <p>The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.</p>
 </blockquote>
 <p><img alt="" src="images/layer_basic.png" /></p>
 <p><em>Basic Resource Info</em></p>
-<ol>
-<li>Double check the <strong>Coordinate Reference Systems</strong> information is correct.</li>
-</ol>
+</li>
+<li>
+<p>Double check the <strong>Coordinate Reference Systems</strong> information is correct.</p>
 <table>
 <thead>
 <tr>
@@ -30423,11 +30408,9 @@
 </tr>
 </tbody>
 </table>
-<!-- mkdocs-translate: removed 3 spaces indentation -->
-
 <p><img alt="" src="images/layer_crs.png" /></p>
 <p><em>Coordinate Reference Systems</em></p>
-<ol>
+</li>
 <li>
 <p>Locate <strong>Bounding Boxes</strong> and generate the layer's bounding boxes by clicking the <strong>Compute from data</strong> and then <strong>Compute from native bounds</strong> links.</p>
 <p><img alt="" src="images/layer_bbox.png" /></p>
