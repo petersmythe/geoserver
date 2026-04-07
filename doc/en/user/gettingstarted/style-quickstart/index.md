@@ -31,16 +31,15 @@ First let's gather the data that we'll be publishing.
 
 4.  Locate **Style Data** and define the style:
 
-| Name      | ``background`` |
-|-----------|--------------------------|
-| Workspace | `tutorial`               |
-| Format    | `SLD`                    |
+    | Name      | ``background`` |
+    |-----------|--------------------------|
+    | Workspace | `tutorial`               |
+    | Format    | `SLD`                    |
 
-![](images/style_data.png)
+    ![](images/style_data.png)
 
-*Style data*
+    *Style data*
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 1.  Locate **Style Content** and carefully:
 

@@ -38,19 +38,18 @@ The shape symbols set adds extra symbols that are not part of the basic set.
 1.  To enable ensure that the WMS Settings `Mark Factory Precedence` has `ShapeMarkFactory` selected.
 2.  The shape symbols are prefixed by `shape://`
 
-| **Name** | **Description** |
-|----|----|
-| `shape://vertline` | A vertical line (suitable for hatch fills or to make railroad symbols) |
-| `shape://horline` | A horizontal line (suitable for hatch fills) |
-| `shape://slash` | A diagonal line leaning forwards like the "slash" keyboard symbol (suitable for diagonal hatches) |
-| `shape://backslash` | Same as `shape://slash`, but oriented in the opposite direction |
-| `shape://dot` | A very small circle with space around |
-| `shape://plus` | A + symbol, without space around (suitable for cross-hatch fills) |
-| `shape://times` | A "X" symbol, without space around (suitable for cross-hatch fills) |
-| `shape://oarrow` | An open arrow symbol (triangle without one side, suitable for placing arrows at the end of lines) |
-| `shape://carrow` | A closed arrow symbol (closed triangle, suitable for placing arrows at the end of lines) |
+    | **Name** | **Description** |
+    |----|----|
+    | `shape://vertline` | A vertical line (suitable for hatch fills or to make railroad symbols) |
+    | `shape://horline` | A horizontal line (suitable for hatch fills) |
+    | `shape://slash` | A diagonal line leaning forwards like the "slash" keyboard symbol (suitable for diagonal hatches) |
+    | `shape://backslash` | Same as `shape://slash`, but oriented in the opposite direction |
+    | `shape://dot` | A very small circle with space around |
+    | `shape://plus` | A + symbol, without space around (suitable for cross-hatch fills) |
+    | `shape://times` | A "X" symbol, without space around (suitable for cross-hatch fills) |
+    | `shape://oarrow` | An open arrow symbol (triangle without one side, suitable for placing arrows at the end of lines) |
+    | `shape://carrow` | A closed arrow symbol (closed triangle, suitable for placing arrows at the end of lines) |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 ### Weather Symbols
 
@@ -59,33 +58,30 @@ The weather symbols are prefixed by the `extshape://` protocol in the SLD:
 1.  To enable ensure that the WMS Settings `Mark Factory Precedence` has `MeteoMarkFactory` selected.
 2.  These symbols are:
 
-| **Name** | **Description** | **Produces** |
-|----|----|----|
-| `extshape://triangle` | cold front | ![triangle](images/triangle.png) |
-| `extshape://emicircle` | warm front | ![emicircle](images/emicircle.png) |
-| `extshape://triangleemicircle` | stationary front | ![triangleemicircle](images/triangleemicircle.png) |
+    | **Name** | **Description** | **Produces** |
+    |----|----|----|
+    | `extshape://triangle` | cold front | ![triangle](images/triangle.png) |
+    | `extshape://emicircle` | warm front | ![emicircle](images/emicircle.png) |
+    | `extshape://triangleemicircle` | stationary front | ![triangleemicircle](images/triangleemicircle.png) |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 3.  You can use `extshape://` for a few additional built-in shapes:
 
-| `extshape://narrow` | North Arrow |
-|---------------------|-------------|
-| `extshape://sarrow` | South Arrow |
+    | `extshape://narrow` | North Arrow |
+    |---------------------|-------------|
+    | `extshape://sarrow` | South Arrow |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-More complex symbols like Wind Barbs can be created with the `windbarbs://` prefix.
+    More complex symbols like Wind Barbs can be created with the `windbarbs://` prefix.
 
 1.  To enable ensure that the WMS Settings `Mark Factory Precedence` has `WindBarbsmFactory` selected.
 2.  There are some examples:
 
-| **Name** | **Description** |
-|----|----|
-| `windbarbs://default(15)[kts]` | *15* wind intensity with *[kts]* unit of measure |
-| `windbarbs://default(9)[m/s]?hemisphere=s` | *9* wind intensity with *[m/s]* unit of measure, in the south hemisphere |
+    | **Name** | **Description** |
+    |----|----|
+    | `windbarbs://default(15)[kts]` | *15* wind intensity with *[kts]* unit of measure |
+    | `windbarbs://default(9)[m/s]?hemisphere=s` | *9* wind intensity with *[m/s]* unit of measure, in the south hemisphere |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 ### Custom WKT Shapes
 

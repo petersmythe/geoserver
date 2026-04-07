@@ -23,12 +23,11 @@ This exercise makes use of the `ne:populated_places` layer.
 1.  Navigate to the **Styles** page.
 2.  Click **Add a new style** and choose the following:
 
-| Name:      | ``point_example`` |
-|------------|-----------------------------|
-| Workspace: | ``No workspace``  |
-| Format:    | ``YSLD``          |
+    | Name:      | ``point_example`` |
+    |------------|-----------------------------|
+    | Workspace: | ``No workspace``  |
+    | Format:    | ``YSLD``          |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 1.  Choose **point** from the `Generate a default style` dropdown and click **generate**.
 

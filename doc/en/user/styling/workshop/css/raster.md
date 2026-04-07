@@ -39,12 +39,11 @@ The **raster-channels** is the **key property** for display of images and raster
 1.  Navigate to the **Styles** page.
 2.  Click **Add a new style** and choose the following:
 
-| Name:      | ``image_example`` |
-|------------|-----------------------------|
-| Workspace: | ``No workspace``  |
-| Format:    | ``CSS``           |
+    | Name:      | ``image_example`` |
+    |------------|-----------------------------|
+    | Workspace: | ``No workspace``  |
+    | Format:    | ``CSS``           |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 1.  Replace the initial CSS definition with:
 
@@ -79,12 +78,11 @@ The `usgs:dem` layer used for this exercise:
 1.  Return to the **Styles** page.
 2.  Click **Add a new style** and choose the following:
 
-| Name:      | ``raster_example`` |
-|------------|------------------------------|
-| Workspace: | ``No workspace``   |
-| Format:    | ``CSS``            |
+    | Name:      | ``raster_example`` |
+    |------------|------------------------------|
+    | Workspace: | ``No workspace``   |
+    | Format:    | ``CSS``            |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 1.  When we use the **raster-channels** property set to ``auto`` the rendering engine will select our single band of raster content, and do its best to map these values into a grayscale image. Replace the content of the style with:
 

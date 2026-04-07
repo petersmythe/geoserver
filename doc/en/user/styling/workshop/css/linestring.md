@@ -37,11 +37,10 @@ The use of **stroke** as a key property prevents CSS from having the idea of a d
 2.  Click **Choose a different layer** and select ``ne:roads`` from the list.
 3.  Click **Create a new style** and choose the following:
 
-| Workspace for new layer: | ``No workspace`` |
-|--------------------------|----------------------------|
-| New style name:          | ``line_example`` |
+    | Workspace for new layer: | ``No workspace`` |
+    |--------------------------|----------------------------|
+    | New style name:          | ``line_example`` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 1.  Replace the generated CSS definition with the following **stroke** example:
 

@@ -33,14 +33,13 @@ This exercise makes use of the `ne:states_provinces_shp` layer.
 1.  Navigate to **Styles**.
 2.  Create a new style ``polygon_example``.
 
-| Name:      | ``polygon_example`` |
-|------------|-------------------------------|
-| Workspace: | ``No workspace``    |
-| Format:    | ``CSS``             |
+    | Name:      | ``polygon_example`` |
+    |------------|-------------------------------|
+    | Workspace: | ``No workspace``    |
+    | Format:    | ``CSS``             |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-![image](../style/img/polygon_02_create.png)
+    ![image](../style/img/polygon_02_create.png)
 
 1.  Enter the following style and click ****Apply`` to save:
 

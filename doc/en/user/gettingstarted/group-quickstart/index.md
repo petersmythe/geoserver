@@ -37,17 +37,16 @@ First let's gather the data that we'll be publishing.
 
 5.  Locate **Basic Resource Info** and define the layer:
 
-| Name | ``basemap`` |
-|----|----|
-| Title | ``Basemap`` |
-| Abstract | ``Plain basemap suitable as a backdrop for geospatial data.`` |
-| Workspace | `tutorial` |
+    | Name | ``basemap`` |
+    |----|----|
+    | Title | ``Basemap`` |
+    | Abstract | ``Plain basemap suitable as a backdrop for geospatial data.`` |
+    | Workspace | `tutorial` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-![](images/basemap.png)
+    ![](images/basemap.png)
 
-*Basic resource information*
+    *Basic resource information*
 
 1.  Scroll down to the **Layers** list which is presently empty.
 

@@ -38,16 +38,15 @@ The next step is to create a workspace for the geopackage. A workspace is a fold
 4.  Click the **Add new workspace** button to display the **New Workspace** page.
 5.  You will be prompted to enter a workspace **Name** and **Namespace URI**.
 
-| Name:         | ``tutorial``                                 |
-|---------------|--------------------------------------------------------|
-| Namespace URI | ``http://localhost:8080/geoserver/tutorial`` |
+    | Name:         | ``tutorial``                                 |
+    |---------------|--------------------------------------------------------|
+    | Namespace URI | ``http://localhost:8080/geoserver/tutorial`` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-!!! note
+    !!! note
     A workspace name is an identifier describing your project. It must not exceed ten characters or contain spaces.
->
-!!! note
+    >
+    !!! note
     A Namespace URI (Uniform Resource Identifier) can usually be a URL associated with your project with an added trailing identifier indicating the workspace. The Namespace URI filed does not need to resolve to an actual valid web address.
 
 1.  Press the **Submit** button.
@@ -73,27 +72,25 @@ Once the workspace is created, we are ready to add a new store. The store tells 
 
 6.  Begin by configuring the **Basic Store Info**.
 
-| workspace        | `tutorial`                                           |
-|------------------|------------------------------------------------------|
-| Data Source Name | ``ShadedRelief``                           |
-| Description      | ``Grayscale shaded relief of land areas.`` |
+    | workspace        | `tutorial`                                           |
+    |------------------|------------------------------------------------------|
+    | Data Source Name | ``ShadedRelief``                           |
+    | Description      | ``Grayscale shaded relief of land areas.`` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the **Data Source Name** simple as it will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).
+    > This information is internal to GeoServer and is not used as part of the web service protocols. We recommend keeping the **Data Source Name** simple as it will be used to form folders in the data directory (so keep any operating system restrictions on character use in mind).
 
-![](images/layer_basic.png)
+    ![](images/layer_basic.png)
 
-*Basic Store info*
+    *Basic Store info*
 
 1.  Connection parameters are used to establish the location of your data.
 2.  Under **Connection Parameters**, browse to the location **URL** of the image, in our example **`file:data/ne/SR_50M.tif`**.
 3.  The **Connection Parameters** for our geopackage are:
 
-| database | ``file:data/ne/SR_50M.tif`` |
-|----------|---------------------------------------|
+    | database | ``file:data/ne/SR_50M.tif`` |
+    |----------|---------------------------------------|
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 1.  Press **Save**.
 2.  You will be redirected to the **New Layer** page (as this is the most common next step when adding a new data store).
@@ -110,34 +107,32 @@ Now that we have located the image, we can publish this information as a layer.
     - **Bounding Boxes** - establishes where the dataset is located in the world
 4.  Locate **Basic Resource Info** and define the layer:
 
-| Name     | ``shaded``                                 |
-|----------|------------------------------------------------------|
-| Title    | ``Shaded Relief``                          |
-| Abstract | ``Grayscale shaded relief of land areas.`` |
+    | Name     | ``shaded``                                 |
+    |----------|------------------------------------------------------|
+    | Title    | ``Shaded Relief``                          |
+    | Abstract | ``Grayscale shaded relief of land areas.`` |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-> The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.
+    > The naming of a layer is important, and while GeoServer does not offer restrictions many of the individual protocols will only work with very simple names.
 
-![](images/layer_basic.png)
+    ![](images/layer_basic.png)
 
-*Basic Resource Info*
+    *Basic Resource Info*
 
 1.  Check the **Coordinate Reference Systems** information is as listed below.
 
     !!! note
         In this case select `Force declared` to prefer the GeoServer internal EPSG database definition of WGS84 over the **`prj`** file provided alongside the same image.
 
-| Native SRS    | ``EPSG:4326`` |
-|---------------|-------------------------|
-| Declaired SRS | ``EPSG:4326`` |
-| SRS Handling  | `Force declared`        |
+    | Native SRS    | ``EPSG:4326`` |
+    |---------------|-------------------------|
+    | Declaired SRS | ``EPSG:4326`` |
+    | SRS Handling  | `Force declared`        |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-![](images/layer_crs.png)
+    ![](images/layer_crs.png)
 
-*Coordinate Reference Systems*
+    *Coordinate Reference Systems*
 
 1.  Locate **Bounding Boxes** and generate the layer's bounding boxes by clicking the **Compute from SRS bounds** and then **Compute from native bounds** links.
 

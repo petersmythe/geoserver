@@ -226,22 +226,18 @@ A brief listing of UI design guidelines for Wicket pages in GeoServer follows.
     }
     ```
 >
->     The suffix in the class name corresponds with the sizing unit used.
+> The suffix in the class name corresponds with the sizing unit used.
 >
->     Bootstrap uses mostly `em` and `rem` as sizing units, and the `3` suffix (like `.px-3`) is roughly the same as 15px. When extra spacing is needed it is advised to use this.
+> Bootstrap uses mostly `em` and `rem` as sizing units, and the `3` suffix (like `.px-3`) is roughly the same as 15px. When extra spacing is needed it is advised to use this.
 >
->     Some other sizing used to set the width of an element and its pixel equivalent:
-
-| **Class** | **Size in em** | **Size in pixels** (approximately) |
-|-----------|----------------|------------------------------------|
-| `*-5-em`  | 5em            | 100px                              |
-| `*-20-em` | 20em           | 325px                              |
-| `*-25-em` | 25em           | 400px                              |
-| `*-30-em` | 30em           | 600px                              |
-
-<!-- mkdocs-translate: removed 8 spaces indentation -->
-
-> 
+> Some other sizing used to set the width of an element and its pixel equivalent:
+>
+> | **Class** | **Size in em** | **Size in pixels** (approximately) |
+> |-----------|----------------|------------------------------------|
+> | `*-5-em`  | 5em            | 100px                              |
+> | `*-20-em` | 20em           | 325px                              |
+> | `*-25-em` | 25em           | 400px                              |
+> | `*-30-em` | 30em           | 600px                              |
 >
 > Avoid requiring special knowledge from the user.
 > :   For example, where a list of values is required, provide a widget that allows manipulating the list one element at a time rather than expecting a comma-separated list of values.

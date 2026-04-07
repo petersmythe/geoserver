@@ -27,12 +27,11 @@ There are several warnings shown when we first start up GeoServer and login as a
 
     User this screen to change the ``admin`` user password from the default:
 
-| User name         | ``admin``      |
-|-------------------|--------------------------|
-| Password          | (make up a new password) |
-| Confirm password: | (confirm new password)   |
+    | User name         | ``admin``      |
+    |-------------------|--------------------------|
+    | Password          | (make up a new password) |
+    | Confirm password: | (confirm new password)   |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
 3.  Change master password:
 
@@ -48,18 +47,17 @@ There are several warnings shown when we first start up GeoServer and login as a
 
     Use this screen to change the master or keystore password.
 
-| Current password | ``geoserver``  |
-|------------------|--------------------------|
-| New password     | (make up a new password) |
-| Confirmation:    | (confirm new password)   |
+    | Current password | ``geoserver``  |
+    |------------------|--------------------------|
+    | New password     | (make up a new password) |
+    | Confirmation:    | (confirm new password)   |
 
-<!-- mkdocs-translate: removed 3 spaces indentation -->
 
-If you do not know the current password, navigate to **Security > Passwords** and there is an option to recover the password (either to a local file or via REST API).
+    If you do not know the current password, navigate to **Security > Passwords** and there is an option to recover the password (either to a local file or via REST API).
 
-For more information see [Keystore password](../../security/passwd.md#security_master_passwd).
+    For more information see [Keystore password](../../security/passwd.md#security_master_passwd).
 
-!!! note
+    !!! note
     What is the keystore password or master password?
 
     - The keystore password used to [store security credentials and encryption keys](../../security/passwd.md#security_passwd_keystore).
