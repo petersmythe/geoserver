@@ -2301,6 +2301,10 @@
          <lastmod>2026-04-07</lastmod>
     </url>
     <url>
+         <loc>https://docs.geoserver.org/3.0.x/latest/en/user/services/csw/</loc>
+         <lastmod>2026-04-07</lastmod>
+    </url>
+    <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/user/services/csw/directdownload/</loc>
          <lastmod>2026-04-07</lastmod>
     </url>
@@ -2394,6 +2398,10 @@
     </url>
     <url>
          <loc>https://docs.geoserver.org/3.0.x/latest/en/user/services/wms/</loc>
+         <lastmod>2026-04-07</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.geoserver.org/3.0.x/latest/en/user/services/wms/basics/</loc>
          <lastmod>2026-04-07</lastmod>
     </url>
     <url>
