@@ -114,7 +114,7 @@ This guarantees that vector tile metatiling cannot exhaust heap memory or destab
 
 1.  Create a `www/tms-vectortiles` directory inside your GeoServer Data Directory.
 
-2.  Download the [latest version of OpenLayers](http://openlayers.org/download/). Download the v<ol-version>-package.zip file`_.
+2.  Download the [latest version of OpenLayers](http://openlayers.org/download/). Download the `v<ol-version>-package.zip` file.
 
 3.  Extract the following files from the downloaded archive to the directory created in step 1:
 

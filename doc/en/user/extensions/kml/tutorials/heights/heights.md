@@ -9,7 +9,7 @@ Height Templates in KML allow you to use an attribute of your data as the 'heigh
 
 ## Getting Started
 
-For the purposes of this tutorial, you just need to have GeoServer with the release configuration, and Google Earth installed. Google Earth is available for free from <http://earth.google.com/ <http://earth.google.com/>`_.
+For the purposes of this tutorial, you just need to have GeoServer with the release configuration, and Google Earth installed. Google Earth is available for free from [http://earth.google.com/](http://earth.google.com/).
 
 ## Step One
 

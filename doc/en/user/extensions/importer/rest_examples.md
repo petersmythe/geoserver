@@ -138,7 +138,7 @@ curl -u admin:geoserver -XPOST -H "Content-type: application/json" \
 
 ## Configuring a shapefile with no projection information
 
-In this case, let's assume we have a single shapefile, **`tasmania_cities.shp`**``, that does not have the **``.prj`** sidecar file (the example is equally good for any case where the **`prj`** file contents cannot be matched to an official EPSG code).
+In this case, let's assume we have a single shapefile, **`tasmania_cities.shp`**, that does not have the **`.prj`** sidecar file (the example is equally good for any case where the **`prj`** file contents cannot be matched to an official EPSG code).
 
 1.  We are going to post the following import definition:
 

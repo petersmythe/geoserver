@@ -44,7 +44,7 @@ Available options are:
 4.  `BK_SKIP_SETTINGS`: This will attempt to exclude global settings from the backup, as well as security settings. Default: ``true``.
 5.  `BK_SKIP_GWC`: This option will avoid backup / restore the GWC catalog and folders. Default: ``false``.
 6.  `BK_CLEANUP_TEMP`: This will attempt to delete temporary folder at the end of the execution. Default: ``true``.
-7.  `exclude.file.path`: A `;` separated list of paths relative to the `GEOSERVER_DATA_DIR` (e.g.: 'exclude.file.path=/data/geonode;/monitoring;/geofence'). If exist, the backup / restore will skip the path listed. Default: [[]]{.title-ref}. WARNING: `security` and `workspaces` are treated differently. This option should be used only for custom external resources located under the `GEOSERVER_DATA_DIR`.
+7.  `exclude.file.path`: A `;` separated list of paths relative to the `GEOSERVER_DATA_DIR` (e.g.: 'exclude.file.path=/data/geonode;/monitoring;/geofence'). If exist, the backup / restore will skip the path listed. Default: `[]`. WARNING: `security` and `workspaces` are treated differently. This option should be used only for custom external resources located under the `GEOSERVER_DATA_DIR`.
 
 Also an optional `Filter` can be passed to restrict the scope of the restore operation to a list of workspaces.
 
@@ -202,7 +202,7 @@ Available Options are:
 
 8.  `BK_CLEANUP_TEMP`: This will attempt to delete temporary folder at the end of the execution. Default: ``true``.
 
-9.  `exclude.file.path`: A `;` separated list of paths relative to the `GEOSERVER_DATA_DIR` (e.g.: 'exclude.file.path=/data/geonode;/monitoring;/geofence'). If exist, the backup / restore will skip the path listed. Default: [[]]{.title-ref}. WARNING: `security` and `workspaces` are treated differently. This option should be used only for custom external resources located under the `GEOSERVER_DATA_DIR`.
+9.  `exclude.file.path`: A `;` separated list of paths relative to the `GEOSERVER_DATA_DIR` (e.g.: 'exclude.file.path=/data/geonode;/monitoring;/geofence'). If exist, the backup / restore will skip the path listed. Default: `[]`. WARNING: `security` and `workspaces` are treated differently. This option should be used only for custom external resources located under the `GEOSERVER_DATA_DIR`.
 
 Also an optional `Filter` can be passed to restrict the scope of the restore operation to a list of workspaces.
 

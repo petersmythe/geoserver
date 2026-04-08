@@ -629,9 +629,10 @@ Another property, ``preferredIntervalFractions``, can be specified to also use f
 
 Example:
 
-    .. code-block::  yaml
-
-> preferredIntervals: [1,3,5,10] preferredIntervalFractions: [0.2,0.5]
+``` yaml
+preferredIntervals: [1,3,5,10]
+preferredIntervalFractions: [0.2,0.5]
+```
 
 ## Attributes block
 

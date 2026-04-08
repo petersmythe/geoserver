@@ -72,7 +72,7 @@ How to create a Google Maps mashup with a GeoRSS overlay produced by GeoServer.
 
 How to create a Yahoo! Maps mashup with a GeoRSS overlay produced by GeoServer.
 
-1.  Obtain a <Yahoo Maps Application ID <http://search.yahooapis.com/webservices/register_application>`_ from Yahoo.
+1.  Obtain a [Yahoo Maps Application ID](http://search.yahooapis.com/webservices/register_application) from Yahoo.
 
 2.  Create an html file called `ymaps.html`:
 

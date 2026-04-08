@@ -30,7 +30,7 @@ The process of getting community commit access is as follows:
 
 2.  **Sign up for a GitHub account**
 
-    GeoServer source code is hosted on Github and you'll need an account in order to access it. You can sign-up [here <https://github.com/signup/>`_.
+    GeoServer source code is hosted on Github and you'll need an account in order to access it. You can sign-up [here](https://github.com/signup/).
 
 3.  **Print, sign, scan and send the contributor agreement**
 
