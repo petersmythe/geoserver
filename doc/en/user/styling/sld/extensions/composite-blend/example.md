@@ -4,7 +4,7 @@ Let's say we want to draw the `topp:states` layer so that the polygons are not f
 
 This is the destination:
 
-![](images/states.png)
+![](images/states.png)  
 *topp:states layer*
 
 Using alpha blending, this can be achieved by creating a mask around the state borders with a thick stroke, and then using a "destination-in" alpha compositing.

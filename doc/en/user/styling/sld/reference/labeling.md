@@ -59,16 +59,16 @@ So to have the anchor location centered just below the label (label top-centered
 
 The following examples show how changing the anchor point affects the position of labels:
 
-![](img/point_x0y0_5.png)
+![](img/point_x0y0_5.png)  
 *(0, 0.5) places the label to the right of the label point*
 
-![](img/point_x0_5y0_5.png)
+![](img/point_x0_5y0_5.png)  
 *(0.5, 0.5) places the center of the label at the label point*
 
-![](img/point_x15y0_5.png)
+![](img/point_x15y0_5.png)  
 *(1, 0.5) places the label to the left of the label point*
 
-![](img/point_x0_5y0.png)
+![](img/point_x0_5y0.png)  
 *(0.5, 0) places the label horizontally centered above the label point*
 
 ### Displacement
