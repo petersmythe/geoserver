@@ -17,7 +17,7 @@ This is the source (mask):
 
 The SLD will contain three FeatureTypeStyles. The first one would be the standard rules (states colored by population) and the last one will contain the label rules. The second (middle) one is where the blending will occur:
 
-``` xml
+```xml
 ...
 <FeatureTypeStyle>
   <!-- Usual states rules, skipped for brevity -->
@@ -51,7 +51,7 @@ This other background layer is hardly visible, because it has been cut by the ma
 
 In order to achieve the desired result no matter how the client composes the request, the first FeatureTypeStyle that draws the polygons (the states themselves) needs to be set as a *compositing base*, ensuring the mask will only be applied to it.
 
-``` xml
+```xml
 <VendorOption name="composite-base">true</VendorOption>
 ```
 

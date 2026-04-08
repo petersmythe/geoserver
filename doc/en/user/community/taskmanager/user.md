@@ -45,7 +45,7 @@ Furthermore, a property should be added to the `taskmanager.properties` file eac
 
 Task Manager allows any number of databases to be used both as sources and targets for data transfer operations. These are configured via the Spring configuration file. Currently only PostGIS is supported as a target (as well as a source), either via JNDI or directly via JDBC.
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.PostgisDbSourceImpl"> 
     <property name="name" value="mypostgisdb"/> 
     <property name="host" value="hostname" /> 
@@ -63,7 +63,7 @@ Task Manager allows any number of databases to be used both as sources and targe
 </bean>
 ```
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.PostgisJndiDbSourceImpl">
     <property name="name" value="mypostgisjndidb" />
     <property name="jndiName" value="java:/comp/env/jdbc/my-jndi-source" />
@@ -88,7 +88,7 @@ Roles can be specified for [security](#security) purposes.
 
 Other database systems should generally work as a source database (not for publishing) using the GenericDbSourceImpl (this has been tested with MS SQL).
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.GenericDbSourceImpl">
     <property name="name" value="mysqldb" />
     <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/> 
@@ -101,7 +101,7 @@ Other database systems should generally work as a source database (not for publi
 
 There is also specific support for Informix as a source database (not for publishing).
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.InformixDbSourceImpl">
     <property name="name" value="myinformixdb" />
     <property name="driver" value="com.informix.jdbc.IfxDriver"/> 
@@ -113,7 +113,7 @@ There is also specific support for Informix as a source database (not for publis
 
 It is also possible to use a source that does not support geometries, and translate them automatically from some raw type. To do this, one must create a table in the database that contains a list of all geometry columns that need to be translated. This can be configured as follows:
 
-``` xml
+```xml
 <bean name="geomtable" class="org.geoserver.taskmanager.external.impl.GeometryTableImpl">
     <!-- the name of your metadata table -->
    <property name="nameTable" value="Metadata_Geo" />
@@ -139,7 +139,7 @@ It is also possible to use a source that does not support geometries, and transl
 
 Task Manager allows any number of external geoservers to be used as targets for layer publications. These are configured via the Spring configuration file.
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.ExternalGSImpl"> 
     <property name="name" value="mygs"/> 
     <property name="url" value="http://my.geoserver/geoserver" /> 
@@ -153,7 +153,7 @@ The ''supportsMetadata'' field indicates whether this target geoserver contains 
 
 The configuration above will log-in to geoserver using basic authentication. Task Manager also supports geoservers protected with keycloak:
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.ExternalKeycloakGSImpl">
     <property name="name" value="keycloakgs"/>
     <property name="url" value="http://my.geoserver/geoserver"/>
@@ -175,7 +175,7 @@ File Services are used to upload and access files such as raster layers or vecto
 
 Regular file services provide support for rasters and vector files that are stored on the hard drive.
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.FileServiceImpl">
     <property name="rootFolder" value="/tmp"/>
     <property name="name" value="Temporary Directory"/>
@@ -214,7 +214,7 @@ Roles can optionally be specified for [security](#security) purposes as follows:
 
 Amazon AWS S3 buckets are also supported.
 
-``` xml
+```xml
 <bean class="org.geoserver.taskmanager.external.impl.AWSFileServiceImpl">
     <property name="rootFolder" value="/tmp"/>
     <property name="anonymous" value="false"/>
