@@ -519,13 +519,13 @@ Reference to other section of the document (some care is required to reference a
 
     ```
     Administrators have option to manage
-    [default langauge](../../user/configuration/internationalization/index.md#default-language).
+    [default langauge](../user/configuration/internationalization/index.md#default-language).
     ```
 
 === "Preview"
 
     Administrators have option to manage
-    [default langauge](../../user/configuration/internationalization/index.md#default-language).
+    [default langauge](../user/configuration/internationalization/index.md#default-language).
 
 When linking do not use "here" as link text, instead use the title of the heading
 being navigated to.
