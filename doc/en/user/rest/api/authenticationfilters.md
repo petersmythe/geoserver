@@ -349,7 +349,7 @@ curl -u admin:geoserver \
 
 ## Tips and troubleshooting
 
-- If JSON requests fail with status **415**, ensure **``Content-Type: application/json``** is set.
-- If you receive **406**, adjust the **``Accept``** header to `application/xml` or `application/json`.
-- When creating resources, the server typically returns **201 Created** with a **``Location``** header pointing to the new resource. Some deployments may return **200 OK**.
+- If JSON requests fail with status **415**, ensure **`Content-Type: application/json`** is set.
+- If you receive **406**, adjust the **`Accept`** header to `application/xml` or `application/json`.
+- When creating resources, the server typically returns **201 Created** with a **`Location`** header pointing to the new resource. Some deployments may return **200 OK**.
 - For JSON, remember to **wrap** the payload using the fully qualified filter class name as the top-level key; for XML, use that class name as the **root element**.

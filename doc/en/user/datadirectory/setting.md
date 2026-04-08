@@ -42,13 +42,13 @@ To set the environment variable:
     export GEOSERVER_DATA_DIR=/var/opt/geoserver/data
     ```
 
-2.  To make the variable persist, place the command in the **``**.bash_profile`or **`**.bashrc`` file. Ensure that this done for the user running GeoServer.
+2.  To make the variable persist, place the command in the **`.bash_profile`** or **`.bashrc`** file. Ensure that this done for the user running GeoServer.
 
 ## Mac OS X
 
 For the binary install of GeoServer on Mac OS X, the data directory is set in the same way as for Linux.
 
-- file:`\~/Library/Application Support/GeoServer/data_dir` (example location)
+- file:`~/Library/Application Support/GeoServer/data_dir` (example location)
 
 For the Mac OS X install, set the `GEOSERVER_DATA_DIR` environment variable to the desired directory location.
 
@@ -60,8 +60,8 @@ For the Mac OS X install, set the `GEOSERVER_DATA_DIR` environment variable to t
 
 2.  To make the variable persist, place the command in your preferred shell startup file:
 
-    - Bash: **``**.bash_profile`or **`**.bashrc``
-    - ZSH: **`\~/.zshrc`**
+    - Bash: **`.bash_profile`** or **`.bashrc`**
+    - ZSH: **`~/.zshrc`**
 
 ## Web archive
 
