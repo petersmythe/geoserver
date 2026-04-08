@@ -60,7 +60,7 @@ GeoServer operates with a time boxed release cycle, maintaining "stable" and "ma
 !!! note  
       If you do see several releases being made concurrently, in response to an urgent vulnerability, the developers will not be in a position to tell you what is going on. Their goal is to provide you an opportunity to upgrade prior to public disclosure.
     
-      Those seeking more information, or with a legal obligation to be informed, are welcome to volunteer on the geoserver-security email list. See [Security Process](../../../developer/policies/security.md) for details on how to participate.
+      Those seeking more information, or with a legal obligation to be informed, are welcome to volunteer on the geoserver-security email list. See [Security Process](../../developer/policies/security.md) for details on how to participate.
 
 ### Troubleshooting
 

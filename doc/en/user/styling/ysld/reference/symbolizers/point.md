@@ -54,14 +54,14 @@ where:
 | `stroke-linecap` | No | How line features are rendered at their ends. Options are `butt` (sharp square edge), `round` (rounded edge), and `square` (slightly elongated square edge). | `butt` |
 | `stroke-dasharray` | No | A numeric list signifying length of lines and gaps, creating a dashed effect. Units are pixels, so `"2 3"` would be a repeating pattern of 2 pixels of drawn line followed by 3 pixels of blank space. If only one number is supplied, this will mean equal amounts of line and gap. | No dash |
 | `stroke-dashoffset` | No | Number of pixels into the dasharray to offset the drawing of the dash, used to shift the location of the lines and gaps in a dash. | `0` |
-| `stroke-graphic` | No | A design or pattern to be used along the stroke. Output will always be a linear repeating pattern, and as such is not tied to the value of `stroke-width`. Can either be a mark consisting of a common shape or a URL that points to a graphic. The `<graphic_options>` should consist of a mapping containing `symbols:` followed by an `external:` or `mark:`, with appropriate parameters as detailed in the [Point symbolizer](../point.md) section. Cannot be used with `stroke-graphic-fill`. | N/A |
-| `stroke-graphic-fill` | No | A design or pattern to be used for the fill of the stroke. The area that is to be filled is tied directly to the value of `stroke-width`. Can either be a mark consisting of a common shape or a URL that points to a graphic. The `<graphic_options>` should consist of a mapping containing `symbols:` followed by an `external:` or `mark:`, with appropriate parameters as detailed in the [Point symbolizer](../point.md) section. Cannot be used with `stroke-graphic`. | N/A |
+| `stroke-graphic` | No | A design or pattern to be used along the stroke. Output will always be a linear repeating pattern, and as such is not tied to the value of `stroke-width`. Can either be a mark consisting of a common shape or a URL that points to a graphic. The `<graphic_options>` should consist of a mapping containing `symbols:` followed by an `external:` or `mark:`, with appropriate parameters as detailed in the [Point symbolizer](point.md) section. Cannot be used with `stroke-graphic-fill`. | N/A |
+| `stroke-graphic-fill` | No | A design or pattern to be used for the fill of the stroke. The area that is to be filled is tied directly to the value of `stroke-width`. Can either be a mark consisting of a common shape or a URL that points to a graphic. The `<graphic_options>` should consist of a mapping containing `symbols:` followed by an `external:` or `mark:`, with appropriate parameters as detailed in the [Point symbolizer](point.md) section. Cannot be used with `stroke-graphic`. | N/A |
 
 | Property | Required? | Description | Default value |
 |----|----|----|----|
 | `fill-color` | No | Color of inside of features. | `'#808080'` (gray) |
 | `fill-opacity` | No | Opacity of the fill. Valid values are a decimal value between `0` (completely transparent) and `1` (completely opaque). | `1` |
-| `fill-graphic` | No | A design or pattern to be used for the fill of the feature. Can either be a mark consisting of a common shape or a URL that points to a graphic. The `<graphic_options>` should consist of a mapping containing `symbols:` followed by an `external:` or `mark:`, with appropriate parameters as detailed in the [Point symbolizer](../point.md) section. | None |
+| `fill-graphic` | No | A design or pattern to be used for the fill of the feature. Can either be a mark consisting of a common shape or a URL that points to a graphic. The `<graphic_options>` should consist of a mapping containing `symbols:` followed by an `external:` or `mark:`, with appropriate parameters as detailed in the [Point symbolizer](point.md) section. | None |
 
 The use of `fill-graphic` allows for the following extra options:
 
@@ -97,29 +97,29 @@ The use of `fill-graphic` allows for the following extra options:
 
 | Property | Required? | Description | Default value |
 |----|----|----|----|
-| `geometry` | No | Specifies which attribute to use as the geometry (see [Geometry transformations in SLD](../../../../sld/extensions/geometry-transformations.md)) | First geometry attribute found (usually named `geom` or `the_geom`) |
-| `uom` | No | Unit of measure used for width calculations (see [Specifying symbolizer sizes in ground units](../../../../sld/extensions/uom.md)) | pixel |
+| `geometry` | No | Specifies which attribute to use as the geometry (see [Geometry transformations in SLD](../../../sld/extensions/geometry-transformations.md)) | First geometry attribute found (usually named `geom` or `the_geom`) |
+| `uom` | No | Unit of measure used for width calculations (see [Specifying symbolizer sizes in ground units](../../../sld/extensions/uom.md)) | pixel |
 
 The following properties are equivalent to SLD "vendor options".
 
-Additional "vendor options" property for [Label Obstacles](../../../../sld/extensions/label-obstacles.md):
+Additional "vendor options" property for [Label Obstacles](../../../sld/extensions/label-obstacles.md):
 
 | Property | Required? | Description | Default value |
 |----|----|----|----|
-| `x-labelObstacle` | No | Marks the symbolizer as an obstacle such that labels drawn via a [text symbolizer](../text.md) will not be drawn over top of these features. Options are `true` or `false`. Note that the bounding boxes of features are used when calculating obstacles, so unintended effects may occur when marking a line or polygon symbolizer as an obstacle. | `false` |
+| `x-labelObstacle` | No | Marks the symbolizer as an obstacle such that labels drawn via a [text symbolizer](text.md) will not be drawn over top of these features. Options are `true` or `false`. Note that the bounding boxes of features are used when calculating obstacles, so unintended effects may occur when marking a line or polygon symbolizer as an obstacle. | `false` |
 
 Additional "vendor options" properties for [Color compositing and color blending](../../../sld/extensions/composite-blend/index.md):
 
-Additional "vendor options" properties for [Color compositing and color blending](../../../../sld/extensions/composite-blend/index.md):
+Additional "vendor options" properties for [Color compositing and color blending](../../../sld/extensions/composite-blend/index.md):
 
 | Property | Required? | Description | Default value |
 |----|----|----|----|
 | `x-composite` | No | Allows for both alpha compositing and color blending options between symbolizers. | N/A |
-| `x-composite-base` | No | Allows the rendering engine to use the symbolizer mapping to define a "base" buffer for subsequent compositing and blending using `x-composite`. See the section on [Feature Styles](../../featurestyles.md#ysld_reference_featurestyles_composite) for more details. | `false` |
+| `x-composite-base` | No | Allows the rendering engine to use the symbolizer mapping to define a "base" buffer for subsequent compositing and blending using `x-composite`. See the section on [Feature Styles](../featurestyles.md#ysld_reference_featurestyles_composite) for more details. | `false` |
 
 Additional "vendor options" properties for [Rendering Selection](../../../sld/extensions/rendering-selection.md):
 
-Additional "vendor options" properties for [Rendering Selection](../../../../sld/extensions/rendering-selection.md):
+Additional "vendor options" properties for [Rendering Selection](../../../sld/extensions/rendering-selection.md):
 
 | Property | Required? | Description | Default value |
 |----|----|----|----|

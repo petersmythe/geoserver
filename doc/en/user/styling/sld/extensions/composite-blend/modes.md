@@ -32,4 +32,4 @@ Only the source will be present in the output.
 
 Only the destination will be present in the output.
 
-*Note:* this page is a reference for the available composite and blending modes in GeoServer. For syntax details, see [Composite blend syntax](../syntax.md).
+*Note:* this page is a reference for the available composite and blending modes in GeoServer. For syntax details, see [Composite blend syntax](syntax.md).
