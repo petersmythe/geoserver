@@ -45,7 +45,7 @@ regex=[0-9]{4}.[0-9]{2}.[0-9]{2},format=yyyy.MM.dd
 
 ### datastore.properties:
 
-Due to the amount of available datasets, storing the ImageMosaic index on a DBMS is recommended, i.e. a PostGIS DB. See ``**`datastore.properties``** <../../data/raster/imagemosaic/configuration.rst#mosaic_datastore_properties>`_ section of the ImageMosaic documentation for more info. Make sure that a DB with the name reported in the datastore is available
+Due to the amount of available datasets, storing the ImageMosaic index on a DBMS is recommended, i.e. a PostGIS DB. See [datastore.properties](../../data/raster/imagemosaic/configuration.md#mosaic_datastore_properties) section of the ImageMosaic documentation for more info. Make sure that a DB with the name reported in the datastore is available
 
 ```
 user=postgres
