@@ -4,7 +4,7 @@ Welcome! From all of the GeoServer users and developers, we are happy to see tha
 
 ## Writing Documentation
 
-GeoServer documentation written in [Markdown](https://docutils.sourceforge.io/rst.md), a lightweight markup syntax, and built into HTML and PDF content using [mkdocs](https://www.mkdocs.org/), a documentation framework written by the developers of Python. In this way, the documentation is managed alongside the source code of GeoServer itself, and exist in the [same repository](https://github.com/geoserver/geoserver). Using this approach, version control follows naturally, so documentation can now be version specific.
+GeoServer documentation written in [Markdown](https://www.markdownguide.org), a lightweight markup syntax, and built into HTML and PDF content using [mkdocs](https://www.mkdocs.org/), a documentation framework written by the developers of Python. In this way, the documentation is managed alongside the source code of GeoServer itself, and exist in the [same repository](https://github.com/geoserver/geoserver). Using this approach, version control follows naturally, so documentation can now be version specific.
 
 We handle changes to the documentation in the same way as we do changes to the code base, so you need to make a branch for your change and submit it as a "pull request" to the main repository, this is all explained in the [Workflow](workflow.md) section later.
 

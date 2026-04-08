@@ -120,7 +120,7 @@ docker run -it -p 8080:8080 \
 ```
 {% endif %}
 
-This will download and install the [YSLD](../../styling/ysld/index.md) and [OGCAPI - Features](../../services/features/index.md) extension.
+This will download and install the [YSLD](../../styling/ysld/) and [OGCAPI - Features](../../services/features/) extension.
 
 Here is a list of available extensions (taken from the [build server](https://build.geoserver.org/geoserver/main/ext-latest/)):
 
@@ -160,7 +160,7 @@ If you are interested in helping out, please make contact via the [developer for
 
 Reference:
 
-- [community modules](https://docs.geoserver.org/latest/en/developer/policies/community-modules.md) (Developer Guide)
+- [community modules](../../../developer/policies/community-modules.md) (Developer Guide)
 {% else %}
 To work with community modules you must be using the GeoServer {{ version }}.x nightly build that matches the community module build:
 

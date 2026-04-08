@@ -4,7 +4,7 @@ GeoServer exists because of the efforts of people like you.
 
 There are many ways that you can help out with the GeoServer project. GeoServer fully embraces an open source development model that does not see a split between user and developer, producer and consumer, but instead sees everyone as a valuable contributor.
 
-GeoServer operates with full transparency with public [policies and procedures](https://docs.geoserver.org/latest/en/developer/policies/index.md). We look forward to working with you.
+GeoServer operates with full transparency with public [policies and procedures](../../../developer/policies/index.md). We look forward to working with you.
 
 ## Development
 
@@ -12,10 +12,10 @@ Helping to develop GeoServer is the obvious way to help out. Developers usually 
 
 You can find the project on [github.com/geoserver](https://github.com/geoserver/geoserver). Anyone can submit pull requests, following our [contributing policy](https://github.com/geoserver/geoserver/blob/main/CONTRIBUTING.md), which will be evaluated by the team.
 
-To learn more about contributing to the GeoServer codebase, we recommend reading the [Developers Guide](https://docs.geoserver.org/latest/en/developer/) and joining GeoServer Developers (see below).
+To learn more about contributing to the GeoServer codebase, we recommend reading the [Developers Guide](../../../developer/) and joining GeoServer Developers (see below).
 
 !!! note
-    For [commit access](https://docs.geoserver.org/latest/en/developer/policies/committing.md) new developers can request to work on a community module immediately, or make contributions over time to earn a nomination for full commit access.
+    For [commit access](../../../developer/policies/committing.md) new developers can request to work on a community module immediately, or make contributions over time to earn a nomination for full commit access.
 
 ## Documentation
 
@@ -24,10 +24,10 @@ Another crucial way to help out is with documentation. Whether it's adding tutor
 Our official documentation is contained as part of our [official code repository](https://github.com/geoserver/geoserver). Anyone can submit pull requests, which will be evaluated by the team.
 
 !!! info "See Also"
-    To learn more about contributing to the GeoServer documentation, we recommend reading the [Documentation Guide](https://docs.geoserver.org/latest/en/docguide/) and joining GeoServer Developers (see below).
+    To learn more about contributing to the GeoServer documentation, we recommend reading the [Documentation Guide](../../../docguide/) and joining GeoServer Developers (see below).
 
 !!! note
-    For typos and other small changes you can use the **Edit Page** link on any page. Please see [Quick Fix](https://docs.geoserver.org/latest/en/docguide/quickfix.html) example.
+    For typos and other small changes you can use the **Edit Page** link on any page. Please see [Quick Fix](../../../docguide/quickfix.md) example.
 
 ## GeoServer User
 
@@ -54,7 +54,7 @@ The GeoServer Developers forum is for those working directly on the project, wit
 The geoserver-security mailing list is for volunteers evaluating incoming security vulnerability reports and carefully working to see they are addressed in a responsible fashion.
 
 !!! info "See Also"
-    The [Security Procedure](https://docs.geoserver.org/latest/en/developer/policies/security.md) page in the Developers Guide provides additional information on how security vulnerabilities are handled.
+    The [Security Procedure](../../../developer/policies/security.md) page in the Developers Guide provides additional information on how security vulnerabilities are handled.
 
 ## Reporting a Bug
 
@@ -87,7 +87,7 @@ If you are not in position to communicate in public, please consider [commercial
 
 We would like GeoServer available in as many languages as possible. The two areas of GeoServer to translate are the text that appears in the [Web administration interface](../webadmin/index.md) and this documentation.
 
-If you are interested in helping with this task, please read the [translation](https://docs.geoserver.org/latest/en/developer/translation.md) section of the developers manual, and let us know via communication channels above.
+If you are interested in helping with this task, please read the [translation](../../../developer/translation.md) section of the developers manual, and let us know via communication channels above.
 
 ## Suggest improvements
 
