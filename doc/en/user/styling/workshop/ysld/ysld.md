@@ -29,7 +29,7 @@ The ``<property>`` is a string denoting the property name, while the ``<value>``
 | Float      | Numerical value. May be surrounded by quotes.             |
 | Text       | Text value. If value is ambiguous, use single quotes.     |
 | Color      | Hexadecimal color of the form ``'#RRGGBB'``.  |
-| Tuple      | A list of values in brackets. e.g. [[0, 1]]{.title-ref} |
+| Tuple      | A list of values in brackets. e.g. `[0, 1]` |
 | Expression | CQL expression surrounded by ``\${ }``          |
 
 ### Mappings and lists

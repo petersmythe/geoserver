@@ -339,7 +339,7 @@ This section explores the use of attribute selectors and the ``@scale`` selector
     - Selectors separated by blank-space are combined CQL Filter AND
     - Selectors separated by a comma are combined using CQL Filter OR
 
-    Our first rule [[@scale < 9000000] [scalerank > 7]]{.title-ref} checks that the scale is less than 9M AND scalerank is greater than 7.
+    Our first rule `[@scale < 9000000] [scalerank > 7]` checks that the scale is less than 9M AND scalerank is greater than 7.
 
     ![image](../style/img/line_06_adjust.png)
 

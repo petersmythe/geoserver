@@ -58,7 +58,7 @@ The Eclipse M2 builder does recognize this plugin, build once on the command lin
 3.  Open **Advanced** options:
 
     - Profiles: ``release``
-    - Name template: [[groupId].[artifactId]]{.title-ref}
+    - Name template: `[groupId].[artifactId]`
 
     ![](img/m2_import.png)
 
