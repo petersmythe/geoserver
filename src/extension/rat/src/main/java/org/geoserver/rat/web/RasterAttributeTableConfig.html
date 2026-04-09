@@ -23,11 +23,13 @@
                 </div>
                 <div class="gs-form-group">
                   <span>Style name</span>
-                  <input class="w-md" type="text" wicket:id="styleName"/>
+                  <div class="gs-input-group">
+                    <input class="w-md" type="text" wicket:id="styleName"/>
+                    <button wicket:id="createStyles" type="submit" class="w-md">
+                      <wicket:message key="RasterAttributeTableConfig.create">Create style</wicket:message>
+                    </button>
+                  </div>
                 </div>
-                <button wicket:id="createStyles" type="submit" class="w-md">
-                  <wicket:message key="RasterAttributeTableConfig.create">Create style</wicket:message>
-                </button>
               </div>
               <div class="gs-form-group">
                 <div wicket:id="rat" class="largeTable"/>
