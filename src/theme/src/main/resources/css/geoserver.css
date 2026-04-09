@@ -2320,6 +2320,12 @@ div.value-wide {
 .instruct {
   display: none;
 }
+.gs-inline-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
 @media (max-width: 768px) {
   .gs-form {
     gap: 0.25rem;
@@ -2375,13 +2381,27 @@ div.value-wide {
     margin-bottom: 0;
   }
   table.gs-mobile-card-table .field-name {
-    font-weight: 800;
+    font-weight: 600;
+    max-width: 15rem;
+    width: 50%;
   }
   table.gs-mobile-card-table .field-value {
     font-weight: 400;
+    width: --webkit-fill-available;
   }
   table.gs-mobile-card-table > tbody tr th.selection {
-    display: none;
+    --gs-table-bg-type: none;
+    border: 0;
+    padding: 0;
+    padding-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  table.gs-mobile-card-table .gs-mobile-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
   }
 }
 
