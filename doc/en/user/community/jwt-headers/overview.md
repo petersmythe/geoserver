@@ -1,6 +1,6 @@
 # JWT Header Overview
 
-This module allows [JSON-based](https://en.wikipedia.org/wiki/JSON) headers (for username and roles) as well as [JWT-based](https://en.wikipedia.org/wiki/JSON_Web_Token) headers (for username and roles). It also allows for validating JWT-Based AccessTokens (i.e. via [OAUTH2](https://en.wikipedia.org/wiki/OAuth)/`OpenID Connect <https://en.wikipedia.org/wiki/OpenID#OpenID_Connect_(OIDC)>`_).
+This module allows [JSON-based](https://en.wikipedia.org/wiki/JSON) headers (for username and roles) as well as [JWT-based](https://en.wikipedia.org/wiki/JSON_Web_Token) headers (for username and roles). It also allows for validating JWT-Based AccessTokens (i.e. via [OAUTH2](https://en.wikipedia.org/wiki/OAuth)/[OpenID Connect](https://en.wikipedia.org/wiki/OpenID#OpenID_Connect_(OIDC))).
 
 If you are using something like [Apache's mod_auth_openidc](https://github.com/OpenIDC/mod_auth_openidc), then this module will allow you to;
 

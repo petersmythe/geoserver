@@ -384,7 +384,7 @@ The **text** symbolizer with the **label** property are required to label Point 
     ![image](../style/img/point_04_scale.png)
 
     !!! note
-        This YSLD makes use of a **define** to avoid repeating the point symbolizer content multiple times. As an example the [scale: [min, '4000000.0']]{.title-ref} rule, combined with the ``define:`` results in the following collection of properties:
+        This YSLD makes use of a **define** to avoid repeating the point symbolizer content multiple times. As an example the `scale: [min, '4000000.0']` rule, combined with the `define:` results in the following collection of properties:
     
         ``` yaml
         - scale: [min, '4000000.0']

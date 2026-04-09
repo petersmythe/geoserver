@@ -71,7 +71,7 @@ And we'll change various parameters in order to play with formats and palettes. 
 
 ![](tiger-ny-png-custom-palette.png)
 
-*PNG + `custom palette <http://geoserver.org/download/attachments/1278244/nyp.pal?version=1>`_*
+*PNG + [custom palette](http://geoserver.org/download/attachments/1278244/nyp.pal?version=1)*
 
 The attachments include also the GIF outputs, whose size, appearance and generation time does not differ significantly from the PNG outputs.
 

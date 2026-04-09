@@ -19,7 +19,7 @@ The maven build supplied with eclipse works with the **`pom.xml`** files, howeve
 
 The Eclipse M2 builder does recognize this plugin, build once on the command line first:
 
-1.  Navigate to ``**`src/wcs1_1``**`.
+1.  Navigate to **`src/wcs1_1`**.
 
 2.  Compile, to force the code to be generated:
 
@@ -58,7 +58,7 @@ The Eclipse M2 builder does recognize this plugin, build once on the command lin
 3.  Open **Advanced** options:
 
     - Profiles: ``release``
-    - Name template: [[groupId].[artifactId]]{.title-ref}
+    - Name template: `[groupId].[artifactId]`
 
     ![](img/m2_import.png)
 
