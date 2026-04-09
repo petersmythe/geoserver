@@ -285,7 +285,7 @@ Requirements:
     - click on the **Sign in** button and enter the user and password.
     - after creating the session, and choosing the test, enter the following parameters:
 
-    1.  `Capabilities URL` <http://><ip-of-the-GeoServer>:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
+    1.  `Capabilities URL` http://ip-of-the-GeoServer:8080/geoserver/wfs?request=getcapabilities&service=wfs&version=1.0.0
 
     2.  `Enable tests with multiple namespaces` tests included
 
@@ -348,7 +348,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
     - click on the **Sign in** button and enter the user and password.
     - after creating the session, and choosing the test, enter the following parameters:
 
-    1.  `Capabilities URL` <http://><ip-of-the-GeoServer>:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
+    1.  `Capabilities URL` http://ip-of-the-GeoServer:8080/geoserver/wfs?service=wfs&request=getcapabilities&version=1.1.0
 
     2.  `Supported Conformance Classes`:
 
@@ -387,7 +387,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`
 
-        <http://><ip-of-the-GeoServer>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
+        http://ip-of-the-GeoServer:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.1.1
 
     2.  `UpdateSequence Values`:
 
@@ -435,7 +435,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`:
 
-        <http://><ip-of-the-GeoServer>:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
+        http://ip-of-the-GeoServer:8080/geoserver/wcs?service=wcs&request=getcapabilities&version=1.0.0
 
     2.  `MIME Header Setup`: "image/tiff"
 
@@ -487,7 +487,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`:
 
-        <http://><ip-of-the-GeoServer>:8080/geoserver/wcs
+        http://ip-of-the-GeoServer:8080/geoserver/wcs
 
     Click `Next`
 
@@ -518,7 +518,7 @@ Requirements: - GeoServer - teamengine - PostgreSQL - PostGIS
 
     1.  `Capabilities URL`:
 
-        <http://><ip-of-the-GeoServer>:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.3.0
+        http://ip-of-the-GeoServer:8080/geoserver/wms?service=wms&request=getcapabilities&version=1.3.0
 
     2.  `UpdateSequence Values`:
 
@@ -543,13 +543,13 @@ As a result of the test run, a `logs/testng-results.xml` file will be generated,
 
 Make sure you've prepared the `geoserver.war` as instructed above with `make war`.
 
-``` shell
+```shell
 make clean build test suite=ogcapi-features10
 ```
 
 If there are test errors, a human readable summary will be printed to the console, similar to this:
 
-``` shell
+```shell
 test-method: verifyCollectionsPathCollectionCrsPropertyContainsDefaultCrs
 description: Implements A.1 Discovery, Abstract Test 2 (Requirement /req/crs/fc-md-crs-list B), crs property contains default crs in the collection objects in the path /collections
 depends-on-groups: crs-conformance
@@ -585,13 +585,13 @@ Since teamengine runs as a Docker container, in order to reach out to a GeoServe
 
 For the case of the `ogcapi-features10`, you can simply run
 
-``` shell
+```shell
 make ogcapi-features10-localhost
 ```
 
 And it'll print out
 
-``` shell
+```shell
 Running the ogcapi-features10 test suite with the teamengine REST API against http://172.17.0.1:8080/geoserver/ogc/features/v1
 ```
 
@@ -599,25 +599,25 @@ The `ogcapi-features10-localhost` target is a special case of `test-external`, w
 
 During development or troubleshooting, you might want to either use a different GeoServer port, or test only a specific workspace or feature type. For that you can use a custom `iut` (Instance Under Test) URL for the `test-external` make target. For example, to hit a GeoServer instance running on the host at port `9090`, and address only the `sf:archsites` layer, you can use a `iut` URL combining the `172.17.0.1` IP address and GeoServer's `/sf/archsites` virtual service:
 
-``` shell
+```shell
 make test-external suite=ogcapi-features10 iut="http://172.17.0.1:9090/geoserver/sf/archsites/ogc/features/v1"
 ```
 
 And it'll print out
 
-``` shell
+```shell
 Running the ogcapi-features10 test suite with the teamengine REST API against http://172.17.0.1:9090/geoserver/sf/archsites/ogc/features/v1
 ```
 
 Finally, run
 
-``` shell
+```shell
 make clean
 ```
 
 to stop the docker composition and clean up the `logs/` directory, or
 
-``` shell
+```shell
 make stop
 ```
 
@@ -657,7 +657,7 @@ Shortly before a major (2.xx.0) release, the following process should be followe
 
 4.  Start up the Docker services (PostgreSQL & 7x GeoServer instances) against an empty database directory
 
-``` shell
+```shell
 rm -rf /home/cite/postgis-data/wfs
 docker compose -f docker-compose.yml up
 ```
@@ -669,21 +669,21 @@ It will also spin up 7 GeoServer services, typically 1 data directory per CITE t
 1.  Log into <https://cite.opengeospatial.org/teamengine> and create Test Sessions for all the tests that GeoServer should pass:
 
     1.  OGC API - Features 1.0 <https://g1.cite.geoserver.org/geoserver/cite/ogc/features/v1>
-    2.  Web Map Tile Service (WMTS) 1.0.0 <https://g1.cite.geoserver.org/geoserver/gwc/service/wmts?service=WMTS&request=GetCapabilities&AcceptVersions=1.0.0> ``**``
+    2.  Web Map Tile Service (WMTS) 1.0.0 <https://g1.cite.geoserver.org/geoserver/gwc/service/wmts?service=WMTS&request=GetCapabilities&AcceptVersions=1.0.0> 
     3.  Web Map Service (WMS) 1.3.0 <https://g1.cite.geoserver.org/geoserver/cite/wms?service=wms&request=GetCapabilities&version=1.3.0>
     4.  Web Map Service (WMS) 1.1.1 <https://g1.cite.geoserver.org/geoserver/cite/wms?service=wms&request=GetCapabilities&version=1.1.1>
     5.  Web Feature Service (WFS) 2.0 <https://g2.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=2.0.0>
     6.  Web Feature Service (WFS) 1.1.0 <https://g3.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=1.1.0>
     7.  Web Feature Service (WFS) 1.0.0 <https://g4.cite.geoserver.org/geoserver/wfs?service=wfs&request=GetCapabilities&version=1.0.0>
-    8.  Web Coverage Service (WCS) 2.0.1 <https://g5.cite.geoserver.org/geoserver/wcs?service=WCS&request=GetCapabilities&version=2.0.1> (yes, uppercase WCS is needed) ``**``
+    8.  Web Coverage Service (WCS) 2.0.1 <https://g5.cite.geoserver.org/geoserver/wcs?service=WCS&request=GetCapabilities&version=2.0.1> (yes, uppercase WCS is needed) `**`
     9.  Web Coverage Service (WCS) 1.1.1 <https://g5.cite.geoserver.org/geoserver/wcs?service=wcs&request=GetCapabilities&version=1.1.1>
     10. Web Coverage Service (WCS) 1.0.0 <https://g6.cite.geoserver.org/geoserver/wcs?service=wcs&request=GetCapabilities&version=1.0.0>
-    11. GeoPackage 1.2 <https://g7.cite.geoserver.org/geoserver/topp/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=topp:states&outputFormat=application/geopackage%2bsqlite3> (upload, not URL ``**``)
+    11. GeoPackage 1.2 <https://g7.cite.geoserver.org/geoserver/topp/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=topp:states&outputFormat=application/geopackage%2bsqlite3> (upload, not URL `**`)
     12. GeoTiff 1.1 <https://g5.cite.geoserver.org/geoserver/wms?service=WMS&version=1.1.0&request=GetMap&layers=topp:tazbm&bbox=146.49999999999477,-44.49999999999785,147.99999999999474,-42.99999999999787&width=767&height=768&srs=EPSG:4326&styles=&format=image/geotiff>
 
     Follow the Run xxx tests instructions above for all the tests settings. Run them one at a time, it should take less than 2 hours to complete, sometimes with manual visual checks (WMS).
 
-    ``**`` These ones are currently still failing. See [previous test results](https://docs.google.com/spreadsheets/d/1FzsQE_WX0RdnXek1bJSIuO2AkRdmq__6JUJHEjSEoQ4).
+    `**` These ones are currently still failing. See [previous test results](https://docs.google.com/spreadsheets/d/1FzsQE_WX0RdnXek1bJSIuO2AkRdmq__6JUJHEjSEoQ4).
 
 2.  Note all the test sessions that passed (hopefully all of them!) and provide these to our OSGeo contact (currently kalxas), along with your TE username and password (yes, ridiculous!)
 

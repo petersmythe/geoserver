@@ -45,7 +45,7 @@ regex=[0-9]{4}.[0-9]{2}.[0-9]{2},format=yyyy.MM.dd
 
 ### datastore.properties:
 
-Due to the amount of available datasets, storing the ImageMosaic index on a DBMS is recommended, i.e. a PostGIS DB. See ``**`datastore.properties``** <../../data/raster/imagemosaic/configuration.rst#mosaic_datastore_properties>`_ section of the ImageMosaic documentation for more info. Make sure that a DB with the name reported in the datastore is available
+Due to the amount of available datasets, storing the ImageMosaic index on a DBMS is recommended, i.e. a PostGIS DB. See [datastore.properties](../../data/raster/imagemosaic/configuration.md#mosaic_datastore_properties) section of the ImageMosaic documentation for more info. Make sure that a DB with the name reported in the datastore is available
 
 ```
 user=postgres
@@ -116,7 +116,7 @@ Once a prototype has been provided we need to initialize the store by querying i
 
 *Response*
 
-``` xml
+```xml
 <List>
   <coverageName>modisvi</coverageName>
 </list>
@@ -132,7 +132,7 @@ Once we get the list of available coverages, we need to configure a coverage by 
 
 where coverage.xml has this content:
 
-``` xml
+```xml
 <coverage>
   <name>modisvi</name>
   <nativeName>modisvi</nativeName>
@@ -164,7 +164,7 @@ Now that we have a coverageStore ready and a coverage layer configured we can st
 
 That MODIS data has 2 bands representing (Normalized Difference Vegetation Index) (NDVI) and Enhanced Vegetation Index (EVI). Let's add this ndvi.sld style to apply a proper colormap to the NDVI band (copy this content to a file named ndvi.sld to be used by the next REST call):
 
-``` xml
+```xml
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:sld="http://www.opengis.net/sld" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" version="1.0.0">
   <NamedLayer>
     <Name>Default Styler</Name>

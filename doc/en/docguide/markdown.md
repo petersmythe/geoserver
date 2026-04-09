@@ -215,7 +215,7 @@ Be considerate of file size:
 * If taking a screenshot with HiDPI display, process by 50% to 72 DPI.
   
     ![](img/screen-snap-scale.png)  
-    *Screen Snap scale to 72 DPI*
+    *Screenshot scale to 72 DPI*
     
     !!! tip
         You may find it faster to adjust monitor resolution in order
@@ -246,13 +246,13 @@ Crop for form and data entry steps:
     
     ```markdown
     ![](img/screen-snap-form.png)  
-    *Form screen snap*
+    *Form screenshot*
     ```
 
 === "Preview"
 
     ![](img/screen-snap-form.png)  
-    *Form screen snap*
+    *Form screenshot*
 
 Scale for smaller elements like dialogs and menus:
 
@@ -260,13 +260,13 @@ Scale for smaller elements like dialogs and menus:
     
     ```markdown
     ![](img/screen-snap-dialog.png){: width=50%}  
-    *Dialog screen snap*
+    *Dialog screenshot*
     ```
 
 === "Preview"
 
     ![](img/screen-snap-dialog.png){: width=50%}  
-    *Dialog screen snap*
+    *Dialog screenshot*
 
 
 ### Lists
@@ -447,7 +447,7 @@ For use of note-like callout inside a list item, use inline emphasis can be an a
         !!! danger
             Do not rely on this in production.
             
-    2. Remember use of ``ENTITY_RESOLUTION_UNRESTRICTED`` intended for troubelshooing only.
+    2. Remember use of ``ENTITY_RESOLUTION_UNRESTRICTED`` intended for troubleshooting only.
        
         **:material-pencil-circle: Note:** Do not rely on this in production.
 
@@ -463,7 +463,7 @@ For use of note-like callout inside a list item, use inline emphasis can be an a
         !!! danger
             Do not rely on this in production.
             
-    2. Remember use of ``ENTITY_RESOLUTION_UNRESTRICTED`` intended for troubelshooing only.
+    2. Remember use of ``ENTITY_RESOLUTION_UNRESTRICTED`` intended for troubleshooting only.
        
         **:material-pencil-circle: Note:** Do not rely on this in production.
 
@@ -496,7 +496,7 @@ For the heading:
 ### Headings and anchors
 ```
 
-May be referneced using `#anchor` or `#headings-and-anchors`.
+May be referenced using `#anchor` or `#headings-and-anchors`.
 
 ### Linking
 
@@ -519,13 +519,13 @@ Reference to other section of the document (some care is required to reference a
 
     ```
     Administrators have option to manage
-    [default langauge](../user/configuration/internationalization/index.md#default-language).
+    [default language](../user/configuration/internationalization/index.md#default-language).
     ```
 
 === "Preview"
 
     Administrators have option to manage
-    [default langauge](../user/configuration/internationalization/index.md#default-language).
+    [default language](../user/configuration/internationalization/index.md#default-language).
 
 When linking do not use "here" as link text, instead use the title of the heading
 being navigated to.
@@ -538,13 +538,13 @@ being navigated to.
     
     ```Markdown
     Links to content within a page: [anchors](#anchor), and [linking](#linking),
-    or link to content on another page: [Be concist](style.md#be-concise).
+    or link to content on another page: [Be concise](style.md#be-concise).
     ```
 
 === "Preview"
 
     Links to content within a page: [anchors](#anchor), and [linking](#linking),
-    or link to content on another page: [Be concist](style.md#be-concise).
+    or link to content on another page: [Be concise](style.md#be-concise).
 
 
 External link:
@@ -564,12 +564,12 @@ Local file:
 === "Markdown"
 
     ```md
-    [An local file](img/logo-icon.svg)
+    [A local file](img/logo-icon.svg)
     ```
 
 === "Preview"
 
-    [An local file](img/logo-icon.svg)
+    [A local file](img/logo-icon.svg)
     
 Force download link:
 
@@ -585,7 +585,7 @@ Force download link:
 
 ### Inline code and code blocks
 
-Inline code is presented as monspace using `` ` `` characters.
+Inline code is presented as monospace using `` ` `` characters.
 
 === "Markdown"
     

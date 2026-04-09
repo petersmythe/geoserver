@@ -18,13 +18,13 @@ GeoServer can have the capabilities documents report a proxy properly. "The Prox
 
 This setting is available in the Administration Console and REST API by GeoServer Administrator. This setting may also be managed using the `PROXY_BASE_URL` [application property](properties/index.md) defined by a System Administrator.
 
-``` bash
+```bash
 -DPROXY_BASE_URL=https://example.net/geoserver
 ```
 
 The Proxy Base URL field support environment parametrization (see [Parameterize catalog settings](../datadirectory/configtemplate.md) ) by activating the JVM parameter:
 
-``` bash
+```bash
 -DALLOW_ENV_PARAMETRIZATION=true
 ```
 
@@ -36,7 +36,7 @@ Once activated the environment parametrization Proxy Base URL can be parameters 
 
 Checking this box allows a by-request modification of the proxy URL using templates (templates based on HTTP proxy headers). This setting may also be managed using the `PROXY_BASE_URL_HEADERS` boolean system property or environment variable defined by a System Administrator: setting it to true will enable the headers variables usage for proxy base URL on all workspaces, overriding any GeoServer datadir configuration.
 
-``` bash
+```bash
 -DPROXY_BASE_URL_HEADERS=true
 ```
 
@@ -124,9 +124,9 @@ Global Settings are also used to control the GeoServer application as a whole.
 
 #### Log Location {: #config_globalsettings_log_location }
 
-The log file location must be set using the `GEOSERVER_LOG_LOCATION` [application property](../configuration/logging/#logging_location). A log location may be a directory or a file, and can be specified as an absolute path (e.g., **`C:\GeoServer\GeoServer.log`**) or a relative one (for example, **`geoserver.log`**). Relative paths are relative to the GeoServer data directory. Default is **`logs/geoserver.log`**.
+The log file location must be set using the `GEOSERVER_LOG_LOCATION` [application property](logging.md#logging_location). A log location may be a directory or a file, and can be specified as an absolute path (e.g., **`C:\GeoServer\GeoServer.log`**) or a relative one (for example, **`geoserver.log`**). Relative paths are relative to the GeoServer data directory. Default is **`logs/geoserver.log`**.
 
-See [Configuring the log location](logging/#logging_location) for details (this setting is applied to the FileAppender or RollingFile `geoserverlogfile` appender).
+See [Configuring the log location](logging.md#logging_location) for details (this setting is applied to the FileAppender or RollingFile `geoserverlogfile` appender).
 
 !!! note
     As of GeoServer 3.0, the log location can no longer be set via the Admin Console or REST API. Use the `GEOSERVER_LOG_LOCATION` application property instead.
