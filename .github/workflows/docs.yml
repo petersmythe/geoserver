@@ -1,18 +1,16 @@
-name: Documentation Deployment
+name: Documentation GitHub CI
 
 on:
   push:
-    branches: [main, 2.28.x, 3.0.x, 3.1.x, afrigis-new-screenshots]
+    branches: [main, 3.0.x, 3.1.x, afrigis-new-screenshots]
     paths:
       - 'doc/**'
-      - 'mkdocs.yml'
-      - '.github/workflows/docs-deploy.yml'
+      - '.github/workflows/docs.yml'
   pull_request:
-    branches: [main, 3.0.x, 2.28.x]
+    branches: [main, 3.0.x, 3.1.x]
     paths:
       - 'doc/**'
-      - 'mkdocs.yml'
-      - '.github/workflows/docs-deploy.yml'
+      - '.github/workflows/docs.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -22,7 +20,7 @@ permissions:
   contents: write
 
 jobs:
-  build-docs:
+  mkdocs-build:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
@@ -53,7 +51,7 @@ jobs:
 
           if [ "$BRANCH" = "main" ]; then
             echo "version=latest" >> $GITHUB_OUTPUT
-            echo "title=Latest" >> $GITHUB_OUTPUT
+            echo "title=main (Latest)" >> $GITHUB_OUTPUT
             echo "aliases=main 3.0.x" >> $GITHUB_OUTPUT
             echo "is_default=false" >> $GITHUB_OUTPUT
           elif [ "$BRANCH" = "2.28.x" ]; then
@@ -103,9 +101,9 @@ jobs:
   # Deploy gh-pages content to GitHub Pages via Actions API.
   # This eliminates the ~15 min delay from pages-build-deployment.
   # Requires Pages source set to "GitHub Actions" in repo settings.
-  deploy-pages:
+  deploy-gh-pages:
     if: github.event_name == 'push'
-    needs: build-docs
+    needs: mkdocs-build
     runs-on: ubuntu-22.04
     permissions:
       pages: write
