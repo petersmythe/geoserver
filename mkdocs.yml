@@ -59,7 +59,7 @@ extra:
   version_selector:
     # GitHub Pages versions (mike-managed)
     - version: latest
-      title: Latest
+      title: main (Latest)
       aliases: [main, 3.0.x]
       archive: false
     # Archive versions (docs.geoserver.org)
