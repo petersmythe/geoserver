@@ -404,8 +404,9 @@
             });
           }
           
-          // Inject documentation switcher into Swagger UI topbar
+          // Inject documentation switcher into Swagger UI topbar (only once)
           setTimeout(function() {
+            if (document.querySelector('.md-doc-switcher-integrated')) return;
             const topbar = document.querySelector('.swagger-ui .topbar');
             if (topbar) {
               // Create wrapper for topbar content
