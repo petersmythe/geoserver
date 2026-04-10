@@ -96,9 +96,11 @@ jobs:
       - name: Deploy 404 page
         if: github.event_name == 'push'
         run: |
+          # Copy 404.html to /tmp BEFORE switching branches (gh-pages won't have doc/)
+          cp doc/404.html /tmp/404.html
           git fetch origin gh-pages
           git checkout gh-pages
-          cp ${{ github.workspace }}/doc/404.html 404.html
+          cp /tmp/404.html 404.html
           git add 404.html
           if git diff --cached --quiet; then
             echo "404.html unchanged, skipping commit"
