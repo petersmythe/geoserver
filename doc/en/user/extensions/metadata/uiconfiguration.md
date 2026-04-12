@@ -46,13 +46,13 @@ The value for `occurrence` determines whether or not the field should displayed 
 
 ![](images/single-value.png)
 
-*e.g. single value input field of fieldType ``TEXT``.*
+*e.g. single value input field of fieldType `TEXT`.*
 
 Choosing `REPEAT` will render the field in a table allowing the user to input multiple values.
 
 ![](images/repeat.png)
 
-*e.g. field of fieldType ``TEXT`` rendered as a table.*
+*e.g. field of fieldType `TEXT` rendered as a table.*
 
 The data in table can be sorted using the green arrow buttons.
 
@@ -72,7 +72,7 @@ condition: equalTo(typeOf("."), 'FeatureTypeInfo')
 
 ### tab
 
-Optionally, attributes may be displayed on separate tabs. All tabs must be listed under ``tabs`` in the main configuration. Then this property is used to assign each attribute to one or more tab (separated by comma), so that the custom metadata panel is divided in tabs:
+Optionally, attributes may be displayed on separate tabs. All tabs must be listed under `tabs` in the main configuration. Then this property is used to assign each attribute to one or more tab (separated by comma), so that the custom metadata panel is divided in tabs:
 
 ![](images/metadata-tabs.png)
 
@@ -86,7 +86,7 @@ Only used in the [DERIVED](#derived) field. The attribute `derivedFrom` contains
 
 ### typename
 
-The `typename` is a required attribute for [COMPLEX](#complex) fields. It contains the key pointing to the definition of the [COMPLEX](#complex) field. A special `typename` ``featureAttribute`` is reserved for the [Feature Catalog Generation](#feature-catalog-generation) and should not be used.
+The `typename` is a required attribute for [COMPLEX](#complex) fields. It contains the key pointing to the definition of the [COMPLEX](#complex) field. A special `typename` `featureAttribute` is reserved for the [Feature Catalog Generation](#feature-catalog-generation) and should not be used.
 
 ## Field Types
 
@@ -322,7 +322,7 @@ types:
 
 ## Feature Catalog Generation
 
-To create a feature catalog for a vector layer, a complex structure is needed to describe all the attributes. A lot of this information is already present in the GeoServer feature type or the database. Metadata supports automatically generating a new structure in the metadata from the information at hands that can be customised afterwards. To create support for this feature in your configuration, define a repeatable [COMPLEX](#complex) field with built-in `fieldType` ``featureAttribute`` .
+To create a feature catalog for a vector layer, a complex structure is needed to describe all the attributes. A lot of this information is already present in the GeoServer feature type or the database. Metadata supports automatically generating a new structure in the metadata from the information at hands that can be customised afterwards. To create support for this feature in your configuration, define a repeatable [COMPLEX](#complex) field with built-in `fieldType` `featureAttribute` .
 
 In the example the featureCatalog object has two attributes. A unique identifier of the type [UUID](#uuid) and the feature attribute field.
 
@@ -362,7 +362,7 @@ There are two options to do this:
 
 ## Internationalization support
 
-All metadata field labels that appear in the **Metadata fields** can be internationalized. This is performed by creating an internationalization (i18n) file named metadata.properties. Create an entry for each key in the gui configuration following this pattern: ``PREFIX.attribute-key``
+All metadata field labels that appear in the **Metadata fields** can be internationalized. This is performed by creating an internationalization (i18n) file named metadata.properties. Create an entry for each key in the gui configuration following this pattern: `PREFIX.attribute-key`
 
 e.g.
 

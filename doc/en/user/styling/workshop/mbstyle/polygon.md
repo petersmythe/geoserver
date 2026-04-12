@@ -31,12 +31,12 @@ Reference:
 This exercise makes use of the `ne:states_provinces_shp` layer.
 
 1.  Navigate to **Styles**.
-2.  Create a new style ``polygon_example``.
+2.  Create a new style `polygon_example`.
 
-    | Name:      | ``polygon_example`` |
+    | Name:      | `polygon_example` |
     |------------|-------------------------------|
-    | Workspace: | ``No workspace``    |
-    | Format:    | ``MBStyle``         |
+    | Workspace: | `No workspace`    |
+    | Format:    | `MBStyle`         |
 
 
     ![image](../style/img/polygon_02_create.png)
@@ -178,7 +178,7 @@ The **fill-pattern** property can be used to provide a pattern.
 
 The fill pattern is defined by repeating an image defined in a sprite-sheet.
 
-1.  Update ``polygon_example`` with the following sprite as a repeating fill pattern:
+1.  Update `polygon_example` with the following sprite as a repeating fill pattern:
 
     ```json hl_lines="4 11"
     {
