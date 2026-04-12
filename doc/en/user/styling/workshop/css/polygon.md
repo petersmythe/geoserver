@@ -31,12 +31,12 @@ Reference:
 This exercise makes use of the `ne:states_provinces_shp` layer.
 
 1.  Navigate to **Styles**.
-2.  Create a new style ``polygon_example``.
+2.  Create a new style `polygon_example`.
 
-    | Name:      | ``polygon_example`` |
+    | Name:      | `polygon_example` |
     |------------|-------------------------------|
-    | Workspace: | ``No workspace``    |
-    | Format:    | ``CSS``             |
+    | Workspace: | `No workspace`    |
+    | Format:    | `CSS`             |
 
 
     ![image](../style/img/polygon_02_create.png)
@@ -141,7 +141,7 @@ The fill pattern is defined by repeating one of the built-in symbols, or making 
 
     Use of **symbol** to access a predefined shape. SLD provides several well-known shapes (circle, square, triangle, arrow, cross, star, and x). GeoServer provides additional shapes specifically for use as fill patterns.
 
-    Update ``polygon_example`` with the following built-in symbol as a repeating fill pattern:
+    Update `polygon_example` with the following built-in symbol as a repeating fill pattern:
 
     ```css hl_lines="2"
     * {
@@ -589,7 +589,7 @@ A thematic map (rather than focusing on representing the shape of the world) use
 
 5.  This CSS makes use of cascading to avoid repeating the **stroke** and **stroke-width** information multiple times.
 
-    As an example the ``mapcolor9=2`` rule, combined with the ``*`` rule results in the following collection of properties:
+    As an example the `mapcolor9=2` rule, combined with the `*` rule results in the following collection of properties:
 
     ``` css
     [mapcolor9=2] {
