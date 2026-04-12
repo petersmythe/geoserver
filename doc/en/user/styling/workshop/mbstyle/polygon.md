@@ -636,8 +636,8 @@ A thematic map (rather than focusing on representing the shape of the world) use
 
 2.  For our `ne:states_provinces_shp` dataset, a **mapcolor9** attribute has been provided for this purpose. Theming by **mapcolor9** results in a map where neighbouring countries are visually distinct.
 
-    | > Qualitative 9-class Set3 |         |         |
-    |----------------------------|---------|---------|
+    | Qualitative 9-class Set3     |         |         |
+    |------------------------------|---------|---------|
     | #8dd3c7                    | #fb8072 | #b3de69 |
     | #ffffb3                    | #80b1d3 | #fccde5 |
     | #bebada                    | #fdb462 | #d9d9d9 |
