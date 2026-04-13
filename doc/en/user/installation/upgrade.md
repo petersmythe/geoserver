@@ -250,8 +250,10 @@ As of GeoServer 2.27, FreeMarker templates are now restricted from accessing met
 
 The following is an example of the exception message seen when processing a template that previously worked but is blocked by the new restrictions:
 
-> Caused by: freemarker.core.InvalidReferenceException: The following has evaluated to null or missing:
->     ==> features[0].type.catalog  [in template "content_en_US.ftl" at line 1, column 3]
+```
+Caused by: freemarker.core.InvalidReferenceException: The following has evaluated to null or missing:
+    ==> features[0].type.catalog  [in template "content_en_US.ftl" at line 1, column 3]
+```
 
 ### Content Security Policy (GeoServer 2.27 and newer)
 
