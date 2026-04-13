@@ -59,7 +59,7 @@ The `cql_filter` parameter is similar to same named WMS parameter, and allows ex
 
 For example, assume a image mosaic has a tile index with a `cloudCover` percentage attribute, then it's possible to mosaic only granules with a cloud cover less than 10% using:
 
-> cql_filter=cloudCover < 10
+`cql_filter=cloudCover < 10`
 
 For full details see the [ECQL Reference](../../filter/ecql_reference.md) and [CQL and ECQL](../../tutorials/cql/cql_tutorial.md) tutorial.
 
