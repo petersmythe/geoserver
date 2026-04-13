@@ -42,7 +42,7 @@ It's so 90s\... you should hire some fresh guys for your IT team. ;-)
 
 You need to set some system properties (http.proxy*) when you start your java programs.
 
-**On the browser, the scale is displayed with spaces to separate thousands and it's against my religion. How do I put my sacred separator?**
+## On the browser, the scale is displayed with spaces to separate thousands and it's against my religion. How do I put my sacred separator?
 
 By default, the browser's configured locale is used. You can force another locale in the print widget configuration:
 
