@@ -14,36 +14,36 @@ In order to write NetCDF-4 files, you must have the NetCDF-4 C library (version 
 
     For example
 
-        ```bash
-        wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/hdf5-1.8.13.tar.gz
-        wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/zlib-1.2.8.tar.gz
-        ```
+    ```bash
+    wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/hdf5-1.8.13.tar.gz
+    wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/zlib-1.2.8.tar.gz
+    ```
 
 2.  Download the latest NetCDF-C source code from [here](https://github.com/Unidata/netcdf-c/releases/).
 
     For example
 
-        ```bash
-        wget https://github.com/Unidata/netcdf-c/archive/v4.3.3.1.tar.gz
-        ```
+    ```bash
+    wget https://github.com/Unidata/netcdf-c/archive/v4.3.3.1.tar.gz
+    ```
 
 3.  Build and install the required dependencies (the following instructions assume that you will install all NetCDF4 C libs on `/work/libs/nc4libs`, for example).
 
     1.  ZLIB
 
-            ```bash
-            ./configure --prefix=/work/libs/nc4libs
+        ```bash
+        ./configure --prefix=/work/libs/nc4libs
 
-            make check install
-            ```
+        make check install
+        ```
 
     2.  HDF5
 
-            ```bash
-            ./configure --with-zlib=/work/libs/nc4libs --prefix=/work/libs/nc4libs --enable-threadsafe --with-pthread=/DIR/TO/PTHREAD
+        ```bash
+        ./configure --with-zlib=/work/libs/nc4libs --prefix=/work/libs/nc4libs --enable-threadsafe --with-pthread=/DIR/TO/PTHREAD
 
-            make check install
-            ```
+        make check install
+        ```
 
 4.  Build the NetCDF C Library.
 
