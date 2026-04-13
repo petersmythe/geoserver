@@ -185,7 +185,7 @@ See [Variable substitution in SLD](../../styling/sld/extensions/substitution.md)
 
 The `featureid` parameter filters by feature ID, a unique value given to all features. Multiple features can be selected by separating the featureids by comma, as in this example:
 
-````properties
+```properties
 featureid=states.1,states.45  
 ```
 
