@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -2171,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19955,7 +19957,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -20011,7 +20013,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25425,7 +25427,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25453,7 +25455,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -29675,7 +29677,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30212,14 +30214,14 @@
 </tr>
 <tr>
 <td><code>(</code> | <code>[</code> <a href="#ecql_expr">Expression</a> <code>]</code> | <code>)</code></td>
-<td>Bracketing with <code>(</code> or ```` controls evaluation order</td>
+<td>Bracketing with <code>(</code> or <code>)</code> controls evaluation order</td>
 </tr>
 </tbody>
 </table>
 <h2 id="ecql_attr">Attribute<a class="headerlink" href="#ecql_attr" title="Permanent link">&para;</a></h2>
 <p>An attribute name denotes the value of a feature attribute.</p>
 <ul>
-<li>Simple attribute names are sequences of letters and numbers, e.g. [States123``</li>
+<li>Simple attribute names are sequences of letters and numbers, e.g. <code>States123</code></li>
 <li>Attribute names quoted with double-quotes may be any sequence of characters, e.g. <code>"States!@#"</code></li>
 <li><a href="https://gis.stackexchange.com/a/475826/68995">Note</a>: <code>id</code> is one of a few <a href="https://github.com/geotools/geotools/blob/2058be01323c3dea23d6df4d84b623be7f0b4102/modules/library/cql/src/main/jjtree/ECQLGrammar.jjt#L180">reserved keywords</a> in ECQL and thus an attribute (or database column) named <code>id</code> must be quoted, e.g. <code>"id"</code></li>
 </ul>

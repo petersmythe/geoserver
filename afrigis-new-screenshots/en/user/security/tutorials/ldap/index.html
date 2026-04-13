@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -2171,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -14878,6 +14880,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#map-ldap-groups-to-geoserver-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map LDAP groups to GeoServer roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-ldap-role-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the LDAP role service
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -19879,7 +19903,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19935,7 +19959,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25349,7 +25373,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25377,7 +25401,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -29599,7 +29623,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29830,6 +29854,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#map-ldap-groups-to-geoserver-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map LDAP groups to GeoServer roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-ldap-role-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the LDAP role service
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -29928,11 +29974,15 @@
 </ol>
 <h2 id="test-a-ldap-login">Test a LDAP login<a class="headerlink" href="#test-a-ldap-login" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Navigate to the GeoServer home page and log out of the admin account.</li>
+<li>
+<p>Navigate to the GeoServer home page and log out of the admin account.</p>
+</li>
+<li>
+<p>Login as the user "bob" with the password "secret".</p>
+</li>
 </ol>
-<h1 id="login-as-the-user-bob-with-the-password-secret">. Login as the user "bob" with the password "secret".<a class="headerlink" href="#login-as-the-user-bob-with-the-password-secret" title="Permanent link">&para;</a></h1>
 <p><img alt="" src="images/ldap6.jpg" /></p>
-<p>Logging in as bob doesn't yield any administrative functionality because the bobaccount has not been mapped to the administrator role. In the next section GeoServer will be configured to map groups from the LDAP database to roles.</p>
+<p>Logging in as bob doesn't yield any administrative functionality because the bob account has not been mapped to the administrator role. In the next section GeoServer will be configured to map groups from the LDAP database to roles.</p>
 <h2 id="map-ldap-groups-to-geoserver-roles">Map LDAP groups to GeoServer roles<a class="headerlink" href="#map-ldap-groups-to-geoserver-roles" title="Permanent link">&para;</a></h2>
 <p>When using LDAP for authentication GeoServer maps LDAP groups to GeoServer roles by prefixing the group name with <code>ROLE_</code> and converting the result to uppercase. For example bob and alice are members of the <code>user</code> group so after authentication they would be assigned a role named <code>ROLE_USER</code>. Similarly bill is a member of the <code>admin</code> group so he would be assigned a role named <code>ROLE_ADMIN</code>.</p>
 <ol>

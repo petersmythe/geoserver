@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -2171,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19795,7 +19797,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19851,7 +19853,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25388,7 +25390,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25416,7 +25418,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -29638,7 +29640,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30068,7 +30070,7 @@
 <p><img alt="" src="../images/usagerest001.png" /></p>
 <h3 id="query-status-of-backup-executions">Query status of Backup executions<a class="headerlink" href="#query-status-of-backup-executions" title="Permanent link">&para;</a></h3>
 <p>Status of the operation can be queried making an HTTP GET request to the location listed in the response.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>``http://mygeoserver/geoserver/rest/br/backup/$ID.{json/xml}``
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>http://mygeoserver/geoserver/rest/br/backup/$ID.{json/xml}
 </code></pre></div>
 <p>Replace <code>$ID</code> with the <strong>ID</strong> of the backup operation you'd like to inspect.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;admin:geoserver&quot;</span><span class="w"> </span>http://mygeoserver/geoserver/rest/br/backup/1.json

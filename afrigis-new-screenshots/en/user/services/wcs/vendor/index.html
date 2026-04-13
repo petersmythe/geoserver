@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -2171,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19952,7 +19954,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -20008,7 +20010,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25422,7 +25424,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25450,7 +25452,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -29672,7 +29674,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30023,18 +30025,17 @@
 <h3 id="namespace">namespace<a class="headerlink" href="#namespace" title="Permanent link">&para;</a></h3>
 <p>Requests to the WCS GetCapabilities operation can be filtered to only return layers corresponding to a particular namespace.</p>
 <p>Sample code: :</p>
-<p><code>http://example.com/geoserver/wcs?
-   service=wcs&amp;
-   version=1.0.0&amp;
-   request=GetCapabilities&amp;
-   namespace=topp</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>http://example.com/geoserver/wcs?
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>   service=wcs&amp;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>   version=1.0.0&amp;
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>   request=GetCapabilities&amp;
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>   namespace=topp
+</code></pre></div>
 <p>Using an invalid namespace prefix will not cause any errors, but the document returned will not contain information on any layers.</p>
 <h3 id="cql_filter">cql_filter<a class="headerlink" href="#cql_filter" title="Permanent link">&para;</a></h3>
 <p>The <code>cql_filter</code> parameter is similar to same named WMS parameter, and allows expressing a filter using ECQL (Extended Common Query Language). The filter is sent down into readers exposing a <code>Filter</code> read parameter.</p>
 <p>For example, assume a image mosaic has a tile index with a <code>cloudCover</code> percentage attribute, then it's possible to mosaic only granules with a cloud cover less than 10% using:</p>
-<blockquote>
-<p>cql_filter=cloudCover &lt; 10</p>
-</blockquote>
+<p><code>cql_filter=cloudCover &lt; 10</code></p>
 <p>For full details see the <a href="../../../filter/ecql_reference/">ECQL Reference</a> and <a href="../../../tutorials/cql/cql_tutorial/">CQL and ECQL</a> tutorial.</p>
 <h3 id="sortby">sortBy<a class="headerlink" href="#sortby" title="Permanent link">&para;</a></h3>
 <p>The <code>sortBy</code> parameter allows to control the order of granules being mosaicked, using the same syntax as WFS 1.0, that is:</p>
@@ -30047,9 +30048,9 @@
 <h3 id="clip">clip<a class="headerlink" href="#clip" title="Permanent link">&para;</a></h3>
 <p>The <code>clip</code> parameter can be used to clip WCS responses using a Polygon/Multipolygon mask represented by a valid WKT String.</p>
 <p>Here are two examples, the first one using WKT, the second using EWKT:</p>
-<p><code>properties
-clip=POLYGON((-14.50804652396198 55.579454354599356,34.53492222603802 55.579454354599356,34.53492222603802 32.400173313532584,-14.50804652396198 32.400173313532584,-14.50804652396198 55.579454354599356))
-clip=srid=900913;POLYGON ((-1615028.3514525702 7475148.401208023, 3844409.956787858 7475148.401208023, 3844409.956787858 3815954.983140064, -1615028.3514525702 3815954.983140064, -1615028.3514525702 7475148.401208023))</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">clip</span><span class="o">=</span><span class="s">POLYGON((-14.50804652396198 55.579454354599356,34.53492222603802 55.579454354599356,34.53492222603802 32.400173313532584,-14.50804652396198 32.400173313532584,-14.50804652396198 55.579454354599356))</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">clip</span><span class="o">=</span><span class="s">srid=900913;POLYGON ((-1615028.3514525702 7475148.401208023, 3844409.956787858 7475148.401208023, 3844409.956787858 3815954.983140064, -1615028.3514525702 3815954.983140064, -1615028.3514525702 7475148.401208023))</span>
+</code></pre></div>
 <p>When the WKT syntax is used, the default SRS matches the output coverage CRS (so it accounts for eventual reprojection in the request).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

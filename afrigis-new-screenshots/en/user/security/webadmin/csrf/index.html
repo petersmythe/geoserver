@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -2171,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19809,7 +19811,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19865,7 +19867,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25279,7 +25281,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25307,7 +25309,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -29529,7 +29531,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29753,22 +29755,25 @@
 <p>To allow-list your proxy with the CSRF filter, you can use the <code>GEOSERVER_CSRF_WHITELIST</code> property. This property is a comma-separated list of domains, of the form <code>&lt;domainname&gt;.&lt;TLD&gt;</code>, and can contain a subdomains. Alternatively, you can disable the CSRF filter by setting the <code>GEOSERVER_CSRF_DISABLED</code> property to <code>true</code>.</p>
 <p>Each of these properties is set through one of the standard means:</p>
 <ul>
-<li><code>web.xml</code> :</li>
+<li>
+<p><code>web.xml</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;context-param&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&lt;param-name&gt;</span>GEOSERVER_CSRF_WHITELIST<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&lt;param-value&gt;</span>example.org<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">&lt;/context-param&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>System property :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>-DGEOSERVER_CSRF_WHITELIST=example.org
+</code></pre></div>
+</li>
+<li>
+<p>Environment variable :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEOSERVER_CSRF_WHITELIST</span><span class="o">=</span>example.org
+</code></pre></div>
+</li>
 </ul>
-<p><code>xml
-&lt;context-param&gt;
-  &lt;param-name&gt;GEOSERVER_CSRF_WHITELIST&lt;/param-name&gt;
-  &lt;param-value&gt;example.org&lt;/param-value&gt;
-&lt;/context-param&gt;</code></p>
-<ul>
-<li>System property :</li>
-</ul>
-<p><code>-DGEOSERVER_CSRF_WHITELIST=example.org</code></p>
-<ul>
-<li>Environment variable :</li>
-</ul>
-<p><code>bash
-export GEOSERVER_CSRF_WHITELIST=example.org</code></p>
 
 
 

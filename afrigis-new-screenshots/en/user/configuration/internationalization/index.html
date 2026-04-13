@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -2171,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19877,7 +19879,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19933,7 +19935,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25347,7 +25349,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25375,7 +25377,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -29597,7 +29599,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29891,7 +29893,7 @@
 <li>Languages can be configured and requested also according to local language variants (e.g. <code>AcceptLanguages=en fr-CA</code> or <code>AcceptLanguages=en,fr-CA</code>).</li>
 </ul>
 <p>If any i18n content has been specified with a local variant and the request parameters specifies only the language code the content will be encoded in the response. Keep in mind that the inverse situation content is recorded using a language code will not be available for local variant requests.</p>
-<p>Example: If the i18n content is specified with the local variant <code>fr-CA</code> and the requested only specifies a language code <code>AcceptLanguages=fr` the local variant</code>fr-CA<code>content will be used.  Example: If the i18n content is specified with the language code</code>fr<code>and the requested only specifies the local variant</code>AcceptLanguages=fr-CA<code>the language code</code>fr` content is unavailable.</p>
+<p>Example: If the i18n content is specified with the local variant <code>fr-CA</code> and the requested only specifies a language code <code>AcceptLanguages=fr</code> the local variant <code>fr-CA</code> content will be used. Example: If the i18n content is specified with the language code <code>fr</code> and the requested only specifies the local variant <code>AcceptLanguages=fr-CA</code> the language code <code>fr</code> content is unavailable.</p>
 <ul>
 <li>If a <code>*</code> is present among the parameter values, e.g. <code>AcceptLanguages=en fr *</code> or <code>AcceptLanguages=en,fr,*</code>, GeoServer will try to return the content in one of the specified language code.</li>
 </ul>
