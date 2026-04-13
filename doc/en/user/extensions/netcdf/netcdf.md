@@ -255,7 +255,6 @@ nanograms=ng
 degree=deg
 percentage=%
 celsius=°C
-````
 ```
 
 The replacement file is called `netcdf-unit-replacements.properties`, if not provided the following contents are assumed:
