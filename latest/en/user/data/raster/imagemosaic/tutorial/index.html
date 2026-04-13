@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -121,7 +123,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -171,7 +173,7 @@
         <form class="md-header__option" data-md-component="palette">
           
             
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
             
               <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -179,7 +181,7 @@
             
           
             
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
             
               <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -30021,108 +30023,6 @@
           
             <div class="md-content" data-md-component="content">
               
-                
-
-
-
-  
-
-
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-        
-  
-  
-    <li class="md-path__item">
-      <a href="../../../../../.." class="md-path__link">
-        
-  <span class="md-ellipsis">
-    Home
-  </span>
-
-      </a>
-    </li>
-  
-
-      
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    User Manual
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Data management
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Raster
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Imagemosaic
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
-              
               <article class="md-content__inner md-typeset">
                 
                   
@@ -30155,7 +30055,7 @@
 <p>In order to create a new mosaic it is necessary to choose a workspace and store name in the <strong>Basic Store Info</strong> section, as well as a URL in the <strong>Connection Parameters</strong> section. Valid URLs include:</p>
 <ul>
 <li>The absolute path to the shapefile index, or a directory containing the shapefile index.</li>
-<li>The absolute path to the configuration file (<code>\*.properties````) or a directory containing the configuration file. If ````datastore.properties```` and ````indexer.properties</code>` exist, they should be in the same directory as this configuration file.</li>
+<li>The absolute path to the configuration file (<code>*.properties</code>) or a directory containing the configuration file. If <strong><code>datastore.properties</code></strong> and <strong><code>indexer.properties</code></strong> exist, they should be in the same directory as this configuration file.</li>
 <li>The absolute path of a directory where the files you want to mosaic reside. In this case GeoServer automatically creates the needed mosaic files (.dbf, .prj, .properties, .shp and .shx) by inspecting the data present in the given directory and any subdirectories.</li>
 </ul>
 </li>
@@ -30427,12 +30327,12 @@
 <ol>
 <li>Update the contents of the mosaic by copying the new files into place. (Subdirectories are acceptable.)</li>
 <li>Delete the index files. These files are contained in the top level directory containing the mosaic files and include (but are not limited to) the following:<ul>
-<li><strong>`\&lt;mosaic_name&gt;.dbf`</strong></li>
-<li><strong>`\&lt;mosaic_name&gt;.fix`</strong></li>
-<li><strong>`\&lt;mosaic_name&gt;.prj`</strong></li>
-<li><strong>`\&lt;mosaic_name&gt;.properties`</strong></li>
-<li><strong>`\&lt;mosaic_name&gt;.shp`</strong></li>
-<li><strong>`\&lt;mosaic_name&gt;.shx`</strong></li>
+<li><strong><code>&lt;mosaic_name&gt;.dbf</code></strong></li>
+<li><strong><code>&lt;mosaic_name&gt;.fix</code></strong></li>
+<li><strong><code>&lt;mosaic_name&gt;.prj</code></strong></li>
+<li><strong><code>&lt;mosaic_name&gt;.properties</code></strong></li>
+<li><strong><code>&lt;mosaic_name&gt;.shp</code></strong></li>
+<li><strong><code>&lt;mosaic_name&gt;.shx</code></strong></li>
 </ul>
 </li>
 <li><em>(Optional but recommended)</em> Edit the layer definition in GeoServer, making to sure to update the bounding box information (if changed).</li>
@@ -30455,13 +30355,13 @@
 <p>Create the mosaic in GeoServer.</p>
 </li>
 <li>
-<p>One important configuration setting is the <strong>SORTING</strong> parameter of the layer. In order to see the highest resolution imagery on top (the typical case), it must be set to <code>resolution A</code>. (For the case of lowest resolution on top, use <code>resolution D</code> .)</p>
+<p>One important configuration setting is the <strong>SORTING</strong> parameter of the layer. In order to see the highest resolution imagery on top (the typical case), it must be set to <code>resolution A</code>. (For the case of lowest resolution on top, use <code>resolution D</code>.)</p>
 </li>
 <li>
 <p>Make any other configuration changes.</p>
 </li>
 <li>
-<p>Also, in order to allow for multiple CRSs in a single mosaic, an <strong>`indexer.properties`</strong> file will need to be created. Use the following :</p>
+<p>Also, in order to allow for multiple CRSs in a single mosaic, an <strong><code>indexer.properties</code></strong> file will need to be created. Use the following :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="na">GranuleAcceptors</span><span class="o">=</span><span class="s">org.geotools.gce.imagemosaic.acceptors.HeterogeneousCRSAcceptorFactory</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="na">GranuleHandler</span><span class="o">=</span><span class="s">org.geotools.gce.imagemosaic.granulehandler.ReprojectingGranuleHandlerFactory</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="na">HeterogeneousCRS</span><span class="o">=</span><span class="s">true</span>
@@ -30483,18 +30383,18 @@
 </li>
 </ol>
 <h2 id="referring-to-a-datastore-configured-in-geoserver">Referring to a datastore configured in GeoServer<a class="headerlink" href="#referring-to-a-datastore-configured-in-geoserver" title="Permanent link">&para;</a></h2>
-<p>It is possible to make the mosaic refer to an existing data store. The <strong>``datastore.properties``</strong> file in this case will contain only one or two properties, referring to the store to be used via the <code>StoreName</code> property. For simple cases, e.g., a PostGIS store, the following will be sufficient:</p>
+<p>It is possible to make the mosaic refer to an existing data store. The <strong><code>datastore.properties</code></strong> file in this case will contain only one or two properties, referring to the store to be used via the <code>StoreName</code> property. For simple cases, e.g., a PostGIS store, the following will be sufficient:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">StoreName</span><span class="o">=</span><span class="s">workspace:storename</span>
 </code></pre></div>
 <p>For Oracle or H2, it's best to also specify the SPI in order to inform the mosaic that it needs to work around specific limitations of the storage (e.g., forced uppercase attribute usage, limitation in attribute name length and the like):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">StoreName</span><span class="o">=</span><span class="s">workspace:storename</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">SPI</span><span class="o">=</span><span class="s">org.geotools.data.oracle.OracleNGDataStoreFactory</span>
 </code></pre></div>
-<p>The above will be sufficient in case the image mosaic can create the index table and perform normal indexing, using the directory name as the table name. In case a specific table name needs to be used, add an <strong>``indexer.properties``</strong> specifying the <code>TypeName</code> property, e.g.:</p>
+<p>The above will be sufficient in case the image mosaic can create the index table and perform normal indexing, using the directory name as the table name. In case a specific table name needs to be used, add an <strong><code>indexer.properties</code></strong> specifying the <code>TypeName</code> property, e.g.:</p>
 <blockquote>
 <p>TypeName=myMosaicTypeName</p>
 </blockquote>
-<p>In case the index "table" already exists instead, then a <strong>``indexer.properties``</strong> file will be required, with the following contents:</p>
+<p>In case the index "table" already exists instead, then a <strong><code>indexer.properties</code></strong> file will be required, with the following contents:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">UseExistingSchema</span><span class="o">=</span><span class="s">true</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="na">TypeName</span><span class="o">=</span><span class="s">nameOfTheFeatureTypeContainingTheIndex</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="na">AbsolutePath</span><span class="o">=</span><span class="s">true</span>
@@ -30624,7 +30524,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>

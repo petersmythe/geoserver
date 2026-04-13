@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -121,7 +123,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -171,7 +173,7 @@
         <form class="md-header__option" data-md-component="palette">
           
             
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
             
               <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -179,7 +181,7 @@
             
           
             
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
             
               <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -30053,108 +30055,6 @@
           
             <div class="md-content" data-md-component="content">
               
-                
-
-
-
-  
-
-
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-        
-  
-  
-    <li class="md-path__item">
-      <a href="../../../../../.." class="md-path__link">
-        
-  <span class="md-ellipsis">
-    Home
-  </span>
-
-      </a>
-    </li>
-  
-
-      
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    User Manual
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Styling
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Styling Workshop
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    CSS Styling Workbook
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
-              
               <article class="md-content__inner md-typeset">
                 
                   
@@ -30191,7 +30091,7 @@
 <p>SLD uses a <strong>PolygonSymbolizer</strong> to describe how the shape of a polygon is drawn. The primary characteristic documented is the <strong>Fill</strong> used to shade the polygon interior. The use of a <strong>Stroke</strong> to describe the polygon boundary is optional.</p>
 </li>
 <li>
-<p>Labeling of a polygon is anchored to the centroid of the polygon. GeoServer provides a vendor option to allow labels to line wrap to remain within the polygon boundaries.</p>
+<p>labelling of a polygon is anchored to the centroid of the polygon. GeoServer provides a vendor option to allow labels to line wrap to remain within the polygon boundaries.</p>
 </li>
 </ul>
 <p>For our Polygon exercises we will try and limit our CSS documents to a single rule, in order to showcase the properties used for rendering.</p>
@@ -30209,11 +30109,15 @@
 <table>
 <thead>
 <tr>
-<th>Name:</th>
-<th><code>polygon_example</code></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Name:</td>
+<td><code>polygon_example</code></td>
+</tr>
 <tr>
 <td>Workspace:</td>
 <td><code>No workspace</code></td>
@@ -30408,11 +30312,15 @@
 <table>
 <thead>
 <tr>
-<th>shape://horizline</th>
-<th>horizontal hatching</th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>shape://horizline</td>
+<td>horizontal hatching</td>
+</tr>
 <tr>
 <td>shape://vertline</td>
 <td>vertical hatching</td>
@@ -30501,7 +30409,7 @@
 </li>
 </ol>
 <h2 id="label">Label<a class="headerlink" href="#label" title="Permanent link">&para;</a></h2>
-<p>Labeling polygons follows the same approach used for LineStrings.</p>
+<p>Labelling polygons follows the same approach used for LineStrings.</p>
 <p><img alt="image" src="../../style/img/PolygonLabel_CSS.svg" /></p>
 <p>The key properties <strong>fill</strong> and <strong>label</strong> are used to enable Polygon label generation.</p>
 <ol>
@@ -30571,7 +30479,7 @@
 </code></pre></div>
 </li>
 <li>
-<p>The labeling position remains at the polygon centroid. We adjust alignment by controlling which part of the label we are "snapping" into position.</p>
+<p>The labelling position remains at the polygon centroid. We adjust alignment by controlling which part of the label we are "snapping" into position.</p>
 <p><img alt="image" src="../../style/img/polygon_label_1.png" /></p>
 </li>
 <li>
@@ -30623,7 +30531,7 @@
 <p>Many of these parameters focus on controlling conflict resolution (when labels would otherwise overlap).</p>
 </li>
 <li>
-<p>Two common properties for controlling labeling are:</p>
+<p>Two common properties for controlling labelling are:</p>
 <p><strong>label-max-displacement</strong> indicates the maximum distance GeoServer should displace a label during conflict resolution.</p>
 <p><strong>label-auto-wrap</strong> allows any labels extending past the provided width will be wrapped into multiple lines.</p>
 </li>
@@ -30953,7 +30861,7 @@
 <h3 id="css.polygon.q3">Challenge Goodness of Fit<a class="headerlink" href="#css.polygon.q3" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>A subject we touched on during labeling was the conflict resolution GeoServer performs to ensure labels do not overlap.</p>
+<p>A subject we touched on during labelling was the conflict resolution GeoServer performs to ensure labels do not overlap.</p>
 </li>
 <li>
 <p>In addition to the vendor parameter for max displacement you can experiment with different values for "goodness of fit". These settings control how far GeoServer is willing to move a label to avoid conflict, and under what terms it simply gives up:</p>
@@ -31136,7 +31044,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>

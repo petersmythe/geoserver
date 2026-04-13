@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../../../../stylesheets/geoserver-brand.css">
+    
       <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -121,7 +123,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -171,7 +173,7 @@
         <form class="md-header__option" data-md-component="palette">
           
             
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
             
               <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -179,7 +181,7 @@
             
           
             
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
             
               <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -29987,108 +29989,6 @@
           
             <div class="md-content" data-md-component="content">
               
-                
-
-
-
-  
-
-
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-        
-  
-  
-    <li class="md-path__item">
-      <a href="../../../../../.." class="md-path__link">
-        
-  <span class="md-ellipsis">
-    Home
-  </span>
-
-      </a>
-    </li>
-  
-
-      
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    User Manual
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Data management
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Raster
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Imagemosaic
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
-              
               <article class="md-content__inner md-typeset">
                 
                   
@@ -30242,12 +30142,12 @@
 <tr>
 <td>SPI</td>
 <td>Required</td>
-<td>The DataStoreFactory used to connect to the index store:<br>- PostGIS: <code>org.geotools.data.postgis.PostgisNGDataStoreFactory</code><br>- Oracle: <code>org.geotools.data.oracle.OracleNGDataStoreFactory</code><br>- H2: <code>org.geotools.data.h2.H2DataStoreFactory</code><br>- SQLServer: <code>org.geotools.data.sqlserver.SQLServerDataStoreFactory</code><br><a href="../../../../tutorials/tomcat-jndi/tomcat-jndi/">JNDI</a> can also be used with any of these stores. If JNDI is used, the DataStoreFactory name will differ from the above.</td>
+<td>The DataStoreFactory used to connect to the index store:<ul><li>PostGIS: <code>org.geotools.data.postgis.PostgisNGDataStoreFactory</code></li><li>Oracle: <code>org.geotools.data.oracle.OracleNGDataStoreFactory</code></li><li>H2: <code>org.geotools.data.h2.H2DataStoreFactory</code></li><li>SQLServer: <code>org.geotools.data.sqlserver.SQLServerDataStoreFactory</code></li></ul><a href="../../../../tutorials/tomcat-jndi/tomcat-jndi/">JNDI</a> can also be used with any of these stores. If JNDI is used, the DataStoreFactory name will differ from the above.</td>
 </tr>
 <tr>
 <td>Connection parameters</td>
 <td>Required</td>
-<td>The connection parameters used by the specified SPI. The list of these connection parameters can be found in the GeoTools documentation on the relevant store:<br>- <a href="https://docs.geotools.org/latest/userguide/library/jdbc/postgis.md">PostGIS</a><br>- <a href="https://docs.geotools.org/latest/userguide/library/jdbc/oracle.md">Oracle</a><br>- <a href="https://docs.geotools.org/latest/userguide/library/jdbc/h2.md">H2</a><br>- <a href="https://docs.geotools.org/latest/userguide/library/jdbc/sqlserver.md">SQLServer</a><br>If JNDI is used, the connection parameters will include <code>jndiReferenceName</code> instead of <code>host</code>, <code>port</code>, etc. Note that for any connection parameters that include a space (such as <code>loose bbox</code>), the space must be escaped by preceding it with a backslash (<code>loose\ bbox</code>).</td>
+<td>The connection parameters used by the specified SPI. The list of these connection parameters can be found in the GeoTools documentation on the relevant store:<ul><li><a href="https://docs.geotools.org/latest/userguide/library/jdbc/postgis.md">PostGIS</a></li><li><a href="https://docs.geotools.org/latest/userguide/library/jdbc/oracle.md">Oracle</a></li><li><a href="https://docs.geotools.org/latest/userguide/library/jdbc/h2.md">H2</a></li><li><a href="https://docs.geotools.org/latest/userguide/library/jdbc/sqlserver.md">SQLServer</a></li></ul>If JNDI is used, the connection parameters will include <code>jndiReferenceName</code> instead of <code>host</code>, <code>port</code>, etc. Note that for any connection parameters that include a space (such as <code>loose bbox</code>), the space must be escaped by preceding it with a backslash (<code>loose\ bbox</code>).</td>
 </tr>
 </tbody>
 </table>
@@ -30585,7 +30485,7 @@
 </tr>
 <tr>
 <td>MergeBehavior</td>
-<td>The method used to handle overlapping granules during the mosaic operation. Can be:<br>&gt; - <code>FLAT</code> (default), only the topmost granule is visible in the case of an overlap)<br>&gt; - <code>STACK</code>, a band-stacking merge is applied to the overlapping granules, each granule becomes a different output band in the result.<br>&gt; - <code>MIN</code>, the overlapping granules are merged by taking the minimum value amongst the overlapping pixels. The granules do not need to overlap exactly.<br>&gt; - <code>MAX</code>, the overlapping granules are merged by taking the maximum value amongst the overlapping pixels. The granules do not need to overlap exactly.</td>
+<td>The method used to handle overlapping granules during the mosaic operation. Can be:<ul><li><code>FLAT</code> (default), only the topmost granule is visible in the case of an overlap</li><li><code>STACK</code>, a band-stacking merge is applied to the overlapping granules, each granule becomes a different output band in the result.</li><li><code>MIN</code>, the overlapping granules are merged by taking the minimum value amongst the overlapping pixels. The granules do not need to overlap exactly.</li><li><code>MAX</code>, the overlapping granules are merged by taking the maximum value amongst the overlapping pixels. The granules do not need to overlap exactly.</li></ul></td>
 </tr>
 <tr>
 <td>OutputTransparentColor</td>
@@ -30734,7 +30634,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.path", "navigation.footer"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "content.action.edit", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
