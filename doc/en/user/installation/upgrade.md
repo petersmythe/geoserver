@@ -336,11 +336,11 @@ Due to the above compatibility issues, **some** layers based on underlying GRIB 
 
 1. Remove any auxiliary/cache file associated with the underlying GRIB file (assuming the file is named gribfile.grib2):
 
-- gribfile.ncx3
-- gribfile.ncx4
-- gribfile.gbx9
-- .gribfile_hash folder (if not previously deleted) either located beside the original file, or within the configured [NETCDF_DATA_DIR](../extensions/netcdf/netcdf.md#netcdf-files-in-read-only-directories) (if defined).
-- The screenshot below represents an actual example of a tpcprblty.2019100912.incremental.grib2 file with related auxiliary/cache files
+    - gribfile.ncx3
+    - gribfile.ncx4
+    - gribfile.gbx9
+    - .gribfile_hash folder (if not previously deleted) either located beside the original file, or within the configured [NETCDF_DATA_DIR](../extensions/netcdf/netcdf.md#netcdf-files-in-read-only-directories) (if defined).
+    The screenshot below represents an actual example of a tpcprblty.2019100912.incremental.grib2 file with related auxiliary/cache files
 
     ![](images/grib_auxiliary_files.png)
 
