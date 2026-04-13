@@ -157,7 +157,7 @@ If the "Remote" checkbox is checked, the link templates embedded in MapML will r
 
 ### Feature Styling
 
-:   Basic styling of vector features is supported by the MapML extension. The style is defined in the WMS GetMap request, and the MapML extension will convert the rules and style attributes defined in the SLD into CSS classes and apply those classes to the appropriate features. Note that this conversion is currently limited to basic styling and does not include transformation functions, external graphics, or styling dependent on individual feature attributes (non-static style values). See below for a more detailed compatibility table:
+Basic styling of vector features is supported by the MapML extension. The style is defined in the WMS GetMap request, and the MapML extension will convert the rules and style attributes defined in the SLD into CSS classes and apply those classes to the appropriate features. Note that this conversion is currently limited to basic styling and does not include transformation functions, external graphics, or styling dependent on individual feature attributes (non-static style values). See below for a more detailed compatibility table:
 
 | Symbolizer               | Style Attribute    | Supported |
 | ------------------------ | ------------------ | --------- |
@@ -238,7 +238,7 @@ Starting with version 2.26.x of GeoServer, Sharding support and related configur
 
 ### Dimension
 
-:   The selected dimension (if any) is advertised in the mapml as an input with the appropriate value options or ranges, as configured in the *Dimension* tab of the Layer Configuration page. Only dimensions enabled in the *Dimension* tab are available as options.
+The selected dimension (if any) is advertised in the mapml as an input with the appropriate value options or ranges, as configured in the *Dimension* tab of the Layer Configuration page. Only dimensions enabled in the *Dimension* tab are available as options.
 
 ## Attribute to <featurecaption> mapping
 

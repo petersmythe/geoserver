@@ -30,7 +30,7 @@ Chooses the type of input widget for the field. A detailed description for each 
 
 | Key       | Required | Value              |
 | --------- | -------- | ------------------ |
-| fieldType | yes | -<br>COMPLEX<br>- TEXT<br>- NUMBER<br>- TEXT_AREA<br>- DATE<br>- DATETIME<br>- BOOLEAN<br>- UUID<br>- DROPDOWN<br>- SUGGESTBOX<br>- REQUIREBOX<br>- DERIVED |
+| fieldType | yes | <ul><li>COMPLEX</li><li>TEXT</li><li>NUMBER</li><li>TEXT_AREA</li><li>DATE</li><li>DATETIME</li><li>BOOLEAN</li><li>UUID</li><li>DROPDOWN</li><li>SUGGESTBOX</li><li>REQUIREBOX</li><li>DERIVED</li></ul> |
 
 ### label
 
@@ -58,7 +58,7 @@ The data in table can be sorted using the green arrow buttons.
 
 | Key        | Required | Value              |
 | ---------- | -------- | ------------------ |
-| occurrence | no | - SINGLE (Default)<br>- REPEAT |
+| occurrence | no | <ul><li>SINGLE (Default)</li><li>REPEAT</li></ul> |
 
 ### condition
 
