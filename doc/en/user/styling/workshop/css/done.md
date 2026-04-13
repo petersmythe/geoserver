@@ -282,7 +282,7 @@ Answer for [Explore Dynamic Symbolization](#css-point-q2):
 
     This is accomplished by embedding a small CQL expression in the string passed to symbol or url. This sub-expression is isolated with `\${ }` as shown:
 
-    ``` yaml
+    ```yaml
     - point:
         symbols:
         - mark:
@@ -293,19 +293,16 @@ Answer for [Explore Dynamic Symbolization](#css-point-q2):
 
     Example available here [point_example.css](../files/point_example2.css)
 
-    > 
-    >
-    > [@scale < 4000000]{
-    >
-    > :   
-    >
-    >     mark: symbol(
-    >
-    >     :   "\${if_then_else(equalTo(FEATURECLA,'Admin-0 capital'),'star','circle')}"
-    >
-    >     ); mark-size: [13-SCALERANK]; label: [NAME]; label-offset: 0 [13-SCALERANK];
-    >
-    > }
+    ```css
+    [@scale < 4000000]{
+        mark: symbol(
+           "\${if_then_else(equalTo(FEATURECLA,'Admin-0 capital'),'star','circle')}"
+        ); 
+        mark-size: [13-SCALERANK];
+        label: [NAME]; 
+        label-offset: 0 [13-SCALERANK];
+    }
+    ```
 
 ### Layer Group {: #css.point.a3 }
 
