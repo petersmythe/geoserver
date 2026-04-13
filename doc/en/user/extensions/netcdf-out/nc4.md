@@ -12,38 +12,34 @@ In order to write NetCDF-4 files, you must have the NetCDF-4 C library (version 
 
 1.  Download the latest required dependencies (SZIP, ZLIB, HDF5) from the [NetCDF-4 libraries section](ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/).
 
-    As an instance:
+    For example
 
-    :   ``` bash
+        ```bash
         wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/hdf5-1.8.13.tar.gz
         wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/zlib-1.2.8.tar.gz
         ```
 
-        2.  Download the latest NetCDF-C source code from [here](https://github.com/Unidata/netcdf-c/releases/).
+2.  Download the latest NetCDF-C source code from [here](https://github.com/Unidata/netcdf-c/releases/).
 
-        As an instance:
+    For example
 
-        :   ``` bash
+        ```bash
         wget https://github.com/Unidata/netcdf-c/archive/v4.3.3.1.tar.gz
         ```
 
-3.  Build and install the required dependencies (The following instructions assume that you will install all NetCDF4 C libs on `/work/libs/nc4libs`, as an instance).
+3.  Build and install the required dependencies (the following instructions assume that you will install all NetCDF4 C libs on `/work/libs/nc4libs`, for example).
 
-    1.  
+    1.  ZLIB
 
-        ZLIB
-
-        :   ``` bash
+            ```bash
             ./configure --prefix=/work/libs/nc4libs
 
             make check install
             ```
 
-            2.  
+    2.  HDF5
 
-            HDF5
-
-            :   ``` bash
+            ```bash
             ./configure --with-zlib=/work/libs/nc4libs --prefix=/work/libs/nc4libs --enable-threadsafe --with-pthread=/DIR/TO/PTHREAD
 
             make check install
@@ -51,7 +47,7 @@ In order to write NetCDF-4 files, you must have the NetCDF-4 C library (version 
 
 4.  Build the NetCDF C Library.
 
-    ``` bash
+    ```bash
     CPPFLAGS=-I/work/libs/nc4libs/include LDFLAGS=-L/work/libs/nc4libs/lib ./configure --prefix=/work/libs/nc4libs
     
     make check install
