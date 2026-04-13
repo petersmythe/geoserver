@@ -2245,44 +2245,29 @@ div.value-wide {
   font-size: 0.8125rem;
   color: var(--gs-secondary-color);
 }
-.gs-form-group-label {
+.gs-instruction {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  position: relative;
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  font-size: 0;
+  line-height: 1;
+  cursor: help;
 }
-.gs-form-group-label:has(.instruct)::after {
+.gs-instruction::before {
   content: "";
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 1.5rem;
+  flex: 0 0 1.125rem;
   background-image: url(../img/icons/silk/information.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  cursor: help;
 }
-.gs-form-group-label .instruct {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 10;
-  display: none;
-  max-width: 15rem;
-  width: max-content;
-  padding: 0.5rem;
-  background-color: var(--gs-body-bg);
-  border: 1px solid var(--gs-border-color);
-  border-radius: var(--gs-border-radius);
-  box-shadow: var(--gs-box-shadow-sm);
-  font-size: 0.75rem;
+.gs-instruction:hover {
+  font-size: 1rem;
   font-style: italic;
-}
-.gs-form-group-label:hover .instruct,
-.gs-form-group-label:focus-within .instruct {
-  display: block;
-}
-.instruct {
-  display: none;
 }
 .gs-inline-group {
   display: flex;
@@ -2304,7 +2289,12 @@ div.value-wide {
   .gs-form-group > *:last-child {
     width: -webkit-fill-available;
   }
-
+  .gs-instruction {
+    font-size: 0.75rem;
+    font-style: italic;
+    cursor: default;
+    line-height: 1.2;
+  }
   /* Responsive table */
   /* Mobile table header */
   .table-header form {
