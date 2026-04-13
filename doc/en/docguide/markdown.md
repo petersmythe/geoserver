@@ -629,20 +629,20 @@ Use snippet `--8<--` include content from another file:
 
 To include a number of lines into an `xml` code-block:
 
-* `xml` is sensitive to dashes, so `-8<-` is used here
+* `xml` is sensitive to dashes, so the single-dash variant `-8<-` is used instead
 
 === "Markdown"
     
     ````Markdown
     ```xml
-    ;--8<-- "build/qa/pmd-ruleset.xml:23:25"
+    ;-8<- "build/qa/pmd-ruleset.xml:23:25"
     ```
     ````
 
 === "Preview"
 
     ```xml
-    --8<-- "build/qa/pmd-ruleset.xml:23:25"
+    -8<- "build/qa/pmd-ruleset.xml:23:25"
     ```
 
 To include named section:
