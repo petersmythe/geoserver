@@ -359,6 +359,13 @@ td, th {
 .h-xl    { height: 100rem !important; max-height: 100rem !important; }
 .h-full  { height: 100% !important; max-height: 100% !important; }
 
+@media (max-width: 768px) {
+  .w-xs, .w-sm, .w-md, .w-lg, .w-xl, .w-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 .hidden {
   display: none;
 }
