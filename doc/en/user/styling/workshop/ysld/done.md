@@ -110,7 +110,7 @@ The following questions were listed throughout the workshop as an opportunity to
 
 ### Classification {: #ysld.line.a1 }
 
-Answer for [Challenge Classification](#ysld-line-q1):
+Answer for [Challenge Classification](#ysld.line.q1):
 
 1.  **Challenge:** Create a new style adjust road appearance based on **type**.
 
