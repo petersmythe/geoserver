@@ -359,6 +359,14 @@ td, th {
 .h-xl    { height: 100rem !important; max-height: 100rem !important; }
 .h-full  { height: 100% !important; max-height: 100% !important; }
 
+.w-fit   { width: fit-content !important; flex: none !important; }
+
+select.w-sm + .select2,
+select.w-md + .select2,
+select.w-lg + .select2,
+select.w-xl + .select2,
+select.w-fit + .select2 { flex: none !important; }
+
 @media (max-width: 768px) {
   .w-xs, .w-sm, .w-md, .w-lg, .w-xl, .w-wide {
     width: 100% !important;
