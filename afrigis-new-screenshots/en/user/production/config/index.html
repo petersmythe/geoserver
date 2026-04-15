@@ -30537,9 +30537,9 @@
 <p>The workspace and layer selectors might take a lot of time to fill up against large catalogs. Because of this, GeoServer tries to limit the time taken to fill them (by default, 5 seconds), and the number of items in them (by default, <code>1000</code>), and will fall back on simple text fields if the time limit is reached.</p>
 <p>In some situations, that won't be enough and the page might get stuck anyways. The following properties can be used to tweak the behavior:</p>
 <ul>
-<li><code>GeoServerHomePage.selectionMode</code> : can be set to <code>text</code> to always use simple text fields, <code>dropdown</code> to always use dropdowns, or <code>auto</code> to use the default automatic behavior.</li>
+<li><code>GeoServerHomePage.selectionMode</code> : can be set to <code>text</code> to always use simple text fields, <code>dropdown</code> to always use the side panel selectors, or <code>auto</code> to use the default automatic behavior.</li>
 <li><code>GeoServerHomePage.selectionTimeout</code> : the time limit in milliseconds, defaults to <code>5000</code>.</li>
-<li><code>GeoServerHomePage.selectionMaxItems</code> : the maximum number of items to show in the dropdowns, defaults to <code>1000</code>.</li>
+<li><code>GeoServerHomePage.selectionMaxItems</code> : the maximum number of items to show in the selectors, defaults to <code>1000</code>.</li>
 <li><code>GeoServerHomePage.legacyHomepageSelector</code> : when set to <code>true</code>, the legacy workspace and layer selectors are used, defaults to <code>false</code>.</li>
 </ul>
 <p>When using <code>text</code> selection mode the page description is static, no longer offering of available workspace and layers.</p>
