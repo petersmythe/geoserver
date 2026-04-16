@@ -52,28 +52,30 @@
             <div class="gs-form">
               <div class="gs-form-group">
                 <label for="restrictionType">
-                  <wicket:message key="AttributeTypeInfoEditPanel.restrictionType">Restriction Type
-                        </wicket:message>
+                  <wicket:message key="AttributeTypeInfoEditPanel.restrictionType">Restriction Type</wicket:message>
                 </label>
                 <select id="restrictionType" wicket:id="restrictionType" class="w-fit"/>
               </div>
               <div class="gs-form" wicket:id="optionsContainer">
                 <div class="gs-form-group">
-                  <select class="select w-md" wicket:id="options" size="7"/>
+                  <div></div>
+                  <div class="gs-input-group">
+                    <select class="select w-md" wicket:id="options" size="7"/>
+                    <button wicket:id="removeOption">
+                      <wicket:message key="AttributeTypeInfoEditPanel.removeSelected">Remove selected</wicket:message>
+                    </button>
+                  </div>
                 </div>
-                <div class="button-group">
-                  <button wicket:id="removeOption">
-                    <wicket:message key="AttributeTypeInfoEditPanel.removeSelected">Remove selected</wicket:message>
-                  </button>
+                <div class="gs-form-group">
                   <label for="newOption">
                     <wicket:message key="AttributeTypeInfoEditPanel.newOption">New Option</wicket:message>
                   </label>
-                </div>
-                <div class="gs-input-group">
-                  <input id="newOption" type="text" wicket:id="newOption" class="w-md"/>
-                  <button wicket:id="addOption">
-                    <wicket:message key="AttributeTypeInfoEditPanel.addOption">Add Option</wicket:message>
-                  </button>
+                  <div class="gs-input-group">
+                    <input id="newOption" type="text" wicket:id="newOption" class="w-md"/>
+                    <button wicket:id="addOption">
+                      <wicket:message key="AttributeTypeInfoEditPanel.addOption">Add Option</wicket:message>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="gs-list-item-class" wicket:id="rangeContainer">
