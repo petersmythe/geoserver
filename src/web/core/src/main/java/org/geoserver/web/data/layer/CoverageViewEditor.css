@@ -36,6 +36,7 @@ Your css selectors should look like this to avoid modifying styles outside the p
 .gs-panel-CoverageViewEditor .band-selection-layout select {
   width: 15rem;
   height: 12rem;
+  place-items: flex-start;
 }
 
 .gs-panel-CoverageViewEditor .add-band-button {
