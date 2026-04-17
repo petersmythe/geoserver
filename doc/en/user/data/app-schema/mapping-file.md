@@ -763,4 +763,4 @@ To be able to use an external Apache Solr index, we need at least to:
 - **map the Solr index field that matches the database primary key**: this is done id mapping of the root feature type, e.g.`<indexField>id</indexField>`.
 - **map each attribute that is indexed in Apache Solr**: this is done using the *indexField* element, e.g `<indexField>description_txt</indexField>`.
 
-Is worth mentioning that if an external Solr index was defined, App-Schema will always query the external Solr index first and then query the relational database.
+It is worth mentioning that if an external Solr index was defined, App-Schema will always query the external Solr index first and then query the relational database.
