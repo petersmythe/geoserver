@@ -15,7 +15,7 @@ Here is an outline of a mapping file:
     <includedTypes>...</includedTypes>
     <sourceDataStores>...</sourceDataStores>
     <catalog>...</catalog>
-    <targetTypes...</targetTypes>
+    <targetTypes>...</targetTypes>
     <typeMappings>...</typeMappings>
 ```
 </as:AppSchemaDataAccess>
