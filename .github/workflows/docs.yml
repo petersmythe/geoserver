@@ -5,11 +5,15 @@ on:
     branches: [main, 3.0.x, 3.1.x, afrigis-new-screenshots]
     paths:
       - 'doc/**'
+      - 'mkdocs.yml'
+      - 'requirements.txt'
       - '.github/workflows/docs.yml'
   pull_request:
     branches: [main, 3.0.x, 3.1.x]
     paths:
       - 'doc/**'
+      - 'mkdocs.yml'
+      - 'requirements.txt'
       - '.github/workflows/docs.yml'
 
 concurrency:
