@@ -293,7 +293,7 @@ if [ -z $SKIP_BUILD ]; then
   pip install -r requirements.txt
 
   pushd doc/en > /dev/null
-  mvnd -nsu -fae package $MAVEN_FLAGS
+  mvn -nsu -fae package $MAVEN_FLAGS
   popd > /dev/null
   popd > /dev/null
 else
