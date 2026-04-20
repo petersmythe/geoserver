@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/upgrade/" class="md-nav__link">
+      <a href="../../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -13965,10 +13965,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#authentication-chain" class="md-nav__link">
+  <a href="#provider-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authentication chain
+        Provider chain
       
     </span>
   </a>
@@ -19959,7 +19959,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -20015,7 +20015,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25429,7 +25429,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25457,7 +25457,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26695,6 +26695,8 @@
       
         
       
+        
+      
     
     
     
@@ -27261,6 +27263,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29679,7 +29709,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29978,10 +30008,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#authentication-chain" class="md-nav__link">
+  <a href="#provider-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authentication chain
+        Provider chain
       
     </span>
   </a>
@@ -30074,7 +30104,7 @@
 <p><img alt="" src="../images/auth_filters.png" /></p>
 <p><em>List of authentication filters</em></p>
 <h3 id="anonymous-access">Anonymous access<a class="headerlink" href="#anonymous-access" title="Permanent link">&para;</a></h3>
-<p>By default, GeoServer will allow anonymous access to the <a href="../../../webadmin/">Web administration interface</a>. Without authentication, users will still be able to view the <a href="../../../data/webadmin/layerpreview/">Layer Preview</a>, capabilities documents, and basic GeoServer details. Anonymous access can by removing the <strong>anonymous</strong> authentication filter. If removed, anonymous users navigating to the GeoServer page will get an HTTP 401 status code, which typically results in a browser-based request for credentials.</p>
+<p>By default, GeoServer will allow anonymous access to the <a href="../../../webadmin/">Web administration interface</a>. Without authentication, users will still be able to view the <a href="../../../data/webadmin/browselayers/">Browse Layers</a>, capabilities documents, and basic GeoServer details. Anonymous access can by removing the <strong>anonymous</strong> authentication filter. If removed, anonymous users navigating to the GeoServer page will get an HTTP 401 status code, which typically results in a browser-based request for credentials.</p>
 <h3 id="credentials-from-headers-filter">Credentials from Headers filter<a class="headerlink" href="#credentials-from-headers-filter" title="Permanent link">&para;</a></h3>
 <p>This filter allows gathering user credentials (username and password) from request headers in a flexible and configurable way.</p>
 <p><img alt="" src="../images/auth_filter_credentials_from_header.png" /></p>
@@ -30250,10 +30280,10 @@
 </tr>
 </tbody>
 </table>
-<h2 id="authentication-chain">Authentication chain<a class="headerlink" href="#authentication-chain" title="Permanent link">&para;</a></h2>
-<p>This section selects the authentication chain. Currently, only one default authentication chain is available. For further information about the default chain, please refer to <a href="../../auth/chain/">Authentication chain</a>.</p>
+<h2 id="provider-chain">Provider chain<a class="headerlink" href="#provider-chain" title="Permanent link">&para;</a></h2>
+<p>This section selects the authentication provider chain. Currently, only one default provider chain is available. For further information about the default chain, please refer to <a href="../../auth/chain/">Authentication chain</a>.</p>
 <p><img alt="" src="../images/auth_chain.png" /></p>
-<p><em>Selecting the authentication chain</em></p>
+<p><em>Selecting the provider chain</em></p>
 
 
 

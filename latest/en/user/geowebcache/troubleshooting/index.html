@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/upgrade/" class="md-nav__link">
+      <a href="../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19940,7 +19940,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19996,7 +19996,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25410,7 +25410,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25438,7 +25438,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26676,6 +26676,8 @@
       
         
       
+        
+      
     
     
     
@@ -27242,6 +27244,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29660,7 +29690,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29985,7 +30015,7 @@
 <h2 id="direct-wms-integration">Direct WMS integration<a class="headerlink" href="#direct-wms-integration" title="Permanent link">&para;</a></h2>
 <p>Direct integration allows WMS requests served through GeoServer to be cached as if they were received and processed by GeoWebCache. With Direct WMS Integration, a request may either be handled by the GeoServer WMS or GeoWebCache WMS.</p>
 <p>Sometimes requests that should go to GeoWebCache will instead be passed through to GeoServer, resulting in no tiles saved. That said, it is possible to determine why a request was not handled by GeoWebCache when intended. This is done by using the command-line utility <a href="http://curl.haxx.se">cURL</a> and inspecting the response headers.</p>
-<p>First, obtain a sample request. This can easily be done by going to the Layer Preview for a given layer, setting the <strong>Tiled</strong> parameter to <strong>Tiled</strong>, then right-clicking on an area of the map and copy the full path to the image location. If done correctly, the result will be a GET request that looks something like this:</p>
+<p>First, obtain a sample request. This can easily be done by going to the Browse Layers for a given layer, setting the <strong>Tiled</strong> parameter to <strong>Tiled</strong>, then right-clicking on an area of the map and copy the full path to the image location. If done correctly, the result will be a GET request that looks something like this:</p>
 <div class="highlight"><pre><span></span><code>http://localhost:8090/geoserver/nurc/wms?LAYERS=nurc%3AArc_Sample&amp;STYLES=&amp;FORMAT=image%2Fjpeg&amp;TILED=true&amp;TILESORIGIN=-180%2C-90&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;SRS=EPSG%3A4326&amp;BBOX=-45,-45,0,0&amp;WIDTH=256&amp;HEIGHT=256
 </code></pre></div>
 <p>You can then paste this URL into a curl request:</p>

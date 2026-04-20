@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/upgrade/" class="md-nav__link">
+      <a href="../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19797,7 +19797,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19853,7 +19853,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25271,7 +25271,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25299,7 +25299,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26537,6 +26537,8 @@
       
         
       
+        
+      
     
     
     
@@ -27103,6 +27105,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29521,7 +29551,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29916,7 +29946,7 @@
 <p>The VirtualTopics feature has also other advantages explained here: <a href="http://activemq.apache.org/virtual-destinations.html">http://activemq.apache.org/virtual-destinations.html</a></p>
 <p>As said above, in the default configuration the MOM runs inside GeoServer itself, simplifying the topology and the setup effort.</p>
 <h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
-<p>To install the jms cluster modules into an existing GeoServer refer to the <a href="#jms-installation">jms.installation</a> page</p>
+<p>To install the jms cluster modules into an existing GeoServer refer to the <a href="#installation">Installation</a> page</p>
 <h2 id="how-to-configure-geoserver-instances">How to configure GeoServer Instances<a class="headerlink" href="#how-to-configure-geoserver-instances" title="Permanent link">&para;</a></h2>
 <p>The configuration for the GeoServer is very simple and can be performed using the provided GUI or modifying the <code>cluster.properties</code> file which is stored into the <code>GEOSERVER_DATA_DIR</code> under the <code>cluster</code> folder (e.g. <code>${GEOSERVER_DATA_DIR}/cluster</code>).</p>
 <p>To override the default destination of this configuration file you have to setup the <strong>CLUSTER_CONFIG_DIR</strong> variable defining the destination folder of the <strong>cluster.properties</strong> file. This is <em>mandatory</em> when you want to share the same GEOSERVER_DATA_DIR, but not required if you are giving each GeoServer its own data directory.</p>

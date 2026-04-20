@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/upgrade/" class="md-nav__link">
+      <a href="../../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19976,7 +19976,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -20032,7 +20032,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25446,7 +25446,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25474,7 +25474,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26712,6 +26712,8 @@
       
         
       
+        
+      
     
     
     
@@ -27278,6 +27280,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29696,7 +29726,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30069,7 +30099,7 @@
 <h4 id="style-layer-descriptor-styles">Style Layer Descriptor Styles<a class="headerlink" href="#style-layer-descriptor-styles" title="Permanent link">&para;</a></h4>
 <p>A Style Layer Descriptor is a <a href="../reference/sld/">StyledLayerDescriptor</a> document containing any number of <code>&lt;NamedLayer&gt;</code> and <code>&lt;UserLayer&gt;</code> elements, each of which may contain any number of <code>&lt;UserStyle&gt;</code> or <code>&lt;NamedStyle&gt;</code> elements.</p>
 <p>Within a Style Layer Descriptor document, the name of any <code>&lt;NamedLayer&gt;</code> elements should match a layer (or layer group) in the catalog. Likewise, any <code>&lt;NamedStyle&gt;</code> elements should refer to a style in the catalog.</p>
-<p>Style Layer Descriptor styles can define new layers of styled data, by using the <a href="../reference/layers/#sld_reference_inlinefeature">InlineFeature</a> element to provide feature data.</p>
+<p>Style Layer Descriptor styles can define new layers of styled data, by using the <a href="../reference/layers/#inlinefeature">InlineFeature</a> element to provide feature data.</p>
 <p>Within GeoServer, when Style Layer Descriptor styles are used they are typically in the form of style groups. Style groups can be added to layer groups as an alternative way of defining a collection of styled layers, using either the <a href="../../../data/webadmin/layergroups/">Web Administration interface</a> or the <a href="../../../rest/layergroups/">REST API</a>.</p>
 <p>Style Layer Descriptor styles can still be assigned to layers and used like a layer style, in which case only the first <code>&lt;NamedLayer&gt;</code> will be used. Style Layer Descriptor styles can also be used as an External Style, via the geoserver styles endpoint (<code>/geoserver/styles</code>) or the geoserver REST api.</p>
 <h3 id="external-styles">External Styles<a class="headerlink" href="#external-styles" title="Permanent link">&para;</a></h3>
@@ -30081,7 +30111,7 @@
 </ul>
 <p>In all of these cases, if the WMS <code>layers</code> parameter is not supplied then the map content is defined completely by the layers and styles present in the external SLD. If the <code>layers</code> parameter is present, then styling operates in <a href="#sld_library_mode">Library Mode</a>.</p>
 <p>The structure of an external style is the same as a Style Layer Descriptor style, as described above.</p>
-<p>External styles can define new layers of styled data, by using the SLD <a href="../reference/layers/#sld_reference_inlinefeature">InlineFeature</a> element to provide feature data. This can be used to implement dynamic feature highlighting, for example.</p>
+<p>External styles can define new layers of styled data, by using the SLD <a href="../reference/layers/#inlinefeature">InlineFeature</a> element to provide feature data. This can be used to implement dynamic feature highlighting, for example.</p>
 <p>External styling may be generated dynamically by client applications, This provides a powerful way for clients to control styling effects.</p>
 <h3 id="sld_library_mode">Library Mode<a class="headerlink" href="#sld_library_mode" title="Permanent link">&para;</a></h3>
 <p>In <strong>library mode</strong> externally-defined styles are treated as a <em>style library</em>, which acts as an extension to the server style catalog. Library mode occurs when map layers and styles are specified using the <code>layers</code> and <code>styles</code> WMS parameters, and additional styling is supplied externally using one of the methods described in the previous section. The styles in the external style document take precedence over the catalog styles during rendering.</p>
@@ -30093,7 +30123,7 @@
 </ul>
 <p>Generally it is simpler and more performant to use styles from the server catalog. However, library mode can be useful if it is required to style a map containing many layers and where only a few of them need to have their styling defined externally.</p>
 <h2 id="viewing">Viewing<a class="headerlink" href="#viewing" title="Permanent link">&para;</a></h2>
-<p>Once a style has been associated with a layer, the resulting rendering of the layer data can be viewed by using the <a href="../../../data/webadmin/layerpreview/">Layer Preview</a>. The most convenient output format to use is the built-in OpenLayers viewer. Styles can be modified while the view is open, and their effect is visible as soon as the map view is panned or zoomed. Alternate styles can be viewed by specifying them in the <code>styles</code> WMS request parameter.</p>
+<p>Once a style has been associated with a layer, the resulting rendering of the layer data can be viewed by using the <a href="../../../data/webadmin/browselayers/">Browse Layers</a>. The most convenient output format to use is the built-in OpenLayers viewer. Styles can be modified while the view is open, and their effect is visible as soon as the map view is panned or zoomed. Alternate styles can be viewed by specifying them in the <code>styles</code> WMS request parameter.</p>
 <p>To view the effect of compositing multiple styled layers, several approaches are available:</p>
 <ul>
 <li>Create a <strong>layer group</strong> for the desired layers using the <a href="../../../data/webadmin/layergroups/">Layer Groups</a> page, and preview it. Non-default styles can be specified for layers if required.</li>

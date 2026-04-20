@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/upgrade/" class="md-nav__link">
+      <a href="../../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19986,7 +19986,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -20042,7 +20042,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25456,7 +25456,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25484,7 +25484,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26722,6 +26722,8 @@
       
         
       
+        
+      
     
     
     
@@ -27288,6 +27290,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29706,7 +29736,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30078,7 +30108,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="#getcapabilities">GetCapabilities</a></td>
+<td><a href="#wps_getcaps">GetCapabilities</a></td>
 <td>Retrieves details of the service offering, including service metadata and metadata describing the available processes</td>
 </tr>
 <tr>
@@ -30224,9 +30254,7 @@
 <div class="highlight"><pre><span></span><code>http://host:port/geoserver/ows?service=WPS&amp;version=1.0.0&amp;request=GetExecutionStatus&amp;executionId=397e8cbd-7d51-48c5-ad72-b0fcbe7cfbdb
 </code></pre></div>
 <p>The <code>executionId</code> identifies the running request, and can be used in the <code>Dismiss</code> vendor operation in order to cancel the execution of the process:</p>
-<blockquote>
 <p><a href="http://host:port/geoserver/ows?service=WPS&amp;version=1.0.0&amp;request=Dismiss&amp;executionId=397e8cbd-7d51-48c5-ad72-b0fcbe7cfbdb">http://host:port/geoserver/ows?service=WPS&amp;version=1.0.0&amp;request=Dismiss&amp;executionId=397e8cbd-7d51-48c5-ad72-b0fcbe7cfbdb</a></p>
-</blockquote>
 <p>Upon receipt GeoServer will do its best to stop the running process, and subsequent calls to <code>Dismiss</code> or <code>GetExecutionStatus</code> will report that the executionId is not known anymore. Internally, GeoServer will stop any process that attempts to report progress, and poison input and outputs to break the execution of the process, but the execution of processes that already got their inputs, and are not reporting their progress back, will continue until their natural end.</p>
 <p>For example, let's consider the "geo:Buffer" process, possibly working against a very large input GML geometry, to be fetched from another host. The process itself does a single call to a JTS function, which cannot report progress. Here are three possible scenarios, depending on when the Dismiss operation is invoked:</p>
 <ul>

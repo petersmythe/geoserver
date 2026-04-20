@@ -25,7 +25,7 @@
     
     
       
-        <title>Configuration - GeoServer Documentation</title>
+        <title>ImageMosaic configuration - GeoServer Documentation</title>
       
     
     
@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -163,7 +163,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuration
+              ImageMosaic configuration
             
           </span>
         </div>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../installation/upgrade/" class="md-nav__link">
+      <a href="../../../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1591,14 +1591,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../../webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2188,7 +2188,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -2206,7 +2206,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19955,7 +19955,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -20011,7 +20011,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25425,7 +25425,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25453,7 +25453,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26691,6 +26691,8 @@
       
         
       
+        
+      
     
     
     
@@ -27257,6 +27259,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29675,7 +29705,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30003,7 +30033,6 @@
   
 
 
-<blockquote></blockquote>
 <h1 id="imagemosaic-configuration">ImageMosaic configuration<a class="headerlink" href="#imagemosaic-configuration" title="Permanent link">&para;</a></h1>
 <h2 id="granules">Granules<a class="headerlink" href="#granules" title="Permanent link">&para;</a></h2>
 <p>Each individual image is commonly referred to as a <strong>granule</strong>. In recent releases of GeoServer the similarities requirements for the granules have been dropped significantly, including:</p>
@@ -30379,29 +30408,23 @@
 </code></pre></div>
 <p>The above is a property file containing a regex used to extract Date and Time represented in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> as part of the filename. (Note the T char between digits for date and digits for time, as per ISO-8601)</p>
 <p>In case of custom format datetimes in filename, an additional <em>format</em> element should be added after the regex, preceded by a comma, defining the custom representation.</p>
-<blockquote>
 <p>Example: <code>Temperature_2017111319.tif</code></p>
 <p>an hourly Temperature file with datetime = November, 13 2017 at 7:00 PM (the last 2 digits = 19)</p>
 <p>In that case, the <strong><code>elevationregex.properties</code></strong> file should be like this:</p>
 <div class="highlight"><pre><span></span><code>regex=.*([0-9]{10}).*,format=yyyyMMddHH
 </code></pre></div>
-</blockquote>
 <p>In case of reduced precision of temporal information, where there is the need to get the higher time included in that reduced value, an additional <em>,useHighTime=true</em> element should be added.</p>
-<blockquote>
 <p>Example: <code>Temperature_2017111319.tif</code></p>
 <p>an hourly Temperature file with datetime = November, 13 2017 at 19h 00m 00s 000ms You want to get the max time included in that reduced precision, which is November, 13 2017 at 19h 59m 59s 999ms</p>
 <p>In that case, the <strong><code>elevationregex.properties</code></strong> file should be like this:</p>
 <div class="highlight"><pre><span></span><code>regex=.*([0-9]{10}).*,format=yyyyMMddHH,useHighTime=true
 </code></pre></div>
-</blockquote>
 <p>In case the temporal information is spread along the whole file path, an additional <code>*,fullPath=true*</code> element should be added.</p>
-<blockquote>
 <p>Example: <code>/data/20120202/Temperature.T1800.tif</code></p>
 <p>an hourly Temperature tif file with Year,Month and Day specified in the parent folder (20120202) and time value embedded in the name (Temperature.T1800.tif)</p>
 <p>In that case, the <strong><code>elevationregex.properties</code></strong> file should be like this:</p>
 <div class="highlight"><pre><span></span><code>regex=(?:\/)(\\d{8})(?:\/)(?:Temperature.)(T\\d{4})(?:.tif),fullPath=true
 </code></pre></div>
-</blockquote>
 <p><strong><code>elevationregex.properties</code></strong>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">regex</span><span class="o">=</span><span class="s">(?&lt;=_)(</span><span class="se">\\</span><span class="s">d{4}</span><span class="se">\\</span><span class="s">.</span><span class="se">\\</span><span class="s">d{3})(?=_)</span>
 </code></pre></div>

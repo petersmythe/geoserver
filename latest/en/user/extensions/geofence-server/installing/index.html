@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/upgrade/" class="md-nav__link">
+      <a href="../../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -18522,7 +18522,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#Configure" class="md-nav__link">
+  <a href="#configure-the-plugin" class="md-nav__link">
     <span class="md-ellipsis">
       
         Configure the plugin
@@ -19920,7 +19920,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19976,7 +19976,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25390,7 +25390,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25418,7 +25418,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26656,6 +26656,8 @@
       
         
       
+        
+      
     
     
     
@@ -27222,6 +27224,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29640,7 +29670,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29861,7 +29891,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#Configure" class="md-nav__link">
+  <a href="#configure-the-plugin" class="md-nav__link">
     <span class="md-ellipsis">
       
         Configure the plugin
@@ -29980,10 +30010,10 @@
 <p>Extract the files in this archive to the <strong><code>WEB-INF/lib</code></strong> directory of your GeoServer installation.</p>
 </li>
 <li>Add the following system variable among the JVM startup options (location varies depending on installation type): <code>-Dgwc.context.suffix=gwc</code> to avoid conflicts with GWC pages.</li>
-<li><a href="#Configure the plugin">Configure the plugin</a></li>
+<li><a href="#configure-the-plugin">Configure the plugin</a></li>
 <li>Restart GeoServer</li>
 </ol>
-<h2 id="Configure" plugin="plugin" the="the">Configure the plugin<a class="headerlink" href="#Configure" title="Permanent link">&para;</a></h2>
+<h2 id="configure-the-plugin">Configure the plugin<a class="headerlink" href="#configure-the-plugin" title="Permanent link">&para;</a></h2>
 <h3 id="h2-configuration">H2 configuration<a class="headerlink" href="#h2-configuration" title="Permanent link">&para;</a></h3>
 <p>If you are using the H2 flavour of the plugin, you don't need to configure anything. By default, GeoFence will use H2 as a backend database and will work out of the box with the internal default configuration.</p>
 <p>As reported above, you are strongly encouraged to move to PostgreSQL/PostGIS.</p>

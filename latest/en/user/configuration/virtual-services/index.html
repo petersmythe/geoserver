@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/upgrade/" class="md-nav__link">
+      <a href="../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19941,7 +19941,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19997,7 +19997,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25411,7 +25411,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25439,7 +25439,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26677,6 +26677,8 @@
       
         
       
+        
+      
     
     
     
@@ -27243,6 +27245,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29661,7 +29691,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30198,15 +30228,15 @@
 <h2 id="global-services">Global services<a class="headerlink" href="#global-services" title="Permanent link">&para;</a></h2>
 <p>With the use of virtual services being available additional configuration options are available to manage global services.</p>
 <h3 id="global_services_off">Turning off global services<a class="headerlink" href="#global_services_off" title="Permanent link">&para;</a></h3>
-<p>It is possible to completely restrict access to the global OWS services by adjusing <a href="../globalsettings/#config_globalsettings_global">Enable Global Services</a>. When global access is disabled OWS services may only occur through a virtual workspace or layer service.</p>
+<p>It is possible to completely restrict access to the global OWS services by adjusting <a href="../globalsettings/#config_globalsettings_global">Enable Global Services</a>. When global access is disabled OWS services may only occur through a virtual workspace or layer service.</p>
 <p><img alt="" src="../img/global-services-disabled.png" /></p>
 <p><em>Global Services disabled</em></p>
 <p>Any client that tries to access a service globally (i.e. not via a '/workspace' or '/workspace/layer' url) will receive an exception.</p>
 <p>To disable global services, log into the GeoServer web administration interface and navigate to "Global Settings". Uncheck the "Enable Global Services" check box.</p>
 <p><img alt="" src="../img/global-services.jpg" /></p>
 <h3 id="workspace_isolated">Isolated Workspaces<a class="headerlink" href="#workspace_isolated" title="Permanent link">&para;</a></h3>
-<p>When publishing XML content each FeatureType is published into an XML Namespace. This allows a layer with the same name to be differentiated as they end up with a unique qualified name (in the form <code>&lt;namespace&gt;:&lt;layer-name&gt;</code>). For this approach to avoid any conflicts each workspace is required to have a unique XML Namesapce.</p>
-<p>Isolated workspaces allow GeoServer to configure two workspaces with the same XML Namespace, with the with the guarantee that can only be accessed different WFS or WMS Services. This places some restrictions (outlined in examples below) to ensure there is no opportunity for namespace conflict.</p>
+<p>When publishing XML content each FeatureType is published into an XML Namespace. This allows a layer with the same name to be differentiated as they end up with a unique qualified name (in the form <code>&lt;namespace&gt;:&lt;layer-name&gt;</code>). For this approach to avoid any conflicts each workspace is required to have a unique XML Namespace.</p>
+<p>Isolated workspaces allow GeoServer to configure two workspaces with the same XML Namespace, with the guarantee that can only be accessed different WFS or WMS Services. This places some restrictions (outlined in examples below) to ensure there is no opportunity for namespace conflict.</p>
 <p>Isolated workspaces content is only visible and queryable in the context of a virtual service bound to the isolated workspace. This means that isolated workspaces content will not show up in global capabilities documents and global services cannot query isolated workspaces contents. Note that these restrictions do not apply to the REST API.</p>
 <p>A workspace can be made isolated by checking the <strong>Isolated Workspace</strong> checkbox when creating or editing a workspace.</p>
 <p><img alt="" src="../img/isolated_workspace.png" /></p>

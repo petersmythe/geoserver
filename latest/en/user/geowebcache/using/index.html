@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/upgrade/" class="md-nav__link">
+      <a href="../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19929,7 +19929,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19985,7 +19985,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25399,7 +25399,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25427,7 +25427,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26665,6 +26665,8 @@
       
         
       
+        
+      
     
     
     
@@ -27231,6 +27233,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29649,7 +29679,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29981,7 +30011,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>GeoWebCache integration is not compatible with the OpenLayers-based <a href="../../data/webadmin/layerpreview/">Layer Preview</a>, as the preview does not usually align with the GeoWebCache layer gridset. This is because the OpenLayers application calculates the <code>tileorigin</code> based on the layer's bounding box, which is different from the gridset. It is, possible to create an OpenLayers application that caches tiles; just make sure that the <code>tileorigin</code> aligns with the gridset.</p>
+<p>GeoWebCache integration is not compatible with the OpenLayers-based <a href="../../data/webadmin/browselayers/">Browse Layers</a>, as the preview does not usually align with the GeoWebCache layer gridset. This is because the OpenLayers application calculates the <code>tileorigin</code> based on the layer's bounding box, which is different from the gridset. It is, possible to create an OpenLayers application that caches tiles; just make sure that the <code>tileorigin</code> aligns with the gridset.</p>
 </div>
 <h3 id="virtual-services">Virtual services<a class="headerlink" href="#virtual-services" title="Permanent link">&para;</a></h3>
 <p>When direct WMS integration is enabled, GeoWebCache will properly handle requests to <a href="../../configuration/virtual-services/">Virtual Services</a> (<code>/geoserver/&lt;workspace&gt;/wms?tiled=true&amp;...</code>).</p>

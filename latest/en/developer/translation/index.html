@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -950,14 +950,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user/installation/upgrade/" class="md-nav__link">
+      <a href="../../user/installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1584,14 +1584,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user/data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../user/data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2168,7 +2168,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19792,7 +19792,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19848,7 +19848,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25262,7 +25262,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25290,7 +25290,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26528,6 +26528,8 @@
       
         
       
+        
+      
     
     
     
@@ -27094,6 +27096,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29631,7 +29661,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29947,13 +29977,9 @@
 <p>If you are using <a href="http://www.eclipse.org/">Eclipse</a>, you can install the <a href="http://sourceforge.net/projects/eclipse-rbe/">Eclipse ResourceBundle Editor</a>. Once installed, you can edit the <strong><code>src/main/resources/GeoServerApplication.properties</code></strong> files in all <code>web-*</code> projects (<code>web-core</code>, <code>web-demo</code>, etc.) with the ResourceBundle editor.</p>
 <h2 id="translating-documentation">Translating documentation<a class="headerlink" href="#translating-documentation" title="Permanent link">&para;</a></h2>
 <p>The GeoServer User Manual contains a wealth of information from the novice to the experienced GeoServer user. It is written using the <a href="https://www.sphinx-doc.org/">Sphinx Documentation Generator</a>. The stable branch version of the User Manual exists as the following URL:</p>
-<blockquote>
-<p><a href="http://docs.geoserver.org/stable/en/user/">http://docs.geoserver.org/stable/en/user/</a></p>
-</blockquote>
+<p><code>&lt;http://docs.geoserver.org/stable/en/user/&gt;</code></p>
 <p>Built from the following source files:</p>
-<blockquote>
-<p>/doc/en/user/</p>
-</blockquote>
+<p><code>/doc/en/user/</code></p>
 <p>To create a User Manual in a different language, first create a directory called <strong><code>/doc/[LANG]/</code></strong>, where [LANG] is the language code as defined in <a href="http://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a>. The you can copy the contents of <strong><code>/doc/en/user/</code></strong> to <strong><code>/doc/[LANG]/user</code></strong> and edit accordingly, or generate a new Sphinx project in <strong><code>/doc/[LANG]/user</code></strong>. (See the <code>Sphinx Quickstart &lt;http://sphinx.pocoo.org/tutorial.html&gt;</code> for more information about creating a new project.)</p>
 <p>The GeoServer Sphinx theme exists at <strong><code>/doc/en/user/themes</code></strong>, so that can be copied (and modified if desired) to <strong><code>/doc/[LANG]/user/themes</code></strong>.</p>
 <p>When finished, you will need to commit the content (if you have commit rights) or submit a JIRA issue with attached patch. See the section on <a href="../source/">Source Code</a> for more information on how to commit. Setting up the documentation to be hosted on docs.geoserver.org will require a project administrator; please send an email to the mailing list for more details.</p>

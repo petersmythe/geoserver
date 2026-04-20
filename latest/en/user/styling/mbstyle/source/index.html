@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/upgrade/" class="md-nav__link">
+      <a href="../../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1589,14 +1589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data/webadmin/layerpreview/" class="md-nav__link">
+      <a href="../../../data/webadmin/browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2173,7 +2173,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -19859,7 +19859,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -19915,7 +19915,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25329,7 +25329,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25357,7 +25357,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26595,6 +26595,8 @@
       
         
       
+        
+      
     
     
     
@@ -27161,6 +27163,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29579,7 +29609,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -29816,9 +29846,9 @@
 <h1 id="publishing-a-geoserver-layer-for-use-with-mapbox-styles">Publishing a GeoServer Layer for use with Mapbox Styles<a class="headerlink" href="#publishing-a-geoserver-layer-for-use-with-mapbox-styles" title="Permanent link">&para;</a></h1>
 <p>GeoServer can be configured to serve layers as vector tiles to be used as sources for Mapbox styles rendered by client-side applications such as OpenLayers.</p>
 <ol>
-<li><a href="#production_container-enable_cors">production_container.enable_cors</a> in GeoServer.</li>
-<li>Install the <a href="#vectortiles-install">Vector Tiles</a> extension.</li>
-<li>Follow the <a href="#vectortiles-tutorial">vectortiles.tutorial</a> to publish your layers in <code>application/vnd.mapbox-vector-tile</code> format (You only need to do the "Publish vector tiles in GeoWebCache" step).</li>
+<li><a href="../../../production/container/#production_container.enable_cors">Enable CORS</a> in GeoServer.</li>
+<li>Install the <a href="../../../extensions/vectortiles/install/">Vector Tiles</a> extension.</li>
+<li>Follow the <a href="../../../extensions/vectortiles/tutorial/">Vector tiles tutorial</a> to publish your layers in <code>application/vnd.mapbox-vector-tile</code> format (You only need to do the "Publish vector tiles in GeoWebCache" step).</li>
 </ol>
 <p>Once these steps are complete, you will be able to use your GeoServer layers in any Mapbox-compatible client application that can access your GeoServer.</p>
 <h2 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h2>

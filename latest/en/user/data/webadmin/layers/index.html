@@ -149,7 +149,7 @@
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a><label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
@@ -387,7 +387,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
       
-  <img src="../../../../../img/geoserver-logo.png" alt="logo">
+  <img src="../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
     GeoServer Documentation
@@ -955,14 +955,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/upgrade/" class="md-nav__link">
+      <a href="../../../installation/upgrade3/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Upgrading GeoServer
+    Upgrading GeoServer 3
   
 
     
@@ -1593,14 +1593,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../layerpreview/" class="md-nav__link">
+      <a href="../browselayers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Layer Preview
+    Browse Layers
   
 
     
@@ -2495,7 +2495,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    ImageMosaic configuration
   
 
     
@@ -20119,7 +20119,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Getting Started
   
 
     
@@ -20175,7 +20175,7 @@
   <span class="md-ellipsis">
     
   
-    Advanced
+    Advanced Configuration
   
 
     
@@ -25589,7 +25589,7 @@
   <span class="md-ellipsis">
     
   
-    Schema
+    Opt. 1: Removing Redundant Schema Information
   
 
     
@@ -25617,7 +25617,7 @@
   <span class="md-ellipsis">
     
   
-    Attributes
+    Opt. 2: Removing Redundant Attribute Values
   
 
     
@@ -26855,6 +26855,8 @@
       
         
       
+        
+      
     
     
     
@@ -27421,6 +27423,34 @@
     
   
     Setting up a JNDI connection pool with Tomcat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/tomcat-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tomcat hardening
   
 
     
@@ -29839,7 +29869,7 @@
   <span class="md-ellipsis">
     
   
-    Installing mkdocs
+    Installing MkDocs
   
 
     
@@ -30404,7 +30434,7 @@
 <p><strong>Enabled</strong>---A layer that is not enabled won't be available to any kind of request, it will just show up in the configuration (and in REST config)</p>
 </li>
 <li>
-<p><strong>Advertised</strong>---A layer is advertised by default. A non-advertised layer will be available in all data access requests (for example, WMS GetMap, WMS GetFeature) but won't appear in any capabilities document or in the layer preview.</p>
+<p><strong>Advertised</strong>---A layer is advertised by default. A non-advertised layer will be available in all data access requests (for example, WMS GetMap, WMS GetFeature) but won't appear in any capabilities document or in the Browse Layers page.</p>
 </li>
 <li>
 <p><strong>Title</strong>---Human-readable description to briefly identify the layer to clients (required)</p>
@@ -30566,7 +30596,7 @@
 <ul>
 <li><strong>Queryable</strong>---Controls whether the layer is queryable via WMS <code>GetFeatureInfo</code> requests.</li>
 <li><strong>Default style</strong>---Style that will be used when the client does not specify a named style in GetMap requests.</li>
-<li><strong>Additional styles</strong>---Other styles that can be associated with this layer. Some clients (and the GeoServer Layer Preview) will present those as styling alternatives for that layer to the user.</li>
+<li><strong>Additional styles</strong>---Other styles that can be associated with this layer. Some clients (and the GeoServer Browse Layers page) will present those as styling alternatives for that layer to the user.</li>
 <li><strong>Default rendering buffer</strong>---Default value of the <code>buffer</code> GetMap/GetFeatureInfo vendor parameter. See the <a href="../../../services/wms/vendor/">WMS vendor parameters</a> for more details.</li>
 <li><strong>Default WMS path</strong>---Location of the layer in the WMS capabilities layer tree. Useful for building non-opaque layer groups</li>
 <li><strong>Default Interpolation Method</strong>---Allows to specify a default resampling (interpolation) method for this layer. The available options are <em>Nearest neighbor</em>, <em>Bilinear</em>, <em>Bicubic</em>, or <em>Use service default</em>, which means that no layer specific configuration will be created (the default interpolation method selected in the WMS service configuration page will be used, see <a href="../../../services/wms/webadmin/#services_webadmin_wms_raster_options">Raster Rendering Options</a> for details). Can be overridden by the <a href="../../../services/wms/vendor/#wms_vendor_parameter_interpolations">interpolations vendor parameter</a>.</li>
