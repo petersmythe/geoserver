@@ -4,14 +4,14 @@
 
 GeoServer performance depends a lot on the chosen Java Runtime Environment (JRE). The stable and maintenance versions of GeoServer are tested with OpenJDK (LTS) Long Term Support releases. Implementations other than those tested may work correctly, but are generally not recommended.
 
-| GeoServer        | Java 21 | Java 17 | Java 11 | Java 8    | 
-| ---------------- | ------- | ------- | ------- | --------- | 
-| GeoServer 3.0.x  | OpenJDK | OpenJDK |         |           | 
-| GeoServer 2.28.x | OpenJDK | OpenJDK |         |           | 
-| GeoServer 2.27.x |         |         | OpenJDK |           | 
-| GeoServer 2.22.x |         |         | OpenJDK | OpenJDK <br/> OracleJRE |
-| GeoServer 2.15.x |         |         | OpenJDK | OpenJDK <br/> OracleJRE |
-| GeoServer 2.9.x  |         |         |         | OpenJDK <br/> OracleJRE |
+| GeoServer        | Java 25 | Java 21 | Java 17 | Java 11   | Java 8    | 
+| ---------------- | ------- |-------- | ------- | --------- | --------- | 
+| GeoServer 3.0.x  | testing | OpenJDK | OpenJDK |           |           | 
+| GeoServer 2.28.x |         | OpenJDK | OpenJDK |           |           | 
+| GeoServer 2.27.x |         |         |         | OpenJDK   |           | 
+| GeoServer 2.22.x |         |         |         | OpenJDK   | OpenJDK <br/> OracleJRE |
+| GeoServer 2.15.x |         |         |         | OpenJDK   | OpenJDK <br/> OracleJRE |
+| GeoServer 2.9.x  |         |         |         |           | OpenJDK <br/> OracleJRE |
 
 Please see GeoServer 2 manual compatibility guidance prior to Java 8.
 
@@ -43,7 +43,13 @@ GeoServer code depends on a variety of libraries trying to access the JDK intern
 
 GeoServer 2.28.x and above supports Java 21 with no additional configuration.
 
-Java  21 deployment on Tomcat 11 and Jetty 12.1 is subject to automated testing.
+Java 21 deployment on Tomcat 11 and Jetty 12.1 is subject to automated testing.
 
 Running GeoServer under Java 21 on other Application Servers may require some additional configuration.
 Most Application Servers now support Java 21.
+
+## Running on Java 25
+
+Java 25 deployment on Tomcat 11 and Jetty 12.1 is subject to automated testing.
+
+We welcome community testing in this environment, and will upgrade status to recommended based on positive [user forum](https://discourse.osgeo.org/c/geoserver/user/51) feedback.
