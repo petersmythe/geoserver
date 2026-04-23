@@ -58,7 +58,7 @@ Any existing `location` value in the data directory `logging.xml` file is retain
 
 ### NetCDF Index removal
 
-Starting with GeoServer 3.0, NetCDF plugin (and coverage multidim machinery) has been simplified and is now self contained. With this improvement NetCDF no longer needs a databse or `idx` files to operate. In particular, it no longer relies on: 
+Starting with GeoServer 3.0, NetCDF plugin (and coverage multidim machinery) has been simplified and is now self contained. With this improvement NetCDF no longer needs a database or `idx` files to operate. In particular, it no longer relies on: 
 
 - a database (e.g., H2 or PostGIS) to map temporal and elevation domains to image indices, 
 - nor on the auxiliary **`.idx`** binary files previously used to link image indices to NetCDF dimension coordinates. 
@@ -108,8 +108,8 @@ With the GeoServer 3 refactoring, this configuration is no longer required. The 
 
 GeoServer 3 marks the end-of-life for several popular community plugins - which all have a single replacement in the [OIDC plugin](https://docs.geoserver.org/main/en/user/community/oidc/) module.
 
-* If you previously used keycloak support, there are setup instructions for [configuring with keycloak](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/keycloak/).
-* If you previously used an OAuth2 integration can find indivudal setup instructions for [google](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/google/), [Azure](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/azure/), and [GitHub](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/azure/).
+* If you previously used Keycloak support, there are setup instructions for [configuring with Keycloak](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/keycloak/).
+* If you previously used an OAuth2 integration, you can find individual setup instructions for [Google](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/google/), [Azure](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/azure/), and [GitHub](https://docs.geoserver.org/main/en/user/community/oidc/oauth2/azure/).
 
 For more information, and installation instructions, use the user guide [OAuth2 OpenID Connect](https://docs.geoserver.org/main/en/user/community/oidc/) page. 
 
@@ -156,19 +156,19 @@ The general GeoServer upgrade process is as follows:
      (when upgrading from 2.20 to 2.21 the logging library changed), or
      
    - Newer versions may change what extensions are provided
-     (as is the case when moving from 2.28 to 3.0 with the OIDC plugin replacing the keycloak plugin).
+     (as is the case when moving from 2.28 to 3.0 with the OIDC plugin replacing the Keycloak plugin).
 
 6.  Be sure to download and install each extension used by your prior installation.
 
 7.  Make sure that the new installation continues to point to the same data directory used by the previous version.
 
-8. During initial startup check the logs for any warnings that may need to be addressed.
+8. During initial startup, check the logs for any warnings that may need to be addressed.
 
 ## Q: How often should I upgrade GeoServer
 
 GeoServer [release schedule](https://github.com/geoserver/geoserver/wiki/Release-Schedule) follows a predictabe time boxed release cycle, maintaining "stable" and "maintenance" releases, over the course of a year.
 
-- Plan to upgrade GeoServer **at least twice a year** as new stable releases are made in march
+- Plan to upgrade GeoServer **at least twice a year** as new stable releases are made in March and Septemeber each year.
 
   Once the release you are using has entered "maintenance" it is a good idea to upgrade (before the release is no longer supported).
 
