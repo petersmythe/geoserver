@@ -122,7 +122,7 @@ To prevent client side request forgery:
 
 - **Step 1**: GeoServer will include a `code_challenge` during initial authorization code request
 
-- **Step 2**: GeoServer will include a `code_verifer` during the access token request.
+- **Step 2**: GeoServer will include a `code_verifier` during the access token request.
 
   The authentication server will confirm that `code_verifier` hash matches the initial `code_challenge` in order the confirm the client is the same as in **Step 1**.
 
@@ -175,7 +175,7 @@ The OpenId connect support can make a lot of requests to the OIDC server.
 In a scenario where bearer encrypted tokens are used, in encrypted form, and with roles extraction from the userinfo endpoint, a WMS client sending tokens for each request will trigger the following requests to the OIDC server:
 
 - The bearer token is used against the `token` endpoint for username extraction
-- Then it's used against the `instrospection` endpoint for validation (which also contains the exp attribute, see later)
+- Then it's used against the `introspection` endpoint for validation (which also contains the exp attribute, see later)
 - It's finally used against the `userinfo` to extract the roles
 
 With clients performing many small tiled requests, the traffic to the OIDC server may becomes excessive.

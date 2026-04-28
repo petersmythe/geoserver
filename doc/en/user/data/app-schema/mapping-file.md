@@ -469,7 +469,7 @@ When using JDBC based data stores attributes with a 1..N relationship can be map
 
 The `targetValue` refers to the value of the `<st:tag>` element, the client property is mapped with the usual syntax. Behind the scenes App-Schema will take care of associating the `st:code` attribute value with the correct tag.
 
-Another variant of this feature can be used for nested elements on an unbounded anonymous sequence, Using 'anonymousAttribute' element definition for generating child elements and values inside an anonymous umbounded sequence:
+Another variant of this feature can be used for nested elements on an unbounded anonymous sequence, Using 'anonymousAttribute' element definition for generating child elements and values inside an anonymous unbounded sequence:
 
 ```xml
 (...)
