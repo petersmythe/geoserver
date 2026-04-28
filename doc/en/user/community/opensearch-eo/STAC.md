@@ -1,6 +1,6 @@
 # The STAC extension
 
-The OpenSeach for EO subsystem exposes also a [STAC](https://stacspec.org/) service, implemented as a OGC API Features conformant [STAC API](https://github.com/radiantearth/stac-api-spec).
+The OpenSearch for EO subsystem exposes also a [STAC](https://stacspec.org/) service, implemented as a OGC API Features conformant [STAC API](https://github.com/radiantearth/stac-api-spec).
 
 The landing page of the STAC API is linked from the GeoServer home page, and available at `$HOST:$PORT/geoserver/ogc/stac`. The API exposes the OpenSearch for EO contents, restructuring them as needed:
 
@@ -142,7 +142,7 @@ Layers are kept in the `layers` attribute of a collection, each one exposes the 
 
 - The layer `title` and `description` from the GeoServer own configuration
 
-- A list of `styles`, matching the styles associated to the layer. The first one is the default style. Each style contains the follwoing properties:
+- A list of `styles`, matching the styles associated to the layer. The first one is the default style. Each style contains the following properties:
   - `name`: the style name
   - `title`: the style title
 

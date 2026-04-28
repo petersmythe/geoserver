@@ -35,7 +35,7 @@ Consider a chloropleth map of the US states dataset using the fill color to indi
 
 ## Categorize
 
-The `Categorize` filter function transforms a continuous-valued attribute into a set of discrete values by assiging ranges of values and turning them into a color, size, width, opacity, etc.
+The `Categorize` filter function transforms a continuous-valued attribute into a set of discrete values by assigning ranges of values and turning them into a color, size, width, opacity, etc.
 
 In the following example a coropleth map is build associating a color to the state population density in the ranges [ <= 20], [20 - 100], and [ > 100].
 

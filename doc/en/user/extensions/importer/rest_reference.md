@@ -578,7 +578,7 @@ All the above attributes can be updated using a PUT request. Even if the above r
 
 | Method | Action | Status Code/Headers | Input | Output |
 |----|----|----|----|----|
-| GET | Retrieve the list of transformations of a task with id <taskId> within import with id <importId> | 200 | n/a | A list of transfromations in JSON format |
+| GET | Retrieve the list of transformations of a task with id <taskId> within import with id <importId> | 200 | n/a | A list of transformations in JSON format |
 | POST | Create a new transformation and append it inside a task with id <taskId> within import with id <importId> | 201 | A JSON transformation representation | The transform location |
 
 #### Retrieving the transformation list

@@ -77,7 +77,7 @@ Within a batch run, each task that has yet started has a status. These are the p
 - `NOT_COMMITTED`: the task was supposed to commit but failed during the commit phase.
 - `NOT_ROLLED_BACK`: the task was supposed to roll back but failed during roll back phase.
 
-A task is consired finished if its status is not `RUNNING`, `WAITING_TO_COMMIT`, `ROLLING_BACK` or `COMMITTING`. A batch run does not have its own status, but it takes on the status of the last task that has started but is not `COMMITTED` or `ROLLED_BACK`. A batch run is considered finished if its status is not `RUNNING`, `WAITING_TO_COMMIT` or `COMMITTING`.
+A task is considered finished if its status is not `RUNNING`, `WAITING_TO_COMMIT`, `ROLLING_BACK` or `COMMITTING`. A batch run does not have its own status, but it takes on the status of the last task that has started but is not `COMMITTED` or `ROLLED_BACK`. A batch run is considered finished if its status is not `RUNNING`, `WAITING_TO_COMMIT` or `COMMITTING`.
 
 There is concurrency protection both on the level of tasks and batches. A single batch can never run simultaneously in multiple runs (the second run will wait for the first one to finish). A single task can never run simultaneously in multiple runs, even if part of a different batch. A single task can also not commit simultaneously in multiple runs.
 

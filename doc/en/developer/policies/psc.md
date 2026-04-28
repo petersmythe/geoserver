@@ -47,7 +47,7 @@ A new PSC member can be nominated at any time. Voting for a new PSC is done by c
 
 Since we demand a fairly active PSC, we expect turnover may be high compared to other projects. Initially we aimed to keep it around 7 PSC members but over time, with sufficient reason, we've expanded it.
 
-Nominated PSC members must recieve a majority of +1 vote's from the PSC, and no -1's.
+Nominated PSC members must receive a majority of +1 vote's from the PSC, and no -1's.
 
 PSC Chair is nominated following the same procedures as PSC members.
 
@@ -124,7 +124,7 @@ Meetings are a chance to quickly discuss project activities, review difficult pu
 
 #### Community Commitments
 
-As an Open Source Geospatial Foundation project we have a number of committments:
+As an Open Source Geospatial Foundation project we have a number of commitments:
 
 - Code of Conduct
 - OSGeo Officer

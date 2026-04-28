@@ -221,7 +221,7 @@ All the sidecar hidden directories will end up being located at the top level of
 
 `-DNETCDF_DATA_DIR_TREE=true`
 
-Set up this way, the contents of the NetCDF data directory will mimick the absolute position of the NetCDF files, e.g.:
+Set up this way, the contents of the NetCDF data directory will mimic the absolute position of the NetCDF files, e.g.:
 
 - A source file is in `/opt/data/meteo/2024/01/02/file.nc`
 - The NETCDF_DATA_DIR points at `/opt/netcdf_dd/`

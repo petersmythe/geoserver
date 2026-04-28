@@ -191,7 +191,7 @@ This technique was shown with the initial <file:%60airport.svg>` CSS example.
 
     Using the **symbol** function in the **mark** property.
 
-    The styles declarations have to icluded in the **:mark** pseudo-class.
+    The styles declarations have to included in the **:mark** pseudo-class.
 
     ``` scss
     /* @title red triangle with blue stroke */

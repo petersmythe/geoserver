@@ -44,7 +44,7 @@ The WPS specification is very generic. Any process can take as input pretty much
 
 Now, this means WPS can trade vector data, raster data, plain strings and numbers, spreadsheets or word processor and whatever else the imagination can lead one to. Also, given a single type of data, say a plain geometry, there are many useful ways to represent it: it could be GML2, or GML3, or WKT, WKB, or a one row shapefile. Different clients will find some formats easier than others to use, meaning the WPS should try to offer as many option as possible for both input and output.
 
-The classes stored in the `org.geoserver.wps.ppio` serve exactly this purpose: turning a representation format into an in memory object and vice versa. A new subclass of `ProcessParameterIO` (PPIO) is needed each time a new format for a known parameter type is desired, or when a process requires a new kind of parameter, and it then needs to be registered in the Spring contex so that `ProcessParameterIO.find(Parameter, ApplicationContext)` can find it.
+The classes stored in the `org.geoserver.wps.ppio` serve exactly this purpose: turning a representation format into an in memory object and vice versa. A new subclass of `ProcessParameterIO` (PPIO) is needed each time a new format for a known parameter type is desired, or when a process requires a new kind of parameter, and it then needs to be registered in the Spring context so that `ProcessParameterIO.find(Parameter, ApplicationContext)` can find it.
 
 Both the XML reader and the XML encoders do use the PPIO dynamically: the WPS document structure is made so that parameters are actually xs:Any, so bot
 

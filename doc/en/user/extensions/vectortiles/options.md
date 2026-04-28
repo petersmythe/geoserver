@@ -82,5 +82,5 @@ Describing the salient bits:
 - `tiger_roads` and `poi` are scale dependent, they won't be available in zoomed out tiles
 - `poly_landmarks` only reports CFCC and enables polygon coaleshing, allowing to merge a few polygons with the same class
 - `poly_landmarks` also enables a separate label layer with polygon label points (`poly_landmarks-labels`), with only the NAME attribute
-- `tiger-roads` selects the attributes for labelling, and enables coaleshing, which helps a lot reducing the tile size, since each roads is split amongs many smaller features (at intersections).
+- `tiger-roads` selects the attributes for labelling, and enables coaleshing, which helps a lot reducing the tile size, since each roads is split among many smaller features (at intersections).
 - The usage of feature coaleshing reduces the size of vector tiles by around 50%, compared to simple attribute selection, in this case. Layers with more/more complex attributes will benefit more.

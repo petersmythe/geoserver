@@ -5,7 +5,7 @@ render_macros: true
 
 # OGC API - 3D GeoVolumes
 
-An [OGC API - 3D GeoVolumes](https://ogcapi.ogc.org/geovolumes/) service publishing 3D conents data using an OpenAPI web service.
+An [OGC API - 3D GeoVolumes](https://ogcapi.ogc.org/geovolumes/) service publishing 3D contents data using an OpenAPI web service.
 
 ## 3D GeoVolumes Implementation status
 

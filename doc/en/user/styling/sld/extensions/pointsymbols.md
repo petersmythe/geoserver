@@ -302,7 +302,7 @@ Parameters names are defined by the SVG file:
 
   *SVG image with fill*
 
-The use of SVG parameters can be combinded with dynamic symbolizers (covered below) to supply SVG parameter values based on feature attribute data and expressions.
+The use of SVG parameters can be combined with dynamic symbolizers (covered below) to supply SVG parameter values based on feature attribute data and expressions.
 
 - OnlineResource `href` URI referencing SVG Parameter with dynamic CQL expression:
 
