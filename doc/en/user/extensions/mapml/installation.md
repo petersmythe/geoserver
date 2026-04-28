@@ -52,7 +52,7 @@ MapML supports 4 built-in TiledCRS:
 - MapML:CBMTILE (or EPSG:3978)
 - MapML:APSTILE (or EPSG:5936)
 
-In addition, is it possible to configure custom TiledCRS based on the available WMTS GridSets. A new MapML TCRS Settings menu is available in the GeoServer UI on the Settings section:
+In addition, it is possible to configure custom TiledCRS based on the available WMTS GridSets. A new MapML TCRS Settings menu is available in the GeoServer UI on the Server > MapML TCRS Settings section:
 
 ![](images/mapml_tcrs_menu.png)
 
