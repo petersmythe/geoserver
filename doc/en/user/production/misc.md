@@ -44,7 +44,7 @@ This results in running multiple GeoServer nodes behind a common proxy or load b
 
 The limitation of these approach is the startup time associated with restarting nodes. Several community modules exist to address this limitation:
 
-- The project [Cloud Native GeoServer](https://github.com/geoserver/geoserver-cloud) breaks the GeoServer application into microservies that may be scaled by Kubernetes.
+- The project [Cloud Native GeoServer](https://github.com/geoserver/geoserver-cloud) breaks the GeoServer application into microservices that may be scaled by Kubernetes.
 
   This prevents the needs to restart nodes, but requires a microservice environment.
 

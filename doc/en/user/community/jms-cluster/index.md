@@ -94,7 +94,7 @@ NO DATA IS SENT THROUGH THE JMS CHANNEL The clustering solution we have put in p
 
 ## Bibliography:
 
-[JMS specs] Sun microsystens - Java Message Service - Version 1.1 April 12, 2002
+[JMS specs] Sun microsystems - Java Message Service - Version 1.1 April 12, 2002
 
 [JMS] Snyder Bosanac Davies - ActiveMQ in action - Manning
 

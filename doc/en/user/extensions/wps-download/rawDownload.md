@@ -39,7 +39,7 @@ The *Download Process* calls the *Download Estimator Process*, checks the file s
 
     the reprojected coverage will be forced to use native resolutions. For example by specifying a value of 5.0, if the percentage difference between native and reprojected data is below 5%, assuming that also the other two conditions are respected, the native resolutions will be preserved. Default values is 0.
 
-The `targetCRS` and `RoiCRS` parameters are using EPSG code terminology, so, valid parameters are literals like `EPSG:4326` (if we are referring to a the Geogaphic WGS84 CRS), `EPSG:3857` (for WGS84 Web Mercator CRS), etc.
+The `targetCRS` and `RoiCRS` parameters are using EPSG code terminology, so, valid parameters are literals like `EPSG:4326` (if we are referring to a the Geographic WGS84 CRS), `EPSG:3857` (for WGS84 Web Mercator CRS), etc.
 
 ## ROI Definition
 

@@ -130,7 +130,7 @@ A download map issued against a set of local layers can look as follows:
 </wps:Execute>
 ```
 
-For this example the layers could have been a single one, with a "Name" equal to "giantPolygon,watertermp".
+For this example the layers could have been a single one, with a "Name" equal to "giantPolygon,watertemp".
 
 ### Secondary output: map metadata
 

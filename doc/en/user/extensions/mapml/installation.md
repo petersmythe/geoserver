@@ -130,7 +130,7 @@ If the "Use Features" checkbox is checked, the output MapML on the Browse Layers
 </map-extent>
 ```
 
-When both "Use Tiles" and "Use Features" are set in the FORMAT_OPTIONS parameter (`mapmlusefeatures:true;mapmlusetiles:true`), the MapML extension will request tiled maps in `text/mapml` format. The contents of the tiles will be clipped to the requested area, and feature attributes will be skiipped, as the MapML client cannot leverage them for the moment.
+When both "Use Tiles" and "Use Features" are set in the FORMAT_OPTIONS parameter (`mapmlusefeatures:true;mapmlusetiles:true`), the MapML extension will request tiled maps in `text/mapml` format. The contents of the tiles will be clipped to the requested area, and feature attributes will be skipped, as the MapML client cannot leverage them for the moment.
 
 ## Sub-layer Settings
 

@@ -40,7 +40,7 @@ A batch will be run automatically on its scheduled time if the following conditi
 The batch is executed in two phases:
 
 - `RUN` phase: tasks are executed in the defined order. If an error occurs or the run is manually intermitted, cease execution and go to `ROLLBACK` phase. If all tasks finish successfully, go to `COMMIT` phase.
-- `COMMIT/ROLLBACK` phase: tasks are committed or rollbacked in the *opposite* order.
+- `COMMIT/ROLLBACK` phase: tasks are committed or rolled back in the *opposite* order.
 
 Consider a batch with three tasks
 

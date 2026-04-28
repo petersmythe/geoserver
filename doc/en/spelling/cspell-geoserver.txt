@@ -493,3 +493,97 @@ uintx
 
 # British English
 synchronise
+
+# British English spellings
+specialised
+recognised
+normalised
+minimised
+maximised
+maximise
+optimised
+Optimising
+initialise
+synchronisation
+customisation
+customisations
+customised
+Customisation
+externalised
+Externalising
+externalising
+containerised
+authorisation
+behaviours
+colours
+Colours
+licence
+symbolisers
+unrecognised
+demilitarised
+
+# Shape names (GeoServer styling)
+horline
+
+# Cartography/visualization terms
+choropleth
+Choropleth
+
+# Databases and tools
+hsqldb
+duckdb
+clickhouse
+flatgeobuf
+Rasterlite
+jacoco
+errorprone
+sortpom
+Sortpom
+apereo
+Adoptium
+NOAA
+FOSS
+FIPS
+NTLM
+nvme
+hsts
+topojson
+
+# GDAL tools
+gdalwarp
+gdalinfo
+
+# GIS formats and terms
+georss
+multispectral
+hyperspectral
+mosaicking
+densification
+subsetting
+geotiffs
+Geotiffs
+metatiles
+blobstores
+Blobstores
+pluggability
+hostnames
+Hostnames
+
+# British English
+neighbouring
+neighbour
+initialisation
+synchronised
+Visualisation
+visualisation
+
+# Config property names (not typos)
+dontBreakItems
+dont
+notificator
+generalizsation
+maitproxy
+testng
+
+# Example data names
+apachesession

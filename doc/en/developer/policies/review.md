@@ -29,7 +29,7 @@ Before you start:
 
 ### Initial Checks
 
-The following checks can be performed quickly and represent common mistakes or oversites. These quick checks can be performed by anyone as an initial inspection.
+The following checks can be performed quickly and represent common mistakes or oversights. These quick checks can be performed by anyone as an initial inspection.
 
 !!! note
     Providing an initial check, while better than no follow up at all, may seem petty and discouraging to the contributor. It is a good idea to state that this is only quick feedback - while either more time or an appropriate expert is found.

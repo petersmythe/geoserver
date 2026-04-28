@@ -318,7 +318,7 @@ It is required to use `<LinePlacement>` along with this option to ensure that la
 
 The `maxDisplacement` option controls the displacement of the label along a line, around a point and inside a polygon.
 
-For lines, normally GeoServer labels a line at its center point only. If this label conflicts with another one it may not be displayed at all. When this option is enabled the labeller will attempt to avoid conflic by using an alternate location within **maxDisplacement** pixels along the line from the pre-computed label point.
+For lines, normally GeoServer labels a line at its center point only. If this label conflicts with another one it may not be displayed at all. When this option is enabled the labeller will attempt to avoid conflict by using an alternate location within **maxDisplacement** pixels along the line from the pre-computed label point.
 
 If used in conjunction with [repeat](#labeling_repeat), the value for `maxDisplacement` should always be **lower** than the value for `repeat`.
 
@@ -460,7 +460,7 @@ Some underlines examples:
 
 ### strikethroughText {: #labeling_strikethrough_text }
 
-The `strikethroughText` option instruct the renderer to strikethrough labels. The strikethrough will work like a typical word processor text strikethrough. The thickness and position of the line will be defined by the font and color will be the same as the text. Spaces will also be stroken.
+The `strikethroughText` option instruct the renderer to strikethrough labels. The strikethrough will work like a typical word processor text strikethrough. The thickness and position of the line will be defined by the font and color will be the same as the text. Spaces will also be struck through.
 
 ```xml
 <VendorOption name="strikethroughText">true</VendorOption>

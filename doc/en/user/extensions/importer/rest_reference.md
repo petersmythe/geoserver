@@ -204,7 +204,7 @@ The representation of a import is the same as the one contained in the import cr
 
 A import can have a "data" representing the source of the data to be imported. The data can be of different types, in particular, "file", "directory", "mosaic", "database" and "remote". During the import initialization the importer will scan the contents of said resource, and generate import tasks for each data found in it.
 
-Most data types are discussed in the task section, the only type that's specific to the whole import context is the "remote" one, that is used to ask the importer to fetch the data from a remote location autonomusly, without asking the client to perform an upload.
+Most data types are discussed in the task section, the only type that's specific to the whole import context is the "remote" one, that is used to ask the importer to fetch the data from a remote location autonomously, without asking the client to perform an upload.
 
 The representation of a remote resource looks as follows:
 
@@ -733,7 +733,7 @@ Parses a string representation of a date into a Date/Timestamp object
 
 #### IntegerFieldToDateTransform
 
-Takes a integer field and transforms it to a date, interpreting the intereger field as a date
+Takes a integer field and transforms it to a date, interpreting the integer field as a date
 
 | Parameter | Optional | Description                               |
 |-----------|----------|-------------------------------------------|
