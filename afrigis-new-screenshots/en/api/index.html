@@ -241,28 +241,37 @@
       background-color: var(--gs-header-bg-dark) !important;
     }
 
+    /* Swagger logo text: make visible on white header */
+    .swagger-ui .topbar-wrapper .link svg .logo_small_svg__cls-2 {
+      fill: var(--gs-brand-primary) !important;
+    }
+
+    body.dark-mode .swagger-ui .topbar-wrapper .link svg .logo_small_svg__cls-2 {
+      fill: var(--gs-brand-primary-light) !important;
+    }
+
     /* "Select a definition" label text — visible on white header */
     .swagger-ui .topbar .download-url-wrapper .select-label span {
       color: var(--gs-brand-primary) !important;
+      white-space: nowrap !important;
     }
 
     body.dark-mode .swagger-ui .topbar .download-url-wrapper .select-label span {
       color: var(--gs-brand-primary-light) !important;
     }
 
-    /* Select dropdown — brand colour border, constrained width for toggle clearance */
+    /* Select dropdown — brand colour border, fills remaining space on the right */
     .swagger-ui .topbar .download-url-wrapper,
     .swagger-ui .topbar .topbar-wrapper .download-url-wrapper,
     .swagger-ui .topbar .wrapper .download-url-wrapper {
       flex: 0 1 auto !important;
-      max-width: 320px !important;
-      margin-right: 3rem !important;
+      max-width: none !important;
     }
 
     .swagger-ui .topbar .download-url-wrapper .select-label,
     .swagger-ui .topbar select {
-      max-width: 220px !important;
-      width: 220px !important;
+      max-width: none !important;
+      width: auto !important;
     }
 
     .swagger-ui .topbar select {
@@ -303,12 +312,13 @@
     }
 
     /* --- Dark mode toggle button (matches MkDocs brightness-7 / brightness-4 icons) --- */
-    .dark-mode-toggle {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
+    .swagger-ui .topbar .dark-mode-toggle {
+      display: flex;
+      align-items: center;
       z-index: 10;
+      flex-shrink: 0;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .dark-mode-toggle button {
@@ -415,10 +425,50 @@
       border-color: #555;
     }
 
+    /* Dark mode modal/dialog (Authorize, etc.) */
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux {
+      background: #2d2d2d;
+      border-color: #444;
+    }
+
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-header {
+      border-bottom-color: #444;
+    }
+
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-header h3 {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-header .close-modal {
+      background: #444;
+    }
+
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content p,
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content label,
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content h4 {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content input[type="text"],
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content input[type="password"] {
+      background: #3a3a3a;
+      color: #e0e0e0;
+      border-color: #555;
+    }
+
+    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content .btn-done {
+      background: #444;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .swagger-ui .dialog-ux .backdrop-ux {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
     .info-banner {
       position: fixed;
       top: 10px;
-      left: 10px;
+      right: 10px;
       z-index: 9999;
       background-color: #fff3cd;
       border: 2px solid #ffc107;
@@ -502,62 +552,89 @@
       function setMode(dark) {
         if (dark) {
           document.body.classList.add('dark-mode');
-          localStorage.setItem('gs-swagger-dark', '1');
         } else {
           document.body.classList.remove('dark-mode');
-          localStorage.setItem('gs-swagger-dark', '0');
         }
+        // Sync to Material docs palette key so docs follows Swagger toggle
+        try {
+          var keys = Object.keys(localStorage);
+          for (var i = 0; i < keys.length; i++) {
+            if (keys[i].endsWith('.__palette')) {
+              var palette = JSON.parse(localStorage.getItem(keys[i]));
+              if (palette && palette.color) {
+                palette.color.scheme = dark ? 'slate' : 'default';
+                palette.index = dark ? 1 : 0;
+                localStorage.setItem(keys[i], JSON.stringify(palette));
+              }
+              break;
+            }
+          }
+        } catch (e) { /* ignore */ }
         updateIcon();
       }
 
       function updateIcon() {
         var btn = document.querySelector('.dark-mode-toggle button');
         if (!btn) return;
-        // Show sun when in dark mode (click to go light), moon when in light mode (click to go dark)
-        btn.innerHTML = isDark() ? sunIcon : moonIcon;
+        // Show sun when in light mode (current state), moon when in dark mode (current state)
+        btn.innerHTML = isDark() ? moonIcon : sunIcon;
         btn.title = isDark() ? 'Switch to light mode' : 'Switch to dark mode';
         btn.setAttribute('aria-label', btn.title);
       }
 
-      // Initialise from localStorage or system preference
-      var stored = localStorage.getItem('gs-swagger-dark');
-      if (stored === '1') {
+      // Initialise from Material docs palette preference, then system preference
+      var darkFromDocs = null;
+      try {
+        var keys = Object.keys(localStorage);
+        for (var i = 0; i < keys.length; i++) {
+          if (keys[i].endsWith('.__palette')) {
+            var palette = JSON.parse(localStorage.getItem(keys[i]));
+            if (palette && palette.color && palette.color.scheme) {
+              darkFromDocs = (palette.color.scheme === 'slate');
+              break;
+            }
+          }
+        }
+      } catch (e) { /* ignore */ }
+
+      if (darkFromDocs === true) {
         document.body.classList.add('dark-mode');
-      } else if (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      } else if (darkFromDocs === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark-mode');
       }
 
       // Inject toggle button into topbar after Swagger UI renders
       function injectToggle() {
-        var topbar = document.querySelector('.swagger-ui .topbar');
-        if (!topbar) return;
-        topbar.style.position = 'relative';
+        // Find the download-url-wrapper — the toggle goes right before it
+        var dlWrapper = document.querySelector('.swagger-ui .topbar .download-url-wrapper');
+        if (!dlWrapper) return;
+        var container = dlWrapper.parentNode;
 
-        // Check if a toggle already exists (e.g. from StandaloneLayout or previous injection)
-        var existing = topbar.querySelector('.dark-mode-toggle');
+        // Check if a toggle already exists
+        var existing = document.querySelector('.swagger-ui .topbar .dark-mode-toggle');
         if (existing) {
-          // Move it to be a direct child of topbar (outside the wrapper)
-          topbar.appendChild(existing);
-          // Replace its button content and wire up the click handler
+          // Wire up click handler
           var btn = existing.querySelector('button');
           if (btn) {
-            btn.replaceWith(btn.cloneNode(false)); // remove old listeners
+            btn.replaceWith(btn.cloneNode(false));
             btn = existing.querySelector('button');
             btn.setAttribute('type', 'button');
             btn.addEventListener('click', function() { setMode(!isDark()); });
           }
+          // Move before download-url-wrapper
+          container.insertBefore(existing, dlWrapper);
           updateIcon();
           return;
         }
 
-        // Create a new toggle if none exists
+        // Create a new toggle
         var toggle = document.createElement('div');
         toggle.className = 'dark-mode-toggle';
         toggle.innerHTML = '<button type="button"></button>';
         toggle.querySelector('button').addEventListener('click', function() {
           setMode(!isDark());
         });
-        topbar.appendChild(toggle);
+        container.insertBefore(toggle, dlWrapper);
         updateIcon();
       }
 
@@ -715,7 +792,7 @@
               // Add wrapper back to topbar
               topbar.appendChild(wrapper);
 
-              // Inject dark mode toggle AFTER wrapper (so it stays outside the wrapper)
+              // Inject dark mode toggle into wrapper (before download-url-wrapper)
               if (window.__gsInjectDarkToggle) {
                 window.__gsInjectDarkToggle();
               }
