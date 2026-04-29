@@ -20,6 +20,13 @@
       margin: 0;
       padding: 0;
       background: #fafafa;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* --- Dark mode body --- */
+    body.dark-mode {
+      background: #1a1a1a;
+      color: #e0e0e0;
     }
     
     /* Documentation switcher styles - integrated into Swagger UI topbar */
@@ -53,8 +60,8 @@
       margin: 0 !important;
       background: transparent !important;
       border: none !important;
-      color: white !important;
-      font-size: 1.17rem !important; /* ~18.7px at 16px base */
+      color: var(--gs-brand-primary) !important;
+      font-size: 1.17rem !important;
       font-weight: 700 !important;
       cursor: pointer !important;
       line-height: 1.2 !important;
@@ -62,13 +69,17 @@
       transition: opacity 0.2s ease !important;
       font-family: inherit !important;
     }
+
+    body.dark-mode .md-doc-switcher-integrated__button {
+      color: var(--gs-brand-primary-light) !important;
+    }
     
     .md-doc-switcher-integrated__button:hover {
       opacity: 0.85 !important;
     }
     
     .md-doc-switcher-integrated__button:focus {
-      outline: 2px solid rgba(255, 255, 255, 0.5) !important;
+      outline: 2px solid var(--gs-brand-primary) !important;
       outline-offset: 2px !important;
       border-radius: 2px !important;
     }
@@ -118,6 +129,11 @@
       margin: 0 !important;
       padding: 0 !important;
     }
+
+    body.dark-mode .md-doc-switcher-integrated__dropdown {
+      background: #2d2d2d !important;
+      border-color: #444 !important;
+    }
     
     .md-doc-switcher-integrated:hover .md-doc-switcher-integrated__dropdown,
     .md-doc-switcher-integrated__button:focus + .md-doc-switcher-integrated__dropdown,
@@ -139,19 +155,24 @@
       display: flex !important;
       align-items: center !important;
       gap: 0.3rem !important;
-      padding: 15px 20px !important; /* Match MkDocs exactly */
+      padding: 15px 20px !important;
       margin: 0 !important;
       color: #333 !important;
       text-decoration: none !important;
-      font-size: 17px !important; /* Match MkDocs computed value */
-      line-height: 48px !important; /* Match MkDocs computed value */
-      height: 79px !important; /* Match MkDocs computed value */
+      font-size: 17px !important;
+      line-height: 48px !important;
+      height: 79px !important;
       min-height: 0 !important;
       transition: background 0.15s ease, color 0.15s ease !important;
       border-bottom: 1px solid #f0f0f0 !important;
       font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
-      font-weight: 400 !important; /* Regular weight - children override */
+      font-weight: 400 !important;
       background: transparent !important;
+    }
+
+    body.dark-mode .md-doc-switcher-integrated__link {
+      color: #e0e0e0 !important;
+      border-bottom-color: #444 !important;
     }
     
     .md-doc-switcher-integrated__link-prefix,
@@ -168,16 +189,21 @@
     }
     
     .md-doc-switcher-integrated__link-prefix {
-      font-weight: 700 !important; /* Bold - "GeoServer" */
+      font-weight: 700 !important;
     }
     
     .md-doc-switcher-integrated__link-label {
-      font-weight: 400 !important; /* Regular - "User Manual", etc. */
+      font-weight: 400 !important;
     }
     
     .md-doc-switcher-integrated__link:hover {
       background: #f5f5f5 !important;
       color: var(--gs-brand-primary) !important;
+    }
+
+    body.dark-mode .md-doc-switcher-integrated__link:hover {
+      background: #3a3a3a !important;
+      color: var(--gs-brand-primary-light) !important;
     }
     
     .md-doc-switcher-integrated__link:focus {
@@ -203,15 +229,56 @@
       color: white !important;
     }
     
-    /* GeoServer brand theme — uses shared tokens from geoserver-brand.css */
+    /* GeoServer brand theme — white/dark canvas header matching MkDocs */
     .swagger-ui .topbar {
-      background-color: var(--gs-brand-primary) !important;
+      background-color: var(--gs-header-bg) !important;
       border-bottom: 0.25em solid transparent;
       border-image: var(--gs-brand-gradient) 1;
+      transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .swagger-ui .topbar {
+      background-color: var(--gs-header-bg-dark) !important;
+    }
+
+    /* "Select a definition" label text — visible on white header */
+    .swagger-ui .topbar .download-url-wrapper .select-label span {
+      color: var(--gs-brand-primary) !important;
+    }
+
+    body.dark-mode .swagger-ui .topbar .download-url-wrapper .select-label span {
+      color: var(--gs-brand-primary-light) !important;
+    }
+
+    /* Select dropdown — brand colour border, constrained width for toggle clearance */
+    .swagger-ui .topbar .download-url-wrapper,
+    .swagger-ui .topbar .topbar-wrapper .download-url-wrapper,
+    .swagger-ui .topbar .wrapper .download-url-wrapper {
+      flex: 0 1 auto !important;
+      max-width: 320px !important;
+      margin-right: 3rem !important;
+    }
+
+    .swagger-ui .topbar .download-url-wrapper .select-label,
+    .swagger-ui .topbar select {
+      max-width: 220px !important;
+      width: 220px !important;
+    }
+
+    .swagger-ui .topbar select {
+      border-color: var(--gs-brand-primary) !important;
+    }
+
+    body.dark-mode .swagger-ui .topbar select {
+      border-color: var(--gs-brand-primary-light) !important;
     }
     
     .swagger-ui .info .title {
       color: var(--gs-brand-primary);
+    }
+
+    body.dark-mode .swagger-ui .info .title {
+      color: var(--gs-brand-primary-light);
     }
     
     .swagger-ui .btn.authorize,
@@ -234,17 +301,130 @@
       border-color: var(--gs-brand-primary);
       background: rgba(0, 118, 161, 0.1);
     }
-    
+
+    /* --- Dark mode toggle button (matches MkDocs brightness-7 / brightness-4 icons) --- */
+    .dark-mode-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .dark-mode-toggle button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.2s ease;
+      color: var(--gs-brand-primary);
+    }
+
+    body.dark-mode .dark-mode-toggle button {
+      color: var(--gs-brand-primary-light);
+    }
+
+    .dark-mode-toggle button:hover {
+      background-color: rgba(0, 118, 161, 0.1);
+    }
+
+    body.dark-mode .dark-mode-toggle button:hover {
+      background-color: rgba(75, 160, 196, 0.15);
+    }
+
+    .dark-mode-toggle button svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* --- Dark mode Swagger UI overrides --- */
+    body.dark-mode .swagger-ui {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .swagger-ui .scheme-container {
+      background: #2d2d2d;
+      box-shadow: none;
+    }
+
+    body.dark-mode .swagger-ui .opblock {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: #444;
+    }
+
+    body.dark-mode .swagger-ui .opblock .opblock-summary {
+      border-color: #444;
+    }
+
+    body.dark-mode .swagger-ui .opblock-description-wrapper,
+    body.dark-mode .swagger-ui .opblock-body {
+      background: transparent;
+    }
+
+    body.dark-mode .swagger-ui .opblock .opblock-section-header {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark-mode .swagger-ui table thead tr th,
+    body.dark-mode .swagger-ui table thead tr td,
+    body.dark-mode .swagger-ui .response-col_status,
+    body.dark-mode .swagger-ui .response-col_description,
+    body.dark-mode .swagger-ui .opblock-summary-description,
+    body.dark-mode .swagger-ui .opblock-summary-path,
+    body.dark-mode .swagger-ui .opblock-summary-path span,
+    body.dark-mode .swagger-ui .parameter__name,
+    body.dark-mode .swagger-ui .parameter__type,
+    body.dark-mode .swagger-ui .model-title,
+    body.dark-mode .swagger-ui h4,
+    body.dark-mode .swagger-ui h5,
+    body.dark-mode .swagger-ui p,
+    body.dark-mode .swagger-ui label,
+    body.dark-mode .swagger-ui .info .title,
+    body.dark-mode .swagger-ui .info .base-url,
+    body.dark-mode .swagger-ui .info p,
+    body.dark-mode .swagger-ui .info li {
+      color: #e0e0e0 !important;
+    }
+
+    body.dark-mode .swagger-ui .model-box,
+    body.dark-mode .swagger-ui .models {
+      background: #2d2d2d;
+      border-color: #444;
+    }
+
+    body.dark-mode .swagger-ui select {
+      background: #2d2d2d;
+      color: #e0e0e0;
+      border-color: #555;
+    }
+
+    body.dark-mode .swagger-ui input[type="text"] {
+      background: #2d2d2d;
+      color: #e0e0e0;
+      border-color: #555;
+    }
+
+    body.dark-mode .swagger-ui textarea {
+      background: #2d2d2d;
+      color: #e0e0e0;
+      border-color: #555;
+    }
+
     .info-banner {
       position: fixed;
       top: 10px;
-      right: 10px;
+      left: 10px;
       z-index: 9999;
       background-color: #fff3cd;
       border: 2px solid #ffc107;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -255,8 +435,8 @@
     
     .info-banner .warning-icon {
       display: block;
-      font-size: 22px;
-      line-height: 40px;
+      font-size: 18px;
+      line-height: 32px;
       text-align: center;
     }
     
@@ -264,11 +444,7 @@
       width: auto;
       height: auto;
       border-radius: 8px;
-      padding: 15px;
-    }
-    
-    .info-banner .warning-icon {
-      display: block;
+      padding: 12px;
     }
     
     .info-banner .warning-text {
@@ -284,15 +460,15 @@
       display: block;
     }
     
-    .info-banner h3 {
-      margin: 0 0 10px 0;
+    .info-banner .warning-text h3 {
+      margin: 0 0 8px 0;
       color: #856404;
-      font-size: 16px;
+      font-size: 14px;
     }
     
-    .info-banner p {
+    .info-banner .warning-text p {
       margin: 0;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.4;
       color: #856404;
     }
@@ -313,6 +489,82 @@
   <script src="./swagger-ui-bundle.js" crossorigin></script>
   <script src="./swagger-ui-standalone-preset.js" crossorigin></script>
   <script>
+    // --- Dark mode toggle (matches MkDocs Material brightness-7 / brightness-4 icons) ---
+    (function() {
+      // SVG paths matching Material Design icons used in MkDocs
+      var sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z" fill="currentColor"/></svg>';
+      var moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z" fill="currentColor"/></svg>';
+
+      function isDark() {
+        return document.body.classList.contains('dark-mode');
+      }
+
+      function setMode(dark) {
+        if (dark) {
+          document.body.classList.add('dark-mode');
+          localStorage.setItem('gs-swagger-dark', '1');
+        } else {
+          document.body.classList.remove('dark-mode');
+          localStorage.setItem('gs-swagger-dark', '0');
+        }
+        updateIcon();
+      }
+
+      function updateIcon() {
+        var btn = document.querySelector('.dark-mode-toggle button');
+        if (!btn) return;
+        // Show sun when in dark mode (click to go light), moon when in light mode (click to go dark)
+        btn.innerHTML = isDark() ? sunIcon : moonIcon;
+        btn.title = isDark() ? 'Switch to light mode' : 'Switch to dark mode';
+        btn.setAttribute('aria-label', btn.title);
+      }
+
+      // Initialise from localStorage or system preference
+      var stored = localStorage.getItem('gs-swagger-dark');
+      if (stored === '1') {
+        document.body.classList.add('dark-mode');
+      } else if (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark-mode');
+      }
+
+      // Inject toggle button into topbar after Swagger UI renders
+      function injectToggle() {
+        var topbar = document.querySelector('.swagger-ui .topbar');
+        if (!topbar) return;
+        topbar.style.position = 'relative';
+
+        // Check if a toggle already exists (e.g. from StandaloneLayout or previous injection)
+        var existing = topbar.querySelector('.dark-mode-toggle');
+        if (existing) {
+          // Move it to be a direct child of topbar (outside the wrapper)
+          topbar.appendChild(existing);
+          // Replace its button content and wire up the click handler
+          var btn = existing.querySelector('button');
+          if (btn) {
+            btn.replaceWith(btn.cloneNode(false)); // remove old listeners
+            btn = existing.querySelector('button');
+            btn.setAttribute('type', 'button');
+            btn.addEventListener('click', function() { setMode(!isDark()); });
+          }
+          updateIcon();
+          return;
+        }
+
+        // Create a new toggle if none exists
+        var toggle = document.createElement('div');
+        toggle.className = 'dark-mode-toggle';
+        toggle.innerHTML = '<button type="button"></button>';
+        toggle.querySelector('button').addEventListener('click', function() {
+          setMode(!isDark());
+        });
+        topbar.appendChild(toggle);
+        updateIcon();
+      }
+
+      // Expose for use after Swagger UI onComplete
+      window.__gsInjectDarkToggle = injectToggle;
+    })();
+
     window.onload = function() {
       // Check if a specific spec is requested via hash
       var hashUrl = window.location.hash.substring(1);
@@ -404,7 +656,7 @@
             });
           }
           
-          // Inject documentation switcher into Swagger UI topbar (only once)
+          // Inject documentation switcher and dark mode toggle into Swagger UI topbar (only once)
           setTimeout(function() {
             if (document.querySelector('.md-doc-switcher-integrated')) return;
             const topbar = document.querySelector('.swagger-ui .topbar');
@@ -462,6 +714,11 @@
               
               // Add wrapper back to topbar
               topbar.appendChild(wrapper);
+
+              // Inject dark mode toggle AFTER wrapper (so it stays outside the wrapper)
+              if (window.__gsInjectDarkToggle) {
+                window.__gsInjectDarkToggle();
+              }
             }
           }, 100);
         }
