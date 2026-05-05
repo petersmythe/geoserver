@@ -24,7 +24,8 @@
     }
 
     /* --- Dark mode body --- */
-    body.dark-mode {
+    html.dark-mode,
+    html.dark-mode body {
       background: #1a1a1a;
       color: #e0e0e0;
     }
@@ -70,7 +71,7 @@
       font-family: inherit !important;
     }
 
-    body.dark-mode .md-doc-switcher-integrated__button {
+    html.dark-mode .md-doc-switcher-integrated__button {
       color: var(--gs-brand-primary-light) !important;
     }
     
@@ -130,7 +131,7 @@
       padding: 0 !important;
     }
 
-    body.dark-mode .md-doc-switcher-integrated__dropdown {
+    html.dark-mode .md-doc-switcher-integrated__dropdown {
       background: #2d2d2d !important;
       border-color: #444 !important;
     }
@@ -170,7 +171,7 @@
       background: transparent !important;
     }
 
-    body.dark-mode .md-doc-switcher-integrated__link {
+    html.dark-mode .md-doc-switcher-integrated__link {
       color: #e0e0e0 !important;
       border-bottom-color: #444 !important;
     }
@@ -201,7 +202,7 @@
       color: var(--gs-brand-primary) !important;
     }
 
-    body.dark-mode .md-doc-switcher-integrated__link:hover {
+    html.dark-mode .md-doc-switcher-integrated__link:hover {
       background: #3a3a3a !important;
       color: var(--gs-brand-primary-light) !important;
     }
@@ -237,7 +238,7 @@
       transition: background-color 0.3s ease;
     }
 
-    body.dark-mode .swagger-ui .topbar {
+    html.dark-mode .swagger-ui .topbar {
       background-color: var(--gs-header-bg-dark) !important;
     }
 
@@ -246,7 +247,7 @@
       fill: var(--gs-brand-primary) !important;
     }
 
-    body.dark-mode .swagger-ui .topbar-wrapper .link svg .logo_small_svg__cls-2 {
+    html.dark-mode .swagger-ui .topbar-wrapper .link svg .logo_small_svg__cls-2 {
       fill: var(--gs-brand-primary-light) !important;
     }
 
@@ -256,7 +257,7 @@
       white-space: nowrap !important;
     }
 
-    body.dark-mode .swagger-ui .topbar .download-url-wrapper .select-label span {
+    html.dark-mode .swagger-ui .topbar .download-url-wrapper .select-label span {
       color: var(--gs-brand-primary-light) !important;
     }
 
@@ -278,7 +279,7 @@
       border-color: var(--gs-brand-primary) !important;
     }
 
-    body.dark-mode .swagger-ui .topbar select {
+    html.dark-mode .swagger-ui .topbar select {
       border-color: var(--gs-brand-primary-light) !important;
     }
     
@@ -286,7 +287,7 @@
       color: var(--gs-brand-primary);
     }
 
-    body.dark-mode .swagger-ui .info .title {
+    html.dark-mode .swagger-ui .info .title {
       color: var(--gs-brand-primary-light);
     }
     
@@ -334,7 +335,7 @@
       color: var(--gs-brand-primary);
     }
 
-    body.dark-mode .dark-mode-toggle button {
+    html.dark-mode .dark-mode-toggle button {
       color: var(--gs-brand-primary-light);
     }
 
@@ -342,7 +343,7 @@
       background-color: rgba(0, 118, 161, 0.1);
     }
 
-    body.dark-mode .dark-mode-toggle button:hover {
+    html.dark-mode .dark-mode-toggle button:hover {
       background-color: rgba(75, 160, 196, 0.15);
     }
 
@@ -352,116 +353,112 @@
       fill: currentColor;
     }
 
-    /* --- Dark mode Swagger UI overrides --- */
-    body.dark-mode .swagger-ui {
-      color: #e0e0e0;
+    /* --- Dark mode Swagger UI overrides (aligned with Swagger's html.dark-mode system) --- */
+    html.dark-mode .swagger-ui .scheme-container {
+      background: #2d2d2d !important;
+      box-shadow: none !important;
     }
 
-    body.dark-mode .swagger-ui .scheme-container {
-      background: #2d2d2d;
-      box-shadow: none;
-    }
-
-    body.dark-mode .swagger-ui .opblock {
+    html.dark-mode .swagger-ui .opblock {
       background: rgba(255, 255, 255, 0.03);
       border-color: #444;
     }
 
-    body.dark-mode .swagger-ui .opblock .opblock-summary {
+    html.dark-mode .swagger-ui .opblock .opblock-summary {
       border-color: #444;
     }
 
-    body.dark-mode .swagger-ui .opblock-description-wrapper,
-    body.dark-mode .swagger-ui .opblock-body {
+    html.dark-mode .swagger-ui .opblock-description-wrapper,
+    html.dark-mode .swagger-ui .opblock-body {
       background: transparent;
     }
 
-    body.dark-mode .swagger-ui .opblock .opblock-section-header {
+    html.dark-mode .swagger-ui .opblock .opblock-section-header {
       background: rgba(255, 255, 255, 0.05);
     }
 
-    body.dark-mode .swagger-ui table thead tr th,
-    body.dark-mode .swagger-ui table thead tr td,
-    body.dark-mode .swagger-ui .response-col_status,
-    body.dark-mode .swagger-ui .response-col_description,
-    body.dark-mode .swagger-ui .opblock-summary-description,
-    body.dark-mode .swagger-ui .opblock-summary-path,
-    body.dark-mode .swagger-ui .opblock-summary-path span,
-    body.dark-mode .swagger-ui .parameter__name,
-    body.dark-mode .swagger-ui .parameter__type,
-    body.dark-mode .swagger-ui .model-title,
-    body.dark-mode .swagger-ui h4,
-    body.dark-mode .swagger-ui h5,
-    body.dark-mode .swagger-ui p,
-    body.dark-mode .swagger-ui label,
-    body.dark-mode .swagger-ui .info .title,
-    body.dark-mode .swagger-ui .info .base-url,
-    body.dark-mode .swagger-ui .info p,
-    body.dark-mode .swagger-ui .info li {
+    html.dark-mode .swagger-ui table thead tr th,
+    html.dark-mode .swagger-ui table thead tr td,
+    html.dark-mode .swagger-ui .response-col_status,
+    html.dark-mode .swagger-ui .response-col_description,
+    html.dark-mode .swagger-ui .opblock-summary-description,
+    html.dark-mode .swagger-ui .opblock-summary-path,
+    html.dark-mode .swagger-ui .opblock-summary-path span,
+    html.dark-mode .swagger-ui .parameter__name,
+    html.dark-mode .swagger-ui .parameter__type,
+    html.dark-mode .swagger-ui .model-title,
+    html.dark-mode .swagger-ui h4,
+    html.dark-mode .swagger-ui h5,
+    html.dark-mode .swagger-ui p,
+    html.dark-mode .swagger-ui label,
+    html.dark-mode .swagger-ui .info .title,
+    html.dark-mode .swagger-ui .info .base-url,
+    html.dark-mode .swagger-ui .info p,
+    html.dark-mode .swagger-ui .info li {
       color: #e0e0e0 !important;
     }
 
-    body.dark-mode .swagger-ui .model-box,
-    body.dark-mode .swagger-ui .models {
+    html.dark-mode .swagger-ui .model-box,
+    html.dark-mode .swagger-ui .models {
       background: #2d2d2d;
       border-color: #444;
     }
 
-    body.dark-mode .swagger-ui select {
+    html.dark-mode .swagger-ui select {
       background: #2d2d2d;
       color: #e0e0e0;
       border-color: #555;
     }
 
-    body.dark-mode .swagger-ui input[type="text"] {
+    html.dark-mode .swagger-ui input[type="text"] {
       background: #2d2d2d;
       color: #e0e0e0;
       border-color: #555;
     }
 
-    body.dark-mode .swagger-ui textarea {
+    html.dark-mode .swagger-ui textarea {
       background: #2d2d2d;
       color: #e0e0e0;
       border-color: #555;
     }
 
     /* Dark mode modal/dialog (Authorize, etc.) */
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux {
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux {
       background: #2d2d2d;
       border-color: #444;
     }
 
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-header {
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-header {
       border-bottom-color: #444;
     }
 
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-header h3 {
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-header h3 {
       color: #e0e0e0;
     }
 
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-header .close-modal {
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-header .close-modal {
       background: #444;
     }
 
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content p,
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content label,
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content h4 {
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-content p,
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-content label,
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-content h4 {
       color: #e0e0e0;
     }
 
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content input[type="text"],
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content input[type="password"] {
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-content input[type="text"],
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-content input[type="password"] {
       background: #3a3a3a;
       color: #e0e0e0;
       border-color: #555;
     }
 
-    body.dark-mode .swagger-ui .dialog-ux .modal-ux-content .btn-done {
+    html.dark-mode .swagger-ui .dialog-ux .modal-ux-content .btn-done {
       background: #444;
       color: #e0e0e0;
     }
 
-    body.dark-mode .swagger-ui .dialog-ux .backdrop-ux {
+    html.dark-mode .swagger-ui .dialog-ux .backdrop-ux {
       background: rgba(0, 0, 0, 0.7);
     }
 
@@ -546,14 +543,14 @@
       var moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z" fill="currentColor"/></svg>';
 
       function isDark() {
-        return document.body.classList.contains('dark-mode');
+        return document.documentElement.classList.contains('dark-mode');
       }
 
       function setMode(dark) {
         if (dark) {
-          document.body.classList.add('dark-mode');
+          document.documentElement.classList.add('dark-mode');
         } else {
-          document.body.classList.remove('dark-mode');
+          document.documentElement.classList.remove('dark-mode');
         }
         // Sync to Material docs palette key so docs follows Swagger toggle
         try {
@@ -598,9 +595,9 @@
       } catch (e) { /* ignore */ }
 
       if (darkFromDocs === true) {
-        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
       } else if (darkFromDocs === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
       }
 
       // Inject toggle button into topbar after Swagger UI renders
