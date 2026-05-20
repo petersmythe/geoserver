@@ -541,6 +541,38 @@ The implementation is organized into phases, with each phase building on the pre
   - Discuss next steps with user
   - Ensure all tests pass, ask the user if questions arise
 
+- [x] 18.1 Sync specs with main branch changes (post-rebase catch-up)
+  - The modular specs were generated from the codebase as of Feb 9, 2026 (commit `6eb3aff421`).
+  - After rebasing to current main (May 18, 2026, commit `33ae7b19ef`), ~3 months of changes need to be incorporated.
+  - [x] 18.1.1 Identify changed REST/OGC controllers since the original branch point
+    - Run: `git diff --name-only 6eb3aff421..33ae7b19ef -- src/rest/ src/restconfig/ src/restconfig-wcs/ src/restconfig-wfs/ src/restconfig-wms/ src/restconfig-wmts/ src/gwc-rest/ src/extension/ src/community/ src/wms/ src/wfs-core/ src/wfs1_x/ src/wfs2_x/ src/wcs/ src/wcs2_0/ src/gwc/ src/ows/`
+    - Filter to `.java` files only
+    - From those, identify files containing REST annotations (`@RequestMapping`, `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`, `@PatchMapping`, `@RestController`, `@Controller`)
+    - Ignore non-code changes (docs, tests, pom.xml, properties files)
+    - Output: List of controllers with REST API changes
+    - **Result**: 635 changed non-test Java files, 17 with REST annotations
+  - [x] 18.1.2 Categorize changes
+    - New controllers (new endpoints to add to specs)
+    - Modified controllers (changed paths, parameters, or request/response types)
+    - Deleted controllers (endpoints to remove from specs)
+    - Renamed/moved controllers (update module attribution)
+    - **Result**: 1 new controller (CRSController, 4 endpoints), 1 removed endpoint (DataStoreFileController GET), 15 modified controllers (internal only), 0 deleted/renamed
+  - [x] 18.1.3 Update modular specs with new/changed endpoints
+    - For each new endpoint: add to appropriate modular spec file (rest-core, rest-extensions, rest-community, rest-gwc, rest-security)
+    - For each modified endpoint: update path, parameters, or schemas in the modular spec
+    - For each removed endpoint: delete from the modular spec
+    - Maintain consistent formatting and tag assignment
+    - **Result**: Added 4 CRS endpoints to rest-core.yaml, removed GET from DataStoreFileController path
+  - [x] 18.1.4 Check for OGC service changes
+    - Review changes to WMS/WFS/WCS/WMTS/CSW/WPS service implementations
+    - If new operations or parameters were added, update the OGC modular specs
+    - **Result**: No new OGC operations or parameters; changes were internal only
+  - [x] 18.1.5 Re-bundle and validate
+    - Run `bundle-spec.py` to regenerate `doc/en/api/geoserver-bundled.yaml` and `.json`
+    - Validate the bundled spec loads cleanly in Swagger UI
+    - Verify no new validation errors introduced
+    - **Result**: Bundled specs regenerated (312 total paths), fixed bundler bug with internal schema refs
+
 ## Notes
 
 - Tasks marked with sub-tasks should complete all sub-tasks before marking the parent complete
@@ -864,3 +896,108 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
   - Review cosmetic naming fixes (task 27)
   - Verify specifications are production-ready
   - Ask user if questions arise
+
+
+## Phase 3: Code-First OpenAPI — Make Source Code the Single Source of Truth
+
+The end goal of this entire effort is to make the Java source code the authoritative source for API documentation, with the OpenAPI spec auto-generated from code annotations. Phases 1–2 produce a complete, accurate hand-built spec that serves as the reference for what annotations to add. Phase 3 closes the loop.
+
+- [ ] 30. Evaluate and select OpenAPI annotation framework
+  - [ ] 30.1 Assess Springdoc OpenAPI vs SpringFox vs alternatives
+    - Evaluate Springdoc OpenAPI (actively maintained, Spring Boot 3+ compatible)
+    - Check compatibility with GeoServer's Spring Framework 7.x and servlet-based architecture
+    - Review the existing `src/community/rest-openapi/` module for prior art
+    - Determine if runtime generation or build-time generation is preferred
+    - Document decision and rationale
+    - Output: `.kiro/api-analysis/reports/annotation-framework-decision.md`
+  
+  - [ ] 30.2 Create proof-of-concept with one controller
+    - Pick a simple controller (e.g., `WorkspaceController`)
+    - Add Springdoc/OpenAPI annotations (`@Operation`, `@Parameter`, `@Schema`, `@ApiResponse`)
+    - Verify the auto-generated spec matches the hand-built spec for that controller
+    - Document any gaps or issues with auto-generation
+    - Output: Annotated controller + comparison report
+
+- [ ] 31. Add OpenAPI annotations to REST controllers
+  - [ ] 31.1 Annotate core REST controllers (src/rest/, src/restconfig/)
+    - Use the hand-built spec as the reference for descriptions, parameter metadata, and schemas
+    - Add `@Operation` with summary and description
+    - Add `@Parameter` for path variables and query parameters
+    - Add `@ApiResponse` for success and error responses
+    - Add `@Schema` annotations to request/response model classes
+    - Verify generated spec matches hand-built spec
+    - Run `mvn spotless:apply` after changes
+  
+  - [ ] 31.2 Annotate service-specific REST controllers (restconfig-wcs/wfs/wms/wmts)
+    - Same approach as 31.1
+  
+  - [ ] 31.3 Annotate GeoWebCache REST controllers (src/gwc-rest/)
+    - Same approach as 31.1
+  
+  - [ ] 31.4 Annotate security REST controllers
+    - Same approach as 31.1
+  
+  - [ ] 31.5 Annotate extension module REST controllers
+    - Prioritize: importer, monitor, geofence, params-extractor
+    - Same approach as 31.1
+  
+  - [ ] 31.6 Annotate community module REST controllers (optional)
+    - Lower priority — community modules may have different maintenance expectations
+    - Same approach as 31.1
+
+- [ ] 32. Add OpenAPI documentation for OGC service endpoints
+  - [ ] 32.1 Determine approach for OGC endpoints
+    - OGC services use a dispatcher pattern (single URL, REQUEST parameter selects operation)
+    - This doesn't map naturally to annotation-based generation
+    - Options: custom Springdoc plugin, static spec overlay, or hybrid approach
+    - Document decision
+  
+  - [ ] 32.2 Implement chosen approach for OGC endpoints
+    - Ensure WMS, WFS, WCS, WMTS, CSW, WPS operations are all documented
+    - Include version-specific parameter differences
+    - Include vendor extension parameters
+
+- [ ] 33. Configure build-time or runtime spec generation
+  - [ ] 33.1 Add Springdoc dependency to appropriate Maven modules
+    - Add to parent POM dependency management
+    - Add to web/app module for runtime generation, OR
+    - Configure Maven plugin for build-time generation
+    - Ensure spec is generated at `/geoserver/v3/api-docs` (runtime) or as build artifact
+  
+  - [ ] 33.2 Configure spec generation settings
+    - Set info block (title, version, contact, license)
+    - Configure server URLs
+    - Configure security schemes (Basic, Digest, OAuth2)
+    - Configure tag ordering and grouping
+    - Ensure output matches the quality of the hand-built spec
+  
+  - [ ] 33.3 Add CI validation
+    - Add a CI step that generates the spec and validates it
+    - Fail the build if the generated spec has validation errors
+    - Optionally: diff generated spec against a baseline to catch unintended changes
+
+- [ ] 34. Switch Swagger UI to use generated spec
+  - [ ] 34.1 Update doc/en/api/index.html
+    - Point Swagger UI at the auto-generated spec endpoint (or build artifact)
+    - Keep the hand-built bundled spec as a fallback during transition
+    - Test that all endpoints render correctly
+  
+  - [ ] 34.2 Remove static spec files
+    - Once the generated spec is verified equivalent, remove:
+      - `doc/en/api/geoserver-bundled.yaml`
+      - `doc/en/api/geoserver-bundled.json`
+      - `.kiro/api-analysis/specs/` modular files (archive or delete)
+    - Update documentation to reference the generated spec
+  
+  - [ ] 34.3 Document the new workflow for developers
+    - How to add API documentation when creating new endpoints
+    - How to verify the generated spec locally
+    - How CI enforces spec validity
+
+- [ ] 35. Final validation — Code is the single source of truth
+  - Verify: changing a controller annotation updates the generated spec
+  - Verify: adding a new endpoint automatically appears in the spec
+  - Verify: removing an endpoint automatically removes it from the spec
+  - Verify: Swagger UI "Try it out" works against a running GeoServer
+  - Verify: the generated spec can produce working client code (e.g., via openapi-generator)
+  - Archive the hand-built spec and analysis scripts as historical reference
