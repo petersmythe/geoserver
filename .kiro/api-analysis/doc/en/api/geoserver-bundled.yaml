@@ -7765,18 +7765,18 @@ paths:
                       items:
                         type: integer
       parameters:
-      - name: layer
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: layer'
       - name: format
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: format'
+      - name: layer
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: layer'
     post:
       tags:
       - REST GWC
@@ -7847,18 +7847,18 @@ paths:
         '200':
           description: Seed/truncate task submitted successfully
       parameters:
-      - name: layer
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: layer'
       - name: format
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: format'
+      - name: layer
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: layer'
   /gwc/rest/seed/{layer}:
     parameters:
     - name: layer
@@ -10935,18 +10935,18 @@ paths:
                   trace:
                     type: string
       parameters:
-      - name: role
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: role'
       - name: group
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: group'
+      - name: role
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: role'
     post:
       operationId: post_rest_RolesRestController_associateGroup
       summary: POST /rest/security/roles/role/{role}/group/{group}
@@ -11003,18 +11003,18 @@ paths:
                   trace:
                     type: string
       parameters:
-      - name: role
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: role'
       - name: group
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: group'
+      - name: role
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: role'
   /rest/security/roles/role/{role}/user/{user}:
     delete:
       operationId: delete_rest_RolesRestController_disassociateUser
@@ -11542,18 +11542,18 @@ paths:
         schema:
           type: string
         description: The serviceName parameter
-      - name: role
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: role'
       - name: group
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: group'
+      - name: role
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: role'
   /rest/security/roles/service/{serviceName}/role/{role}/group/{user}:
     delete:
       operationId: delete_rest_RolesRestController_disassociateGroup_rest
@@ -41953,18 +41953,18 @@ paths:
         schema:
           type: string
         description: The recurse parameter
-      - name: layerName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: layerName'
       - name: workspaceName
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: workspaceName'
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: layerName'
     get:
       operationId: get_rest_WMSLayerController_layerGet
       summary: GET /rest/workspaces/{workspaceName/{layerName}
@@ -42039,18 +42039,18 @@ paths:
                   trace:
                     type: string
       parameters:
-      - name: layerName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: layerName'
       - name: workspaceName
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: workspaceName'
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: layerName'
     put:
       operationId: put_rest_WMSLayerController_layerPut
       summary: PUT /rest/workspaces/{workspaceName/{layerName}
@@ -42124,18 +42124,18 @@ paths:
         schema:
           type: string
         description: The calculate parameter
-      - name: layerName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: 'Path parameter: layerName'
       - name: workspaceName
         in: path
         required: true
         schema:
           type: string
         description: 'Path parameter: workspaceName'
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Path parameter: layerName'
       requestBody:
         required: true
         content:

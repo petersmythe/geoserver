@@ -98,3 +98,13 @@ When working with this codebase:
 - Verify backward compatibility with older standard versions
 - Check integration points with GeoWebCache for tile-based operations
 - Reference official documentation for standard-specific behavior
+
+## API Documentation Strategy
+
+GeoServer is working toward **code-first OpenAPI documentation** where the Java source code is the single source of truth for API specs:
+
+- **Current state**: A hand-built OpenAPI 3.0 spec at `doc/en/api/geoserver-bundled.yaml` generated from source code analysis. Modular source files live in `.kiro/api-analysis/specs/`. The bundler script is `.kiro/api-analysis/bundle-spec.py`.
+- **Near-term goal**: Complete and accurate spec with proper request/response schemas wired to all endpoints, zero Swagger Editor warnings, and working "Try it out" via Swagger UI.
+- **Long-term goal**: Springdoc OpenAPI annotations on all REST controllers, with the spec auto-generated from code at build time or runtime. The hand-built spec will be retired once the generated spec is equivalent.
+
+When adding or modifying REST endpoints, keep this trajectory in mind — structure controllers and model classes so they will be easy to annotate with `@Operation`, `@Parameter`, `@Schema`, and `@ApiResponse` in the future.

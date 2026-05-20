@@ -156,6 +156,23 @@ Sample data directories provide different GeoServer configurations:
 - `app-schema-tutorial/` - Complex feature examples
 - `citecsw-2.0.2/`, `citensg-1.0/` - CITE test configurations
 
+## API Documentation Files
+
+### Static API Docs (current — to be replaced by code-first generation in Phase 3)
+- `doc/en/api/index.html` - Swagger UI page (loads bundled spec)
+- `doc/en/api/geoserver-bundled.yaml` - Bundled OpenAPI 3.0 spec (generated output)
+- `doc/en/api/geoserver-bundled.json` - Same in JSON format
+- `doc/en/api/1.0.0/*.yaml` - Legacy Swagger 2.0 specs (original hand-written, 2017)
+
+### API Analysis & Generation (working files)
+- `.kiro/api-analysis/bundle-spec.py` - Bundles modular specs into single file
+- `.kiro/api-analysis/specs/geoserver.yaml` - Modular spec entry point
+- `.kiro/api-analysis/specs/rest/` - REST endpoint specs (core, gwc, security, extensions, community)
+- `.kiro/api-analysis/specs/ogc/` - OGC service specs (wms, wfs, wcs, wmts, csw, wps)
+- `.kiro/api-analysis/specs/common/` - Shared schemas, parameters, responses
+- `.kiro/api-analysis/reports/` - Coverage reports, reconciliation matrices
+- `.kiro/api-analysis/*.py` - Extraction and analysis scripts
+
 ## Development Guidelines
 
 ### Adding New Modules

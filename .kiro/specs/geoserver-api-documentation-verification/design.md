@@ -9,6 +9,16 @@ The GeoServer API Documentation Verification and Generation System is a comprehe
 
 The system produces coverage reports, reconciliation matrices, and unified OpenAPI specifications suitable for consumption by standard tools (Swagger UI, Redoc) and MCP server generation.
 
+### End Goal: Code as Single Source of Truth
+
+The ultimate objective is to make the Java source code the authoritative source for all API documentation. This project proceeds in three phases:
+
+1. **Phase 1 (current)**: Generate a complete, accurate hand-built OpenAPI 3.0 spec by extracting endpoints from source code and enriching with proper schemas, parameters, and descriptions. This serves as both immediate documentation and a reference for Phase 3.
+2. **Phase 2**: Fix functional documentation gaps — wire up request/response schemas, correct parameter mismatches, and ensure the spec is production-quality.
+3. **Phase 3**: Add OpenAPI annotations (e.g., Springdoc) directly to Java controllers, configure auto-generation of the spec from code, and retire the hand-built static files. At this point, the spec stays in sync with the code automatically — developers document APIs by annotating their controllers, and CI validates the generated spec.
+
+The hand-built spec from Phases 1–2 is a stepping stone: it documents what exists today and provides the exact content that annotations should produce in Phase 3.
+
 ### Key Design Decisions
 
 - **Static Analysis First**: Primary approach uses AST parsing and annotation extraction rather than runtime introspection, enabling analysis without running GeoServer

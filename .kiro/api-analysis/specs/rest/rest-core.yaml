@@ -230,6 +230,210 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
+  /rest/crs:
+    get:
+      operationId: get_rest_CRSController_list
+      summary: List supported CRS codes
+      description: Returns a paginated list of supported Coordinate Reference System codes, optionally filtered by authority and/or search query.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  crs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The CRS identifier (e.g. EPSG:4326)
+                        href:
+                          type: string
+                          description: Link to the CRS WKT definition
+                  page:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                      limit:
+                        type: integer
+                      returned:
+                        type: integer
+                      total:
+                        type: integer
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: authority
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by CRS authority (e.g. EPSG, IAU)
+      - name: query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Search query to filter CRS codes by identifier
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 50
+        description: Maximum number of results to return (max 200)
+  /rest/crs/authorities:
+    get:
+      operationId: get_rest_CRSController_listAuthorities
+      summary: List CRS authorities
+      description: Returns the list of available CRS authorities (e.g. EPSG, IAU).
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authorities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Authority name
+                        href:
+                          type: string
+                          description: Link to list CRS codes for this authority
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/crs/{identifier}.wkt:
+    get:
+      operationId: get_rest_CRSController_getWkt
+      summary: Get CRS WKT definition
+      description: Returns the Well-Known Text (WKT) representation of the specified CRS.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: WKT representation of the CRS
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The CRS identifier (e.g. EPSG:4326)
+  /rest/crs/{identifier}.json:
+    get:
+      operationId: get_rest_CRSController_getJson
+      summary: Get CRS definition as JSON
+      description: Returns the CRS definition including identifier, name, bounding box, and WKT definition in JSON format.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The CRS identifier
+                  format:
+                    type: string
+                    description: The definition format (wkt)
+                  name:
+                    type: string
+                    description: Human-readable name of the CRS
+                  bbox:
+                    type: object
+                    description: Bounding box in native CRS units
+                    properties:
+                      minX:
+                        type: number
+                      minY:
+                        type: number
+                      maxX:
+                        type: number
+                      maxY:
+                        type: number
+                  bboxWGS84:
+                    type: object
+                    description: Bounding box in WGS84 (EPSG:4326)
+                    properties:
+                      minX:
+                        type: number
+                      minY:
+                        type: number
+                      maxX:
+                        type: number
+                      maxY:
+                        type: number
+                  definition:
+                    type: string
+                    description: WKT definition of the CRS
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The CRS identifier (e.g. EPSG:4326)
   /rest/index:
     get:
       operationId: get_rest_IndexController_get
@@ -2866,38 +3070,6 @@ paths:
               type: object
               description: DataStoreInfo configuration object
   /rest/workspaces/{workspaceName}/datastores/{storeName}/{method}.{format}:
-    get:
-      operationId: get_rest_DataStoreFileController_dataStoresGet
-      summary: GET /rest/workspaces/{workspaceName}/datastores/{storeName}/{method}.{format}
-      description: Endpoint from rest module
-      tags:
-      - Core
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-      parameters:
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
-      - name: storeName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The storeName parameter
     put:
       operationId: put_rest_DataStoreFileController_dataStorePut
       summary: PUT /rest/workspaces/{workspaceName}/datastores/{storeName}/{method}.{format}

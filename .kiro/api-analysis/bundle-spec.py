@@ -68,6 +68,18 @@ class SpecBundler:
                 file_part = ref
                 json_path = ''
             
+            # If this is a local reference (#/components/...) within a fragment file
+            # that doesn't have the full document structure, preserve it as-is
+            # so it resolves correctly in the final bundled output
+            if not file_part and json_path:
+                ref_file = current_file
+                data = self.load_yaml_file(ref_file)
+                parts = [p for p in json_path.split('/') if p]
+                if parts and parts[0] not in data:
+                    # The reference target doesn't exist in this file fragment;
+                    # preserve it as a $ref in the bundled output
+                    return {"$ref": ref}
+            
             # Resolve the file path
             if file_part:
                 if file_part.startswith('./'):
