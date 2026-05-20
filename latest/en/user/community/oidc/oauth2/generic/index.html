@@ -25,7 +25,7 @@
     
     
       
-        <title>Configuring with a Generic OIDC IDP - GeoServer Documentation</title>
+        <title>Configuring with a Generic OIDC IDP - Documentation</title>
       
     
     
@@ -146,8 +146,12 @@
       </div>
     
     
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../../.." title="GeoServer Documentation" class="md-header__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header"><a href="../../../../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
   <img src="../../../../../../img/geoserver-logo.svg" alt="logo">
 
@@ -157,7 +161,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GeoServer Documentation
+            Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -385,12 +389,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../.." title="GeoServer Documentation" class="md-nav__button md-logo" aria-label="GeoServer Documentation" data-md-component="logo">
+    <a href="../../../../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
   <img src="../../../../../../img/geoserver-logo.svg" alt="logo">
 
     </a>
-    GeoServer Documentation
+    Documentation
   </label>
   
     <div class="md-nav__source">
@@ -30117,10 +30121,10 @@
 <ul>
 <li>
 <p><strong>Redirect URI (callback URL):</strong> This is the read-only <strong>Redirect URI</strong> shown in the GeoServer filter configuration form. It has the form:</p>
-<p>https://<your-geoserver>/geoserver/web/login/oauth2/code/oidc</p>
+<p>https://<your-geoserver>/geoserver/web/login/oauth2/code/<filterName>__oidc</p>
 </li>
 </ul>
-<p>Copy this value exactly into your IDP's "Valid redirect URIs" or "Callback URL" setting.</p>
+<p>Copy this value exactly into your IDP's "Valid redirect URIs" or "Callback URL" setting. The filter-name prefix lets several OIDC filters share an IDP without colliding on their redirect URIs; many IDPs also accept a wildcard like <code>.../web/login/oauth2/code/*</code> for convenience.</p>
 <ul>
 <li><strong>Post-Logout Redirect URI:</strong> If your IDP supports single logout, also register the <strong>After-Logout Redirect URI</strong> shown in the GeoServer configuration. See <a href="../../configuring/#community_oidc_logout_behavior">Logout Behavior</a>.</li>
 </ul>
