@@ -1,0 +1,616 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - Features
+  description: |
+    OGC API - Features provides access to collections of geospatial features.
+    This is the modern REST-based successor to WFS, following the OGC API standard patterns.
+
+    Base path: /ogc/features/v1
+
+    Supported conformance classes include OGC API Features Core, CRS, Filtering (CQL2/ECQL),
+    and property selection.
+  version: 1.0.1
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - Features 1.0"
+    description: OGC API - Features endpoints (modern REST-based feature access)
+    externalDocs:
+      description: OGC API - Features Specification
+      url: https://ogcapi.ogc.org/features/
+paths:
+  /ogc/features/v1:
+    get:
+      operationId: OGCFeatures_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - Features service.
+        The landing page provides links to the API definition, conformance declaration,
+        and feature collections.
+      tags:
+        - "OGC API - Features 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/features/v1/openapi:
+    get:
+      operationId: OGCFeatures_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - Features service.
+      tags:
+        - "OGC API - Features 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/features/v1/conformance:
+    get:
+      operationId: OGCFeatures_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Conformance classes include OGC API Features Core, CRS by Reference,
+        CQL2 filtering, ECQL filtering, property selection, and more.
+      tags:
+        - "OGC API - Features 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/features/v1/collections:
+    get:
+      operationId: OGCFeatures_getCollections
+      summary: List feature collections
+      description: |
+        Returns a list of all available feature collections (layers).
+        Each collection corresponds to a published FeatureType in GeoServer.
+      tags:
+        - "OGC API - Features 1.0"
+      responses:
+        '200':
+          description: List of feature collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collections'
+            text/html:
+              schema:
+                type: string
+  /ogc/features/v1/collections/{collectionId}:
+    get:
+      operationId: OGCFeatures_describeCollection
+      summary: Describe a feature collection
+      description: |
+        Returns metadata about a specific feature collection, including its
+        spatial extent, temporal extent, supported CRS list, and links.
+      tags:
+        - "OGC API - Features 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/features/v1/collections/{collectionId}/queryables:
+    get:
+      operationId: OGCFeatures_getQueryables
+      summary: Get queryable properties
+      description: |
+        Returns the list of properties that can be used in filter expressions
+        for the specified collection. Follows the OGC API - Features - Part 3: Filtering schema.
+      tags:
+        - "OGC API - Features 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Queryable properties schema
+          content:
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/Queryables'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/features/v1/collections/{collectionId}/items:
+    get:
+      operationId: OGCFeatures_getFeatures
+      summary: Get features from a collection
+      description: |
+        Returns features from the specified collection. Supports spatial filtering (bbox),
+        temporal filtering (datetime), CQL2/ECQL filtering, property selection, sorting,
+        and paging via startIndex/limit.
+      tags:
+        - "OGC API - Features 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: startIndex
+          in: query
+          description: Starting index for paging (0-based offset)
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - name: limit
+          in: query
+          description: Maximum number of features to return
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: bbox
+          in: query
+          description: |
+            Bounding box filter. Comma-separated values: minLon,minLat,maxLon,maxLat
+            (or minLon,minLat,minHeight,maxLon,maxLat,maxHeight for 3D).
+          required: false
+          schema:
+            type: string
+          example: "-180,-90,180,90"
+        - name: bbox-crs
+          in: query
+          description: CRS of the bbox parameter (URI format, e.g. http://www.opengis.net/def/crs/EPSG/0/4326)
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: |
+            Temporal filter. Either a single instant (ISO 8601) or an interval
+            (start/end separated by /). Open intervals use ".." as placeholder.
+          required: false
+          schema:
+            type: string
+          example: "2023-01-01T00:00:00Z/2023-12-31T23:59:59Z"
+        - name: filter
+          in: query
+          description: CQL2 or ECQL filter expression
+          required: false
+          schema:
+            type: string
+        - name: filter-lang
+          in: query
+          description: Filter language (cql2-text, cql2-json, or ecql-text)
+          required: false
+          schema:
+            type: string
+            enum:
+              - cql2-text
+              - cql2-json
+              - ecql-text
+        - name: filter-crs
+          in: query
+          description: CRS for geometry literals in the filter expression
+          required: false
+          schema:
+            type: string
+        - name: sortby
+          in: query
+          description: |
+            Comma-separated list of property names to sort by.
+            Prefix with + for ascending (default) or - for descending.
+          required: false
+          schema:
+            type: string
+        - name: crs
+          in: query
+          description: CRS for the returned geometries (URI format)
+          required: false
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: Comma-separated list of feature IDs to retrieve (draft proposal)
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Comma-separated list of property names to include in the response
+          required: false
+          schema:
+            type: string
+        - name: exclude-properties
+          in: query
+          description: Comma-separated list of property names to exclude from the response
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: GeoJSON feature collection
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter value
+        '404':
+          description: Collection not found
+  /ogc/features/v1/collections/{collectionId}/items/{itemId}:
+    get:
+      operationId: OGCFeatures_getFeature
+      summary: Get a single feature
+      description: |
+        Returns a single feature by its identifier from the specified collection.
+      tags:
+        - "OGC API - Features 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: itemId
+          in: path
+          description: Feature identifier
+          required: true
+          schema:
+            type: string
+        - name: crs
+          in: query
+          description: CRS for the returned geometry (URI format)
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Comma-separated list of property names to include
+          required: false
+          schema:
+            type: string
+        - name: exclude-properties
+          in: query
+          description: Comma-separated list of property names to exclude
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: GeoJSON feature
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/Feature'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Feature or collection not found
+  /ogc/features/v1/collections/{collectionId}/schemas/fg/{schemaId}.json:
+    get:
+      operationId: OGCFeatures_getJSONFGSchema
+      summary: Get JSON-FG schema for a collection
+      description: |
+        Returns a JSON Schema document describing the structure of features in the collection
+        using the JSON-FG (Features and Geometries JSON) encoding. The schemaId determines
+        which schema variant is returned (e.g., "feature" for the full feature schema).
+      tags:
+        - "OGC API - Features 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: schemaId
+          in: path
+          description: Schema identifier (e.g., "feature" for the feature schema)
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: JSON Schema document describing the feature structure
+          content:
+            application/schema+json:
+              schema:
+                type: object
+                description: JSON Schema document
+        '404':
+          description: Collection not found or schema not available
+  /ogc/features/v1/collections/{collectionId}/search:
+    post:
+      operationId: OGCFeatures_searchFeatures
+      summary: Search features (POST)
+      description: |
+        Search features using a JSON request body. This is an alternative to the GET /items
+        endpoint that allows complex filter expressions to be passed in the request body
+        instead of query parameters.
+      tags:
+        - "OGC API - Features 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: GeoJSON feature collection matching the search criteria
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+        '400':
+          description: Invalid search query
+        '404':
+          description: Collection not found or search not supported
+  /ogc/features/v1/functions:
+    get:
+      operationId: OGCFeatures_getFunctions
+      summary: List available functions
+      description: |
+        Returns the list of functions available for use in CQL2 filter expressions.
+        Requires the CQL2 Functions conformance class to be enabled.
+      tags:
+        - "OGC API - Features 1.0"
+      responses:
+        '200':
+          description: List of available filter functions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunctionsDocument'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Functions not supported
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      description: Identifier of the feature collection (typically workspace:layerName or layerName)
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      description: OGC API landing page
+      properties:
+        title:
+          type: string
+          description: Service title
+        description:
+          type: string
+          description: Service description
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      description: List of conformance classes
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+          description: URIs of conformance classes
+    Collections:
+      type: object
+      description: List of feature collections
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Collection:
+      type: object
+      description: Feature collection metadata
+      properties:
+        id:
+          type: string
+          description: Collection identifier
+        title:
+          type: string
+          description: Human-readable title
+        description:
+          type: string
+          description: Description of the collection
+        extent:
+          $ref: '#/components/schemas/Extent'
+        crs:
+          type: array
+          items:
+            type: string
+          description: Supported coordinate reference systems (URIs)
+        storageCrs:
+          type: string
+          description: Native storage CRS
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Extent:
+      type: object
+      description: Spatial and temporal extent
+      properties:
+        spatial:
+          type: object
+          properties:
+            bbox:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+            crs:
+              type: string
+        temporal:
+          type: object
+          properties:
+            interval:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+            trs:
+              type: string
+    FeatureCollection:
+      type: object
+      description: GeoJSON FeatureCollection
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'
+        numberMatched:
+          type: integer
+          description: Total number of features matching the query
+        numberReturned:
+          type: integer
+          description: Number of features in this response
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Feature:
+      type: object
+      description: GeoJSON Feature
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        id:
+          type: string
+          description: Feature identifier
+        geometry:
+          type: object
+          description: GeoJSON geometry
+        properties:
+          type: object
+          description: Feature properties
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Queryables:
+      type: object
+      description: JSON Schema describing queryable properties
+      properties:
+        $schema:
+          type: string
+        $id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+    SearchQuery:
+      type: object
+      description: Search query body for POST-based feature search
+      properties:
+        filter:
+          type: object
+          description: CQL2 JSON filter expression
+        filter-lang:
+          type: string
+          description: Filter language
+        bbox:
+          type: array
+          items:
+            type: number
+        datetime:
+          type: string
+        limit:
+          type: integer
+        startIndex:
+          type: integer
+        sortby:
+          type: array
+          items:
+            type: object
+        properties:
+          type: array
+          items:
+            type: string
+        crs:
+          type: string
+    FunctionsDocument:
+      type: object
+      description: List of available filter functions
+      properties:
+        functions:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              returns:
+                type: object
+              arguments:
+                type: array
+                items:
+                  type: object
+    Link:
+      type: object
+      description: OGC API link
+      properties:
+        href:
+          type: string
+          description: URL of the link
+        rel:
+          type: string
+          description: Link relation type
+        type:
+          type: string
+          description: Media type of the linked resource
+        title:
+          type: string
+          description: Human-readable title
+        hreflang:
+          type: string
+          description: Language of the linked resource

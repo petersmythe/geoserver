@@ -38,76 +38,147 @@ paths:
           type: string
         description: The templatesToo parameter
   /rest/geofence/adminrules:
-    post:
-      operationId: post_geofence_AdminRulesRestController_insert
-      summary: POST /rest/geofence/adminrules
-      description: Endpoint from geofence module
+    get:
+      operationId: get_geofence_AdminRulesRestController_get
+      summary: List geofence admin rules
+      description: >-
+        Returns a list of admin rules, optionally filtered by user, role, or workspace.
+        Admin rules control administrative access (ADMIN or USER grant) to workspaces.
       tags:
       - Extensions
       responses:
-        '201':
-          description: Resource created successfully
+        '200':
+          description: List of admin rules matching the filter criteria
           content:
             application/json:
-              schema: &id001
-                type: object
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRuleList'
             application/xml:
-              schema: *id001
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRuleList'
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              description: JaxbAdminRule configuration object
-          application/xml:
-            schema:
-              type: object
-              description: JaxbAdminRule configuration object
-  /rest/geofence/adminrules/id/{id}:
-    delete:
-      operationId: delete_geofence_AdminRulesRestController_delete
-      summary: DELETE /rest/geofence/adminrules/id/{id}
-      description: Endpoint from geofence module
-      tags:
-      - Extensions
-      responses:
-        '200':
-          description: Resource deleted successfully
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
-      - name: id
-        in: path
-        required: true
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination (0-based)
+      - name: entries
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Number of entries per page
+      - name: full
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: When true, returns full rule details
+      - name: userName
+        in: query
+        required: false
         schema:
           type: string
-        description: The id parameter
+        description: Filter by user name
+      - name: userAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without userName, matches default user rules
+      - name: roleName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by role name
+      - name: roleAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without roleName, matches default role rules
+      - name: workspace
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by workspace name
+      - name: workspaceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without workspace, matches default workspace rules
     post:
-      operationId: post_geofence_AdminRulesRestController_update
-      summary: POST /rest/geofence/adminrules/id/{id}
-      description: Endpoint from geofence module
+      operationId: post_geofence_AdminRulesRestController_insert
+      summary: Create a new geofence admin rule
+      description: >-
+        Inserts a new admin rule. If a rule with the same priority already exists,
+        existing rules are shifted to make room.
       tags:
       - Extensions
       responses:
         '201':
-          description: Resource created successfully
+          description: Admin rule created successfully, returns the new rule ID
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int64
+                description: The ID of the newly created admin rule
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '409':
+          description: Duplicate key - a rule with conflicting constraints already exists
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JaxbAdminRule'
+            example:
+              priority: 0
+              userName: admin
+              workspace: topp
+              access: ADMIN
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/JaxbAdminRule'
+  /rest/geofence/adminrules/count:
+    get:
+      operationId: get_geofence_AdminRulesRestController_count
+      summary: Count geofence admin rules
+      description: >-
+        Returns the count of admin rules matching the specified filter criteria.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Count of matching admin rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRuleList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRuleList'
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -117,33 +188,86 @@ paths:
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
-      - name: id
-        in: path
-        required: true
+      - name: userName
+        in: query
+        required: false
         schema:
           type: string
-        description: The id parameter
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              description: JaxbAdminRule configuration object
-          application/xml:
-            schema:
-              type: object
-              description: JaxbAdminRule configuration object
-  /rest/geofence/batch/rest/geofence/batch:
+        description: Filter by user name
+      - name: userAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without userName, matches default user rules
+      - name: roleName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by role name
+      - name: roleAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without roleName, matches default role rules
+      - name: workspace
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by workspace name
+      - name: workspaceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without workspace, matches default workspace rules
+  /rest/geofence/adminrules/id/{id}:
     get:
-      operationId: get_geofence_BatchRestController_unknown
-      summary: GET /rest/geofence/batch/rest/geofence/batch
-      description: Endpoint from geofence module
+      operationId: get_geofence_AdminRulesRestController_getById
+      summary: Get a geofence admin rule by ID
+      description: Returns a single admin rule identified by its numeric ID.
       tags:
       - Extensions
       responses:
         '200':
-          description: Successful operation
+          description: The requested admin rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRule'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRule'
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The admin rule ID
+    post:
+      operationId: post_geofence_AdminRulesRestController_update
+      summary: Update a geofence admin rule
+      description: >-
+        Updates an existing admin rule. If the new priority conflicts with another rule,
+        existing rules are shifted to make room.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Admin rule updated successfully
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -154,146 +278,558 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The admin rule ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JaxbAdminRule'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/JaxbAdminRule'
+    delete:
+      operationId: delete_geofence_AdminRulesRestController_delete
+      summary: Delete a geofence admin rule
+      description: Deletes an admin rule by its numeric ID.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Admin rule deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The admin rule ID
+  /rest/geofence/adminrules/move:
+    get:
+      operationId: get_geofence_AdminRulesRestController_move
+      summary: Move admin rules to a new priority
+      description: >-
+        Move the provided admin rules to the target priority. Rules will be sorted by their
+        current priority; the first rule gets the target priority and subsequent ones get
+        incremented priority values. Existing rules at or below the target priority are shifted.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Rules moved successfully, returns the updated rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRuleList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JaxbAdminRuleList'
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: targetPriority
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The target priority value for the first moved rule
+      - name: rulesIds
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of admin rule IDs to move
+  /rest/geofence/batch/exec:
+    post:
+      operationId: post_geofence_BatchRestController_exec
+      summary: Execute a batch of geofence operations
+      description: >-
+        Executes a batch of rule and admin rule operations (insert, update, delete)
+        in a single transactional request. All operations succeed or fail together.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Batch executed successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeofenceBatch'
+            example:
+              operations:
+              - service: rules
+                type: insert
+                payload:
+                  priority: 0
+                  access: ALLOW
+                  workspace: topp
+              - service: adminrules
+                type: delete
+                id: 5
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GeofenceBatch'
   /rest/geofence/info:
     get:
       operationId: get_geofence_GeoFenceController_getInfo
-      summary: GET /rest/geofence/info
-      description: Endpoint from geofence module
+      summary: Get geofence instance information
+      description: Returns the configured GeoFence instance name.
       tags:
       - Extensions
       responses:
         '200':
-          description: Successful operation
+          description: The GeoFence instance name
           content:
-            application/json:
-              schema: &id002
+            text/plain:
+              schema:
                 type: string
-            application/xml:
-              schema: *id002
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+                description: The configured GeoFence instance name
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/cache/info:
+    get:
+      operationId: get_geofence_CacheController_getCacheInfo_alt2
+      summary: Get geofence rule cache statistics (alternate path)
+      description: >-
+        Returns cache statistics including size, hit count, miss count, load success/exception
+        counts, total load time, and eviction count for all internal caches (RuleStats,
+        AdminAuthStats, UserStats, ContStats). This is an alternate path equivalent to
+        GET /rest/geofence/ruleCache/info.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Cache statistics as plain text
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: Multi-line cache statistics report
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/cache/invalidate:
+    put:
+      operationId: put_geofence_CacheController_invalidateCache_alt2
+      summary: Invalidate the geofence rule cache (alternate path)
+      description: >-
+        Invalidates all entries in the GeoFence rule cache, forcing rules to be
+        re-evaluated from the database on next access. This is an alternate path
+        equivalent to PUT /rest/geofence/ruleCache/invalidate.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Cache invalidated successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
   /rest/geofence/ruleCache:
     put:
       operationId: put_geofence_CacheController_invalidateCache
-      summary: PUT /rest/geofence/ruleCache
-      description: Endpoint from geofence module
+      summary: Invalidate the geofence rule cache
+      description: >-
+        Invalidates all entries in the GeoFence rule cache, forcing rules to be
+        re-evaluated from the database on next access.
       tags:
       - Extensions
       responses:
         '200':
-          description: Successful operation
+          description: Cache invalidated successfully
           content:
-            application/json:
-              schema: &id003
+            text/plain:
+              schema:
                 type: string
-            application/xml:
-              schema: *id003
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+                example: OK
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
   /rest/geofence/ruleCache/info:
     get:
       operationId: get_geofence_CacheController_getCacheInfo
-      summary: GET /rest/geofence/ruleCache/info
-      description: Endpoint from geofence module
+      summary: Get geofence rule cache statistics
+      description: >-
+        Returns cache statistics including size, hit count, miss count, load success/exception
+        counts, total load time, and eviction count for all internal caches (RuleStats,
+        AdminAuthStats, UserStats, ContStats).
       tags:
       - Extensions
       responses:
         '200':
-          description: Successful operation
+          description: Cache statistics as plain text
           content:
-            application/json:
-              schema: &id004
+            text/plain:
+              schema:
                 type: string
-            application/xml:
-              schema: *id004
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+                description: Multi-line cache statistics report
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
   /rest/geofence/ruleCache/invalidate:
-    get:
-      operationId: get_geofence_CacheController_invalidateCache
-      summary: GET /rest/geofence/ruleCache/invalidate
-      description: Endpoint from geofence module
+    put:
+      operationId: put_geofence_CacheController_invalidateCache_path
+      summary: Invalidate the geofence rule cache (alternate path)
+      description: >-
+        Alternate endpoint to invalidate all entries in the GeoFence rule cache.
+        Equivalent to PUT /rest/geofence/ruleCache.
       tags:
       - Extensions
       responses:
         '200':
-          description: Successful operation
+          description: Cache invalidated successfully
           content:
-            application/json:
-              schema: &id005
+            text/plain:
+              schema:
                 type: string
-            application/xml:
-              schema: *id005
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+                example: OK
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-  /rest/geofence/rules/id/{id}:
-    delete:
-      operationId: delete_geofence_RulesRestController_delete
-      summary: DELETE /rest/geofence/rules/id/{id}
-      description: Endpoint from geofence module
+  /rest/ruleCache/info:
+    get:
+      operationId: get_geofence_CacheController_getCacheInfo_legacy
+      summary: Get geofence rule cache statistics (legacy path)
+      description: >-
+        Returns cache statistics including size, hit count, miss count, load success/exception
+        counts, total load time, and eviction count for all internal caches. This is a legacy
+        path; prefer /rest/geofence/ruleCache/info.
       tags:
       - Extensions
       responses:
         '200':
-          description: Resource deleted successfully
+          description: Cache statistics as plain text
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: Multi-line cache statistics report
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/ruleCache/invalidate:
+    put:
+      operationId: put_geofence_CacheController_invalidateCache_legacy
+      summary: Invalidate the geofence rule cache (legacy path)
+      description: >-
+        Invalidates all entries in the GeoFence rule cache, forcing rules to be
+        re-evaluated from the database on next access. This is a legacy path;
+        prefer PUT /rest/geofence/ruleCache/invalidate.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Cache invalidated successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/geofence/rules:
+    get:
+      operationId: get_geofence_RulesRestController_get
+      summary: List geofence access rules
+      description: >-
+        Returns a list of access rules, optionally filtered by user, role, instance,
+        IP address, date, service, request, subfield, workspace, or layer.
+        Rules control data access (ALLOW, DENY, LIMIT) to layers and services.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: List of rules matching the filter criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JaxbRuleList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JaxbRuleList'
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
-      - name: id
-        in: path
-        required: true
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination (0-based)
+      - name: entries
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Number of entries per page
+      - name: full
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: When true, returns full rule details including limits and layer details
+      - name: userName
+        in: query
+        required: false
         schema:
           type: string
-        description: The id parameter
+        description: Filter by user name
+      - name: userAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without userName, matches default user rules
+      - name: roleName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by role name
+      - name: roleAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without roleName, matches default role rules
+      - name: instanceId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+        description: Filter by GeoServer instance ID
+      - name: instanceName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by GeoServer instance name
+      - name: instanceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without instance filters, matches default instance rules
+      - name: ipAddress
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by source IP address (CIDR notation supported)
+      - name: ipAddressAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without ipAddress, matches default IP rules
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by date validity
+      - name: dateAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without date, matches default date rules
+      - name: service
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by OGC service type (e.g., WMS, WFS, WCS)
+      - name: serviceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without service, matches default service rules
+      - name: request
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by OGC request type (e.g., GetMap, GetFeature)
+      - name: requestAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without request, matches default request rules
+      - name: subfield
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by subfield
+      - name: subfieldAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without subfield, matches default subfield rules
+      - name: workspace
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by workspace name
+      - name: workspaceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without workspace, matches default workspace rules
+      - name: layer
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by layer name
+      - name: layerAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without layer, matches default layer rules
     post:
-      operationId: post_geofence_RulesRestController_update
-      summary: POST /rest/geofence/rules/id/{id}
-      description: Endpoint from geofence module
+      operationId: post_geofence_RulesRestController_insert
+      summary: Create a new geofence access rule
+      description: >-
+        Inserts a new access rule. If a rule with the same priority already exists,
+        existing rules are shifted to make room. For LIMIT rules, include a limits
+        object. For non-LIMIT rules, include layerDetails for fine-grained layer access control.
       tags:
       - Extensions
       responses:
         '201':
-          description: Resource created successfully
+          description: Rule created successfully, returns the new rule ID as plain text
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The ID of the newly created rule
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '409':
+          description: Duplicate key - a rule with conflicting constraints already exists
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JaxbRule'
+            example:
+              priority: 0
+              userName: admin
+              roleName: ROLE_ADMIN
+              workspace: topp
+              layer: states
+              service: WMS
+              request: GetMap
+              access: ALLOW
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/JaxbRule'
+  /rest/geofence/rules/count:
+    get:
+      operationId: get_geofence_RulesRestController_count
+      summary: Count geofence access rules
+      description: >-
+        Returns the count of access rules matching the specified filter criteria.
+        Accepts the same filter parameters as the list endpoint.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Count of matching rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JaxbRuleList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JaxbRuleList'
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -303,32 +839,178 @@ paths:
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
-      - name: id
-        in: path
-        required: true
+      - name: userName
+        in: query
+        required: false
         schema:
           type: string
-        description: The id parameter
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              description: JaxbRule configuration object
-          application/xml:
-            schema:
-              type: object
-              description: JaxbRule configuration object
-    put:
-      operationId: put_geofence_RulesRestController_clearAndUpdate
-      summary: PUT /rest/geofence/rules/id/{id}
-      description: Endpoint from geofence module
+        description: Filter by user name
+      - name: userAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without userName, matches default user rules
+      - name: roleName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by role name
+      - name: roleAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without roleName, matches default role rules
+      - name: instanceId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+        description: Filter by GeoServer instance ID
+      - name: instanceName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by GeoServer instance name
+      - name: instanceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without instance filters, matches default instance rules
+      - name: ipAddress
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by source IP address
+      - name: ipAddressAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without ipAddress, matches default IP rules
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by date validity
+      - name: dateAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without date, matches default date rules
+      - name: service
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by OGC service type
+      - name: serviceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without service, matches default service rules
+      - name: request
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by OGC request type
+      - name: requestAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without request, matches default request rules
+      - name: subfield
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by subfield
+      - name: subfieldAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without subfield, matches default subfield rules
+      - name: workspace
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by workspace name
+      - name: workspaceAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without workspace, matches default workspace rules
+      - name: layer
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by layer name
+      - name: layerAny
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true without layer, matches default layer rules
+  /rest/geofence/rules/id/{id}:
+    get:
+      operationId: get_geofence_RulesRestController_getById
+      summary: Get a geofence access rule by ID
+      description: Returns a single access rule identified by its numeric ID.
       tags:
       - Extensions
       responses:
         '200':
-          description: Successful operation
+          description: The requested rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JaxbRule'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JaxbRule'
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The rule ID
+    post:
+      operationId: post_geofence_RulesRestController_update
+      summary: Update a geofence access rule
+      description: >-
+        Updates an existing access rule. Only provided fields are updated; omitted fields
+        remain unchanged. If the new priority conflicts with another rule, existing rules
+        are shifted.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Rule updated successfully
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -344,19 +1026,123 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-        description: The id parameter
+          type: integer
+          format: int64
+        description: The rule ID
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              description: JaxbRule configuration object
+              $ref: '#/components/schemas/JaxbRule'
           application/xml:
             schema:
-              type: object
-              description: JaxbRule configuration object
+              $ref: '#/components/schemas/JaxbRule'
+    put:
+      operationId: put_geofence_RulesRestController_clearAndUpdate
+      summary: Replace a geofence access rule
+      description: >-
+        Replaces an existing access rule entirely. Unlike POST (update), this clears
+        all existing fields and sets only those provided in the request body. Limits
+        and layer details are also cleared unless explicitly provided.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Rule replaced successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The rule ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JaxbRule'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/JaxbRule'
+    delete:
+      operationId: delete_geofence_RulesRestController_delete
+      summary: Delete a geofence access rule
+      description: Deletes an access rule by its numeric ID.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Rule deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The rule ID
+  /rest/geofence/rules/move:
+    get:
+      operationId: get_geofence_RulesRestController_move
+      summary: Move access rules to a new priority
+      description: >-
+        Move the provided access rules to the target priority. Rules will be sorted by their
+        current priority; the first rule gets the target priority and subsequent ones get
+        incremented priority values. Existing rules at or below the target priority are shifted.
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Rules moved successfully, returns the updated rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JaxbRuleList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/JaxbRuleList'
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: targetPriority
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: The target priority value for the first moved rule
+      - name: rulesIds
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Comma-separated list of rule IDs to move
   /rest/imports:
     get:
       operationId: get_importer_ImportController_getImports
@@ -389,11 +1175,21 @@ paths:
         required: false
         schema:
           type: string
-        description: The expand parameter
-  /rest/imports/{id:
+          enum:
+          - none
+          - self
+          - all
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
+          with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
+          an integer for a specific depth level. Default depth varies by endpoint (typically 0 for list operations).
+  /rest/imports/{id}:
     delete:
       operationId: delete_importer_ImportController_deleteImports
-      summary: DELETE /rest/imports/{id
+      summary: DELETE /rest/imports/{id}
       description: Endpoint from importer module
       tags:
       - Extensions
@@ -410,44 +1206,13 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-      parameters: []
-    post:
-      operationId: post_importer_ImportController_postImports
-      summary: POST /rest/imports/{id
-      description: Endpoint from importer module
-      tags:
-      - Extensions
-      responses:
-        '201':
-          description: Resource created successfully
-          content:
-            application/json:
-              schema: &id007
-                type: object
-            application/xml:
-              schema: *id007
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
       parameters:
-      - name: async
-        in: query
-        required: false
+      - name: id
+        in: path
+        required: true
         schema:
           type: string
-        description: The async parameter
-      - name: exec
-        in: query
-        required: false
-        schema:
-          type: string
-        description: The exec parameter
-  /rest/imports/{id}:
+        description: The import context identifier (numeric)
     get:
       operationId: get_importer_ImportController_getImports_rest
       summary: GET /rest/imports/{id}
@@ -459,10 +1224,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id008
+              schema: &id007
                 type: object
             application/xml:
-              schema: *id008
+              schema: *id007
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -479,29 +1244,60 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
+    post:
+      operationId: post_importer_ImportController_postImports
+      summary: POST /rest/imports/{id}
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            application/json:
+              schema: &id008
+                type: object
+            application/xml:
+              schema: *id008
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
       - name: id
         in: path
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: async
         in: query
         required: false
         schema:
-          type: string
-        description: The async parameter
+          type: boolean
+          default: false
+        description: When true, the import runs asynchronously. The response returns immediately with the import context,
+          and processing continues in the background.
       - name: exec
         in: query
         required: false
         schema:
-          type: string
-        description: The exec parameter
+          type: boolean
+          default: false
+        description: When true, the import is executed immediately after creation. Combines create and run into a single request.
     put:
       operationId: put_importer_ImportController_putImport
       summary: PUT /rest/imports/{id}
-      description: Endpoint from importer module
+      description: 'Create a new import context with a specific ID, or re-run an existing import.
+
+        If the import does not exist, it is created. If it exists, it is re-executed.
+
+        '
       tags:
       - Extensions
       responses:
@@ -528,20 +1324,39 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-        description: The id parameter
+          type: integer
+          format: int64
+        description: The import context ID
       - name: async
         in: query
         required: false
         schema:
-          type: string
-        description: The async parameter
+          type: boolean
+          default: false
+        description: When true, the import runs asynchronously. The response returns immediately with the import context,
+          and processing continues in the background.
       - name: exec
         in: query
         required: false
         schema:
-          type: string
-        description: The exec parameter
+          type: boolean
+          default: false
+        description: When true, the import is executed immediately after creation. Combines create and run into a single request.
+      requestBody:
+        required: false
+        description: Optional import context configuration. If omitted, an empty import is created.
+        content:
+          application/json:
+            schema:
+              $ref: ../common/schemas.yaml#/ImportContextPut
+            example:
+              import:
+                targetWorkspace:
+                  workspace:
+                    name: topp
+                targetStore:
+                  dataStore:
+                    name: postgis_store
   /rest/imports/{id}/tasks:
     get:
       operationId: get_importer_ImportTaskController_tasksGet
@@ -574,25 +1389,23 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: expand
         in: query
         required: false
         schema:
           type: string
-        description: The expand parameter
+          enum:
+          - none
+          - self
+          - all
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
+          with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
+          an integer for a specific depth level. Default depth varies by endpoint (typically 0 for list operations).
     post:
       operationId: post_importer_ImportTaskController_taskPost
       summary: POST /rest/imports/{id}/tasks
@@ -622,13 +1435,23 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: expand
         in: query
         required: false
         schema:
           type: string
-        description: The expand parameter
+          enum:
+          - none
+          - self
+          - all
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
+          with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
+          an integer for a specific depth level. Default depth varies by endpoint (typically 0 for list operations).
   /rest/imports/{id}/tasks/{taskId}:
     delete:
       operationId: delete_importer_ImportTaskController_taskDelete
@@ -655,13 +1478,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: taskId
         in: path
         required: true
         schema:
           type: string
-        description: The taskId parameter
+        description: The import task identifier within the import context
     get:
       operationId: get_importer_ImportTaskController_taskGet
       summary: GET /rest/imports/{id}/tasks/{taskId}
@@ -693,29 +1516,21 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: taskId
         in: path
         required: true
         schema:
           type: string
-        description: The taskId parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
-      - name: taskId
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The taskId parameter
+        description: The import task identifier within the import context
     put:
       operationId: put_importer_ImportTaskController_taskPut
       summary: PUT /rest/imports/{id}/tasks/{taskId}
-      description: Endpoint from importer module
+      description: 'Update an import task configuration. Accepts JSON with task properties to modify,
+
+        such as updateMode, source, target, or layer settings.
+
+        '
       tags:
       - Extensions
       responses:
@@ -742,14 +1557,27 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-        description: The id parameter
+          type: integer
+          format: int64
+        description: The import context ID
       - name: taskId
         in: path
         required: true
         schema:
-          type: string
-        description: The taskId parameter
+          type: integer
+        description: The task ID within the import context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../common/schemas.yaml#/ImportTaskPut
+            example:
+              task:
+                updateMode: REPLACE
+                layer:
+                  name: roads
+                  srs: EPSG:4326
   /rest/imports/{id}/tasks/{taskId}/layer:
     get:
       operationId: get_importer_ImportTaskController_layersGet
@@ -782,23 +1610,37 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: taskId
         in: path
         required: true
         schema:
           type: string
-        description: The taskId parameter
+        description: The import task identifier within the import context
       - name: expand
         in: query
         required: false
         schema:
           type: string
-        description: The expand parameter
+          enum:
+          - none
+          - self
+          - all
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
+          with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
+          an integer for a specific depth level. Default depth is 1 for layer detail endpoints.
     put:
       operationId: put_importer_ImportTaskController_layerPut
       summary: PUT /rest/imports/{id}/tasks/{taskId}/layer
-      description: Endpoint from importer module
+      description: 'Update the layer configuration for an import task. Sets the layer name,
+
+        SRS, style, and other properties that will be used when the data is imported.
+
+        '
       tags:
       - Extensions
       responses:
@@ -825,31 +1667,47 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-        description: The id parameter
+          type: integer
+          format: int64
+        description: The import context ID
       - name: taskId
         in: path
         required: true
         schema:
-          type: string
-        description: The taskId parameter
+          type: integer
+        description: The task ID within the import context
       - name: expand
         in: query
         required: false
         schema:
           type: string
-        description: The expand parameter
+          enum:
+          - none
+          - self
+          - all
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
+          with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
+          an integer for a specific depth level. Default depth is 1 for layer detail endpoints.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              description: ImportLayer configuration object
+              $ref: ../common/schemas.yaml#/ImportLayerPut
+            example:
+              layer:
+                name: buildings
+                srs: EPSG:4326
+                title: Building Footprints
+                style:
+                  name: polygon
           application/xml:
             schema:
-              type: object
-              description: ImportLayer configuration object
+              $ref: ../common/schemas.yaml#/ImportLayerPut
   /rest/imports/{id}/tasks/{taskId}/progress:
     get:
       operationId: get_importer_ImportTaskController_progressGet
@@ -882,13 +1740,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: taskId
         in: path
         required: true
         schema:
           type: string
-        description: The taskId parameter
+        description: The import task identifier within the import context
   /rest/imports/{id}/tasks/{taskId}/target:
     get:
       operationId: get_importer_ImportTaskController_targetGet
@@ -921,23 +1779,37 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The import context identifier (numeric)
       - name: taskId
         in: path
         required: true
         schema:
           type: string
-        description: The taskId parameter
+        description: The import task identifier within the import context
       - name: expand
         in: query
         required: false
         schema:
           type: string
-        description: The expand parameter
+          enum:
+          - none
+          - self
+          - all
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
+          with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
+          an integer for a specific depth level. Default depth is 1 for target detail endpoints.
     put:
       operationId: put_importer_ImportTaskController_targetPut
       summary: PUT /rest/imports/{id}/tasks/{taskId}/target
-      description: Endpoint from importer module
+      description: 'Update the target store for an import task. Allows redirecting imported
+
+        data to a different data store or coverage store.
+
+        '
       tags:
       - Extensions
       responses:
@@ -958,25 +1830,34 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-        description: The id parameter
+          type: integer
+          format: int64
+        description: The import context ID
       - name: taskId
         in: path
         required: true
         schema:
-          type: string
-        description: The taskId parameter
+          type: integer
+        description: The task ID within the import context
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              description: StoreInfo configuration object
+              $ref: ../common/schemas.yaml#/ImportTargetPut
+            example:
+              dataStore:
+                name: postgis_store
+                type: PostGIS
+                connectionParameters:
+                  host: localhost
+                  port: 5432
+                  database: geoserver
+                  user: postgres
+                  schema: public
           application/xml:
             schema:
-              type: object
-              description: StoreInfo configuration object
+              $ref: ../common/schemas.yaml#/ImportTargetPut
   /rest/imports/{importId}/data:
     get:
       operationId: get_importer_ImportDataController_getData
@@ -1009,7 +1890,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The importId parameter
+        description: The import context identifier (numeric)
   /rest/imports/{importId}/data/files:
     get:
       operationId: get_importer_ImportDataController_getDirectory
@@ -1042,11 +1923,11 @@ paths:
         required: true
         schema:
           type: string
-        description: The importId parameter
-  /rest/imports/{importId}/data/files/{fileName:.+:
+        description: The import context identifier (numeric)
+  /rest/imports/{importId}/data/files/{fileName}:
     delete:
       operationId: delete_importer_ImportDataController_deleteDirectory
-      summary: DELETE /rest/imports/{importId}/data/files/{fileName:.+
+      summary: DELETE /rest/imports/{importId}/data/files/{fileName}
       description: Endpoint from importer module
       tags:
       - Extensions
@@ -1064,161 +1945,18 @@ paths:
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
+      - name: fileName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The file name within the import data directory
       - name: importId
         in: path
         required: true
         schema:
           type: string
-        description: The importId parameter
-  /rest/imports/{importId}/tasks/{taskId:
-    delete:
-      operationId: delete_importer_ImportTransformController_deleteTransform
-      summary: DELETE /rest/imports/{importId}/tasks/{taskId
-      description: Endpoint from importer module
-      tags:
-      - Extensions
-      responses:
-        '200':
-          description: Resource deleted successfully
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-      parameters:
-      - name: importId
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The importId parameter
-    get:
-      operationId: get_importer_ImportTransformController_getTransform
-      summary: GET /rest/imports/{importId}/tasks/{taskId
-      description: Endpoint from importer module
-      tags:
-      - Extensions
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema: &id020
-                type: object
-            application/xml:
-              schema: *id020
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-      parameters:
-      - name: importId
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The importId parameter
-      - name: expand
-        in: query
-        required: false
-        schema:
-          type: string
-        description: The expand parameter
-    post:
-      operationId: post_importer_ImportTransformController_postTransform
-      summary: POST /rest/imports/{importId}/tasks/{taskId
-      description: Endpoint from importer module
-      tags:
-      - Extensions
-      responses:
-        '201':
-          description: Resource created successfully
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-      parameters:
-      - name: importId
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The importId parameter
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              description: ImportTransform configuration object
-          application/xml:
-            schema:
-              type: object
-              description: ImportTransform configuration object
-    put:
-      operationId: put_importer_ImportTransformController_putTransform
-      summary: PUT /rest/imports/{importId}/tasks/{taskId
-      description: Endpoint from importer module
-      tags:
-      - Extensions
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema: &id021
-                type: object
-            application/xml:
-              schema: *id021
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-      parameters:
-      - name: importId
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The importId parameter
-      - name: expand
-        in: query
-        required: false
-        schema:
-          type: string
-        description: The expand parameter
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              description: ImportTransform configuration object
-          application/xml:
-            schema:
-              type: object
-              description: ImportTransform configuration object
+        description: The import context identifier (numeric)
   /rest/layers:
     post:
       operationId: post_rat_PAMController_create
@@ -1275,10 +2013,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id022
+              schema: &id020
                 type: object
             application/xml:
-              schema: *id022
+              schema: *id020
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1290,6 +2028,12 @@ paths:
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
+      - name: request
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The request identifier
       - name: from
         in: query
         required: false
@@ -1338,10 +2082,10 @@ paths:
         schema:
           type: string
         description: The fields parameter
-  /rest/monitor/requests/{request:
+  /rest/monitor/requests/{request}:
     delete:
       operationId: delete_monitor_MonitorRequestController_handleObjectDelete
-      summary: DELETE /rest/monitor/requests/{request
+      summary: DELETE /rest/monitor/requests/{request}
       description: Endpoint from monitor module
       tags:
       - Extensions
@@ -1358,10 +2102,16 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-      parameters: []
+      parameters:
+      - name: request
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The request identifier
     get:
       operationId: get_monitor_MonitorRequestController_handleObjectGetRestWrapper
-      summary: GET /rest/monitor/requests/{request
+      summary: GET /rest/monitor/requests/{request}
       description: Endpoint from monitor module
       tags:
       - Extensions
@@ -1370,10 +2120,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id023
+              schema: &id021
                 type: object
             application/xml:
-              schema: *id023
+              schema: *id021
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1385,6 +2135,12 @@ paths:
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
+      - name: request
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The request identifier
       - name: from
         in: query
         required: false
@@ -1445,10 +2201,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id024
+              schema: &id022
                 type: object
             application/xml:
-              schema: *id024
+              schema: *id022
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1471,10 +2227,10 @@ paths:
           description: Resource created successfully
           content:
             application/json:
-              schema: &id025
+              schema: &id023
                 type: object
             application/xml:
-              schema: *id025
+              schema: *id023
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1521,13 +2277,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
+        description: The resource identifier
     get:
       operationId: get_params_extractor_EchoesController_getEchoParameter
       summary: GET /rest/params-extractor/echoes/{id}
@@ -1539,10 +2289,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id026
+              schema: &id024
                 type: object
             application/xml:
-              schema: *id026
+              schema: *id024
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1559,19 +2309,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
+        description: The resource identifier
     put:
       operationId: put_params_extractor_EchoesController_putEchoParameter
       summary: PUT /rest/params-extractor/echoes/{id}
@@ -1597,7 +2335,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The resource identifier
       requestBody:
         required: true
         content:
@@ -1621,10 +2359,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id027
+              schema: &id025
                 type: object
             application/xml:
-              schema: *id027
+              schema: *id025
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1647,10 +2385,10 @@ paths:
           description: Resource created successfully
           content:
             application/json:
-              schema: &id028
+              schema: &id026
                 type: object
             application/xml:
-              schema: *id028
+              schema: *id026
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1697,13 +2435,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
+        description: The resource identifier
     get:
       operationId: get_params_extractor_RulesController_getRule
       summary: GET /rest/params-extractor/rules/{id}
@@ -1715,10 +2447,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id029
+              schema: &id027
                 type: object
             application/xml:
-              schema: *id029
+              schema: *id027
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1735,19 +2467,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The id parameter
+        description: The resource identifier
     put:
       operationId: put_params_extractor_RulesController_putEchoParameter
       summary: PUT /rest/params-extractor/rules/{id}
@@ -1773,7 +2493,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The id parameter
+        description: The resource identifier
       requestBody:
         required: true
         content:
@@ -1797,10 +2517,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id030
+              schema: &id028
                 type: object
             application/xml:
-              schema: *id030
+              schema: *id028
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1853,30 +2573,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id031
+              schema: &id029
                 type: object
             application/xml:
-              schema: *id031
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-  /rest/sldservice/rest/sldservice:
-    get:
-      operationId: get_sldService_ClassifierController_unknown
-      summary: GET /rest/sldservice/rest/sldservice
-      description: Endpoint from sldService module
-      tags:
-      - Extensions
-      responses:
-        '200':
-          description: Successful operation
+              schema: *id029
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1899,10 +2599,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id032
+              schema: &id030
                 type: object
             application/xml:
-              schema: *id032
+              schema: *id030
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -1938,10 +2638,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id033
+              schema: &id031
                 type: object
             application/xml:
-              schema: *id033
+              schema: *id031
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -2121,10 +2821,10 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id034
+              schema: &id032
                 type: object
             application/xml:
-              schema: *id034
+              schema: *id032
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -2232,7 +2932,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The appschemaStoreName parameter
+        description: The app-schema store name
   /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/datastores/{storeId}/cleanSchemas:
     post:
       operationId: post_mongodb_MongoStoreRestController_clearSchema
@@ -2263,13 +2963,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The appschemaStoreName parameter
+        description: The app-schema store name
       - name: storeId
         in: path
         required: true
         schema:
           type: string
-        description: The storeId parameter
+        description: The internal data store identifier within the app-schema store
   /rest/workspaces/{workspaceName}/appschemastores/{appschemaStoreName}/datastores/{storeId}/rebuildMongoSchemas:
     post:
       operationId: post_mongodb_MongoStoreRestController_rebuildSchema
@@ -2300,13 +3000,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The appschemaStoreName parameter
+        description: The app-schema store name
       - name: storeId
         in: path
         required: true
         schema:
           type: string
-        description: The storeId parameter
+        description: The internal data store identifier within the app-schema store
       - name: ids
         in: query
         required: false
@@ -2355,7 +3055,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The appschemaStoreName parameter
+        description: The app-schema store name
       - name: ids
         in: query
         required: false
@@ -2368,3 +3068,484 @@ paths:
         schema:
           type: string
         description: The max parameter
+  /rest/imports/{importId}/tasks/{taskId}/transforms:
+    get:
+      operationId: get_importer_ImportTransformController_getTransforms
+      summary: GET /rest/imports/{importId}/tasks/{taskId}/transforms
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id033
+                type: object
+            application/xml:
+              schema: *id033
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The import context identifier (numeric)
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The import task identifier within the import context
+    post:
+      operationId: post_importer_ImportTransformController_postTransform
+      summary: POST /rest/imports/{importId}/tasks/{taskId}/transforms
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The import context identifier (numeric)
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The import task identifier within the import context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ImportTransform configuration object
+          application/xml:
+            schema:
+              type: object
+              description: ImportTransform configuration object
+  /rest/imports/{importId}/tasks/{taskId}/transforms/{transformId}:
+    delete:
+      operationId: delete_importer_ImportTransformController_deleteTransform
+      summary: DELETE /rest/imports/{importId}/tasks/{taskId}/transforms/{transformId}
+      description: Endpoint from importer module
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The import context identifier (numeric)
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The import task identifier within the import context
+      - name: transformId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The transform identifier within the task
+    put:
+      operationId: put_importer_ImportTransformController_putTransform
+      summary: PUT /rest/imports/{importId}/tasks/{taskId}/transforms/{transformId}
+      description: 'Update a transform in an import task''s transform chain. The transform type
+
+        determines which fields are applicable. Common types include ReprojectTransform,
+
+        DateFormatTransform, and AttributeRemapTransform.
+
+        '
+      tags:
+      - Extensions
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema: &id034
+                type: object
+            application/xml:
+              schema: *id034
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: The import context identifier (numeric)
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The import task identifier within the import context
+      - name: transformId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The transform identifier within the task
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - none
+          - self
+          - all
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+        description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
+          with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
+          an integer for a specific depth level. Default depth is 1 for transform detail endpoints.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../common/schemas.yaml#/ImportTransformPut
+            example:
+              type: ReprojectTransform
+              target: EPSG:4326
+          application/xml:
+            schema:
+              $ref: ../common/schemas.yaml#/ImportTransformPut
+
+components:
+  schemas:
+    JaxbAdminRule:
+      type: object
+      description: >-
+        A GeoFence admin rule that controls administrative access to workspaces.
+        Admin rules grant ADMIN or USER level access.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier (read-only, assigned by server)
+          readOnly: true
+        priority:
+          type: integer
+          format: int64
+          description: Rule priority (lower values = higher priority). Rules are evaluated in priority order.
+        userName:
+          type: string
+          description: User name this rule applies to. Use '*' or omit for any user.
+        roleName:
+          type: string
+          description: Role name this rule applies to. Use '*' or omit for any role.
+        addressRange:
+          type: string
+          description: IP address range in CIDR notation (e.g., '192.168.1.0/24')
+        workspace:
+          type: string
+          description: Workspace name this rule applies to. Use '*' or omit for any workspace.
+        access:
+          type: string
+          enum:
+          - ADMIN
+          - USER
+          description: The access level granted by this rule
+      example:
+        id: 1
+        priority: 0
+        userName: admin
+        roleName: ROLE_ADMIN
+        workspace: topp
+        access: ADMIN
+
+    JaxbAdminRuleList:
+      type: object
+      description: A list of admin rules or a count result
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/JaxbAdminRule'
+        count:
+          type: integer
+          description: Total count of matching rules (returned by count endpoint)
+
+    JaxbRule:
+      type: object
+      description: >-
+        A GeoFence access rule that controls data access to layers and services.
+        Rules can ALLOW, DENY, or LIMIT access based on user, role, service,
+        request type, workspace, and layer.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier (read-only, assigned by server)
+          readOnly: true
+        priority:
+          type: integer
+          format: int64
+          description: Rule priority (lower values = higher priority). Rules are evaluated in priority order.
+        userName:
+          type: string
+          description: User name this rule applies to. Use '*' or omit for any user.
+        roleName:
+          type: string
+          description: Role name this rule applies to. Use '*' or omit for any role.
+        addressRange:
+          type: string
+          description: IP address range in CIDR notation (e.g., '192.168.1.0/24')
+        validAfter:
+          type: string
+          format: date
+          description: Rule is valid only after this date (YYYY-MM-DD format)
+        validBefore:
+          type: string
+          format: date
+          description: Rule is valid only before this date (YYYY-MM-DD format)
+        workspace:
+          type: string
+          description: Workspace name this rule applies to. Use '*' or omit for any workspace.
+        layer:
+          type: string
+          description: Layer name this rule applies to. Use '*' or omit for any layer.
+        service:
+          type: string
+          description: OGC service type (e.g., WMS, WFS, WCS). Use '*' or omit for any service.
+        request:
+          type: string
+          description: OGC request type (e.g., GetMap, GetFeature). Use '*' or omit for any request.
+        subfield:
+          type: string
+          description: Subfield for additional filtering
+        access:
+          type: string
+          enum:
+          - ALLOW
+          - DENY
+          - LIMIT
+          description: The access grant type for this rule
+        limits:
+          $ref: '#/components/schemas/RuleLimits'
+        layerDetails:
+          $ref: '#/components/schemas/LayerDetails'
+      example:
+        id: 1
+        priority: 0
+        userName: admin
+        roleName: ROLE_ADMIN
+        workspace: topp
+        layer: states
+        service: WMS
+        request: GetMap
+        access: ALLOW
+
+    JaxbRuleList:
+      type: object
+      description: A list of access rules or a count result
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/JaxbRule'
+        count:
+          type: integer
+          description: Total count of matching rules (returned by count endpoint)
+
+    RuleLimits:
+      type: object
+      description: Spatial and catalog mode limits for LIMIT-type rules
+      properties:
+        allowedArea:
+          type: string
+          description: >-
+            WKT MultiPolygon defining the allowed area, optionally prefixed with
+            SRID (e.g., 'SRID=4326;MULTIPOLYGON(((...)...))')
+        catalogMode:
+          type: string
+          enum:
+          - HIDE
+          - MIXED
+          - CHALLENGE
+          description: >-
+            How restricted layers appear in capabilities documents.
+            HIDE removes them, MIXED shows accessible ones, CHALLENGE prompts for credentials.
+        spatialFilterType:
+          type: string
+          enum:
+          - INTERSECT
+          - CLIP
+          description: >-
+            How the allowed area is applied. INTERSECT filters features intersecting
+            the area, CLIP clips geometries to the area boundary.
+
+    LayerDetails:
+      type: object
+      description: Fine-grained layer access details for non-LIMIT rules
+      properties:
+        layerType:
+          type: string
+          enum:
+          - VECTOR
+          - RASTER
+          - LAYERGROUP
+          description: The type of layer
+        defaultStyle:
+          type: string
+          description: Default style name to use for this layer
+        cqlFilterRead:
+          type: string
+          description: CQL filter applied to read (GetMap/GetFeature) requests
+        cqlFilterWrite:
+          type: string
+          description: CQL filter applied to write (WFS-T) requests
+        allowedArea:
+          type: string
+          description: WKT MultiPolygon defining the allowed area (with optional SRID prefix)
+        spatialFilterType:
+          type: string
+          enum:
+          - INTERSECT
+          - CLIP
+          description: How the allowed area is applied
+        catalogMode:
+          type: string
+          enum:
+          - HIDE
+          - MIXED
+          - CHALLENGE
+          description: How the layer appears in capabilities
+        allowedStyles:
+          type: array
+          items:
+            type: string
+          description: List of allowed style names for this layer
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LayerAttribute'
+          description: Per-attribute access control
+
+    LayerAttribute:
+      type: object
+      description: Per-attribute access control for vector layers
+      properties:
+        name:
+          type: string
+          description: The attribute (field) name
+        dataType:
+          type: string
+          description: The data type of the attribute (e.g., String, Integer, Geometry)
+        accessType:
+          type: string
+          enum:
+          - NONE
+          - READONLY
+          - READWRITE
+          description: >-
+            Access level for this attribute. NONE hides it, READONLY allows read access,
+            READWRITE allows both read and write access.
+
+    GeofenceBatch:
+      type: object
+      description: >-
+        A batch of GeoFence operations to execute atomically. All operations
+        succeed or fail together within a single transaction.
+      properties:
+        operations:
+          type: array
+          description: List of batch operations to execute in order
+          items:
+            $ref: '#/components/schemas/GeofenceBatchOperation'
+      example:
+        operations:
+        - service: rules
+          type: insert
+          payload:
+            priority: 0
+            access: ALLOW
+            workspace: topp
+            layer: states
+        - service: adminrules
+          type: delete
+          id: 5
+
+    GeofenceBatchOperation:
+      type: object
+      description: A single operation within a GeoFence batch
+      properties:
+        service:
+          type: string
+          enum:
+          - rules
+          - adminrules
+          description: The target service for this operation
+        type:
+          type: string
+          enum:
+          - insert
+          - update
+          - delete
+          description: The operation type
+        id:
+          type: integer
+          format: int64
+          description: The rule ID (required for update and delete operations)
+        payload:
+          type: object
+          description: >-
+            The rule payload. Must be a JaxbRule object when service is 'rules',
+            or a JaxbAdminRule object when service is 'adminrules'.
+            Required for insert and update operations.

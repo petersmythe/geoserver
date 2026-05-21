@@ -120,7 +120,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The target parameter
+        description: The target module name
   /rest/about/system-status:
     get:
       operationId: get_rest_MonitorRest_getData
@@ -542,7 +542,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The layerGroupName parameter
+        description: The name of the layer group
     get:
       operationId: get_rest_LayerGroupController_getLayerGroup
       summary: GET /rest/layergroups/{layerGroupName}
@@ -568,7 +568,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The layerGroupName parameter
+        description: The name of the layer group
     put:
       operationId: put_rest_LayerGroupController_layerGroupPut
       summary: PUT /rest/layergroups/{layerGroupName}
@@ -594,7 +594,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The layerGroupName parameter
+        description: The name of the layer group
       requestBody:
         required: true
         content:
@@ -659,7 +659,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The layerName parameter
+        description: The name of the layer
       - name: recurse
         in: query
         required: false
@@ -697,7 +697,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The layerName parameter
+        description: The name of the layer
     put:
       operationId: put_rest_LayerController_layerPut
       summary: PUT /rest/layers/{layerName}
@@ -723,7 +723,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The layerName parameter
+        description: The name of the layer
       requestBody:
         required: true
         content:
@@ -851,10 +851,10 @@ paths:
             schema:
               type: object
               description: NamespaceInfo configuration object
-  /rest/namespaces/{namespaceName}:
+  /rest/namespaces/{prefix}:
     get:
       operationId: get_rest_NamespaceController_namespaceGet
-      summary: GET /rest/namespaces/{namespaceName}
+      summary: Get a namespace
       description: Endpoint from rest module
       tags:
       - Core
@@ -878,13 +878,12 @@ paths:
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
-      - name: namespaceName
+      - name: prefix
         in: path
         required: true
         schema:
           type: string
-        description: The namespaceName parameter
-  /rest/namespaces/{prefix}:
+        description: The namespace prefix
     delete:
       operationId: delete_rest_NamespaceController_namespaceDelete
       summary: DELETE /rest/namespaces/{prefix}
@@ -910,7 +909,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The prefix parameter
+        description: The namespace prefix
     put:
       operationId: put_rest_NamespaceController_namespacePut
       summary: PUT /rest/namespaces/{prefix}
@@ -936,7 +935,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The prefix parameter
+        description: The namespace prefix
       requestBody:
         required: true
         content:
@@ -994,11 +993,11 @@ paths:
         schema:
           type: string
         description: The operation parameter
-  /rest/resource/rest/resource:
+  /rest/services/wcs/settings:
     get:
-      operationId: get_rest_ResourceController_SimpleDateFormat
-      summary: GET /rest/resource/rest/resource
-      description: Endpoint from rest module
+      operationId: get_rest_WCSSettingsController_serviceSettingsGet
+      summary: Get WCS service settings
+      description: Returns the global WCS service configuration settings.
       tags:
       - Core
       responses:
@@ -1006,21 +1005,19 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id015
+              schema:
                 type: object
+                description: WCSInfo configuration object
             application/xml:
-              schema: *id015
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+              schema:
+                type: object
+                description: WCSInfo configuration object
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-  /rest/services/wcs/settings:
     put:
       operationId: put_rest_WCSSettingsController_serviceSettingsPut
       summary: PUT /rest/services/wcs/settings
@@ -1053,6 +1050,30 @@ paths:
               type: object
               description: WCSInfo configuration object
   /rest/services/wfs/settings:
+    get:
+      operationId: get_rest_WFSSettingsController_serviceSettingsGet
+      summary: Get WFS service settings
+      description: Returns the global WFS service configuration settings.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WFSInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WFSInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
     put:
       operationId: put_rest_WFSSettingsController_serviceSettingsPut
       summary: PUT /rest/services/wfs/settings
@@ -1085,6 +1106,30 @@ paths:
               type: object
               description: WFSInfo configuration object
   /rest/services/wms/settings:
+    get:
+      operationId: get_rest_WMSSettingsController_serviceSettingsGet
+      summary: Get WMS service settings
+      description: Returns the global WMS service configuration settings.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WMSInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WMSInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
     put:
       operationId: put_rest_WMSSettingsController_serviceSettingsPut
       summary: PUT /rest/services/wms/settings
@@ -1117,6 +1162,30 @@ paths:
               type: object
               description: WMSInfo configuration object
   /rest/services/wmts/settings:
+    get:
+      operationId: get_rest_WMTSSettingsController_serviceSettingsGet
+      summary: Get WMTS service settings
+      description: Returns the global WMTS service configuration settings.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WMTSInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WMTSInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
     put:
       operationId: put_rest_WMTSSettingsController_serviceSettingsPut
       summary: PUT /rest/services/wmts/settings
@@ -1311,10 +1380,10 @@ paths:
         schema:
           type: string
         description: The name parameter
-  /rest/styles/{styleName:
+  /rest/styles/{styleName}:
     delete:
       operationId: delete_rest_StyleController_styleDelete
-      summary: DELETE /rest/styles/{styleName
+      summary: Delete a style
       description: Endpoint from rest module
       tags:
       - Core
@@ -1344,9 +1413,15 @@ paths:
         schema:
           type: string
         description: The purge parameter
+      - name: styleName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the style
     get:
       operationId: get_rest_StyleController_styleGet
-      summary: GET /rest/styles/{styleName
+      summary: Get a style
       description: Endpoint from rest module
       tags:
       - Core
@@ -1369,10 +1444,16 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-      parameters: []
+      parameters:
+      - name: styleName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the style
     put:
       operationId: put_rest_StyleController_styleZipPut
-      summary: PUT /rest/styles/{styleName
+      summary: Update a style
       description: Endpoint from rest module
       tags:
       - Core
@@ -1389,7 +1470,13 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-      parameters: []
+      parameters:
+      - name: styleName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the style
   /rest/templates:
     get:
       operationId: get_rest_TemplateController_templatesGet
@@ -1443,7 +1530,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The templateName parameter
+        description: The name of the template
     get:
       operationId: get_rest_TemplateController_templateGet
       summary: GET /rest/templates/{templateName}
@@ -1469,7 +1556,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The templateName parameter
+        description: The name of the template
     put:
       operationId: put_rest_TemplateController_templatePut
       summary: PUT /rest/templates/{templateName}
@@ -1495,7 +1582,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The templateName parameter
+        description: The name of the template
   /rest/workspaces:
     get:
       operationId: get_rest_WorkspaceController_workspacesGet
@@ -1564,10 +1651,10 @@ paths:
             schema:
               type: object
               description: WorkspaceInfo configuration object
-  /rest/workspaces/{workspaceName:
+  /rest/workspaces/{workspaceName}/featuretypes:
     get:
       operationId: get_rest_FeatureTypeController_featureTypesGet
-      summary: GET /rest/workspaces/{workspaceName
+      summary: List feature types in a workspace
       description: Endpoint from rest module
       tags:
       - Core
@@ -1597,9 +1684,15 @@ paths:
         schema:
           type: string
         description: The list parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
     post:
       operationId: post_rest_FeatureTypeController_featureTypePost
-      summary: POST /rest/workspaces/{workspaceName
+      summary: Create a feature type in a workspace
       description: Endpoint from rest module
       tags:
       - Core
@@ -1614,7 +1707,13 @@ paths:
           $ref: ../common/responses.yaml#/Forbidden
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-      parameters: []
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -1626,10 +1725,10 @@ paths:
             schema:
               type: object
               description: FeatureTypeInfo configuration object
-  /rest/workspaces/{workspaceName/{featureTypeName}:
+  /rest/workspaces/{workspaceName}/featuretypes/{featureTypeName}:
     delete:
       operationId: delete_rest_FeatureTypeController_featureTypeDelete
-      summary: DELETE /rest/workspaces/{workspaceName/{featureTypeName}
+      summary: Delete a feature type
       description: Endpoint from rest module
       tags:
       - Core
@@ -1653,9 +1752,21 @@ paths:
         schema:
           type: string
         description: The recurse parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
     get:
       operationId: get_rest_FeatureTypeController_featureTypeGet
-      summary: GET /rest/workspaces/{workspaceName/{featureTypeName}
+      summary: Get a feature type
       description: Endpoint from rest module
       tags:
       - Core
@@ -1685,9 +1796,21 @@ paths:
         schema:
           type: string
         description: The quietOnNotFound parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
     put:
       operationId: put_rest_FeatureTypeController_featureTypePut
-      summary: PUT /rest/workspaces/{workspaceName/{featureTypeName}
+      summary: Update a feature type
       description: Endpoint from rest module
       tags:
       - Core
@@ -1711,6 +1834,18 @@ paths:
         schema:
           type: string
         description: The recalculate parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
       requestBody:
         required: true
         content:
@@ -1722,10 +1857,10 @@ paths:
             schema:
               type: object
               description: FeatureTypeInfo configuration object
-  /rest/workspaces/{workspaceName/{layerName}:
+  /rest/workspaces/{workspaceName}/wmslayers/{layerName}:
     delete:
       operationId: delete_rest_WMSLayerController_layerDelete
-      summary: DELETE /rest/workspaces/{workspaceName/{layerName}
+      summary: Delete a WMS layer
       description: Endpoint from rest module
       tags:
       - Core
@@ -1749,9 +1884,21 @@ paths:
         schema:
           type: string
         description: The recurse parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
     get:
       operationId: get_rest_WMSLayerController_layerGet
-      summary: GET /rest/workspaces/{workspaceName/{layerName}
+      summary: Get a WMS layer
       description: Endpoint from rest module
       tags:
       - Core
@@ -1774,10 +1921,22 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-      parameters: []
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
     put:
       operationId: put_rest_WMSLayerController_layerPut
-      summary: PUT /rest/workspaces/{workspaceName/{layerName}
+      summary: Update a WMS layer
       description: Endpoint from rest module
       tags:
       - Core
@@ -1801,6 +1960,18 @@ paths:
         schema:
           type: string
         description: The calculate parameter
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
       requestBody:
         required: true
         content:
@@ -1838,7 +2009,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: recurse
         in: query
         required: true
@@ -1876,7 +2047,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
     put:
       operationId: put_rest_WorkspaceController_workspacePut
       summary: PUT /rest/workspaces/{workspaceName}
@@ -1902,7 +2073,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -1946,7 +2117,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: list
         in: query
         required: false
@@ -1982,7 +2153,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -2026,13 +2197,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
   /rest/workspaces/{workspaceName}/coveragestores:
     get:
       operationId: get_rest_CoverageStoreController_coverageStoresGet
@@ -2065,7 +2236,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
     post:
       operationId: post_rest_CoverageStoreController_coverageStorePost
       summary: POST /rest/workspaces/{workspaceName}/coveragestores
@@ -2095,7 +2266,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -2107,26 +2278,6 @@ paths:
             schema:
               type: object
               description: CoverageStoreInfo configuration object
-  /rest/workspaces/{workspaceName}/coveragestores/rest/workspaces/{workspaceName}/coveragestores:
-    get:
-      operationId: get_rest_CoverageStoreController_unknown
-      summary: GET /rest/workspaces/{workspaceName}/coveragestores/rest/workspaces/{workspaceName}/coveragestores
-      description: Endpoint from rest module
-      tags:
-      - Core
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/workspaces/{workspaceName}/coveragestores/{storeName}:
     delete:
       operationId: delete_rest_CoverageStoreController_coverageStoreDelete
@@ -2153,13 +2304,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: recurse
         in: query
         required: false
@@ -2203,13 +2354,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
     put:
       operationId: put_rest_CoverageStoreController_coverageStorePut
       summary: PUT /rest/workspaces/{workspaceName}/coveragestores/{storeName}
@@ -2235,13 +2386,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       requestBody:
         required: true
         content:
@@ -2285,13 +2436,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: list
         in: query
         required: false
@@ -2324,19 +2475,19 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
       - name: recurse
         in: query
         required: true
@@ -2374,19 +2525,19 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
     put:
       operationId: put_rest_CoverageController_coveragePut
       summary: PUT /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}
@@ -2412,19 +2563,19 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
       - name: calculate
         in: query
         required: false
@@ -2474,19 +2625,19 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
   /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules:
     delete:
       operationId: delete_rest_StructuredCoverageController_granulesDelete
@@ -2513,19 +2664,19 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
       - name: filter
         in: query
         required: false
@@ -2575,19 +2726,19 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
       - name: filter
         in: query
         required: false
@@ -2606,10 +2757,10 @@ paths:
         schema:
           type: string
         description: The limit parameter
-  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId:.+:
+  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId}:
     delete:
       operationId: delete_rest_StructuredCoverageController_granuleDelete
-      summary: DELETE /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId:.+
+      summary: DELETE /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId}
       description: Endpoint from rest module
       tags:
       - Core
@@ -2632,19 +2783,19 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
       - name: purge
         in: query
         required: false
@@ -2657,7 +2808,12 @@ paths:
         schema:
           type: string
         description: The updateBBox parameter
-  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId}:
+      - name: granuleId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The granule identifier
     get:
       operationId: get_rest_StructuredCoverageController_granuleGet
       summary: GET /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/index/granules/{granuleId}
@@ -2689,25 +2845,25 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: coverageName
         in: path
         required: true
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
       - name: granuleId
         in: path
         required: true
         schema:
           type: string
-        description: The granuleId parameter
+        description: The granule identifier
   /rest/workspaces/{workspaceName}/coveragestores/{storeName}/{method}.{format}:
     post:
       operationId: post_rest_CoverageStoreFileController_coverageStorePost
@@ -2732,13 +2888,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: method
         in: path
         required: true
@@ -2794,13 +2950,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: method
         in: path
         required: true
@@ -2836,7 +2992,7 @@ paths:
         required: false
         schema:
           type: string
-        description: The coverageName parameter
+        description: The name of the coverage
       - name: filename
         in: query
         required: false
@@ -2875,7 +3031,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
     post:
       operationId: post_rest_DataStoreController_dataStorePost
       summary: POST /rest/workspaces/{workspaceName}/datastores
@@ -2905,7 +3061,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -2917,26 +3073,6 @@ paths:
             schema:
               type: object
               description: DataStoreInfo configuration object
-  /rest/workspaces/{workspaceName}/datastores/rest/workspaces/{workspaceName}/datastores:
-    get:
-      operationId: get_rest_DataStoreController_unknown
-      summary: GET /rest/workspaces/{workspaceName}/datastores/rest/workspaces/{workspaceName}/datastores
-      description: Endpoint from rest module
-      tags:
-      - Core
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/workspaces/{workspaceName}/datastores/{storeName}:
     delete:
       operationId: delete_rest_DataStoreController_dataStoreDelete
@@ -2963,13 +3099,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: recurse
         in: query
         required: false
@@ -3013,19 +3149,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
+        description: The name of the data store
     put:
       operationId: put_rest_DataStoreController_dataStorePut
       summary: PUT /rest/workspaces/{workspaceName}/datastores/{storeName}
@@ -3051,13 +3181,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       requestBody:
         required: true
         content:
@@ -3095,13 +3225,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: method
         in: path
         required: true
@@ -3125,7 +3255,7 @@ paths:
         required: false
         schema:
           type: string
-        description: The target parameter
+        description: The target module name
       - name: update
         in: query
         required: false
@@ -3144,26 +3274,6 @@ paths:
         schema:
           type: string
         description: The filename parameter
-  /rest/workspaces/{workspaceName}/rest/workspaces/{workspaceName}:
-    get:
-      operationId: get_rest_CoverageController_unknown
-      summary: GET /rest/workspaces/{workspaceName}/rest/workspaces/{workspaceName}
-      description: Endpoint from rest module
-      tags:
-      - Core
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/workspaces/{workspaceName}/settings:
     delete:
       operationId: delete_rest_LocalSettingsController_localSetingsDelete
@@ -3190,7 +3300,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
     get:
       operationId: get_rest_LocalSettingsController_localSettingsGet
       summary: GET /rest/workspaces/{workspaceName}/settings
@@ -3222,7 +3332,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
     post:
       operationId: post_rest_LocalSettingsController_localSettingsCreate
       summary: POST /rest/workspaces/{workspaceName}/settings
@@ -3252,7 +3362,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -3289,7 +3399,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -3333,19 +3443,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
     post:
       operationId: post_rest_WMSStoreController_wmsStorePost
       summary: POST /rest/workspaces/{workspaceName}/wmsstores
@@ -3375,7 +3473,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -3387,26 +3485,6 @@ paths:
             schema:
               type: object
               description: WMSStoreInfo configuration object
-  /rest/workspaces/{workspaceName}/wmsstores/rest/workspaces/{workspaceName}/wmsstores:
-    get:
-      operationId: get_rest_WMSStoreController_unknown
-      summary: GET /rest/workspaces/{workspaceName}/wmsstores/rest/workspaces/{workspaceName}/wmsstores
-      description: Endpoint from rest module
-      tags:
-      - Core
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/workspaces/{workspaceName}/wmsstores/{storeName}:
     delete:
       operationId: delete_rest_WMSStoreController_wmsStoreDelete
@@ -3433,13 +3511,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: recurse
         in: query
         required: false
@@ -3477,19 +3555,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
+        description: The name of the data store
     put:
       operationId: put_rest_WMSStoreController_wmsStorePut
       summary: PUT /rest/workspaces/{workspaceName}/wmsstores/{storeName}
@@ -3515,13 +3587,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       requestBody:
         required: true
         content:
@@ -3565,19 +3637,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
     post:
       operationId: post_rest_WMTSStoreController_postStore
       summary: POST /rest/workspaces/{workspaceName}/wmtsstores
@@ -3607,7 +3667,7 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       requestBody:
         required: true
         content:
@@ -3619,26 +3679,6 @@ paths:
             schema:
               type: object
               description: WMTSStoreInfo configuration object
-  /rest/workspaces/{workspaceName}/wmtsstores/rest/workspaces/{workspaceName}/wmtsstores:
-    get:
-      operationId: get_rest_WMTSStoreController_unknown
-      summary: GET /rest/workspaces/{workspaceName}/wmtsstores/rest/workspaces/{workspaceName}/wmtsstores
-      description: Endpoint from rest module
-      tags:
-      - Core
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/workspaces/{workspaceName}/wmtsstores/{storeName}:
     delete:
       operationId: delete_rest_WMTSStoreController_deleteStore
@@ -3665,13 +3705,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       - name: recurse
         in: query
         required: false
@@ -3709,19 +3749,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
-      - name: workspaceName
-        in: path
-        required: true
-        schema:
-          type: string
-        description: The workspaceName parameter
+        description: The name of the data store
     put:
       operationId: put_rest_WMTSStoreController_putStore
       summary: PUT /rest/workspaces/{workspaceName}/wmtsstores/{storeName}
@@ -3747,13 +3781,13 @@ paths:
         required: true
         schema:
           type: string
-        description: The workspaceName parameter
+        description: The name of the workspace
       - name: storeName
         in: path
         required: true
         schema:
           type: string
-        description: The storeName parameter
+        description: The name of the data store
       requestBody:
         required: true
         content:
@@ -3765,3 +3799,3014 @@ paths:
             schema:
               type: object
               description: WMTSStoreInfo configuration object
+  /rest/reload:
+    post:
+      operationId: post_rest_CatalogReloadController_reload
+      summary: Reload the GeoServer catalog and configuration
+      description: Forces GeoServer to reload its entire catalog and configuration from the data directory. This is useful after manual edits to configuration files.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Catalog reloaded successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    put:
+      operationId: put_rest_CatalogReloadController_reload
+      summary: Reload the GeoServer catalog and configuration
+      description: Forces GeoServer to reload its entire catalog and configuration from the data directory. This is useful after manual edits to configuration files.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Catalog reloaded successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/reset:
+    post:
+      operationId: post_rest_CatalogReloadController_reset
+      summary: Reset the GeoServer resource caches
+      description: Resets all GeoServer resource caches (connection pools, feature type caches, etc.) without reloading the full configuration.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Caches reset successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+    put:
+      operationId: put_rest_CatalogReloadController_reset
+      summary: Reset the GeoServer resource caches
+      description: Resets all GeoServer resource caches (connection pools, feature type caches, etc.) without reloading the full configuration.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Caches reset successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/workspaces/{workspaceName}/layers:
+    get:
+      operationId: get_rest_LayerController_layersGet_workspace
+      summary: List layers in a workspace
+      description: Returns all layers published from resources in the specified workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+  /rest/workspaces/{workspaceName}/layers/{layerName}:
+    get:
+      operationId: get_rest_LayerController_layerGet_workspace
+      summary: Get a layer in a workspace
+      description: Returns the configuration for a specific layer in the workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
+    put:
+      operationId: put_rest_LayerController_layerPut_workspace
+      summary: Update a layer in a workspace
+      description: Updates the configuration for a specific layer in the workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: LayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: LayerInfo configuration object
+    delete:
+      operationId: delete_rest_LayerController_layerDelete_workspace
+      summary: Delete a layer in a workspace
+      description: Deletes a layer from the workspace. Use recurse=true to also remove the underlying resource.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
+      - name: recurse
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Recursively delete the underlying resource and store
+  /rest/workspaces/{workspaceName}/layergroups:
+    get:
+      operationId: get_rest_LayerGroupController_getLayerGroups_workspace
+      summary: List layer groups in a workspace
+      description: Returns all layer groups scoped to the specified workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+    post:
+      operationId: post_rest_LayerGroupController_layerGroupPost_workspace
+      summary: Create a layer group in a workspace
+      description: Creates a new layer group scoped to the specified workspace.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Resource created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: LayerGroupInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: LayerGroupInfo configuration object
+  /rest/workspaces/{workspaceName}/layergroups/{layerGroupName}:
+    get:
+      operationId: get_rest_LayerGroupController_getLayerGroup_workspace
+      summary: Get a layer group in a workspace
+      description: Returns the configuration for a specific layer group in the workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerGroupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer group
+    put:
+      operationId: put_rest_LayerGroupController_layerGroupPut_workspace
+      summary: Update a layer group in a workspace
+      description: Updates the configuration for a specific layer group in the workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerGroupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: LayerGroupInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: LayerGroupInfo configuration object
+    delete:
+      operationId: delete_rest_LayerGroupController_layerGroupDelete_workspace
+      summary: Delete a layer group in a workspace
+      description: Deletes a layer group from the workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerGroupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer group
+  /rest/workspaces/{workspaceName}/styles:
+    get:
+      operationId: get_rest_StyleController_stylesGet_workspace
+      summary: List styles in a workspace
+      description: Returns all styles scoped to the specified workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+    post:
+      operationId: post_rest_StyleController_stylePost_workspace
+      summary: Create a style in a workspace
+      description: Creates a new style scoped to the specified workspace. Accepts SLD/SE, CSS, or MBStyle content.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Style created successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The name of the created style
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Name for the style (if not provided, derived from style content)
+      - name: raw
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, store the raw style content without validation
+      requestBody:
+        required: true
+        content:
+          application/vnd.ogc.sld+xml:
+            schema:
+              type: string
+              description: SLD style document
+          application/vnd.ogc.se+xml:
+            schema:
+              type: string
+              description: SE style document
+          application/json:
+            schema:
+              type: object
+              description: StyleInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: StyleInfo configuration object
+          application/zip:
+            schema:
+              type: string
+              format: binary
+              description: ZIP archive containing SLD and image resources
+  /rest/workspaces/{workspaceName}/styles/{styleName}:
+    get:
+      operationId: get_rest_StyleController_styleGet_workspace
+      summary: Get a style in a workspace
+      description: Returns the configuration for a specific style in the workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            application/vnd.ogc.sld+xml:
+              schema:
+                type: string
+            application/vnd.ogc.se+xml:
+              schema:
+                type: string
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: styleName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the style
+    put:
+      operationId: put_rest_StyleController_stylePut_workspace
+      summary: Update a style in a workspace
+      description: Updates the style definition for a workspace-scoped style.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: styleName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the style
+      - name: raw
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, store the raw style content without validation
+      requestBody:
+        required: true
+        content:
+          application/vnd.ogc.sld+xml:
+            schema:
+              type: string
+          application/vnd.ogc.se+xml:
+            schema:
+              type: string
+          application/zip:
+            schema:
+              type: string
+              format: binary
+    delete:
+      operationId: delete_rest_StyleController_styleDelete_workspace
+      summary: Delete a style in a workspace
+      description: Deletes a workspace-scoped style. Use purge=true to also remove the style file from disk.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: styleName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the style
+      - name: recurse
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Remove references to this style in layers
+      - name: purge
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Remove the style file from disk
+  /rest/layers/{layerName}/styles:
+    get:
+      operationId: get_rest_StyleController_stylesGet_layer
+      summary: List styles associated with a layer
+      description: Returns all styles (default and alternate) associated with the specified layer.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
+    post:
+      operationId: post_rest_StyleController_stylePost_layer
+      summary: Associate a style with a layer
+      description: Associates an existing style with the specified layer. Use default=true to set it as the default style.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Style associated successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the layer
+      - name: default
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, set this style as the layer default style
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: StyleInfo reference object
+          application/xml:
+            schema:
+              type: object
+              description: StyleInfo reference object
+  /rest/workspaces/{workspaceName}/wmslayers:
+    get:
+      operationId: get_rest_WMSLayerController_layersGet_workspace
+      summary: List WMS layers in a workspace
+      description: Returns all cascaded WMS layers in the workspace. Use list=available to see unconfigured layers from all WMS stores.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: list
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [configured, available]
+          default: configured
+        description: Type of list - configured (already published) or available (not yet configured)
+      - name: quietOnNotFound
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, return empty list instead of 404 when store not found
+    post:
+      operationId: post_rest_WMSLayerController_layerPost_workspace
+      summary: Create a WMS layer in a workspace
+      description: Creates a new cascaded WMS layer in the workspace.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The name of the created layer
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMSLayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMSLayerInfo configuration object
+  /rest/workspaces/{workspaceName}/wmsstores/{storeName}/wmslayers:
+    get:
+      operationId: get_rest_WMSLayerController_layersGet_store
+      summary: List WMS layers in a store
+      description: Returns all cascaded WMS layers from a specific WMS store. Use list=available to see unconfigured layers.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS store
+      - name: list
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [configured, available]
+          default: configured
+        description: Type of list - configured (already published) or available (not yet configured)
+      - name: quietOnNotFound
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, return empty list instead of 404 when store not found
+    post:
+      operationId: post_rest_WMSLayerController_layerPost_store
+      summary: Create a WMS layer in a store
+      description: Creates a new cascaded WMS layer from a specific WMS store.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The name of the created layer
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS store
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMSLayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMSLayerInfo configuration object
+  /rest/workspaces/{workspaceName}/wmsstores/{storeName}/wmslayers/{layerName}:
+    get:
+      operationId: get_rest_WMSLayerController_layerGet_store
+      summary: Get a WMS layer in a store
+      description: Returns the configuration for a specific cascaded WMS layer from a WMS store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS store
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS layer
+    put:
+      operationId: put_rest_WMSLayerController_layerPut_store
+      summary: Update a WMS layer in a store
+      description: Updates the configuration for a specific cascaded WMS layer.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS store
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS layer
+      - name: calculate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated list of fields to recalculate (nativebbox, latlonbbox)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMSLayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMSLayerInfo configuration object
+    delete:
+      operationId: delete_rest_WMSLayerController_layerDelete_store
+      summary: Delete a WMS layer in a store
+      description: Deletes a cascaded WMS layer. Use recurse=true to also remove the associated layer.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS store
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMS layer
+      - name: recurse
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Recursively delete the associated layer
+  /rest/workspaces/{workspaceName}/wmtslayers:
+    get:
+      operationId: get_rest_WMTSLayerController_layersGet_workspace
+      summary: List WMTS layers in a workspace
+      description: Returns all cascaded WMTS layers in the workspace. Use list=available to see unconfigured layers from all WMTS stores.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: list
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [configured, available]
+          default: configured
+        description: Type of list - configured (already published) or available (not yet configured)
+      - name: quietOnNotFound
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, return empty list instead of 404 when store not found
+    post:
+      operationId: post_rest_WMTSLayerController_layerPost_workspace
+      summary: Create a WMTS layer in a workspace
+      description: Creates a new cascaded WMTS layer in the workspace.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The name of the created layer
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+  /rest/workspaces/{workspaceName}/wmtslayers/{layerName}:
+    get:
+      operationId: get_rest_WMTSLayerController_layerGet_workspace
+      summary: Get a WMTS layer in a workspace
+      description: Returns the configuration for a specific cascaded WMTS layer in the workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS layer
+    put:
+      operationId: put_rest_WMTSLayerController_layerPut_workspace
+      summary: Update a WMTS layer in a workspace
+      description: Updates the configuration for a specific cascaded WMTS layer.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS layer
+      - name: calculate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated list of fields to recalculate (nativebbox, latlonbbox)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+    delete:
+      operationId: delete_rest_WMTSLayerController_layerDelete_workspace
+      summary: Delete a WMTS layer in a workspace
+      description: Deletes a cascaded WMTS layer. Use recurse=true to also remove the associated layer.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS layer
+      - name: recurse
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Recursively delete the associated layer
+  /rest/workspaces/{workspaceName}/wmtsstores/{storeName}/layers:
+    get:
+      operationId: get_rest_WMTSLayerController_layersGet_store
+      summary: List WMTS layers in a store
+      description: Returns all cascaded WMTS layers from a specific WMTS store. Use list=available to see unconfigured layers.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS store
+      - name: list
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [configured, available]
+          default: configured
+        description: Type of list - configured or available
+      - name: quietOnNotFound
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, return empty list instead of 404 when store not found
+    post:
+      operationId: post_rest_WMTSLayerController_layerPost_store
+      summary: Create a WMTS layer in a store
+      description: Creates a new cascaded WMTS layer from a specific WMTS store.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Resource created successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The name of the created layer
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS store
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+  /rest/workspaces/{workspaceName}/services/wcs/settings:
+    get:
+      operationId: get_rest_WCSSettingsController_serviceSettingsGet_workspace
+      summary: Get workspace-specific WCS settings
+      description: Returns WCS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WCSInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WCSInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+    put:
+      operationId: put_rest_WCSSettingsController_serviceSettingsPut_workspace
+      summary: Update workspace-specific WCS settings
+      description: Updates WCS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WCSInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WCSInfo configuration object
+    delete:
+      operationId: delete_rest_WCSSettingsController_serviceDelete_workspace
+      summary: Delete workspace-specific WCS settings
+      description: Removes WCS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+  /rest/workspaces/{workspaceName}/services/wfs/settings:
+    get:
+      operationId: get_rest_WFSSettingsController_serviceSettingsGet_workspace
+      summary: Get workspace-specific WFS settings
+      description: Returns WFS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WFSInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WFSInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+    put:
+      operationId: put_rest_WFSSettingsController_serviceSettingsPut_workspace
+      summary: Update workspace-specific WFS settings
+      description: Updates WFS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WFSInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WFSInfo configuration object
+    delete:
+      operationId: delete_rest_WFSSettingsController_serviceDelete_workspace
+      summary: Delete workspace-specific WFS settings
+      description: Removes WFS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+  /rest/workspaces/{workspaceName}/services/wms/settings:
+    get:
+      operationId: get_rest_WMSSettingsController_serviceSettingsGet_workspace
+      summary: Get workspace-specific WMS settings
+      description: Returns WMS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WMSInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WMSInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+    put:
+      operationId: put_rest_WMSSettingsController_serviceSettingsPut_workspace
+      summary: Update workspace-specific WMS settings
+      description: Updates WMS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMSInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMSInfo configuration object
+    delete:
+      operationId: delete_rest_WMSSettingsController_serviceDelete_workspace
+      summary: Delete workspace-specific WMS settings
+      description: Removes WMS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+  /rest/workspaces/{workspaceName}/services/wmts/settings:
+    get:
+      operationId: get_rest_WMTSSettingsController_serviceSettingsGet_workspace
+      summary: Get workspace-specific WMTS settings
+      description: Returns WMTS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WMTSInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WMTSInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+    put:
+      operationId: put_rest_WMTSSettingsController_serviceSettingsPut_workspace
+      summary: Update workspace-specific WMTS settings
+      description: Updates WMTS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMTSInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMTSInfo configuration object
+    delete:
+      operationId: delete_rest_WMTSSettingsController_serviceDelete_workspace
+      summary: Delete workspace-specific WMTS settings
+      description: Removes WMTS service settings for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/featuretypes:
+    get:
+      operationId: get_rest_FeatureTypeController_featureTypesGet_store
+      summary: List feature types in a data store
+      description: >-
+        Returns the list of feature types in a specific data store.
+        Use the 'list' parameter to control which feature types are returned.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: list
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [configured, available, available_with_geom, all]
+          default: configured
+        description: >-
+          Controls which feature types are listed. 'configured' returns only
+          published types, 'available' returns unpublished types, 'available_with_geom'
+          filters to those with geometry, 'all' returns all types.
+    post:
+      operationId: post_rest_FeatureTypeController_featureTypePost_store
+      summary: Create a feature type in a data store
+      description: Creates a new feature type in the specified data store.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Feature type created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: FeatureTypeInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: FeatureTypeInfo configuration object
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}:
+    get:
+      operationId: get_rest_FeatureTypeController_featureTypeGet_store
+      summary: Get a feature type from a data store
+      description: Returns a specific feature type from the given data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: FeatureTypeInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: FeatureTypeInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+      - name: quietOnNotFound
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: If true, returns empty instead of 404 when not found
+    put:
+      operationId: put_rest_FeatureTypeController_featureTypePut_store
+      summary: Update a feature type in a data store
+      description: Updates an existing feature type in the specified data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: FeatureTypeInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: FeatureTypeInfo configuration object
+    delete:
+      operationId: delete_rest_FeatureTypeController_featureTypeDelete_store
+      summary: Delete a feature type from a data store
+      description: Deletes a feature type from the specified data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+      - name: recurse
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Recursively delete associated layer
+  /rest/workspaces/{workspaceName}/wmtsstores/{storeName}/layers/{layerName}:
+    get:
+      operationId: get_rest_WMTSLayerController_layerGet_storeLayer
+      summary: Get a WMTS layer from a store
+      description: Returns a specific WMTS layer from the given WMTS store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: WMTSLayerInfo configuration object
+            application/xml:
+              schema:
+                type: object
+                description: WMTSLayerInfo configuration object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS store
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS layer
+    put:
+      operationId: put_rest_WMTSLayerController_layerPut_storeLayer
+      summary: Update a WMTS layer in a store
+      description: Updates an existing WMTS layer in the specified WMTS store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS store
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS layer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+          application/xml:
+            schema:
+              type: object
+              description: WMTSLayerInfo configuration object
+    delete:
+      operationId: delete_rest_WMTSLayerController_layerDelete_storeLayer
+      summary: Delete a WMTS layer from a store
+      description: Deletes a WMTS layer from the specified WMTS store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS store
+      - name: layerName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the WMTS layer
+      - name: recurse
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Recursively delete associated layer
+  /rest/workspaces/{workspaceName}/templates:
+    get:
+      operationId: get_rest_TemplateController_templatesGet_workspace
+      summary: List templates in a workspace
+      description: Returns the list of FreeMarker templates for a specific workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+  /rest/workspaces/{workspaceName}/templates/{templateName}:
+    get:
+      operationId: get_rest_TemplateController_templateGet_workspace
+      summary: Get a template from a workspace
+      description: Returns a specific FreeMarker template from the given workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: FreeMarker template content
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+    put:
+      operationId: put_rest_TemplateController_templatePut_workspace
+      summary: Create or update a template in a workspace
+      description: Creates or updates a FreeMarker template in the given workspace.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Template created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: FreeMarker template content
+    delete:
+      operationId: delete_rest_TemplateController_templateDelete_workspace
+      summary: Delete a template from a workspace
+      description: Deletes a FreeMarker template from the given workspace.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/templates:
+    get:
+      operationId: get_rest_TemplateController_templatesGet_datastore
+      summary: List templates in a data store
+      description: Returns the list of FreeMarker templates for a specific data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/templates/{templateName}:
+    get:
+      operationId: get_rest_TemplateController_templateGet_datastore
+      summary: Get a template from a data store
+      description: Returns a specific FreeMarker template from the given data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: FreeMarker template content
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+    put:
+      operationId: put_rest_TemplateController_templatePut_datastore
+      summary: Create or update a template in a data store
+      description: Creates or updates a FreeMarker template in the given data store.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Template created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: FreeMarker template content
+    delete:
+      operationId: delete_rest_TemplateController_templateDelete_datastore
+      summary: Delete a template from a data store
+      description: Deletes a FreeMarker template from the given data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}/templates:
+    get:
+      operationId: get_rest_TemplateController_templatesGet_featuretype
+      summary: List templates for a feature type
+      description: Returns the list of FreeMarker templates for a specific feature type.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}/templates/{templateName}:
+    get:
+      operationId: get_rest_TemplateController_templateGet_featuretype
+      summary: Get a template for a feature type
+      description: Returns a specific FreeMarker template for the given feature type.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: FreeMarker template content
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+    put:
+      operationId: put_rest_TemplateController_templatePut_featuretype
+      summary: Create or update a template for a feature type
+      description: Creates or updates a FreeMarker template for the given feature type.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Template created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: FreeMarker template content
+    delete:
+      operationId: delete_rest_TemplateController_templateDelete_featuretype
+      summary: Delete a template for a feature type
+      description: Deletes a FreeMarker template for the given feature type.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/templates:
+    get:
+      operationId: get_rest_TemplateController_templatesGet_coveragestore
+      summary: List templates in a coverage store
+      description: Returns the list of FreeMarker templates for a specific coverage store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/templates/{templateName}:
+    get:
+      operationId: get_rest_TemplateController_templateGet_coveragestore
+      summary: Get a template from a coverage store
+      description: Returns a specific FreeMarker template from the given coverage store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: FreeMarker template content
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+    put:
+      operationId: put_rest_TemplateController_templatePut_coveragestore
+      summary: Create or update a template in a coverage store
+      description: Creates or updates a FreeMarker template in the given coverage store.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Template created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: FreeMarker template content
+    delete:
+      operationId: delete_rest_TemplateController_templateDelete_coveragestore
+      summary: Delete a template from a coverage store
+      description: Deletes a FreeMarker template from the given coverage store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/templates:
+    get:
+      operationId: get_rest_TemplateController_templatesGet_coverage
+      summary: List templates for a coverage
+      description: Returns the list of FreeMarker templates for a specific coverage.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: coverageName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage
+  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/templates/{templateName}:
+    get:
+      operationId: get_rest_TemplateController_templateGet_coverage
+      summary: Get a template for a coverage
+      description: Returns a specific FreeMarker template for the given coverage.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: FreeMarker template content
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: coverageName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+    put:
+      operationId: put_rest_TemplateController_templatePut_coverage
+      summary: Create or update a template for a coverage
+      description: Creates or updates a FreeMarker template for the given coverage.
+      tags:
+      - Core
+      responses:
+        '201':
+          description: Template created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: coverageName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: FreeMarker template content
+    delete:
+      operationId: delete_rest_TemplateController_templateDelete_coverage
+      summary: Delete a template for a coverage
+      description: Deletes a FreeMarker template for the given coverage.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: coverageName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the template (without .ftl extension)
+  /rest/resource/{path}:
+    get:
+      operationId: get_rest_ResourceController_resourceGet_path
+      summary: Get a resource by path
+      description: >-
+        Returns the contents or metadata of a resource at the given path within
+        the GeoServer data directory. The operation parameter controls what is returned.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Resource metadata or directory listing
+            application/xml:
+              schema:
+                type: object
+                description: Resource metadata or directory listing
+            '*/*':
+              schema:
+                type: string
+                format: binary
+                description: Raw resource content
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: path
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path to the resource within the data directory
+      - name: operation
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [default, metadata]
+          default: default
+        description: >-
+          Controls what is returned. 'default' returns resource content or
+          directory listing, 'metadata' returns resource metadata.
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          default: text/html
+        description: Output format for metadata or directory listings
+    put:
+      operationId: put_rest_ResourceController_resourcePut_path
+      summary: Upload or modify a resource
+      description: >-
+        Creates or updates a resource at the given path. Supports copy and move
+        operations via the operation parameter.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource updated successfully
+        '201':
+          description: Resource created successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '405':
+          description: Method not allowed (e.g., writing to a directory)
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: path
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path to the resource within the data directory
+      - name: operation
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [default, copy, move]
+          default: default
+        description: >-
+          Controls the operation. 'default' uploads content, 'copy' duplicates
+          a resource (path in body) to this location, 'move' moves a resource
+          (path in body) to this location.
+      requestBody:
+        required: true
+        content:
+          '*/*':
+            schema:
+              type: string
+              format: binary
+              description: Resource content or source path for copy/move
+    delete:
+      operationId: delete_rest_ResourceController_resourceDelete_path
+      summary: Delete a resource
+      description: Deletes a resource at the given path within the data directory.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: path
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path to the resource within the data directory

@@ -37,24 +37,47 @@ DataStore:
       description: Whether the store is enabled
       default: true
     workspace:
-      $ref: '#/components/schemas/Workspace'
+      type: object
+      description: The workspace this store belongs to
+      properties:
+        name:
+          type: string
+          description: Workspace name
     connectionParameters:
       type: object
-      description: Connection parameters specific to the store type
-      additionalProperties: true
+      description: Connection parameters specific to the store type (key-value pairs)
+      additionalProperties:
+        type: string
       example:
         host: "localhost"
-        port: 5432
+        port: "5432"
         database: "geoserver"
+        schema: "public"
         user: "postgres"
+        passwd: "secret"
+        dbtype: "postgis"
     disableOnConnFailure:
       type: boolean
-      description: Auto-disable store on connection failure
+      description: When true, the store is automatically disabled on connection failure
       default: false
   required:
     - name
-    - type
-    - workspace
+  example:
+    name: "my_postgis_store"
+    description: "PostGIS database for vector data"
+    type: "PostGIS"
+    enabled: true
+    workspace:
+      name: "myworkspace"
+    connectionParameters:
+      host: "localhost"
+      port: "5432"
+      database: "geodata"
+      schema: "public"
+      user: "geoserver"
+      passwd: "secret"
+      dbtype: "postgis"
+    disableOnConnFailure: false
 
 FeatureType:
   type: object
@@ -284,20 +307,35 @@ CoverageStore:
       description: Whether the store is enabled
       default: true
     workspace:
-      $ref: '#/components/schemas/Workspace'
+      type: object
+      description: The workspace this store belongs to
+      properties:
+        name:
+          type: string
+          description: Workspace name
     url:
       type: string
-      description: URL or file path to the coverage data
+      description: URL or file path to the coverage data source
       example: "file:///data/raster/elevation.tif"
+    disableOnConnFailure:
+      type: boolean
+      description: When true, the store is automatically disabled on connection failure
+      default: false
   required:
     - name
-    - type
-    - workspace
-    - url
+  example:
+    name: "dem_store"
+    description: "Digital elevation model GeoTIFF"
+    type: "GeoTIFF"
+    enabled: true
+    workspace:
+      name: "myworkspace"
+    url: "file:///data/raster/dem.tif"
+    disableOnConnFailure: false
 
 WMSStore:
   type: object
-  description: A cascading WMS store
+  description: A cascading WMS store for proxying remote WMS layers
   properties:
     name:
       type: string
@@ -314,39 +352,74 @@ WMSStore:
       description: Whether the store is enabled
       default: true
     workspace:
-      $ref: '#/components/schemas/Workspace'
+      type: object
+      description: The workspace this store belongs to
+      properties:
+        name:
+          type: string
+          description: Workspace name
     capabilitiesURL:
       type: string
       format: uri
-      description: URL to the WMS GetCapabilities document
+      description: URL to the remote WMS GetCapabilities document
       example: "http://example.com/wms?SERVICE=WMS&REQUEST=GetCapabilities"
     username:
       type: string
-      description: Username for authentication (if required)
+      description: Username for authentication with the remote WMS (if required)
     password:
       type: string
       format: password
-      description: Password for authentication (if required)
+      description: Password for authentication with the remote WMS (if required)
     maxConnections:
       type: integer
-      description: Maximum number of simultaneous connections
+      description: Maximum number of simultaneous HTTP connections to the remote WMS
       default: 6
     readTimeout:
       type: integer
-      description: Read timeout in seconds
+      description: Read timeout in seconds for requests to the remote WMS
       default: 60
     connectTimeout:
       type: integer
-      description: Connection timeout in seconds
+      description: Connection timeout in seconds for connecting to the remote WMS
       default: 30
+    useConnectionPooling:
+      type: boolean
+      description: Whether to use HTTP connection pooling
+      default: true
+    headerName:
+      type: string
+      description: Custom HTTP header name to send with requests
+    headerValue:
+      type: string
+      description: Custom HTTP header value to send with requests
+    authKey:
+      type: string
+      description: Authentication key for key-based authentication
+    disableOnConnFailure:
+      type: boolean
+      description: When true, the store is automatically disabled on connection failure
+      default: false
   required:
     - name
-    - workspace
     - capabilitiesURL
+  example:
+    name: "remote_wms"
+    description: "Cascading WMS from external provider"
+    type: "WMS"
+    enabled: true
+    workspace:
+      name: "myworkspace"
+    capabilitiesURL: "http://example.com/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"
+    username: "user"
+    password: "secret"
+    maxConnections: 6
+    readTimeout: 60
+    connectTimeout: 30
+    useConnectionPooling: true
 
 WMTSStore:
   type: object
-  description: A cascading WMTS store
+  description: A cascading WMTS store for proxying remote WMTS layers
   properties:
     name:
       type: string
@@ -363,16 +436,70 @@ WMTSStore:
       description: Whether the store is enabled
       default: true
     workspace:
-      $ref: '#/components/schemas/Workspace'
+      type: object
+      description: The workspace this store belongs to
+      properties:
+        name:
+          type: string
+          description: Workspace name
     capabilitiesURL:
       type: string
       format: uri
-      description: URL to the WMTS GetCapabilities document
+      description: URL to the remote WMTS GetCapabilities document
       example: "http://example.com/wmts?SERVICE=WMTS&REQUEST=GetCapabilities"
+    username:
+      type: string
+      description: Username for authentication with the remote WMTS (if required)
+    password:
+      type: string
+      format: password
+      description: Password for authentication with the remote WMTS (if required)
+    maxConnections:
+      type: integer
+      description: Maximum number of simultaneous HTTP connections to the remote WMTS
+      default: 6
+    readTimeout:
+      type: integer
+      description: Read timeout in seconds for requests to the remote WMTS
+      default: 60
+    connectTimeout:
+      type: integer
+      description: Connection timeout in seconds for connecting to the remote WMTS
+      default: 30
+    useConnectionPooling:
+      type: boolean
+      description: Whether to use HTTP connection pooling
+      default: true
+    headerName:
+      type: string
+      description: Custom HTTP header name to send with requests
+    headerValue:
+      type: string
+      description: Custom HTTP header value to send with requests
+    authKey:
+      type: string
+      description: Authentication key for key-based authentication
+    disableOnConnFailure:
+      type: boolean
+      description: When true, the store is automatically disabled on connection failure
+      default: false
   required:
     - name
-    - workspace
     - capabilitiesURL
+  example:
+    name: "remote_wmts"
+    description: "Cascading WMTS from external provider"
+    type: "WMTS"
+    enabled: true
+    workspace:
+      name: "myworkspace"
+    capabilitiesURL: "http://example.com/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetCapabilities"
+    username: "user"
+    password: "secret"
+    maxConnections: 6
+    readTimeout: 60
+    connectTimeout: 30
+    useConnectionPooling: true
 
 # Security-related schemas
 User:
@@ -941,6 +1068,1423 @@ Keyword:
       description: Controlled vocabulary name
   required:
     - value
+
+Namespace:
+  type: object
+  description: An application schema namespace
+  properties:
+    prefix:
+      type: string
+      description: The namespace prefix (unique identifier)
+    uri:
+      type: string
+      format: uri
+      description: The namespace URI (unique identifier)
+    isolated:
+      type: boolean
+      description: Whether the namespace is isolated
+      default: false
+  required:
+    - prefix
+    - uri
+  example:
+    prefix: "topp"
+    uri: "http://www.openplans.org/topp"
+    isolated: false
+
+# --- PUT Request Body Schemas ---
+# These schemas define the structure of request bodies for PUT (update) operations.
+# They focus on the fields that are settable via the REST API.
+
+WorkspaceInfoPut:
+  type: object
+  description: Request body for updating a workspace via PUT
+  properties:
+    workspace:
+      type: object
+      description: Workspace configuration wrapper
+      properties:
+        name:
+          type: string
+          description: The unique name of the workspace
+        isolated:
+          type: boolean
+          description: Whether the workspace is isolated (virtual services only serve this workspace)
+          default: false
+      required:
+        - name
+  required:
+    - workspace
+  example:
+    workspace:
+      name: "myworkspace"
+      isolated: false
+  x-example-xml: |
+    <workspace>
+      <name>myworkspace</name>
+      <isolated>false</isolated>
+    </workspace>
+
+NamespaceInfoPut:
+  type: object
+  description: Request body for updating a namespace via PUT
+  properties:
+    namespace:
+      type: object
+      description: Namespace configuration wrapper
+      properties:
+        prefix:
+          type: string
+          description: The namespace prefix (unique identifier, used in qualified layer names)
+        uri:
+          type: string
+          format: uri
+          description: The namespace URI (must be a valid URI)
+        isolated:
+          type: boolean
+          description: Whether the namespace is isolated
+          default: false
+      required:
+        - prefix
+        - uri
+  required:
+    - namespace
+  example:
+    namespace:
+      prefix: "topp"
+      uri: "http://www.openplans.org/topp"
+      isolated: false
+  x-example-xml: |
+    <namespace>
+      <prefix>topp</prefix>
+      <uri>http://www.openplans.org/topp</uri>
+      <isolated>false</isolated>
+    </namespace>
+
+LayerInfoPut:
+  type: object
+  description: Request body for updating a layer via PUT
+  properties:
+    layer:
+      type: object
+      description: Layer configuration wrapper
+      properties:
+        name:
+          type: string
+          description: The name of the layer
+        type:
+          type: string
+          enum: [VECTOR, RASTER, REMOTE, WMS, GROUP]
+          description: The type of the layer
+        defaultStyle:
+          type: object
+          description: The default style for the layer
+          properties:
+            name:
+              type: string
+              description: Name of the default style
+            workspace:
+              type: string
+              description: Workspace of the style (omit for global styles)
+        styles:
+          type: object
+          description: Alternative styles available for the layer
+          properties:
+            style:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the style
+                  workspace:
+                    type: string
+                    description: Workspace of the style (omit for global styles)
+        resource:
+          type: object
+          description: Reference to the underlying resource (feature type or coverage)
+          properties:
+            "@class":
+              type: string
+              description: Resource class type (featureType or coverage)
+              example: "featureType"
+            name:
+              type: string
+              description: Name of the resource
+            href:
+              type: string
+              format: uri
+              description: Link to the resource
+        attribution:
+          type: object
+          description: Attribution information for the layer
+          properties:
+            title:
+              type: string
+              description: Attribution title
+            href:
+              type: string
+              format: uri
+              description: Link to attribution information
+            logoURL:
+              type: string
+              format: uri
+              description: URL to attribution logo
+            logoWidth:
+              type: integer
+              description: Width of the logo in pixels
+            logoHeight:
+              type: integer
+              description: Height of the logo in pixels
+            logoType:
+              type: string
+              description: MIME type of the logo
+        enabled:
+          type: boolean
+          description: Whether the layer is enabled
+          default: true
+        advertised:
+          type: boolean
+          description: Whether the layer is advertised in capabilities
+          default: true
+        queryable:
+          type: boolean
+          description: Whether the layer supports GetFeatureInfo
+          default: true
+        opaque:
+          type: boolean
+          description: Whether the layer is opaque
+          default: false
+        metadata:
+          type: object
+          description: Metadata map for the layer
+          additionalProperties: true
+  required:
+    - layer
+  example:
+    layer:
+      name: "roads"
+      type: "VECTOR"
+      defaultStyle:
+        name: "line"
+      styles:
+        style:
+          - name: "line"
+          - name: "roads_style"
+      enabled: true
+      queryable: true
+      opaque: false
+      attribution:
+        title: "OpenStreetMap"
+        href: "https://www.openstreetmap.org/"
+  x-example-xml: |
+    <layer>
+      <name>roads</name>
+      <type>VECTOR</type>
+      <defaultStyle>
+        <name>line</name>
+      </defaultStyle>
+      <styles>
+        <style>
+          <name>line</name>
+        </style>
+        <style>
+          <name>roads_style</name>
+        </style>
+      </styles>
+      <enabled>true</enabled>
+      <queryable>true</queryable>
+      <opaque>false</opaque>
+      <attribution>
+        <title>OpenStreetMap</title>
+        <href>https://www.openstreetmap.org/</href>
+      </attribution>
+    </layer>
+
+LayerGroupInfoPut:
+  type: object
+  description: Request body for updating a layer group via PUT
+  properties:
+    layerGroup:
+      type: object
+      description: Layer group configuration wrapper
+      properties:
+        name:
+          type: string
+          description: The name of the layer group
+        mode:
+          type: string
+          enum: [SINGLE, OPAQUE_CONTAINER, NAMED, CONTAINER, EO]
+          description: |
+            The mode of the layer group:
+            - SINGLE: Exposed as a single layer, does not contain referenced layers
+            - OPAQUE_CONTAINER: Exposed as a single layer, hides contained layers
+            - NAMED: Retains a name and exposes nested layers in capabilities
+            - CONTAINER: Exposed in tree but has no Name element
+            - EO: Earth Observation mode
+          default: SINGLE
+        title:
+          type: string
+          description: Human-readable title for the layer group
+        abstractTxt:
+          type: string
+          description: Description/abstract of the layer group
+        workspace:
+          type: object
+          description: Workspace the layer group belongs to (omit for global)
+          properties:
+            name:
+              type: string
+              description: Name of the workspace
+        publishables:
+          type: object
+          description: The layers and layer groups in this group
+          properties:
+            published:
+              type: array
+              items:
+                type: object
+                properties:
+                  "@type":
+                    type: string
+                    description: Type of published item (layer or layerGroup)
+                    enum: [layer, layerGroup]
+                  name:
+                    type: string
+                    description: Name of the layer or layer group
+                  href:
+                    type: string
+                    format: uri
+                    description: Link to the layer or layer group resource
+        styles:
+          type: object
+          description: Styles for the layers (1-1 correspondence with publishables)
+          properties:
+            style:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the style (empty string for default)
+        bounds:
+          type: object
+          description: Geographic bounds of the layer group
+          properties:
+            minx:
+              type: number
+              format: double
+              description: Minimum X coordinate
+            miny:
+              type: number
+              format: double
+              description: Minimum Y coordinate
+            maxx:
+              type: number
+              format: double
+              description: Maximum X coordinate
+            maxy:
+              type: number
+              format: double
+              description: Maximum Y coordinate
+            crs:
+              type: string
+              description: Coordinate reference system (e.g., EPSG:4326)
+        keywords:
+          type: object
+          description: Keywords for the layer group
+          properties:
+            keyword:
+              type: array
+              items:
+                type: string
+        enabled:
+          type: boolean
+          description: Whether the layer group is enabled
+          default: true
+        advertised:
+          type: boolean
+          description: Whether the layer group is advertised in capabilities
+          default: true
+        queryDisabled:
+          type: boolean
+          description: Whether GetFeatureInfo is disabled for this group
+          default: false
+  required:
+    - layerGroup
+  example:
+    layerGroup:
+      name: "basemap"
+      mode: "SINGLE"
+      title: "Base Map"
+      abstractTxt: "A base map layer group"
+      publishables:
+        published:
+          - "@type": "layer"
+            name: "roads"
+          - "@type": "layer"
+            name: "buildings"
+      styles:
+        style:
+          - name: "line"
+          - name: "polygon"
+      bounds:
+        minx: -180.0
+        miny: -90.0
+        maxx: 180.0
+        maxy: 90.0
+        crs: "EPSG:4326"
+  x-example-xml: |
+    <layerGroup>
+      <name>basemap</name>
+      <mode>SINGLE</mode>
+      <title>Base Map</title>
+      <abstractTxt>A base map layer group</abstractTxt>
+      <publishables>
+        <published type="layer">
+          <name>roads</name>
+        </published>
+        <published type="layer">
+          <name>buildings</name>
+        </published>
+      </publishables>
+      <styles>
+        <style>
+          <name>line</name>
+        </style>
+        <style>
+          <name>polygon</name>
+        </style>
+      </styles>
+      <bounds>
+        <minx>-180.0</minx>
+        <miny>-90.0</miny>
+        <maxx>180.0</maxx>
+        <maxy>90.0</maxy>
+        <crs>EPSG:4326</crs>
+      </bounds>
+    </layerGroup>
+
+# --- Security PUT Request Body Schemas ---
+
+MasterPasswordPut:
+  type: object
+  description: Request body for changing the GeoServer master password
+  properties:
+    oldMasterPassword:
+      type: string
+      format: password
+      description: The current master password
+    newMasterPassword:
+      type: string
+      format: password
+      description: The new master password to set
+  required:
+    - oldMasterPassword
+    - newMasterPassword
+  example:
+    oldMasterPassword: "oldPassword123"
+    newMasterPassword: "newSecurePassword456"
+
+UserPasswordPut:
+  type: object
+  description: Request body for changing the current user's password
+  properties:
+    newPassword:
+      type: string
+      format: password
+      description: The new password for the currently authenticated user
+  required:
+    - newPassword
+  example:
+    newPassword: "myNewSecurePassword"
+
+CatalogModePut:
+  type: object
+  description: Request body for setting the catalog security mode
+  properties:
+    mode:
+      type: string
+      enum: [HIDE, MIXED, CHALLENGE]
+      description: |
+        The catalog security mode:
+        - HIDE: Hides resources the user does not have access to
+        - MIXED: Hides some resources, challenges for others
+        - CHALLENGE: Always sends a 401/403 challenge for unauthorized access
+  required:
+    - mode
+  example:
+    mode: "HIDE"
+
+FilterChainOrderPut:
+  type: object
+  description: Request body for reordering the authentication filter chains
+  properties:
+    order:
+      type: array
+      items:
+        type: string
+      description: Ordered list of all filter chain names. Must include exactly the current set of chain names.
+  required:
+    - order
+  example:
+    order:
+      - "web"
+      - "webLogin"
+      - "webLogout"
+      - "rest"
+      - "gwc"
+      - "default"
+
+FilterChainPut:
+  type: object
+  description: Request body for updating a single authentication filter chain
+  properties:
+    name:
+      type: string
+      description: The unique name of the filter chain (must match the path parameter)
+    clazz:
+      type: string
+      description: The Java class of the filter chain (e.g., 'org.geoserver.security.ServiceLoginFilterChain')
+    patterns:
+      type: array
+      items:
+        type: string
+      description: URL patterns this chain applies to (ant-style patterns)
+    filters:
+      type: array
+      items:
+        type: string
+      description: Ordered list of authentication filter names in this chain
+    disabled:
+      type: boolean
+      description: Whether this filter chain is disabled
+      default: false
+    allowSessionCreation:
+      type: boolean
+      description: Whether this chain allows HTTP session creation
+      default: true
+    requireSSL:
+      type: boolean
+      description: Whether this chain requires SSL/HTTPS
+      default: false
+    matchHTTPMethod:
+      type: boolean
+      description: Whether to match on HTTP method
+      default: false
+    httpMethods:
+      type: array
+      items:
+        type: string
+        enum: [GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS]
+      description: HTTP methods to match (when matchHTTPMethod is true)
+    roleFilterName:
+      type: string
+      description: Name of the role filter to use
+    interceptorName:
+      type: string
+      description: Name of the filter security interceptor
+  required:
+    - name
+    - clazz
+    - patterns
+    - filters
+  example:
+    name: "rest"
+    clazz: "org.geoserver.security.ServiceLoginFilterChain"
+    patterns:
+      - "/rest/**"
+      - "/api/**"
+    filters:
+      - "basic"
+    disabled: false
+    allowSessionCreation: false
+    requireSSL: false
+    roleFilterName: "default"
+    interceptorName: "restInterceptor"
+
+FilterChainCollectionPut:
+  type: object
+  description: Request body for replacing all authentication filter chains at once
+  properties:
+    chains:
+      type: array
+      items:
+        $ref: '#/FilterChainPut'
+      description: Complete list of filter chains to replace the current configuration
+  required:
+    - chains
+  example:
+    chains:
+      - name: "web"
+        clazz: "org.geoserver.security.HtmlLoginFilterChain"
+        patterns:
+          - "/web/**"
+        filters:
+          - "form"
+      - name: "rest"
+        clazz: "org.geoserver.security.ServiceLoginFilterChain"
+        patterns:
+          - "/rest/**"
+        filters:
+          - "basic"
+
+AuthProviderPut:
+  type: object
+  description: Request body for updating an authentication provider configuration
+  properties:
+    name:
+      type: string
+      description: The unique name of the authentication provider (must match path parameter)
+    className:
+      type: string
+      description: The Java class implementing the provider (cannot be changed after creation)
+    userGroupServiceName:
+      type: string
+      description: Name of the user/group service this provider authenticates against
+  required:
+    - name
+  example:
+    name: "default"
+    className: "org.geoserver.security.auth.UsernamePasswordAuthenticationProvider"
+    userGroupServiceName: "default"
+
+URLCheckPut:
+  type: object
+  description: Request body for updating a URL check configuration
+  properties:
+    name:
+      type: string
+      description: The unique name of the URL check
+    description:
+      type: string
+      description: Human-readable description of the URL check
+    enabled:
+      type: boolean
+      description: Whether the URL check is enabled
+      default: true
+    configuration:
+      type: string
+      description: The URL check configuration (regex pattern or expression depending on type)
+  required:
+    - name
+    - configuration
+  example:
+    name: "external-ows"
+    description: "Allow external OWS URLs"
+    enabled: true
+    configuration: "^https?://.*\\?.*[Ss][Ee][Rr][Vv][Ii][Cc][Ee]=.*$"
+
+UserGroupServiceConfigPut:
+  type: object
+  description: Request body for updating a user/group service configuration
+  properties:
+    name:
+      type: string
+      description: The unique name of the user/group service
+    className:
+      type: string
+      description: The Java class implementing the service
+    passwordEncoderName:
+      type: string
+      description: Name of the password encoder to use
+    passwordPolicyName:
+      type: string
+      description: Name of the password policy to apply
+  required:
+    - name
+    - className
+  example:
+    name: "default"
+    className: "org.geoserver.security.xml.XMLUserGroupService"
+    passwordEncoderName: "pbePasswordEncoder"
+    passwordPolicyName: "default"
+
+# --- Importer PUT Request Body Schemas ---
+
+ImportContextPut:
+  type: object
+  description: |
+    Request body for creating or updating an import context via PUT.
+    The PUT on /rest/imports/{id} creates a new import with a specific ID.
+    The request body is optional; if provided, it configures the import.
+  properties:
+    import:
+      type: object
+      description: Import context configuration wrapper
+      properties:
+        targetWorkspace:
+          type: object
+          description: Target workspace for imported data
+          properties:
+            workspace:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the target workspace
+        targetStore:
+          type: object
+          description: Target store for imported data
+          properties:
+            dataStore:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the target data store
+            coverageStore:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the target coverage store
+        data:
+          type: object
+          description: Source data configuration
+          properties:
+            type:
+              type: string
+              description: Data source type (e.g., 'file', 'directory', 'database', 'remote')
+            location:
+              type: string
+              description: Path or URL to the source data
+            charset:
+              type: string
+              description: Character encoding for text-based formats
+              example: "UTF-8"
+  example:
+    import:
+      targetWorkspace:
+        workspace:
+          name: "topp"
+      targetStore:
+        dataStore:
+          name: "postgis_store"
+
+ImportTaskPut:
+  type: object
+  description: |
+    Request body for updating an import task via PUT.
+    Used to modify task properties such as the update mode or source configuration.
+    The body is JSON representing the task fields to update.
+  properties:
+    task:
+      type: object
+      description: Import task configuration
+      properties:
+        updateMode:
+          type: string
+          enum: [CREATE, REPLACE, APPEND, UPDATE]
+          description: |
+            How to handle existing data:
+            - CREATE: Create new (fail if exists)
+            - REPLACE: Replace existing data entirely
+            - APPEND: Append to existing data
+            - UPDATE: Update existing features by ID
+          default: CREATE
+        source:
+          type: object
+          description: Source data configuration
+          properties:
+            type:
+              type: string
+              description: Source type (e.g., 'file', 'directory')
+            format:
+              type: string
+              description: Data format (e.g., 'Shapefile', 'GeoTIFF', 'CSV')
+            location:
+              type: string
+              description: Path to the source data
+            charset:
+              type: string
+              description: Character encoding
+        target:
+          type: object
+          description: Target store reference
+          properties:
+            dataStore:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the target data store
+            coverageStore:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the target coverage store
+        layer:
+          type: object
+          description: Layer configuration for the imported data
+          properties:
+            name:
+              type: string
+              description: Name for the resulting layer
+            nativeName:
+              type: string
+              description: Native name in the data source
+            srs:
+              type: string
+              description: Spatial reference system (e.g., 'EPSG:4326')
+            title:
+              type: string
+              description: Human-readable title
+            abstract:
+              type: string
+              description: Layer description
+            style:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the style to assign
+  example:
+    task:
+      updateMode: "REPLACE"
+      layer:
+        name: "roads"
+        srs: "EPSG:4326"
+        title: "Road Network"
+
+ImportLayerPut:
+  type: object
+  description: |
+    Request body for updating the layer configuration of an import task.
+    Used to set the layer name, SRS, style, and other layer properties before import.
+  properties:
+    layer:
+      type: object
+      description: Layer configuration
+      properties:
+        name:
+          type: string
+          description: Name for the resulting layer
+        nativeName:
+          type: string
+          description: Native name in the data source
+        srs:
+          type: string
+          description: Spatial reference system (e.g., 'EPSG:4326')
+        title:
+          type: string
+          description: Human-readable title
+        abstract:
+          type: string
+          description: Layer description
+        nativeBoundingBox:
+          type: object
+          description: Bounding box in native CRS
+          properties:
+            minx:
+              type: number
+              format: double
+            miny:
+              type: number
+              format: double
+            maxx:
+              type: number
+              format: double
+            maxy:
+              type: number
+              format: double
+            crs:
+              type: string
+        style:
+          type: object
+          description: Style to assign to the layer
+          properties:
+            name:
+              type: string
+              description: Name of the style
+  required:
+    - layer
+  example:
+    layer:
+      name: "buildings"
+      srs: "EPSG:4326"
+      title: "Building Footprints"
+      style:
+        name: "polygon"
+
+ImportTargetPut:
+  type: object
+  description: |
+    Request body for updating the target store of an import task.
+    Allows redirecting imported data to a different store.
+  properties:
+    dataStore:
+      type: object
+      description: Target data store (for vector data)
+      properties:
+        name:
+          type: string
+          description: Name of the data store
+        type:
+          type: string
+          description: Store type (e.g., 'PostGIS', 'Shapefile')
+        connectionParameters:
+          type: object
+          description: Connection parameters for the store
+          additionalProperties: true
+    coverageStore:
+      type: object
+      description: Target coverage store (for raster data)
+      properties:
+        name:
+          type: string
+          description: Name of the coverage store
+        type:
+          type: string
+          description: Store type (e.g., 'GeoTIFF', 'ImageMosaic')
+        url:
+          type: string
+          description: URL or path to the coverage data
+  example:
+    dataStore:
+      name: "postgis_store"
+      type: "PostGIS"
+      connectionParameters:
+        host: "localhost"
+        port: 5432
+        database: "geoserver"
+        user: "postgres"
+        schema: "public"
+
+ImportTransformPut:
+  type: object
+  description: |
+    Request body for updating a transform in an import task's transform chain.
+    Different transform types have different fields.
+  properties:
+    type:
+      type: string
+      description: |
+        The transform type. Common types:
+        - ReprojectTransform: Reprojects data to a target CRS
+        - DateFormatTransform: Parses date strings into date objects
+        - AttributeRemapTransform: Changes the type of an attribute
+        - AttributeComputeTransform: Computes a new attribute from an expression
+        - AttributesToPointGeometryTransform: Creates point geometry from lat/lon attributes
+        - CreateIndexTransform: Creates a spatial index
+        - GdalTranslateTransform: Applies GDAL translate options
+        - GdalWarpTransform: Applies GDAL warp options
+        - GdalAddoTransform: Adds overviews using GDAL
+        - PostScriptTransform: Runs a post-import script
+        - VectorTransformChain: Chain of vector transforms
+        - RasterTransformChain: Chain of raster transforms
+    field:
+      type: string
+      description: The field/attribute to transform (for attribute-based transforms)
+    target:
+      type: string
+      description: Target value (e.g., target CRS for ReprojectTransform, target type for AttributeRemapTransform)
+    source:
+      type: string
+      description: Source value (e.g., date format pattern for DateFormatTransform)
+    href:
+      type: string
+      format: uri
+      description: Link to the transform resource
+  required:
+    - type
+  example:
+    type: "ReprojectTransform"
+    target: "EPSG:4326"
+
+# --- GET Response Wrapper Schemas ---
+# GeoServer REST API wraps responses in root elements.
+# Single resources: {"workspace": {...}}, {"dataStore": {...}}, etc.
+# List resources: {"workspaces": {"workspace": [...]}}, {"dataStores": {"dataStore": [...]}}, etc.
+
+WorkspaceResponse:
+  type: object
+  description: Response wrapper for a single workspace
+  properties:
+    workspace:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The unique name of the workspace
+        isolated:
+          type: boolean
+          description: Whether the workspace is isolated
+        dataStores:
+          type: string
+          format: uri
+          description: Link to the workspace's data stores
+        coverageStores:
+          type: string
+          format: uri
+          description: Link to the workspace's coverage stores
+        wmsStores:
+          type: string
+          format: uri
+          description: Link to the workspace's WMS stores
+        wmtsStores:
+          type: string
+          format: uri
+          description: Link to the workspace's WMTS stores
+  example:
+    workspace:
+      name: "topp"
+      isolated: false
+      dataStores: "http://localhost:8080/geoserver/rest/workspaces/topp/datastores.json"
+      coverageStores: "http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.json"
+      wmsStores: "http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.json"
+      wmtsStores: "http://localhost:8080/geoserver/rest/workspaces/topp/wmtsstores.json"
+
+WorkspaceListResponse:
+  type: object
+  description: Response wrapper for a list of workspaces
+  properties:
+    workspaces:
+      type: object
+      properties:
+        workspace:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The workspace name
+              href:
+                type: string
+                format: uri
+                description: Link to the workspace resource
+  example:
+    workspaces:
+      workspace:
+        - name: "topp"
+          href: "http://localhost:8080/geoserver/rest/workspaces/topp.json"
+        - name: "sf"
+          href: "http://localhost:8080/geoserver/rest/workspaces/sf.json"
+
+DataStoreResponse:
+  type: object
+  description: Response wrapper for a single data store
+  properties:
+    dataStore:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The unique name of the data store
+        description:
+          type: string
+          description: Description of the data store
+        type:
+          type: string
+          description: The store type (e.g., 'Shapefile', 'PostGIS')
+        enabled:
+          type: boolean
+          description: Whether the store is enabled
+        workspace:
+          type: object
+          properties:
+            name:
+              type: string
+            href:
+              type: string
+              format: uri
+        connectionParameters:
+          type: object
+          properties:
+            entry:
+              type: array
+              items:
+                type: object
+                properties:
+                  "@key":
+                    type: string
+                  "$":
+                    type: string
+        featureTypes:
+          type: string
+          format: uri
+          description: Link to the store's feature types
+        disableOnConnFailure:
+          type: boolean
+  example:
+    dataStore:
+      name: "sf"
+      type: "Shapefile"
+      enabled: true
+      workspace:
+        name: "sf"
+        href: "http://localhost:8080/geoserver/rest/workspaces/sf.json"
+      featureTypes: "http://localhost:8080/geoserver/rest/workspaces/sf/datastores/sf/featuretypes.json"
+
+DataStoreListResponse:
+  type: object
+  description: Response wrapper for a list of data stores
+  properties:
+    dataStores:
+      type: object
+      properties:
+        dataStore:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The data store name
+              href:
+                type: string
+                format: uri
+                description: Link to the data store resource
+  example:
+    dataStores:
+      dataStore:
+        - name: "sf"
+          href: "http://localhost:8080/geoserver/rest/workspaces/sf/datastores/sf.json"
+
+CoverageStoreResponse:
+  type: object
+  description: Response wrapper for a single coverage store
+  properties:
+    coverageStore:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The unique name of the coverage store
+        description:
+          type: string
+          description: Description of the coverage store
+        type:
+          type: string
+          description: The store type (e.g., 'GeoTIFF', 'ImageMosaic')
+        enabled:
+          type: boolean
+          description: Whether the store is enabled
+        workspace:
+          type: object
+          properties:
+            name:
+              type: string
+            href:
+              type: string
+              format: uri
+        url:
+          type: string
+          description: URL or file path to the coverage data source
+        coverages:
+          type: string
+          format: uri
+          description: Link to the store's coverages
+        disableOnConnFailure:
+          type: boolean
+  example:
+    coverageStore:
+      name: "DEM"
+      type: "GeoTIFF"
+      enabled: true
+      workspace:
+        name: "nurc"
+        href: "http://localhost:8080/geoserver/rest/workspaces/nurc.json"
+      url: "file:data/sf/DEM.tif"
+      coverages: "http://localhost:8080/geoserver/rest/workspaces/nurc/coveragestores/DEM/coverages.json"
+
+CoverageStoreListResponse:
+  type: object
+  description: Response wrapper for a list of coverage stores
+  properties:
+    coverageStores:
+      type: object
+      properties:
+        coverageStore:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The coverage store name
+              href:
+                type: string
+                format: uri
+                description: Link to the coverage store resource
+  example:
+    coverageStores:
+      coverageStore:
+        - name: "DEM"
+          href: "http://localhost:8080/geoserver/rest/workspaces/nurc/coveragestores/DEM.json"
+
+LayerResponse:
+  type: object
+  description: Response wrapper for a single layer
+  properties:
+    layer:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the layer
+        type:
+          type: string
+          enum: [VECTOR, RASTER, REMOTE, WMS, GROUP]
+          description: The type of the layer
+        defaultStyle:
+          type: object
+          properties:
+            name:
+              type: string
+            href:
+              type: string
+              format: uri
+        styles:
+          type: object
+          properties:
+            "@class":
+              type: string
+            style:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+        resource:
+          type: object
+          properties:
+            "@class":
+              type: string
+              description: Resource class (featureType or coverage)
+            name:
+              type: string
+            href:
+              type: string
+              format: uri
+        enabled:
+          type: boolean
+        queryable:
+          type: boolean
+        opaque:
+          type: boolean
+        attribution:
+          type: object
+          properties:
+            logoWidth:
+              type: integer
+            logoHeight:
+              type: integer
+  example:
+    layer:
+      name: "roads"
+      type: "VECTOR"
+      defaultStyle:
+        name: "line"
+        href: "http://localhost:8080/geoserver/rest/styles/line.json"
+      resource:
+        "@class": "featureType"
+        name: "roads"
+        href: "http://localhost:8080/geoserver/rest/workspaces/sf/datastores/sf/featuretypes/roads.json"
+      enabled: true
+      queryable: true
+      opaque: false
+
+LayerListResponse:
+  type: object
+  description: Response wrapper for a list of layers
+  properties:
+    layers:
+      type: object
+      properties:
+        layer:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The layer name
+              href:
+                type: string
+                format: uri
+                description: Link to the layer resource
+  example:
+    layers:
+      layer:
+        - name: "roads"
+          href: "http://localhost:8080/geoserver/rest/layers/roads.json"
+        - name: "buildings"
+          href: "http://localhost:8080/geoserver/rest/layers/buildings.json"
+
+NamespaceResponse:
+  type: object
+  description: Response wrapper for a single namespace
+  properties:
+    namespace:
+      type: object
+      properties:
+        prefix:
+          type: string
+          description: The namespace prefix
+        uri:
+          type: string
+          format: uri
+          description: The namespace URI
+        isolated:
+          type: boolean
+          description: Whether the namespace is isolated
+        featureTypes:
+          type: string
+          format: uri
+          description: Link to feature types in this namespace
+  example:
+    namespace:
+      prefix: "topp"
+      uri: "http://www.openplans.org/topp"
+      isolated: false
+
+NamespaceListResponse:
+  type: object
+  description: Response wrapper for a list of namespaces
+  properties:
+    namespaces:
+      type: object
+      properties:
+        namespace:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The namespace prefix
+              href:
+                type: string
+                format: uri
+                description: Link to the namespace resource
+  example:
+    namespaces:
+      namespace:
+        - name: "topp"
+          href: "http://localhost:8080/geoserver/rest/namespaces/topp.json"
+        - name: "sf"
+          href: "http://localhost:8080/geoserver/rest/namespaces/sf.json"
+
+LayerGroupResponse:
+  type: object
+  description: Response wrapper for a single layer group
+  properties:
+    layerGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the layer group
+        mode:
+          type: string
+          enum: [SINGLE, OPAQUE_CONTAINER, NAMED, CONTAINER, EO]
+        title:
+          type: string
+        abstractTxt:
+          type: string
+        workspace:
+          type: object
+          properties:
+            name:
+              type: string
+            href:
+              type: string
+              format: uri
+        publishables:
+          type: object
+          properties:
+            published:
+              type: array
+              items:
+                type: object
+                properties:
+                  "@type":
+                    type: string
+                  name:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+        styles:
+          type: object
+          properties:
+            style:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+        bounds:
+          type: object
+          properties:
+            minx:
+              type: number
+              format: double
+            miny:
+              type: number
+              format: double
+            maxx:
+              type: number
+              format: double
+            maxy:
+              type: number
+              format: double
+            crs:
+              type: string
+  example:
+    layerGroup:
+      name: "spearfish"
+      mode: "SINGLE"
+      title: "Spearfish"
+      publishables:
+        published:
+          - "@type": "layer"
+            name: "roads"
+            href: "http://localhost:8080/geoserver/rest/layers/roads.json"
+      bounds:
+        minx: -180.0
+        miny: -90.0
+        maxx: 180.0
+        maxy: 90.0
+        crs: "EPSG:4326"
+
+LayerGroupListResponse:
+  type: object
+  description: Response wrapper for a list of layer groups
+  properties:
+    layerGroups:
+      type: object
+      properties:
+        layerGroup:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The layer group name
+              href:
+                type: string
+                format: uri
+                description: Link to the layer group resource
+  example:
+    layerGroups:
+      layerGroup:
+        - name: "spearfish"
+          href: "http://localhost:8080/geoserver/rest/layergroups/spearfish.json"
 
 # Existing schemas from original file
 Error:

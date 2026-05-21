@@ -14,6 +14,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Set
 import copy
 
+# Ensure UTF-8 output on Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
@@ -160,7 +165,7 @@ class SpecBundler:
         if 'info' in spec and 'version' in spec['info']:
             original_version = spec['info']['version']
             spec['info']['version'] = GEOSERVER_API_VERSION
-            print(f"\nOverriding version: {original_version} → {GEOSERVER_API_VERSION}")
+            print(f"\nOverriding version: {original_version} -> {GEOSERVER_API_VERSION}")
         
         # Resolve all $ref references
         print("\nResolving $ref references...")
@@ -272,9 +277,10 @@ def main():
     specs_dir = script_dir / 'specs'
     entry_file = specs_dir / 'geoserver.yaml'
     
-    # Output paths
-    output_yaml = Path('doc/en/api/geoserver-bundled.yaml')
-    output_json = Path('doc/en/api/geoserver-bundled.json')
+    # Output paths - relative to workspace root (two levels up from script dir)
+    workspace_root = script_dir.parent.parent
+    output_yaml = workspace_root / 'doc' / 'en' / 'api' / 'geoserver-bundled.yaml'
+    output_json = workspace_root / 'doc' / 'en' / 'api' / 'geoserver-bundled.json'
     
     # Ensure output directory exists
     output_yaml.parent.mkdir(parents=True, exist_ok=True)
@@ -374,7 +380,6 @@ def apply_validation_fixes(spec: Dict[str, Any]) -> Dict[str, Any]:
         'duplicate_operation_ids': 0,
         'path_param_mismatches': 0,
         'malformed_paths': 0,
-        'nested_braces': 0,
         'missing_path_params': 0,
         'duplicate_params': 0,
         'unused_definitions': 0
@@ -383,35 +388,55 @@ def apply_validation_fixes(spec: Dict[str, Any]) -> Dict[str, Any]:
     used_operation_ids = set()
     paths_to_fix = {}
     
-    # First pass: identify malformed paths and collect operation IDs
+    # First pass: fix all path issues in one go
     for path_name in list(spec.get('paths', {}).keys()):
-        # Check for nested brace issues like /{workspaceName/{featureTypeName}}
-        if re.search(r'/\{[^}]+/\{', path_name):
-            # Fix by adding closing brace after first parameter
-            fixed_path = re.sub(r'/\{([^}]+)/\{', r'/{\1}/{', path_name)
-            if fixed_path != path_name:
-                paths_to_fix[path_name] = fixed_path
-                fixed_count['nested_braces'] += 1
-                print(f"  Fixed nested braces: {path_name} -> {fixed_path}")
-                continue
+        fixed_path = path_name
         
-        # Check for malformed paths (unmatched braces)
+        # Fix nested brace issues like /{workspaceName/{featureTypeName} -> /{workspaceName}/{featureTypeName}
+        # Pattern: an opening { followed by a param name, then / and another { without closing the first
+        # We need to insert a } before the / that separates nested params
+        while re.search(r'\{([^{}/]+)/\{', fixed_path):
+            fixed_path = re.sub(r'\{([^{}/]+)/\{', r'{\1}/{', fixed_path)
+        
+        # Fix missing closing braces
+        open_braces = fixed_path.count('{')
+        close_braces = fixed_path.count('}')
+        if open_braces > close_braces:
+            missing_braces = open_braces - close_braces
+            fixed_path = fixed_path + ('}' * missing_braces)
+        
+        # Strip regex patterns like {paramName:.+} or {paramName:.*} -> {paramName}
+        fixed_path = re.sub(r'\{([^:}]+):[^}]+\}', r'{\1}', fixed_path)
+        
+        if fixed_path != path_name:
+            paths_to_fix[path_name] = fixed_path
+            fixed_count['malformed_paths'] += 1
+            print(f"  Fixed path: {path_name} -> {fixed_path}")
+    
+    # Apply all path fixes
+    for old_path, new_path in paths_to_fix.items():
+        if new_path in spec['paths'] and new_path != old_path:
+            # Path already exists - merge operations
+            existing = spec['paths'][new_path]
+            incoming = spec['paths'].pop(old_path)
+            for method, operation in incoming.items():
+                if method not in existing:
+                    existing[method] = operation
+        else:
+            spec['paths'][new_path] = spec['paths'].pop(old_path)
+    paths_to_fix = {}
+    
+    # Verify no remaining issues
+    remaining_issues = 0
+    for path_name in list(spec.get('paths', {}).keys()):
         open_braces = path_name.count('{')
         close_braces = path_name.count('}')
-        
         if open_braces != close_braces:
-            # Try to fix by adding missing closing braces
-            fixed_path = path_name
-            missing_braces = open_braces - close_braces
-            if missing_braces > 0:
-                fixed_path = path_name + ('}' * missing_braces)
-                paths_to_fix[path_name] = fixed_path
-                fixed_count['malformed_paths'] += 1
-                print(f"  Fixed malformed path: {path_name} -> {fixed_path}")
-    
-    # Apply path fixes
-    for old_path, new_path in paths_to_fix.items():
-        spec['paths'][new_path] = spec['paths'].pop(old_path)
+            remaining_issues += 1
+            print(f"  WARNING: Still malformed: {path_name}")
+        if re.search(r'\{[^}]*:', path_name):
+            remaining_issues += 1
+            print(f"  WARNING: Still has regex pattern: {path_name}")
     
     # Second pass: fix duplicate operationIds, path parameters, and duplicate params
     for path_name, path_item in spec.get('paths', {}).items():
@@ -534,8 +559,7 @@ def apply_validation_fixes(spec: Dict[str, Any]) -> Dict[str, Any]:
             del components[comp_type][name]
             fixed_count['unused_definitions'] += 1
     
-    print(f"  ✓ Fixed {fixed_count['nested_braces']} nested brace issues")
-    print(f"  ✓ Fixed {fixed_count['malformed_paths']} malformed paths")
+    print(f"  ✓ Fixed {fixed_count['malformed_paths']} malformed/regex paths")
     print(f"  ✓ Fixed {fixed_count['duplicate_operation_ids']} duplicate operationIds")
     print(f"  ✓ Fixed {fixed_count['path_param_mismatches']} invalid path parameters")
     print(f"  ✓ Added {fixed_count['missing_path_params']} missing path parameters")

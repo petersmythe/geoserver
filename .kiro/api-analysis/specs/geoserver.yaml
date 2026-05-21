@@ -54,6 +54,10 @@ x-modular-structure:
       description: Catalog Service for the Web (CSW) operations
     - file: ./ogc/wps.yaml
       description: Web Processing Service (WPS) operations
+    - file: ./ogc/ogcapi-features.yaml
+      description: OGC API - Features 1.0 (modern REST-based feature access)
+    - file: ./ogc/ogcapi-tiles.yaml
+      description: OGC API - Tiles 1.0 (modern REST-based tile access)
     common:
     - file: ./common/schemas.yaml
       description: Reusable schema definitions
@@ -107,6 +111,17 @@ tags:
   externalDocs:
     description: OGC WPS Specification
     url: https://www.ogc.org/standards/wps
+- name: "OGC API - Features 1.0"
+  description: OGC API - Features - Modern REST-based feature access (successor to
+    WFS)
+  externalDocs:
+    description: OGC API - Features Specification
+    url: https://ogcapi.ogc.org/features/
+- name: "OGC API - Tiles 1.0"
+  description: OGC API - Tiles - Modern REST-based tile access (successor to WMTS)
+  externalDocs:
+    description: OGC API - Tiles Specification
+    url: https://ogcapi.ogc.org/tiles/
 paths:
   /.placeholder:
     get:
@@ -143,6 +158,10 @@ paths:
 
         - OGC WPS: ./ogc/wps.yaml
 
+        - OGC API Features: ./ogc/ogcapi-features.yaml
+
+        - OGC API Tiles: ./ogc/ogcapi-tiles.yaml
+
         '
       tags:
       - REST
@@ -155,6 +174,14 @@ components:
       $ref: ./common/schemas.yaml#/Error
     Link:
       $ref: ./common/schemas.yaml#/Link
+    DataStore:
+      $ref: ./common/schemas.yaml#/DataStore
+    CoverageStore:
+      $ref: ./common/schemas.yaml#/CoverageStore
+    WMSStore:
+      $ref: ./common/schemas.yaml#/WMSStore
+    WMTSStore:
+      $ref: ./common/schemas.yaml#/WMTSStore
   parameters: {}
   responses: {}
   securitySchemes:

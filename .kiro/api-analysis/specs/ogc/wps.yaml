@@ -296,21 +296,21 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LINEAGE
         in: query
         description: Include lineage in response
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: STATUS
         in: query
         description: Include status updates
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -379,21 +379,21 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LINEAGE
         in: query
         description: Include lineage in response
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: STATUS
         in: query
         description: Include status updates
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation

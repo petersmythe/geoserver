@@ -637,7 +637,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -706,7 +706,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -731,7 +731,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -744,7 +744,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -787,7 +787,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -918,7 +918,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -987,7 +987,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -1012,7 +1012,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -1025,7 +1025,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -1068,7 +1068,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -1200,7 +1200,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -1269,7 +1269,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -1294,7 +1294,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -1307,7 +1307,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -1350,7 +1350,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -1481,7 +1481,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -1550,7 +1550,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -1575,7 +1575,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -1588,7 +1588,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -1631,7 +1631,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -1763,7 +1763,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -1832,7 +1832,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -1857,7 +1857,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -1870,7 +1870,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -1913,7 +1913,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -2044,7 +2044,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -2113,7 +2113,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -2138,7 +2138,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -2151,7 +2151,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -2194,7 +2194,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -2326,7 +2326,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -2395,7 +2395,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -2420,7 +2420,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -2433,7 +2433,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -2476,7 +2476,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -2607,7 +2607,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: BGCOLOR
         in: query
         description: 'Background color (hex format: 0xRRGGBB)'
@@ -2676,7 +2676,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: FILTER
         in: query
         description: OGC Filter XML for each layer
@@ -2701,7 +2701,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: TILESORIGIN
         in: query
         description: Tile origin point (x,y)
@@ -2714,7 +2714,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '0'
+          default: 0
       - name: PALETTE
         in: query
         description: Color palette for indexed color images
@@ -2757,7 +2757,7 @@ paths:
         required: false
         schema:
           type: number
-          default: '0'
+          default: 0
       - name: SORTBY
         in: query
         description: Sort order for features
@@ -2847,7 +2847,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -2879,7 +2879,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -2925,7 +2925,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -2957,7 +2957,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -3004,7 +3004,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -3036,7 +3036,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -3082,7 +3082,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -3114,7 +3114,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -3161,7 +3161,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -3193,7 +3193,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -3239,7 +3239,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -3271,7 +3271,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -3318,7 +3318,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -3350,7 +3350,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -3396,7 +3396,7 @@ paths:
         required: false
         schema:
           type: integer
-          default: '1'
+          default: 1
       - name: X
         in: query
         description: X pixel coordinate (WMS 1.1.x) or I (WMS 1.3.0)
@@ -3428,7 +3428,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       responses:
         '200':
           description: Successful operation
@@ -3522,14 +3522,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -3549,7 +3549,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -3564,7 +3564,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution
@@ -3663,14 +3663,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -3690,7 +3690,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -3705,7 +3705,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution
@@ -3805,14 +3805,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -3832,7 +3832,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -3847,7 +3847,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution
@@ -3946,14 +3946,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -3973,7 +3973,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -3988,7 +3988,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution
@@ -4088,14 +4088,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -4115,7 +4115,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -4130,7 +4130,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution
@@ -4229,14 +4229,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -4256,7 +4256,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -4271,7 +4271,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution
@@ -4371,14 +4371,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -4398,7 +4398,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -4413,7 +4413,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution
@@ -4512,14 +4512,14 @@ paths:
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: HEIGHT
         in: query
         description: Legend graphic height hint in pixels
         required: false
         schema:
           type: integer
-          default: '20'
+          default: 20
       - name: LANGUAGE
         in: query
         description: Language code for internationalized text
@@ -4539,7 +4539,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'false'
+          default: false
       - name: LEGEND_OPTIONS
         in: query
         description: Key:value pairs for legend customization (fontName, fontSize,
@@ -4554,7 +4554,7 @@ paths:
         required: false
         schema:
           type: boolean
-          default: 'true'
+          default: true
       - name: ENV
         in: query
         description: SLD environment variables for substitution

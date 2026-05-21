@@ -1,0 +1,896 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - Tiles
+  description: |
+    OGC API - Tiles provides access to tiled geospatial data.
+    This is the modern REST-based successor to WMTS, following the OGC API standard patterns.
+
+    Base path: /ogc/tiles/v1
+
+    Supports vector tiles, map tiles (rendered), and styled map tiles.
+    Integrates with GeoWebCache for tile caching.
+
+    Note: This is a community module and must be installed separately.
+  version: 1.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - Tiles 1.0"
+    description: OGC API - Tiles endpoints (modern REST-based tile access)
+    externalDocs:
+      description: OGC API - Tiles Specification
+      url: https://ogcapi.ogc.org/tiles/
+paths:
+  /ogc/tiles/v1:
+    get:
+      operationId: OGCTiles_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - Tiles service.
+        The landing page provides links to the API definition, conformance declaration,
+        tile matrix sets, and tiled collections.
+      tags:
+        - "OGC API - Tiles 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/tiles/v1/openapi:
+    get:
+      operationId: OGCTiles_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - Tiles service.
+      tags:
+        - "OGC API - Tiles 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/tiles/v1/conformance:
+    get:
+      operationId: OGCTiles_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes OGC API Tiles Core, Tileset, Tilesets List, Geodata Tilesets,
+        and Tile Matrix Set conformance classes.
+      tags:
+        - "OGC API - Tiles 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/tiles/v1/tileMatrixSets:
+    get:
+      operationId: OGCTiles_getTileMatrixSets
+      summary: List tile matrix sets
+      description: |
+        Returns the list of available tile matrix sets (grid definitions).
+        Common tile matrix sets include WebMercatorQuad (EPSG:3857) and
+        WorldCRS84Quad (EPSG:4326).
+      tags:
+        - "OGC API - Tiles 1.0"
+      responses:
+        '200':
+          description: List of tile matrix sets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileMatrixSets'
+            text/html:
+              schema:
+                type: string
+  /ogc/tiles/v1/tileMatrixSets/{tileMatrixSetId}:
+    get:
+      operationId: OGCTiles_getTileMatrixSet
+      summary: Describe a tile matrix set
+      description: |
+        Returns the full definition of a specific tile matrix set, including
+        all zoom levels (tile matrices), their scale denominators, and tile dimensions.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/tileMatrixSetId'
+      responses:
+        '200':
+          description: Tile matrix set definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileMatrixSet'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Tile matrix set not found
+  /ogc/tiles/v1/collections:
+    get:
+      operationId: OGCTiles_getCollections
+      summary: List tiled collections
+      description: |
+        Returns a list of all available tiled collections.
+        Each collection corresponds to a tile layer configured in GeoWebCache.
+      tags:
+        - "OGC API - Tiles 1.0"
+      responses:
+        '200':
+          description: List of tiled collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TiledCollections'
+            text/html:
+              schema:
+                type: string
+  /ogc/tiles/v1/collections/{collectionId}:
+    get:
+      operationId: OGCTiles_describeCollection
+      summary: Describe a tiled collection
+      description: |
+        Returns metadata about a specific tiled collection, including its
+        spatial extent, available tile matrix sets, and links to tilesets.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Tiled collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TiledCollection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/tiles/v1/collections/{collectionId}/styles:
+    get:
+      operationId: OGCTiles_getCollectionStyles
+      summary: List collection styles
+      description: |
+        Returns the list of styles available for the specified tiled collection.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: List of available styles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StylesDocument'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/tiles/v1/collections/{collectionId}/queryables:
+    get:
+      operationId: OGCTiles_getQueryables
+      summary: Get queryable properties for filtering
+      description: |
+        Returns the list of properties that can be used in CQL filter expressions
+        when requesting tiles. Only available for vector tile layers backed by feature types.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Queryable properties schema
+          content:
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/Queryables'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found or filtering not supported
+  /ogc/tiles/v1/collections/{collectionId}/tiles:
+    get:
+      operationId: OGCTiles_describeTilesets
+      summary: List vector tilesets for a collection
+      description: |
+        Returns the list of available vector tilesets for the specified collection.
+        Each tileset corresponds to a tile matrix set that the collection supports.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: List of available tilesets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TilesDocument'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/tiles/v1/collections/{collectionId}/tiles/{tileMatrixSetId}:
+    get:
+      operationId: OGCTiles_describeTileset
+      summary: Describe a vector tileset
+      description: |
+        Returns metadata about a specific vector tileset, including the tile matrix set
+        definition, available formats, and access links.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+      responses:
+        '200':
+          description: Tileset metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tileset'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection or tile matrix set not found
+  /ogc/tiles/v1/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}:
+    get:
+      operationId: OGCTiles_getTile
+      summary: Get a vector tile
+      description: |
+        Returns a single vector tile from the specified collection at the given
+        tile matrix set, zoom level, row, and column. Supports optional CQL filtering.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+        - $ref: '#/components/parameters/tileMatrix'
+        - $ref: '#/components/parameters/tileRow'
+        - $ref: '#/components/parameters/tileCol'
+        - name: filter
+          in: query
+          description: CQL filter expression to apply to the tile content
+          required: false
+          schema:
+            type: string
+        - name: filter-lang
+          in: query
+          description: Filter language (cql2-text, cql2-json, or ecql-text)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tile data
+          content:
+            application/vnd.mapbox-vector-tile:
+              schema:
+                type: string
+                format: binary
+            application/x-protobuf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid parameter value
+        '404':
+          description: Tile not found
+  /ogc/tiles/v1/collections/{collectionId}/tiles/{tileMatrixSetId}/metadata:
+    get:
+      operationId: OGCTiles_getVectorTilesMetadata
+      summary: Get vector tile metadata (TileJSON)
+      description: |
+        Returns TileJSON metadata for the vector tileset, including bounds,
+        min/max zoom, and tile URL template.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+      responses:
+        '200':
+          description: TileJSON metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileJSON'
+  /ogc/tiles/v1/collections/{collectionId}/map/tiles:
+    get:
+      operationId: OGCTiles_describeDefaultMapTilesets
+      summary: List map tilesets (default style)
+      description: |
+        Returns the list of available rendered map tilesets for the specified collection
+        using the default style.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: List of available map tilesets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TilesDocument'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/tiles/v1/collections/{collectionId}/map/tiles/{tileMatrixSetId}:
+    get:
+      operationId: OGCTiles_describeMapTileset
+      summary: Describe a map tileset (default style)
+      description: |
+        Returns metadata about a specific rendered map tileset using the default style.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+      responses:
+        '200':
+          description: Map tileset metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tileset'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection or tile matrix set not found
+  /ogc/tiles/v1/collections/{collectionId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}:
+    get:
+      operationId: OGCTiles_getDefaultMapTile
+      summary: Get a map tile (default style)
+      description: |
+        Returns a rendered map tile using the default style at the given
+        tile matrix set, zoom level, row, and column.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+        - $ref: '#/components/parameters/tileMatrix'
+        - $ref: '#/components/parameters/tileRow'
+        - $ref: '#/components/parameters/tileCol'
+        - name: filter
+          in: query
+          description: CQL filter expression
+          required: false
+          schema:
+            type: string
+        - name: filter-lang
+          in: query
+          description: Filter language
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rendered map tile
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/webp:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid parameter value
+        '404':
+          description: Tile not found
+  /ogc/tiles/v1/collections/{collectionId}/map/tiles/{tileMatrixSetId}/metadata:
+    get:
+      operationId: OGCTiles_getMapTilesMetadata
+      summary: Get map tile metadata (TileJSON)
+      description: |
+        Returns TileJSON metadata for the map tileset (default style).
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+        - name: tileFormat
+          in: query
+          description: Tile format MIME type
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: TileJSON metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileJSON'
+  /ogc/tiles/v1/collections/{collectionId}/styles/{styleId}/map/tiles:
+    get:
+      operationId: OGCTiles_describeStyledMapTilesets
+      summary: List map tilesets for a specific style
+      description: |
+        Returns the list of available rendered map tilesets for the specified collection
+        using a specific named style.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+      responses:
+        '200':
+          description: List of available styled map tilesets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TilesDocument'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection or style not found
+  /ogc/tiles/v1/collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}:
+    get:
+      operationId: OGCTiles_describeStyledMapTileset
+      summary: Describe a styled map tileset
+      description: |
+        Returns metadata about a specific rendered map tileset using a named style.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+      responses:
+        '200':
+          description: Styled map tileset metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tileset'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection, style, or tile matrix set not found
+  /ogc/tiles/v1/collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}:
+    get:
+      operationId: OGCTiles_getStyledMapTile
+      summary: Get a styled map tile
+      description: |
+        Returns a rendered map tile using a specific named style at the given
+        tile matrix set, zoom level, row, and column.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+        - $ref: '#/components/parameters/tileMatrix'
+        - $ref: '#/components/parameters/tileRow'
+        - $ref: '#/components/parameters/tileCol'
+        - name: filter
+          in: query
+          description: CQL filter expression
+          required: false
+          schema:
+            type: string
+        - name: filter-lang
+          in: query
+          description: Filter language
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rendered styled map tile
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/webp:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid parameter value
+        '404':
+          description: Tile not found
+  /ogc/tiles/v1/collections/{collectionId}/styles/{styleId}/map/tiles/{tileMatrixSetId}/metadata:
+    get:
+      operationId: OGCTiles_getStyledMapTilesMetadata
+      summary: Get styled map tile metadata (TileJSON)
+      description: |
+        Returns TileJSON metadata for the styled map tileset.
+      tags:
+        - "OGC API - Tiles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+        - $ref: '#/components/parameters/tileMatrixSetId'
+        - name: tileFormat
+          in: query
+          description: Tile format MIME type
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: TileJSON metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TileJSON'
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      description: Identifier of the tiled collection (tile layer name)
+      required: true
+      schema:
+        type: string
+    tileMatrixSetId:
+      name: tileMatrixSetId
+      in: path
+      description: Identifier of the tile matrix set (e.g. WebMercatorQuad, WorldCRS84Quad)
+      required: true
+      schema:
+        type: string
+    tileMatrix:
+      name: tileMatrix
+      in: path
+      description: Zoom level identifier within the tile matrix set
+      required: true
+      schema:
+        type: string
+    tileRow:
+      name: tileRow
+      in: path
+      description: Row index of the tile
+      required: true
+      schema:
+        type: integer
+        format: int64
+    tileCol:
+      name: tileCol
+      in: path
+      description: Column index of the tile
+      required: true
+      schema:
+        type: integer
+        format: int64
+    styleId:
+      name: styleId
+      in: path
+      description: Identifier of the style to use for rendering
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      description: OGC API landing page
+      properties:
+        title:
+          type: string
+          description: Service title
+        description:
+          type: string
+          description: Service description
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      description: List of conformance classes
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+          description: URIs of conformance classes
+    TiledCollections:
+      type: object
+      description: List of tiled collections
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/TiledCollection'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    TiledCollection:
+      type: object
+      description: Tiled collection metadata
+      properties:
+        id:
+          type: string
+          description: Collection identifier
+        title:
+          type: string
+          description: Human-readable title
+        description:
+          type: string
+          description: Description of the collection
+        extent:
+          $ref: '#/components/schemas/Extent'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    TileMatrixSets:
+      type: object
+      description: List of tile matrix sets
+      properties:
+        tileMatrixSets:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              uri:
+                type: string
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    TileMatrixSet:
+      type: object
+      description: Full tile matrix set definition
+      properties:
+        id:
+          type: string
+          description: Tile matrix set identifier
+        title:
+          type: string
+          description: Human-readable title
+        uri:
+          type: string
+          description: Well-known URI for this tile matrix set
+        crs:
+          type: string
+          description: Coordinate reference system URI
+        wellKnownScaleSet:
+          type: string
+          description: Well-known scale set URI
+        tileMatrices:
+          type: array
+          description: List of tile matrices (zoom levels)
+          items:
+            $ref: '#/components/schemas/TileMatrix'
+    TileMatrix:
+      type: object
+      description: A single tile matrix (zoom level)
+      properties:
+        id:
+          type: string
+          description: Tile matrix identifier (zoom level)
+        scaleDenominator:
+          type: number
+          description: Scale denominator at this zoom level
+        cellSize:
+          type: number
+          description: Cell size in CRS units
+        tileWidth:
+          type: integer
+          description: Tile width in pixels
+        tileHeight:
+          type: integer
+          description: Tile height in pixels
+        matrixWidth:
+          type: integer
+          description: Number of tile columns
+        matrixHeight:
+          type: integer
+          description: Number of tile rows
+        pointOfOrigin:
+          type: array
+          items:
+            type: number
+          description: Top-left corner coordinates
+    TilesDocument:
+      type: object
+      description: List of tilesets for a collection
+      properties:
+        tilesets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tileset'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Tileset:
+      type: object
+      description: Tileset metadata
+      properties:
+        dataType:
+          type: string
+          enum: [vector, map]
+          description: Type of tile data
+        tileMatrixSetId:
+          type: string
+          description: Tile matrix set used by this tileset
+        tileMatrixSetURI:
+          type: string
+          description: URI of the tile matrix set
+        tileMatrixSetLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/TileMatrixSetLimit'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    TileMatrixSetLimit:
+      type: object
+      description: Limits of a tile matrix within a tileset
+      properties:
+        tileMatrix:
+          type: string
+        minTileRow:
+          type: integer
+        maxTileRow:
+          type: integer
+        minTileCol:
+          type: integer
+        maxTileCol:
+          type: integer
+    StylesDocument:
+      type: object
+      description: List of available styles
+      properties:
+        styles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    Queryables:
+      type: object
+      description: JSON Schema describing queryable properties for filtering
+      properties:
+        $schema:
+          type: string
+        $id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+    TileJSON:
+      type: object
+      description: TileJSON metadata for a tileset
+      properties:
+        tilejson:
+          type: string
+          description: TileJSON specification version
+        name:
+          type: string
+        description:
+          type: string
+        tiles:
+          type: array
+          items:
+            type: string
+          description: URL templates for tile access
+        minzoom:
+          type: integer
+        maxzoom:
+          type: integer
+        bounds:
+          type: array
+          items:
+            type: number
+          description: Geographic bounds [west, south, east, north]
+        center:
+          type: array
+          items:
+            type: number
+          description: Default center [longitude, latitude, zoom]
+    Extent:
+      type: object
+      description: Spatial and temporal extent
+      properties:
+        spatial:
+          type: object
+          properties:
+            bbox:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+            crs:
+              type: string
+        temporal:
+          type: object
+          properties:
+            interval:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+            trs:
+              type: string
+    Link:
+      type: object
+      description: OGC API link
+      properties:
+        href:
+          type: string
+          description: URL of the link
+        rel:
+          type: string
+          description: Link relation type
+        type:
+          type: string
+          description: Media type of the linked resource
+        title:
+          type: string
+          description: Human-readable title
+        hreflang:
+          type: string
+          description: Language of the linked resource
