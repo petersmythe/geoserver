@@ -653,6 +653,15 @@ paths:
             application/json:
               schema: &id009
                 type: object
+              example:
+                layers:
+                  layer:
+                    - name: states
+                      href: "http://localhost:8080/geoserver/rest/layers/states.json"
+                    - name: roads
+                      href: "http://localhost:8080/geoserver/rest/layers/roads.json"
+                    - name: DEM
+                      href: "http://localhost:8080/geoserver/rest/layers/DEM.json"
             application/xml:
               schema: *id009
         '400':
@@ -712,6 +721,20 @@ paths:
             application/json:
               schema: &id010
                 type: object
+              example:
+                layer:
+                  name: states
+                  path: ""
+                  type: VECTOR
+                  defaultStyle:
+                    name: polygon
+                    href: "http://localhost:8080/geoserver/rest/styles/polygon.json"
+                  resource:
+                    "@class": featureType
+                    name: states
+                    href: "http://localhost:8080/geoserver/rest/workspaces/topp/datastores/states_shapefile/featuretypes/states.json"
+                  queryable: true
+                  opaque: false
             application/xml:
               schema: *id010
         '400':
@@ -1630,6 +1653,15 @@ paths:
             application/json:
               schema: &id021
                 type: object
+              example:
+                workspaces:
+                  workspace:
+                    - name: topp
+                      href: "http://localhost:8080/geoserver/rest/workspaces/topp.json"
+                    - name: sf
+                      href: "http://localhost:8080/geoserver/rest/workspaces/sf.json"
+                    - name: cite
+                      href: "http://localhost:8080/geoserver/rest/workspaces/cite.json"
             application/xml:
               schema: *id021
         '400':
@@ -1680,6 +1712,9 @@ paths:
             schema:
               type: object
               description: WorkspaceInfo configuration object
+            example:
+              workspace:
+                name: acme
           application/xml:
             schema:
               type: object
@@ -2062,6 +2097,14 @@ paths:
             application/json:
               schema: &id026
                 type: object
+              example:
+                workspace:
+                  name: topp
+                  isolated: false
+                  dateCreated: "2023-03-15 14:21:05.0 UTC"
+                  dataStores: "http://localhost:8080/geoserver/rest/workspaces/topp/datastores.json"
+                  coverageStores: "http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.json"
+                  wmsStores: "http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.json"
             application/xml:
               schema: *id026
         '400':
@@ -2901,7 +2944,12 @@ paths:
     post:
       operationId: post_rest_CoverageStoreFileController_coverageStorePost
       summary: POST /rest/workspaces/{workspaceName}/coveragestores/{storeName}/{method}.{format}
-      description: Endpoint from rest module
+      deprecated: true
+      description: |
+        Legacy file upload endpoint (Swagger 2.0-era pattern). The {method}.{format}
+        path style is superseded by structured resource endpoints. Use
+        PUT /rest/workspaces/{ws}/coveragestores/{store} with appropriate content-type
+        for new implementations.
       tags:
       - Core
       responses:
@@ -2955,7 +3003,12 @@ paths:
     put:
       operationId: put_rest_CoverageStoreFileController_coverageStorePut
       summary: PUT /rest/workspaces/{workspaceName}/coveragestores/{storeName}/{method}.{format}
-      description: Endpoint from rest module
+      deprecated: true
+      description: |
+        Legacy file upload endpoint (Swagger 2.0-era pattern). The {method}.{format}
+        path style is superseded by structured resource endpoints. Use
+        PUT /rest/workspaces/{ws}/coveragestores/{store} with appropriate content-type
+        for new implementations.
       tags:
       - Core
       responses:
@@ -3046,6 +3099,13 @@ paths:
             application/json:
               schema: &id039
                 type: object
+              example:
+                dataStores:
+                  dataStore:
+                    - name: states_shapefile
+                      href: "http://localhost:8080/geoserver/rest/workspaces/topp/datastores/states_shapefile.json"
+                    - name: postgis
+                      href: "http://localhost:8080/geoserver/rest/workspaces/topp/datastores/postgis.json"
             application/xml:
               schema: *id039
         '400':
@@ -3236,7 +3296,12 @@ paths:
     put:
       operationId: put_rest_DataStoreFileController_dataStorePut
       summary: PUT /rest/workspaces/{workspaceName}/datastores/{storeName}/{method}.{format}
-      description: Endpoint from rest module
+      deprecated: true
+      description: |
+        Legacy file upload endpoint (Swagger 2.0-era pattern). The {method}.{format}
+        path style is superseded by structured resource endpoints. Use
+        PUT /rest/workspaces/{ws}/datastores/{store} with appropriate content-type
+        for new implementations.
       tags:
       - Core
       responses:

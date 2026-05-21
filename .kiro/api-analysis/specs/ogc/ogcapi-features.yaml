@@ -101,6 +101,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Collections'
+              example:
+                collections:
+                  - id: topp:states
+                    title: USA Population
+                    description: The states layer from the topp workspace
+                    extent:
+                      spatial:
+                        bbox:
+                          - [-124.73, 24.96, -66.97, 49.37]
+                        crs: "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+                    crs:
+                      - "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+                      - "http://www.opengis.net/def/crs/EPSG/0/4326"
+                    storageCrs: "http://www.opengis.net/def/crs/EPSG/0/4326"
+                    links:
+                      - href: "http://localhost:8080/geoserver/ogc/features/v1/collections/topp:states/items"
+                        rel: items
+                        type: application/geo+json
+                        title: Items as GeoJSON
+                  - id: sf:roads
+                    title: Roads
+                    description: Road network features
+                    extent:
+                      spatial:
+                        bbox:
+                          - [-180, -90, 180, 90]
+                        crs: "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+                    links:
+                      - href: "http://localhost:8080/geoserver/ogc/features/v1/collections/sf:roads/items"
+                        rel: items
+                        type: application/geo+json
+                        title: Items as GeoJSON
+                links:
+                  - href: "http://localhost:8080/geoserver/ogc/features/v1/collections"
+                    rel: self
+                    type: application/json
+                    title: This document
             text/html:
               schema:
                 type: string
@@ -262,6 +299,44 @@ paths:
             application/geo+json:
               schema:
                 $ref: '#/components/schemas/FeatureCollection'
+              example:
+                type: FeatureCollection
+                features:
+                  - type: Feature
+                    id: states.1
+                    geometry:
+                      type: MultiPolygon
+                      coordinates:
+                        - - - [-88.071, 37.511]
+                            - [-88.087, 37.476]
+                            - [-88.311, 37.443]
+                            - [-88.071, 37.511]
+                    properties:
+                      STATE_NAME: Illinois
+                      STATE_ABBR: IL
+                      PERSONS: 11430602
+                  - type: Feature
+                    id: states.2
+                    geometry:
+                      type: MultiPolygon
+                      coordinates:
+                        - - - [-89.171, 36.831]
+                            - [-89.098, 36.827]
+                            - [-89.133, 36.983]
+                            - [-89.171, 36.831]
+                    properties:
+                      STATE_NAME: Missouri
+                      STATE_ABBR: MO
+                      PERSONS: 5117073
+                numberMatched: 49
+                numberReturned: 2
+                links:
+                  - href: "http://localhost:8080/geoserver/ogc/features/v1/collections/topp:states/items?limit=2"
+                    rel: self
+                    type: application/geo+json
+                  - href: "http://localhost:8080/geoserver/ogc/features/v1/collections/topp:states/items?limit=2&startIndex=2"
+                    rel: next
+                    type: application/geo+json
             text/html:
               schema:
                 type: string

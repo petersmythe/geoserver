@@ -14,7 +14,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Initialize tracking files for intermediate results
   - _Requirements: All_
 
-- [ ] 2. Parse existing OpenAPI documentation
+- [x] 2. Parse existing OpenAPI documentation
   - [x] 2.1 Inventory existing OpenAPI spec files
     - Scan `doc/en/api/1.0.0/` directory
     - List all YAML files with file sizes and modification dates
@@ -40,7 +40,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Verify all expected spec files were found and parsed
   - Ask user if questions arise
 
-- [ ] 4. Extract REST endpoints from Java source code
+- [x] 4. Extract REST endpoints from Java source code
   - [x] 4.1 Scan REST API source directories
     - Identify all Java files in: `src/rest/`, `src/restconfig/`, `src/restconfig-wcs/`, `src/restconfig-wfs/`, `src/restconfig-wms/`, `src/restconfig-wmts/`, `src/gwc-rest/`
     - List controller classes (files containing @RestController or @Controller)
@@ -268,7 +268,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Prioritize which gaps to address first
   - Ask user if questions arise
 
-- [ ] 14. Generate unified OpenAPI 3.0 specification (modular approach)
+- [x] 14. Generate unified OpenAPI 3.0 specification (modular approach)
   - [x] 14.1 Convert REST endpoints to OpenAPI 3.0 format (modular)
     - Load all REST endpoint data
     - Generate modular OpenAPI 3.0 specifications organized by module:
@@ -336,7 +336,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Output: Single-file versions in `doc/en/api/` ready for Swagger UI and distribution
     - _Requirements: 6.1, 6.2, 6.7, 11.1, 11.2, 11.3, 11.4, 12.1, 12.2, 12.5_
 
-- [ ] 15. Validate generated OpenAPI specifications
+- [x] 15. Validate generated OpenAPI specifications
   - [x] 15.1 Validate unified spec against OpenAPI 3.0 schema
     - Load `doc/en/api/geoserver-unified-3.0.yaml`
     - Validate against OpenAPI 3.0 schema
@@ -502,7 +502,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Re-run validation to confirm fixes
   - Ask user if questions arise
 
-- [ ] 17. Generate final summary and recommendations
+- [x] 17. Generate final summary and recommendations
   - [x] 17.1 Create executive summary
     - Summarize REST API coverage (percentage, gaps)
     - Summarize OGC service coverage (operations documented)
@@ -511,7 +511,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Output: `.kiro/api-analysis/reports/executive-summary.md`
     - _Requirements: All_
   
-  - [ ] 17.2 Create prioritized action plan
+  - [x] 17.2 Create prioritized action plan
     - List documentation-only fixes (safe, quick)
     - List implementation fixes needed (requires code changes)
     - List alignment issues (requires decisions)
@@ -535,7 +535,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Output: Updated modular and bundled specifications with complete schemas
     - _Requirements: 6.5, 6.6, 7.1, 7.5, 8.2_
 
-- [ ] 18. Final checkpoint - Review complete analysis
+- [x] 18. Final checkpoint - Review complete analysis
   - Review all reports in `.kiro/api-analysis/reports/`
   - Review generated OpenAPI spec in `doc/en/api/`
   - Discuss next steps with user
@@ -586,98 +586,98 @@ The implementation is organized into phases, with each phase building on the pre
 
 The following tasks address the 129 parameter mismatches identified in the REST API coverage analysis. These are prioritized by impact and effort, focusing on functional issues before cosmetic ones.
 
-- [ ] 19. Fix query parameter documentation gaps (HIGH PRIORITY)
-  - [ ] 19.1 Document `expand` parameter
+- [x] 19. Fix query parameter documentation gaps (HIGH PRIORITY)
+  - [x] 19.1 Document `expand` parameter
     - Review 6 endpoints that use `expand` parameter
     - Document parameter purpose (resource expansion)
     - Add to OpenAPI specs with type, description, required flag
     - Endpoints affected: `/rest/imports`, `/rest/workspaces`, and others
     - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
   
-  - [ ] 19.2 Document filtering parameters (`from`, `to`)
+  - [x] 19.2 Document filtering parameters (`from`, `to`)
     - Review 2 endpoints using `from`/`to` parameters
     - Document parameter purpose (filtering/versioning)
     - Add to OpenAPI specs with type, description, required flag
     - Endpoints affected: `/rest/about/manifest` and others
     - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
   
-  - [ ] 19.3 Document execution control parameters (`exec`, `async`)
+  - [x] 19.3 Document execution control parameters (`exec`, `async`)
     - Review 2 endpoints using `exec`/`async` parameters
     - Document parameter purpose (execution control)
     - Add to OpenAPI specs with type, description, required flag
     - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
   
-  - [ ] 19.4 Document remaining query parameters
+  - [x] 19.4 Document remaining query parameters
     - Review endpoints with other missing query parameters
     - Parameters: `styleName`, `offset`, `limit`, `recalculate`, `calculate`, `purge`
     - Add to OpenAPI specs with complete metadata
     - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
   
-  - [ ] 19.5 Verify documented-only query parameters
+  - [x] 19.5 Verify documented-only query parameters
     - Review 12 endpoints where docs have params but implementation doesn't
     - Determine if parameters are planned features or documentation errors
     - Either implement missing parameters or remove from documentation
     - Endpoints include: `/rest/about/status` and others
     - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
 
-- [ ] 20. Fix request body documentation mismatches (MEDIUM PRIORITY)
-  - [ ] 20.1 Review and fix PUT endpoint body documentation
+- [x] 20. Fix request body documentation mismatches (MEDIUM PRIORITY)
+  - [x] 20.1 Review and fix PUT endpoint body documentation
     - Review 31 PUT endpoints where implementation has body but docs don't
     - Document request body schemas for each endpoint
     - Include content type, schema definition, examples
     - Focus on importer module endpoints first (16 endpoints)
     - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
   
-  - [ ] 20.2 Investigate GET endpoint with request body
+  - [x] 20.2 Investigate GET endpoint with request body
     - Review GET `/rest/logging` endpoint
     - Determine if request body is intentional (REST anti-pattern)
     - Either remove body from implementation or document as vendor extension
     - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
   
-  - [ ] 20.3 Review documented-only request bodies
+  - [x] 20.3 Review documented-only request bodies
     - Review 1 endpoint where docs have body but implementation doesn't
     - Determine if this is a planned feature or documentation error
     - Either implement missing body support or remove from documentation
     - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
 
-- [ ] 21. Standardize path variable names (LOW PRIORITY)
-  - [ ] 21.1 Decide on path variable naming convention
+- [x] 21. Standardize path variable names (LOW PRIORITY)
+  - [x] 21.1 Decide on path variable naming convention
     - Review current patterns: generic (`{id}`) vs descriptive (`{importId}`)
     - Consult with team on preferred convention
     - Document decision in project guidelines
     - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
   
-  - [ ] 21.2 Update restconfig module path variables
+  - [x] 21.2 Update restconfig module path variables
     - Apply chosen naming convention to 93 restconfig endpoints
     - Update either Java code or OpenAPI documentation for consistency
     - Ensure backward compatibility if changing implementation
     - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
   
-  - [ ] 21.3 Update extension module path variables
+  - [x] 21.3 Update extension module path variables
     - Apply naming convention to importer (16), mongodb (4), rat (1), wps-download (1)
     - Update either Java code or OpenAPI documentation for consistency
     - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
   
-  - [ ] 21.4 Update community module path variables
+  - [x] 21.4 Update community module path variables
     - Apply naming convention to oseo (10) and other community modules (4)
     - Update either Java code or OpenAPI documentation for consistency
     - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
 
-- [ ] 22. Checkpoint - Review parameter mismatch fixes
+- [x] 22. Checkpoint - Review parameter mismatch fixes
   - Verify all query parameter gaps documented
   - Verify all request body mismatches resolved
   - Review path variable naming consistency
   - Re-run coverage analysis to confirm improvements
   - Ask user if questions arise
 
-- [ ] 23. Regenerate unified OpenAPI 3.0 specification with fixes
-  - [ ] 23.1 Re-run REST endpoint extraction
+- [x] 23. Regenerate unified OpenAPI 3.0 specification with fixes
+  - [x] 23.1 Re-run REST endpoint extraction
     - Re-scan all REST API source directories
     - Extract updated endpoint definitions with corrected parameters
     - Output: `.kiro/api-analysis/rest/implemented-all-endpoints-v2.json`
     - _Requirements: 2.1, 2.2, 2.3_
   
-  - [ ] 23.2 Re-run coverage analysis
+  - [x] 23.2 Re-run coverage analysis
     - Match updated implementations with updated documentation
     - Calculate new coverage metrics
     - Verify parameter mismatches are resolved
@@ -685,7 +685,7 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: `.kiro/api-analysis/reports/rest-coverage-report-v2.md`
     - _Requirements: 3.1, 3.2, 3.3, 3.4_
   
-  - [ ] 23.3 Regenerate REST OpenAPI 3.0 specification
+  - [x] 23.3 Regenerate REST OpenAPI 3.0 specification
     - Convert updated REST endpoints to OpenAPI 3.0 format
     - Include all corrected parameter definitions
     - Include all corrected request body schemas
@@ -693,7 +693,7 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: `.kiro/api-analysis/specs/rest-openapi-3.0-v2.yaml`
     - _Requirements: 6.1, 6.2, 6.5, 6.6, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
   
-  - [ ] 23.4 Regenerate unified specification
+  - [x] 23.4 Regenerate unified specification
     - Merge updated REST spec with OGC spec
     - Ensure all corrections are included
     - Validate against OpenAPI 3.0 schema
@@ -701,7 +701,7 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: `doc/en/api/geoserver-unified-3.0-v2.json`
     - _Requirements: 6.1, 6.2, 6.7, 11.1, 11.2, 11.3, 11.4, 11.5, 12.1, 12.2, 12.5_
   
-  - [ ] 23.5 Generate final reconciliation matrix
+  - [x] 23.5 Generate final reconciliation matrix
     - Create updated reconciliation matrix with all fixes applied
     - Verify all parameter mismatches resolved
     - Document remaining gaps (if any)
@@ -709,27 +709,27 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: `.kiro/api-analysis/reports/reconciliation-matrix-final.csv`
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7_
 
-- [ ] 24. Add OGC API endpoints documentation
-  - [ ] 24.1 Extract OGC API - Features endpoints
+- [x] 24. Add OGC API endpoints documentation
+  - [x] 24.1 Extract OGC API - Features endpoints
     - Scan `src/community/ogcapi/` and `src/extension/ogcapi/` directories
     - Identify OGC API - Features 1.0 endpoints (collections, items, conformance)
     - Extract endpoint paths, parameters, and response schemas
     - Output: `.kiro/api-analysis/ogc/ogcapi-features-operations.json`
     - _Requirements: 6.1, 6.2, 6.3_
   
-  - [ ] 24.2 Extract OGC API - Tiles endpoints
+  - [x] 24.2 Extract OGC API - Tiles endpoints
     - Identify OGC API - Tiles endpoints (tilesets, tiles)
     - Extract endpoint paths, parameters, and response schemas
     - Output: `.kiro/api-analysis/ogc/ogcapi-tiles-operations.json`
     - _Requirements: 6.1, 6.2, 6.3_
   
-  - [ ] 24.3 Extract other OGC API endpoints
+  - [x] 24.3 Extract other OGC API endpoints
     - Identify OGC API - Coverages, Processes, Styles, Maps endpoints if present
     - Extract endpoint paths, parameters, and response schemas
     - Output: `.kiro/api-analysis/ogc/ogcapi-other-operations.json`
     - _Requirements: 6.1, 6.2, 6.3_
   
-  - [ ] 24.4 Generate OGC API OpenAPI specifications
+  - [x] 24.4 Generate OGC API OpenAPI specifications
     - Create modular OpenAPI 3.0 specifications for each OGC API service:
       - `ogc/ogcapi-features.yaml` - OGC API - Features endpoints
       - `ogc/ogcapi-tiles.yaml` - OGC API - Tiles endpoints
@@ -743,7 +743,7 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: Modular files in `.kiro/api-analysis/specs/ogc/`
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
   
-  - [ ] 24.5 Update unified specification with OGC API endpoints
+  - [x] 24.5 Update unified specification with OGC API endpoints
     - Add OGC API tags to main specification
     - Reference OGC API modular specs in unified entry point
     - Re-bundle specifications to include OGC API endpoints
@@ -751,22 +751,22 @@ The following tasks address the 129 parameter mismatches identified in the REST 
     - Output: Updated `doc/en/api/geoserver-bundled.yaml` and `.json`
     - _Requirements: 6.1, 6.2, 6.7, 12.1, 12.2_
   
-  - [ ] 24.6 Document OGC API coverage
+  - [x] 24.6 Document OGC API coverage
     - Count OGC API endpoints by service type
     - Compare against OGC API specifications
     - Generate coverage report
     - Output: `.kiro/api-analysis/reports/ogcapi-coverage-report.md`
     - _Requirements: 3.1, 3.4, 5.2_
 
-- [ ] 25. Final validation and summary
-  - [ ] 25.1 Validate final unified specification
+- [x] 25. Final validation and summary
+  - [x] 25.1 Validate final unified specification
     - Validate against OpenAPI 3.0 schema
     - Verify all $ref references resolve
     - Test loading in Swagger UI
     - Output: `.kiro/api-analysis/reports/validation-report-final.md`
     - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 6.9_
   
-  - [ ] 25.2 Generate final executive summary
+  - [x] 25.2 Generate final executive summary
     - Summarize final coverage metrics
     - Document all improvements made
     - List any remaining gaps
@@ -779,8 +779,8 @@ The following tasks address the 129 parameter mismatches identified in the REST 
 
 These tasks address the 39 endpoints with functional discrepancies (missing request bodies, critical parameters, etc.) identified in the functional discrepancies analysis.
 
-- [ ] 26. Fix critical functional gaps (HIGH PRIORITY)
-  - [ ] 26.1 Document request body schemas for PUT operations
+- [x] 26. Fix critical functional gaps (HIGH PRIORITY)
+  - [x] 26.1 Document request body schemas for PUT operations
     - Extract Java classes used in PUT request bodies:
       - LayerInfo, StoreInfo, NamespaceInfo (catalog operations)
       - UserInfo, GroupInfo, RoleInfo (security operations)
@@ -794,7 +794,7 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
     - Output: Updated modular and bundled specifications
     - _Requirements: 6.5, 6.6, 7.1, 7.5_
   
-  - [ ] 26.2 Document critical query parameters
+  - [x] 26.2 Document critical query parameters
     - Add `purge` parameter to DELETE datastore operations
       - Description: "If true, delete underlying data files; if false, delete only configuration"
       - Type: boolean
@@ -809,7 +809,7 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
     - Output: Updated modular and bundled specifications
     - _Requirements: 7.3, 7.4_
   
-  - [ ] 26.3 Document convenience query parameters
+  - [x] 26.3 Document convenience query parameters
     - Add `expand` parameter to 6 importer endpoints
       - Description: "Controls level of detail in response (e.g., expand=tasks)"
       - Type: string
@@ -826,7 +826,7 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
     - Output: Updated modular and bundled specifications
     - _Requirements: 7.3, 7.4_
   
-  - [ ] 26.4 Fix GET /rest/logging anti-pattern
+  - [x] 26.4 Fix GET /rest/logging anti-pattern
     - Investigate if request body is actually used in implementation
     - Review LoggingController.java to understand intent
     - If body is not used: Remove @RequestBody annotation from GET method
@@ -836,7 +836,7 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
     - Output: Code fix (if needed) and updated specification
     - _Requirements: 7.1_
   
-  - [ ] 26.5 Remove incorrect query parameters from documentation
+  - [x] 26.5 Remove incorrect query parameters from documentation
     - Fix GET /rest/about/status endpoint
       - Remove documented parameters: manifest, key, value
       - These don't exist in implementation
@@ -845,8 +845,8 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
     - Output: Updated modular and bundled specifications
     - _Requirements: 3.3_
 
-- [ ] 27. Fix cosmetic path variable naming (LOW PRIORITY)
-  - [ ] 27.1 Update path variable names to match implementation
+- [x] 27. Fix cosmetic path variable naming (LOW PRIORITY)
+  - [x] 27.1 Update path variable names to match implementation
     - Update ~90 endpoints where path variable names differ
     - Change documentation to match Java @PathVariable names
     - Examples:
@@ -859,29 +859,29 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
     - Output: Updated modular and bundled specifications
     - _Requirements: 6.1, 6.5_
   
-  - [ ] 27.2 Validate cosmetic fixes
+  - [x] 27.2 Validate cosmetic fixes
     - Run OpenAPI validation on updated specs
     - Verify all path parameters match path templates
     - Test in Swagger UI to ensure no regressions
     - Output: Validation report
     - _Requirements: 11.1, 11.2, 11.3_
 
-- [ ] 28. Regenerate specifications with all fixes
-  - [ ] 28.1 Re-bundle modular specifications
+- [x] 28. Regenerate specifications with all fixes
+  - [x] 28.1 Re-bundle modular specifications
     - Resolve all $ref references
     - Apply all fixes from tasks 26-27
     - Generate bundled YAML and JSON versions
     - Output: `doc/en/api/geoserver-bundled.yaml` and `.json`
     - _Requirements: 6.7, 12.1, 12.2_
   
-  - [ ] 28.2 Validate final specifications
+  - [x] 28.2 Validate final specifications
     - Validate against OpenAPI 3.0 schema
     - Verify zero validation errors
     - Test in Swagger UI
     - Output: Final validation report
     - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5_
   
-  - [ ] 28.3 Update coverage metrics
+  - [x] 28.3 Update coverage metrics
     - Recalculate coverage with functional fixes applied
     - Expected results:
       - Fully correct: ~127 endpoints (36%)
@@ -891,7 +891,7 @@ These tasks address the 39 endpoints with functional discrepancies (missing requ
     - Output: `.kiro/api-analysis/reports/rest-coverage-report-final.md`
     - _Requirements: 3.1, 3.2, 3.3, 3.4_
 
-- [ ] 29. Final checkpoint - Review all fixes
+- [x] 29. Final checkpoint - Review all fixes
   - Review functional gap fixes (task 26)
   - Review cosmetic naming fixes (task 27)
   - Verify specifications are production-ready

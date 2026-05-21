@@ -1635,6 +1635,20 @@ paths:
             application/json:
               schema:
                 type: object
+              example:
+                layer:
+                  name: states
+                  path: ''
+                  type: VECTOR
+                  defaultStyle:
+                    name: polygon
+                    href: http://localhost:8080/geoserver/rest/styles/polygon.json
+                  resource:
+                    '@class': featureType
+                    name: states
+                    href: http://localhost:8080/geoserver/rest/workspaces/topp/datastores/states_shapefile/featuretypes/states.json
+                  queryable: true
+                  opaque: false
             application/xml:
               schema:
                 type: object
@@ -3990,6 +4004,15 @@ paths:
             application/json:
               schema:
                 type: object
+              example:
+                workspaces:
+                  workspace:
+                  - name: topp
+                    href: http://localhost:8080/geoserver/rest/workspaces/topp.json
+                  - name: sf
+                    href: http://localhost:8080/geoserver/rest/workspaces/sf.json
+                  - name: cite
+                    href: http://localhost:8080/geoserver/rest/workspaces/cite.json
             application/xml:
               schema:
                 type: object
@@ -4127,6 +4150,9 @@ paths:
             schema:
               type: object
               description: WorkspaceInfo configuration object
+            example:
+              workspace:
+                name: acme
           application/xml:
             schema:
               type: object
@@ -4926,6 +4952,14 @@ paths:
             application/json:
               schema:
                 type: object
+              example:
+                workspace:
+                  name: topp
+                  isolated: false
+                  dateCreated: 2023-03-15 14:21:05.0 UTC
+                  dataStores: http://localhost:8080/geoserver/rest/workspaces/topp/datastores.json
+                  coverageStores: http://localhost:8080/geoserver/rest/workspaces/topp/coveragestores.json
+                  wmsStores: http://localhost:8080/geoserver/rest/workspaces/topp/wmsstores.json
             application/xml:
               schema:
                 type: object
@@ -6652,7 +6686,16 @@ paths:
     post:
       operationId: post_rest_CoverageStoreFileController_coverageStorePost
       summary: POST /rest/workspaces/{workspaceName}/coveragestores/{storeName}/{method}.{format}
-      description: Endpoint from rest module
+      deprecated: true
+      description: 'Legacy file upload endpoint (Swagger 2.0-era pattern). The {method}.{format}
+
+        path style is superseded by structured resource endpoints. Use
+
+        PUT /rest/workspaces/{ws}/coveragestores/{store} with appropriate content-type
+
+        for new implementations.
+
+        '
       tags:
       - Core
       responses:
@@ -6744,7 +6787,16 @@ paths:
     put:
       operationId: put_rest_CoverageStoreFileController_coverageStorePut
       summary: PUT /rest/workspaces/{workspaceName}/coveragestores/{storeName}/{method}.{format}
-      description: Endpoint from rest module
+      deprecated: true
+      description: 'Legacy file upload endpoint (Swagger 2.0-era pattern). The {method}.{format}
+
+        path style is superseded by structured resource endpoints. Use
+
+        PUT /rest/workspaces/{ws}/coveragestores/{store} with appropriate content-type
+
+        for new implementations.
+
+        '
       tags:
       - Core
       responses:
@@ -6877,6 +6929,13 @@ paths:
             application/json:
               schema:
                 type: object
+              example:
+                dataStores:
+                  dataStore:
+                  - name: states_shapefile
+                    href: http://localhost:8080/geoserver/rest/workspaces/topp/datastores/states_shapefile.json
+                  - name: postgis
+                    href: http://localhost:8080/geoserver/rest/workspaces/topp/datastores/postgis.json
             application/xml:
               schema:
                 type: object
@@ -7296,7 +7355,16 @@ paths:
     put:
       operationId: put_rest_DataStoreFileController_dataStorePut
       summary: PUT /rest/workspaces/{workspaceName}/datastores/{storeName}/{method}.{format}
-      description: Endpoint from rest module
+      deprecated: true
+      description: 'Legacy file upload endpoint (Swagger 2.0-era pattern). The {method}.{format}
+
+        path style is superseded by structured resource endpoints. Use
+
+        PUT /rest/workspaces/{ws}/datastores/{store} with appropriate content-type
+
+        for new implementations.
+
+        '
       tags:
       - Core
       responses:
@@ -43599,7 +43667,12 @@ paths:
     get:
       operationId: WMS_1_0_0_GetCapabilities
       summary: GetCapabilities - WMS 1.0.0
-      description: Returns service metadata and available layers
+      description: 'Returns service metadata and available layers.
+
+
+        **Note:** WMS 1.0.0 is a legacy version. Prefer WMS 1.3.0 for new implementations.
+
+        '
       tags:
       - WMS
       parameters:
@@ -43683,7 +43756,12 @@ paths:
     post:
       operationId: WMS_1_0_0_GetCapabilities_wms
       summary: GetCapabilities - WMS 1.0.0
-      description: Returns service metadata and available layers
+      description: 'Returns service metadata and available layers.
+
+
+        **Note:** WMS 1.0.0 is a legacy version. Prefer WMS 1.3.0 for new implementations.
+
+        '
       tags:
       - WMS
       parameters:
@@ -44423,119 +44501,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -44718,119 +44815,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -45014,119 +45130,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -45309,119 +45444,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -45605,119 +45759,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -45900,119 +46073,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -46196,119 +46388,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -46491,119 +46702,138 @@ paths:
           type: string
       - name: CQL_FILTER
         in: query
-        description: CQL filter expressions for each layer
+        description: 'ECQL/CQL filter expression applied to each layer (semicolon-separated for multiple
+          layers). Example: `PERSONS > 1000000`'
         required: false
         schema:
           type: string
       - name: FEATUREID
         in: query
-        description: Feature IDs to render
+        description: 'Comma-separated feature IDs restricting which features are rendered. Overrides any
+          FILTER or CQL_FILTER. Example: `roads.1,roads.2`'
         required: false
         schema:
           type: string
       - name: TILED
         in: query
-        description: WMS-C tiling hint
+        description: Hint for WMS-C tiling clients. When true, GeoServer applies metatiling and gutter
+          optimizations for seamless tile assembly
         required: false
         schema:
           type: boolean
           default: false
       - name: TILESORIGIN
         in: query
-        description: Tile origin point (x,y)
+        description: Origin coordinates for tile grid alignment (x,y in map units). Required with TILED=true
+          to ensure consistent tile boundaries
         required: false
         schema:
           type: string
       - name: BUFFER
         in: query
-        description: Rendering buffer in pixels
+        description: 'Extra pixels around the map extent used for label/symbol rendering. Prevents labels
+          from being cut at tile edges. Example: `BUFFER=10`'
         required: false
         schema:
           type: integer
           default: 0
       - name: PALETTE
         in: query
-        description: Color palette for indexed color images
+        description: 'Name of a custom color palette for PNG8/GIF output. References palette files in
+          the GeoServer data directory. Example: `PALETTE=safe`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_TYPE
         in: query
-        description: Remote OWS service type
+        description: Type of remote OGC service to cascade (WFS or WCS). Used with REMOTE_OWS_URL to render
+          data from an external server
         required: false
         schema:
           type: string
       - name: REMOTE_OWS_URL
         in: query
-        description: Remote OWS service URL
+        description: Base URL of a remote OGC service to cascade. GeoServer fetches data from this URL
+          and renders it locally
         required: false
         schema:
           type: string
       - name: MAXFEATURES
         in: query
-        description: Maximum features to render (vector layers)
+        description: Limits the number of features rendered per vector layer. Useful for performance control
+          on dense datasets
         required: false
         schema:
           type: integer
       - name: STARTINDEX
         in: query
-        description: Start index for feature paging (vector layers)
+        description: Zero-based offset for feature paging on vector layers. Used with MAXFEATURES for
+          paginated rendering
         required: false
         schema:
           type: integer
       - name: ANGLE
         in: query
-        description: Map rotation angle in degrees
+        description: Rotates the map output clockwise by the specified degrees. Labels and north arrows
+          adjust automatically
         required: false
         schema:
           type: number
           default: 0
       - name: SORTBY
         in: query
-        description: Sort order for features
+        description: 'Controls feature rendering order (painter''s model). Format: `property+A` (ascending)
+          or `property+D` (descending)'
         required: false
         schema:
           type: string
       - name: SCALEMETHOD
         in: query
-        description: Scale computation method (OGC or Accurate)
+        description: 'Scale computation algorithm: `OGC` uses simplified OGC formula, `Accurate` accounts
+          for projection distortion'
         required: false
         schema:
           type: string
           default: OGC
       - name: CLIP
         in: query
-        description: Polygon WKT to clip output
+        description: 'WKT polygon geometry to clip the rendered output. Features outside the polygon are
+          not rendered. Example: `POLYGON((...))` in the request CRS'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (key:value pairs)
+        description: 'Format-specific rendering options as key:value pairs separated by semicolons. Common
+          options: `dpi:300`, `antialiasing:on`, `layout:A4`'
         required: false
         schema:
           type: string
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple layers separated by commas'
         required: false
         schema:
           type: string
       - name: INTERPOLATIONS
         in: query
-        description: Interpolation methods for raster layers
+        description: 'Comma-separated interpolation methods for raster layers (one per layer). Values:
+          `nearest neighbor`, `bilinear`, `bicubic`'
         required: false
         schema:
           type: string
@@ -46689,13 +46919,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -46781,13 +47013,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -46874,13 +47108,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -46966,13 +47202,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -47059,13 +47297,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -47151,13 +47391,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -47244,13 +47486,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -47336,13 +47580,15 @@ paths:
           default: application/vnd.ogc.se_xml
       - name: PROPERTYNAME
         in: query
-        description: Comma-separated list of properties to return
+        description: Restricts which feature properties are included in the GetFeatureInfo response. Comma-separated
+          attribute names
         required: false
         schema:
           type: string
       - name: EXCLUDE_NODATA_RESULT
         in: query
-        description: Exclude nodata values from results
+        description: When true, pixels with nodata values are excluded from raster GetFeatureInfo results.
+          Avoids returning empty results over masked areas
         required: false
         schema:
           type: boolean
@@ -47484,21 +47730,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -47638,21 +47887,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -47793,21 +48045,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -47947,21 +48202,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -48102,21 +48360,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -48256,21 +48517,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -48411,21 +48675,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -48565,21 +48832,24 @@ paths:
           default: false
       - name: LEGEND_OPTIONS
         in: query
-        description: Key:value pairs for legend customization (fontName, fontSize, fontStyle, fontColor,
-          bgColor, fontAntiAliasing, forceLabels, forceTitles, minSymbolSize, countMatched, hideEmptyRules)
+        description: 'Legend rendering options as key:value pairs separated by semicolons. Options include
+          fontName, fontSize, fontColor, bgColor, forceLabels, countMatched, hideEmptyRules. Example:
+          `fontSize:14;fontAntiAliasing:true`'
         required: false
         schema:
           type: string
       - name: STRICT
         in: query
-        description: Enforce mandatory parameter checking
+        description: When false, missing mandatory parameters (like LAYER) return a blank image instead
+          of an error. Useful for layer groups
         required: false
         schema:
           type: boolean
           default: true
       - name: ENV
         in: query
-        description: SLD environment variables for substitution
+        description: 'SLD environment variable substitutions as key:value pairs separated by semicolons.
+          Example: `color:0xFF0000;size:10`'
         required: false
         schema:
           type: string
@@ -49577,7 +49847,12 @@ paths:
     get:
       operationId: WFS_1_0_0_GetCapabilities
       summary: GetCapabilities - WFS 1.0.0
-      description: Returns service metadata and available feature types
+      description: 'Returns service metadata and available feature types.
+
+
+        **Note:** WFS 1.0.0 is a legacy version. Prefer WFS 2.0.0 for new implementations.
+
+        '
       tags:
       - WFS
       parameters:
@@ -49655,7 +49930,12 @@ paths:
     post:
       operationId: WFS_1_0_0_GetCapabilities_wfs
       summary: GetCapabilities - WFS 1.0.0
-      description: Returns service metadata and available feature types
+      description: 'Returns service metadata and available feature types.
+
+
+        **Note:** WFS 1.0.0 is a legacy version. Prefer WFS 2.0.0 for new implementations.
+
+        '
       tags:
       - WFS
       parameters:
@@ -50654,25 +50934,29 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter
+          XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv`
+          for CSV, `id_policy:true` for GeoJSON)
         required: false
         schema:
           type: string
@@ -50812,25 +51096,29 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter
+          XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv`
+          for CSV, `id_policy:true` for GeoJSON)
         required: false
         schema:
           type: string
@@ -50971,25 +51259,29 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter
+          XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv`
+          for CSV, `id_policy:true` for GeoJSON)
         required: false
         schema:
           type: string
@@ -51129,25 +51421,29 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter
+          XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv`
+          for CSV, `id_policy:true` for GeoJSON)
         required: false
         schema:
           type: string
@@ -51294,25 +51590,29 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter
+          XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv`
+          for CSV, `id_policy:true` for GeoJSON)
         required: false
         schema:
           type: string
@@ -51458,25 +51758,29 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter
+          XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve
+          all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`.
+          Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv`
+          for CSV, `id_policy:true` for GeoJSON)
         required: false
         schema:
           type: string
@@ -58274,6 +58578,49 @@ paths:
                         hreflang:
                           type: string
                           description: Language of the linked resource
+              example:
+                collections:
+                - id: topp:states
+                  title: USA Population
+                  description: The states layer from the topp workspace
+                  extent:
+                    spatial:
+                      bbox:
+                      - - -124.73
+                        - 24.96
+                        - -66.97
+                        - 49.37
+                      crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+                  crs:
+                  - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+                  - http://www.opengis.net/def/crs/EPSG/0/4326
+                  storageCrs: http://www.opengis.net/def/crs/EPSG/0/4326
+                  links:
+                  - href: http://localhost:8080/geoserver/ogc/features/v1/collections/topp:states/items
+                    rel: items
+                    type: application/geo+json
+                    title: Items as GeoJSON
+                - id: sf:roads
+                  title: Roads
+                  description: Road network features
+                  extent:
+                    spatial:
+                      bbox:
+                      - - -180
+                        - -90
+                        - 180
+                        - 90
+                      crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+                  links:
+                  - href: http://localhost:8080/geoserver/ogc/features/v1/collections/sf:roads/items
+                    rel: items
+                    type: application/geo+json
+                    title: Items as GeoJSON
+                links:
+                - href: http://localhost:8080/geoserver/ogc/features/v1/collections
+                  rel: self
+                  type: application/json
+                  title: This document
             text/html:
               schema:
                 type: string
@@ -58617,6 +58964,52 @@ paths:
                         hreflang:
                           type: string
                           description: Language of the linked resource
+              example:
+                type: FeatureCollection
+                features:
+                - type: Feature
+                  id: states.1
+                  geometry:
+                    type: MultiPolygon
+                    coordinates:
+                    - - - - -88.071
+                          - 37.511
+                        - - -88.087
+                          - 37.476
+                        - - -88.311
+                          - 37.443
+                        - - -88.071
+                          - 37.511
+                  properties:
+                    STATE_NAME: Illinois
+                    STATE_ABBR: IL
+                    PERSONS: 11430602
+                - type: Feature
+                  id: states.2
+                  geometry:
+                    type: MultiPolygon
+                    coordinates:
+                    - - - - -89.171
+                          - 36.831
+                        - - -89.098
+                          - 36.827
+                        - - -89.133
+                          - 36.983
+                        - - -89.171
+                          - 36.831
+                  properties:
+                    STATE_NAME: Missouri
+                    STATE_ABBR: MO
+                    PERSONS: 5117073
+                numberMatched: 49
+                numberReturned: 2
+                links:
+                - href: http://localhost:8080/geoserver/ogc/features/v1/collections/topp:states/items?limit=2
+                  rel: self
+                  type: application/geo+json
+                - href: http://localhost:8080/geoserver/ogc/features/v1/collections/topp:states/items?limit=2&startIndex=2
+                  rel: next
+                  type: application/geo+json
             text/html:
               schema:
                 type: string

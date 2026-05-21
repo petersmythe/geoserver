@@ -31,7 +31,10 @@ paths:
     get:
       operationId: WFS_1_0_0_GetCapabilities
       summary: GetCapabilities - WFS 1.0.0
-      description: Returns service metadata and available feature types
+      description: |
+        Returns service metadata and available feature types.
+
+        **Note:** WFS 1.0.0 is a legacy version. Prefer WFS 2.0.0 for new implementations.
       tags:
       - WFS
       parameters:
@@ -95,7 +98,10 @@ paths:
     post:
       operationId: WFS_1_0_0_GetCapabilities_wfs
       summary: GetCapabilities - WFS 1.0.0
-      description: Returns service metadata and available feature types
+      description: |
+        Returns service metadata and available feature types.
+
+        **Note:** WFS 1.0.0 is a legacy version. Prefer WFS 2.0.0 for new implementations.
       tags:
       - WFS
       parameters:
@@ -910,25 +916,25 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`. Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: 'Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv` for CSV, `id_policy:true` for GeoJSON)'
         required: false
         schema:
           type: string
@@ -1049,25 +1055,25 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`. Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: 'Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv` for CSV, `id_policy:true` for GeoJSON)'
         required: false
         schema:
           type: string
@@ -1189,25 +1195,25 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`. Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: 'Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv` for CSV, `id_policy:true` for GeoJSON)'
         required: false
         schema:
           type: string
@@ -1328,25 +1334,25 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`. Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: 'Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv` for CSV, `id_policy:true` for GeoJSON)'
         required: false
         schema:
           type: string
@@ -1474,25 +1480,25 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`. Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: 'Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv` for CSV, `id_policy:true` for GeoJSON)'
         required: false
         schema:
           type: string
@@ -1619,25 +1625,25 @@ paths:
           default: text/xml
       - name: CQL_FILTER
         in: query
-        description: CQL filter expression (vendor extension)
+        description: 'ECQL/CQL filter expression to select features. Simpler alternative to OGC Filter XML. Example: `PERSONS > 1000000 AND STATE = ''California''`'
         required: false
         schema:
           type: string
       - name: FEATUREVERSION
         in: query
-        description: Feature version for versioned layers (vendor extension)
+        description: Version identifier for versioned datastores (e.g., GeoGig). Use `ALL` to retrieve all versions or a specific revision ID
         required: false
         schema:
           type: string
       - name: VIEWPARAMS
         in: query
-        description: SQL view parameters (vendor extension)
+        description: 'SQL view parameters passed to parameterized SQL views. Format: `key1:value1;key2:value2`. Multiple type names separated by commas'
         required: false
         schema:
           type: string
       - name: FORMAT_OPTIONS
         in: query
-        description: Format-specific options (vendor extension)
+        description: 'Output format options as key:value pairs. Common options vary by format (e.g., `filename:export.csv` for CSV, `id_policy:true` for GeoJSON)'
         required: false
         schema:
           type: string
