@@ -1,0 +1,342 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - Coverages
+  description: |
+    OGC API - Coverages provides access to raster/coverage data.
+    This is the modern REST-based successor to WCS, following the OGC API standard patterns.
+
+    Base path: /ogc/coverages/v1
+
+    Supports subsetting by bounding box, time, and custom dimensions.
+    Default output format is GeoTIFF.
+
+    Note: This is a community module and must be installed separately.
+  version: 1.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - Coverages 1.0"
+    description: |
+      OGC API - Coverages endpoints for raster data access.
+      Community module — requires separate installation.
+    externalDocs:
+      description: OGC API - Coverages Specification
+      url: https://ogcapi.ogc.org/coverages/
+paths:
+  /ogc/coverages/v1:
+    get:
+      operationId: OGCCoverages_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - Coverages service.
+        Provides links to the API definition, conformance declaration, and collections.
+      tags:
+        - "OGC API - Coverages 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/coverages/v1/openapi:
+    get:
+      operationId: OGCCoverages_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - Coverages service.
+      tags:
+        - "OGC API - Coverages 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/coverages/v1/conformance:
+    get:
+      operationId: OGCCoverages_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes Core, Collections, Geodata Coverage, GeoTIFF, and Coverage Subset.
+      tags:
+        - "OGC API - Coverages 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/coverages/v1/collections:
+    get:
+      operationId: OGCCoverages_getCollections
+      summary: List coverage collections
+      description: |
+        Returns a list of all available coverage collections.
+        Each collection corresponds to a published CoverageInfo in GeoServer.
+      tags:
+        - "OGC API - Coverages 1.0"
+      responses:
+        '200':
+          description: List of coverage collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collections'
+            text/html:
+              schema:
+                type: string
+  /ogc/coverages/v1/collections/{collectionId}:
+    get:
+      operationId: OGCCoverages_describeCollection
+      summary: Describe a coverage collection
+      description: |
+        Returns metadata about a specific coverage collection, including its
+        spatial extent, supported CRS list, and links.
+      tags:
+        - "OGC API - Coverages 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/coverages/v1/collections/{collectionId}/coverage:
+    get:
+      operationId: OGCCoverages_getCoverage
+      summary: Get coverage data
+      description: |
+        Returns the coverage data for the specified collection. Supports subsetting
+        by bounding box, time dimension, CRS transformation, and custom dimension subsets.
+        Default output format is GeoTIFF (image/tiff;application=geotiff).
+      tags:
+        - "OGC API - Coverages 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: bbox
+          in: query
+          description: Bounding box filter (minLon,minLat,maxLon,maxLat)
+          required: false
+          schema:
+            type: string
+        - name: bbox-crs
+          in: query
+          description: CRS of the bbox parameter
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: Temporal filter (ISO 8601 instant or interval)
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: CQL filter expression
+          required: false
+          schema:
+            type: string
+        - name: filter-lang
+          in: query
+          description: Filter language
+          required: false
+          schema:
+            type: string
+        - name: crs
+          in: query
+          description: Output CRS for the coverage
+          required: false
+          schema:
+            type: string
+        - name: subset
+          in: query
+          description: |
+            Dimension subset specification (e.g., "Lat(40:50),Long(-80:-70)").
+            Supports trim and slice operations on named axes.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Coverage data
+          content:
+            image/tiff;application=geotiff:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid parameter value
+        '404':
+          description: Collection not found
+  /ogc/coverages/v1/collections/{collectionId}/coverage/domainset:
+    get:
+      operationId: OGCCoverages_getCoverageDomainSet
+      summary: Get coverage domain set
+      description: |
+        Returns the domain set (grid structure) of the coverage, describing the
+        spatial and temporal axes, their extents, and resolution.
+        Follows the OGC Coverage Implementation Schema (CIS) 1.1 model.
+      tags:
+        - "OGC API - Coverages 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Domain set description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainSet'
+        '404':
+          description: Collection not found
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      description: Identifier of the coverage collection
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    Collections:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        extent:
+          type: object
+          properties:
+            spatial:
+              type: object
+              properties:
+                bbox:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+                crs:
+                  type: string
+            temporal:
+              type: object
+              properties:
+                interval:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: string
+        crs:
+          type: array
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    DomainSet:
+      type: object
+      description: Coverage domain set (CIS 1.1)
+      properties:
+        type:
+          type: string
+        generalGrid:
+          type: object
+          properties:
+            type:
+              type: string
+            srsName:
+              type: string
+            axisLabels:
+              type: array
+              items:
+                type: string
+            axis:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  axisLabel:
+                    type: string
+                  lowerBound:
+                    type: number
+                  upperBound:
+                    type: number
+                  resolution:
+                    type: number
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

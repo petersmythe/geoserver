@@ -1,0 +1,1062 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - DGGS
+  description: |
+    OGC API - DGGS provides access to data organized on Discrete Global Grid Systems.
+    Supports zone queries, spatial lookups (point, polygon), hierarchical navigation
+    (children, parents, neighbors), and DAPA (Data Access and Processing API) extensions
+    for spatio-temporal aggregation.
+
+    Base path: /ogc/dggs/v1
+
+    Requires a DGGS-backed data store (e.g., rHEALPix, ClickHouse DGGS).
+
+    Note: This is a community module and must be installed separately.
+  version: 1.0.1
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - DGGS 1.0"
+    description: |
+      OGC API - DGGS endpoints for Discrete Global Grid System data access.
+      Community module — requires separate installation.
+    externalDocs:
+      description: OGC API - DGGS Draft Specification
+      url: https://ogcapi.ogc.org/dggs/
+paths:
+  /ogc/dggs/v1:
+    get:
+      operationId: OGCDGGS_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - DGGS service.
+        Provides links to the API definition, conformance declaration, and collections.
+      tags:
+        - "OGC API - DGGS 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/dggs/v1/openapi:
+    get:
+      operationId: OGCDGGS_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - DGGS service.
+      tags:
+        - "OGC API - DGGS 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/dggs/v1/conformance:
+    get:
+      operationId: OGCDGGS_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes DGGS Core.
+      tags:
+        - "OGC API - DGGS 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/dggs/v1/collections:
+    get:
+      operationId: OGCDGGS_getCollections
+      summary: List DGGS collections
+      description: |
+        Returns a list of all available DGGS-backed feature collections.
+      tags:
+        - "OGC API - DGGS 1.0"
+      responses:
+        '200':
+          description: List of DGGS collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collections'
+            text/html:
+              schema:
+                type: string
+  /ogc/dggs/v1/collections/{collectionId}:
+    get:
+      operationId: OGCDGGS_describeCollection
+      summary: Describe a DGGS collection
+      description: |
+        Returns metadata about a specific DGGS collection, including its
+        spatial extent and links to zone access endpoints.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/dggs/v1/collections/{collectionId}/zone:
+    get:
+      operationId: OGCDGGS_getZone
+      summary: Get a single zone
+      description: |
+        Returns data for a single DGGS zone identified by zone_id.
+        Includes links to parent zones, child zones, and neighbors.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: zone_id
+          in: query
+          description: DGGS zone identifier
+          required: true
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Comma-separated list of properties to include
+          required: false
+          schema:
+            type: string
+        - name: f
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Zone data as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection or zone not found
+  /ogc/dggs/v1/collections/{collectionId}/zones:
+    get:
+      operationId: OGCDGGS_getZones
+      summary: Get zones
+      description: |
+        Returns zones at a given resolution, optionally filtered by bounding box,
+        geometry, zone IDs, or temporal extent. Supports paging.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: resolution
+          in: query
+          description: DGGS resolution level
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: startIndex
+          in: query
+          description: Starting index for paging
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of zones to return
+          required: false
+          schema:
+            type: integer
+        - name: bbox
+          in: query
+          description: Bounding box filter
+          required: false
+          schema:
+            type: string
+        - name: geom
+          in: query
+          description: WKT geometry filter
+          required: false
+          schema:
+            type: string
+        - name: zones
+          in: query
+          description: Comma-separated list of zone IDs to filter
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Comma-separated list of properties to include
+          required: false
+          schema:
+            type: string
+        - name: f
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Zones as GeoJSON FeatureCollection
+          content:
+            application/geo+json:
+              schema:
+                type: object
+        '404':
+          description: Collection not found
+  /ogc/dggs/v1/collections/{collectionId}/point:
+    get:
+      operationId: OGCDGGS_point
+      summary: Get zone at a point
+      description: |
+        Returns the DGGS zone containing the specified point at the given resolution.
+        The point can be specified as WKT or as longitude,latitude coordinates.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: point
+          in: query
+          description: Point coordinates (lon,lat or WKT POINT)
+          required: true
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          description: DGGS resolution level
+          required: true
+          schema:
+            type: integer
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Properties to include
+          required: false
+          schema:
+            type: string
+        - name: f
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Zone at the point as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Invalid point specification
+  /ogc/dggs/v1/collections/{collectionId}/polygon:
+    get:
+      operationId: OGCDGGS_polygon
+      summary: Get zones within a polygon
+      description: |
+        Returns all DGGS zones at the specified resolution that intersect the given polygon.
+        Supports compact mode to return parent zones where all children are included.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: polygon
+          in: query
+          description: WKT polygon geometry
+          required: true
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          description: DGGS resolution level
+          required: true
+          schema:
+            type: integer
+        - name: compact
+          in: query
+          description: Whether to return compact zone representation
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: startIndex
+          in: query
+          description: Starting index for paging
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of zones to return
+          required: false
+          schema:
+            type: integer
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Properties to include
+          required: false
+          schema:
+            type: string
+        - name: f
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Zones within the polygon as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+        '400':
+          description: Invalid polygon specification
+  /ogc/dggs/v1/collections/{collectionId}/children:
+    get:
+      operationId: OGCDGGS_getChildren
+      summary: Get child zones
+      description: |
+        Returns the child zones of the specified zone at the given resolution.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: zone_id
+          in: query
+          description: Parent zone identifier
+          required: true
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          description: Target resolution for children
+          required: true
+          schema:
+            type: integer
+        - name: startIndex
+          in: query
+          description: Starting index for paging
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of zones to return
+          required: false
+          schema:
+            type: integer
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Properties to include
+          required: false
+          schema:
+            type: string
+        - name: f
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Child zones as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+  /ogc/dggs/v1/collections/{collectionId}/neighbors:
+    get:
+      operationId: OGCDGGS_getNeighbors
+      summary: Get neighboring zones
+      description: |
+        Returns the neighboring zones of the specified zone within the given distance.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: zone_id
+          in: query
+          description: Zone identifier
+          required: true
+          schema:
+            type: string
+        - name: distance
+          in: query
+          description: Neighborhood distance (number of zone hops)
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: startIndex
+          in: query
+          description: Starting index for paging
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of zones to return
+          required: false
+          schema:
+            type: integer
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Properties to include
+          required: false
+          schema:
+            type: string
+        - name: f
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Neighboring zones as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+        '400':
+          description: Invalid distance parameter
+  /ogc/dggs/v1/collections/{collectionId}/parents:
+    get:
+      operationId: OGCDGGS_getParents
+      summary: Get parent zones
+      description: |
+        Returns the parent zones of the specified zone in the DGGS hierarchy.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: zone_id
+          in: query
+          description: Zone identifier
+          required: true
+          schema:
+            type: string
+        - name: startIndex
+          in: query
+          description: Starting index for paging
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of zones to return
+          required: false
+          schema:
+            type: integer
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: properties
+          in: query
+          description: Properties to include
+          required: false
+          schema:
+            type: string
+        - name: f
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Parent zones as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+  /ogc/dggs/v1/collections/{collectionId}/variables:
+    get:
+      operationId: OGCDGGS_dapaVariables
+      summary: List DAPA variables
+      description: |
+        Returns the list of variables (numeric attributes) available for
+        DAPA (Data Access and Processing API) aggregation operations.
+        Requires the collection to have a time dimension enabled.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: List of DAPA variables
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DAPAVariables'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found or DAPA not supported
+  /ogc/dggs/v1/collections/{collectionId}/processes:
+    get:
+      operationId: OGCDGGS_dapaDescription
+      summary: List DAPA processes
+      description: |
+        Returns the list of available DAPA processing endpoints for the collection.
+        Includes area:retrieve, area:aggregate-space, area:aggregate-time,
+        area:aggregate-space-time, position:retrieve, and position:aggregate-time.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: DAPA process descriptions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DAPAProcesses'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found or DAPA not supported
+  /ogc/dggs/v1/collections/{collectionId}/processes/area:retrieve:
+    get:
+      operationId: OGCDGGS_dapaAreaRetrieve
+      summary: DAPA area retrieve
+      description: |
+        Retrieves zone data within a spatial area. Equivalent to the zones endpoint
+        but accessed through the DAPA process interface.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: resolution
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: bbox
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: geom
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: zones
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: variables
+          in: query
+          description: Comma-separated list of variable names
+          required: false
+          schema:
+            type: string
+        - name: startIndex
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: f
+          in: query
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Zone data as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+  /ogc/dggs/v1/collections/{collectionId}/processes/area:aggregate-space:
+    get:
+      operationId: OGCDGGS_dapaAreaSpaceAggregate
+      summary: DAPA area space aggregation
+      description: |
+        Aggregates data across space within the specified area, grouped by time.
+        Returns aggregate statistics (min, max, count, etc.) for each time step.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: bbox
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: geom
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: zones
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: functions
+          in: query
+          description: Aggregate functions (e.g., max,min,count)
+          required: false
+          schema:
+            type: string
+            default: max,min,count
+        - name: variables
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Aggregated results as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+  /ogc/dggs/v1/collections/{collectionId}/processes/area:aggregate-time:
+    get:
+      operationId: OGCDGGS_dapaAreaTimeAggregate
+      summary: DAPA area time aggregation
+      description: |
+        Aggregates data across time within the specified area, grouped by zone.
+        Returns aggregate statistics for each zone.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: bbox
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: geom
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: zones
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: functions
+          in: query
+          required: false
+          schema:
+            type: string
+            default: max,min,count
+        - name: variables
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Aggregated results as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+  /ogc/dggs/v1/collections/{collectionId}/processes/area:aggregate-space-time:
+    get:
+      operationId: OGCDGGS_dapaAreaSpaceTimeAggregate
+      summary: DAPA area space-time aggregation
+      description: |
+        Aggregates data across both space and time within the specified area.
+        Returns a single set of aggregate statistics for the entire area and time range.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: bbox
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: geom
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: zones
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: functions
+          in: query
+          required: false
+          schema:
+            type: string
+            default: max,min,count
+        - name: variables
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Aggregated results as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+  /ogc/dggs/v1/collections/{collectionId}/processes/position:retrieve:
+    get:
+      operationId: OGCDGGS_dapaPositionRetrieve
+      summary: DAPA position retrieve
+      description: |
+        Retrieves data at a specific position (zone). Equivalent to the zone endpoint
+        but accessed through the DAPA process interface.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: zone_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: geom
+          in: query
+          description: WKT point geometry (alternative to zone_id)
+          required: false
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: datetime
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: variables
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: startIndex
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: f
+          in: query
+          required: false
+          schema:
+            type: string
+            default: application/geo+json
+      responses:
+        '200':
+          description: Zone data as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+  /ogc/dggs/v1/collections/{collectionId}/processes/position:aggregate-time:
+    get:
+      operationId: OGCDGGS_dapaPositionTimeAggregate
+      summary: DAPA position time aggregation
+      description: |
+        Aggregates data across time at a specific position (zone).
+        Returns aggregate statistics for the zone across the time range.
+      tags:
+        - "OGC API - DGGS 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: zone_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: geom
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: resolution
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: datetime
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: functions
+          in: query
+          required: false
+          schema:
+            type: string
+            default: max,min,count
+        - name: variables
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: startIndex
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Aggregated results as GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                type: object
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      description: Identifier of the DGGS collection
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    Collections:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        extent:
+          type: object
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    DAPAVariables:
+      type: object
+      properties:
+        variables:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              type:
+                type: string
+    DAPAProcesses:
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              description:
+                type: string
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

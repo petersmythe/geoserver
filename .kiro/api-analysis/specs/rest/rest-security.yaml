@@ -4,41 +4,54 @@ info:
   version: 1.0.0
   description: REST API endpoints for security module
 paths:
-  /:
+  /rest/security/authproviders:
     get:
-      operationId: get_rest_Rest_unknown
-      summary: GET /
-      description: Endpoint from rest module
+      operationId: get_rest_AuthenticationProviderRestController_list
+      summary: List authentication providers
+      description: |
+        Returns the list of enabled authentication providers in their current effective order.
+        Each provider includes its name, class, and configuration details.
       tags:
       - Security
       responses:
         '200':
           description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authproviders:
+                    type: array
+                    items:
+                      type: object
+            application/xml:
+              schema:
+                type: object
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
     post:
-      operationId: post_rest_Rest_create
-      summary: POST /
-      description: Endpoint from rest module
+      operationId: post_rest_AuthenticationProviderRestController_create
+      summary: Create a new authentication provider
+      description: |
+        Creates a new authentication provider and inserts it into the enabled order.
+        If position is not provided, the provider is appended at the end.
       tags:
       - Security
       responses:
         '201':
-          description: Resource created successfully
+          description: Provider created successfully
           content:
             application/json:
-              schema: &id001
+              schema:
                 type: object
             application/xml:
-              schema: *id001
+              schema:
+                type: object
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -52,68 +65,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-        description: The position parameter
-  /order:
-    delete:
-      operationId: delete_rest_Rest_orderDeleteNotAllowed
-      summary: DELETE /order
-      description: Endpoint from rest module
-      tags:
-      - Security
-      responses:
-        '200':
-          description: Resource deleted successfully
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-    get:
-      operationId: get_rest_Rest_orderGetNotAllowed
-      summary: GET /order
-      description: Endpoint from rest module
-      tags:
-      - Security
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-    post:
-      operationId: post_rest_Rest_orderPostNotAllowed
-      summary: POST /order
-      description: Endpoint from rest module
-      tags:
-      - Security
-      responses:
-        '201':
-          description: Resource created successfully
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
+          type: integer
+        description: Position in the provider chain order (0-based). If omitted, appended at end.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: SecurityAuthProviderConfig configuration object
+          application/xml:
+            schema:
+              type: object
+              description: SecurityAuthProviderConfig configuration object
+  /rest/security/authproviders/order:
     put:
-      operationId: put_rest_Rest_reorder
-      summary: PUT /order
-      description: Reorder authentication providers. Accepts an ordered list of provider names.
+      operationId: put_rest_AuthenticationProviderRestController_reorder
+      summary: Reorder authentication providers
+      description: |
+        Replaces the entire enabled provider order. The supplied list becomes the exact
+        content of the global security configuration's provider names. Providers not
+        listed remain saved on disk but are disabled.
       tags:
       - Security
       requestBody:
@@ -131,17 +103,42 @@ paths:
               $ref: ../common/schemas.yaml#/FilterChainOrderPut
       responses:
         '200':
-          description: Successful operation
+          description: Provider order updated successfully
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
+    get:
+      operationId: get_rest_AuthenticationProviderRestController_orderGetNotAllowed
+      summary: GET not allowed on provider order
+      description: Returns 405 Method Not Allowed. Use GET on /rest/security/authproviders to list providers in order.
+      tags:
+      - Security
+      responses:
+        '405':
+          description: Method not allowed
+    post:
+      operationId: post_rest_AuthenticationProviderRestController_orderPostNotAllowed
+      summary: POST not allowed on provider order
+      description: Returns 405 Method Not Allowed. Use POST on /rest/security/authproviders to create a provider.
+      tags:
+      - Security
+      responses:
+        '405':
+          description: Method not allowed
+    delete:
+      operationId: delete_rest_AuthenticationProviderRestController_orderDeleteNotAllowed
+      summary: DELETE not allowed on provider order
+      description: Returns 405 Method Not Allowed. Use DELETE on /rest/security/authproviders/{providerName} to remove a provider.
+      tags:
+      - Security
+      responses:
+        '405':
+          description: Method not allowed
   /rest/security/acl/catalog:
     get:
       operationId: get_rest_CatalogModeController_mapGet
@@ -198,44 +195,41 @@ paths:
           application/xml:
             schema:
               $ref: ../common/schemas.yaml#/CatalogModePut
-  /rest/security/acl/catalog/rest/security/acl/catalog:
-    get:
-      operationId: get_rest_CatalogSecurityController_checkUserIsAdmin
-      summary: GET /rest/security/acl/catalog/rest/security/acl/catalog
-      description: Endpoint from rest module
+  /rest/security/acl/catalog/reload:
+    post:
+      operationId: post_rest_CatalogSecurityController_reloadCatalogSecurity
+      summary: Reload catalog security configuration
+      description: |
+        Reloads the GeoServer security manager configuration from disk.
+        Requires administrative privileges. Useful after manual edits to
+        security configuration files.
       tags:
       - Security
       responses:
         '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+          description: Security configuration reloaded successfully
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-  /rest/security/acl/layers/rest/security/acl/layers:
-    get:
-      operationId: get_rest_DataAccessController_addRuleToMap
-      summary: GET /rest/security/acl/layers/rest/security/acl/layers
-      description: Endpoint from rest module
+    put:
+      operationId: put_rest_CatalogSecurityController_reloadCatalogSecurity
+      summary: Reload catalog security configuration
+      description: |
+        Reloads the GeoServer security manager configuration from disk.
+        Requires administrative privileges. Useful after manual edits to
+        security configuration files.
       tags:
       - Security
       responses:
         '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+          description: Security configuration reloaded successfully
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
   /rest/security/authfilters:
@@ -761,26 +755,6 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-  /rest/security/filterchain/rest/security/filterchain:
-    get:
-      operationId: get_rest_AuthenticationFilterChainRestController_unknown
-      summary: GET /rest/security/filterchain/rest/security/filterchain
-      description: Endpoint from rest module
-      tags:
-      - Security
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/security/filterchain/{chainName}:
     delete:
       operationId: delete_rest_AuthenticationFilterChainRestController_deleteOne
@@ -956,26 +930,6 @@ paths:
         schema:
           type: string
         description: The group name
-  /rest/security/roles/rest/security/roles:
-    get:
-      operationId: get_rest_RolesRestController_unknown
-      summary: GET /rest/security/roles/rest/security/roles
-      description: Endpoint from rest module
-      tags:
-      - Security
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/security/roles/role/{role}:
     delete:
       operationId: delete_rest_RolesRestController_delete
@@ -1561,26 +1515,6 @@ paths:
           $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
-  /rest/security/self/password/rest/security/self/password:
-    get:
-      operationId: get_rest_UserPasswordController_passwordGet_rest
-      summary: GET /rest/security/self/password/rest/security/self/password
-      description: Endpoint from rest module
-      tags:
-      - Security
-      responses:
-        '200':
-          description: Successful operation
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
   /rest/security/usergroup/group/{group}:
     delete:
       operationId: delete_rest_UsersRestController_deleteGroup
@@ -1681,26 +1615,6 @@ paths:
                 type: object
             application/xml:
               schema: *id021
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
-        '401':
-          $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
-        '500':
-          $ref: ../common/responses.yaml#/InternalServerError
-  /rest/security/usergroup/rest/security/usergroup:
-    get:
-      operationId: get_rest_UsersRestController_unknown
-      summary: GET /rest/security/usergroup/rest/security/usergroup
-      description: Endpoint from rest module
-      tags:
-      - Security
-      responses:
-        '200':
-          description: Successful operation
         '400':
           $ref: ../common/responses.yaml#/BadRequest
         '401':
@@ -2534,6 +2448,39 @@ paths:
               type: object
               description: AbstractURLCheck configuration object
   /rest/urlchecks/{urlCheckName}:
+    get:
+      operationId: get_rest_UrlCheckController_urlCheckGet
+      summary: Get a URL check configuration
+      description: |
+        Retrieves the configuration of a single URL check by name, including its
+        name, description, enabled status, and regex pattern.
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: urlCheckName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the URL check to retrieve
     delete:
       operationId: delete_rest_UrlCheckController_urlCheckDelete
       summary: DELETE /rest/urlchecks/{urlCheckName}

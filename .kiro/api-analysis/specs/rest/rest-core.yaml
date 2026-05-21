@@ -434,11 +434,14 @@ paths:
         schema:
           type: string
         description: The CRS identifier (e.g. EPSG:4326)
-  /rest/index:
+  /rest:
     get:
-      operationId: get_rest_IndexController_get
-      summary: GET /rest/index
-      description: Endpoint from rest module
+      operationId: get_rest_IndexController_get_root
+      summary: REST API index
+      description: |
+        Returns a list of available REST API resource paths. This is the root
+        index endpoint that auto-generates a listing of all non-templated GET
+        paths registered with the Spring MVC request mapping handler.
       tags:
       - Core
       responses:
@@ -446,18 +449,48 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema: &id007
+              schema:
                 type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      type: string
+                    description: List of available REST resource paths
             application/xml:
-              schema: *id007
-        '400':
-          $ref: ../common/responses.yaml#/BadRequest
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: string
+                description: HTML page listing available REST resources
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
-        '403':
-          $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/index:
+    get:
+      operationId: get_rest_IndexController_get
+      summary: REST API index (alias)
+      description: |
+        Alias for GET /rest. Returns a list of available REST API resource paths.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: string
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
   /rest/layergroups:
@@ -6810,3 +6843,371 @@ paths:
         schema:
           type: string
         description: Path to the resource within the data directory
+
+  # ─── Store/Resource Reset Endpoints ───────────────────────────────────────────
+  # These endpoints clear cached connections and metadata for a store or resource.
+  # They accept POST or PUT with no body and return 200 on success.
+
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/reset:
+    post:
+      operationId: post_rest_DataStoreController_reset
+      summary: Reset data store resource cache
+      description: |
+        Clears the cached connection pool and metadata for the specified data store.
+        Forces GeoServer to re-read connection parameters and schema information
+        on the next request. Useful after external changes to the underlying database.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Data store cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+    put:
+      operationId: put_rest_DataStoreController_reset
+      summary: Reset data store resource cache
+      description: |
+        Clears the cached connection pool and metadata for the specified data store.
+        Forces GeoServer to re-read connection parameters and schema information
+        on the next request. Useful after external changes to the underlying database.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Data store cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+
+  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/reset:
+    post:
+      operationId: post_rest_CoverageStoreController_reset
+      summary: Reset coverage store resource cache
+      description: |
+        Clears the cached reader and metadata for the specified coverage store.
+        Forces GeoServer to re-read the coverage data source on the next request.
+        Useful after external changes to the underlying raster data files.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Coverage store cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+    put:
+      operationId: put_rest_CoverageStoreController_reset
+      summary: Reset coverage store resource cache
+      description: |
+        Clears the cached reader and metadata for the specified coverage store.
+        Forces GeoServer to re-read the coverage data source on the next request.
+        Useful after external changes to the underlying raster data files.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Coverage store cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+
+  /rest/workspaces/{workspaceName}/coveragestores/{storeName}/coverages/{coverageName}/reset:
+    post:
+      operationId: post_rest_CoverageController_reset
+      summary: Reset coverage resource cache
+      description: |
+        Clears the cached metadata for a specific coverage within a coverage store.
+        Forces GeoServer to re-read the coverage metadata on the next request.
+        More targeted than resetting the entire store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Coverage cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: coverageName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage
+    put:
+      operationId: put_rest_CoverageController_reset
+      summary: Reset coverage resource cache
+      description: |
+        Clears the cached metadata for a specific coverage within a coverage store.
+        Forces GeoServer to re-read the coverage metadata on the next request.
+        More targeted than resetting the entire store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Coverage cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage store
+      - name: coverageName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the coverage
+
+  /rest/workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}/reset:
+    post:
+      operationId: post_rest_FeatureTypeController_reset_store
+      summary: Reset feature type resource cache (store-qualified)
+      description: |
+        Clears the cached schema and metadata for a specific feature type within a data store.
+        Forces GeoServer to re-read the feature type schema on the next request.
+        More targeted than resetting the entire data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Feature type cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+    put:
+      operationId: put_rest_FeatureTypeController_reset_store
+      summary: Reset feature type resource cache (store-qualified)
+      description: |
+        Clears the cached schema and metadata for a specific feature type within a data store.
+        Forces GeoServer to re-read the feature type schema on the next request.
+        More targeted than resetting the entire data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Feature type cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: storeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the data store
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+
+  /rest/workspaces/{workspaceName}/featuretypes/{featureTypeName}/reset:
+    post:
+      operationId: post_rest_FeatureTypeController_reset
+      summary: Reset feature type resource cache
+      description: |
+        Clears the cached schema and metadata for a specific feature type.
+        Forces GeoServer to re-read the feature type schema on the next request.
+        The feature type is looked up within the workspace's default data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Feature type cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type
+    put:
+      operationId: put_rest_FeatureTypeController_reset
+      summary: Reset feature type resource cache
+      description: |
+        Clears the cached schema and metadata for a specific feature type.
+        Forces GeoServer to re-read the feature type schema on the next request.
+        The feature type is looked up within the workspace's default data store.
+      tags:
+      - Core
+      responses:
+        '200':
+          description: Feature type cache cleared successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          $ref: ../common/responses.yaml#/NotFound
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: workspaceName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the workspace
+      - name: featureTypeName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the feature type

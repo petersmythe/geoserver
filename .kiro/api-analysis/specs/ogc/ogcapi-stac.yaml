@@ -1,0 +1,656 @@
+openapi: 3.0.0
+info:
+  title: GeoServer STAC API
+  description: |
+    SpatioTemporal Asset Catalog (STAC) API provides search and discovery of
+    geospatial assets organized into collections and items. Built on top of
+    OGC API - Features with STAC-specific extensions.
+
+    Base path: /ogc/stac/v1
+
+    Supports STAC Core, Item Search (GET and POST), filtering (CQL2/ECQL),
+    sorting, and field selection.
+
+    Note: This is a community module and must be installed separately.
+    Requires the OpenSearch for EO (oseo) module as a backend.
+  version: 1.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "STAC"
+    description: |
+      SpatioTemporal Asset Catalog (STAC) API endpoints.
+      Community module — requires separate installation.
+    externalDocs:
+      description: STAC API Specification
+      url: https://stacspec.org/
+paths:
+  /ogc/stac/v1:
+    get:
+      operationId: STAC_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the STAC catalog landing page with links to collections, search,
+        conformance, and API definition. Includes STAC version and conformsTo list.
+      tags:
+        - "STAC"
+      responses:
+        '200':
+          description: STAC catalog landing page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/stac/v1/openapi:
+    get:
+      operationId: STAC_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the STAC API service.
+      tags:
+        - "STAC"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/stac/v1/conformance:
+    get:
+      operationId: STAC_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes. Includes OGC API Features Core,
+        STAC Core, STAC Search, STAC Collections, STAC Features, CQL2 filtering,
+        sorting, and field selection.
+      tags:
+        - "STAC"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/stac/v1/collections:
+    get:
+      operationId: STAC_getCollections
+      summary: List STAC collections
+      description: |
+        Returns a list of all enabled STAC collections. Each collection represents
+        a dataset with common properties and spatial/temporal extent.
+      tags:
+        - "STAC"
+      responses:
+        '200':
+          description: List of STAC collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionsResponse'
+            text/html:
+              schema:
+                type: string
+  /ogc/stac/v1/collections/{collectionId}:
+    get:
+      operationId: STAC_getCollection
+      summary: Get a STAC collection
+      description: |
+        Returns metadata for a specific STAC collection, including its spatial and
+        temporal extent, license, providers, and links to items.
+      tags:
+        - "STAC"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: STAC collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/STACCollection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/stac/v1/collections/{collectionId}/items:
+    get:
+      operationId: STAC_getItems
+      summary: List items in a collection
+      description: |
+        Returns STAC items (features) in the specified collection.
+        Supports filtering by bbox, datetime, CQL2/ECQL filter, sorting, field selection, and paging.
+      tags:
+        - "STAC"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: startIndex
+          in: query
+          description: Starting index for paging
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of items to return
+          required: false
+          schema:
+            type: integer
+        - name: bbox
+          in: query
+          description: Bounding box filter (minLon,minLat,maxLon,maxLat)
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: Temporal filter (ISO 8601 instant or interval)
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: CQL2 or ECQL filter expression
+          required: false
+          schema:
+            type: string
+        - name: filter-lang
+          in: query
+          description: Filter language
+          required: false
+          schema:
+            type: string
+        - name: sortby
+          in: query
+          description: Sort specification
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Field selection (include/exclude fields with +/- prefix)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: STAC item collection
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/stac/v1/collections/{collectionId}/items/{itemId}:
+    get:
+      operationId: STAC_getItem
+      summary: Get a single STAC item
+      description: |
+        Returns a single STAC item by its identifier from the specified collection.
+        Supports field selection via the fields parameter.
+      tags:
+        - "STAC"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: itemId
+          in: path
+          description: Item identifier
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Field selection
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: STAC item
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/STACItem'
+        '404':
+          description: Item or collection not found
+  /ogc/stac/v1/search:
+    get:
+      operationId: STAC_searchGet
+      summary: Search items (GET)
+      description: |
+        Searches for STAC items across all or specified collections using query parameters.
+        Supports bbox, intersects (geometry), datetime, CQL2 filter, sorting, and field selection.
+      tags:
+        - "STAC"
+      parameters:
+        - name: collections
+          in: query
+          description: Comma-separated list of collection IDs to search
+          required: false
+          schema:
+            type: string
+        - name: startIndex
+          in: query
+          description: Starting index for paging
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of items to return
+          required: false
+          schema:
+            type: integer
+        - name: bbox
+          in: query
+          description: Bounding box filter
+          required: false
+          schema:
+            type: string
+        - name: intersects
+          in: query
+          description: GeoJSON geometry for spatial intersection filter
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: CQL2 or ECQL filter expression
+          required: false
+          schema:
+            type: string
+        - name: filter-lang
+          in: query
+          description: Filter language
+          required: false
+          schema:
+            type: string
+        - name: sortby
+          in: query
+          description: Sort specification
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Field selection
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results as STAC item collection
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+    post:
+      operationId: STAC_searchPost
+      summary: Search items (POST)
+      description: |
+        Searches for STAC items using a JSON request body. Supports the same
+        filtering capabilities as GET but allows complex geometries in the intersects field.
+      tags:
+        - "STAC"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: Search results as STAC item collection
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/ItemCollection'
+        '400':
+          description: Invalid search query
+  /ogc/stac/v1/queryables:
+    get:
+      operationId: STAC_getSearchQueryables
+      summary: Get global queryable properties
+      description: |
+        Returns the JSON Schema describing properties that can be used in
+        filter expressions across all collections.
+      tags:
+        - "STAC"
+      responses:
+        '200':
+          description: Queryable properties schema
+          content:
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/Queryables'
+            text/html:
+              schema:
+                type: string
+  /ogc/stac/v1/sortables:
+    get:
+      operationId: STAC_getSearchSortables
+      summary: Get global sortable properties
+      description: |
+        Returns the JSON Schema describing properties that can be used for
+        sorting search results across all collections.
+      tags:
+        - "STAC"
+      responses:
+        '200':
+          description: Sortable properties schema
+          content:
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/Sortables'
+            text/html:
+              schema:
+                type: string
+  /ogc/stac/v1/collections/{collectionId}/queryables:
+    get:
+      operationId: STAC_getCollectionQueryables
+      summary: Get collection queryable properties
+      description: |
+        Returns the JSON Schema describing properties that can be used in
+        filter expressions for the specified collection.
+      tags:
+        - "STAC"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Queryable properties schema
+          content:
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/Queryables'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/stac/v1/collections/{collectionId}/sortables:
+    get:
+      operationId: STAC_getCollectionSortables
+      summary: Get collection sortable properties
+      description: |
+        Returns the JSON Schema describing properties that can be used for
+        sorting items in the specified collection.
+      tags:
+        - "STAC"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Sortable properties schema
+          content:
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/Sortables'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      description: STAC collection identifier
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [Catalog]
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        stac_version:
+          type: string
+        conformsTo:
+          type: array
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    CollectionsResponse:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/STACCollection'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    STACCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [Collection]
+        id:
+          type: string
+        stac_version:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        license:
+          type: string
+        extent:
+          type: object
+          properties:
+            spatial:
+              type: object
+              properties:
+                bbox:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+            temporal:
+              type: object
+              properties:
+                interval:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ItemCollection:
+      type: object
+      description: GeoJSON FeatureCollection of STAC items
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/STACItem'
+        numberMatched:
+          type: integer
+        numberReturned:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    STACItem:
+      type: object
+      description: STAC Item (GeoJSON Feature with STAC extensions)
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        stac_version:
+          type: string
+        id:
+          type: string
+        geometry:
+          type: object
+        bbox:
+          type: array
+          items:
+            type: number
+        properties:
+          type: object
+          properties:
+            datetime:
+              type: string
+              format: date-time
+        assets:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              href:
+                type: string
+              type:
+                type: string
+              title:
+                type: string
+              roles:
+                type: array
+                items:
+                  type: string
+        collection:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    SearchQuery:
+      type: object
+      description: STAC search query body
+      properties:
+        collections:
+          type: array
+          items:
+            type: string
+        bbox:
+          type: array
+          items:
+            type: number
+        intersects:
+          type: object
+          description: GeoJSON geometry
+        datetime:
+          type: string
+        filter:
+          type: object
+          description: CQL2 JSON filter
+        filter-lang:
+          type: string
+        sortby:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              direction:
+                type: string
+                enum: [asc, desc]
+        limit:
+          type: integer
+        startIndex:
+          type: integer
+    Queryables:
+      type: object
+      description: JSON Schema describing queryable properties
+      properties:
+        $schema:
+          type: string
+        $id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+    Sortables:
+      type: object
+      description: JSON Schema describing sortable properties
+      properties:
+        $schema:
+          type: string
+        $id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: object
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

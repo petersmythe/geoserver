@@ -1,0 +1,391 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - Maps
+  description: |
+    OGC API - Maps provides access to rendered map images of geospatial data.
+    This is the modern REST-based successor to WMS, following the OGC API standard patterns.
+
+    Base path: /ogc/maps/v1
+
+    Supports styled map rendering, bounding box subsetting, CRS transformation,
+    temporal filtering, and feature info queries.
+
+    Note: This is a community module and must be installed separately.
+  version: 1.0.1
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - Maps 1.0"
+    description: |
+      OGC API - Maps endpoints for rendered map access.
+      Community module — requires separate installation.
+    externalDocs:
+      description: OGC API - Maps Specification
+      url: https://ogcapi.ogc.org/maps/
+paths:
+  /ogc/maps/v1:
+    get:
+      operationId: OGCMaps_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - Maps service.
+        Provides links to the API definition, conformance declaration, and collections.
+      tags:
+        - "OGC API - Maps 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/maps/v1/conformance:
+    get:
+      operationId: OGCMaps_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes Core, Collections, Geodata, BBox, and CRS conformance classes.
+      tags:
+        - "OGC API - Maps 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/maps/v1/collections:
+    get:
+      operationId: OGCMaps_getCollections
+      summary: List map collections
+      description: |
+        Returns a list of all available map collections (layers and layer groups).
+      tags:
+        - "OGC API - Maps 1.0"
+      responses:
+        '200':
+          description: List of map collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collections'
+            text/html:
+              schema:
+                type: string
+  /ogc/maps/v1/collections/{collectionId}:
+    get:
+      operationId: OGCMaps_describeCollection
+      summary: Describe a map collection
+      description: |
+        Returns metadata about a specific map collection, including its
+        spatial extent, available styles, and links.
+      tags:
+        - "OGC API - Maps 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/maps/v1/collections/{collectionId}/styles:
+    get:
+      operationId: OGCMaps_getStyles
+      summary: List collection styles
+      description: |
+        Returns the list of styles available for the specified map collection.
+      tags:
+        - "OGC API - Maps 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: List of available styles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StylesDocument'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/maps/v1/collections/{collectionId}/styles/{styleId}/map:
+    get:
+      operationId: OGCMaps_getCollectionMap
+      summary: Get a rendered map
+      description: |
+        Returns a rendered map image for the specified collection using the given style.
+        Supports bounding box, CRS, dimensions, transparency, and background color parameters.
+        If format is text/html, returns an interactive HTML map viewer.
+      tags:
+        - "OGC API - Maps 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+        - name: f
+          in: query
+          description: Output format (e.g., image/png, image/jpeg, text/html)
+          required: true
+          schema:
+            type: string
+        - name: bbox
+          in: query
+          description: Bounding box (minLon,minLat,maxLon,maxLat)
+          required: false
+          schema:
+            type: string
+        - name: crs
+          in: query
+          description: Coordinate reference system for the map
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: Temporal filter (ISO 8601 instant or interval)
+          required: false
+          schema:
+            type: string
+        - name: width
+          in: query
+          description: Map width in pixels
+          required: false
+          schema:
+            type: integer
+        - name: height
+          in: query
+          description: Map height in pixels
+          required: false
+          schema:
+            type: integer
+        - name: transparent
+          in: query
+          description: Whether the map background should be transparent
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: bgcolor
+          in: query
+          description: Background color (hex format, e.g., 0xFFFFFF)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rendered map image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter value
+        '404':
+          description: Collection or style not found
+  /ogc/maps/v1/collections/{collectionId}/styles/{styleId}/map/info:
+    get:
+      operationId: OGCMaps_getCollectionInfo
+      summary: Get feature info from a map
+      description: |
+        Returns feature information at a specific pixel location on the rendered map.
+        Similar to WMS GetFeatureInfo. Requires i and j parameters specifying the pixel coordinates.
+      tags:
+        - "OGC API - Maps 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+        - name: f
+          in: query
+          description: Output format for feature info (e.g., application/json, text/html)
+          required: true
+          schema:
+            type: string
+        - name: i
+          in: query
+          description: Pixel column (x coordinate) to query
+          required: true
+          schema:
+            type: integer
+        - name: j
+          in: query
+          description: Pixel row (y coordinate) to query
+          required: true
+          schema:
+            type: integer
+        - name: bbox
+          in: query
+          description: Bounding box of the map
+          required: false
+          schema:
+            type: string
+        - name: crs
+          in: query
+          description: CRS of the map
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: query
+          description: Temporal filter
+          required: false
+          schema:
+            type: string
+        - name: width
+          in: query
+          description: Map width in pixels
+          required: false
+          schema:
+            type: integer
+        - name: height
+          in: query
+          description: Map height in pixels
+          required: false
+          schema:
+            type: integer
+        - name: transparent
+          in: query
+          description: Whether the map background is transparent
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: bgcolor
+          in: query
+          description: Background color
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Feature information at the queried location
+          content:
+            application/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter value
+        '404':
+          description: Collection or style not found
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      description: Identifier of the map collection (layer or layer group name)
+      required: true
+      schema:
+        type: string
+    styleId:
+      name: styleId
+      in: path
+      description: Identifier of the style to use for rendering
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    Collections:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        extent:
+          type: object
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    StylesDocument:
+      type: object
+      properties:
+        styles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

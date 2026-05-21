@@ -58,6 +58,22 @@ x-modular-structure:
       description: OGC API - Features 1.0 (modern REST-based feature access)
     - file: ./ogc/ogcapi-tiles.yaml
       description: OGC API - Tiles 1.0 (modern REST-based tile access)
+    - file: ./ogc/ogcapi-styles.yaml
+      description: OGC API - Styles 1.0 (community module for style management)
+    - file: ./ogc/ogcapi-processes.yaml
+      description: OGC API - Processes 1.0 (community module for geospatial processing)
+    - file: ./ogc/ogcapi-coverages.yaml
+      description: OGC API - Coverages 1.0 (community module for raster data access)
+    - file: ./ogc/ogcapi-maps.yaml
+      description: OGC API - Maps 1.0 (community module for rendered map access)
+    - file: ./ogc/ogcapi-images.yaml
+      description: OGC API - Images 1.0 (community module for image collection management)
+    - file: ./ogc/ogcapi-3dgeovolumes.yaml
+      description: OGC API - 3D GeoVolumes 1.0 (community module for 3D content)
+    - file: ./ogc/ogcapi-dggs.yaml
+      description: OGC API - DGGS 1.0 (community module for Discrete Global Grid Systems)
+    - file: ./ogc/ogcapi-stac.yaml
+      description: STAC API 1.0 (community module for SpatioTemporal Asset Catalog)
     common:
     - file: ./common/schemas.yaml
       description: Reusable schema definitions
@@ -122,6 +138,54 @@ tags:
   externalDocs:
     description: OGC API - Tiles Specification
     url: https://ogcapi.ogc.org/tiles/
+- name: "OGC API - Styles 1.0"
+  description: OGC API - Styles - Style management and access (community module, requires
+    separate installation)
+  externalDocs:
+    description: OGC API - Styles Draft Specification
+    url: https://ogcapi.ogc.org/styles/
+- name: "OGC API - Processes 1.0"
+  description: OGC API - Processes - Geospatial processing (community module, requires
+    separate installation)
+  externalDocs:
+    description: OGC API - Processes Specification
+    url: https://ogcapi.ogc.org/processes/
+- name: "OGC API - Coverages 1.0"
+  description: OGC API - Coverages - Raster data access (community module, requires
+    separate installation)
+  externalDocs:
+    description: OGC API - Coverages Specification
+    url: https://ogcapi.ogc.org/coverages/
+- name: "OGC API - Maps 1.0"
+  description: OGC API - Maps - Rendered map access (community module, requires separate
+    installation)
+  externalDocs:
+    description: OGC API - Maps Specification
+    url: https://ogcapi.ogc.org/maps/
+- name: "OGC API - Images 1.0"
+  description: OGC API - Images - Image collection management (community module, requires
+    separate installation)
+  externalDocs:
+    description: OGC API - Images Draft Specification
+    url: https://ogcapi.ogc.org/images/
+- name: "OGC API - 3D GeoVolumes 1.0"
+  description: OGC API - 3D GeoVolumes - 3D content access (community module, requires
+    separate installation)
+  externalDocs:
+    description: OGC API - 3D GeoVolumes Draft Specification
+    url: https://ogcapi.ogc.org/geovolumes/
+- name: "OGC API - DGGS 1.0"
+  description: OGC API - DGGS - Discrete Global Grid System data access (community
+    module, requires separate installation)
+  externalDocs:
+    description: OGC API - DGGS Draft Specification
+    url: https://ogcapi.ogc.org/dggs/
+- name: STAC
+  description: SpatioTemporal Asset Catalog API - Search and discovery of geospatial
+    assets (community module, requires separate installation)
+  externalDocs:
+    description: STAC API Specification
+    url: https://stacspec.org/
 paths:
   /.placeholder:
     get:
@@ -161,6 +225,22 @@ paths:
         - OGC API Features: ./ogc/ogcapi-features.yaml
 
         - OGC API Tiles: ./ogc/ogcapi-tiles.yaml
+
+        - OGC API Styles: ./ogc/ogcapi-styles.yaml
+
+        - OGC API Processes: ./ogc/ogcapi-processes.yaml
+
+        - OGC API Coverages: ./ogc/ogcapi-coverages.yaml
+
+        - OGC API Maps: ./ogc/ogcapi-maps.yaml
+
+        - OGC API Images: ./ogc/ogcapi-images.yaml
+
+        - OGC API 3D GeoVolumes: ./ogc/ogcapi-3dgeovolumes.yaml
+
+        - OGC API DGGS: ./ogc/ogcapi-dggs.yaml
+
+        - STAC: ./ogc/ogcapi-stac.yaml
 
         '
       tags:

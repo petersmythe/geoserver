@@ -1,0 +1,441 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - Styles
+  description: |
+    OGC API - Styles provides access to and management of styles used for rendering geospatial data.
+    Supports multiple style encodings including SLD 1.0/1.1, Mapbox Styles, and CSS.
+
+    Base path: /ogc/styles/v1
+
+    Note: This is a community module and must be installed separately.
+  version: 1.0.1
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - Styles 1.0"
+    description: |
+      OGC API - Styles endpoints for managing and accessing cartographic styles.
+      Community module — requires separate installation.
+    externalDocs:
+      description: OGC API - Styles Draft Specification
+      url: https://ogcapi.ogc.org/styles/
+paths:
+  /ogc/styles/v1:
+    get:
+      operationId: OGCStyles_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - Styles service.
+        Provides links to the API definition, conformance declaration, and style resources.
+      tags:
+        - "OGC API - Styles 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/styles/v1/openapi:
+    get:
+      operationId: OGCStyles_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - Styles service.
+      tags:
+        - "OGC API - Styles 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/styles/v1/conformance:
+    get:
+      operationId: OGCStyles_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes Core, HTML, JSON, Manage Styles, Style Validation, Mapbox, SLD 1.0, and SLD 1.1.
+      tags:
+        - "OGC API - Styles 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/styles/v1/styles:
+    get:
+      operationId: OGCStyles_getStyleSet
+      summary: List all styles
+      description: |
+        Returns a list of all available styles in the catalog.
+        Each style entry includes its identifier, title, and links to the style document.
+      tags:
+        - "OGC API - Styles 1.0"
+      responses:
+        '200':
+          description: List of styles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StylesDocument'
+            text/html:
+              schema:
+                type: string
+    post:
+      operationId: OGCStyles_addStyle
+      summary: Add a new style
+      description: |
+        Creates a new style from the request body. The style format is determined by the
+        Content-Type header (e.g., application/vnd.ogc.sld+xml for SLD 1.0,
+        application/vnd.ogc.se+xml for SLD 1.1, application/vnd.mapbox.style+json for Mapbox).
+        The style name is extracted from the style document or auto-generated.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - name: validate
+          in: query
+          description: |
+            Validation mode: "no" (default) to skip validation, "yes" to validate and save,
+            "only" to validate without saving.
+          required: false
+          schema:
+            type: string
+            enum: [yes, no, only]
+            default: "no"
+      requestBody:
+        required: true
+        description: Style document in any supported encoding
+        content:
+          application/vnd.ogc.sld+xml:
+            schema:
+              type: string
+          application/vnd.ogc.se+xml:
+            schema:
+              type: string
+          application/vnd.mapbox.style+json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Style created successfully
+          headers:
+            Location:
+              description: URL of the newly created style
+              schema:
+                type: string
+        '204':
+          description: Validation-only mode — style is valid
+        '400':
+          description: Invalid style document
+        '409':
+          description: Style with the same name already exists
+      security:
+        - basicAuth: []
+  /ogc/styles/v1/styles/{styleId}:
+    get:
+      operationId: OGCStyles_getStyle
+      summary: Get a style document
+      description: |
+        Returns the style document for the specified style. The response format depends on
+        the Accept header. If no specific format is requested, the native format is returned.
+        Supports content negotiation between SLD 1.0, SLD 1.1, Mapbox Styles, CSS, and YSLD.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/styleId'
+      responses:
+        '200':
+          description: Style document in the requested encoding
+          content:
+            application/vnd.ogc.sld+xml:
+              schema:
+                type: string
+            application/vnd.ogc.se+xml:
+              schema:
+                type: string
+            application/vnd.mapbox.style+json:
+              schema:
+                type: object
+        '404':
+          description: Style not found
+        '415':
+          description: Requested media type not supported
+    put:
+      operationId: OGCStyles_updateStyle
+      summary: Replace a style
+      description: |
+        Replaces the style document for the specified style. If the style does not exist,
+        it will be created. The style format is determined by the Content-Type header.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/styleId'
+        - name: validate
+          in: query
+          description: Validation mode
+          required: false
+          schema:
+            type: string
+            enum: [yes, no, only]
+            default: "no"
+      requestBody:
+        required: true
+        description: Style document in any supported encoding
+        content:
+          application/vnd.ogc.sld+xml:
+            schema:
+              type: string
+          application/vnd.ogc.se+xml:
+            schema:
+              type: string
+          application/vnd.mapbox.style+json:
+            schema:
+              type: object
+      responses:
+        '204':
+          description: Style replaced successfully
+        '400':
+          description: Invalid style document
+      security:
+        - basicAuth: []
+    delete:
+      operationId: OGCStyles_deleteStyle
+      summary: Delete a style
+      description: Deletes the specified style from the catalog.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/styleId'
+      responses:
+        '204':
+          description: Style deleted successfully
+        '404':
+          description: Style not found
+      security:
+        - basicAuth: []
+  /ogc/styles/v1/styles/{styleId}/metadata:
+    get:
+      operationId: OGCStyles_getStyleMetadata
+      summary: Get style metadata
+      description: |
+        Returns metadata about the specified style, including title, description,
+        keywords, point of contact, dates, applicable layers, and links.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/styleId'
+      responses:
+        '200':
+          description: Style metadata document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StyleMetadata'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Style not found
+    put:
+      operationId: OGCStyles_updateStyleMetadata
+      summary: Replace style metadata
+      description: |
+        Replaces the metadata for the specified style. Only descriptive metadata
+        (title, description, keywords, point of contact, dates, access constraints)
+        can be updated — structural metadata is derived from the style content.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/styleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StyleMetadata'
+      responses:
+        '204':
+          description: Metadata replaced successfully
+        '400':
+          description: Invalid metadata
+        '404':
+          description: Style not found
+      security:
+        - basicAuth: []
+    patch:
+      operationId: OGCStyles_patchStyleMetadata
+      summary: Partially update style metadata
+      description: |
+        Partially updates the metadata for the specified style. Only the provided
+        fields are updated; omitted fields remain unchanged.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/styleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StyleMetadata'
+      responses:
+        '204':
+          description: Metadata updated successfully
+        '404':
+          description: Style not found
+      security:
+        - basicAuth: []
+  /ogc/styles/v1/styles/{styleId}/thumbnail:
+    get:
+      operationId: OGCStyles_getStyleThumbnail
+      summary: Get style thumbnail
+      description: |
+        Returns a PNG thumbnail image representing the style applied to sample data.
+        The thumbnail is generated by rendering the style against associated layers.
+      tags:
+        - "OGC API - Styles 1.0"
+      parameters:
+        - $ref: '#/components/parameters/styleId'
+      responses:
+        '200':
+          description: Thumbnail image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Style not found
+        '500':
+          description: Failed to generate thumbnail
+components:
+  parameters:
+    styleId:
+      name: styleId
+      in: path
+      description: Identifier of the style
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    StylesDocument:
+      type: object
+      description: List of available styles
+      properties:
+        styles:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Style identifier
+              title:
+                type: string
+                description: Human-readable title
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    StyleMetadata:
+      type: object
+      description: Style metadata document
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        keywords:
+          type: array
+          items:
+            type: string
+        pointOfContact:
+          type: string
+        accessConstraints:
+          type: string
+        dates:
+          type: object
+          properties:
+            creation:
+              type: string
+              format: date-time
+            publication:
+              type: string
+              format: date-time
+            revision:
+              type: string
+              format: date-time
+            validTill:
+              type: string
+              format: date-time
+            receivedOn:
+              type: string
+              format: date-time
+        layers:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              sampleData:
+                type: object
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

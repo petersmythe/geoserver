@@ -1,0 +1,431 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - Images
+  description: |
+    OGC API - Images provides access to and management of image collections (mosaics).
+    Supports listing, retrieving, adding, and deleting images in structured grid coverage readers.
+
+    Base path: /ogc/images/v1
+
+    Note: This is a community module and must be installed separately.
+    Requires a StructuredGridCoverage2DReader-backed store (e.g., ImageMosaic).
+  version: 1.0.1
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - Images 1.0"
+    description: |
+      OGC API - Images endpoints for managing image collections.
+      Community module — requires separate installation.
+    externalDocs:
+      description: OGC API - Images Draft Specification
+      url: https://ogcapi.ogc.org/images/
+paths:
+  /ogc/images/v1:
+    get:
+      operationId: OGCImages_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - Images service.
+        Provides links to the API definition, conformance declaration, and collections.
+      tags:
+        - "OGC API - Images 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/images/v1/openapi:
+    get:
+      operationId: OGCImages_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - Images service.
+      tags:
+        - "OGC API - Images 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/images/v1/conformance:
+    get:
+      operationId: OGCImages_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes Core, Collections, Images Core, and Images Transactional.
+      tags:
+        - "OGC API - Images 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/images/v1/collections:
+    get:
+      operationId: OGCImages_getCollections
+      summary: List image collections
+      description: |
+        Returns a list of all available image collections (structured coverage stores).
+      tags:
+        - "OGC API - Images 1.0"
+      responses:
+        '200':
+          description: List of image collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collections'
+            text/html:
+              schema:
+                type: string
+  /ogc/images/v1/collections/{collectionId}:
+    get:
+      operationId: OGCImages_describeCollection
+      summary: Describe an image collection
+      description: |
+        Returns metadata about a specific image collection, including its
+        spatial extent and links.
+      tags:
+        - "OGC API - Images 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Collection metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+  /ogc/images/v1/collections/{collectionId}/images:
+    get:
+      operationId: OGCImages_getImages
+      summary: List images in a collection
+      description: |
+        Returns a list of images (granules) in the specified collection.
+        Supports filtering by bounding box and time, and paging via startIndex/limit.
+        Returns STAC-compatible item features.
+      tags:
+        - "OGC API - Images 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: startIndex
+          in: query
+          description: Starting index for paging (0-based)
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of images to return
+          required: false
+          schema:
+            type: integer
+        - name: bbox
+          in: query
+          description: Bounding box filter (minLon,minLat,maxLon,maxLat)
+          required: false
+          schema:
+            type: string
+        - name: time
+          in: query
+          description: Temporal filter (ISO 8601 instant or interval)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of images as GeoJSON features
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/ImageCollection'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+    post:
+      operationId: OGCImages_addImage
+      summary: Add an image to a collection
+      description: |
+        Uploads and harvests a new image into the specified collection.
+        The image is added to the underlying structured grid coverage reader.
+        Supports single image files or ZIP archives containing multiple files.
+      tags:
+        - "OGC API - Images 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - name: filename
+          in: query
+          description: Filename for the uploaded image (auto-generated if not provided)
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Image file data
+        content:
+          image/tiff:
+            schema:
+              type: string
+              format: binary
+          application/zip:
+            schema:
+              type: string
+              format: binary
+          application/vnd.ogc.multipart;container=application/x-zip-compressed:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: Image added successfully
+          headers:
+            Location:
+              description: URL of the newly added image
+              schema:
+                type: string
+        '404':
+          description: Collection not found
+        '500':
+          description: Image could not be harvested
+      security:
+        - basicAuth: []
+  /ogc/images/v1/collections/{collectionId}/images/{imageId}:
+    get:
+      operationId: OGCImages_getImage
+      summary: Get a single image
+      description: |
+        Returns metadata for a single image (granule) by its identifier.
+      tags:
+        - "OGC API - Images 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/imageId'
+      responses:
+        '200':
+          description: Image metadata as GeoJSON feature
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/ImageFeature'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Image or collection not found
+    put:
+      operationId: OGCImages_updateImage
+      summary: Update an image
+      description: |
+        Replaces an existing image in the collection. Currently not implemented.
+      tags:
+        - "OGC API - Images 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/imageId'
+      responses:
+        '501':
+          description: Not implemented
+      security:
+        - basicAuth: []
+    delete:
+      operationId: OGCImages_deleteImage
+      summary: Delete an image
+      description: |
+        Removes an image (granule) from the collection. The underlying file
+        may or may not be deleted depending on the store implementation.
+      tags:
+        - "OGC API - Images 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/imageId'
+      responses:
+        '200':
+          description: Image deleted successfully
+        '404':
+          description: Image or collection not found
+        '501':
+          description: Write not supported on this reader
+      security:
+        - basicAuth: []
+  /ogc/images/v1/collections/{collectionId}/images/{imageId}/assets/{assetId}:
+    get:
+      operationId: OGCImages_getAsset
+      summary: Get an image asset
+      description: |
+        Returns the binary content of a specific asset (file) associated with an image.
+        Assets include the main image file and any support files (e.g., world files, metadata).
+      tags:
+        - "OGC API - Images 1.0"
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/imageId'
+        - name: assetId
+          in: path
+          description: Asset identifier (hash-based identifier for the file)
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Asset file content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Asset, image, or collection not found
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      description: Identifier of the image collection
+      required: true
+      schema:
+        type: string
+    imageId:
+      name: imageId
+      in: path
+      description: Identifier of the image (granule feature ID)
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    Collections:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        extent:
+          type: object
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ImageCollection:
+      type: object
+      description: GeoJSON FeatureCollection of images
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageFeature'
+        numberMatched:
+          type: integer
+        numberReturned:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ImageFeature:
+      type: object
+      description: GeoJSON Feature representing an image
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        id:
+          type: string
+        geometry:
+          type: object
+        properties:
+          type: object
+          properties:
+            datetime:
+              type: string
+              format: date-time
+        assets:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              href:
+                type: string
+              type:
+                type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

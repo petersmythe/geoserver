@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - 3D GeoVolumes
+  description: |
+    OGC API - 3D GeoVolumes provides access to 3D geospatial content containers.
+    Supports serving 3D Tiles and I3S scene layers through a standardized API.
+
+    Base path: /ogc/3dgeovolumes/v1
+
+    Collections are configured via a JSON file in the GeoServer data directory.
+    Each collection can reference 3D Tiles tilesets, I3S scene layers, or other 3D content.
+
+    Note: This is a community module and must be installed separately.
+  version: 1.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - 3D GeoVolumes 1.0"
+    description: |
+      OGC API - 3D GeoVolumes endpoints for 3D content access.
+      Community module — requires separate installation.
+    externalDocs:
+      description: OGC API - 3D GeoVolumes Draft Specification
+      url: https://ogcapi.ogc.org/geovolumes/
+paths:
+  /ogc/3dgeovolumes/v1:
+    get:
+      operationId: OGC3DGeoVolumes_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - 3D GeoVolumes service.
+        Provides links to the API definition, conformance declaration, and 3D collections.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/3dgeovolumes/v1/openapi:
+    get:
+      operationId: OGC3DGeoVolumes_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - 3D GeoVolumes service.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/3dgeovolumes/v1/conformance:
+    get:
+      operationId: OGC3DGeoVolumes_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes Core, Collections, JSON, HTML, and 3D GeoVolumes Core.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/3dgeovolumes/v1/collections:
+    get:
+      operationId: OGC3DGeoVolumes_describe3DContainers
+      summary: List 3D containers
+      description: |
+        Returns a list of all available 3D content containers (GeoVolumes).
+        Each container can reference 3D Tiles, I3S, or other 3D content formats.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      responses:
+        '200':
+          description: List of 3D containers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoVolumes'
+            text/html:
+              schema:
+                type: string
+  /ogc/3dgeovolumes/v1/collections/{3d-containerID}:
+    get:
+      operationId: OGC3DGeoVolumes_describe3DContainer
+      summary: Describe a 3D container
+      description: |
+        Returns metadata about a specific 3D content container, including its
+        extent, content links (3D Tiles tileset URLs, I3S scene layer URLs), and related resources.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/containerID'
+      responses:
+        '200':
+          description: 3D container metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoVolume'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Container not found
+  /ogc/3dgeovolumes/v1/collections/{3d-containerID}/{path}:
+    get:
+      operationId: OGC3DGeoVolumes_getResource
+      summary: Get a 3D resource
+      description: |
+        Serves static 3D content files (e.g., 3D Tiles tileset.json, individual tiles,
+        or other resources) from the container's data directory. The path is relative
+        to the container's root directory.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/containerID'
+        - name: path
+          in: path
+          description: Relative path to the resource within the container
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Resource content
+          content:
+            application/json:
+              schema:
+                type: object
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Resource not found
+  /ogc/3dgeovolumes/v1/cesium:
+    get:
+      operationId: OGC3DGeoVolumes_getCesiumViewer
+      summary: Cesium 3D viewer
+      description: |
+        Returns an HTML page with an embedded CesiumJS 3D globe viewer
+        configured to display the available 3D Tiles content.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      responses:
+        '200':
+          description: HTML page with Cesium viewer
+          content:
+            text/html:
+              schema:
+                type: string
+  /ogc/3dgeovolumes/v1/i3s:
+    get:
+      operationId: OGC3DGeoVolumes_getI3SViewer
+      summary: I3S viewer
+      description: |
+        Returns an HTML page with an embedded I3S client viewer
+        configured to display the available I3S scene layers.
+      tags:
+        - "OGC API - 3D GeoVolumes 1.0"
+      responses:
+        '200':
+          description: HTML page with I3S viewer
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  parameters:
+    containerID:
+      name: 3d-containerID
+      in: path
+      description: Identifier of the 3D content container
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    GeoVolumes:
+      type: object
+      description: List of 3D content containers
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoVolume'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    GeoVolume:
+      type: object
+      description: 3D content container metadata
+      properties:
+        id:
+          type: string
+          description: Container identifier
+        title:
+          type: string
+          description: Human-readable title
+        description:
+          type: string
+        extent:
+          type: object
+          properties:
+            spatial:
+              type: object
+              properties:
+                bbox:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+        content:
+          type: array
+          description: Links to 3D content (3D Tiles, I3S, etc.)
+          items:
+            $ref: '#/components/schemas/Link'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string

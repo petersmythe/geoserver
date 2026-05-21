@@ -14,7 +14,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Initialize tracking files for intermediate results
   - _Requirements: All_
 
-- [x] 2. Parse existing OpenAPI documentation
+- [ ] 2. Parse existing OpenAPI documentation
   - [x] 2.1 Inventory existing OpenAPI spec files
     - Scan `doc/en/api/1.0.0/` directory
     - List all YAML files with file sizes and modification dates
@@ -40,7 +40,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Verify all expected spec files were found and parsed
   - Ask user if questions arise
 
-- [x] 4. Extract REST endpoints from Java source code
+- [ ] 4. Extract REST endpoints from Java source code
   - [x] 4.1 Scan REST API source directories
     - Identify all Java files in: `src/rest/`, `src/restconfig/`, `src/restconfig-wcs/`, `src/restconfig-wfs/`, `src/restconfig-wms/`, `src/restconfig-wmts/`, `src/gwc-rest/`
     - List controller classes (files containing @RestController or @Controller)
@@ -268,7 +268,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Prioritize which gaps to address first
   - Ask user if questions arise
 
-- [x] 14. Generate unified OpenAPI 3.0 specification (modular approach)
+- [ ] 14. Generate unified OpenAPI 3.0 specification (modular approach)
   - [x] 14.1 Convert REST endpoints to OpenAPI 3.0 format (modular)
     - Load all REST endpoint data
     - Generate modular OpenAPI 3.0 specifications organized by module:
@@ -336,7 +336,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Output: Single-file versions in `doc/en/api/` ready for Swagger UI and distribution
     - _Requirements: 6.1, 6.2, 6.7, 11.1, 11.2, 11.3, 11.4, 12.1, 12.2, 12.5_
 
-- [x] 15. Validate generated OpenAPI specifications
+- [ ] 15. Validate generated OpenAPI specifications
   - [x] 15.1 Validate unified spec against OpenAPI 3.0 schema
     - Load `doc/en/api/geoserver-unified-3.0.yaml`
     - Validate against OpenAPI 3.0 schema
@@ -502,7 +502,7 @@ The implementation is organized into phases, with each phase building on the pre
   - Re-run validation to confirm fixes
   - Ask user if questions arise
 
-- [x] 17. Generate final summary and recommendations
+- [ ] 17. Generate final summary and recommendations
   - [x] 17.1 Create executive summary
     - Summarize REST API coverage (percentage, gaps)
     - Summarize OGC service coverage (operations documented)
@@ -511,7 +511,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Output: `.kiro/api-analysis/reports/executive-summary.md`
     - _Requirements: All_
   
-  - [x] 17.2 Create prioritized action plan
+  - [ ] 17.2 Create prioritized action plan
     - List documentation-only fixes (safe, quick)
     - List implementation fixes needed (requires code changes)
     - List alignment issues (requires decisions)
@@ -535,7 +535,7 @@ The implementation is organized into phases, with each phase building on the pre
     - Output: Updated modular and bundled specifications with complete schemas
     - _Requirements: 6.5, 6.6, 7.1, 7.5, 8.2_
 
-- [x] 18. Final checkpoint - Review complete analysis
+- [ ] 18. Final checkpoint - Review complete analysis
   - Review all reports in `.kiro/api-analysis/reports/`
   - Review generated OpenAPI spec in `doc/en/api/`
   - Discuss next steps with user
@@ -582,288 +582,422 @@ The implementation is organized into phases, with each phase building on the pre
 - Reports provide actionable insights for improving API documentation coverage
 
 
-## Sprint 1: Document Missing Query Parameters (Quick Wins)
+## Parameter Mismatch Fixes
 
-- [x] 19. Document `purge` query parameter on DELETE datastore/coveragestore endpoints
-  - Add `purge` parameter (type: string, enum: [true, false, metadata]) to DELETE operations on datastores and coveragestores
-  - Controls whether data files are deleted or only configuration — omission risks accidental data loss
-  - Update modular specs in `.kiro/api-analysis/specs/rest/rest-core.yaml`
-  - Re-bundle with `bundle-spec.py` to update `doc/en/api/geoserver-bundled.yaml` and `.json`
-  - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`, Action Plan D2_
-  - _Requirements: 7.3, 7.4_
+The following tasks address the 129 parameter mismatches identified in the REST API coverage analysis. These are prioritized by impact and effort, focusing on functional issues before cosmetic ones.
 
-- [x] 20. Document `async` and `exec` execution control parameters on importer endpoints
-  - Add `async` (boolean) and `exec` (boolean) parameters to POST/PUT importer operations
-  - Controls synchronous vs asynchronous import execution (2 endpoints affected)
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D3_
-  - _Requirements: 7.3, 7.4_
+- [ ] 19. Fix query parameter documentation gaps (HIGH PRIORITY)
+  - [ ] 19.1 Document `expand` parameter
+    - Review 6 endpoints that use `expand` parameter
+    - Document parameter purpose (resource expansion)
+    - Add to OpenAPI specs with type, description, required flag
+    - Endpoints affected: `/rest/imports`, `/rest/workspaces`, and others
+    - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
+  
+  - [ ] 19.2 Document filtering parameters (`from`, `to`)
+    - Review 2 endpoints using `from`/`to` parameters
+    - Document parameter purpose (filtering/versioning)
+    - Add to OpenAPI specs with type, description, required flag
+    - Endpoints affected: `/rest/about/manifest` and others
+    - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
+  
+  - [ ] 19.3 Document execution control parameters (`exec`, `async`)
+    - Review 2 endpoints using `exec`/`async` parameters
+    - Document parameter purpose (execution control)
+    - Add to OpenAPI specs with type, description, required flag
+    - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
+  
+  - [ ] 19.4 Document remaining query parameters
+    - Review endpoints with other missing query parameters
+    - Parameters: `styleName`, `offset`, `limit`, `recalculate`, `calculate`, `purge`
+    - Add to OpenAPI specs with complete metadata
+    - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
+  
+  - [ ] 19.5 Verify documented-only query parameters
+    - Review 12 endpoints where docs have params but implementation doesn't
+    - Determine if parameters are planned features or documentation errors
+    - Either implement missing parameters or remove from documentation
+    - Endpoints include: `/rest/about/status` and others
+    - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
 
-- [x] 21. Document `recalculate`/`calculate` parameters on coverage and feature type creation
-  - Add `recalculate` parameter to PUT/POST feature type and coverage endpoints
-  - Add `calculate` parameter to POST coverage endpoints
-  - Affects spatial metadata accuracy — values: nativebbox, latlonbbox, or comma-separated combination
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D4_
-  - _Requirements: 7.3, 7.4_
+- [ ] 20. Fix request body documentation mismatches (MEDIUM PRIORITY)
+  - [ ] 20.1 Review and fix PUT endpoint body documentation
+    - Review 31 PUT endpoints where implementation has body but docs don't
+    - Document request body schemas for each endpoint
+    - Include content type, schema definition, examples
+    - Focus on importer module endpoints first (16 endpoints)
+    - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
+  
+  - [ ] 20.2 Investigate GET endpoint with request body
+    - Review GET `/rest/logging` endpoint
+    - Determine if request body is intentional (REST anti-pattern)
+    - Either remove body from implementation or document as vendor extension
+    - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
+  
+  - [ ] 20.3 Review documented-only request bodies
+    - Review 1 endpoint where docs have body but implementation doesn't
+    - Determine if this is a planned feature or documentation error
+    - Either implement missing body support or remove from documentation
+    - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
 
-- [x] 22. Document `expand` query parameter on 6 endpoints
-  - Add `expand` parameter (type: integer or string) to `/rest/imports`, `/rest/workspaces/{ws}/datastores/{ds}`, and 4 other endpoints
-  - Controls response detail level (inline sub-resources vs links)
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D5_
-  - _Requirements: 7.3, 7.4_
+- [ ] 21. Standardize path variable names (LOW PRIORITY)
+  - [ ] 21.1 Decide on path variable naming convention
+    - Review current patterns: generic (`{id}`) vs descriptive (`{importId}`)
+    - Consult with team on preferred convention
+    - Document decision in project guidelines
+    - _Reference: `.kiro/api-analysis/reports/parameter-mismatch-analysis.md`_
+  
+  - [ ] 21.2 Update restconfig module path variables
+    - Apply chosen naming convention to 93 restconfig endpoints
+    - Update either Java code or OpenAPI documentation for consistency
+    - Ensure backward compatibility if changing implementation
+    - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
+  
+  - [ ] 21.3 Update extension module path variables
+    - Apply naming convention to importer (16), mongodb (4), rat (1), wps-download (1)
+    - Update either Java code or OpenAPI documentation for consistency
+    - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
+  
+  - [ ] 21.4 Update community module path variables
+    - Apply naming convention to oseo (10) and other community modules (4)
+    - Update either Java code or OpenAPI documentation for consistency
+    - _Reference: `.kiro/api-analysis/reports/mismatch-analysis.json`_
 
-- [x] 23. Document `offset`/`limit` pagination and `from`/`to` filtering parameters
-  - Add `offset` (integer) and `limit` (integer) to list endpoints for pagination of large result sets
-  - Add `from` and `to` (string) parameters to `/rest/about/manifest` and `/rest/about/version` for version range filtering
-  - Add `styleName` parameter to POST `/rest/layers` for associating a default style during layer creation
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D6, D7, D13_
-  - _Requirements: 7.3, 7.4_
+- [ ] 22. Checkpoint - Review parameter mismatch fixes
+  - Verify all query parameter gaps documented
+  - Verify all request body mismatches resolved
+  - Review path variable naming consistency
+  - Re-run coverage analysis to confirm improvements
+  - Ask user if questions arise
 
-- [x] 24. Checkpoint — Validate Sprint 1 parameter additions
-  - Run `bundle-spec.py` to regenerate bundled specs
-  - Validate bundled spec with OpenAPI validator (zero new errors)
-  - Verify new parameters render correctly in Swagger UI
-  - Ensure all tests pass, ask the user if questions arise
-  - _Requirements: 11.1, 11.2, 11.3_
+- [ ] 23. Regenerate unified OpenAPI 3.0 specification with fixes
+  - [ ] 23.1 Re-run REST endpoint extraction
+    - Re-scan all REST API source directories
+    - Extract updated endpoint definitions with corrected parameters
+    - Output: `.kiro/api-analysis/rest/implemented-all-endpoints-v2.json`
+    - _Requirements: 2.1, 2.2, 2.3_
+  
+  - [ ] 23.2 Re-run coverage analysis
+    - Match updated implementations with updated documentation
+    - Calculate new coverage metrics
+    - Verify parameter mismatches are resolved
+    - Output: `.kiro/api-analysis/rest/coverage-metrics-v2.json`
+    - Output: `.kiro/api-analysis/reports/rest-coverage-report-v2.md`
+    - _Requirements: 3.1, 3.2, 3.3, 3.4_
+  
+  - [ ] 23.3 Regenerate REST OpenAPI 3.0 specification
+    - Convert updated REST endpoints to OpenAPI 3.0 format
+    - Include all corrected parameter definitions
+    - Include all corrected request body schemas
+    - Apply standardized path variable naming
+    - Output: `.kiro/api-analysis/specs/rest-openapi-3.0-v2.yaml`
+    - _Requirements: 6.1, 6.2, 6.5, 6.6, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
+  
+  - [ ] 23.4 Regenerate unified specification
+    - Merge updated REST spec with OGC spec
+    - Ensure all corrections are included
+    - Validate against OpenAPI 3.0 schema
+    - Output: `doc/en/api/geoserver-unified-3.0-v2.yaml`
+    - Output: `doc/en/api/geoserver-unified-3.0-v2.json`
+    - _Requirements: 6.1, 6.2, 6.7, 11.1, 11.2, 11.3, 11.4, 11.5, 12.1, 12.2, 12.5_
+  
+  - [ ] 23.5 Generate final reconciliation matrix
+    - Create updated reconciliation matrix with all fixes applied
+    - Verify all parameter mismatches resolved
+    - Document remaining gaps (if any)
+    - Output: `.kiro/api-analysis/reports/reconciliation-matrix-final.md`
+    - Output: `.kiro/api-analysis/reports/reconciliation-matrix-final.csv`
+    - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7_
 
-## Sprint 2: Request Body Schemas for PUT Operations
+- [ ] 24. Add OGC API endpoints documentation
+  - [ ] 24.1 Extract OGC API - Features endpoints
+    - Scan `src/community/ogcapi/` and `src/extension/ogcapi/` directories
+    - Identify OGC API - Features 1.0 endpoints (collections, items, conformance)
+    - Extract endpoint paths, parameters, and response schemas
+    - Output: `.kiro/api-analysis/ogc/ogcapi-features-operations.json`
+    - _Requirements: 6.1, 6.2, 6.3_
+  
+  - [ ] 24.2 Extract OGC API - Tiles endpoints
+    - Identify OGC API - Tiles endpoints (tilesets, tiles)
+    - Extract endpoint paths, parameters, and response schemas
+    - Output: `.kiro/api-analysis/ogc/ogcapi-tiles-operations.json`
+    - _Requirements: 6.1, 6.2, 6.3_
+  
+  - [ ] 24.3 Extract other OGC API endpoints
+    - Identify OGC API - Coverages, Processes, Styles, Maps endpoints if present
+    - Extract endpoint paths, parameters, and response schemas
+    - Output: `.kiro/api-analysis/ogc/ogcapi-other-operations.json`
+    - _Requirements: 6.1, 6.2, 6.3_
+  
+  - [ ] 24.4 Generate OGC API OpenAPI specifications
+    - Create modular OpenAPI 3.0 specifications for each OGC API service:
+      - `ogc/ogcapi-features.yaml` - OGC API - Features endpoints
+      - `ogc/ogcapi-tiles.yaml` - OGC API - Tiles endpoints
+      - `ogc/ogcapi-other.yaml` - Other OGC API endpoints
+    - Add OGC API tags (sibling to WMS, WFS, WCS, etc.):
+      - "OGC API - Features 1.0"
+      - "OGC API - Tiles 1.0"
+      - Additional tags as needed
+    - Include complete parameter and response definitions
+    - Document conformance classes supported
+    - Output: Modular files in `.kiro/api-analysis/specs/ogc/`
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
+  
+  - [ ] 24.5 Update unified specification with OGC API endpoints
+    - Add OGC API tags to main specification
+    - Reference OGC API modular specs in unified entry point
+    - Re-bundle specifications to include OGC API endpoints
+    - Validate bundled specs include all OGC API operations
+    - Output: Updated `doc/en/api/geoserver-bundled.yaml` and `.json`
+    - _Requirements: 6.1, 6.2, 6.7, 12.1, 12.2_
+  
+  - [ ] 24.6 Document OGC API coverage
+    - Count OGC API endpoints by service type
+    - Compare against OGC API specifications
+    - Generate coverage report
+    - Output: `.kiro/api-analysis/reports/ogcapi-coverage-report.md`
+    - _Requirements: 3.1, 3.4, 5.2_
 
-- [x] 25. Add request body schemas for core REST PUT endpoints (workspaces, namespaces, layers)
-  - Extract Java model classes: WorkspaceInfo, NamespaceInfo, LayerInfo, LayerGroupInfo
-  - Generate OpenAPI 3.0 schema definitions from class fields
-  - Add schemas to `common/schemas.yaml` and reference via `$ref` in PUT operations
-  - Include example request bodies in JSON and XML
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D1_
-  - _Requirements: 6.5, 6.6, 7.1, 7.5_
+- [ ] 25. Final validation and summary
+  - [ ] 25.1 Validate final unified specification
+    - Validate against OpenAPI 3.0 schema
+    - Verify all $ref references resolve
+    - Test loading in Swagger UI
+    - Output: `.kiro/api-analysis/reports/validation-report-final.md`
+    - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 6.9_
+  
+  - [ ] 25.2 Generate final executive summary
+    - Summarize final coverage metrics
+    - Document all improvements made
+    - List any remaining gaps
+    - Provide recommendations for ongoing maintenance
+    - Output: `.kiro/api-analysis/reports/executive-summary-final.md`
+    - _Requirements: All_
 
-- [x] 26. Add request body schemas for data store PUT endpoints
-  - Extract Java model classes: DataStoreInfo, CoverageStoreInfo, WMSStoreInfo, WMTSStoreInfo
-  - Generate OpenAPI 3.0 schema definitions
-  - Add schemas and reference in PUT operations for datastores, coveragestores, wmsstores, wmtsstores
-  - Include example request bodies
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D1_
-  - _Requirements: 6.5, 6.6, 7.1, 7.5_
 
-- [x] 27. Add request body schemas for security and importer PUT endpoints
-  - Extract Java model classes: UserInfo, GroupInfo, RoleInfo, SecurityRule, ImportContext, TaskInfo, TransformInfo
-  - Generate OpenAPI 3.0 schema definitions
-  - Add schemas and reference in PUT operations for security and importer endpoints (~16 importer endpoints)
-  - Include example request bodies
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D1_
-  - _Requirements: 6.5, 6.6, 7.1, 7.5_
+## Phase 2: Fix Functional Documentation Gaps
 
-- [x] 28. Add response schemas for documented endpoints
-  - Add success response schemas (200/201) to all documented GET and POST operations
-  - Add standard error response schemas (400, 401, 403, 404, 500)
-  - Reference shared error schema from `common/responses.yaml`
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan D10_
-  - _Requirements: 6.5, 6.6, 7.1_
+These tasks address the 39 endpoints with functional discrepancies (missing request bodies, critical parameters, etc.) identified in the functional discrepancies analysis.
 
-- [x] 29. Remove incorrect documented-only parameters and fix anti-patterns
-  - Remove documented params (manifest, key, value) from GET `/rest/about/status` that don't exist in implementation
-  - Review and fix GET `/rest/logging` request body anti-pattern (remove `@RequestBody` or change to POST)
-  - Review 1 endpoint with documented-only request body — remove if not implemented
-  - Update modular specs and re-bundle
-  - _Reference: Action Plan I1, A4_
-  - _Requirements: 3.3, 7.1_
+- [ ] 26. Fix critical functional gaps (HIGH PRIORITY)
+  - [ ] 26.1 Document request body schemas for PUT operations
+    - Extract Java classes used in PUT request bodies:
+      - LayerInfo, StoreInfo, NamespaceInfo (catalog operations)
+      - UserInfo, GroupInfo, RoleInfo (security operations)
+      - ImportContext, TaskInfo, TransformInfo (importer operations)
+      - DataStoreInfo, CoverageStoreInfo, WMSStoreInfo, WMTSStoreInfo
+    - Generate JSON schemas from Java classes
+    - Add schemas to OpenAPI spec components/schemas section
+    - Reference schemas in PUT operation request bodies
+    - Add example request bodies for common use cases
+    - Affected endpoints: ~31 PUT operations
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 6.5, 6.6, 7.1, 7.5_
+  
+  - [ ] 26.2 Document critical query parameters
+    - Add `purge` parameter to DELETE datastore operations
+      - Description: "If true, delete underlying data files; if false, delete only configuration"
+      - Type: boolean
+      - Default: false
+      - **Critical:** Prevents accidental data loss
+    - Add `async` and `exec` parameters to importer operations
+      - `async`: Run import asynchronously (boolean, default: false)
+      - `exec`: Execute import immediately after creation (boolean, default: false)
+    - Add `recalculate` and `calculate` parameters to feature type operations
+      - Controls whether bounding boxes are recalculated from data
+      - Type: boolean
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 7.3, 7.4_
+  
+  - [ ] 26.3 Document convenience query parameters
+    - Add `expand` parameter to 6 importer endpoints
+      - Description: "Controls level of detail in response (e.g., expand=tasks)"
+      - Type: string
+      - Optional
+    - Add `offset` and `limit` parameters to OSEO collection endpoints
+      - Pagination for large datasets
+      - Type: integer
+    - Add `styleName` parameter to POST /rest/layers
+      - Specifies default style when creating layer
+      - Type: string
+    - Add `from` and `to` parameters to manifest/version endpoints
+      - Filters by version range
+      - Type: string
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 7.3, 7.4_
+  
+  - [ ] 26.4 Fix GET /rest/logging anti-pattern
+    - Investigate if request body is actually used in implementation
+    - Review LoggingController.java to understand intent
+    - If body is not used: Remove @RequestBody annotation from GET method
+    - If body is used: Consider changing to POST or PUT method
+    - Update OpenAPI documentation to match corrected implementation
+    - Document decision and rationale
+    - Output: Code fix (if needed) and updated specification
+    - _Requirements: 7.1_
+  
+  - [ ] 26.5 Remove incorrect query parameters from documentation
+    - Fix GET /rest/about/status endpoint
+      - Remove documented parameters: manifest, key, value
+      - These don't exist in implementation
+    - Review other endpoints with "documented but not implemented" parameters
+    - Remove or mark as deprecated in documentation
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 3.3_
 
-- [x] 30. Checkpoint — Validate Sprint 2 schema additions
-  - Run `bundle-spec.py` to regenerate bundled specs
-  - Validate bundled spec (zero errors)
-  - Verify request/response schemas render correctly in Swagger UI
-  - Ensure all tests pass, ask the user if questions arise
-  - _Requirements: 11.1, 11.2, 11.3, 11.4_
+- [ ] 27. Fix cosmetic path variable naming (LOW PRIORITY)
+  - [ ] 27.1 Update path variable names to match implementation
+    - Update ~90 endpoints where path variable names differ
+    - Change documentation to match Java @PathVariable names
+    - Examples:
+      - `importId` → `id`
+      - `workspace` → `workspaceName`
+      - `role` → `roleName`
+      - `user` → `userName`
+    - Use find-and-replace for efficiency
+    - Validate specifications after changes
+    - Output: Updated modular and bundled specifications
+    - _Requirements: 6.1, 6.5_
+  
+  - [ ] 27.2 Validate cosmetic fixes
+    - Run OpenAPI validation on updated specs
+    - Verify all path parameters match path templates
+    - Test in Swagger UI to ensure no regressions
+    - Output: Validation report
+    - _Requirements: 11.1, 11.2, 11.3_
 
-## Sprint 3: Path Variable Naming and Decisions
+- [ ] 28. Regenerate specifications with all fixes
+  - [ ] 28.1 Re-bundle modular specifications
+    - Resolve all $ref references
+    - Apply all fixes from tasks 26-27
+    - Generate bundled YAML and JSON versions
+    - Output: `doc/en/api/geoserver-bundled.yaml` and `.json`
+    - _Requirements: 6.7, 12.1, 12.2_
+  
+  - [ ] 28.2 Validate final specifications
+    - Validate against OpenAPI 3.0 schema
+    - Verify zero validation errors
+    - Test in Swagger UI
+    - Output: Final validation report
+    - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5_
+  
+  - [ ] 28.3 Update coverage metrics
+    - Recalculate coverage with functional fixes applied
+    - Expected results:
+      - Fully correct: ~127 endpoints (36%)
+      - Cosmetic fixes applied: ~90 endpoints (25.5%)
+      - Total functionally complete: ~166 endpoints (47%)
+    - Generate updated coverage report
+    - Output: `.kiro/api-analysis/reports/rest-coverage-report-final.md`
+    - _Requirements: 3.1, 3.2, 3.3, 3.4_
 
-- [x] 31. Decide and document path variable naming convention
-  - Review current patterns: generic (`{id}`) vs descriptive (`{importId}`) across 90+ endpoints
-  - Document decision: match Java `@PathVariable` names exactly (descriptive names preferred for code-gen tools)
-  - Create a mapping table of current spec names → correct implementation names
-  - Output: Decision documented in `.kiro/api-analysis/reports/path-variable-convention.md`
-  - _Reference: Action Plan A1, D9_
-  - _Requirements: 6.1, 6.5_
+- [ ] 29. Final checkpoint - Review all fixes
+  - Review functional gap fixes (task 26)
+  - Review cosmetic naming fixes (task 27)
+  - Verify specifications are production-ready
+  - Ask user if questions arise
 
-- [x] 32. Update path variable names in restconfig module specs (~93 endpoints)
-  - Apply naming convention to all restconfig endpoints in `.kiro/api-analysis/specs/rest/rest-core.yaml`
-  - Use find-and-replace: `workspace` → `workspaceName`, `layer` → `layerName`, `style` → `styleName`, etc.
-  - Ensure path template `{varName}` matches the parameter definition `name: varName`
-  - Validate no broken `$ref` references after changes
-  - _Reference: Action Plan D9_
-  - _Requirements: 6.1, 6.5_
 
-- [x] 33. Update path variable names in extension and community module specs (~32 endpoints)
-  - Apply naming convention to importer (16), mongodb (4), oseo (10), and other modules
-  - Update `.kiro/api-analysis/specs/rest/rest-extensions.yaml` and `rest-community.yaml`
-  - Validate path templates match parameter definitions
-  - Re-bundle and validate
-  - _Reference: Action Plan D9_
-  - _Requirements: 6.1, 6.5_
+## Phase 3: Code-First OpenAPI — Make Source Code the Single Source of Truth
 
-- [x] 34. Checkpoint — Validate Sprint 3 path variable fixes
-  - Run `bundle-spec.py` to regenerate bundled specs
-  - Validate bundled spec (zero errors, all path params match templates)
-  - Verify in Swagger UI that path parameters render correctly
-  - Ensure all tests pass, ask the user if questions arise
-  - _Requirements: 11.1, 11.2, 11.3_
+The end goal of this entire effort is to make the Java source code the authoritative source for API documentation, with the OpenAPI spec auto-generated from code annotations. Phases 1–2 produce a complete, accurate hand-built spec that serves as the reference for what annotations to add. Phase 3 closes the loop.
 
-## Sprint 4: Coverage Expansion (Undocumented Endpoints)
+- [ ] 30. Evaluate and select OpenAPI annotation framework
+  - [ ] 30.1 Assess Springdoc OpenAPI vs SpringFox vs alternatives
+    - Evaluate Springdoc OpenAPI (actively maintained, Spring Boot 3+ compatible)
+    - Check compatibility with GeoServer's Spring Framework 7.x and servlet-based architecture
+    - Review the existing `src/community/rest-openapi/` module for prior art
+    - Determine if runtime generation or build-time generation is preferred
+    - Document decision and rationale
+    - Output: `.kiro/api-analysis/reports/annotation-framework-decision.md`
+  
+  - [ ] 30.2 Create proof-of-concept with one controller
+    - Pick a simple controller (e.g., `WorkspaceController`)
+    - Add Springdoc/OpenAPI annotations (`@Operation`, `@Parameter`, `@Schema`, `@ApiResponse`)
+    - Verify the auto-generated spec matches the hand-built spec for that controller
+    - Document any gaps or issues with auto-generation
+    - Output: Annotated controller + comparison report
 
-- [x] 35. Document remaining restconfig endpoints (79 undocumented)
-  - Scan `src/restconfig/` for controllers not yet in the spec
-  - Extract endpoint paths, methods, parameters, and request/response types
-  - Add to `.kiro/api-analysis/specs/rest/rest-core.yaml` with proper tags and schemas
-  - Re-bundle specs
-  - _Reference: Action Plan D8.1_
-  - _Requirements: 2.1, 3.2, 6.1, 6.5, 7.1_
+- [ ] 31. Add OpenAPI annotations to REST controllers
+  - [ ] 31.1 Annotate core REST controllers (src/rest/, src/restconfig/)
+    - Use the hand-built spec as the reference for descriptions, parameter metadata, and schemas
+    - Add `@Operation` with summary and description
+    - Add `@Parameter` for path variables and query parameters
+    - Add `@ApiResponse` for success and error responses
+    - Add `@Schema` annotations to request/response model classes
+    - Verify generated spec matches hand-built spec
+    - Run `mvn spotless:apply` after changes
+  
+  - [ ] 31.2 Annotate service-specific REST controllers (restconfig-wcs/wfs/wms/wmts)
+    - Same approach as 31.1
+  
+  - [ ] 31.3 Annotate GeoWebCache REST controllers (src/gwc-rest/)
+    - Same approach as 31.1
+  
+  - [ ] 31.4 Annotate security REST controllers
+    - Same approach as 31.1
+  
+  - [ ] 31.5 Annotate extension module REST controllers
+    - Prioritize: importer, monitor, geofence, params-extractor
+    - Same approach as 31.1
+  
+  - [ ] 31.6 Annotate community module REST controllers (optional)
+    - Lower priority — community modules may have different maintenance expectations
+    - Same approach as 31.1
 
-- [x] 36. Document geofence REST endpoints (11 undocumented)
-  - Scan `src/extension/geofence/` for REST controllers
-  - Extract endpoint definitions and add to `rest-extensions.yaml`
-  - Include request/response schemas for geofence rule management
-  - Re-bundle specs
-  - _Reference: Action Plan D8.2_
-  - _Requirements: 2.1, 3.2, 6.1, 6.5, 7.1_
+- [ ] 32. Add OpenAPI documentation for OGC service endpoints
+  - [ ] 32.1 Determine approach for OGC endpoints
+    - OGC services use a dispatcher pattern (single URL, REQUEST parameter selects operation)
+    - This doesn't map naturally to annotation-based generation
+    - Options: custom Springdoc plugin, static spec overlay, or hybrid approach
+    - Document decision
+  
+  - [ ] 32.2 Implement chosen approach for OGC endpoints
+    - Ensure WMS, WFS, WCS, WMTS, CSW, WPS operations are all documented
+    - Include version-specific parameter differences
+    - Include vendor extension parameters
 
-- [x] 37. Document features-templating REST endpoints (18 undocumented)
-  - Scan `src/community/features-templating/` for REST controllers
-  - Extract endpoint definitions and add to `rest-community.yaml`
-  - Include request/response schemas for template management
-  - Re-bundle specs
-  - _Reference: Action Plan D8.3_
-  - _Requirements: 2.1, 3.2, 6.1, 6.5, 7.1_
+- [ ] 33. Configure build-time or runtime spec generation
+  - [ ] 33.1 Add Springdoc dependency to appropriate Maven modules
+    - Add to parent POM dependency management
+    - Add to web/app module for runtime generation, OR
+    - Configure Maven plugin for build-time generation
+    - Ensure spec is generated at `/geoserver/v3/api-docs` (runtime) or as build artifact
+  
+  - [ ] 33.2 Configure spec generation settings
+    - Set info block (title, version, contact, license)
+    - Configure server URLs
+    - Configure security schemes (Basic, Digest, OAuth2)
+    - Configure tag ordering and grouping
+    - Ensure output matches the quality of the hand-built spec
+  
+  - [ ] 33.3 Add CI validation
+    - Add a CI step that generates the spec and validates it
+    - Fail the build if the generated spec has validation errors
+    - Optionally: diff generated spec against a baseline to catch unintended changes
 
-- [x] 38. Document OGC API — Features and Tiles endpoints
-  - Scan `src/extension/ogcapi/` and `src/community/ogcapi/` directories
-  - Extract OGC API - Features 1.0 endpoints (collections, items, conformance)
-  - Extract OGC API - Tiles 1.0 endpoints (tilesets, tiles)
-  - Create modular specs: `ogc/ogcapi-features.yaml`, `ogc/ogcapi-tiles.yaml`
-  - Add tags: "OGC API - Features 1.0", "OGC API - Tiles 1.0"
-  - Re-bundle specs
-  - _Reference: Action Plan D14_
-  - _Requirements: 6.1, 6.2, 6.3, 6.4_
+- [ ] 34. Switch Swagger UI to use generated spec
+  - [ ] 34.1 Update doc/en/api/index.html
+    - Point Swagger UI at the auto-generated spec endpoint (or build artifact)
+    - Keep the hand-built bundled spec as a fallback during transition
+    - Test that all endpoints render correctly
+  
+  - [ ] 34.2 Remove static spec files
+    - Once the generated spec is verified equivalent, remove:
+      - `doc/en/api/geoserver-bundled.yaml`
+      - `doc/en/api/geoserver-bundled.json`
+      - `.kiro/api-analysis/specs/` modular files (archive or delete)
+    - Update documentation to reference the generated spec
+  
+  - [ ] 34.3 Document the new workflow for developers
+    - How to add API documentation when creating new endpoints
+    - How to verify the generated spec locally
+    - How CI enforces spec validity
 
-- [x] 39. Update coverage metrics and generate final report
-  - Re-run coverage analysis against updated specs
-  - Calculate new coverage percentage (target: ~75% REST coverage)
-  - Generate updated reconciliation matrix
-  - Output: `.kiro/api-analysis/reports/rest-coverage-report-v2.md`
-  - Output: `.kiro/api-analysis/reports/reconciliation-matrix-v2.md`
-  - _Requirements: 3.1, 3.2, 3.3, 3.4, 10.1, 10.3_
-
-- [x] 40. Checkpoint — Validate Sprint 4 coverage expansion
-  - Run `bundle-spec.py` to regenerate bundled specs
-  - Validate bundled spec (zero errors)
-  - Review coverage report — confirm improvement from 47% toward 75%
-  - Ensure all tests pass, ask the user if questions arise
-  - _Requirements: 11.1, 11.2, 11.3, 3.1_
-
-## Sprint 5: Code-First OpenAPI Annotations (Phase 3)
-
-- [ ] 41. Evaluate Springdoc OpenAPI compatibility with GeoServer
-  - Check compatibility with Spring Framework 7.x servlet-based architecture (not Spring Boot)
-  - Review existing `src/community/rest-openapi/` module for prior art
-  - Determine runtime vs build-time generation strategy
-  - Document decision and rationale
-  - Output: `.kiro/api-analysis/reports/annotation-framework-decision.md`
-  - _Reference: Action Plan A2, I6_
-  - _Requirements: 6.1_
-
-- [ ] 42. Pilot Springdoc annotations on CRS and Workspace controllers
-  - Add Springdoc dependency to appropriate Maven module
-  - Annotate `CRSController` (4 endpoints, new and simple) with `@Operation`, `@Parameter`, `@ApiResponse`
-  - Annotate `WorkspaceController` as a second pilot
-  - Verify auto-generated spec matches hand-built spec for these controllers
-  - Run `mvn spotless:apply` after changes
-  - Document any gaps or issues
-  - _Reference: Action Plan I2, I3_
-  - _Requirements: 6.1, 6.5, 7.1_
-
-- [ ] 43. Annotate core REST controllers (src/rest/, src/restconfig/)
-  - Use hand-built spec as reference for descriptions, parameter metadata, and schemas
-  - Add `@Operation` with summary and description to all methods
-  - Add `@Parameter` for path variables and query parameters
-  - Add `@ApiResponse` for success and error responses
-  - Add `@Schema` annotations to request/response model classes
-  - Run `mvn spotless:apply` after changes
-  - _Reference: Action Plan I5_
-  - _Requirements: 6.1, 6.5, 7.1_
-
-- [ ] 44. Annotate service-specific and GWC REST controllers
-  - Annotate controllers in `src/restconfig-wcs/`, `src/restconfig-wfs/`, `src/restconfig-wms/`, `src/restconfig-wmts/`
-  - Annotate controllers in `src/gwc-rest/`
-  - Same approach as task 43
-  - Run `mvn spotless:apply` after changes
-  - _Requirements: 6.1, 6.5, 7.1_
-
-- [ ] 45. Annotate security and extension module REST controllers
-  - Annotate security controllers (authentication, authorization endpoints)
-  - Annotate priority extension controllers: importer, monitor, geofence, params-extractor
-  - Same approach as task 43
-  - Run `mvn spotless:apply` after changes
-  - _Requirements: 6.1, 6.5, 7.1, 7.6_
-
-- [ ] 46. Configure Springdoc runtime spec generation and CI validation
-  - Configure Springdoc: info block, server URLs, security schemes, tag ordering
-  - Set up spec generation at `/geoserver/v3/api-docs` or as Maven build artifact
-  - Add CI step to validate generated spec (fail build on errors)
-  - Optionally diff generated spec against baseline
-  - _Reference: Action Plan I6, I7_
-  - _Requirements: 6.1, 6.2, 7.6, 11.1, 11.5_
-
-- [ ] 47. Determine and implement approach for OGC service endpoint documentation
-  - OGC services use dispatcher pattern (single URL, REQUEST param selects operation) — doesn't map to annotations
-  - Evaluate options: custom Springdoc plugin, static spec overlay, or hybrid approach
-  - Implement chosen approach for WMS, WFS, WCS, WMTS, CSW, WPS
-  - Include version-specific parameter differences and vendor extensions
-  - _Reference: Action Plan A3_
-  - _Requirements: 6.3, 6.4, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8_
-
-- [ ] 48. Transition Swagger UI to generated spec and retire static files
-  - Update `doc/en/api/index.html` to point at auto-generated spec endpoint
-  - Verify all endpoints render correctly in Swagger UI
-  - Verify "Try it out" works against a running GeoServer instance
-  - Once verified equivalent: remove `doc/en/api/geoserver-bundled.yaml` and `.json`
-  - Archive `.kiro/api-analysis/specs/` modular files as historical reference
-  - _Requirements: 6.7, 6.9_
-
-- [ ] 49. Final validation — Code is the single source of truth
+- [ ] 35. Final validation — Code is the single source of truth
   - Verify: changing a controller annotation updates the generated spec
   - Verify: adding a new endpoint automatically appears in the spec
   - Verify: removing an endpoint automatically removes it from the spec
-  - Verify: generated spec can produce working client code (e.g., via openapi-generator)
-  - Document the new workflow for developers (how to add docs, verify locally, CI enforcement)
-  - _Requirements: All_
-
-## Task Dependency Graph
-
-```json
-{
-  "waves": [
-    { "id": 0, "tasks": ["19", "20", "21", "22", "23"] },
-    { "id": 1, "tasks": ["24"] },
-    { "id": 2, "tasks": ["25", "26", "27"] },
-    { "id": 3, "tasks": ["28", "29"] },
-    { "id": 4, "tasks": ["30"] },
-    { "id": 5, "tasks": ["31"] },
-    { "id": 6, "tasks": ["32", "33"] },
-    { "id": 7, "tasks": ["34"] },
-    { "id": 8, "tasks": ["35", "36", "37", "38"] },
-    { "id": 9, "tasks": ["39"] },
-    { "id": 10, "tasks": ["40"] },
-    { "id": 11, "tasks": ["41"] },
-    { "id": 12, "tasks": ["42"] },
-    { "id": 13, "tasks": ["43", "44", "45"] },
-    { "id": 14, "tasks": ["46", "47"] },
-    { "id": 15, "tasks": ["48"] },
-    { "id": 16, "tasks": ["49"] }
-  ]
-}
-```
+  - Verify: Swagger UI "Try it out" works against a running GeoServer
+  - Verify: the generated spec can produce working client code (e.g., via openapi-generator)
+  - Archive the hand-built spec and analysis scripts as historical reference

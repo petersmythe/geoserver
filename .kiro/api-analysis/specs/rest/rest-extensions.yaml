@@ -4,24 +4,28 @@ info:
   version: 1.0.0
   description: REST API endpoints for extensions module
 paths:
-  /:
+  /rest/metadata:
     delete:
       operationId: delete_metadata_MetaDataRestService_clearAll
-      summary: DELETE /
-      description: Endpoint from metadata module
+      summary: Clear all metadata
+      description: >-
+        Clears all metadata from all layers. Optionally also removes metadata templates.
+        Requires the iAmSure parameter to be true as a safety check.
       tags:
-      - Extensions
+      - Extensions - Metadata
       responses:
         '200':
-          description: Resource deleted successfully
+          description: All metadata cleared successfully
         '400':
-          $ref: ../common/responses.yaml#/BadRequest
+          description: Bad request — returned if iAmSure is not set to true
+          content:
+            text/plain:
+              schema:
+                type: string
         '401':
           $ref: ../common/responses.yaml#/Unauthorized
         '403':
           $ref: ../common/responses.yaml#/Forbidden
-        '404':
-          $ref: ../common/responses.yaml#/NotFound
         '500':
           $ref: ../common/responses.yaml#/InternalServerError
       parameters:
@@ -29,14 +33,218 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-        description: The iAmSure parameter
+          type: boolean
+          default: false
+        description: >-
+          Safety check parameter. Must be set to true to actually clear metadata.
+          If false or omitted, returns a 400 error.
       - name: templatesToo
         in: query
         required: false
         schema:
+          type: boolean
+          default: false
+        description: When true, also removes all metadata templates in addition to metadata values.
+  /rest/metadata/customToNative:
+    get:
+      operationId: get_metadata_MetaDataRestService_customToNative
+      summary: Convert custom metadata to native format
+      description: >-
+        Maps custom metadata fields to native resource properties for a specified layer.
+        Reads the layer's custom metadata and writes corresponding native metadata fields,
+        then saves the layer.
+      tags:
+      - Extensions - Metadata
+      responses:
+        '200':
+          description: Conversion completed successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Success.
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '404':
+          description: Layer not found
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: layerName
+        in: query
+        required: true
+        schema:
           type: string
-        description: The templatesToo parameter
+        description: >-
+          The fully-qualified layer name (e.g., "workspace:layername") to convert
+          custom metadata to native format.
+  /rest/metadata/fix:
+    get:
+      operationId: get_metadata_MetaDataRestService_fixAll
+      summary: Fix metadata inconsistencies
+      description: >-
+        Scans all layers and fixes metadata inconsistencies. This re-applies template
+        linkages and ensures metadata values are consistent with their templates.
+      tags:
+      - Extensions - Metadata
+      responses:
+        '200':
+          description: Fix operation completed successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Success.
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+  /rest/metadata/import:
+    post:
+      operationId: post_metadata_MetaDataRestService_importAndLink
+      summary: Import metadata from external source
+      description: >-
+        Imports metadata from a CSV file and links it to layers. The CSV file is provided
+        as the request body. Optionally connects to a GeoNetwork instance to fetch
+        additional metadata.
+      tags:
+      - Extensions - Metadata
+      responses:
+        '200':
+          description: Import completed successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: geonetwork
+        in: query
+        required: false
+        schema:
+          type: string
+        description: >-
+          URL of a GeoNetwork instance to fetch metadata from during import.
+          If omitted, only the CSV data is used.
+      requestBody:
+        required: true
+        description: CSV file content mapping layers to metadata records
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: CSV content with layer-to-metadata mappings
+  /rest/metadata/linkedlayers:
+    get:
+      operationId: get_metadata_MetaDataRestService_getLinkedLayers
+      summary: Get layers linked to a metadata template
+      description: >-
+        Returns a newline-separated list of layer names that are linked to the specified
+        metadata template. Each line contains the prefixed layer name (workspace:layer)
+        or the raw resource ID if the resource no longer exists in the catalog.
+      tags:
+      - Extensions - Metadata
+      responses:
+        '200':
+          description: List of linked layer names (newline-separated)
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: >-
+                  Newline-separated list of layer names in workspace:layer format.
+                example: |-
+                  topp:states
+                  sf:archsites
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: template
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The name of the metadata template to look up linked layers for.
+  /rest/metadata/nativeToCustom:
+    get:
+      operationId: get_metadata_MetaDataRestService_nativeToCustom
+      summary: Convert native metadata to custom format
+      description: >-
+        Converts native resource metadata fields to custom metadata format for all layers,
+        or a subset specified by index. Reads native metadata properties and populates
+        the corresponding custom metadata fields.
+      tags:
+      - Extensions - Metadata
+      responses:
+        '200':
+          description: Conversion completed successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Success.
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: indexes
+        in: query
+        required: false
+        schema:
+          type: string
+        description: >-
+          Comma-separated list of integer indexes specifying which mapping rules to apply.
+          If omitted, all mapping rules are applied.
+    post:
+      operationId: post_metadata_MetaDataRestService_nativeToCustom
+      summary: Trigger native-to-custom conversion with CSV mapping
+      description: >-
+        Converts native resource metadata to custom format using a CSV mapping file
+        provided in the request body. Optionally limited to specific mapping indexes.
+      tags:
+      - Extensions - Metadata
+      responses:
+        '200':
+          description: Conversion completed successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: indexes
+        in: query
+        required: false
+        schema:
+          type: string
+        description: >-
+          Comma-separated list of integer indexes specifying which mapping rules to apply.
+          If omitted, all mapping rules are applied.
+      requestBody:
+        required: true
+        description: CSV file content defining the native-to-custom field mappings
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: CSV content with field mapping definitions
   /rest/geofence/adminrules:
     get:
       operationId: get_geofence_AdminRulesRestController_get
@@ -1146,13 +1354,15 @@ paths:
   /rest/imports:
     get:
       operationId: get_importer_ImportController_getImports
-      summary: GET /rest/imports
-      description: Endpoint from importer module
+      summary: List all import contexts
+      description: >-
+        Returns a list of all import contexts. Each context represents a bulk data import
+        operation with its current state, tasks, and configuration.
       tags:
-      - Extensions
+      - Extensions - Importer
       responses:
         '200':
-          description: Successful operation
+          description: List of import contexts
           content:
             application/json:
               schema: &id006
@@ -1186,6 +1396,104 @@ paths:
         description: Controls the depth of sub-resource expansion in the JSON response. Use "none" (or 0) for minimal output
           with links only, "self" (or 1) to expand the current resource, "all" to fully expand all nested sub-resources, or
           an integer for a specific depth level. Default depth varies by endpoint (typically 0 for list operations).
+    post:
+      operationId: post_importer_ImportController_postImports_collection
+      summary: Create a new import context
+      description: >-
+        Creates a new import context. Optionally configures a target workspace and/or store.
+        If exec is true, the import is executed immediately after creation. If async is true,
+        initialization and execution happen in the background.
+      tags:
+      - Extensions - Importer
+      responses:
+        '201':
+          description: Import context created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The newly created import context
+        '400':
+          $ref: ../common/responses.yaml#/BadRequest
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
+      parameters:
+      - name: async
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: >-
+          When true, the import is initialized and optionally executed asynchronously.
+          The response returns immediately with the import context.
+      - name: exec
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: >-
+          When true, the import is executed immediately after creation.
+          Combines create and run into a single request.
+      requestBody:
+        required: false
+        description: >-
+          Optional import context configuration specifying target workspace, store, and data source.
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Import context configuration
+              properties:
+                import:
+                  type: object
+                  properties:
+                    targetWorkspace:
+                      type: object
+                      properties:
+                        workspace:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                    targetStore:
+                      type: object
+                      properties:
+                        dataStore:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+            example:
+              import:
+                targetWorkspace:
+                  workspace:
+                    name: topp
+                targetStore:
+                  dataStore:
+                    name: postgis_store
+    delete:
+      operationId: delete_importer_ImportController_deleteImports_all
+      summary: Delete all import contexts
+      description: >-
+        Deletes all import contexts and their associated data. This is a bulk cleanup
+        operation that removes every import context from the system.
+      tags:
+      - Extensions - Importer
+      responses:
+        '204':
+          description: All import contexts deleted successfully
+        '401':
+          $ref: ../common/responses.yaml#/Unauthorized
+        '403':
+          $ref: ../common/responses.yaml#/Forbidden
+        '500':
+          $ref: ../common/responses.yaml#/InternalServerError
   /rest/imports/{id}:
     delete:
       operationId: delete_importer_ImportController_deleteImports

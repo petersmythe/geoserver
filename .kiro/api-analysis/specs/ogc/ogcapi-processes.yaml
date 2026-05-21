@@ -1,0 +1,445 @@
+openapi: 3.0.0
+info:
+  title: GeoServer OGC API - Processes
+  description: |
+    OGC API - Processes provides access to geospatial processing capabilities.
+    This is the modern REST-based successor to WPS, following the OGC API standard patterns.
+
+    Base path: /ogc/processes/v1
+
+    Supports synchronous and asynchronous execution, KVP-encoded execute requests,
+    and job management (status, results, dismissal).
+
+    Note: This is a community module and must be installed separately.
+  version: 1.0.0
+  contact:
+    name: GeoServer Project
+    url: https://geoserver.org
+  license:
+    name: GPL 2.0
+    url: https://www.gnu.org/licenses/gpl-2.0.html
+servers:
+  - url: http://localhost:8080/geoserver
+    description: Local GeoServer instance
+  - url: https://example.com/geoserver
+    description: Production GeoServer instance
+tags:
+  - name: "OGC API - Processes 1.0"
+    description: |
+      OGC API - Processes endpoints for geospatial processing.
+      Community module — requires separate installation.
+    externalDocs:
+      description: OGC API - Processes Specification
+      url: https://ogcapi.ogc.org/processes/
+paths:
+  /ogc/processes/v1:
+    get:
+      operationId: OGCProcesses_getLandingPage
+      summary: Landing page
+      description: |
+        Returns the landing page for the OGC API - Processes service.
+        Provides links to the API definition, conformance declaration, and process list.
+      tags:
+        - "OGC API - Processes 1.0"
+      responses:
+        '200':
+          description: Landing page with links to API resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandingPage'
+            text/html:
+              schema:
+                type: string
+  /ogc/processes/v1/openapi:
+    get:
+      operationId: OGCProcesses_getApi
+      summary: API definition
+      description: Returns the OpenAPI definition for the OGC API - Processes service.
+      tags:
+        - "OGC API - Processes 1.0"
+      responses:
+        '200':
+          description: OpenAPI definition document
+          content:
+            application/vnd.oai.openapi+json;version=3.0:
+              schema:
+                type: object
+            application/x-yaml:
+              schema:
+                type: object
+  /ogc/processes/v1/conformance:
+    get:
+      operationId: OGCProcesses_getConformanceDeclaration
+      summary: Conformance declaration
+      description: |
+        Returns the list of conformance classes that this API conforms to.
+        Includes Core, Process Description, HTML, JSON, KVP Execute, and Dismiss.
+      tags:
+        - "OGC API - Processes 1.0"
+      responses:
+        '200':
+          description: List of conformance classes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformanceDeclaration'
+            text/html:
+              schema:
+                type: string
+  /ogc/processes/v1/processes:
+    get:
+      operationId: OGCProcesses_getProcessList
+      summary: List available processes
+      description: |
+        Returns a list of all available processes. Supports paging via limit and offset parameters.
+      tags:
+        - "OGC API - Processes 1.0"
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of processes to return
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: Starting offset for paging
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of available processes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessList'
+            text/html:
+              schema:
+                type: string
+  /ogc/processes/v1/processes/{processId}:
+    get:
+      operationId: OGCProcesses_getProcessDescription
+      summary: Describe a process
+      description: |
+        Returns a detailed description of the specified process, including its
+        inputs, outputs, and execution modes.
+      tags:
+        - "OGC API - Processes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/processId'
+      responses:
+        '200':
+          description: Process description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessDescription'
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Process not found
+  /ogc/processes/v1/processes/{processId}/execution:
+    get:
+      operationId: OGCProcesses_executeProcessKVP
+      summary: Execute a process (KVP)
+      description: |
+        Executes the specified process using KVP-encoded parameters in the query string.
+        Input values are passed as query parameters matching the process input identifiers.
+        Supports the KVP Execute conformance class.
+      tags:
+        - "OGC API - Processes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/processId'
+      responses:
+        '200':
+          description: Process execution results (synchronous)
+          content:
+            application/json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: string
+        '201':
+          description: Job created (asynchronous execution)
+          headers:
+            Location:
+              description: URL to the job status resource
+              schema:
+                type: string
+        '400':
+          description: Invalid input parameters
+        '404':
+          description: Process not found
+        '500':
+          description: Process execution failed
+    post:
+      operationId: OGCProcesses_executeProcessPOST
+      summary: Execute a process (JSON)
+      description: |
+        Executes the specified process using a JSON request body containing inputs and
+        execution parameters. Supports synchronous and asynchronous execution modes.
+      tags:
+        - "OGC API - Processes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/processId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteRequest'
+      responses:
+        '200':
+          description: Process execution results (synchronous)
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Job created (asynchronous execution)
+          headers:
+            Location:
+              description: URL to the job status resource
+              schema:
+                type: string
+        '400':
+          description: Invalid execute request
+        '404':
+          description: Process not found
+        '500':
+          description: Process execution failed
+  /ogc/processes/v1/jobs/{jobId}:
+    get:
+      operationId: OGCProcesses_getStatus
+      summary: Get job status
+      description: |
+        Returns the current status of an asynchronous process execution job.
+        Status values include accepted, running, successful, failed, and dismissed.
+      tags:
+        - "OGC API - Processes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+        '404':
+          description: Job not found or expired
+    delete:
+      operationId: OGCProcesses_dismiss
+      summary: Dismiss a job
+      description: |
+        Cancels and dismisses an asynchronous process execution job.
+        The job must exist and not already be in a dismissing state.
+      tags:
+        - "OGC API - Processes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Job dismissed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+        '404':
+          description: Job not found, expired, or already being dismissed
+      security:
+        - basicAuth: []
+  /ogc/processes/v1/jobs/{jobId}/results:
+    get:
+      operationId: OGCProcesses_getResults
+      summary: Get job results
+      description: |
+        Returns the results of a completed asynchronous process execution.
+        The job must be in the "successful" state.
+      tags:
+        - "OGC API - Processes 1.0"
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Process execution results
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Job not found, expired, or results not ready
+components:
+  parameters:
+    processId:
+      name: processId
+      in: path
+      description: Identifier of the process (typically namespace:processName)
+      required: true
+      schema:
+        type: string
+    jobId:
+      name: jobId
+      in: path
+      description: Unique identifier of the execution job
+      required: true
+      schema:
+        type: string
+  schemas:
+    LandingPage:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConformanceDeclaration:
+      type: object
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+    ProcessList:
+      type: object
+      description: List of available processes
+      properties:
+        processes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessSummary'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ProcessSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        jobControlOptions:
+          type: array
+          items:
+            type: string
+            enum: [sync-execute, async-execute]
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ProcessDescription:
+      type: object
+      description: Detailed process description
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        jobControlOptions:
+          type: array
+          items:
+            type: string
+        inputs:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InputDescription'
+        outputs:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/OutputDescription'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    InputDescription:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        schema:
+          type: object
+        minOccurs:
+          type: integer
+        maxOccurs:
+          type: integer
+    OutputDescription:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        schema:
+          type: object
+    ExecuteRequest:
+      type: object
+      description: Process execution request
+      properties:
+        inputs:
+          type: object
+          additionalProperties: true
+        outputs:
+          type: object
+          additionalProperties:
+            type: object
+        response:
+          type: string
+          enum: [raw, document]
+        mode:
+          type: string
+          enum: [sync, async]
+    JobStatus:
+      type: object
+      description: Job status information
+      properties:
+        processID:
+          type: string
+        jobID:
+          type: string
+        status:
+          type: string
+          enum: [accepted, running, successful, failed, dismissed]
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        created:
+          type: string
+          format: date-time
+        finished:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
