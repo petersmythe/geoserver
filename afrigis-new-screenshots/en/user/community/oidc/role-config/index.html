@@ -24590,6 +24590,84 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#community_oidc_keycloak_admin_api_role_source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Roles from the Keycloak Admin REST API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Roles from the Keycloak Admin REST API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-choose-keycloak-admin-api-over-id-token-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to choose Keycloak Admin API over ID Token / Access Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#community_oidc_user_profile_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Profile Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Profile Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolution order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lookup-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -29944,6 +30022,84 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#community_oidc_keycloak_admin_api_role_source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Roles from the Keycloak Admin REST API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Roles from the Keycloak Admin REST API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-choose-keycloak-admin-api-over-id-token-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to choose Keycloak Admin API over ID Token / Access Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#community_oidc_user_profile_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Profile Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Profile Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolution order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lookup-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -29977,7 +30133,7 @@
 </ul>
 <p>For more examples, see the IDP-specific configuration examples - <a href="../oauth2/google/">Google</a>, <a href="../oauth2/github/">GitHub</a>, <a href="../oauth2/keycloak/">Keycloak</a>, <a href="../oauth2/azure/">MS Azure and Entra</a>, <a href="../oauth2/generic/">Generic OpenID Connect</a>.</p>
 <h2 id="extracting-roles-from-the-oidc-idp">Extracting Roles from the OIDC IDP<a class="headerlink" href="#extracting-roles-from-the-oidc-idp" title="Permanent link">&para;</a></h2>
-<p>The <code>oidc</code> module allows for providing user roles with the standard GeoServer role providers. It also adds four new ones: ID Token, Access Token, UserInfo, and Microsoft Graph.</p>
+<p>The <code>oidc</code> module allows for providing user roles with the standard GeoServer role providers. It also adds five OIDC-specific ones: ID Token, Access Token, UserInfo, Microsoft Graph and Keycloak Admin API.</p>
 <table>
 <thead>
 <tr>
@@ -30001,6 +30157,10 @@
 <tr>
 <td>Microsoft Graph</td>
 <td><a href="https://learn.microsoft.com/en-us/graph/overview">Microsoft Graph</a> is a Microsoft product for use with their cloud IDP. Only use this if you are using a Microsoft product like Microsoft Entra ID (formerly Azure AD).</td>
+</tr>
+<tr>
+<td>Keycloak Admin API</td>
+<td>Server-side fetch of the logged-in user's role assignments via Keycloak's <a href="https://www.keycloak.org/docs-api/latest/rest-api/index.html">Admin REST API</a>. Use this when you need to surface roles assigned to the user <strong>through groups</strong> (not just direct realm-role assignments) or when composite-role expansion needs to happen server-side. Only valid against a Keycloak IDP. See <a href="../oauth2/keycloak/#community_oidc_keycloak_admin_api">Configuring with Keycloak</a> for the prerequisite Keycloak-side setup.</td>
 </tr>
 </tbody>
 </table>
@@ -30067,7 +30227,7 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </code></pre></div>
-<p>We would, therefore, specify the JSON Path to <code>resource_access.live-key2.roles</code> to get the two external IDP roles ("<code>GeonetworkAdminr</code>", and "<code>GeoserverAdmin</code>"). In keycloak, the JSON path will be of the form <code>resource_access.&lt;client name&gt;.roles</code>. Other OIDC IDPs will put the roles in a different location.</p>
+<p>We would, therefore, specify the JSON Path to <code>resource_access.live-key2.roles</code> to get the two external IDP roles ("<code>GeonetworkAdmin</code>", and "<code>GeoserverAdmin</code>"). In keycloak, the JSON path will be of the form <code>resource_access.&lt;client name&gt;.roles</code>. Other OIDC IDPs will put the roles in a different location.</p>
 <h3 id="access-token">Access Token<a class="headerlink" href="#access-token" title="Permanent link">&para;</a></h3>
 <p>If you choose the Access Token as your role source, you can also use <code>scope</code> for the JSON path. This will look at the OIDC IDP's <a href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-auth-code-flow">code response</a> to see what <a href="https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes">scopes</a> are available.</p>
 <p>For <strong>very</strong> advanced users (not recommended - only do this if your IDP uses this mechanism), you can also extract other parts from the code response. This is only provided to help with opaque (non-JWT) Access Tokens. Here is what a typical code response looks like:</p>
@@ -30083,12 +30243,112 @@
 <h2 id="configuring-microsoft-graph">Configuring Microsoft Graph<a class="headerlink" href="#configuring-microsoft-graph" title="Permanent link">&para;</a></h2>
 <p>See the <a href="../oauth2/azure/">Azure/Entra Configuration</a></p>
 <h2 id="external-internal-role-translation">External-Internal Role Translation<a class="headerlink" href="#external-internal-role-translation" title="Permanent link">&para;</a></h2>
-<p>The <code>oidc</code> module provides an easy what to convert the name of an external IDP's role to a local GeoServer role.</p>
+<p>The <code>oidc</code> module provides an easy way to convert the name of an external IDP's role to a local GeoServer role.</p>
 <p><img alt="" src="../img/roleConvert.png" /></p>
 <p>In this example, the OIDC IDP will return a <code>geoserverAdmin</code> role (see ID Token example, above). You can configure GeoServer to understand what this means, however, this can be complex. Instead this defines a very simple translation from the role in the ID Token (<code>External Role Name</code>) to an internal GeoServer role name.</p>
 <p>In this example we are converting the IDP's <code>geoserverAdmin</code> role to <code>ROLE_ADMINISTRATOR</code>.</p>
 <p>You can specify multiple translations separated by the "<code>;</code>" character.</p>
 <p>If you turn on the "<code>Only allow External Roles that are explicitly named above</code>", then roles that are not mentioned in the Role Converter Map will <strong>not</strong> be in the set of GeoServer roles. For example, in the example ID Token, the user has role "geoserverAdmin" and "geonetworkAdmin". If this is not turned on, then the user will have the GeoServer roles "ROLE_ADMINISTRATOR" (translated from "geoserverAdmin") as well as "geonetworkAdmin". If it is turned on, then they will only have the "ROLE_ADMINISTRATOR" (translated from "geoserverAdmin") role.</p>
+<h2 id="community_oidc_keycloak_admin_api_role_source">Configuring Roles from the Keycloak Admin REST API<a class="headerlink" href="#community_oidc_keycloak_admin_api_role_source" title="Permanent link">&para;</a></h2>
+<p>The <code>Keycloak Admin API</code> role source is a Keycloak-specific alternative to the token-claim-based sources. Instead of reading roles from the ID Token / Access Token / UserInfo response, GeoServer calls Keycloak's <a href="https://www.keycloak.org/docs-api/latest/rest-api/index.html">Admin REST API</a> at login time to fetch the user's role assignments:</p>
+<ol>
+<li><code>GET /admin/realms/{realm}/users?exact=true&amp;username=&lt;principal&gt;</code> — resolve the user's UUID.</li>
+<li><code>GET /admin/realms/{realm}/users/{uuid}/role-mappings/realm/composite</code> — enumerate the user's realm-role mappings (transitively expanded across composite roles and group memberships).</li>
+<li>Optionally, <code>GET /admin/realms/{realm}/users/{uuid}/role-mappings/clients/{cid}/composite</code> for each Keycloak client whose client-roles you want pulled in.</li>
+</ol>
+<p>The admin calls are authenticated via a separate access token obtained through the OAuth2 <a href="https://www.rfc-editor.org/rfc/rfc6749#section-4.4">client credentials</a> grant against the <strong>same</strong> OIDC client used for user login. The OIDC client therefore needs to satisfy two extra Keycloak-side prerequisites:</p>
+<ul>
+<li><strong>Service Accounts → Enabled</strong> (<code>serviceAccountsEnabled=true</code>)</li>
+<li><strong>Service Account Roles</strong> must include the realm-management roles needed to read users, clients, groups and realm metadata — at minimum <code>view-realm</code>, <code>view-users</code>, <code>view-clients</code>, <code>query-groups</code>.</li>
+</ul>
+<p>See <a href="../oauth2/keycloak/#community_oidc_keycloak_admin_api">Configuring Keycloak Admin API as the role source</a> for the step-by-step Keycloak setup.</p>
+<p><img alt="" src="../img/keycloak-api-role-source.png" /></p>
+<p><em>The Keycloak Admin API sub-panel on the OIDC filter's Authorization section.</em></p>
+<p>The fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client IDs for client-roles (comma-separated, optional)</td>
+<td>If your roles live as <strong>client roles</strong> under one or more Keycloak clients (not just realm roles), list those clients' public IDs here. Leave blank to surface realm roles only.</td>
+</tr>
+<tr>
+<td>Include composite &amp; group-inherited roles</td>
+<td>Default <strong>on</strong>. Switches the per-user fetch to the <code>/composite</code> endpoint variant so Keycloak server-side flattens both composite parents and group memberships into the response. Turn off only if you need plain direct-assignment semantics.</td>
+</tr>
+<tr>
+<td>Role Converter Map</td>
+<td>Translate external IDP role names to internal GeoServer role names — exactly the same mechanism documented in the <a href="#external-internal-role-translation">External-Internal Role Translation</a> section. Useful for mapping Keycloak roles like <code>geoserver-admin</code> to GeoServer's built-in <code>ROLE_ADMINISTRATOR</code>.</td>
+</tr>
+<tr>
+<td>Only allow External Roles that are explicitly named above</td>
+<td>Same semantics as the token-based sources — when enabled, roles not in the Role Converter Map are dropped.</td>
+</tr>
+</tbody>
+</table>
+<p>The Server URL, Realm and admin client credentials are <strong>derived at resolution time</strong> from the same OIDC configuration above (the Discovery URI, Client ID, Client Secret you've already configured for the login flow). No duplicate inputs.</p>
+<h3 id="when-to-choose-keycloak-admin-api-over-id-token-access-token">When to choose Keycloak Admin API over ID Token / Access Token<a class="headerlink" href="#when-to-choose-keycloak-admin-api-over-id-token-access-token" title="Permanent link">&para;</a></h3>
+<p>Use this source when:</p>
+<ul>
+<li>The Keycloak roles you care about are assigned to users <strong>indirectly</strong> (through group membership), and you cannot or don't want to add a group-mapper protocol-mapper to surface them in the token claims.</li>
+<li>You rely on Keycloak's <a href="https://www.keycloak.org/docs/latest/server_admin/index.html#_composite-roles">composite roles</a> and want server-side transitive expansion (e.g. <code>admin</code> → <code>editor</code> → <code>viewer</code>).</li>
+<li>Your tokens are small / opaque and you'd rather not embed potentially large role sets in every request.</li>
+</ul>
+<p>Stick with the ID Token / Access Token source if:</p>
+<ul>
+<li>Your roles are already in the token claim (typical) — it's faster and avoids the extra admin-API round-trip per login.</li>
+<li>Your IDP isn't Keycloak (the admin endpoints are Keycloak-specific).</li>
+</ul>
+<h2 id="community_oidc_user_profile_properties">User Profile Properties<a class="headerlink" href="#community_oidc_user_profile_properties" title="Permanent link">&para;</a></h2>
+<p>In addition to roles, the OIDC module populates the GeoServer user profile properties (<code>first_name</code>, <code>last_name</code>, <code>preferred_username</code>, <code>email</code>) on the authenticated principal. Downstream components that honour <a href="../../../security/usergrouprole/">User Details Display Settings</a> --- including the top-right logged-in-user label and any code that reads <code>GeoServerUser.getProperties()</code> --- will then show profile data instead of the raw IDP subject identifier.</p>
+<h3 id="resolution-order">Resolution order<a class="headerlink" href="#resolution-order" title="Permanent link">&para;</a></h3>
+<p>For each property, the value is taken from the first source that provides a non-blank value:</p>
+<ol>
+<li>The configured <strong>GeoServer user/group service</strong>, looked up by the resolved principal name.</li>
+<li>The OIDC claims merged from the ID Token and the UserInfo response (UserInfo wins on overlap). For non-OIDC OAuth2 providers, the OAuth2 attribute map is used instead.</li>
+</ol>
+<p>The claim-to-property mapping is:</p>
+<table>
+<thead>
+<tr>
+<th>GeoServer property</th>
+<th>OIDC claim / OAuth2 attribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_name</code></td>
+<td><code>given_name</code></td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td><code>family_name</code></td>
+</tr>
+<tr>
+<td><code>preferred_username</code></td>
+<td><code>preferred_username</code></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>email</code></td>
+</tr>
+</tbody>
+</table>
+<p>This means an administrator can override IDP-provided profile data by setting the matching property on the user inside the configured user/group service. Properties already set on the user/group entry are <strong>never</strong> overwritten by IDP claims.</p>
+<h3 id="lookup-key">Lookup key<a class="headerlink" href="#lookup-key" title="Permanent link">&para;</a></h3>
+<p>The principal name resolved from the configured <code>userNameAttributeName</code> is used as both the Spring principal name and the user/group service lookup key. If the IDP returns an opaque identifier (e.g. an Azure B2C object identifier) as the principal name, the matching entry in the user/group service must use that same identifier as its username for the override to take effect.</p>
+<h3 id="failure-handling">Failure handling<a class="headerlink" href="#failure-handling" title="Permanent link">&para;</a></h3>
+<p>The user/group lookup is best-effort. The following conditions <strong>never</strong> prevent login:</p>
+<ul>
+<li>No user/group service is configured for the filter --- properties are populated from claims only.</li>
+<li>The configured service cannot be loaded, or returns no user for the resolved name --- properties are populated from claims only.</li>
+<li>The lookup throws an I/O error --- a warning is logged and the login proceeds with claim-derived properties.</li>
+</ul>
 
 
 
