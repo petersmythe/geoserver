@@ -821,16 +821,19 @@ public class MapMLFeatureUtil {
      * @return the preferred image format if available, or null if no image formats are cached
      */
     private static String getAvailableImageFormat(ResourceInfo resourceInfo, GridSet gridSet) {
-        // this local variable is necessary because otherwise
-        // MapMLFormatOptionsMatrixTest.testScenarioH2_1_RasterWithImageCacheMapMLResponseMapTileSrcIsGetTile
-        // fails but only during a full test suite run, not when run by itself
         GWC gwc = GWC.get();
-        if (gwc == null || !gwc.hasTileLayer(resourceInfo)) {
+        if (gwc == null) {
             return null;
         }
 
         try {
-            TileLayer tileLayer = gwc.getTileLayer(resourceInfo);
+            // Look up the tile layer directly by prefixed name, avoiding the catalog round-trip
+            // through hasTileLayer(ResourceInfo) which can fail during full test suite runs
+            // when the GWC singleton's catalog reference is stale.
+            TileLayer tileLayer = gwc.getTileLayerByName(resourceInfo.prefixedName());
+            if (tileLayer == null) {
+                return null;
+            }
 
             // Check if the tile layer has the specified GridSet
             if (tileLayer.getGridSubset(gridSet.getName()) == null) {
