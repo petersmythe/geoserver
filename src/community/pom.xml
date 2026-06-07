@@ -182,6 +182,14 @@
         <module>wps-download-netcdf</module>
         <module>singlestore</module>
         <module>pmtiles-store</module>
+        <module>wps-openai</module>
+        <module>evaluateVariables</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>pending</id>
+      <modules>
+        <module>oseo</module>
       </modules>
     </profile>
     <profile>

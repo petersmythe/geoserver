@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="pageEvaluateVariables" class="org.geoserver.web.ToolLinkInfo">
+        <property name="id" value="pageEvaluateVariables"/>
+        <property name="titleKey" value="PageEvaluateVariables.page.title"/>
+        <property name="descriptionKey" value="PageEvaluateVariables.page.description"/>
+        <property name="componentClass" value="org.geoserver.web.evaluate.PageEvaluateVariables"/>
+        <property name="authorizer">
+            <bean class="org.geoserver.web.AdminComponentAuthorizer"/>
+        </property>
+    </bean>
+
+    <bean id="EvaluateVariablesExtension" class="org.geoserver.platform.ModuleStatusImpl">
+        <property name="module" value="gs-evaluateVariables" />
+        <property name="name" value="Evaluate Variables Extension" />
+        <property name="component" value="Evaluate Variables UI" />
+        <property name="available" value="true" />
+        <property name="enabled" value="true" />
+    </bean>
+</beans>

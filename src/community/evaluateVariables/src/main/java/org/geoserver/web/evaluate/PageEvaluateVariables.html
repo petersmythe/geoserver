@@ -1,0 +1,31 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+    <wicket:extend>
+        <div class="panel">
+            <h3>Environment Properties File Evaluation</h3>
+            <p>Enter a string with placeholders in the format <code>${VARIABLE_NAME}</code> to evaluate them against properties defined in the properties file.</p>
+            <p><strong><span wicket:id="propertiesFile">Properties file info</span></strong></p>
+            <p><strong>Note:</strong> For security reasons, this tool ONLY evaluates against the properties file, not system properties or environment variables.</p>
+            <p><strong>Requirement:</strong> Environment parametrization must be enabled with <code>ALLOW_ENV_PARAMETRIZATION=true</code></p>
+            
+            <form wicket:id="form">
+                <div wicket:id="inputContainer" class="eval-input-container">
+                    <label wicket:id="inputLabel" for="input" class="eval-input-label">Enter text with placeholders:</label>
+                    <input wicket:id="input" type="text" id="input" class="eval-input-field"
+                           placeholder="e.g., Database: ${DB_HOST}:${DB_PORT}/${DB_NAME}" 
+                           size="80"/>
+                </div>
+                <div wicket:id="buttonContainer" class="eval-button-container">
+                    <button wicket:id="submit" type="submit" class="eval-submit-button">
+                        Evaluate
+                    </button>
+                </div>
+            </form>
+            
+            <div wicket:id="resultContainer" class="eval-result-container">
+                <strong>Result:</strong> <span wicket:id="result">No input yet</span>
+            </div>
+        </div>
+    </wicket:extend>
+</body>
+</html>
