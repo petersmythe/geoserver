@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!-- Readiness state tracking bean -->
+    <bean id="healthCheckReadinessState" class="org.geoserver.health.ReadinessStateBean"/>
+
+    <!-- Health check filter - picked up by SpringDelegatingFilter via GeoServerFilter interface -->
+    <bean id="healthCheckFilter" class="org.geoserver.health.HealthCheckFilter">
+        <constructor-arg ref="healthCheckReadinessState"/>
+    </bean>
+
+    <!-- Module status registration -->
+    <bean id="healthCheckProbesExtension" class="org.geoserver.platform.ModuleStatusImpl">
+        <constructor-arg index="0" value="gs-health-check-probes"/>
+        <constructor-arg index="1" value="Health Check Probes"/>
+        <constructor-arg index="2" value="Kubernetes-style liveness and readiness health check probe endpoints"/>
+    </bean>
+</beans>

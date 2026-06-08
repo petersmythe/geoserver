@@ -556,6 +556,12 @@
       </modules>
     </profile>
     <profile>
+      <id>health-check-probes</id>
+      <modules>
+        <module>health-check-probes</module>
+      </modules>
+    </profile>
+    <profile>
       <id>assembly</id>
       <build>
         <plugins>
