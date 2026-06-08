@@ -20942,6 +20942,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -20964,7 +20968,7 @@
   <span class="md-ellipsis">
     
   
-    Backup and Restore Documentation
+    Backup and Restore
   
 
     
@@ -20986,7 +20990,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Backup and Restore Documentation
+    Backup and Restore
   
 
           </label>
@@ -21036,7 +21040,7 @@
   <span class="md-ellipsis">
     
   
-    Usage Via GeoServer's User Interface
+    Usage via the web interface
   
 
     
@@ -21064,7 +21068,35 @@
   <span class="md-ellipsis">
     
   
-    Usage Via GeoServer's REST API
+    Usage via GeoServer's REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../community/backuprestore/options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and Restore options
   
 
     
@@ -21092,7 +21124,7 @@
   <span class="md-ellipsis">
     
   
-    Backup and Restore Extension for the management of ImageMosaic indexers
+    ImageMosaic indexer extension
   
 
     
@@ -21120,7 +21152,35 @@
   <span class="md-ellipsis">
     
   
-    Use Cases
+    Use cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../community/backuprestore/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What changed between 2.x and 3.x
   
 
     
@@ -24358,6 +24418,8 @@
       
         
       
+        
+      
     
     
     
@@ -24649,6 +24711,34 @@
     
   
     Advanced Information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../community/oidc/migrating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrating from the legacy OAuth2/OIDC plugins
   
 
     
@@ -30053,7 +30143,7 @@
 <p>Within each store there are multiple configuration files that determine how the mosaic is rendered.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The property file syntax uses a few reserved chars that need escaping in order to be used for keys or values. For example, the <code>#</code> character is used to comment out lines, in order to use it in values it needs to be escaped, like this: <code>\#</code>. The same applies to the <code>=</code> character, which is used to separate the property name from its value: it should be specified as <code>\=</code>. Finally, if there is a need to use the <code>itself, it will have to be escaped as well:</code>.</p>
+<p>The property file syntax uses a few reserved chars that need escaping in order to be used for keys or values. For example, the <code>#</code> character is used to comment out lines, in order to use it in values it needs to be escaped, like this: <code>\#</code>. The same applies to the <code>=</code> character, which is used to separate the property name from its value: it should be specified as <code>\=</code>. Finally, if there is a need to use the <code>`</code> itself, it will have to be escaped as well: <code>\`</code>.</p>
 </div>
 <h3 id="primary-configuration-file">Primary configuration file<a class="headerlink" href="#primary-configuration-file" title="Permanent link">&para;</a></h3>
 <p>The mosaic configuration file is the primary file used to store the configuration parameters that control the ImageMosaic plugin. When created by GeoServer it is by default called <code>&lt;directory&gt;.properties</code>, where <code>&lt;directory&gt;</code> is the name of the root directory of the store. (It is not related to the store name in GeoServer.) It can have other names, as long as it does not conflict with other files such as <strong><code>datastore.properties</code></strong> or <strong><code>indexer.properties</code></strong>. This file usually does not require manual editing.</p>
