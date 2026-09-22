@@ -18229,6 +18229,8 @@
       
         
       
+        
+      
     
     
     
@@ -18365,6 +18367,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geofence/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrating GeoFence configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -18422,7 +18452,7 @@
   <span class="md-ellipsis">
     
   
-    Geofence Internal Server
+    Geofence Embedded Server
   
 
     
@@ -18444,7 +18474,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Geofence Internal Server
+    Geofence Embedded Server
   
 
           </label>
@@ -18466,7 +18496,7 @@
   <span class="md-ellipsis">
     
   
-    Installing the GeoServer GeoFence Server extension
+    Install the plugin
   
 
     
@@ -18522,7 +18552,7 @@
   <span class="md-ellipsis">
     
   
-    GeoFence Rest API
+    GeoFence REST API
   
 
     
@@ -18550,7 +18580,7 @@
   <span class="md-ellipsis">
     
   
-    AdminRules Rest API
+    REST API: AdminRules
   
 
     
@@ -18578,7 +18608,7 @@
   <span class="md-ellipsis">
     
   
-    Batch Rest API
+    REST API: Batch
   
 
     
@@ -18606,7 +18636,7 @@
   <span class="md-ellipsis">
     
   
-    Using the Internal GeoFence server (Tutorial)
+    Using the Embedded GeoFence server (Tutorial)
   
 
     
@@ -24734,8 +24764,6 @@
       
         
       
-        
-      
     
     
     
@@ -24915,34 +24943,6 @@
     
   
     OGC API - Styles
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../community/ogc-api/tiled-features/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    OGC API - Tiled features demonstration
   
 
     
@@ -30520,12 +30520,14 @@
 <p><em>Bearer Resource Server Checkbox</em></p>
 <p>When enabled, the same OAuth2 / OpenID Connect login filter also accepts machine-to-machine requests that provide an Authorization: Bearer <JWT> header. The token is validated using the provider's JWK Set URI configured in this panel.</p>
 <p>Disable this option if you only want browser-based login, and you do not want this filter chain to accept bearer tokens.</p>
+<p>Bearer tokens go through the same rule for the built-in <code>admin</code> and <code>root</code> accounts as an interactive login does --- see <a href="../configuring/#oidc_admin_accounts">Built-in administrator accounts</a>.</p>
 <h2 id="opaque-token-support-jwe">Opaque Token Support (JWE)<a class="headerlink" href="#opaque-token-support-jwe" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../images/opaque_token.png" /></p>
 <p><em>Bearer Resource Server Checkbox</em></p>
 <p>When enabled, the same OAuth2 / OpenID Connect login filter will perform the token validation externally by triggering the token introspection URL.</p>
 <p>An opaque token is just an identifier. GeoServer can't validate or extract claims from it locally (there's nothing to decode like a JWT). So the only way to "understand" it is to ask the Authorization Server.</p>
 <p>So the token is validated remotely, and any "claims" GeoServer sees come from the introspection JSON.</p>
+<p>The principal that comes back from introspection is subject to the same rule for the built-in <code>admin</code> and <code>root</code> accounts --- see <a href="../configuring/#oidc_admin_accounts">Built-in administrator accounts</a>.</p>
 <h2 id="proof-key-of-code-exchange-pkce">Proof Key of Code Exchange (PKCE)<a class="headerlink" href="#proof-key-of-code-exchange-pkce" title="Permanent link">&para;</a></h2>
 <p>The OpenID Connect plugin allows the use of Proof Key of Code Exchange (PKCE).</p>
 <p><img alt="" src="../images/pkce.png" /></p>
@@ -30561,6 +30563,7 @@
 <p>Optional: It is no longer required to use the <code>User Info URI</code> - if you leave that field blank you may rely only on the <code>JSON Web Key Set URI</code> signature check. When used in this manner roles cannot be extracted from the access token.</p>
 <h2 id="disable-token-signature-validation">Disable token signature validation<a class="headerlink" href="#disable-token-signature-validation" title="Permanent link">&para;</a></h2>
 <p>This option (<strong>Disable token signature validation</strong>, field <code>disableSignatureValidation</code>) is <strong>unchecked by default</strong>, so GeoServer validates the token signature out of the box --- the secure default. Check it only to <strong>disable</strong> signature validation (for example against a development IDP whose keys you do not want to verify); leave it unchecked in production.</p>
+<p>The option belongs to the custom <strong>OpenID Connect</strong> provider and applies to it alone, which is why the checkbox only appears when that provider is selected. Tokens from Google, GitHub and Microsoft are always signature-verified regardless of this setting: their key sets are fixed and publicly documented, so there is no case for skipping verification, and for Microsoft it would defeat any confinement based on the token's issuer, which only means something on a signature that was actually checked.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This replaces the legacy <code>enforceTokenValidation</code> flag, whose polarity was the opposite (it defaulted to <code>true</code> and was checked to <em>enforce</em> validation). The new <code>disableSignatureValidation</code> flag is inverted: the unchecked default already enforces validation. See <a href="../migrating/#geoserver-field-renames">Migrating from the legacy OAuth2/OIDC plugins</a>.</p>
