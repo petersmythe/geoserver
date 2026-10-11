@@ -1,0 +1,9 @@
+.gs-updates-checker-banner {
+  padding-bottom: 1.25rem;
+}
+
+/* readonly (not disabled), so the URL stays selectable/copyable - text colored gray to still read as non-editable */
+.gs-updates-checker-feed-url[readonly] {
+  color: #6c757d;
+  cursor: default;
+}

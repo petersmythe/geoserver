@@ -1,0 +1,72 @@
+/* the banner and the Status section appear on pages that do not load UpdatesCheckerPage.css, so their rules live here */
+.gs-updates-checker-notifications ul.feedbackPanel {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* the theme makes links inside feedback panels the same colour as the text and removes the underline, so they would
+   not look clickable; use the ordinary link colour and underline here */
+.gs-updates-checker-notifications .gs-updates-checker-notification a,
+.gs-updates-checker-notifications .gs-updates-checker-more a,
+.gs-updates-checker-status .gs-updates-checker-status-item a,
+.gs-updates-checker-status .gs-updates-checker-clear a {
+  color: rgb(var(--gs-link-color-rgb));
+  text-decoration: underline;
+}
+
+.gs-updates-checker-notifications .gs-updates-checker-notification a:hover,
+.gs-updates-checker-notifications .gs-updates-checker-more a:hover,
+.gs-updates-checker-status .gs-updates-checker-status-item a:hover,
+.gs-updates-checker-status .gs-updates-checker-clear a:hover {
+  color: rgb(var(--gs-link-hover-color-rgb));
+}
+
+.gs-updates-checker-notification[hidden] {
+  display: none;
+}
+
+.gs-updates-checker-label {
+  letter-spacing: 0.03em;
+}
+
+.gs-updates-checker-more {
+  margin: 0.25rem 0 0;
+}
+
+.gs-updates-checker-heading {
+  margin: 0 0 0.25rem;
+}
+
+.gs-updates-checker-heading[hidden] {
+  display: none;
+}
+
+.gs-updates-checker-more[hidden] {
+  display: none;
+}
+
+.gs-updates-checker-status-item[hidden],
+.gs-updates-checker-status-none[hidden] {
+  display: none;
+}
+
+.gs-updates-checker-check-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gs-updates-checker-check-now.gs-updates-checker-busy {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* the feed time is out of date while a check runs */
+.gs-updates-checker-check-now.gs-updates-checker-busy ~ .gs-updates-checker-feed-line {
+  display: none;
+}
+
+.gs-updates-checker-clear[hidden] {
+  display: none;
+}
