@@ -202,7 +202,9 @@ After publishing the first release of a series from the main development branch 
         - Name: `GEOSERVER_MAIN_DOCKER_NAME`
         - Value: `3.1.0-SNAPSHOT`
 
-9.  Update the MAIN variable in Docker [release.sh](https://github.com/geoserver/docker/blob/master/build/release.sh#L6) to the new main branch version, and the `MAIN_VERSION`, `STABLE_VERSION` and `MAINTENANCE_VERSION` variables in Docker [publish.yml](https://github.com/geoserver/docker/blob/master/.github/workflows/publish.yml).
+9.  Update the MAIN variable in Docker [release.sh](https://github.com/geoserver/docker/blob/master/build/release.sh#L6) to the new main branch version (only needed while the legacy `geoserver-release-docker` job is in use).
+
+    The Docker [publish.yml](https://github.com/geoserver/docker/blob/master/.github/workflows/publish.yml) workflow has no series variables to update: it reads the main, stable and maintenance series from the [version feed](https://github.com/geoserver/geoserver/blob/main/.github/workflows/updates-checker/README.md), which is regenerated every 15 minutes. See [Docker images](#docker-images) for what is automatic when the first release of a series is published, and the one tag (`maintenance-latest`) that is moved by hand.
 
 10. Announce on the developer group that the new stable branch has been created.
 
@@ -286,13 +288,48 @@ Once the release is available on SourceForge, run the Docker [publish.yml](https
 
     gh workflow run publish.yml -R geoserver/docker --ref master -f version=3.0.2
 
-The workflow pushes `<version>` and `<version>-gdal` to `docker.osgeo.org/geoserver`, along with the series tags `<major>.<minor>-latest` and `stable-latest` or `maintenance-latest`. Check that both architectures are listed:
+Add `-f dry_run=true` to see which tags a run would produce, and check that the WAR can be downloaded, without building or pushing anything.
+
+Check that both architectures are listed:
 
     docker buildx imagetools inspect docker.osgeo.org/geoserver:3.0.2
 
 If a build job fails while downloading from SourceForge, re-run only the failed jobs:
 
     gh run rerun <run-id> --failed -R geoserver/docker
+
+#### Image tags
+
+Every tag is also published with a `-gdal` suffix for the image with GDAL (`3.0.2-gdal`, `stable-latest-gdal`, and so on).
+
+| Tag | Moves when |
+|-----|------------|
+| `<version>` (`3.0.2`) | the release is built |
+| `<major>.<minor>-latest` (`3.0-latest`) | the newest release of that series is built |
+| `stable-latest` | the newest release of the stable series is built, and when the first release of a new series is built (see below) |
+| `maintenance-latest` | the newest release of the maintenance series is built; **not** moved automatically when a new series becomes stable (see below) |
+| `<major>.<minor>.x` (`3.0.x`) | a snapshot of that branch is built |
+| `nightly`, `stable-nightly`, `maintenance-nightly` | a snapshot of the main, stable or maintenance branch is built |
+
+Archive series only receive `<version>` and `<major>.<minor>-latest`.
+
+The workflow takes the stable and maintenance series from the version feed (`versions.json` on the `updates-checker-v1` branch), and the main series from the same file (its `main` element). The feed has a single stable series, and may list more than one maintenance series: the highest is the one used for `maintenance-latest`. Nothing needs to be updated in the workflow when a new series is released.
+
+A `-latest` tag is never moved backwards: building a release older than the newest release of its series (for example re-running `2.27.6` when `2.27.7` is out) pushes `<version>` only, with a warning in the run.
+
+The feed is regenerated every 15 minutes, so it may not list the release you have just published when the workflow starts. That is expected: a version newer than the feed's newest for its series is treated as the newest.
+
+#### First release of a new series
+
+When the first final release of the main development series is built (for example `3.1.0` while `3.0` is stable) the workflow also moves `stable-latest` to it, because the feed cannot say that the series is stable until it has been regenerated.
+
+`maintenance-latest` is **not** moved: whether the previous stable series (`3.0`) is now the maintenance series is a decision for the release manager. Once that is decided, point the tag at the newest release of that series, with an account that can push to `geoserver-docker.osgeo.org`:
+
+    docker login geoserver-docker.osgeo.org
+    docker buildx imagetools create -t geoserver-docker.osgeo.org/geoserver:maintenance-latest geoserver-docker.osgeo.org/geoserver:3.0.2
+    docker buildx imagetools create -t geoserver-docker.osgeo.org/geoserver:maintenance-latest-gdal geoserver-docker.osgeo.org/geoserver:3.0.2-gdal
+
+Until then `maintenance-latest` stays on the previous maintenance series, and users following it do not change major series by surprise.
 
 For GeoServer 3.x the publish also reverts the release commit on the `<RELEASE>.x` branch and merges it back into `BRANCH`. When `BRANCH` is a stable branch (e.g. `3.0.x`) it is then advanced to the next patch version (e.g. releasing `3.0.2` advances `3.0.x` to `3.0.3-SNAPSHOT`). The `main` branch is not advanced by the job, see [create the stable branch](#when-publishing-the-first-release-of-a-series-create-the-stable-branch) after publishing the first release of a series.
 
