@@ -35,21 +35,21 @@ If you are using [Eclipse](http://www.eclipse.org/), you can install the [Eclips
 
 ## Translating documentation
 
-The GeoServer User Manual contains a wealth of information from the novice to the experienced GeoServer user. It is written using the [Sphinx Documentation Generator](https://www.sphinx-doc.org/). The stable branch version of the User Manual exists as the following URL:
+The GeoServer User Manual contains a wealth of information from the novice to the experienced GeoServer user. It is written in Markdown and built with [MkDocs](https://www.mkdocs.org/). The main branch version of the User Manual exists at the following URL:
 
-`<http://docs.geoserver.org/stable/en/user/>`
+`<https://docs.geoserver.org/main/en/user/>`
 
 Built from the following source files:
 
 `/doc/en/user/`
 
-To create a User Manual in a different language, first create a directory called **`/doc/[LANG]/`**, where [LANG] is the language code as defined in [RFC 3066](http://www.ietf.org/rfc/rfc3066.txt). The you can copy the contents of **`/doc/en/user/`** to **`/doc/[LANG]/user`** and edit accordingly, or generate a new Sphinx project in **`/doc/[LANG]/user`**. (See the `Sphinx Quickstart <http://sphinx.pocoo.org/tutorial.html>` for more information about creating a new project.)
+To create a User Manual in a different language, first create a directory called **`/doc/[LANG]/`**, where [LANG] is the language code as defined in [RFC 3066](http://www.ietf.org/rfc/rfc3066.txt). Then copy the contents of **`/doc/en/user/`** to **`/doc/[LANG]/user`** and edit the Markdown files accordingly.
 
-The GeoServer Sphinx theme exists at **`/doc/en/user/themes`**, so that can be copied (and modified if desired) to **`/doc/[LANG]/user/themes`**.
+For guidance on writing and building documentation, see the [Documentation Guide](https://docs.geoserver.org/main/en/docguide/), which covers the [workflow](https://docs.geoserver.org/main/en/docguide/workflow/), [installing MkDocs](https://docs.geoserver.org/main/en/docguide/install/), [Markdown syntax](https://docs.geoserver.org/main/en/docguide/markdown/), [style guidelines](https://docs.geoserver.org/main/en/docguide/style/), [background](https://docs.geoserver.org/main/en/docguide/background/), [contributing](https://docs.geoserver.org/main/en/docguide/contributing/), [tutorial](https://docs.geoserver.org/main/en/docguide/tutorial/), and [quickfix](https://docs.geoserver.org/main/en/docguide/quickfix/) instructions.
 
 When finished, you will need to commit the content (if you have commit rights) or submit a JIRA issue with attached patch. See the section on [Source Code](source.md) for more information on how to commit. Setting up the documentation to be hosted on docs.geoserver.org will require a project administrator; please send an email to the mailing list for more details.
 
 ### Tips
 
-- See the [GeoServer Documentation Manual](http://docs.geoserver.org/latest/en/docguide/) for more information about writing documentation.
+- See the [Documentation Guide](https://docs.geoserver.org/main/en/docguide/) for more information about writing documentation.
 - The Developer Manual exists at **`/doc/en/developer`**. The same procedures for editing the User Manual apply to the Developer Manual.
